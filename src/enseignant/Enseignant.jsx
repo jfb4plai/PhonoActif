@@ -20,6 +20,19 @@ export default function Enseignant({ deps = {} }) {
   const [courante, setCourante] = useState(null);
   const [nom, setNom] = useState('');
   const [message, setMessage] = useState('');
+  // Packs publiés : liste fournie (tests) ou lue dans packs/index.json
+  const [packs, setPacks] = useState(deps.packs || null);
+
+  useEffect(() => {
+    if (deps.packs) return undefined;
+    let actif = true;
+    const racine = base.replace(/\/+$/, '') + '/';
+    (deps.fetch || fetch)(`${racine}packs/index.json`)
+      .then(r => (r.ok ? r.json() : []))
+      .then(l => { if (actif) setPacks(Array.isArray(l) ? l.filter(p => p && p.id && p.label) : []); })
+      .catch(() => { if (actif) setPacks([]); });
+    return () => { actif = false; };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!client) return undefined;
@@ -35,7 +48,7 @@ export default function Enseignant({ deps = {} }) {
   useEffect(() => { if (client && utilisateur) charger(); }, [client, utilisateur]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!client) return <main className="ens"><p>Espace enseignant indisponible : service non configuré.</p></main>;
-  if (!pret) return <main className="ens"><p>Chargement…</p></main>;
+  if (!pret || packs === null) return <main className="ens"><p>Chargement…</p></main>;
   if (!utilisateur) return <main className="ens"><Connexion auth={client.auth} redirection={base} /></main>;
 
   async function ajouterClasse() {
@@ -58,7 +71,7 @@ export default function Enseignant({ deps = {} }) {
         {utilisateur.email} <button type="button" onClick={() => client.auth.signOut()}>Se déconnecter</button>
       </p>
       {courante ? (
-        <Classe client={client} userId={utilisateur.id} classe={courante} base={base} packs={deps.packs || []}
+        <Classe client={client} userId={utilisateur.id} classe={courante} base={base} packs={packs}
           onRetour={() => setCourante(null)} onSupprimer={supprimer} />
       ) : (
         <section className="ens-carte">

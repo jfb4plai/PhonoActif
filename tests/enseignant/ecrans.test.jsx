@@ -21,7 +21,7 @@ function avecAuth(client, { session = null, signIn } = {}) {
   return client;
 }
 
-const monter = (client, hash = '#/enseignant') => render(<App deps={{ hash, enseignant: { client, base: 'https://x.test/', packs: ['demo'] } }} />);
+const monter = (client, hash = '#/enseignant') => render(<App deps={{ hash, enseignant: { client, base: 'https://x.test/', packs: [{ id: 'demo', label: 'Pack d’essai (5 mots)' }, { id: 'second', label: 'Pack second' }] } }} />);
 
 const classeTables = role => ({
   phono_classes: [{ id: 'c1', name: '3P A' }],
@@ -101,8 +101,12 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
-    await userEvent.type(await screen.findByLabelText('Pack de cartes'), 'demo');
+    const liste = await screen.findByLabelText('Pack de cartes');
+    expect(liste.tagName).toBe('SELECT');
+    expect([...liste.options].map(o => o.textContent)).toEqual(['Pack d’essai (5 mots)', 'Pack second']);
+    await userEvent.selectOptions(liste, 'second');
     await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await waitFor(() => expect(client.tables.phono_tasks[0].pack).toBe('second'));
     const img = await screen.findByAltText('QR-code de la tâche');
     expect(img.getAttribute('src')).toMatch(/^data:image\/png;base64,/);
     expect(screen.getByText(/https:\/\/x\.test\/#\/jeu\?t=[a-f0-9]{24}/)).toBeTruthy();
@@ -116,6 +120,24 @@ describe('espace enseignant', () => {
     expect(screen.queryByLabelText('E-mail de l’enseignant')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Supprimer la classe' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Retirer E01' })).toBeNull();
+  });
+
+  it('sans liste fournie : lit packs/index.json ; sans pack publié, le choix est désactivé avec explication', async () => {
+    const appels = [];
+    const fetch = async url => { appels.push(url); return { ok: true, json: async () => [{ id: 'demo', label: 'Pack d’essai (5 mots)' }] }; };
+    const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    render(<App deps={{ hash: '#/enseignant', enseignant: { client, base: 'https://x.test/', fetch } }} />);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    const liste = await screen.findByLabelText('Pack de cartes');
+    await waitFor(() => expect([...liste.options].map(o => o.value)).toEqual(['demo']));
+    expect(appels[0]).toMatch(/packs\/index\.json$/);
+    cleanup();
+    const vide = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    render(<App deps={{ hash: '#/enseignant', enseignant: { client: vide, base: 'https://x.test/', packs: [] } }} />);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    expect((await screen.findByLabelText('Pack de cartes')).disabled).toBe(true);
+    expect(screen.getByText(/Aucun pack publié/)).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }).disabled).toBe(true);
   });
 
   it('service non configuré : message clair', () => {

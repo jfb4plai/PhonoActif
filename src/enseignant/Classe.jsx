@@ -12,7 +12,7 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
   const [prefixe, setPrefixe] = useState('E');
   const [nb, setNb] = useState(20);
   const [refuses, setRefuses] = useState([]);
-  const [tache, setTache] = useState({ ...PAS_DE_TACHE, pack: packs[0] || '' });
+  const [tache, setTache] = useState({ ...PAS_DE_TACHE, pack: packs[0] ? packs[0].id : '' });
   const [lien, setLien] = useState(null);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -69,10 +69,11 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
 
       <h2>Tâche pour les élèves</h2>
       <label htmlFor="ens-pack">Pack de cartes</label>
-      <input id="ens-pack" list="ens-packs" value={tache.pack} placeholder="demo" onChange={e => setTache(t => ({ ...t, pack: e.target.value }))} />
-      <datalist id="ens-packs">{packs.map(p => <option key={p} value={p} />)}</datalist>
-      <p className="aide">Nom du pack choisi par l’enseignant. Les élèves ouvriront ce pack avec le lien.</p>
-      <button type="button" onClick={creer}>Créer le lien et le QR-code</button>
+      <select id="ens-pack" value={tache.pack} disabled={packs.length === 0} onChange={e => setTache(t => ({ ...t, pack: e.target.value }))}>
+        {packs.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
+      </select>
+      <p className="aide">{packs.length === 0 ? 'Aucun pack publié pour l’instant.' : 'Les élèves qui ouvrent le lien jouent les cartes de ce pack.'}</p>
+      <button type="button" onClick={creer} disabled={packs.length === 0}>Créer le lien et le QR-code</button>
       {lien && (
         <div>
           <p>Lien : <a href={lien.lien}>{lien.lien}</a></p>

@@ -9,6 +9,7 @@ data/vob-brut.json
 public/sons/
 public/packs/*
 !public/packs/demo/
+!public/packs/index.json
 dist/
 
 .vercel
