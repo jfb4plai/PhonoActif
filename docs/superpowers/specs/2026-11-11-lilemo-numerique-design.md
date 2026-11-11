@@ -76,6 +76,8 @@ Anti-buts (échec même si tout fonctionne)
 - Signaux visuels forts (jauges colorées retenues, style B), distinction nette entre élève seul et groupe, grille élèves × sons comme écran d'accueil (maquette v4 retenue ; maquettes dans `phonoactif/.superpowers/brainstorm/1863-1794385199/content/`).
 - Aucune IA pour le choix des mots.
 - Ordre des chantiers accepté : socle + un premier jeu, puis tableau de bord, puis autres jeux, puis extensions.
+- HubActif mis en réserve (JF, 2026-11-11) : l'assignation par lien ou QR et le tableau de bord de groupe restent essentiels, mais leur mécanisme n'est plus fixé sur HubActif ; à redéfinir avant le plan du tableau de bord [non décidé].
+- Toute déviation phonétique doit pouvoir être vérifiée et corrigée, et les entrées à plusieurs mots doivent être validées (JF, 2026-11-11) : voir « Corrections et validation » en section 7.
 
 ## 6. Le pack de cartes
 
@@ -92,6 +94,15 @@ Anti-buts (échec même si tout fonctionne)
 - Cœur de Lilémo (version phonémique.html, test-lilemo.js) : à corriger pour ien, e des monosyllabes (se), geai, yod /j/, sept ; générer la colonne des graphèmes depuis ManuLemme et réserver l'heuristique aux mots absents [spec v0.2].
 - Sons : 18 validés à l'oreille ; p et t provisoires très courts ; plusieurs jugés mauvais ; phonème isolé par synthèse IPA non prouvé. Les sons de syllabes ne sont pas prêts.
 - Choix des mots par l'enseignant : liste libre, ou filtres sur ManuLemme (phonème, graphème, nombre de syllabes, fréquence P1, classe) ; la raison s'affiche pour chaque mot proposé ; les mots refusés (graphèmes hors niveau) sont signalés, pas modifiés.
+
+### Corrections et validation (exigence de JF, 2026-11-11)
+
+ManuLemme est la source de départ, jamais l'autorité finale. Le moteur codé le 2026-11-11 signale déjà ce qui est incertain ; il manque la couche qui permet de le vérifier et de le corriger. À construire (plan à écrire) :
+- Un dictionnaire de corrections, propre à PLAI, qui l'emporte sur ManuLemme : par mot, graphèmes et sons corrigés, statut (« à valider », « validé », « corrigé »), auteur, date, raison. Ordre de priorité : correction > graphèmes explicites de la carte > ManuLemme > heuristique.
+- Un écran de revue : liste des mots signalés (au 2026-11-11 : 874 entrées de ManuLemme à code non traité, dont « 8 » seul, soleil, voyage, loin, ville ; plus les mots absents ; plus les entrées à plusieurs mots), avec écoute du résultat, correction, validation. Une correction se retrouve dans l'app et dans les packs sans retoucher ManuLemme.
+- Les entrées à plusieurs mots (« pomme de terre », « aujourd'hui », absent de ManuLemme) ne sont jamais acceptées automatiquement : statut « à valider » tant que JF ou l'enseignant ne les a pas vues.
+- Un mot « validé » à l'oreille reste validé quand le lexique est régénéré.
+- Le schwa prononcé (le, se, de, je, ce, ne, que) : ManuLemme dit quand il se prononce (code %), mais ne fournit aucun son ; un fichier son est donc nécessaire. L'id actuel `e_muet` prête à confusion (la lettre muette n'a pas de fichier) : renommer en `schwa` ou réutiliser `eu_ferme` si l'oreille de JF l'accepte [non décidé].
 
 ### Liste de vocabulaire P1 fin de période 1 (fichier de JF, lu le 2026-11-11)
 

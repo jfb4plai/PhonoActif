@@ -6,7 +6,7 @@ const CODES = new Map([
   ['i', 'i'], ['e', 'e_ferme'], ['E', 'e_ouvert'], ['a', 'a'], ['y', 'u'], ['u', 'ou'],
   ['o', 'o_ferme'], ['O', 'o_ouvert'], ['2', 'eu_ferme'], ['9', 'eu_ouvert'],
   ['@', 'an'], ['§', 'on'], ['5', 'in'], ['1', 'un'],
-  ['%', 'e_muet'], ['°', ''], ['#', ''],
+  ['%', 'schwa'], ['°', ''], ['#', ''],
   // un graphème, deux phonèmes
   ['wa', 'oi'], ['8i', 'ui'], ['ks', 'ks'], ['ij', 'ij']
 ]);

@@ -17,7 +17,7 @@ test('E (ɛ) et e (e) sont distincts, O (ɔ) et o (o) aussi', () => {
 test('lettres muettes et schwa', () => {
   assert.equal(sonDepuisCodes('#'), '');
   assert.equal(sonDepuisCodes('°'), '');
-  assert.equal(sonDepuisCodes('%'), 'e_muet');
+  assert.equal(sonDepuisCodes('%'), 'schwa');
 });
 
 test('séquences de deux phonèmes pour un graphème', () => {

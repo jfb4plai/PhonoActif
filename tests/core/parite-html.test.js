@@ -16,5 +16,7 @@ test('segmenterAuto identique au cœur du HTML d\'origine', { skip: !chemin || !
   const core = html.match(/<script id="core">([\s\S]*?)<\/script>/)[1];
   const m = { exports: {} };
   new Function('module', core)(m);
-  for (const mot of MOTS) assert.deepEqual(segmenterAuto(mot), m.exports.segmenterAuto(mot), mot);
+  // Le HTML d'origine nomme encore « e_muet » le son que le moteur appelle « schwa » (renommé le 2026-11-11).
+  const ancien = mot => m.exports.segmenterAuto(mot).map(c => c.son === 'e_muet' ? { ...c, son: 'schwa' } : c);
+  for (const mot of MOTS) assert.deepEqual(segmenterAuto(mot), ancien(mot), mot);
 });

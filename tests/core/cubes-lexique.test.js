@@ -10,7 +10,7 @@ const lire = mot => cubesDepuisEntree(entree(mot)).map(c => c.g + '=' + (c.son =
 test('écarts du cœur corrigés : ien, e de monosyllabe, geai, fille, sept', () => {
   assert.equal(lire('bien'), 'b=b i=yod en=in');
   assert.equal(lire('chien'), 'ch=ch i=yod en=in');
-  assert.equal(lire('se'), 's=s e=e_muet');
+  assert.equal(lire('se'), 's=s e=schwa');
   assert.equal(lire('geai'), 'ge=j ai=e_ouvert');
   assert.equal(lire('fille'), 'f=f ill=ij e=');
   assert.equal(lire('sept'), 's=s e=e_ouvert p= t=t');
@@ -21,7 +21,7 @@ test('mots déjà corrects dans le cœur d\'origine', () => {
   assert.equal(lire('oiseau'), 'oi=oi s=z eau=o_ferme');
   assert.equal(lire('pain'), 'p=p ain=in');
   assert.equal(lire('lune'), 'l=l u=u n=n e=');
-  assert.equal(lire('cerise'), 'c=s e=e_muet r=r i=i s=z e=');
+  assert.equal(lire('cerise'), 'c=s e=schwa r=r i=i s=z e=');
 });
 
 test('accents et consonnes doubles', () => {
