@@ -7,3 +7,4 @@ export * from './lexique.js';
 export * from './liaisons.js';
 export * from './analyseListe.js';
 export * from './pack.js';
+export * from './audio.js';
