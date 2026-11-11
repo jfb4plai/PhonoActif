@@ -1,0 +1,434 @@
+[
+ {
+  "ortho": "le",
+  "phono": "l%",
+  "classe": "DET",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 32230.77,
+   "P2": 29404.72,
+   "P1_5": 27585.93
+  },
+  "graphemes": [
+   "l",
+   "e"
+  ],
+  "codes": [
+   "l",
+   "%"
+  ]
+ },
+ {
+  "ortho": "se",
+  "phono": "s%",
+  "classe": "PRO",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 6147.36,
+   "P2": 6761.96,
+   "P1_5": 6404.69
+  },
+  "graphemes": [
+   "s",
+   "e"
+  ],
+  "codes": [
+   "s",
+   "%"
+  ]
+ },
+ {
+  "ortho": "petit",
+  "phono": "p%ti",
+  "classe": "ADJ",
+  "nbSyllabes": 2,
+  "freq": {
+   "P1": 3700.98,
+   "P2": 2390.88,
+   "P1_5": 1879.19
+  },
+  "graphemes": [
+   "p",
+   "e",
+   "t",
+   "i",
+   "t"
+  ],
+  "codes": [
+   "p",
+   "%",
+   "t",
+   "i",
+   "#"
+  ]
+ },
+ {
+  "ortho": "bien",
+  "phono": "bj5",
+  "classe": "ADV",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 2758.98,
+   "P2": 3255.94,
+   "P1_5": 2755.97
+  },
+  "graphemes": [
+   "b",
+   "i",
+   "en"
+  ],
+  "codes": [
+   "b",
+   "j",
+   "5"
+  ]
+ },
+ {
+  "ortho": "maman",
+  "phono": "mam@",
+  "classe": "NC",
+  "nbSyllabes": 2,
+  "freq": {
+   "P1": 2333.21,
+   "P2": 830.36,
+   "P1_5": 774.92
+  },
+  "graphemes": [
+   "m",
+   "a",
+   "m",
+   "an"
+  ],
+  "codes": [
+   "m",
+   "a",
+   "m",
+   "@"
+  ]
+ },
+ {
+  "ortho": "chat",
+  "phono": "Sa",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 1714.06,
+   "P2": 1254.98,
+   "P1_5": 785.24
+  },
+  "graphemes": [
+   "ch",
+   "a",
+   "t"
+  ],
+  "codes": [
+   "S",
+   "a",
+   "#"
+  ]
+ },
+ {
+  "ortho": "nous",
+  "phono": "nu",
+  "classe": "PRO",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 1409.3,
+   "P2": 2229.29,
+   "P1_5": 2797.67
+  },
+  "graphemes": [
+   "n",
+   "ou",
+   "s"
+  ],
+  "codes": [
+   "n",
+   "u",
+   "#"
+  ]
+ },
+ {
+  "ortho": "chien",
+  "phono": "Sj5",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 784.49,
+   "P2": 927.54,
+   "P1_5": 746.15
+  },
+  "graphemes": [
+   "ch",
+   "i",
+   "en"
+  ],
+  "codes": [
+   "S",
+   "j",
+   "5"
+  ]
+ },
+ {
+  "ortho": "lune",
+  "phono": "lyn",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 470.6,
+   "P2": 353.61,
+   "P1_5": 218.72
+  },
+  "graphemes": [
+   "l",
+   "u",
+   "n",
+   "e"
+  ],
+  "codes": [
+   "l",
+   "y",
+   "n",
+   "°"
+  ]
+ },
+ {
+  "ortho": "oiseau",
+  "phono": "wazo",
+  "classe": "NC",
+  "nbSyllabes": 2,
+  "freq": {
+   "P1": 446.63,
+   "P2": 605.99,
+   "P1_5": 382.06
+  },
+  "graphemes": [
+   "oi",
+   "s",
+   "eau"
+  ],
+  "codes": [
+   "wa",
+   "z",
+   "o"
+  ]
+ },
+ {
+  "ortho": "fille",
+  "phono": "fij",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 400.03,
+   "P2": 557.16,
+   "P1_5": 472.41
+  },
+  "graphemes": [
+   "f",
+   "ill",
+   "e"
+  ],
+  "codes": [
+   "f",
+   "ij",
+   "°"
+  ]
+ },
+ {
+  "ortho": "pain",
+  "phono": "p5",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 331.26,
+   "P2": 182.25,
+   "P1_5": 199.68
+  },
+  "graphemes": [
+   "p",
+   "ain"
+  ],
+  "codes": [
+   "p",
+   "5"
+  ]
+ },
+ {
+  "ortho": "sept",
+  "phono": "sEt",
+  "classe": "ADJ",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 106.7,
+   "P2": 120.7,
+   "P1_5": 138.38
+  },
+  "graphemes": [
+   "s",
+   "e",
+   "p",
+   "t"
+  ],
+  "codes": [
+   "s",
+   "E",
+   "#",
+   "t"
+  ]
+ },
+ {
+  "ortho": "cerise",
+  "phono": "s%Riz",
+  "classe": "NC",
+  "nbSyllabes": 2,
+  "freq": {
+   "P1": 35.48,
+   "P2": 5.38,
+   "P1_5": 11.67
+  },
+  "graphemes": [
+   "c",
+   "e",
+   "r",
+   "i",
+   "s",
+   "e"
+  ],
+  "codes": [
+   "s",
+   "%",
+   "R",
+   "i",
+   "z",
+   "°"
+  ]
+ },
+ {
+  "ortho": "geai",
+  "phono": "ZE",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 1.05,
+   "P2": 12.72,
+   "P1_5": 4.25
+  },
+  "graphemes": [
+   "ge",
+   "ai"
+  ],
+  "codes": [
+   "Z",
+   "E"
+  ]
+ },
+ {
+  "ortho": "très",
+  "phono": "tRE",
+  "classe": "ADV",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 2024.57,
+   "P2": 2212.86,
+   "P1_5": 1709.9
+  },
+  "graphemes": [
+   "t",
+   "r",
+   "è",
+   "s"
+  ],
+  "codes": [
+   "t",
+   "R",
+   "E",
+   "#"
+  ]
+ },
+ {
+  "ortho": "été",
+  "phono": "ete",
+  "classe": "NC",
+  "nbSyllabes": 2,
+  "freq": {
+   "P1": 218.18,
+   "P2": 197.91,
+   "P1_5": 159.08
+  },
+  "graphemes": [
+   "é",
+   "t",
+   "é"
+  ],
+  "codes": [
+   "e",
+   "t",
+   "e"
+  ]
+ },
+ {
+  "ortho": "examen",
+  "phono": "Egzam5",
+  "classe": "NC",
+  "nbSyllabes": 3,
+  "freq": {
+   "P1": 19.07,
+   "P2": 2.69,
+   "P1_5": 15.88
+  },
+  "graphemes": [
+   "e",
+   "x",
+   "a",
+   "m",
+   "en"
+  ],
+  "codes": [
+   "E",
+   "gz",
+   "a",
+   "m",
+   "5"
+  ]
+ },
+ {
+  "ortho": "pomme",
+  "phono": "pOm",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 465.49,
+   "P2": 150.94,
+   "P1_5": 161.58
+  },
+  "graphemes": [
+   "p",
+   "o",
+   "mm",
+   "e"
+  ],
+  "codes": [
+   "p",
+   "O",
+   "m",
+   "°"
+  ]
+ },
+ {
+  "ortho": "zz",
+  "phono": "?",
+  "classe": "NC",
+  "nbSyllabes": 1,
+  "freq": {
+   "P1": 0,
+   "P2": 0,
+   "P1_5": 0
+  },
+  "graphemes": [
+   "zz"
+  ],
+  "codes": [
+   "A"
+  ]
+ }
+]

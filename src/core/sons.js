@@ -29,4 +29,4 @@ export const SONS_COMPOSES = { ij: ['i', 'yod'] };
 
 export const composants = son => son === '' || son == null ? [] : (SONS_COMPOSES[son] || [son]);
 
-export const classeCube = son => son === '' ? 'muet' : (VOYELLES_SONS.has(son) ? 'voyelle' : 'consonne');
+export const classeCube = son => son === null ? 'inconnu' : son === '' ? 'muet' : (VOYELLES_SONS.has(son) ? 'voyelle' : 'consonne');
