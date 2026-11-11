@@ -11,3 +11,4 @@ public/packs/
 dist/
 
 .vercel
+supabase/.temp/
