@@ -18,4 +18,15 @@ export const SON_PAR_DEFAUT = {
 };
 export const GRAPHEMES_TRIES = Object.keys(SON_PAR_DEFAUT).sort((a, b) => b.length - a.length);
 
+// Les 36 sons visés par Lilémo, plus le yod /j/ (id « j » = /ʒ/ dans le cœur d'origine).
+// « e_muet » désigne aussi le schwa prononcé (se, le).
+export const SONS_LILEMO = ['a', 'an', 'b', 'ch', 'd', 'e_ferme', 'e_ouvert', 'e_muet', 'eu_ferme', 'eu_ouvert', 'f', 'g', 'gn',
+  'i', 'in', 'j', 'k', 'ks', 'l', 'm', 'n', 'o_ferme', 'o_ouvert', 'oi', 'on', 'ou', 'p', 'r', 's', 't', 'u', 'ui', 'un',
+  'v', 'w', 'z', 'yod'];
+
+// Sons sans enregistrement propre : joués en enchaînant leurs composants.
+export const SONS_COMPOSES = { ij: ['i', 'yod'] };
+
+export const composants = son => son === '' || son == null ? [] : (SONS_COMPOSES[son] || [son]);
+
 export const classeCube = son => son === '' ? 'muet' : (VOYELLES_SONS.has(son) ? 'voyelle' : 'consonne');
