@@ -33,9 +33,9 @@ test('bonne réponse : juste, une ligne d\'essai complète', () => {
   assert.equal(etat.statut, 'juste');
   assert.equal(etat.essais.length, 1);
   const l = etat.essais[0];
-  assert.deepEqual({ ...l, positions: undefined }, {
+  assert.deepEqual({ ...l, positions: undefined, id: undefined }, {
     session: etat.session, code: 'E07', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'sans',
-    tentative: 1, juste: true, aide: 'aucune', positions: undefined, date: '2026-11-11T10:00:00.000Z'
+    tentative: 1, juste: true, aide: 'aucune', positions: undefined, id: undefined, date: '2026-11-11T10:00:00.000Z'
   });
   assert.deepEqual(l.positions, [
     { liaison: 'ch=ch', pose: 'ch', juste: true }, { liaison: 'a=a', pose: 'a', juste: true }, { liaison: 't=', pose: 't', juste: true }
@@ -167,4 +167,15 @@ test('mélange des cartes quand reglages.melanger et un rng sont fournis', () =>
     ordres.add(demarrerJeu({ pack, reglages: { ...REGLAGES, melanger: true }, code: 'E1', rng: graine(g), maintenant }).cartes.map(c => c.mot).join());
   }
   assert.ok(ordres.size > 1);
+});
+
+test('chaque ligne d\'essai a un identifiant unique, injectable', () => {
+  let n = 0;
+  const e = demarrerJeu({ pack, reglages: REGLAGES, code: 'E07', rng: graine(5), maintenant, nouvelId: () => `id-${++n}` });
+  const a = verifier(poserMot(e, ['ch', 'a', 't'])).etat;
+  assert.equal(a.essais[0].id, 'id-1');
+  const b = aider(aider(aider(demarrer()).etat).etat).etat;
+  assert.match(b.essais[0].id, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  const c = verifier(poserMot(demarrer(), ['ch', 'a', 't'])).etat;
+  assert.notEqual(b.essais[0].id, c.essais[0].id);
 });
