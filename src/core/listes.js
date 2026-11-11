@@ -70,3 +70,6 @@ export function motsJusquAuNiveau(liste, niveau) {
   if (i === -1) return [];
   return liste.entrees.filter(e => liste.niveaux.indexOf(e.niveau) <= i).map(e => e.mot);
 }
+
+// Mots distincts d'une liste, dans l'ordre des niveaux.
+export const motsDeListe = liste => [...new Set(liste.entrees.map(e => e.mot))];
