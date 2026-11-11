@@ -3,3 +3,6 @@ data/lexique-rejets.json
 .superpowers/
 node_modules/
 revue/
+data/listes/
+packs/
+data/vob-brut.json
