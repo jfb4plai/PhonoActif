@@ -16,7 +16,7 @@ export async function baseDeTest() {
     create role authenticated nologin;
     create role service_role nologin;
     create schema auth;
-    create table auth.users (id uuid primary key);
+    create table auth.users (id uuid primary key, email text);
     create function auth.uid() returns uuid language sql stable as $$
       select nullif(nullif(current_setting('request.jwt.claims', true), '')::jsonb ->> 'sub', '')::uuid
     $$;
@@ -28,9 +28,9 @@ export async function baseDeTest() {
   return db;
 }
 
-export async function creerUtilisateur(db) {
+export async function creerUtilisateur(db, email = null) {
   const id = crypto.randomUUID();
-  await db.query('insert into auth.users (id) values ($1)', [id]);
+  await db.query('insert into auth.users (id, email) values ($1, $2)', [id, email]);
   return id;
 }
 

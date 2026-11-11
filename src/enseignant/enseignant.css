@@ -1,0 +1,10 @@
+.ens { max-width: 46rem; margin: 0 auto; padding: 1rem; font-family: Arial, sans-serif; font-size: 1rem; color: #1b1b1b; }
+.ens-carte { background: #fff; border: 1px solid #c8c8c8; border-radius: 8px; padding: 1rem; }
+.ens label { display: block; font-weight: bold; margin-top: 0.8rem; }
+.ens input, .ens textarea { display: block; width: 100%; box-sizing: border-box; font: inherit; padding: 0.5rem; margin-top: 0.25rem; }
+.ens textarea { min-height: 5rem; }
+.ens .aide { font-size: 0.9rem; color: #444; margin: 0.25rem 0 0; }
+.ens button { font: inherit; padding: 0.5rem 0.9rem; margin: 0.5rem 0.5rem 0 0; cursor: pointer; }
+.ens table { width: 100%; border-collapse: collapse; }
+.ens th, .ens td { text-align: left; border-bottom: 1px solid #ddd; padding: 0.4rem; }
+.ens-message { font-weight: bold; }

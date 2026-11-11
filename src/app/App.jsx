@@ -27,7 +27,21 @@ const TEXTES_ENVOI = {
 };
 
 // deps : injection pour les tests (fetch, stockage, stockageEnvoyes, supabase, jouerSons, rng, maintenant, hash, base)
+const Enseignant = React.lazy(() => import('../enseignant/Enseignant.jsx'));
+
 export default function App({ deps = {} }) {
+  const enseignant = lireAdresse(deps.hash ?? window.location.hash).ecran === 'enseignant';
+  if (enseignant) {
+    return (
+      <React.Suspense fallback={<p>Chargement…</p>}>
+        <Enseignant deps={deps.enseignant || {}} />
+      </React.Suspense>
+    );
+  }
+  return <AppEleve deps={deps} />;
+}
+
+function AppEleve({ deps }) {
   const base = deps.base ?? (import.meta.env && import.meta.env.BASE_URL) ?? '/';
   const adresse = useRef(lireAdresse(deps.hash ?? window.location.hash)).current;
   const stockage = useRef(deps.stockage || stockageLocal()).current;
