@@ -22,7 +22,8 @@
      "son": ""
     }
    ],
-   "aVerifier": false
+   "aVerifier": false,
+   "audio_mot": "audio/chat.mp3"
   },
   {
    "id": "lune",
@@ -49,7 +50,8 @@
      "son": ""
     }
    ],
-   "aVerifier": false
+   "aVerifier": false,
+   "audio_mot": "audio/lune.mp3"
   },
   {
    "id": "pain",
@@ -68,7 +70,8 @@
      "son": "in"
     }
    ],
-   "aVerifier": false
+   "aVerifier": false,
+   "audio_mot": "audio/pain.mp3"
   },
   {
    "id": "maman",
@@ -95,7 +98,8 @@
      "son": "an"
     }
    ],
-   "aVerifier": false
+   "aVerifier": false,
+   "audio_mot": "audio/maman.mp3"
   },
   {
    "id": "vache",
@@ -122,7 +126,8 @@
      "son": ""
     }
    ],
-   "aVerifier": false
+   "aVerifier": false,
+   "audio_mot": "audio/vache.mp3"
   },
   {
    "id": "sac",
@@ -145,7 +150,8 @@
      "son": "k"
     }
    ],
-   "aVerifier": false
+   "aVerifier": false,
+   "audio_mot": "audio/sac.mp3"
   }
  ]
 }

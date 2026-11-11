@@ -1,7 +1,8 @@
-// Usage : node tools/pack_demo.js
+// Usage : node tools/pack_demo.js "<dossier audio-fr-BE de la banque Charline>"
+// Copie aussi le mot entier prononcé (voix Azure fr-BE-CharlineNeural, IPA de ManuLemme) dans audio/<mot>.mp3 et le déclare dans la carte (audio_mot).
 // Écrit public/packs/demo/ : manifest.json (6 cartes, cubes issus du lexique réel) et deux images SVG provisoires par carte
 // (<id>.svg sans le mot, <id>-mot.svg avec le mot en Arial). Mots choisis parce que leurs sons ont déjà un fichier.
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, copyFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { chargerLexique } from '../src/node/chargerLexique.js';
@@ -18,16 +19,19 @@ const DESSINS = {
 
 const svg = (corps, mot) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 ${mot ? 236 : 200}" width="200" height="${mot ? 236 : 200}"><rect x="2" y="2" width="196" height="${mot ? 232 : 196}" rx="22" fill="#fffdf4" stroke="#ef6c57" stroke-width="4"/>${corps}${mot ? `<text x="100" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="bold" fill="#2b2b2b">${mot}</text>` : ''}</svg>\n`;
 
+const sourceAudio = process.argv[2];
+if (!sourceAudio) { console.error('Usage : node tools/pack_demo.js "<dossier audio-fr-BE>"'); process.exit(2); }
 const racine = fileURLToPath(new URL('..', import.meta.url));
 const lexique = await chargerLexique(path.join(racine, 'data', 'lexique.json'));
 const mots = Object.keys(DESSINS);
 const { manifest } = preparerPack({ nom: 'demo', mots, source: "pack d'essai, dessins provisoires", licence: 'propre', lexique });
-for (const c of manifest.cartes) { c.image_sans_mot = `${c.id}.svg`; c.image_avec_mot = `${c.id}-mot.svg`; }
+for (const c of manifest.cartes) { c.image_sans_mot = `${c.id}.svg`; c.image_avec_mot = `${c.id}-mot.svg`; c.audio_mot = `audio/${c.mot}.mp3`; }
 
 const dossier = path.join(racine, 'public', 'packs', 'demo');
-await mkdir(dossier, { recursive: true });
+await mkdir(path.join(dossier, 'audio'), { recursive: true });
 await writeFile(path.join(dossier, 'manifest.json'), JSON.stringify(manifest, null, 1) + '\n', 'utf8');
 for (const c of manifest.cartes) {
+  await copyFile(path.join(sourceAudio, `${c.mot}.mp3`), path.join(dossier, c.audio_mot));
   await writeFile(path.join(dossier, c.image_sans_mot), svg(DESSINS[c.mot]), 'utf8');
   await writeFile(path.join(dossier, c.image_avec_mot), svg(DESSINS[c.mot], c.mot), 'utf8');
 }

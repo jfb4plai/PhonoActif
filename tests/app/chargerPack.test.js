@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { creerLexique, preparerPack } from '../../src/core/index.js';
 import { chargerPack } from '../../src/app/chargerPack.js';
-import { jouerSons } from '../../src/app/audio.js';
+import { jouerSons, jouerFichier } from '../../src/app/audio.js';
 
 const entrees = JSON.parse(fs.readFileSync(new URL('../fixtures/lexique-extrait.json', import.meta.url), 'utf8'));
 const lex = creerLexique(entrees);
@@ -65,6 +65,19 @@ test('jouerSons : lecture refusée ou fichier absent : dans manquants, sans exce
   assert.deepEqual((await jouerSons(['a', 'b'], { creerAudio: faux('erreur', []) })).manquants, ['a', 'b']);
   const casse = () => { throw new Error('Audio indisponible'); };
   assert.deepEqual((await jouerSons(['a'], { creerAudio: casse })).manquants, ['a']);
+});
+
+test('jouerFichier : joue l’adresse donnée ; absent ou refusé : dans manquants, sans exception', async () => {
+  const j = [];
+  assert.deepEqual(await jouerFichier('/packs/demo/audio/chat.mp3', { creerAudio: faux('ok', j) }), { manquants: [] });
+  assert.deepEqual(j, ['/packs/demo/audio/chat.mp3']);
+  assert.deepEqual((await jouerFichier('/x.mp3', { creerAudio: faux('erreur', []) })).manquants, ['/x.mp3']);
+  assert.deepEqual((await jouerFichier('/x.mp3', { creerAudio: faux('refus', []) })).manquants, ['/x.mp3']);
+});
+
+test('chargerPack : le dossier du pack est fourni pour retrouver ses fichiers audio', async () => {
+  const { pack } = await chargerPack('essai', { fetch: async () => ({ ok: true, json: async () => manifest }) });
+  assert.equal(pack.dossier, 'essai');
 });
 
 test('jouerSons : liste vide résolue tout de suite', async () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { composants, classeCube } from '../core/index.js';
+import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT } from './route.js';
 
@@ -19,16 +19,21 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const enCours = etat.statut === 'en_cours';
 
   const [sonAbsent, setSonAbsent] = useState(false);
+  const signalerSons = r => {
+    const manquants = r && r.manquants ? r.manquants : [];
+    manquants.forEach(id => onSignalement('son', id));
+    if (manquants.length > 0) setSonAbsent(true);
+  };
   const jouer = ids => {
     if (ids.length === 0) return;
     setSonAbsent(false);
-    Promise.resolve(deps.jouerSons(ids))
-      .then(r => {
-        const manquants = r && r.manquants ? r.manquants : [];
-        manquants.forEach(id => onSignalement('son', id));
-        if (manquants.length > 0) setSonAbsent(true);
-      })
-      .catch(() => {});
+    Promise.resolve(deps.jouerSons(ids)).then(signalerSons).catch(() => {});
+  };
+  // Le mot entier est préféré : enchaîner des sons isolés donne « che-a ». Sans fichier du mot, on retombe sur les sons.
+  const jouerMot = c => {
+    if (!c.audio_mot || !deps.jouerFichier) { jouer(sonsDuMot(c)); return; }
+    setSonAbsent(false);
+    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${c.audio_mot}`)).then(signalerSons).catch(() => {});
   };
   const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(l));
 
@@ -36,8 +41,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     const apres = poser(etat, piece.id);
     if (apres === etat) return;
     setEtat(apres); setMessage(null);
-    // On entend tout ce qui est déposé, dans l'ordre de la zone
-    jouer(apres.poses.flatMap(id => composants(apres.plateau.find(p => p.id === id).son)));
+    // Aucun son au dépôt : les sons isolés sont à refaire (enchaînés, ils donnent « che-a »).
   };
   const surVerifier = () => {
     const { etat: apres, resultat } = verifier(etat);
@@ -48,7 +52,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     const { etat: apres, sons } = aider(etat);
     enregistrer(etat, apres);
     setEtat(apres); setMessage({ type: apres.aide });
-    jouer(sons);
+    if (apres.aide === 'ecoute') jouerMot(carte); else jouer(sons);
   };
   const surSuivant = () => {
     const apres = suivant(etat);
@@ -91,7 +95,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       </div>
 
       <div className="actions" role="toolbar" aria-label="Actions">
-        <button type="button" onClick={() => jouer(sonsDuMot(carte))}>Écouter</button>
+        <button type="button" onClick={() => jouerMot(carte)}>Écouter</button>
         {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
         <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
         <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>

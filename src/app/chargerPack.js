@@ -14,5 +14,5 @@ export async function chargerPack(nom, options = {}) {
   const fichiers = new Set(manifest.cartes.flatMap(c => (c ? [c.image_sans_mot, c.image_avec_mot] : []).filter(Boolean)));
   const { erreurs, avertissements } = validerPackJouable(manifest, fichiers, sonsDisponibles);
   if (erreurs.length) throw new Error(`pack « ${nom} » invalide : ${erreurs[0]}`);
-  return { pack: { nom: manifest.nom || nom, cartes: manifest.cartes }, avertissements };
+  return { pack: { nom: manifest.nom || nom, dossier: nom, cartes: manifest.cartes }, avertissements };
 }

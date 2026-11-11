@@ -203,16 +203,37 @@ describe('Jeu', () => {
     expect(screen.queryByText('chat', { selector: 'strong' })).toBeNull();
   });
 
-  it('chaque cube posé : on entend tout ce qui est déposé, dans l’ordre de la zone', async () => {
+  it('poser un cube ne joue aucun son (les sons isolés sont à refaire : « che-a », « le-ou »)', async () => {
     const jouerSons = vi.fn(async () => ({ manquants: [] }));
     const { user } = monter({ jouerSons });
     await commencer(user);
-    await taper(user, 'ch');
-    expect(jouerSons).toHaveBeenLastCalledWith(['ch']);
-    await taper(user, 'a');
-    expect(jouerSons).toHaveBeenLastCalledWith(['ch', 'a']);
-    await taper(user, 't');
-    expect(jouerSons).toHaveBeenLastCalledWith(['ch', 'a']);
+    await taper(user, 'ch', 'a');
+    expect(jouerSons).not.toHaveBeenCalled();
+  });
+
+  it('Écouter : joue le fichier du mot entier quand la carte en a un, sans enchaîner de sons isolés', async () => {
+    const manifest = structuredClone(MANIFEST);
+    manifest.cartes.forEach(c => { c.audio_mot = `audio/${c.mot}.mp3`; });
+    const jouerFichier = vi.fn(async () => ({ manquants: [] }));
+    const jouerSons = vi.fn(async () => ({ manquants: [] }));
+    const { user } = monter({ jouerSons, deps: { fetch: reponse(manifest), jouerFichier } });
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(jouerFichier).toHaveBeenCalledWith('/packs/essai/audio/chat.mp3');
+    expect(jouerSons).not.toHaveBeenCalled();
+    await user.click(screen.getByRole('button', { name: /Besoin d.aide/ }));
+    expect(jouerFichier).toHaveBeenCalledTimes(2);
+    expect(jouerSons).not.toHaveBeenCalled();
+  });
+
+  it('Écouter : fichier du mot absent sur le serveur : message neutre', async () => {
+    const manifest = structuredClone(MANIFEST);
+    manifest.cartes.forEach(c => { c.audio_mot = `audio/${c.mot}.mp3`; });
+    const jouerFichier = vi.fn(async () => ({ manquants: ['/packs/essai/audio/chat.mp3'] }));
+    const { user } = monter({ deps: { fetch: reponse(manifest), jouerFichier } });
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(await screen.findByText('Pas de son pour le moment.')).toBeInTheDocument();
   });
 
   it('aide : écouter joue les sons, puis indice', async () => {
