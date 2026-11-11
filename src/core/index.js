@@ -8,3 +8,4 @@ export * from './liaisons.js';
 export * from './analyseListe.js';
 export * from './pack.js';
 export * from './audio.js';
+export * from './corrections.js';
