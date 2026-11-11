@@ -167,13 +167,38 @@ Aucune n'est lue en entier. Mémoires et thèses (`dumas-`, `tel-`) non revus pa
 - Déjà listées dans la spec v0.2 : section « Références RISS déjà vues ».
 Recherches sans résultat pertinent : lecteurs tardifs ou adolescents non-lecteurs ; ne rien affirmer à ce sujet dans l'app sans source.
 
+## 11 bis. Gestion des données (questions à JF, 2026-11-11, une à la fois, aucune hypothèse sans son accord)
+
+Constaté : les essais restent aujourd'hui sur l'appareil de l'élève (stockage du navigateur), exportables en fichier ; aucune table Supabase n'existe pour cette app ; les tables `phono_*` de la spec v0.2 sont une hypothèse non décidée.
+Réponses de JF :
+1. Qui voit les résultats d'un élève : l'enseignant ou les enseignants concernés, avec la possibilité de partager le tableau de bord de l'élève avec une logopède par exemple. Comment ce partage se fait (compte, lien temporaire, fichier) : non décidé.
+2. Arrivée des résultats : envoi en fin de séance en v1 (pas de suivi en direct). L'envoi peut être déclenché par l'enseignant et/ou par l'élève.
+3. Rattachement des résultats à une classe et à un enseignant : par le lien ou le QR code que l'élève a utilisé. Ce que devient un lien de carte seule (QR au dos d'une carte physique) : non décidé.
+4. Compte enseignant : obligatoire (connexion personnelle) pour créer les liens et lire les résultats.
+5. Le compte enseignant est le même que dans les autres apps PLAI (projet Supabase partagé, table `profiles` existante).
+6. Partage avec une logopède : par un code envoyé par l'enseignant, à usage unique, temporaire (jeton). Accès de 30 jours après l'usage du code ; l'enseignant peut renvoyer un autre code plus tard. Lecture seule en v1 (pas d'écriture par la logopède). Un code non utilisé expire après 30 jours.
+7. Conservation des résultats des élèves sur le serveur : purge annuelle. L'enseignant dispose d'une option à cocher, élève par élève, pour garder l'historique au-delà de la purge. Date de la purge : non précisée.
+8. Hors connexion : les résultats restent sur l'appareil et partent à la prochaine connexion.
+9. Packs de cartes : l'enseignant choisit dans un catalogue (images homogènes, créées avec génération d'images) ; tout enseignant peut envoyer une demande de création de pack ou de cartes. Les demandes sont traitées par JF et par un autre administrateur le cas échéant. L'enseignant voit l'état de sa demande (souhaité par JF : « c'est mieux » ; les états exacts restent à définir). Le catalogue est visible par tous les enseignants connectés.
+10. Corrections phonétiques : un enseignant peut en proposer. Une proposition ne devient effective qu'après validation par un administrateur : seuls les administrateurs modifient.
+11. Stockage des packs : Supabase (stockage de fichiers) pour les versions d'écran, afin qu'un administrateur ajoute un pack sans redéployer ; export d'un pack en archive ZIP (manifeste, images, sons, source et licence) pour le diffuser à qui le demande ; SharePoint pour cette diffusion et pour les fichiers maîtres d'impression, pas comme source de l'app (accord de JF). Limite de taille du stockage du projet partagé et poids des images d'écran : à vérifier.
+12. Codes des élèves : l'enseignant les crée et garde la correspondance avec les élèves ; ces codes peuvent servir dans beaucoup d'autres apps ; liaison avec HubActif en v2. L'unicité d'un code est celle de sa classe : la classe est liée au code, deux élèves d'une même classe ne peuvent pas avoir le même code, deux classes (donc deux enseignants) peuvent avoir le même code. Quand plusieurs enseignants sont sur la même classe (cas rare), ils partagent les mêmes données. Le point ouvert de HubActif (unicité globale des codes, mémoire du 2026-09-20) devra s'aligner sur cette règle en v2.
+13. Un second enseignant est invité sur une classe par l'enseignant « master » de cette classe. Ce que le master peut faire en plus de l'invité : inviter (JF : « inviter »). L'invité ne peut pas supprimer d'élève ni la classe : seul le master le peut (JF : « non »).
+14. Côté serveur, le détail de chaque essai est conservé si possible (positions, graphème posé, juste ou faux), pas seulement des totaux (JF : « si possible, détail essai »).
+15. Les administrateurs sont désignés à la main par JF.
+16. Avant de générer un code pour une logopède, l'app demande à l'enseignant de confirmer par une case à cocher qu'il a l'accord des parents. Cette confirmation est conservée, avec l'enseignant, la date et l'élève concerné.
+17. Chaque projet Supabase de JF héberge plusieurs apps (pas de projet dédié par app). Quel projet pour PhonoActif : à confirmer.
+18. JF tient le rôle de DPO au sein du Pôle : les décisions de protection des données sont les siennes (pas d'avis externe à demander) ; elles doivent être documentées (registre de traitement : finalité, base légale, durées, destinataires, sous-traitants Supabase, Vercel et GitHub, lieu d'hébergement, droits des personnes).
+19. Région d'hébergement du projet Supabase partagé : Europe (déclaré par JF, non vérifié par Claude dans le tableau de bord ; région exacte à noter au registre).
+À traiter : registre de traitement ; lien avec GitHub et Vercel ; ce qui est personnel dans les données.
+
 ## 12. Questions ouvertes
 
 Pour JF (réponse nécessaire) :
 1. Usage réel : avez-vous des stations Lilémø en classe, comment les élèves s'en servent-ils aujourd'hui, et la version PLAI doit-elle les accompagner (mêmes progressions) ou exister seule sur tablette ? Les règles du jeu sont connues par la notice (section 2 bis) ; le format de carte est connu (63 x 88 mm, section 6) ; le nombre de cartes par pack reste à fixer.
-2. Nom : PhonoActif ou autre ; « Lilémo numérique » est déconseillé tant que l'éditeur n'a pas donné son accord ou qu'un avis juridique n'a pas été pris (brevet déposé et copyright 2019 mentionnés sur la notice ; portée non vérifiée).
+2. Nom : DÉCIDÉ par JF le 2026-11-11 : « PhonoActif » (dépôt GitHub jfb4plai/PhonoActif, branche main, sous-domaine phonoactif.jfb4plai.com selon les conventions PLAI). « Lilémo numérique » n'est pas utilisé (brevet déposé et copyright 2019 mentionnés sur la notice de l'éditeur ; portée non vérifiée).
 3. Licence de la voix de bibliothèque pour une diffusion aux écoles : à contrôler avant diffusion.
-4. Avis du DPO sur le suivi par élève sous code anonyme avant tout usage avec de vrais élèves.
+4. Décision de JF, DPO du Pôle, sur le suivi par élève sous code anonyme, consignée dans un registre de traitement, avant tout usage avec de vrais élèves.
 5. Seuils de couleur et de « récurrent » : valeurs de départ à valider avec une logopède ou en classe.
 
 Décisions prises par défaut (à confirmer ou corriger) :
