@@ -38,6 +38,8 @@ export function fauxClient({ userId = 'u-master', role = 'master', tables = {}, 
             return { data: null, error: { code: '23505', message: 'duplicate key value violates unique constraint "phono_students_class_id_code_key"' } };
           }
           lignes.push(ligne); crees.push(ligne);
+          // Simule le déclencheur du serveur : le créateur devient master
+          if (this.table === 'phono_classes') t.phono_class_members.push({ class_id: ligne.id, user_id: ligne.created_by, role: 'master' });
         }
         return this.retour ? rendre(crees) : { data: null, error: null };
       }

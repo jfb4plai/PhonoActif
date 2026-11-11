@@ -40,7 +40,11 @@ export default function Enseignant({ deps = {} }) {
 
   async function ajouterClasse() {
     setMessage('');
-    try { await creerClasse(client, nom, utilisateur.id); setNom(''); await charger(); } catch (e) { setMessage(e.message); }
+    try {
+      const c = await creerClasse(client, nom, utilisateur.id);
+      setNom(''); await charger();
+      setCourante({ id: c.id, name: c.name, role: 'master' });
+    } catch (e) { setMessage(e.message); }
   }
 
   async function supprimer() {
@@ -65,7 +69,7 @@ export default function Enseignant({ deps = {} }) {
               <li key={c.id}><button type="button" onClick={() => setCourante(c)}>{c.name}</button> {c.role === 'master' ? '' : '(invité)'}</li>
             ))}
           </ul>
-          {classes.length === 0 && <p>Aucune classe pour l’instant.</p>}
+          {classes.length === 0 ? <p>Aucune classe pour l’instant.</p> : <p className="aide">Cliquer sur le nom d’une classe pour l’ouvrir : élèves, tâches, résultats.</p>}
           <label htmlFor="ens-nom">Nom de la classe</label>
           <input id="ens-nom" value={nom} placeholder="3P A, école de Fléron" onChange={e => setNom(e.target.value)} />
           <p className="aide">Visible seulement par les enseignants de la classe. Ne pas y mettre de nom d’élève.</p>

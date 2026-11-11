@@ -62,6 +62,10 @@ describe('espace enseignant', () => {
     await userEvent.type(await screen.findByLabelText('Nom de la classe'), '5P B');
     await userEvent.click(screen.getByRole('button', { name: 'Créer la classe' }));
     await waitFor(() => expect(client.tables.phono_classes.some(c => c.name === '5P B')).toBe(true));
+    expect(await screen.findByRole('heading', { name: '5P B' })).toBeTruthy();
+    expect(screen.getByLabelText('Codes des élèves')).toBeTruthy();
+    await userEvent.click(screen.getByRole('button', { name: 'Retour aux classes' }));
+    expect(await screen.findByRole('button', { name: /5P B/ })).toBeTruthy();
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
     const champ = await screen.findByLabelText('Codes des élèves');
     expect(champ.getAttribute('placeholder')).toBe('E01, E02, E03');
