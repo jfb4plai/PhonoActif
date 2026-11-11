@@ -38,16 +38,41 @@ export function cubesDepuisEntree(entree) {
   });
 }
 
-// Segmente un mot : graphèmes explicites valides, sinon lexique (ManuLemme), sinon heuristique signalée « à vérifier ».
+// Plusieurs mots, apostrophe ou trait d'union : toujours à valider par un humain.
+export const estMultiMot = mot => /[ '\-]/.test(normaliserMot(mot));
+
+const estSeparateur = t => /^[ '\-]$/.test(t);
+
+/* Segmente un mot. Priorité : correction de JF > graphèmes explicites de la carte > entrée à plusieurs mots
+   (découpée, toujours à valider) > lexique (ManuLemme) > heuristique signalée « à vérifier ».
+   options = { graphemes?: string, corrections?: Corrections } */
 export function segmenterMot(mot, lexique, options = {}) {
   const m = normaliserMot(mot);
   const raisons = [];
   if (m === '') return { cubes: [], source: 'auto', aVerifier: true, raisons: ['mot vide'] };
 
+  const corr = options.corrections ? options.corrections.chercher(m) : null;
+  if (corr) {
+    return {
+      cubes: corr.cubes.map(c => ({ g: c.g, son: c.son })), source: 'correction',
+      aVerifier: corr.statut === 'a_valider', raisons: [`correction ${corr.statut} par ${corr.auteur}`]
+    };
+  }
+
   if (options.graphemes) {
     const ex = segmenterExplicite(m, options.graphemes);
     if (ex) return { cubes: ex, source: 'explicite', aVerifier: false, raisons: [] };
     raisons.push(`Graphemes « ${options.graphemes} » ne correspond pas à « ${m} »`);
+  }
+
+  if (estMultiMot(m)) {
+    const cubes = [];
+    const parties = m.split(/([ '\-])/).filter(t => t !== '');
+    for (const t of parties) {
+      if (estSeparateur(t)) { cubes.push({ g: t, son: '' }); continue; }
+      cubes.push(...segmenterMot(t, lexique, { corrections: options.corrections }).cubes);
+    }
+    return { cubes, source: 'multi-mots', aVerifier: true, raisons: [...raisons, 'entrée à plusieurs mots : à valider'] };
   }
 
   const entree = lexique.chercher(m);
