@@ -1,0 +1,35 @@
+/* Habillages retenus par JF le 2026-11-11 (maquettes habillages.html, directions A1 et M1).
+   Premier jet de variables, à reprendre dans l'interface. Provisoire : couleurs et formes non testées avec des élèves.
+   Règle commune : les mots à lire restent en Arial, sans fioriture (dyslexie) ; l'habillage passe par les couleurs,
+   les cadres, les illustrations et le fond ; aucune animation parasite.
+   Code couleur Lilémo conservé : voyelle = --v, consonne = --c, lettre muette = --m.
+   Lien avec la version physique : les cartes de 63 x 88 mm reprennent --bord-carte, --rayon-carte, --filet et la palette. */
+
+/* A1 « Cahier colorié » : P1 à P3, illustrations dessinées */
+[data-habillage="album"] {
+  --fond: #fff6dc; --texte: #2b2b2b;
+  --ecran: #fffdf4 repeating-linear-gradient(0deg, transparent 0 31px, #cfe3f5 31px 32px);
+  --bord: 4px solid #ef6c57; --rayon: 26px;
+  --rayon-img: 50%; --fond-img: #fff; --bord-img: 3px dashed #ef6c57;
+  --zone: #ef6c57; --fond-zone: #fff;
+  --rayon-cube: 18px; --bord-cube: 3px solid #2b2b2b; --ombre-cube: 4px 4px 0 #2b2b2b; --texte-cube: #2b2b2b; --rot: 2deg;
+  --v: #ff9c8f; --c: #7cc0f2; --m: #e0e0e0;
+  --btn: #ffc83d; --btn-texte: #2b2b2b; --bord-btn: 3px solid #2b2b2b; --rayon-btn: 999px; --ombre-btn: 4px 4px 0 #2b2b2b;
+  --acc: #ef6c57; --acc-texte: #fff;
+  --carte-fond: #fffdf4; --bord-carte: 5px solid #ef6c57; --rayon-carte: 20px; --ombre-carte: 4px 4px 0 #ef6c57;
+  --texte-carte: #2b2b2b; --filet: 2px dotted #ef6c57;
+}
+
+/* M1 « Sobre clair » : P4 et au-delà, photos réalistes */
+[data-habillage="sobre"] {
+  --fond: #f4f6f8; --texte: #1f2933;
+  --ecran: #fff; --bord: 1px solid #cbd2d9; --rayon: 8px;
+  --rayon-img: 6px; --fond-img: #e4e7eb; --bord-img: 1px solid #cbd2d9;
+  --zone: #9aa5b1; --fond-zone: #fafbfc;
+  --rayon-cube: 6px; --bord-cube: 1px solid rgba(0, 0, 0, .25); --ombre-cube: none; --texte-cube: #fff; --rot: 0deg;
+  --v: #c0392b; --c: #2f6db5; --m: #8794a1;
+  --btn: #0f6e56; --btn-texte: #fff; --bord-btn: 0 solid transparent; --rayon-btn: 6px; --ombre-btn: none;
+  --acc: #1f2933; --acc-texte: #fff;
+  --carte-fond: #fff; --bord-carte: 1px solid #9aa5b1; --rayon-carte: 10px; --ombre-carte: 0 1px 3px rgba(0, 0, 0, .2);
+  --texte-carte: #1f2933; --filet: 1px solid #cbd2d9;
+}

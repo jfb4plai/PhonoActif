@@ -5,5 +5,5 @@ export default defineConfig({
   plugins: [react()],
   server: { port: 5199 },
   // Les tests de logique (node:test) vivent dans tests/**/*.test.js ; seuls les tests d'interface passent par Vitest.
-  test: { environment: 'jsdom', include: ['tests/**/*.test.jsx'], globals: false }
+  test: { environment: 'jsdom', include: ['tests/**/*.test.jsx'], globals: false, setupFiles: ['tests/setup.js'] }
 });
