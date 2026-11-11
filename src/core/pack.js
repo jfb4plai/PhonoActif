@@ -1,4 +1,5 @@
 import { normaliserMot, estMultiMot, segmenterMot } from './lexique.js';
+import { sonValide, composants } from './sons.js';
 import { corrigeValide } from './corrections.js';
 import { segmenterExplicite } from './segmentation.js';
 
@@ -65,12 +66,12 @@ const champCsv = v => (/[;"\r\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"`
 /* Manifeste d'un pack et liste des cartes à fabriquer (CSV pour Excel, séparateur « ; », UTF-8 avec BOM).
    params = { nom, mots, source, licence, lexique, corrections?, niveaux?: { mot: niveau } }
    Les noms de fichiers sont ceux que JF ou l'enseignant donne aux images exportées de Canva (carte de 63 x 88 mm). */
-export function preparerPack({ nom, mots, source, licence, lexique, corrections, niveaux = {} }) {
+export function preparerPack({ nom, mots, source, licence, lexique, corrections, niveaux = {}, baseUrl = '' }) {
   for (const [champ, v] of [['nom', nom], ['source', source], ['licence', licence]]) {
     if (typeof v !== 'string' || v.trim() === '') throw new Error(`pack : champ « ${champ} » manquant`);
   }
   const pris = new Set(), vus = new Set(), cartes = [], lignes = [];
-  lignes.push('mot;id;fichier sans mot;fichier avec mot;niveau;graphèmes proposés;à vérifier');
+  lignes.push('mot;id;fichier sans mot;fichier avec mot;niveau;graphèmes proposés;à vérifier;adresse de la carte');
   for (const brut of mots) {
     const mot = normaliserMot(brut);
     if (mot === '' || vus.has(mot)) continue;
@@ -78,9 +79,40 @@ export function preparerPack({ nom, mots, source, licence, lexique, corrections,
     const id = slugMot(mot, pris);
     const carte = { id, mot, image_sans_mot: `${id}.png`, image_avec_mot: `${id}-mot.png`, source: source.trim(), licence: licence.trim() };
     if (niveaux[mot]) carte.niveau = niveaux[mot];
-    cartes.push(carte);
     const seg = segmenterMot(mot, lexique, { corrections });
-    lignes.push([mot, id, carte.image_sans_mot, carte.image_avec_mot, niveaux[mot] || '', seg.cubes.map(c => c.g).join('.'), seg.aVerifier ? 'oui' : 'non'].map(champCsv).join(';'));
+    carte.cubes = seg.cubes.map(c => ({ g: c.g, son: c.son }));
+    carte.aVerifier = seg.aVerifier;
+    cartes.push(carte);
+    lignes.push([mot, id, carte.image_sans_mot, carte.image_avec_mot, niveaux[mot] || '', seg.cubes.map(c => c.g).join('.'), seg.aVerifier ? 'oui' : 'non', baseUrl ? `${baseUrl}#/carte/${nom.trim()}/${id}` : ''].map(champCsv).join(';'));
   }
   return { manifest: { nom: nom.trim(), cartes }, csv: '﻿' + lignes.join('\r\n') };
+}
+
+/* Un pack JOUABLE a des cubes valides et sûrs pour chaque carte : l'app élève n'a pas d'autre source de sons.
+   sonsDisponibles = ids de sons ayant un fichier ; un son sans fichier est signalé (une fois par son), pas bloquant. */
+export function validerPackJouable(manifest, fichiers, sonsDisponibles) {
+  const base = validerPack(manifest, fichiers, { chercher: () => ({}) });
+  const erreurs = [...base.erreurs];
+  const avertissements = base.avertissements.filter(a => !a.includes('segmentation à vérifier') && !a.includes('à plusieurs mots'));
+  const signales = new Set();
+  const cartes = manifest && Array.isArray(manifest.cartes) ? manifest.cartes : [];
+  cartes.forEach((c, i) => {
+    if (!c || typeof c !== 'object') return;
+    const id = typeof c.id === 'string' && c.id.trim() !== '' ? c.id : `carte n°${i + 1}`;
+    const err = m => erreurs.push(`${id} : ${m}`);
+    if (!Array.isArray(c.cubes) || c.cubes.length === 0) { err('cubes manquants'); return; }
+    for (const x of c.cubes) {
+      if (!x || x.son === null || x.son === undefined) err(`cube sans son : ${x ? x.g : '?'}`);
+      else if (!sonValide(x.son)) err(`son invalide : ${x.son}`);
+    }
+    if (c.cubes.map(x => (x && x.g) || '').join('') !== normaliserMot(c.mot)) err('les cubes ne recomposent pas le mot');
+    if (c.aVerifier === true) err('carte à vérifier : passer par la revue');
+    for (const x of c.cubes) {
+      if (!x || typeof x.son !== 'string' || !sonValide(x.son)) continue;
+      for (const s of composants(x.son)) {
+        if (!sonsDisponibles.has(s) && !signales.has(s)) { signales.add(s); avertissements.push(`son sans fichier : ${s}`); }
+      }
+    }
+  });
+  return { erreurs, avertissements };
 }

@@ -56,10 +56,10 @@ test('csv : BOM, en-tête, une ligne par carte, à vérifier oui ou non', () => 
   assert.ok(csv.startsWith('﻿'));
   const lignes = csv.slice(1).split('\r\n');
   assert.equal(lignes.length, 3);
-  assert.equal(lignes[0], 'mot;id;fichier sans mot;fichier avec mot;niveau;graphèmes proposés;à vérifier');
-  assert.equal(lignes[1], 'chat;chat;chat.png;chat-mot.png;P1;ch.a.t;non');
+  assert.equal(lignes[0], 'mot;id;fichier sans mot;fichier avec mot;niveau;graphèmes proposés;à vérifier;adresse de la carte');
+  assert.equal(lignes[1], 'chat;chat;chat.png;chat-mot.png;P1;ch.a.t;non;');
   assert.ok(lignes[2].startsWith('zorbalon;zorbalon;zorbalon.png;zorbalon-mot.png;;'));
-  assert.ok(lignes[2].endsWith(';oui'));
+  assert.ok(lignes[2].endsWith(';oui;'));
 });
 
 test('csv : un point-virgule ou un guillemet dans un mot est protégé', () => {
