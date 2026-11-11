@@ -5,3 +5,4 @@ export * from './reponse.js';
 export * from './codes.js';
 export * from './lexique.js';
 export * from './liaisons.js';
+export * from './analyseListe.js';
