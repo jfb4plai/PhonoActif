@@ -8,7 +8,7 @@ const classeDe = son => CLASSES[classeCube(son)];
 
 export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onFin, onAccueil, onSignalement }) {
   const [etat, setEtat] = useState(() => demarrerJeu({
-    pack, code, rng: deps.rng, maintenant: deps.maintenant,
+    pack, code, jeton: tache.jeton || null, rng: deps.rng, maintenant: deps.maintenant,
     reglages: { ...REGLAGES_PAR_DEFAUT, modeMot: tache.modeMot, habillage: tache.habillage, nbIntrus: tache.nbIntrus, exigerAccents: tache.exigerAccents }
   }));
   const [message, setMessage] = useState(null);

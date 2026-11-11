@@ -55,3 +55,22 @@ test('jeu sans paramètres', () => {
 test('carte avec ses réglages dans la requête', () => {
   assert.deepEqual(lireAdresse('#/carte/p2/chat?mode=avec'), { ecran: 'carte', tache: { pack: 'p2', modeMot: 'avec' }, carte: 'chat' });
 });
+
+const JETON = 'a1b2c3d4e5f6a7b8c9d0e1f2';
+
+test('jeton de tâche : lu, écrit, et seul dans l\'adresse', () => {
+  assert.deepEqual(lireAdresse(`#/jeu?t=${JETON}`), { ecran: 'jeu', tache: { jeton: JETON } });
+  const url = ecrireAdresse('https://exemple.test/', 'jeu', { jeton: JETON, pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true });
+  assert.equal(url, `https://exemple.test/#/jeu?t=${JETON}`);
+});
+
+test('jeton mal formé ignoré', () => {
+  for (const t of ['abc', 'A1B2C3D4E5F6A7B8C9D0E1F2', `${JETON}0`, 'zz'.repeat(12)]) {
+    assert.deepEqual(lireAdresse(`#/jeu?t=${t}`), { ecran: 'jeu', tache: {} }, t);
+  }
+});
+
+test('écran enseignant', () => {
+  assert.deepEqual(lireAdresse('#/enseignant'), { ecran: 'enseignant' });
+  assert.equal(lireAdresse('#/enseignant/extra').ecran, 'inconnue');
+});

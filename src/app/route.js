@@ -8,6 +8,8 @@ function tacheDepuisRequete(requete) {
   const tache = {};
   const pack = p.get('pack');
   if (pack) tache.pack = pack;
+  const jeton = p.get('t');
+  if (jeton && /^[a-f0-9]{24}$/.test(jeton)) tache.jeton = jeton;
   const mode = p.get('mode');
   if (mode === 'avec' || mode === 'sans') tache.modeMot = mode;
   const habillage = p.get('habillage');
@@ -29,6 +31,7 @@ export function lireAdresse(hash) {
   const morceaux = chemin.split('/');
   try {
     if (morceaux[0] === 'jeu' && morceaux.length === 1) return { ecran: 'jeu', tache: tacheDepuisRequete(requete) };
+    if (morceaux[0] === 'enseignant' && morceaux.length === 1) return { ecran: 'enseignant' };
     if (morceaux[0] === 'carte' && morceaux.length === 3) {
       const pack = decodeURIComponent(morceaux[1]), carte = decodeURIComponent(morceaux[2]);
       if (pack === '' || carte === '') return { ecran: 'inconnue' };
@@ -42,6 +45,7 @@ export function ecrireAdresse(base, ecran, tache, carte) {
   const racine = base.replace(/\/+$/, '') + '/';
   const e = encodeURIComponent;
   const reglages = [`mode=${e(tache.modeMot)}`, `habillage=${e(tache.habillage)}`, `intrus=${e(tache.nbIntrus)}`, `accents=${tache.exigerAccents ? 1 : 0}`];
+  if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;
   return `${racine}#/jeu?${[`pack=${e(tache.pack)}`, ...reglages].join('&')}`;
 }

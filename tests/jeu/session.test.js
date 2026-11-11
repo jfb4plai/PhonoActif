@@ -35,7 +35,7 @@ test('bonne réponse : juste, une ligne d\'essai complète', () => {
   const l = etat.essais[0];
   assert.deepEqual({ ...l, positions: undefined, id: undefined }, {
     session: etat.session, code: 'E07', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'sans',
-    tentative: 1, juste: true, aide: 'aucune', positions: undefined, id: undefined, date: '2026-11-11T10:00:00.000Z'
+    tentative: 1, juste: true, aide: 'aucune', positions: undefined, id: undefined, jeton: null, date: '2026-11-11T10:00:00.000Z'
   });
   assert.deepEqual(l.positions, [
     { liaison: 'ch=ch', pose: 'ch', juste: true }, { liaison: 'a=a', pose: 'a', juste: true }, { liaison: 't=', pose: 't', juste: true }
