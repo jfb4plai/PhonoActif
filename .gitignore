@@ -6,3 +6,6 @@ revue/
 data/listes/
 packs/
 data/vob-brut.json
+public/sons/
+public/packs/
+dist/
