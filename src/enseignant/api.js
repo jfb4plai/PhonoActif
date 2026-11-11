@@ -63,6 +63,22 @@ export async function ajouterEleves(client, classId, codes) {
   return { ajoutes: valides, refuses };
 }
 
+// Numéro suivant le plus grand numéro déjà pris par un code « préfixe + chiffres ».
+export function prochainDebut(codesExistants, prefixe) {
+  let max = 0;
+  for (const c of codesExistants) {
+    if (c.startsWith(prefixe) && /^\d+$/.test(c.slice(prefixe.length))) max = Math.max(max, Number(c.slice(prefixe.length)));
+  }
+  return max + 1;
+}
+
+export async function creerCodesAuto(client, classId, prefixe, n) {
+  const existants = await client.from('phono_students').select('code').eq('class_id', classId);
+  verifier(existants);
+  const codes = genererCodes(prefixe, n, prochainDebut(existants.data.map(s => s.code), prefixe));
+  return ajouterEleves(client, classId, codes);
+}
+
 export async function creerTache(client, classId, tache, userId, base) {
   if (!tache.pack) throw new Error('Choisir un pack.');
   const jeton = genererJeton();

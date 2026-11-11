@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  genererJeton, genererCodes, decouperCodes, lienDeTache, qrDeLien, creerClasse, lister, ajouterEleves, creerTache, revoquerTache,
+  genererJeton, genererCodes, prochainDebut, creerCodesAuto, decouperCodes, lienDeTache, qrDeLien, creerClasse, lister, ajouterEleves, creerTache, revoquerTache,
   resultats, inviter, supprimerEleve, supprimerClasse
 } from '../../src/enseignant/api.js';
 import { fauxClient } from './fauxClient.js';
@@ -28,6 +28,22 @@ test('genererCodes : refuse n invalide, préfixe invalide ou code trop long', ()
   assert.throws(() => genererCodes('É', 3), /préfixe/);
   assert.throws(() => genererCodes('E 1', 3), /préfixe/);
   assert.throws(() => genererCodes('x'.repeat(11), 3), /trop long/);
+});
+
+test('prochainDebut : numéro suivant le plus grand numéro existant du même préfixe', () => {
+  assert.equal(prochainDebut([], 'E'), 1);
+  assert.equal(prochainDebut(['E01', 'E02', 'E07'], 'E'), 8);
+  assert.equal(prochainDebut(['E01', 'A05', 'Eva', 'E-3'], 'E'), 2);
+  assert.equal(prochainDebut(['E01', 'E02'], 'A'), 1);
+});
+
+test('creerCodesAuto : crée n codes à la suite des existants', async () => {
+  const c = fauxClient({ tables: { phono_students: [{ id: 's1', class_id: 'c1', code: 'E01' }, { id: 's2', class_id: 'c1', code: 'E02' }] } });
+  const r = await creerCodesAuto(c, 'c1', 'E', 3);
+  assert.deepEqual(r.ajoutes, ['E03', 'E04', 'E05']);
+  assert.deepEqual(r.refuses, []);
+  assert.equal(c.tables.phono_students.length, 5);
+  await assert.rejects(creerCodesAuto(c, 'c1', 'E', 0), /nombre/);
 });
 
 test('decouperCodes : virgules, point-virgules, espaces et retours à la ligne', () => {

@@ -69,13 +69,32 @@ describe('espace enseignant', () => {
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
     const champ = await screen.findByLabelText('Codes des élèves');
     expect(champ.getAttribute('placeholder')).toBe('E01, E02, E03');
-    expect(screen.getByText('Un code, pas un nom. Garder la correspondance avec les élèves sur papier.')).toBeTruthy();
+    expect(screen.getByText(/Un code, pas un nom.*correspondance avec les élèves sur papier/)).toBeTruthy();
     await userEvent.type(champ, 'E01, E01, Étienne');
     await userEvent.click(screen.getByRole('button', { name: 'Ajouter les codes' }));
     expect(await screen.findByText('E01 : doublon dans la liste')).toBeTruthy();
     expect(screen.getByText('Étienne : code invalide')).toBeTruthy();
     expect(client.tables.phono_students.map(s => s.code)).toEqual(['E01']);
     expect(screen.getByLabelText('E-mail de l’enseignant')).toBeTruthy();
+  });
+
+  it('codes : la création automatique vient d’abord, la saisie code par code est repliée en dessous', async () => {
+    const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    const auto = await screen.findByRole('button', { name: 'Créer les codes automatiquement' });
+    const manuel = screen.getByText('Saisir les codes un par un');
+    expect(auto.compareDocumentPosition(manuel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(manuel.closest('details').open).toBe(false);
+    expect(screen.queryByRole('button', { name: 'Générer' })).toBeNull();
+    const nb = screen.getByLabelText('Nombre d’élèves');
+    await userEvent.clear(nb); await userEvent.type(nb, '3');
+    await userEvent.click(auto);
+    await waitFor(() => expect(client.tables.phono_students.map(s => s.code)).toEqual(['E01', 'E02', 'E03']));
+    expect(await screen.findByText('3 code(s) ajouté(s).')).toBeTruthy();
+    await userEvent.click(auto);
+    await waitFor(() => expect(client.tables.phono_students.length).toBe(6));
+    expect(client.tables.phono_students.map(s => s.code)).toContain('E06');
   });
 
   it('crée un lien de tâche avec QR-code', async () => {

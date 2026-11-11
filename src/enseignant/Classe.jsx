@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  decouperCodes, genererCodes, ajouterEleves, creerTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve
+  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve
 } from './api.js';
 
 const PAS_DE_TACHE = { pack: '', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: false };
@@ -30,7 +30,12 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
     setMessage(`${r.ajoutes.length} code(s) ajouté(s).`);
     await recharger();
   });
-  const generer = () => agir(async () => { setSaisie(genererCodes(prefixe, Number(nb)).join(', ')); });
+  const automatique = () => agir(async () => {
+    const r = await creerCodesAuto(client, classe.id, prefixe, Number(nb));
+    setRefuses(r.refuses);
+    setMessage(`${r.ajoutes.length} code(s) ajouté(s).`);
+    await recharger();
+  });
   const creer = () => agir(async () => {
     const t = await creerTache(client, classe.id, tache, userId, base);
     setLien({ ...t, qr: await qrDeLien(t.lien) });
@@ -45,18 +50,19 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       {message && <p role="status" className="ens-message">{message}</p>}
 
       <h2>Élèves</h2>
-      <label htmlFor="ens-codes">Codes des élèves</label>
-      <textarea id="ens-codes" placeholder="E01, E02, E03" value={saisie} onChange={e => setSaisie(e.target.value)} />
-      <p className="aide">Un code, pas un nom. Garder la correspondance avec les élèves sur papier.</p>
-      <div className="ens-actions">
-        <button type="button" onClick={ajouter}>Ajouter les codes</button>
-      </div>
-      <label htmlFor="ens-prefixe">Préfixe pour générer des codes</label>
-      <input id="ens-prefixe" value={prefixe} onChange={e => setPrefixe(e.target.value)} placeholder="E" />
-      <label htmlFor="ens-nb">Nombre de codes</label>
+      <label htmlFor="ens-nb">Nombre d’élèves</label>
       <input id="ens-nb" type="number" min="1" value={nb} onChange={e => setNb(e.target.value)} />
-      <p className="aide">Remplit le champ ci-dessus avec E01, E02, … à relire avant d’ajouter.</p>
-      <button type="button" onClick={generer}>Générer</button>
+      <label htmlFor="ens-prefixe">Début des codes</label>
+      <input id="ens-prefixe" value={prefixe} onChange={e => setPrefixe(e.target.value)} placeholder="E" />
+      <p className="aide">Un code, pas un nom : E01, E02, E03… Si la classe a déjà des codes, la suite est numérotée à partir du dernier. Garder la correspondance avec les élèves sur papier.</p>
+      <button type="button" onClick={automatique}>Créer les codes automatiquement</button>
+      <details>
+        <summary>Saisir les codes un par un</summary>
+        <label htmlFor="ens-codes">Codes des élèves</label>
+        <textarea id="ens-codes" placeholder="E01, E02, E03" value={saisie} onChange={e => setSaisie(e.target.value)} />
+        <p className="aide">Séparer les codes par une virgule, un espace ou un retour à la ligne. Utile pour garder des codes déjà utilisés ailleurs (autres outils PLAI).</p>
+        <button type="button" onClick={ajouter}>Ajouter les codes</button>
+      </details>
       {refuses.length > 0 && (
         <ul aria-label="Codes refusés">{refuses.map((r, i) => <li key={i}>{r.code} : {r.raison}</li>)}</ul>
       )}
