@@ -1,0 +1,151 @@
+{
+ "nom": "demo",
+ "cartes": [
+  {
+   "id": "chat",
+   "mot": "chat",
+   "image_sans_mot": "chat.svg",
+   "image_avec_mot": "chat-mot.svg",
+   "source": "pack d'essai, dessins provisoires",
+   "licence": "propre",
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "aVerifier": false
+  },
+  {
+   "id": "lune",
+   "mot": "lune",
+   "image_sans_mot": "lune.svg",
+   "image_avec_mot": "lune-mot.svg",
+   "source": "pack d'essai, dessins provisoires",
+   "licence": "propre",
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "aVerifier": false
+  },
+  {
+   "id": "pain",
+   "mot": "pain",
+   "image_sans_mot": "pain.svg",
+   "image_avec_mot": "pain-mot.svg",
+   "source": "pack d'essai, dessins provisoires",
+   "licence": "propre",
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "ain",
+     "son": "in"
+    }
+   ],
+   "aVerifier": false
+  },
+  {
+   "id": "maman",
+   "mot": "maman",
+   "image_sans_mot": "maman.svg",
+   "image_avec_mot": "maman-mot.svg",
+   "source": "pack d'essai, dessins provisoires",
+   "licence": "propre",
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    }
+   ],
+   "aVerifier": false
+  },
+  {
+   "id": "vache",
+   "mot": "vache",
+   "image_sans_mot": "vache.svg",
+   "image_avec_mot": "vache-mot.svg",
+   "source": "pack d'essai, dessins provisoires",
+   "licence": "propre",
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "aVerifier": false
+  },
+  {
+   "id": "sac",
+   "mot": "sac",
+   "image_sans_mot": "sac.svg",
+   "image_avec_mot": "sac-mot.svg",
+   "source": "pack d'essai, dessins provisoires",
+   "licence": "propre",
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "c",
+     "son": "k"
+    }
+   ],
+   "aVerifier": false
+  }
+ ]
+}

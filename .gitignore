@@ -4,10 +4,11 @@ data/lexique-rejets.json
 node_modules/
 revue/
 data/listes/
-packs/
+/packs/
 data/vob-brut.json
 public/sons/
-public/packs/
+public/packs/*
+!public/packs/demo/
 dist/
 
 .vercel
