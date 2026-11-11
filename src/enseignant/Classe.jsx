@@ -73,7 +73,7 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <select id="ens-pack" value={tache.pack} disabled={packs.length === 0} onChange={e => setTache(t => ({ ...t, pack: e.target.value }))}>
         {packs.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
       </select>
-      <label htmlFor="ens-mode">Cartes</label>
+      <label htmlFor="ens-mode">Cartes avec ou sans le mot écrit</label>
       <select id="ens-mode" value={tache.modeMot} onChange={e => setTache(t => ({ ...t, modeMot: e.target.value }))}>
         <option value="sans">sans le mot : l’élève trouve le mot à l’oreille</option>
         <option value="avec">avec le mot : l’élève recopie le modèle</option>

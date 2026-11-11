@@ -36,7 +36,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     const apres = poser(etat, piece.id);
     if (apres === etat) return;
     setEtat(apres); setMessage(null);
-    jouer(composants(piece.son));
+    // On entend tout ce qui est déposé, dans l'ordre de la zone
+    jouer(apres.poses.flatMap(id => composants(apres.plateau.find(p => p.id === id).son)));
   };
   const surVerifier = () => {
     const { etat: apres, resultat } = verifier(etat);

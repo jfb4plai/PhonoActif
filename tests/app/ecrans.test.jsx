@@ -203,6 +203,18 @@ describe('Jeu', () => {
     expect(screen.queryByText('chat', { selector: 'strong' })).toBeNull();
   });
 
+  it('chaque cube posé : on entend tout ce qui est déposé, dans l’ordre de la zone', async () => {
+    const jouerSons = vi.fn(async () => ({ manquants: [] }));
+    const { user } = monter({ jouerSons });
+    await commencer(user);
+    await taper(user, 'ch');
+    expect(jouerSons).toHaveBeenLastCalledWith(['ch']);
+    await taper(user, 'a');
+    expect(jouerSons).toHaveBeenLastCalledWith(['ch', 'a']);
+    await taper(user, 't');
+    expect(jouerSons).toHaveBeenLastCalledWith(['ch', 'a']);
+  });
+
   it('aide : écouter joue les sons, puis indice', async () => {
     const jouerSons = vi.fn(async () => ({ manquants: [] }));
     const { user } = monter({ jouerSons });
