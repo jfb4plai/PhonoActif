@@ -11,3 +11,4 @@ export * from './audio.js';
 export * from './corrections.js';
 export * from './revue.js';
 export * from './listes.js';
+export * from './progression.js';
