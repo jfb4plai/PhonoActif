@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  genererJeton, genererCodes, prochainDebut, creerCodesAuto, decouperCodes, lienDeTache, qrDeLien, creerClasse, lister, ajouterEleves, creerTache, revoquerTache,
+  genererJeton, genererCodes, prochainDebut, creerCodesAuto, listerTaches, resumeTache, decouperCodes, lienDeTache, qrDeLien, creerClasse, lister, ajouterEleves, creerTache, revoquerTache,
   resultats, inviter, supprimerEleve, supprimerClasse
 } from '../../src/enseignant/api.js';
 import { fauxClient } from './fauxClient.js';
@@ -97,6 +97,17 @@ test('creerTache : jeton, réglages, lien, créateur', async () => {
   assert.equal(r.lien, `https://x.test/#/jeu?t=${r.jeton}`);
   assert.deepEqual(c.tables.phono_tasks[0], { id: r.id, class_id: 'c1', token: r.jeton, pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, created_by: MASTER });
   await assert.rejects(creerTache(c, 'c1', { pack: '', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: false }, MASTER, 'https://x.test/'), /pack/);
+});
+
+test('listerTaches : les plus récentes d’abord, avec lien et résumé des réglages', async () => {
+  const ligne = (id, quand, extra = {}) => ({ id, class_id: 'c1', token: id.repeat(24).slice(0, 24), pack: 'demo', mode_mot: 'sans', habillage: 'album', nb_intrus: 3, exiger_accents: false, revoked: false, created_at: quand, ...extra });
+  const c = fauxClient({ tables: { phono_tasks: [ligne('a', '2026-11-10T10:00:00Z', { habillage: 'sobre', mode_mot: 'avec', nb_intrus: 2 }), ligne('b', '2026-11-11T10:00:00Z'), ligne('z', '2026-11-12T10:00:00Z', { class_id: 'autre' })] } });
+  const r = await listerTaches(c, 'c1', 'https://x.test/');
+  assert.deepEqual(r.map(t => t.id), ['b', 'a']);
+  assert.equal(r[0].lien, `https://x.test/#/jeu?t=${'b'.repeat(24)}`);
+  assert.equal(resumeTache(r[0]), 'album · sans le mot · 3 cubes en trop · accents non exigés');
+  assert.equal(resumeTache(r[1]), 'sobre · avec le mot · 2 cubes en trop · accents non exigés');
+  assert.equal(resumeTache({ ...r[0], nbIntrus: 1, exigerAccents: true }), 'album · sans le mot · 1 cube en trop · accents exigés');
 });
 
 test('revoquerTache', async () => {

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
 import {
-  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve
+  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve
 } from './api.js';
 
 const PAS_DE_TACHE = { pack: '', modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents };
@@ -22,6 +22,11 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
     try { setLignes(await resultats(client, classe.id)); } catch (e) { setMessage(e.message); }
   }, [client, classe.id]);
   useEffect(() => { recharger(); }, [recharger]);
+  const [taches, setTaches] = useState([]);
+  const rechargerTaches = useCallback(async () => {
+    try { setTaches(await listerTaches(client, classe.id, base)); } catch (e) { setMessage(e.message); }
+  }, [client, classe.id, base]);
+  useEffect(() => { rechargerTaches(); }, [rechargerTaches]);
 
   const agir = async fn => { setMessage(''); try { await fn(); } catch (e) { setMessage(e.message); } };
 
@@ -40,7 +45,9 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
   const creer = () => agir(async () => {
     const t = await creerTache(client, classe.id, tache, userId, base);
     setLien({ ...t, qr: await qrDeLien(t.lien) });
+    await rechargerTaches();
   });
+  const revoquer = id => agir(async () => { await revoquerTache(client, id); setMessage('Lien révoqué.'); await rechargerTaches(); });
   const inviterCollegue = () => agir(async () => { await inviter(client, classe.id, email); setEmail(''); setMessage('Enseignant invité.'); });
   const retirer = id => agir(async () => { await supprimerEleve(client, id); await recharger(); });
 
@@ -49,8 +56,12 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <button type="button" onClick={onRetour}>Retour aux classes</button>
       <h1>{classe.name}</h1>
       {message && <p role="status" className="ens-message">{message}</p>}
-
-      <h2>Élèves</h2>
+      <aside role="note" aria-label="Données des élèves" className="ens-note">
+        <strong>Données des élèves.</strong> Chaque élève est repéré par un code, jamais un nom : ne jamais mettre un nom, un prénom ou une date de naissance dans un code.
+        Pour chaque essai sont enregistrés : le mot, ce que l’élève a posé, juste ou faux, l’aide, la date.
+        Seuls les enseignants de la classe les lisent. Hébergement : Supabase, projet partagé du Pôle, région Europe.
+        Durée de conservation : une purge annuelle est prévue, pas encore en service. Une version à valider par le DPO figure dans le registre de traitement.
+      </aside>
       <label htmlFor="ens-nb">Nombre d’élèves</label>
       <input id="ens-nb" type="number" min="1" value={nb} onChange={e => setNb(e.target.value)} />
       <label htmlFor="ens-prefixe">Début des codes</label>
@@ -98,8 +109,22 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
         <div>
           <p>Lien : <a href={lien.lien}>{lien.lien}</a></p>
           <img src={lien.qr} alt="QR-code de la tâche" width="256" height="256" />
-          <button type="button" onClick={() => agir(async () => { await revoquerTache(client, lien.id); setLien(null); setMessage('Lien révoqué.'); })}>Révoquer ce lien</button>
+          <p className="aide">Réglages de ce lien : {resumeTache(taches.find(x => x.id === lien.id) || { ...tache })}</p>
         </div>
+      )}
+      {taches.length > 0 && (
+        <>
+          <h3>Tâches de la classe</h3>
+          <ul>
+            {taches.map(t => (
+              <li key={t.id}>
+                {t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
+                <br /><a href={t.lien}>{t.lien}</a>
+                {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
 
       <h2>Résultats</h2>

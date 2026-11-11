@@ -8,3 +8,4 @@
 .ens table { width: 100%; border-collapse: collapse; }
 .ens th, .ens td { text-align: left; border-bottom: 1px solid #ddd; padding: 0.4rem; }
 .ens-message { font-weight: bold; }
+.ens-note { background: #fff8e6; border: 1px solid #e0b84c; border-radius: 6px; padding: 0.7rem; margin: 0.8rem 0; font-size: 0.95rem; }

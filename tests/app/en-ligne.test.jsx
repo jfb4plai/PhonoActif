@@ -66,6 +66,14 @@ describe('tâche en ligne', () => {
     expect(screen.getByRole('img').getAttribute('src')).toContain('chat-mot.png');
   });
 
+  it('avertissement élève : les résultats partent chez l’enseignant avec le code, plus « reste sur cet appareil »', async () => {
+    monter();
+    const note = await screen.findByRole('note', { name: 'Tes données' });
+    expect(note.textContent).toMatch(/Tes résultats sont envoyés à ton enseignant avec ton code/);
+    expect(note.textContent).toMatch(/Ton nom n’est jamais demandé/);
+    expect(document.body.textContent).not.toMatch(/reste sur cet appareil/);
+  });
+
   it('tâche inconnue : message clair', async () => {
     monter({ supa: fauxSupabase({ tache: reponse(400, { message: 'tache_inconnue' }) }) });
     expect(await screen.findByRole('alert')).toHaveTextContent(/Cette tâche n.existe plus/);

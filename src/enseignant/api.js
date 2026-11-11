@@ -90,6 +90,23 @@ export async function creerTache(client, classId, tache, userId, base) {
   return { id: r.data.id, jeton, lien: lienDeTache(base, jeton) };
 }
 
+export async function listerTaches(client, classId, base) {
+  const r = await client.from('phono_tasks')
+    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, revoked, created_at').eq('class_id', classId);
+  verifier(r);
+  return [...r.data].sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map(t => ({
+    id: t.id, jeton: t.token, pack: t.pack, modeMot: t.mode_mot, habillage: t.habillage, nbIntrus: t.nb_intrus,
+    exigerAccents: t.exiger_accents, revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
+  }));
+}
+
+export const resumeTache = t => [
+  t.habillage,
+  t.modeMot === 'avec' ? 'avec le mot' : 'sans le mot',
+  `${t.nbIntrus} cube${t.nbIntrus > 1 ? 's' : ''} en trop`,
+  t.exigerAccents ? 'accents exigés' : 'accents non exigés'
+].join(' · ');
+
 export async function revoquerTache(client, id) {
   verifier(await client.from('phono_tasks').update({ revoked: true }).eq('id', id));
 }

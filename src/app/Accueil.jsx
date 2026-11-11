@@ -24,8 +24,13 @@ export default function Accueil({
           <div className="plai-field">
             <label className="plai-label" htmlFor="code">Code de l’élève</label>
             <input id="code" className="plai-input" type="text" placeholder="E07" value={code} onChange={e => onCode(e.target.value)} autoComplete="off" maxLength={40} />
-            <p className="aide">Un code, pas un nom. Lettres, chiffres et tiret, 12 au plus. Il reste sur cet appareil.</p>
+            <p className="aide">Un code, pas un nom. Lettres, chiffres et tiret, 12 au plus.{enLigne ? '' : ' Il reste sur cet appareil.'}</p>
           </div>
+          {enLigne && (
+            <aside role="note" aria-label="Tes données" className="plai-card">
+              <p>Tes résultats sont envoyés à ton enseignant avec ton code. Ton nom n’est jamais demandé.</p>
+            </aside>
+          )}
           {alerte && <p role="alert" className="plai-error">{alerte}</p>}
           {enLigne && etatTache === 'chargement' && <p role="status" className="aide">Chargement de la tâche…</p>}
           <button type="button" className="plai-btn" disabled={!codeValide(code) || !tache.pack || (enLigne && etatTache !== 'ok')} onClick={onCommencer}>Commencer</button>

@@ -109,7 +109,8 @@ describe('espace enseignant', () => {
     await waitFor(() => expect(client.tables.phono_tasks[0].pack).toBe('second'));
     const img = await screen.findByAltText('QR-code de la tâche');
     expect(img.getAttribute('src')).toMatch(/^data:image\/png;base64,/);
-    expect(screen.getByText(/https:\/\/x\.test\/#\/jeu\?t=[a-f0-9]{24}/)).toBeTruthy();
+    expect(screen.getAllByText(/https:\/\/x\.test\/#\/jeu\?t=[a-f0-9]{24}/).length).toBeGreaterThan(0);
+    expect(await screen.findByText(/Réglages de ce lien : album · avec le mot|Réglages de ce lien : album · sans le mot/)).toBeTruthy();
   });
 
   it('tâche : l’enseignant choisit habillage, cartes, cubes en trop et accents ; défauts = ceux de l’app élève', async () => {
@@ -130,6 +131,30 @@ describe('espace enseignant', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
     await waitFor(() => expect(client.tables.phono_tasks.length).toBe(2));
     expect(client.tables.phono_tasks[1]).toMatchObject({ habillage: 'sobre', mode_mot: 'avec', nb_intrus: 1, exiger_accents: true });
+  });
+
+  it('tâches existantes : réglages visibles pour chacune, révocation possible', async () => {
+    const tache = (id, extra = {}) => ({ id, class_id: 'c1', token: id.repeat(24).slice(0, 24), pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: false, revoked: false, created_at: '2026-11-11T10:00:00Z', ...extra });
+    const client = avecAuth(fauxClient({ tables: { ...classeTables('master'), phono_tasks: [tache('a'), tache('b', { revoked: true, created_at: '2026-11-09T10:00:00Z' })] } }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    expect((await screen.findAllByText(/sobre · avec le mot · 2 cubes en trop · accents non exigés/)).length).toBe(2);
+    expect(screen.getByText(/révoquée/)).toBeTruthy();
+    expect(screen.getAllByRole('button', { name: /Révoquer/ }).length).toBe(1);
+    await userEvent.click(screen.getByRole('button', { name: /Révoquer/ }));
+    await waitFor(() => expect(client.tables.phono_tasks[0].revoked).toBe(true));
+  });
+
+  it('avertissement sur les données, visible sur la page de la classe', async () => {
+    const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    const note = await screen.findByRole('note', { name: 'Données des élèves' });
+    expect(note.textContent).toMatch(/code, jamais un nom/);
+    expect(note.textContent).toMatch(/mot, ce que l’élève a posé, juste ou faux, l’aide, la date/);
+    expect(note.textContent).toMatch(/enseignants de la classe/);
+    expect(note.textContent).toMatch(/Supabase/);
+    expect(note.textContent).toMatch(/purge annuelle.*pas encore en service/);
   });
 
   it('invité : ni invitation, ni suppression, ni retrait d’élève', async () => {
