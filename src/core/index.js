@@ -12,3 +12,4 @@ export * from './corrections.js';
 export * from './revue.js';
 export * from './listes.js';
 export * from './progression.js';
+export * from './rapportListe.js';
