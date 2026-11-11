@@ -15,16 +15,17 @@ export function liaisonsDeMots(mots, lexique) {
   return { liaisons, absents };
 }
 
-/* Choix de mots sans IA. Criteres = { liaisonsConnues: Set, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure: Set, contient: string[], corrections?: Corrections }
+/* Choix de mots sans IA. Criteres = { liaisonsConnues: Set, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure: Set, contient: string[], corrections?: Corrections, motsPermis?: Set<string> }
    Chaque mot proposé dit pourquoi (raisons) et quelles liaisons restent inconnues. */
 export function filtrerMots(lexique, criteres) {
-  const { liaisonsConnues, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure, contient = [], corrections } = criteres;
+  const { liaisonsConnues, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure, contient = [], corrections, motsPermis } = criteres;
   const vus = new Set();
   const res = [];
   for (const e of lexique.entrees) {
     const cle = normaliserMot(e.ortho);
     if (vus.has(cle)) continue;
     vus.add(cle);
+    if (motsPermis && !motsPermis.has(cle)) continue;
     const entree = lexique.chercher(cle);
     // Une correction valide ou corrigée l'emporte ; une correction à valider exclut le mot ;
     // sans correction, un mot à plusieurs mots ou à son inconnu reste exclu.
