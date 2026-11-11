@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
 import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve
 } from './api.js';
 
-const PAS_DE_TACHE = { pack: '', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: false };
+const PAS_DE_TACHE = { pack: '', modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents };
 
 export default function Classe({ client, userId, classe, base, packs = [], onRetour, onSupprimer }) {
   const master = classe.role === 'master';
@@ -72,6 +73,25 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <select id="ens-pack" value={tache.pack} disabled={packs.length === 0} onChange={e => setTache(t => ({ ...t, pack: e.target.value }))}>
         {packs.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
       </select>
+      <label htmlFor="ens-mode">Cartes</label>
+      <select id="ens-mode" value={tache.modeMot} onChange={e => setTache(t => ({ ...t, modeMot: e.target.value }))}>
+        <option value="sans">sans le mot : l’élève trouve le mot à l’oreille</option>
+        <option value="avec">avec le mot : l’élève recopie le modèle</option>
+      </select>
+      <p className="aide">Change la face de la carte montrée : l’écriture se travaille de deux façons différentes.</p>
+      <label htmlFor="ens-habillage">Habillage</label>
+      <select id="ens-habillage" value={tache.habillage} onChange={e => setTache(t => ({ ...t, habillage: e.target.value }))}>
+        <option value="album">album (P1 à P3)</option>
+        <option value="sobre">sobre (P4 et au-delà)</option>
+      </select>
+      <p className="aide">Change les couleurs et les formes. Les mots restent toujours en Arial.</p>
+      <label htmlFor="ens-intrus">Nombre de cubes en trop</label>
+      <select id="ens-intrus" value={tache.nbIntrus} onChange={e => setTache(t => ({ ...t, nbIntrus: Number(e.target.value) }))}>
+        {[0, 1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
+      </select>
+      <p className="aide">Des cubes qui ne servent pas, pour que l’élève doive choisir. 0 rend la tâche plus facile.</p>
+      <label htmlFor="ens-accents"><input id="ens-accents" type="checkbox" checked={tache.exigerAccents} onChange={e => setTache(t => ({ ...t, exigerAccents: e.target.checked }))} /> Exiger les accents</label>
+      <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
       <p className="aide">{packs.length === 0 ? 'Aucun pack publié pour l’instant.' : 'Les élèves qui ouvrent le lien jouent les cartes de ce pack.'}</p>
       <button type="button" onClick={creer} disabled={packs.length === 0}>Créer le lien et le QR-code</button>
       {lien && (

@@ -112,6 +112,26 @@ describe('espace enseignant', () => {
     expect(screen.getByText(/https:\/\/x\.test\/#\/jeu\?t=[a-f0-9]{24}/)).toBeTruthy();
   });
 
+  it('tâche : l’enseignant choisit habillage, cartes, cubes en trop et accents ; défauts = ceux de l’app élève', async () => {
+    const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    expect((await screen.findByLabelText('Habillage')).value).toBe('album');
+    expect(screen.getByLabelText('Cartes').value).toBe('sans');
+    expect(screen.getByLabelText('Nombre de cubes en trop').value).toBe('3');
+    expect(screen.getByLabelText('Exiger les accents').checked).toBe(false);
+    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await waitFor(() => expect(client.tables.phono_tasks.length).toBe(1));
+    expect(client.tables.phono_tasks[0]).toMatchObject({ habillage: 'album', mode_mot: 'sans', nb_intrus: 3, exiger_accents: false });
+    await userEvent.selectOptions(screen.getByLabelText('Habillage'), 'sobre');
+    await userEvent.selectOptions(screen.getByLabelText('Cartes'), 'avec');
+    await userEvent.selectOptions(screen.getByLabelText('Nombre de cubes en trop'), '1');
+    await userEvent.click(screen.getByLabelText('Exiger les accents'));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await waitFor(() => expect(client.tables.phono_tasks.length).toBe(2));
+    expect(client.tables.phono_tasks[1]).toMatchObject({ habillage: 'sobre', mode_mot: 'avec', nb_intrus: 1, exiger_accents: true });
+  });
+
   it('invité : ni invitation, ni suppression, ni retrait d’élève', async () => {
     const client = avecAuth(fauxClient({ role: 'invite', tables: { ...classeTables('invite'), phono_students: [{ id: 's1', class_id: 'c1', code: 'E01' }] } }), { session: { user: USER } });
     monter(client);

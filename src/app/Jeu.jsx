@@ -18,10 +18,16 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const modeAvec = etat.reglages.modeMot === 'avec';
   const enCours = etat.statut === 'en_cours';
 
+  const [sonAbsent, setSonAbsent] = useState(false);
   const jouer = ids => {
     if (ids.length === 0) return;
+    setSonAbsent(false);
     Promise.resolve(deps.jouerSons(ids))
-      .then(r => (r && r.manquants ? r.manquants : []).forEach(id => onSignalement('son', id)))
+      .then(r => {
+        const manquants = r && r.manquants ? r.manquants : [];
+        manquants.forEach(id => onSignalement('son', id));
+        if (manquants.length > 0) setSonAbsent(true);
+      })
       .catch(() => {});
   };
   const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(l));
@@ -85,6 +91,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
       <div className="actions" role="toolbar" aria-label="Actions">
         <button type="button" onClick={() => jouer(sonsDuMot(carte))}>Écouter</button>
+        {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
         <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
         <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>
         <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))}>Tout effacer</button>

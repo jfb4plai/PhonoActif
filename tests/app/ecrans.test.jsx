@@ -172,6 +172,16 @@ describe('Jeu', () => {
     await waitFor(() => expect(jouerSons).toHaveBeenCalled());
     expect(screen.queryByRole('alert')).toBeNull();
     expect(document.body.textContent).not.toMatch(/absent|erreur|introuvable/i);
+    // Neutre et sans réponse : l'élève comprend que le bouton marche mais qu'il n'y a pas de son
+    expect(await screen.findByText('Pas de son pour le moment.')).toBeInTheDocument();
+  });
+
+  it('son disponible : pas de message « pas de son »', async () => {
+    const { user } = monter({});
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    await new Promise(r => setTimeout(r, 20));
+    expect(screen.queryByText('Pas de son pour le moment.')).toBeNull();
   });
 
   it('stockage qui lève : le jeu continue', async () => {
