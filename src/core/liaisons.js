@@ -1,4 +1,5 @@
-import { cubesDepuisEntree, normaliserMot, segmenterMot } from './lexique.js';
+import { cubesDepuisEntree, normaliserMot, segmenterMot, estMultiMot } from './lexique.js';
+import { corrigeValide } from './corrections.js';
 
 // Une liaison = « graphème=son » (son vide pour une lettre muette : « t= »). Comparaison stricte de chaînes.
 export const liaisonsDe = cubes => cubes.map(c => `${c.g}=${c.son === null ? '?' : c.son}`);
@@ -14,10 +15,10 @@ export function liaisonsDeMots(mots, lexique) {
   return { liaisons, absents };
 }
 
-/* Choix de mots sans IA. Criteres = { liaisonsConnues: Set, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure: Set, contient: string[] }
+/* Choix de mots sans IA. Criteres = { liaisonsConnues: Set, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure: Set, contient: string[], corrections?: Corrections }
    Chaque mot proposé dit pourquoi (raisons) et quelles liaisons restent inconnues. */
 export function filtrerMots(lexique, criteres) {
-  const { liaisonsConnues, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure, contient = [] } = criteres;
+  const { liaisonsConnues, tolerance = 0, classes, nbSyllabesMax, freqMinP1, exclure, contient = [], corrections } = criteres;
   const vus = new Set();
   const res = [];
   for (const e of lexique.entrees) {
@@ -25,9 +26,17 @@ export function filtrerMots(lexique, criteres) {
     if (vus.has(cle)) continue;
     vus.add(cle);
     const entree = lexique.chercher(cle);
-    if (normaliserMot(entree.graphemes.join('')) !== cle) continue;
-    const cubes = cubesDepuisEntree(entree);
-    if (cubes.some(c => c.son === null)) continue;
+    // Une correction valide ou corrigée l'emporte ; une correction à valider exclut le mot ;
+    // sans correction, un mot à plusieurs mots ou à son inconnu reste exclu.
+    const corr = corrections ? corrections.chercher(cle) : null;
+    let cubes;
+    if (corrigeValide(corr)) cubes = corr.cubes;
+    else {
+      if (corr || estMultiMot(cle)) continue;
+      if (normaliserMot(entree.graphemes.join('')) !== cle) continue;
+      cubes = cubesDepuisEntree(entree);
+      if (cubes.some(c => c.son === null)) continue;
+    }
     if (exclure && exclure.has(cle)) continue;
     if (classes && !classes.includes(entree.classe)) continue;
     if (nbSyllabesMax !== undefined && entree.nbSyllabes > nbSyllabesMax) continue;

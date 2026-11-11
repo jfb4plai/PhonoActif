@@ -1,10 +1,11 @@
-import { normaliserMot } from './lexique.js';
+import { normaliserMot, estMultiMot } from './lexique.js';
+import { corrigeValide } from './corrections.js';
 import { segmenterExplicite } from './segmentation.js';
 
 /* Valide un pack de cartes préparé hors de l'app.
    Manifest = { nom, cartes: Carte[] } ; Carte = { id, mot, image_sans_mot, image_avec_mot?, graphemes?, niveau?, source, licence }
    fichiers = noms de fichiers présents dans le dossier du pack. Messages préfixés par l'id de la carte. */
-export function validerPack(manifest, fichiers, lexique) {
+export function validerPack(manifest, fichiers, lexique, corrections) {
   const erreurs = [], avertissements = [];
   const cartes = manifest && Array.isArray(manifest.cartes) ? manifest.cartes : [];
   if (cartes.length === 0) return { erreurs: ['pack vide'], avertissements };
@@ -36,9 +37,12 @@ export function validerPack(manifest, fichiers, lexique) {
     else if (c.licence.trim().toLowerCase() === 'inconnue') avert('licence à vérifier');
 
     if (mot !== '') {
+      const valide = corrigeValide(corrections ? corrections.chercher(mot) : null);
       if (c.graphemes) {
         if (!segmenterExplicite(mot, c.graphemes)) err('graphèmes ne recomposent pas le mot');
-      } else if (!lexique.chercher(mot)) avert('segmentation à vérifier');
+      } else if (estMultiMot(mot)) {
+        if (!valide) avert('entrée à plusieurs mots : à valider');
+      } else if (!lexique.chercher(mot) && !valide) avert('segmentation à vérifier');
     }
   });
   return { erreurs, avertissements };
