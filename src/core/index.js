@@ -6,3 +6,4 @@ export * from './codes.js';
 export * from './lexique.js';
 export * from './liaisons.js';
 export * from './analyseListe.js';
+export * from './pack.js';
