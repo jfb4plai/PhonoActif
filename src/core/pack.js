@@ -1,4 +1,4 @@
-import { normaliserMot, estMultiMot } from './lexique.js';
+import { normaliserMot, estMultiMot, segmenterMot } from './lexique.js';
 import { corrigeValide } from './corrections.js';
 import { segmenterExplicite } from './segmentation.js';
 
@@ -46,4 +46,41 @@ export function validerPack(manifest, fichiers, lexique, corrections) {
     }
   });
   return { erreurs, avertissements };
+}
+
+// Nom de fichier sans accent ni espace ; deux mots qui donnent le même nom reçoivent un suffixe (-2, -3...).
+export function slugMot(mot, dejaPris) {
+  let s = String(mot ?? '').toLowerCase().replace(/œ/g, 'oe').replace(/æ/g, 'ae')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  if (s === '') s = 'carte';
+  if (!dejaPris) return s;
+  let candidat = s, n = 2;
+  while (dejaPris.has(candidat)) candidat = `${s}-${n++}`;
+  dejaPris.add(candidat);
+  return candidat;
+}
+
+const champCsv = v => (/[;"\r\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+
+/* Manifeste d'un pack et liste des cartes à fabriquer (CSV pour Excel, séparateur « ; », UTF-8 avec BOM).
+   params = { nom, mots, source, licence, lexique, corrections?, niveaux?: { mot: niveau } }
+   Les noms de fichiers sont ceux que JF ou l'enseignant donne aux images exportées de Canva (carte de 63 x 88 mm). */
+export function preparerPack({ nom, mots, source, licence, lexique, corrections, niveaux = {} }) {
+  for (const [champ, v] of [['nom', nom], ['source', source], ['licence', licence]]) {
+    if (typeof v !== 'string' || v.trim() === '') throw new Error(`pack : champ « ${champ} » manquant`);
+  }
+  const pris = new Set(), vus = new Set(), cartes = [], lignes = [];
+  lignes.push('mot;id;fichier sans mot;fichier avec mot;niveau;graphèmes proposés;à vérifier');
+  for (const brut of mots) {
+    const mot = normaliserMot(brut);
+    if (mot === '' || vus.has(mot)) continue;
+    vus.add(mot);
+    const id = slugMot(mot, pris);
+    const carte = { id, mot, image_sans_mot: `${id}.png`, image_avec_mot: `${id}-mot.png`, source: source.trim(), licence: licence.trim() };
+    if (niveaux[mot]) carte.niveau = niveaux[mot];
+    cartes.push(carte);
+    const seg = segmenterMot(mot, lexique, { corrections });
+    lignes.push([mot, id, carte.image_sans_mot, carte.image_avec_mot, niveaux[mot] || '', seg.cubes.map(c => c.g).join('.'), seg.aVerifier ? 'oui' : 'non'].map(champCsv).join(';'));
+  }
+  return { manifest: { nom: nom.trim(), cartes }, csv: '﻿' + lignes.join('\r\n') };
 }
