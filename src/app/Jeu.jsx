@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT } from './route.js';
+import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes } from '../jeu/modeA.js';
 
 const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
 const classeDe = son => CLASSES[classeCube(son)];
 
 export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onFin, onAccueil, onSignalement }) {
+  const lettres = estPackLettres(pack); // mode A : l'élève pose des lettres, l'app lit la chaîne posée
   const [etat, setEtat] = useState(() => demarrerJeu({
-    pack, code, jeton: tache.jeton || null, rng: deps.rng, maintenant: deps.maintenant,
-    reglages: { ...REGLAGES_PAR_DEFAUT, modeMot: tache.modeMot, habillage: tache.habillage, nbIntrus: tache.nbIntrus, exigerAccents: tache.exigerAccents }
+    pack: lettres ? packDeSession(pack) : pack, code, jeton: tache.jeton || null, rng: deps.rng, maintenant: deps.maintenant,
+    reglages: { ...REGLAGES_PAR_DEFAUT, modeMot: tache.modeMot, habillage: tache.habillage, nbIntrus: tache.nbIntrus, exigerAccents: tache.exigerAccents, ...(lettres ? { construirePlateau: construirePlateauLettres } : {}) }
   }));
   const [message, setMessage] = useState(null);
   const [imagesAbsentes, setImagesAbsentes] = useState({});
@@ -30,18 +32,32 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     Promise.resolve(deps.jouerSons(ids)).then(signalerSons).catch(() => {});
   };
   // Le mot entier est préféré : enchaîner des sons isolés donne « che-a ». Sans fichier du mot, on retombe sur les sons.
+  const jouerEtat = e => {
+    if (!e || !e.fichier || !deps.jouerFichier) { setSonAbsent(true); return; }
+    setSonAbsent(false);
+    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${e.fichier}`)).then(signalerSons).catch(() => {});
+  };
   const jouerMot = c => {
+    if (lettres) { jouerEtat(etatFinal(c)); return; }
     if (!c.audio_mot || !deps.jouerFichier) { jouer(sonsDuMot(c)); return; }
     setSonAbsent(false);
     Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${c.audio_mot}`)).then(signalerSons).catch(() => {});
   };
-  const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(l));
+  const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
+  // Mode A : le suivi reste en graphèmes-sons (liaisons), calculé à partir des lettres posées.
+  const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(
+    lettres ? { ...l, positions: positionsGraphemes(avant.cartes[avant.index], lettresPosees(avant), avant.reglages.exigerAccents) } : l));
 
   const surPiece = piece => {
     const apres = poser(etat, piece.id);
     if (apres === etat) return;
     setEtat(apres); setMessage(null);
-    // Aucun son au dépôt : les sons isolés sont à refaire (enchaînés, ils donnent « che-a »).
+    if (lettres) {
+      // Mode A : lecture de ce qui est posé. Chaîne hors du mot (lettre en trop, ordre autre) : lecture en direct, non construite.
+      const chaine = apres.poses.map(id => apres.plateau.find(x => x.id === id).g).join('');
+      jouerEtat(etatPourChaine(carte, chaine));
+    }
+    // Mode graphèmes : aucun son au dépôt (les sons isolés enchaînés donnent « che-a »).
   };
   const surVerifier = () => {
     const { etat: apres, resultat } = verifier(etat);
@@ -61,8 +77,9 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   };
 
   const fichierImage = modeAvec ? carte.image_avec_mot : carte.image_sans_mot;
-  const urlImage = `${base}packs/${encodeURIComponent(etat.pack)}/${encodeURIComponent(fichierImage)}`;
-  const imageAbsente = !!imagesAbsentes[carte.id];
+  const sansImage = !fichierImage; // pack sans image (mode A) : le mot s'affiche ou se dit, selon le réglage
+  const urlImage = `${base}packs/${encodeURIComponent(etat.pack)}/${String(fichierImage).split("/").map(encodeURIComponent).join("/")}`; // sous-dossier images/ autorisé
+  const imageAbsente = sansImage || !!imagesAbsentes[carte.id];
   const posees = etat.poses.map(id => etat.plateau.find(p => p.id === id));
   const surPlateau = etat.plateau.filter(p => !etat.poses.includes(p.id));
 
@@ -71,7 +88,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       <p className="compteur">Carte {etat.index + 1} sur {etat.cartes.length}</p>
       <div className="carte-jeu">
         {imageAbsente
-          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">Image absente</p>)
+          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage ? 'Écouter le mot, puis le construire.' : 'Image absente'}</p>)
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
       </div>

@@ -13,3 +13,8 @@ export * from './revue.js';
 export * from './listes.js';
 export * from './progression.js';
 export * from './rapportListe.js';
+export * from './regles.js';
+export * from './ipa.js';
+export * from './etats.js';
+export * from './syllabes.js';
+export * from './packAtelier.js';

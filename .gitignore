@@ -14,3 +14,19 @@ dist/
 .vercel
 supabase/.temp/
 public/sons/
+
+# Données sous licence non levée (Lexique 4.1, prototype prédicteur)
+data/lexique-org/
+data/predicteur/*.json
+!public/packs/p1-100/
+
+# Packs fabriqués à partir de tableaux d enseignants (contiennent des adresses e-mail)
+data/packs-atelier/
+
+# Générés ou sensibles : jamais dans le dépôt
+__pycache__/
+essai-tts-ipa/sortie/
+essai-tts-ipa/pour-logopede/
+essai-tts-ipa/pour-logopede-comparaison/
+essai-tts-ipa/*.zip
+essai-tts-ipa/cle-comparaison-aveugle.json

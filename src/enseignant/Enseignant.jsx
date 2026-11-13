@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { configurationSupabase } from '../lib/supabase.js';
+import { packsVisibles, empreinteCourriel } from '../core/packAtelier.js';
 import { creerClasse, lister, supprimerClasse } from './api.js';
 import Connexion from './Connexion.jsx';
 import Classe from './Classe.jsx';
@@ -42,6 +43,15 @@ export default function Enseignant({ deps = {} }) {
     return () => { actif = false; data.subscription.unsubscribe(); };
   }, [client]);
 
+  // Les packs personnels sont reconnus par une empreinte de l'adresse e-mail, jamais par l'adresse elle-même
+  const [empreinte, setEmpreinte] = useState('');
+  useEffect(() => {
+    let actif = true;
+    if (utilisateur && utilisateur.email) empreinteCourriel(utilisateur.email).then(e => { if (actif) setEmpreinte(e); }).catch(() => {});
+    else setEmpreinte('');
+    return () => { actif = false; };
+  }, [utilisateur]);
+
   const charger = async () => {
     try { setClasses(await lister(client, utilisateur.id)); } catch (e) { setMessage(e.message); }
   };
@@ -71,7 +81,7 @@ export default function Enseignant({ deps = {} }) {
         {utilisateur.email} <button type="button" onClick={() => client.auth.signOut()}>Se déconnecter</button>
       </p>
       {courante ? (
-        <Classe client={client} userId={utilisateur.id} classe={courante} base={base} packs={packs}
+        <Classe client={client} userId={utilisateur.id} classe={courante} base={base} packs={packsVisibles(packs, empreinte)}
           onRetour={() => setCourante(null)} onSupprimer={supprimer} />
       ) : (
         <section className="ens-carte">

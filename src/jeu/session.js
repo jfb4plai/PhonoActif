@@ -45,7 +45,7 @@ export function demarrerJeu({ pack, reglages, code, jeton = null, session, rng =
     statut: 'en_cours', reglages, essais: [], outils: { rng, maintenant, nouvelId }
   };
   if (cartes.length === 0) return { ...base, plateau: [], statut: 'fini' };
-  return { ...base, plateau: construirePlateau(cartes[0], { nbIntrus: reglages.nbIntrus, rng }) };
+  return { ...base, plateau: (reglages.construirePlateau || construirePlateau)(cartes[0], { nbIntrus: reglages.nbIntrus, rng }) };
 }
 
 export function poser(etat, pieceId) {
@@ -101,6 +101,6 @@ export function suivant(etat) {
   const index = etat.index + 1;
   return {
     ...etat, index, poses: [], tentative: 1, aide: 'aucune', indice: null, statut: 'en_cours',
-    plateau: construirePlateau(etat.cartes[index], { nbIntrus: etat.reglages.nbIntrus, rng: etat.outils.rng })
+    plateau: (etat.reglages.construirePlateau || construirePlateau)(etat.cartes[index], { nbIntrus: etat.reglages.nbIntrus, rng: etat.outils.rng })
   };
 }

@@ -1,0 +1,4995 @@
+{
+ "nom": "p1-100",
+ "mode": "lettres",
+ "source": "liste P1 de JF, filtre déterministe sans IA (tools/mode_a_mots.js)",
+ "cartes": [
+  {
+   "id": "dans",
+   "mot": "dans",
+   "lettres": [
+    "d",
+    "a",
+    "n",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "d",
+     "son": "d"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "d",
+     "fichier": "audio/64_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "da",
+     "fichier": "audio/64_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "dan",
+     "fichier": "audio/64_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "dans",
+     "fichier": "audio/64_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "elle",
+   "mot": "elle",
+   "lettres": [
+    "e",
+    "l",
+    "l",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "e",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "ll",
+     "son": "l"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "e",
+     "fichier": "audio/259_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "el",
+     "fichier": "audio/25b_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ell",
+     "fichier": "audio/25b_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "elle",
+     "fichier": "audio/25b_6c_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "qui",
+   "mot": "qui",
+   "lettres": [
+    "q",
+    "u",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "qu",
+     "son": "k"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "q",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "qu",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "qui",
+     "fichier": "audio/6b_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "pour",
+   "mot": "pour",
+   "lettres": [
+    "p",
+    "o",
+    "u",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pou",
+     "fichier": "audio/70_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pour",
+     "fichier": "audio/70_75_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "avec",
+   "mot": "avec",
+   "lettres": [
+    "a",
+    "v",
+    "e",
+    "c"
+   ],
+   "cubes": [
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "e",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "c",
+     "son": "k"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "a",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "av",
+     "fichier": "audio/61_76_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ave",
+     "fichier": "audio/61_76_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "avec",
+     "fichier": "audio/61_76_25b_6b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "sur",
+   "mot": "sur",
+   "lettres": [
+    "s",
+    "u",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "su",
+     "fichier": "audio/73_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sur",
+     "fichier": "audio/73_79_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "son",
+   "mot": "son",
+   "lettres": [
+    "s",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "so",
+     "fichier": "audio/73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "son",
+     "fichier": "audio/73_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "pas",
+   "mot": "pas",
+   "lettres": [
+    "p",
+    "a",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pas",
+     "fichier": "audio/70_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "petit",
+   "mot": "petit",
+   "lettres": [
+    "p",
+    "e",
+    "t",
+    "i",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pe",
+     "fichier": "audio/70_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pet",
+     "fichier": "audio/70_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "peti",
+     "fichier": "audio/70_259_74_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "petit",
+     "fichier": "audio/70_259_74_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "mais",
+   "mot": "mais",
+   "lettres": [
+    "m",
+    "a",
+    "i",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "ai",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mai",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mais",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "que",
+   "mot": "que",
+   "lettres": [
+    "q",
+    "u",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "qu",
+     "son": "k"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "q",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "qu",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "que",
+     "fichier": "audio/6b_259_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "plus",
+   "mot": "plus",
+   "lettres": [
+    "p",
+    "l",
+    "u",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "s",
+     "son": "s"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pl",
+     "fichier": "audio/70_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "plu",
+     "fichier": "audio/70_6c_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "plus",
+     "fichier": "audio/70_6c_79_73_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "bien",
+   "mot": "bien",
+   "lettres": [
+    "b",
+    "i",
+    "e",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "en",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "b",
+     "fichier": "audio/62_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bi",
+     "fichier": "audio/62_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bie",
+     "fichier": "audio/62_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bien",
+     "fichier": "audio/62_6a_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "maman",
+   "mot": "maman",
+   "lettres": [
+    "m",
+    "a",
+    "m",
+    "a",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mam",
+     "fichier": "audio/6d_61_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mama",
+     "fichier": "audio/6d_61_6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "maman",
+     "fichier": "audio/6d_61_6d_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "très",
+   "mot": "très",
+   "lettres": [
+    "t",
+    "r",
+    "è",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "è",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tr",
+     "fichier": "audio/74_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "trè",
+     "fichier": "audio/74_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "très",
+     "fichier": "audio/74_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "faire",
+   "mot": "faire",
+   "lettres": [
+    "f",
+    "a",
+    "i",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "ai",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fa",
+     "fichier": "audio/66_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fai",
+     "fichier": "audio/66_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fair",
+     "fichier": "audio/66_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "faire",
+     "fichier": "audio/66_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "mon",
+   "mot": "mon",
+   "lettres": [
+    "m",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mo",
+     "fichier": "audio/6d_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mon",
+     "fichier": "audio/6d_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "chat",
+   "mot": "chat",
+   "lettres": [
+    "c",
+    "h",
+    "a",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ch",
+     "fichier": "audio/283_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cha",
+     "fichier": "audio/283_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chat",
+     "fichier": "audio/283_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "moi",
+   "mot": "moi",
+   "lettres": [
+    "m",
+    "o",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mo",
+     "fichier": "audio/6d_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "moi",
+     "fichier": "audio/6d_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "tout",
+   "mot": "tout",
+   "lettres": [
+    "t",
+    "o",
+    "u",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "to",
+     "fichier": "audio/74_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tou",
+     "fichier": "audio/74_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tout",
+     "fichier": "audio/74_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "vous",
+   "mot": "vous",
+   "lettres": [
+    "v",
+    "o",
+    "u",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vo",
+     "fichier": "audio/76_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vou",
+     "fichier": "audio/76_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vous",
+     "fichier": "audio/76_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "maison",
+   "mot": "maison",
+   "lettres": [
+    "m",
+    "a",
+    "i",
+    "s",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "ai",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "s",
+     "son": "z"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mai",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mais",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "maiso",
+     "fichier": "audio/6d_25b_7a_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "maison",
+     "fichier": "audio/6d_25b_7a_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "nous",
+   "mot": "nous",
+   "lettres": [
+    "n",
+    "o",
+    "u",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "n",
+     "fichier": "audio/6e_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "no",
+     "fichier": "audio/6e_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "nou",
+     "fichier": "audio/6e_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "nous",
+     "fichier": "audio/6e_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "vite",
+   "mot": "vite",
+   "lettres": [
+    "v",
+    "i",
+    "t",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vi",
+     "fichier": "audio/76_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vit",
+     "fichier": "audio/76_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vite",
+     "fichier": "audio/76_69_74_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "aussi",
+   "mot": "aussi",
+   "lettres": [
+    "a",
+    "u",
+    "s",
+    "s",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "au",
+     "son": "o_ferme"
+    },
+    {
+     "g": "ss",
+     "son": "s"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "a",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "au",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "aus",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "auss",
+     "fichier": "audio/6f_73_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "aussi",
+     "fichier": "audio/6f_73_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "papa",
+   "mot": "papa",
+   "lettres": [
+    "p",
+    "a",
+    "p",
+    "a"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pap",
+     "fichier": "audio/70_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "papa",
+     "fichier": "audio/70_61_70_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "deux",
+   "mot": "deux",
+   "lettres": [
+    "d",
+    "e",
+    "u",
+    "x"
+   ],
+   "cubes": [
+    {
+     "g": "d",
+     "son": "d"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ferme"
+    },
+    {
+     "g": "x",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "d",
+     "fichier": "audio/64_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "de",
+     "fichier": "audio/64_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "deu",
+     "fichier": "audio/64_f8_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "deux",
+     "fichier": "audio/64_f8_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "par",
+   "mot": "par",
+   "lettres": [
+    "p",
+    "a",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "par",
+     "fichier": "audio/70_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "comme",
+   "mot": "comme",
+   "lettres": [
+    "c",
+    "o",
+    "m",
+    "m",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "c",
+     "son": "k"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "mm",
+     "son": "m"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "co",
+     "fichier": "audio/6b_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "com",
+     "fichier": "audio/6b_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "comm",
+     "fichier": "audio/6b_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "comme",
+     "fichier": "audio/6b_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "eau",
+   "mot": "eau",
+   "lettres": [
+    "e",
+    "a",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "eau",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "e",
+     "fichier": "audio/259_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ea",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "eau",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "quand",
+   "mot": "quand",
+   "lettres": [
+    "q",
+    "u",
+    "a",
+    "n",
+    "d"
+   ],
+   "cubes": [
+    {
+     "g": "qu",
+     "son": "k"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    },
+    {
+     "g": "d",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "q",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "qu",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "qua",
+     "fichier": "audio/6b_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "quan",
+     "fichier": "audio/6b_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "quand",
+     "fichier": "audio/6b_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "jardin",
+   "mot": "jardin",
+   "lettres": [
+    "j",
+    "a",
+    "r",
+    "d",
+    "i",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "j",
+     "son": "j"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "d",
+     "son": "d"
+    },
+    {
+     "g": "in",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "j",
+     "fichier": "audio/292_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ja",
+     "fichier": "audio/292_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jar",
+     "fichier": "audio/292_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jard",
+     "fichier": "audio/292_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jardi",
+     "fichier": "audio/292_61_281_64_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jardin",
+     "fichier": "audio/292_61_281_64_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "école",
+   "mot": "école",
+   "lettres": [
+    "é",
+    "c",
+    "o",
+    "l",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "é",
+     "son": "e_ferme"
+    },
+    {
+     "g": "c",
+     "son": "k"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "é",
+     "fichier": "audio/65_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "éc",
+     "fichier": "audio/65_6b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "éco",
+     "fichier": "audio/65_6b_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "écol",
+     "fichier": "audio/65_6b_254_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "école",
+     "fichier": "audio/65_6b_254_6c_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "alors",
+   "mot": "alors",
+   "lettres": [
+    "a",
+    "l",
+    "o",
+    "r",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "a",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "al",
+     "fichier": "audio/61_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "alo",
+     "fichier": "audio/61_6c_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "alor",
+     "fichier": "audio/61_6c_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "alors",
+     "fichier": "audio/61_6c_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "chez",
+   "mot": "chez",
+   "lettres": [
+    "c",
+    "h",
+    "e",
+    "z"
+   ],
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "ez",
+     "son": "e_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ch",
+     "fichier": "audio/283_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "che",
+     "fichier": "audio/283_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chez",
+     "fichier": "audio/283_65_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "tête",
+   "mot": "tête",
+   "lettres": [
+    "t",
+    "ê",
+    "t",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "ê",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tê",
+     "fichier": "audio/74_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "têt",
+     "fichier": "audio/74_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tête",
+     "fichier": "audio/74_25b_74_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "toi",
+   "mot": "toi",
+   "lettres": [
+    "t",
+    "o",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "to",
+     "fichier": "audio/74_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "toi",
+     "fichier": "audio/74_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "non",
+   "mot": "non",
+   "lettres": [
+    "n",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "n",
+     "fichier": "audio/6e_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "no",
+     "fichier": "audio/6e_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "non",
+     "fichier": "audio/6e_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "jour",
+   "mot": "jour",
+   "lettres": [
+    "j",
+    "o",
+    "u",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "j",
+     "son": "j"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "j",
+     "fichier": "audio/292_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jo",
+     "fichier": "audio/292_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jou",
+     "fichier": "audio/292_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "jour",
+     "fichier": "audio/292_75_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "lit",
+   "mot": "lit",
+   "lettres": [
+    "l",
+    "i",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "li",
+     "fichier": "audio/6c_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lit",
+     "fichier": "audio/6c_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "peu",
+   "mot": "peu",
+   "lettres": [
+    "p",
+    "e",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pe",
+     "fichier": "audio/70_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "peu",
+     "fichier": "audio/70_f8_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "oui",
+   "mot": "oui",
+   "lettres": [
+    "o",
+    "u",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "ou",
+     "son": "w"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "o",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ou",
+     "fichier": "audio/75_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "oui",
+     "fichier": "audio/77_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "encore",
+   "mot": "encore",
+   "lettres": [
+    "e",
+    "n",
+    "c",
+    "o",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "en",
+     "son": "an"
+    },
+    {
+     "g": "c",
+     "son": "k"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "e",
+     "fichier": "audio/259_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "en",
+     "fichier": "audio/251_303_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "enc",
+     "fichier": "audio/251_303_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "enco",
+     "fichier": "audio/251_303_6b_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "encor",
+     "fichier": "audio/251_303_6b_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "encore",
+     "fichier": "audio/251_303_6b_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "chien",
+   "mot": "chien",
+   "lettres": [
+    "c",
+    "h",
+    "i",
+    "e",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "en",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ch",
+     "fichier": "audio/283_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chi",
+     "fichier": "audio/283_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chie",
+     "fichier": "audio/283_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chien",
+     "fichier": "audio/283_6a_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "voiture",
+   "mot": "voiture",
+   "lettres": [
+    "v",
+    "o",
+    "i",
+    "t",
+    "u",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vo",
+     "fichier": "audio/76_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voi",
+     "fichier": "audio/76_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voit",
+     "fichier": "audio/76_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voitu",
+     "fichier": "audio/76_77_61_74_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voitur",
+     "fichier": "audio/76_77_61_74_79_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voiture",
+     "fichier": "audio/76_77_61_74_79_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "trois",
+   "mot": "trois",
+   "lettres": [
+    "t",
+    "r",
+    "o",
+    "i",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tr",
+     "fichier": "audio/74_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tro",
+     "fichier": "audio/74_281_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "troi",
+     "fichier": "audio/74_281_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "trois",
+     "fichier": "audio/74_281_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "poisson",
+   "mot": "poisson",
+   "lettres": [
+    "p",
+    "o",
+    "i",
+    "s",
+    "s",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "ss",
+     "son": "s"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poi",
+     "fichier": "audio/70_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pois",
+     "fichier": "audio/70_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poiss",
+     "fichier": "audio/70_77_61_73_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poisso",
+     "fichier": "audio/70_77_61_73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poisson",
+     "fichier": "audio/70_77_61_73_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "trop",
+   "mot": "trop",
+   "lettres": [
+    "t",
+    "r",
+    "o",
+    "p"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "o",
+     "son": "o_ferme"
+    },
+    {
+     "g": "p",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tr",
+     "fichier": "audio/74_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tro",
+     "fichier": "audio/74_281_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "trop",
+     "fichier": "audio/74_281_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "rue",
+   "mot": "rue",
+   "lettres": [
+    "r",
+    "u",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "r",
+     "fichier": "audio/281_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ru",
+     "fichier": "audio/281_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rue",
+     "fichier": "audio/281_79_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "temps",
+   "mot": "temps",
+   "lettres": [
+    "t",
+    "e",
+    "m",
+    "p",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "em",
+     "son": "an"
+    },
+    {
+     "g": "p",
+     "son": ""
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "te",
+     "fichier": "audio/74_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tem",
+     "fichier": "audio/74_25b_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "temp",
+     "fichier": "audio/74_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "temps",
+     "fichier": "audio/74_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "gros",
+   "mot": "gros",
+   "lettres": [
+    "g",
+    "r",
+    "o",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "g",
+     "son": "g"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "o",
+     "son": "o_ferme"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "g",
+     "fichier": "audio/261_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gr",
+     "fichier": "audio/261_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gro",
+     "fichier": "audio/261_281_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gros",
+     "fichier": "audio/261_281_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "matin",
+   "mot": "matin",
+   "lettres": [
+    "m",
+    "a",
+    "t",
+    "i",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "in",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mat",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mati",
+     "fichier": "audio/6d_61_74_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "matin",
+     "fichier": "audio/6d_61_74_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "sans",
+   "mot": "sans",
+   "lettres": [
+    "s",
+    "a",
+    "n",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sa",
+     "fichier": "audio/73_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "san",
+     "fichier": "audio/73_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sans",
+     "fichier": "audio/73_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "bon",
+   "mot": "bon",
+   "lettres": [
+    "b",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "b",
+     "fichier": "audio/62_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bo",
+     "fichier": "audio/62_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bon",
+     "fichier": "audio/62_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "chaque",
+   "mot": "chaque",
+   "lettres": [
+    "c",
+    "h",
+    "a",
+    "q",
+    "u",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "qu",
+     "son": "k"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ch",
+     "fichier": "audio/283_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cha",
+     "fichier": "audio/283_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chaq",
+     "fichier": "audio/283_61_6b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chaqu",
+     "fichier": "audio/283_61_6b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chaque",
+     "fichier": "audio/283_61_6b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "fois",
+   "mot": "fois",
+   "lettres": [
+    "f",
+    "o",
+    "i",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fo",
+     "fichier": "audio/66_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "foi",
+     "fichier": "audio/66_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fois",
+     "fichier": "audio/66_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "beau",
+   "mot": "beau",
+   "lettres": [
+    "b",
+    "e",
+    "a",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "eau",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "b",
+     "fichier": "audio/62_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "be",
+     "fichier": "audio/62_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bea",
+     "fichier": "audio/62_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "beau",
+     "fichier": "audio/62_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "rien",
+   "mot": "rien",
+   "lettres": [
+    "r",
+    "i",
+    "e",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "en",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "r",
+     "fichier": "audio/281_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ri",
+     "fichier": "audio/281_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rie",
+     "fichier": "audio/281_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rien",
+     "fichier": "audio/281_6a_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "ours",
+   "mot": "ours",
+   "lettres": [
+    "o",
+    "u",
+    "r",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "s",
+     "son": "s"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "o",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ou",
+     "fichier": "audio/75_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "our",
+     "fichier": "audio/75_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ours",
+     "fichier": "audio/75_281_73_-30.mp3",
+     "ecartAvecRegles": true
+    }
+   ]
+  },
+  {
+   "id": "grand",
+   "mot": "grand",
+   "lettres": [
+    "g",
+    "r",
+    "a",
+    "n",
+    "d"
+   ],
+   "cubes": [
+    {
+     "g": "g",
+     "son": "g"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    },
+    {
+     "g": "d",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "g",
+     "fichier": "audio/261_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gr",
+     "fichier": "audio/261_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gra",
+     "fichier": "audio/261_281_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gran",
+     "fichier": "audio/261_281_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "grand",
+     "fichier": "audio/261_281_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "lire",
+   "mot": "lire",
+   "lettres": [
+    "l",
+    "i",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "li",
+     "fichier": "audio/6c_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lir",
+     "fichier": "audio/6c_69_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lire",
+     "fichier": "audio/6c_69_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "sous",
+   "mot": "sous",
+   "lettres": [
+    "s",
+    "o",
+    "u",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "so",
+     "fichier": "audio/73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sou",
+     "fichier": "audio/73_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sous",
+     "fichier": "audio/73_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "peur",
+   "mot": "peur",
+   "lettres": [
+    "p",
+    "e",
+    "u",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pe",
+     "fichier": "audio/70_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "peu",
+     "fichier": "audio/70_f8_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "peur",
+     "fichier": "audio/70_153_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "voilà",
+   "mot": "voilà",
+   "lettres": [
+    "v",
+    "o",
+    "i",
+    "l",
+    "à"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "à",
+     "son": "a"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vo",
+     "fichier": "audio/76_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voi",
+     "fichier": "audio/76_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voil",
+     "fichier": "audio/76_77_61_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voilà",
+     "fichier": "audio/76_77_61_6c_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "livre",
+   "mot": "livre",
+   "lettres": [
+    "l",
+    "i",
+    "v",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "li",
+     "fichier": "audio/6c_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "liv",
+     "fichier": "audio/6c_69_76_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "livr",
+     "fichier": "audio/6c_69_76_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "livre",
+     "fichier": "audio/6c_69_76_281_259_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "rouge",
+   "mot": "rouge",
+   "lettres": [
+    "r",
+    "o",
+    "u",
+    "g",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "g",
+     "son": "j"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "r",
+     "fichier": "audio/281_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ro",
+     "fichier": "audio/281_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rou",
+     "fichier": "audio/281_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "roug",
+     "fichier": "audio/281_75_261_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rouge",
+     "fichier": "audio/281_75_292_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "vélo",
+   "mot": "vélo",
+   "lettres": [
+    "v",
+    "é",
+    "l",
+    "o"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "é",
+     "son": "e_ferme"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "o",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vé",
+     "fichier": "audio/76_65_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vél",
+     "fichier": "audio/76_65_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vélo",
+     "fichier": "audio/76_65_6c_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "voir",
+   "mot": "voir",
+   "lettres": [
+    "v",
+    "o",
+    "i",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vo",
+     "fichier": "audio/76_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voi",
+     "fichier": "audio/76_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voir",
+     "fichier": "audio/76_77_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "terre",
+   "mot": "terre",
+   "lettres": [
+    "t",
+    "e",
+    "r",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "e",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "rr",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "te",
+     "fichier": "audio/74_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ter",
+     "fichier": "audio/74_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "terr",
+     "fichier": "audio/74_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "terre",
+     "fichier": "audio/74_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "monde",
+   "mot": "monde",
+   "lettres": [
+    "m",
+    "o",
+    "n",
+    "d",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    },
+    {
+     "g": "d",
+     "son": "d"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mo",
+     "fichier": "audio/6d_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mon",
+     "fichier": "audio/6d_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mond",
+     "fichier": "audio/6d_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "monde",
+     "fichier": "audio/6d_254_303_64_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "nez",
+   "mot": "nez",
+   "lettres": [
+    "n",
+    "e",
+    "z"
+   ],
+   "cubes": [
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "ez",
+     "son": "e_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "n",
+     "fichier": "audio/6e_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ne",
+     "fichier": "audio/6e_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "nez",
+     "fichier": "audio/6e_65_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "neige",
+   "mot": "neige",
+   "lettres": [
+    "n",
+    "e",
+    "i",
+    "g",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "ei",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "g",
+     "son": "j"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "n",
+     "fichier": "audio/6e_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ne",
+     "fichier": "audio/6e_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "nei",
+     "fichier": "audio/6e_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "neig",
+     "fichier": "audio/6e_25b_261_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "neige",
+     "fichier": "audio/6e_25b_292_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "porte",
+   "mot": "porte",
+   "lettres": [
+    "p",
+    "o",
+    "r",
+    "t",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "por",
+     "fichier": "audio/70_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "port",
+     "fichier": "audio/70_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "porte",
+     "fichier": "audio/70_254_281_74_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "ami",
+   "mot": "ami",
+   "lettres": [
+    "a",
+    "m",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "a",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "am",
+     "fichier": "audio/61_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ami",
+     "fichier": "audio/61_6d_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "quel",
+   "mot": "quel",
+   "lettres": [
+    "q",
+    "u",
+    "e",
+    "l"
+   ],
+   "cubes": [
+    {
+     "g": "qu",
+     "son": "k"
+    },
+    {
+     "g": "e",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "q",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "qu",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "que",
+     "fichier": "audio/6b_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "quel",
+     "fichier": "audio/6b_25b_6c_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "leur",
+   "mot": "leur",
+   "lettres": [
+    "l",
+    "e",
+    "u",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "le",
+     "fichier": "audio/6c_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "leu",
+     "fichier": "audio/6c_f8_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "leur",
+     "fichier": "audio/6c_153_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "garçon",
+   "mot": "garçon",
+   "lettres": [
+    "g",
+    "a",
+    "r",
+    "ç",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "g",
+     "son": "g"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "ç",
+     "son": "s"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "g",
+     "fichier": "audio/261_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ga",
+     "fichier": "audio/261_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gar",
+     "fichier": "audio/261_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "garç",
+     "fichier": "audio/261_61_281_73_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "garço",
+     "fichier": "audio/261_61_281_73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "garçon",
+     "fichier": "audio/261_61_281_73_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "manger",
+   "mot": "manger",
+   "lettres": [
+    "m",
+    "a",
+    "n",
+    "g",
+    "e",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    },
+    {
+     "g": "g",
+     "son": "j"
+    },
+    {
+     "g": "er",
+     "son": "e_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "man",
+     "fichier": "audio/6d_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mang",
+     "fichier": "audio/6d_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mange",
+     "fichier": "audio/6d_251_303_292_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "manger",
+     "fichier": "audio/6d_251_303_292_65_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "même",
+   "mot": "même",
+   "lettres": [
+    "m",
+    "ê",
+    "m",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "ê",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mê",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mêm",
+     "fichier": "audio/6d_25b_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "même",
+     "fichier": "audio/6d_25b_6d_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "soir",
+   "mot": "soir",
+   "lettres": [
+    "s",
+    "o",
+    "i",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "so",
+     "fichier": "audio/73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "soi",
+     "fichier": "audio/73_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "soir",
+     "fichier": "audio/73_77_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "loup",
+   "mot": "loup",
+   "lettres": [
+    "l",
+    "o",
+    "u",
+    "p"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "p",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lo",
+     "fichier": "audio/6c_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lou",
+     "fichier": "audio/6c_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "loup",
+     "fichier": "audio/6c_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "tortue",
+   "mot": "tortue",
+   "lettres": [
+    "t",
+    "o",
+    "r",
+    "t",
+    "u",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "to",
+     "fichier": "audio/74_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tor",
+     "fichier": "audio/74_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tort",
+     "fichier": "audio/74_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tortu",
+     "fichier": "audio/74_254_281_74_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tortue",
+     "fichier": "audio/74_254_281_74_79_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "forêt",
+   "mot": "forêt",
+   "lettres": [
+    "f",
+    "o",
+    "r",
+    "ê",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "ê",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fo",
+     "fichier": "audio/66_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "for",
+     "fichier": "audio/66_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "forê",
+     "fichier": "audio/66_254_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "forêt",
+     "fichier": "audio/66_254_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "vrai",
+   "mot": "vrai",
+   "lettres": [
+    "v",
+    "r",
+    "a",
+    "i"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "ai",
+     "son": "e_ouvert"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vr",
+     "fichier": "audio/76_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vra",
+     "fichier": "audio/76_281_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vrai",
+     "fichier": "audio/76_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "souris",
+   "mot": "souris",
+   "lettres": [
+    "s",
+    "o",
+    "u",
+    "r",
+    "i",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "so",
+     "fichier": "audio/73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sou",
+     "fichier": "audio/73_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sour",
+     "fichier": "audio/73_75_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "souri",
+     "fichier": "audio/73_75_281_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "souris",
+     "fichier": "audio/73_75_281_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "père",
+   "mot": "père",
+   "lettres": [
+    "p",
+    "è",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "è",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pè",
+     "fichier": "audio/70_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pèr",
+     "fichier": "audio/70_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "père",
+     "fichier": "audio/70_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "coup",
+   "mot": "coup",
+   "lettres": [
+    "c",
+    "o",
+    "u",
+    "p"
+   ],
+   "cubes": [
+    {
+     "g": "c",
+     "son": "k"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "p",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "co",
+     "fichier": "audio/6b_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cou",
+     "fichier": "audio/6b_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "coup",
+     "fichier": "audio/6b_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "vers",
+   "mot": "vers",
+   "lettres": [
+    "v",
+    "e",
+    "r",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "e",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ve",
+     "fichier": "audio/76_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ver",
+     "fichier": "audio/76_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vers",
+     "fichier": "audio/76_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "sac",
+   "mot": "sac",
+   "lettres": [
+    "s",
+    "a",
+    "c"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "c",
+     "son": "k"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sa",
+     "fichier": "audio/73_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sac",
+     "fichier": "audio/73_61_6b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "table",
+   "mot": "table",
+   "lettres": [
+    "t",
+    "a",
+    "b",
+    "l",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ta",
+     "fichier": "audio/74_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tab",
+     "fichier": "audio/74_61_62_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tabl",
+     "fichier": "audio/74_61_62_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "table",
+     "fichier": "audio/74_61_62_6c_259_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "feu",
+   "mot": "feu",
+   "lettres": [
+    "f",
+    "e",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fe",
+     "fichier": "audio/66_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "feu",
+     "fichier": "audio/66_f8_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "yeux",
+   "mot": "yeux",
+   "lettres": [
+    "y",
+    "e",
+    "u",
+    "x"
+   ],
+   "cubes": [
+    {
+     "g": "y",
+     "son": "yod"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ferme"
+    },
+    {
+     "g": "x",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "y",
+     "fichier": "audio/69_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ye",
+     "fichier": "audio/6a_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "yeu",
+     "fichier": "audio/6a_f8_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "yeux",
+     "fichier": "audio/6a_f8_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "côté",
+   "mot": "côté",
+   "lettres": [
+    "c",
+    "ô",
+    "t",
+    "é"
+   ],
+   "cubes": [
+    {
+     "g": "c",
+     "son": "k"
+    },
+    {
+     "g": "ô",
+     "son": "o_ferme"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "é",
+     "son": "e_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cô",
+     "fichier": "audio/6b_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "côt",
+     "fichier": "audio/6b_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "côté",
+     "fichier": "audio/6b_6f_74_65_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "lune",
+   "mot": "lune",
+   "lettres": [
+    "l",
+    "u",
+    "n",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lu",
+     "fichier": "audio/6c_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lun",
+     "fichier": "audio/6c_153_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lune",
+     "fichier": "audio/6c_79_6e_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "rivière",
+   "mot": "rivière",
+   "lettres": [
+    "r",
+    "i",
+    "v",
+    "i",
+    "è",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "è",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "r",
+     "fichier": "audio/281_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ri",
+     "fichier": "audio/281_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "riv",
+     "fichier": "audio/281_69_76_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rivi",
+     "fichier": "audio/281_69_76_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "riviè",
+     "fichier": "audio/281_69_76_6a_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rivièr",
+     "fichier": "audio/281_69_76_6a_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rivière",
+     "fichier": "audio/281_69_76_6a_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "pomme",
+   "mot": "pomme",
+   "lettres": [
+    "p",
+    "o",
+    "m",
+    "m",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "mm",
+     "son": "m"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pom",
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pomm",
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pomme",
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "être",
+   "mot": "être",
+   "lettres": [
+    "ê",
+    "t",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "ê",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "ê",
+     "fichier": "audio/25b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "êt",
+     "fichier": "audio/25b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "êtr",
+     "fichier": "audio/25b_74_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "être",
+     "fichier": "audio/25b_74_281_259_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "pendant",
+   "mot": "pendant",
+   "lettres": [
+    "p",
+    "e",
+    "n",
+    "d",
+    "a",
+    "n",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "en",
+     "son": "an"
+    },
+    {
+     "g": "d",
+     "son": "d"
+    },
+    {
+     "g": "an",
+     "son": "an"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pe",
+     "fichier": "audio/70_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pen",
+     "fichier": "audio/70_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pend",
+     "fichier": "audio/70_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "penda",
+     "fichier": "audio/70_251_303_64_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pendan",
+     "fichier": "audio/70_251_303_64_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pendant",
+     "fichier": "audio/70_251_303_64_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "fête",
+   "mot": "fête",
+   "lettres": [
+    "f",
+    "ê",
+    "t",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "ê",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fê",
+     "fichier": "audio/66_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fêt",
+     "fichier": "audio/66_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fête",
+     "fichier": "audio/66_25b_74_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  },
+  {
+   "id": "rat",
+   "mot": "rat",
+   "lettres": [
+    "r",
+    "a",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "r",
+     "fichier": "audio/281_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ra",
+     "fichier": "audio/281_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rat",
+     "fichier": "audio/281_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ]
+  }
+ ]
+}

@@ -104,6 +104,7 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <label htmlFor="ens-accents"><input id="ens-accents" type="checkbox" checked={tache.exigerAccents} onChange={e => setTache(t => ({ ...t, exigerAccents: e.target.checked }))} /> Exiger les accents</label>
       <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
       <p className="aide">{packs.length === 0 ? 'Aucun pack publié pour l’instant.' : 'Les élèves qui ouvrent le lien jouent les cartes de ce pack.'}</p>
+      <p className="aide">Un pack « personnel » n’apparaît que pour vous. Pour fabriquer le vôtre : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de pack (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images.</p>
       <button type="button" onClick={creer} disabled={packs.length === 0}>Créer le lien et le QR-code</button>
       {lien && (
         <div>
