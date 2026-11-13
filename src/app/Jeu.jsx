@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT } from './route.js';
-import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes } from '../jeu/modeA.js';
+import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, REGLAGES_SYLLABES } from '../jeu/modeA.js';
 
 const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
 const classeDe = son => CLASSES[classeCube(son)];
@@ -36,6 +36,14 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     if (!e || !e.fichier || !deps.jouerFichier) { setSonAbsent(true); return; }
     setSonAbsent(false);
     Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${e.fichier}`)).then(signalerSons).catch(() => {});
+  };
+  // Entrée complémentaire : le mot syllabe par syllabe (espace de 500 ms, dernière syllabe à 75 %)
+  const jouerSyllabes = c => {
+    const syl = syllabesDeCarte(c);
+    if (!syl || !deps.jouerSerie) { setSonAbsent(true); return; }
+    setSonAbsent(false);
+    const urls = syl.map(s => `${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${s.fichier}`);
+    Promise.resolve(deps.jouerSerie(urls, REGLAGES_SYLLABES)).then(signalerSons).catch(() => {});
   };
   const jouerMot = c => {
     if (lettres) { jouerEtat(etatFinal(c)); return; }
@@ -113,6 +121,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
       <div className="actions" role="toolbar" aria-label="Actions">
         <button type="button" onClick={() => jouerMot(carte)}>Écouter</button>
+        {lettres && syllabesDeCarte(carte) && <button type="button" onClick={() => jouerSyllabes(carte)} aria-label="Écouter le mot par syllabes">Écouter par syllabes</button>}
         {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
         <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
         <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>

@@ -39,6 +39,8 @@ def chiffres():
         "modifies": sum(1 for l in etat if not l.startswith("??")),
         "non_suivis": sum(1 for l in etat if l.startswith("??")),
         "dernier_commit": git("log", "-1", "--format=%cd", "--date=short") or "inconnu",
+        "dernier_hash": git("log", "-1", "--format=%h") or "inconnu",
+        "non_pousses": git("rev-list", "--count", "origin/main..HEAD") or "?",
         "date": datetime.date.today().isoformat(),
     }
 
@@ -70,8 +72,9 @@ def details(c):
        "Modèle Excel créé (public/modeles/modele-pack-plai.xlsx) : feuilles Mode d'emploi, Pack, Mots ; exemple, aide sous chaque champ, listes de choix.",
        "Lecteur du tableau rempli (vérifie mots, niveaux, images, source et licence) ; constructeur du pack (états lettre par lettre, manifeste) ; génération audio par pack ; mode d'emploi administrateur (docs/fabriquer-un-pack.md).",
        "Pack « pour mon usage » : visible seulement dans l'espace enseignant du propriétaire ; l'adresse n'est publiée que sous forme d'empreinte.",
-       "Tests : 11 (lecteur xlsx), 9 (construction du pack, empreinte, visibilité), 3 (espace enseignant et image en sous-dossier) ; chaîne complète essayée sur un tableau d'essai, puis nettoyée."],
-      ["Jamais essayé par un enseignant réel ; le modèle n'a pas été ouvert dans Excel (structure contrôlée avec openpyxl).", "Aucun dépôt dans l'application : le chemin est l'envoi à JF ou à un admin.",
+       "Tests : 11 (lecteur xlsx), 9 (construction du pack, empreinte, visibilité), 3 (espace enseignant et image en sous-dossier).",
+       "Premier usage réel (2026-11-13) : le modèle rempli par Claude avec 20 mots, leurs images, source et licence (docs/pack-20-mots-images.xlsx) a produit le pack p1-20-images : 20 cartes, 96 états, 69 fichiers audio, 20 images ; contrôlé dans le jeu réel (image affichée, lettres, fichiers audio demandés en HTTP 200, « Bravo ! » sur chat)."],
+      ["Jamais essayé par un enseignant réel ; le modèle n'a pas été ouvert dans Excel (structure contrôlée avec openpyxl).", "La licence des images est un texte d'attente (« Canva : conditions d'usage à vérifier ») : la question des droits n'est pas levée.", "Aucun dépôt dans l'application : le chemin est l'envoi à JF ou à un admin.",
        "Un mot absent du lexique (pluriel, conjugaison, nom propre) est écarté ; il reste à JF de le traiter.", "L'audio du pack n'est généré que par JF (clé Azure).",
        "« Pour mon usage » n'est pas un coffre-fort : le dossier reste lisible par qui connaît l'adresse exacte du pack."],
       demande=["Chaque pack d'enseignant : lecture, construction, génération audio et publication par JF ou un admin, à la réception du tableau."],
@@ -85,8 +88,8 @@ def details(c):
        "Accord avec ManuLemme : 96,3 % sur P1 (881 mots, qui ont servi à écrire les règles) ; 93,3 % sur 6 575 mots jamais regardés.",
        "Lexique ManuLemme : 16 004 entrées (non commité)."],
       ["Aucune mesure de justesse pour les pseudo-mots, qui forment l'essentiel des états intermédiaires.", "Environ 45 % des erreurs ne sont pas signalées par l'application.", "Pas de pluriel ni de conjugaison (ManuLemme contient des lemmes)."],
-      blocages=["Les règles, états, IPA et syllabes ne sont pas dans Git (constaté)."],
-      suite=["Commiter le moteur.", "Mesurer la lecture des pseudo-mots avec des juges."], valid=["Testé automatiquement ; comparé à ManuLemme, pas à l'oreille."],
+      blocages=[f"Moteur commité en local ({c['dernier_hash']}), pas poussé : {c['non_pousses']} commit(s) d'avance sur origin/main."],
+      suite=["Pousser après décision sur l'audio.", "Mesurer la lecture des pseudo-mots avec des juges."], valid=["Testé automatiquement ; comparé à ManuLemme, pas à l'oreille."],
       fichiers=["src/core/regles.js", "src/core/etats.js", "src/core/ipa.js", "src/core/syllabes.js", "tools/mesurer_regles.js"], tableau="3")
     d("D1", "Décision : tous les sons sont-ils connus ?", "code", "sans_objet",
       ["Un cube dont le code ManuLemme est inconnu a un son nul et passe en revue (aVerifier)."],
@@ -102,19 +105,25 @@ def details(c):
       [f"Pack p1-100 : 100 mots, 430 états, {c['audio_pack']} fichiers audio copiés dans le pack.",
        "Syllabes des 100 mots : 112 fichiers ; 5 mots de 3 syllabes : 20 fichiers.",
        f"Bibliothèque de travail : {c['brut']} fichiers générés, {c['norm']} normalisés (états, syllabes et essais confondus).",
-       "Scripts : mode_a_mots.js, generer-bibliotheque.py (etats, syllabes-mots, mots-3), normaliser_audio.py."],
-      ["Bibliothèque complète de 2 780 fichiers : non générée.", "Aucune écoute rapportée des 220 états du pack ni des fichiers de syllabes ajoutés le 2026-11-13."],
+       "Scripts : mode_a_mots.js, generer-bibliotheque.py (etats, syllabes-mots, mots-3, pack), normaliser_audio.py.",
+       "Le pack p1-20-images réutilise 69 fichiers déjà générés pour p1-100 : aucun nouvel appel Azure."],
+      ["Bibliothèque complète de 2 780 fichiers : non générée.", "Aucune écoute rapportée des 220 états du pack ni des fichiers de syllabes ajoutés le 2026-11-13.", "L'audio du pack n'est pas dans le commit (non suivi par Git)."],
       demande=["Tout nouveau mot : états, syllabes et mot entier à générer avec la clé Azure, lancée par JF."],
       blocages=["La clé Azure n'est lisible que par JF.", "Conditions Microsoft pour la redistribution de l'audio : non vérifiées.", "Quota gratuit Azure : non vérifié."],
       suite=["Écouter un échantillon des 220 états du pack."], decision=["Faut-il générer toute la bibliothèque (2 780 fichiers) ou rester au pack par pack ?"],
       valid=["Voix écoutée par JF sur échantillons (37 sons, 20 syllabes, 20 pseudo-mots, 16 états) ; les fichiers récents ne sont pas écoutés."],
       fichiers=["tools/mode_a_mots.js", "essai-tts-ipa/generer-bibliotheque.py", "public/packs/p1-100/audio/"], tableau="5")
-    d("N6", "Images en papier découpé", "sans_objet", "pas_cree",
-      ["Script de style papier découpé (essai-images-canva/script-generation-images.md).", "3 essais anciens (chat, maison, poisson), 200 px.", "20 prompts prêts (docs/images-canva-20-mots.csv)."],
-      ["Aucune image dans le pack p1-100.", "Environ 60 mots sur 100 ne se dessinent pas (mots-outils) : estimation à vue, non comptée."],
+    d("N6", "Images en papier découpé", "sans_objet", "partiel",
+      ["Script de style papier découpé (essai-images-canva/script-generation-images.md).", "3 essais anciens (chat, maison, poisson), 200 px.", "20 prompts prêts (docs/images-canva-20-mots.csv).",
+       "Connecteur Canva rétabli le 2026-11-13 : 20 images générées en style papier découpé (pomme validée par JF, 19 autres reçues le même jour), aperçus de 200 px rangés dans docs/images-canva/ avec une planche de validation (planche.html).",
+       "Corrections de JF du 2026-11-13 appliquées : ours (deux yeux), rat (allongé, moins sympathique), lune (jaune seul), eau (bleus), loup (sans orange), neige (plusieurs flocons blancs) ; 6 images refaites (v2), anciennes versions dans docs/images-canva/v1.",
+       "Le script d'images est devenu du code (tools/prompts_images_canva.py) avec exceptions par mot et vérifications obligatoires après génération (yeux, palette, sujet, lisibilité).",
+       "Fond bleu ciel pastel #cde7f7 décidé par JF pour toutes les images (plus universel que le crème) : script mis à jour (v2.1) ; les 20 images sont éditées en fond bleu dans Canva (dossier docs/images-canva/fond-bleu/, planche docs/images-canva/planche-fond-bleu.html), sujet inchangé sur chacune ; les versions sur fond crème sont conservées.",
+       "Remarques de Claude sur la v2 : rat peut se lire fourmilier ou musaraigne ; loup proche d'un grand chien. La neige, trop pâle sur crème, devient lisible sur le fond bleu."],
+      ["Les 20 images (aperçus de 200 px, fond bleu) sont reliées au pack p1-20-images ; le pack p1-100 n'a toujours aucune image.", "JF a validé le style, demandé 6 corrections (faites) et le fond bleu ; les 20 images ne sont pas encore validées une à une.", "Environ 60 mots sur 100 ne se dessinent pas (mots-outils) : estimation à vue, non comptée."],
       demande=["Chaque image est créée à la demande, par l'enseignant ou par JF, puis vérifiée pour le style commun."],
-      blocages=["Connecteur Canva : 8 échecs de génération.", "La page web de Canva ne respecte pas le style (motifs en spirale).", "Fond demandé non respecté ; résolution réelle à vérifier ; conditions d'usage non vérifiées."],
-      suite=["Reconnecter Canva (Déconnecter puis Connecter) ou coller les prompts à la main."], decision=["Image centralisée (JF) ou faite par l'enseignant avec le script de style commun ?", "Quels mots abstraits portent une phrase d'aide plutôt qu'une image ?"],
+      blocages=["La page web de Canva ne respecte pas le style (motifs en spirale) : passer par le connecteur.", "Limite de crédit Canva (quota_cooldown) : l'édition du fond a été refusée par moments, même avec le compte Pro de JF (une édition acceptée toutes les 5 à 10 minutes) : le lot de 20 a pris environ deux heures.", "Vérifications du script (yeux, palette) faites à l'œil sur des aperçus de 200 px, pas automatiquement ; pleine résolution jugée non nécessaire par JF (2026-11-13) : le pack utilise les aperçus de 200 px ; fond exact non vérifié ; conditions d'usage non vérifiées."],
+      suite=["Valider les 20 images en fond bleu sur la planche (OK, à refaire, à remplacer ; le pack les utilise déjà) ; refaire les images refusées."], decision=["Valeurs des bleus de l'eau (choisies par Claude) ?", "Teinte exacte du fond (#cde7f7, choisie par Claude) ?", "Image centralisée (JF) ou faite par l'enseignant avec le script de style commun ?", "Quels mots abstraits portent une phrase d'aide plutôt qu'une image ?"],
       valid=["Aucune."], fichiers=["essai-images-canva/script-generation-images.md", "docs/images-canva-20-mots.csv"], tableau="6")
     d("N7", "Phrases d'aide (option)", "code", "pas_cree",
       ["Script essai-phrases.py : 10 phrases proposées, 4 versions par mot, page d'écoute prête (ecoute-phrases.html)."],
@@ -131,10 +140,11 @@ def details(c):
       decision=["Qui est l'autre admin ? Quel budget Azure et Canva ? Un pack d'enseignant est-il privé ou partagé par défaut ?"], valid=["Aucune."], fichiers=["(à créer)"], tableau="6b")
     d("N8", "Publier dans la bibliothèque commune", "partiel", "partiel",
       ["Dépôt GitHub jfb4plai/PhonoActif ; projet Vercel phonoactif ; le site répond (HTTP 200, 2026-11-13).", "Licence PolyForm Noncommercial 1.0.0.",
-       f"Dernier commit : {c['dernier_commit']} ; {c['modifies']} fichiers modifiés et {c['non_suivis']} non suivis (relevé du {c['date']})."],
-      ["Le pack p1-100, son audio et le mode A ne sont pas commités : ils ne sont donc pas en ligne.", "Version en ligne non comparée au code local.", "La bibliothèque commune est une décision de principe (2026-11-13) : rien n'est construit pour recevoir les packs des enseignants."],
-      demande=["Un déploiement à chaque push sur main."], blocages=["Règle du projet : build complet avant tout push (dernier build réussi avant le mode A : à refaire)."],
-      suite=["Build, commit, push."], decision=["Autoriser le commit et le push ; décider si l'audio Azure peut figurer dans le dépôt."],
+       f"Dernier commit : {c['dernier_hash']} du {c['dernier_commit']}, local ; {c['non_pousses']} commit(s) non poussé(s) ; {c['modifies']} fichiers modifiés et {c['non_suivis']} non suivis (relevé du {c['date']}).",
+       "Le commit contient le mode A, le moteur, le manifeste du pack p1-100, le modèle xlsx et les outils."],
+      ["Rien n'est poussé : le mode A, le pack et le modèle ne sont donc pas en ligne.", "L'audio du pack (220 fichiers) n'est pas commité : poussé tel quel, le pack serait en ligne sans son.", "Le pack p1-20-images (20 mots avec images, 69 fichiers audio, 1,5 Mo) n'est pas commité non plus.", "Version en ligne non comparée au code local.", "La bibliothèque commune est une décision de principe (2026-11-13) : rien n'est construit pour recevoir les packs des enseignants."],
+      demande=["Un déploiement à chaque push sur main."], blocages=["Conditions Microsoft sur la redistribution de l'audio : non vérifiées.", "Build réussi le 2026-11-13 avant le commit ; à refaire juste avant le push."],
+      suite=["Vérifier les conditions Microsoft sur l'audio généré ; commiter l'audio si c'est permis ; build ; push."], decision=["Autoriser le push ; décider si l'audio Azure peut figurer dans le dépôt."],
       valid=["Site répond ; contenu en ligne non vérifié."], fichiers=[".gitignore", "vite.config.js", "LICENSE"], tableau="8")
     d("N9", "Créer la classe, les codes, la tâche", "code", "demande",
       ["Espace enseignant : connexion, classes, codes, tâches, lien et QR, résultats, invitation.", "5 tables phono_*, droits par ligne, 3 migrations.", "32 tests SQL réussis (PostgreSQL simulé) ; 12 tests d'interface enseignant réussis."],
@@ -178,12 +188,18 @@ def details(c):
       ["Décidé par JF le 2026-11-12 : entendre la lecture d'une combinaison de lettres quelconque, comme le Lilémø physique."],
       ["Aucun code.", "Question ouverte : un mot connu en mode libre est-il lu par les règles ou par le lexique ?"], demande=["Chaînes hors pack : lecture en direct (voir l'étape 15)."],
       blocages=["Dépend de la lecture en direct."], suite=["Écrire la spécification après l'étape 15."], decision=["Règles ou lexique pour un mot connu ?"], valid=["Aucune."], tableau="19")
-    d("N20", "Écouter par syllabes (500 ms, dernière syllabe à 75 %)", "pas_code", "partiel",
-      ["Réglages choisis à l'oreille par JF : espace de 500 ms, dernière syllabe à 75 % de la vitesse.", "Fichiers de syllabes créés : 112 pour les 100 mots, 20 pour 5 mots de 3 syllabes.", "Page d'écoute (17 mots) et paquet de relecture prêts."],
-      ["Aucun bouton ni logique de lecture en série dans le jeu."], demande=["Les syllabes d'un nouveau mot : à générer avec la clé Azure."],
-      blocages=["Relecture par une spécialiste ou un spécialiste de phonologie en attente.", "Maintien de la hauteur de voix au ralenti non vérifié."],
-      suite=["Envoyer le paquet de relecture ; brancher le bouton après son retour."], decision=["Valeurs finales après relecture."],
-      valid=["Réglages choisis par JF seul, sans élève."], fichiers=["essai-tts-ipa/ecoute-collage.html", "essai-tts-ipa/pour-logopede.zip", "data/syllabes-mots.json"], tableau="20")
+    d("N20", "Écouter par syllabes (500 ms, dernière syllabe à 75 %)", "code", "partiel",
+      ["Bouton « Écouter par syllabes » construit dans le jeu (mode A) : les syllabes du mot sont lues l'une après l'autre, espace de 500 ms, dernière syllabe à 75 % de la vitesse avec la hauteur conservée (valeurs choisies à l'oreille par JF).",
+       "Proposé seulement pour un mot de deux syllabes ou plus : 9 mots sur 20 dans le pack p1-20-images (maison, voiture, poisson, vélo, tortue, forêt, souris, table, livre).",
+       "Le manifeste du pack porte les syllabes de chaque mot ; 78 fichiers audio dans le pack (états et syllabes).",
+       "Contrôlé dans le jeu réel : carte « chat » sans bouton, carte « maison » avec bouton ; premier fichier à vitesse normale, pause mesurée d'environ 0,5 s, second fichier à 0,75 avec hauteur conservée.",
+       "Tests : 5 (lecture en série), 1 (syllabes du pack), 3 (bouton dans le jeu)."],
+      ["Le pack p1-100 n'a pas de syllabes dans son manifeste : le bouton n'y apparaît pas.", "Rien n'a été écouté par Claude : le rendu sonore (rythme, hauteur de la voix au ralenti) reste à juger à l'oreille.", "Relecture par un·e spécialiste de phonologie en attente : valeurs non validées par un pro."],
+      demande=["Les syllabes d'un nouveau mot : à générer avec la clé Azure (déjà faites pour les mots du pack de 100)."],
+      blocages=["Relecture d'une spécialiste ou d'un spécialiste de phonologie en attente (paquet prêt, non envoyé à ma connaissance).", "Maintien de la hauteur de voix au ralenti : demandé au navigateur, jamais écouté."],
+      suite=["Écouter le bouton sur quelques mots ; envoyer le paquet de relecture ; ajuster 500 ms et 75 % si besoin (src/jeu/modeA.js)."],
+      decision=["Garder le bouton seulement pour les mots de 2 syllabes ou plus (choix de Claude) ?"], valid=["Testé automatiquement et contrôlé dans le navigateur ; réglages choisis par JF seul, sans élève."],
+      fichiers=["src/app/audio.js (jouerSerie)", "src/app/Jeu.jsx", "src/jeu/modeA.js (REGLAGES_SYLLABES)", "src/core/packAtelier.js", "tests/app/audio-serie.test.js"], tableau="20")
     d("N21", "Aide graduée", "code", "sans_objet", ["Écoute du mot, indice (première lettre à corriger), révélation."],
       ["Les niveaux d'aide sont figés dans la base (4 valeurs) : en ajouter un demande une migration."], valid=["Testé automatiquement."], fichiers=["src/jeu/session.js"], tableau="21")
     d("N22", "Essais gardés sur l'appareil, puis envoyés", "code", "sans_objet",
@@ -210,9 +226,11 @@ def details(c):
       ["Voix fr-BE-CharlineNeural pilotée par l'IPA : fonctionnelle (essais écoutés par JF)."],
       ["Quota gratuit et règle de facturation du SSML : non vérifiés.", "Conditions de redistribution de l'audio généré : non lues."], blocages=["Clé lisible seulement par JF."],
       suite=["Lire les conditions Microsoft avant tout commit public d'audio."], fichiers=["essai-tts-ipa/essai-charline.py"])
-    d("S3", "Canva (images)", "sans_objet", "pas_cree",
-      ["Compte Canva connecté dans Chrome ; image d'essai générée par la page web."], ["Connecteur Canva en échec (8 essais)."],
-      blocages=["Connecteur : « Impossible de déconnecter Canva » à la tentative de déconnexion."], suite=["Retirer l'autorisation côté Canva, ou supprimer puis réajouter le plug-in."], fichiers=["docs/images-canva-20-mots.csv"])
+    d("S3", "Canva (images)", "sans_objet", "partiel",
+      ["Connecteur rétabli le 2026-11-13 après plusieurs jours d'échecs : 20 générations réussies (style papier découpé).", "Deux lectures de résultat ont échoué (erreur du connecteur) puis réussi au second essai.", "Compte Canva de JF : adresse PLAI/école, connexion par Microsoft, intégration « Canva AI Connector » active (lu sur la page de profil le 2026-11-13) ; compte Pro, confirmé par JF.", "La page web de Canva ne reproduit pas le style."],
+      ["Cause de la panne non établie (réparée sans action identifiée de notre côté).", "Récupération en pleine résolution et conditions d'usage non vérifiées."],
+      demande=["Chaque image : génération à la demande, une par mot ; chaque génération consomme probablement le quota de JF (non vérifié)."], blocages=["Risque de retour de la panne : prévoir le repli (prompts à coller dans Canva).", "Limite de débit et de crédit : \"quota_cooldown\" après 1 à 2 travaux rapprochés ; l'édition de 15 images est en attente.", "Chaque génération ou édition consomme du crédit Canva ; solde et durée de la limite inconnus."],
+      suite=["Refaire les images refusées par lots avec le même bloc de prompt."], fichiers=["docs/images-canva-20-mots.csv", "docs/images-canva/planche.html", "docs/images-canva/"])
     d("S4", "GitHub et Vercel", "sans_objet", "cree",
       ["Dépôt jfb4plai/PhonoActif ; projet Vercel phonoactif ; site qui répond (HTTP 200)."], ["Visibilité du dépôt non vérifiée ; version déployée non comparée au code local."],
       suite=["Vérifier la visibilité du dépôt avant d'y mettre des données sous licence."], fichiers=[".vercel/project.json (non commité)"])
@@ -226,6 +244,26 @@ def details(c):
       ["Non intégré à l'application.", "Pays des locuteurs absent de Commons."], blocages=["Compatibilité CC BY-SA avec la licence du projet : non vérifiée."],
       suite=["Écouter la comparaison ; soumettre le paquet à l'aveugle."], decision=["Intégrer des enregistrements humains pour certains mots ?"], fichiers=["docs/couverture-lingualibre.md", "essai-tts-ipa/ecoute-comparaison.html"])
     return D
+
+
+
+# Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
+JOURNAL = [
+    ("2026-11-13", "Création du logigramme statique puis interactif (25 étapes, 4 couloirs, fiches d'état)", "toutes"),
+    ("2026-11-13", "Étape 2 : VOB validé par JF ; modèle xlsx pour l'enseignant ; principe de centralisation (JF et un autre admin)", "N2, N2b, N6, N6b, N8, S1"),
+    ("2026-11-13", "Modèle xlsx, lecteur, constructeur de pack, audio par pack, packs « pour mon usage » (adresse remplacée par une empreinte) : créés et testés", "N2b, N9"),
+    ("2026-11-13", "Commit local 051c58e : moteur, mode A, manifeste du pack, modèle xlsx, outils ; rien poussé ; audio du pack non commité", "N3, N5, N8"),
+    ("2026-11-13", "Ajout du journal des mises à jour", "—"),
+    ("2026-11-13", "Connecteur Canva rétabli : 1 image d'essai (pomme) générée en style papier découpé ; 19 mots restants, aucun téléchargé", "N6, S3"),
+    ("2026-11-13", "Compte Canva Pro : la limite de débit persiste ; une édition de plus passée (chien) : 6 images sur 20 en fond bleu, 14 restantes", "N6, S3"),
+    ("2026-11-13", "Bouton « Écouter par syllabes » construit (500 ms, dernière syllabe à 75 %) : 9 mots sur 20 du pack p1-20-images ; contrôlé dans le jeu ; rendu sonore non écouté", "N20, N8"),
+    ("2026-11-13", "Pack p1-20-images fabriqué avec le modèle Excel rempli (20 mots, images, source et licence) : 20 cartes, 96 états, 69 audio réutilisés, 20 images ; contrôlé dans le jeu ; non commité", "N2b, N5, N6, N8"),
+    ("2026-11-13", "Fond bleu ciel pastel terminé : 20 images sur 20 éditées dans Canva (sujet inchangé), planche docs/images-canva/planche-fond-bleu.html ; reste à valider une à une, à récupérer en pleine résolution et à relier au pack", "N6, S3"),
+    ("2026-11-13", "Compte Canva identifié (adresse PLAI/école, connexion Microsoft) et confirmé Pro par JF ; voiture éditée : 7 images sur 20 en fond bleu", "N6, S3"),
+    ("2026-11-13", "Fond bleu ciel pastel pour toutes les images (décision de JF) : script v2.1 ; 5 images sur 20 éditées dans Canva ; édition des 15 autres bloquée par la limite de crédit Canva", "N6, S3"),
+    ("2026-11-13", "Corrections de JF sur 6 images (ours, rat, lune, eau, loup, neige) : script d'images réécrit en code avec exceptions et vérifications ; 6 images v2 générées", "N6, S3"),
+    ("2026-11-13", "Style validé par JF : 19 images générées (20 avec la pomme), aperçus de 200 px et planche de validation dans docs/images-canva/ ; pas encore dans le pack", "N6, S3"),
+]
 
 
 LIBELLES_CODE = {"code": "codé", "partiel": "codé en partie", "pas_code": "pas codé", "sans_objet": "sans objet"}
@@ -263,7 +301,7 @@ def main():
     svg.append("</svg>")
     donnees = {i: {k: v for k, v in x.items() if k != "tableau"} for i, x in D.items()}
     page = MODELE.replace("@@SVG@@", "".join(svg)).replace("@@DATA@@", json.dumps(donnees, ensure_ascii=False).replace("</", "<\\/")) \
-        .replace("@@LC@@", json.dumps(LIBELLES_CODE, ensure_ascii=False)).replace("@@LK@@", json.dumps(LIBELLES_CONTENU, ensure_ascii=False)).replace("@@DATE@@", c["date"])
+        .replace("@@LC@@", json.dumps(LIBELLES_CODE, ensure_ascii=False)).replace("@@LK@@", json.dumps(LIBELLES_CONTENU, ensure_ascii=False)).replace("@@DATE@@", c["date"]).replace("@@JOURNAL@@", json.dumps([{"date": d, "action": a, "cases": k} for d, a, k in JOURNAL], ensure_ascii=False))
     SORTIE.write_text(page, encoding="utf-8")
     print("Écrit :", SORTIE, f"({len(D)} fiches)", c)
 
@@ -283,6 +321,7 @@ h1{color:var(--teal);margin:8px 0}
 .filtres{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
 .filtres button{font-size:15px;min-height:40px;padding:4px 12px;border:2px solid var(--teal);background:#fff;border-radius:8px;cursor:pointer}
 .filtres button[aria-pressed=true]{background:var(--teal);color:#fff}
+#journal table{border-collapse:collapse;width:100%;background:#fff}#journal th,#journal td{border:1px solid #ccc;padding:6px 10px;text-align:left;vertical-align:top}#journal th{background:var(--teal);color:#fff}
 .note{background:#fff;border-left:6px solid #f97316;padding:6px 14px;margin:12px 0}
 #panneau{position:fixed;top:0;right:0;height:100%;width:min(460px,100%);background:#fff;border-left:4px solid var(--teal);box-shadow:-4px 0 14px rgba(0,0,0,.18);
  overflow-y:auto;padding:14px 18px 40px;transform:translateX(105%);transition:transform .18s;z-index:10;box-sizing:border-box}
@@ -320,13 +359,15 @@ code{background:#f3f4f6;padding:1px 4px;border-radius:3px;font-size:14px;word-br
 </div>
 <div class="defil">@@SVG@@</div>
 <p class="note">Bordure pleine : construit ; tiretée : partiel ; pointillée : à construire ; bleue : service externe. Chaque case dit aussi son état par écrit. Dans le panneau : INT = interne (JF, Pôle, code du projet), EXT = externe avec le nom du fournisseur. « Non vérifié » = Claude n'a pas pu le confirmer.</p>
+<h2>Journal des mises à jour</h2>
+<div id="journal"></div>
 </main>
 <aside id="panneau" role="dialog" aria-modal="false" aria-labelledby="pt" tabindex="-1" hidden>
 <button type="button" id="fermer" aria-label="Fermer le panneau">×</button>
 <h2 id="pt"></h2><div id="pc"></div>
 </aside>
 <script>
-var DATA = @@DATA@@, LC = @@LC@@, LK = @@LK@@;
+var JOURNAL = @@JOURNAL@@, DATA = @@DATA@@, LC = @@LC@@, LK = @@LK@@;
 var panneau = document.getElementById("panneau"), pc = document.getElementById("pc"), pt = document.getElementById("pt"), actif = null, retour = null;
 function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined) e.textContent = txt; return e; }
 function pill(texte, cle) {
@@ -389,6 +430,12 @@ function appliquer(f) {
 document.querySelectorAll(".filtres button[data-f]").forEach(function (b) { b.addEventListener("click", function () { appliquer(filtreActif === b.getAttribute("data-f") ? null : b.getAttribute("data-f")); }); });
 document.getElementById("tout").addEventListener("click", function () { appliquer(null); });
 appliquer(null);
+(function () {
+  var t = el("table"); var th = el("thead"), tr = el("tr");
+  ["Date", "Action", "Cases touchées"].forEach(function (x) { tr.appendChild(el("th", null, x)); }); th.appendChild(tr); t.appendChild(th);
+  var tb = el("tbody"); JOURNAL.slice().reverse().forEach(function (j) { var r = el("tr"); [j.date, j.action, j.cases].forEach(function (x) { r.appendChild(el("td", null, x)); }); tb.appendChild(r); });
+  t.appendChild(tb); document.getElementById("journal").appendChild(t);
+})();
 </script></body></html>"""
 
 

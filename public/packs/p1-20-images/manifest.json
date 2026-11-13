@@ -1,0 +1,1341 @@
+{
+ "nom": "p1-20-images",
+ "mode": "lettres",
+ "titre": "20 mots de P1 avec images (papier découpé)",
+ "visibilite": "commun",
+ "source": "tableau rempli par un enseignant (modèle xlsx), mots filtrés sans IA",
+ "cartes": [
+  {
+   "id": "chat",
+   "mot": "chat",
+   "lettres": [
+    "c",
+    "h",
+    "a",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ch",
+     "fichier": "audio/283_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cha",
+     "fichier": "audio/283_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chat",
+     "fichier": "audio/283_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ʃa",
+     "fichier": "audio/283_61_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/chat.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "maison",
+   "mot": "maison",
+   "lettres": [
+    "m",
+    "a",
+    "i",
+    "s",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "m",
+     "son": "m"
+    },
+    {
+     "g": "ai",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "s",
+     "son": "z"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "m",
+     "fichier": "audio/6d_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mai",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "mais",
+     "fichier": "audio/6d_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "maiso",
+     "fichier": "audio/6d_25b_7a_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "maison",
+     "fichier": "audio/6d_25b_7a_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "mɛ",
+     "fichier": "audio/6d_25b_-30.mp3"
+    },
+    {
+     "ipa": "zɔ̃",
+     "fichier": "audio/7a_254_303_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/maison.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "chien",
+   "mot": "chien",
+   "lettres": [
+    "c",
+    "h",
+    "i",
+    "e",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "ch",
+     "son": "ch"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "en",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ch",
+     "fichier": "audio/283_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chi",
+     "fichier": "audio/283_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chie",
+     "fichier": "audio/283_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "chien",
+     "fichier": "audio/283_6a_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ʃjɛ̃",
+     "fichier": "audio/283_6a_25b_303_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/chien.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "voiture",
+   "mot": "voiture",
+   "lettres": [
+    "v",
+    "o",
+    "i",
+    "t",
+    "u",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vo",
+     "fichier": "audio/76_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voi",
+     "fichier": "audio/76_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voit",
+     "fichier": "audio/76_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voitu",
+     "fichier": "audio/76_77_61_74_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voitur",
+     "fichier": "audio/76_77_61_74_79_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "voiture",
+     "fichier": "audio/76_77_61_74_79_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "vwa",
+     "fichier": "audio/76_77_61_-30.mp3"
+    },
+    {
+     "ipa": "tyʁ",
+     "fichier": "audio/74_79_281_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/voiture.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "poisson",
+   "mot": "poisson",
+   "lettres": [
+    "p",
+    "o",
+    "i",
+    "s",
+    "s",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "oi",
+     "son": "oi"
+    },
+    {
+     "g": "ss",
+     "son": "s"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poi",
+     "fichier": "audio/70_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pois",
+     "fichier": "audio/70_77_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poiss",
+     "fichier": "audio/70_77_61_73_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poisso",
+     "fichier": "audio/70_77_61_73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poisson",
+     "fichier": "audio/70_77_61_73_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pwa",
+     "fichier": "audio/70_77_61_-30.mp3"
+    },
+    {
+     "ipa": "sɔ̃",
+     "fichier": "audio/73_254_303_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/poisson.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "velo",
+   "mot": "vélo",
+   "lettres": [
+    "v",
+    "é",
+    "l",
+    "o"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "é",
+     "son": "e_ferme"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "o",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vé",
+     "fichier": "audio/76_65_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vél",
+     "fichier": "audio/76_65_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "vélo",
+     "fichier": "audio/76_65_6c_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ve",
+     "fichier": "audio/76_65_-30.mp3"
+    },
+    {
+     "ipa": "lo",
+     "fichier": "audio/6c_6f_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/velo.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "porte",
+   "mot": "porte",
+   "lettres": [
+    "p",
+    "o",
+    "r",
+    "t",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "por",
+     "fichier": "audio/70_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "port",
+     "fichier": "audio/70_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "porte",
+     "fichier": "audio/70_254_281_74_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pɔʁt",
+     "fichier": "audio/70_254_281_74_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/porte.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "neige",
+   "mot": "neige",
+   "lettres": [
+    "n",
+    "e",
+    "i",
+    "g",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "ei",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "g",
+     "son": "j"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "n",
+     "fichier": "audio/6e_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ne",
+     "fichier": "audio/6e_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "nei",
+     "fichier": "audio/6e_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "neig",
+     "fichier": "audio/6e_25b_261_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "neige",
+     "fichier": "audio/6e_25b_292_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "nɛʒ",
+     "fichier": "audio/6e_25b_292_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/neige.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "loup",
+   "mot": "loup",
+   "lettres": [
+    "l",
+    "o",
+    "u",
+    "p"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "p",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lo",
+     "fichier": "audio/6c_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lou",
+     "fichier": "audio/6c_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "loup",
+     "fichier": "audio/6c_75_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "lu",
+     "fichier": "audio/6c_75_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/loup.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "tortue",
+   "mot": "tortue",
+   "lettres": [
+    "t",
+    "o",
+    "r",
+    "t",
+    "u",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "to",
+     "fichier": "audio/74_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tor",
+     "fichier": "audio/74_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tort",
+     "fichier": "audio/74_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tortu",
+     "fichier": "audio/74_254_281_74_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tortue",
+     "fichier": "audio/74_254_281_74_79_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "tɔʁ",
+     "fichier": "audio/74_254_281_-30.mp3"
+    },
+    {
+     "ipa": "ty",
+     "fichier": "audio/74_79_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/tortue.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "foret",
+   "mot": "forêt",
+   "lettres": [
+    "f",
+    "o",
+    "r",
+    "ê",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "ê",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fo",
+     "fichier": "audio/66_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "for",
+     "fichier": "audio/66_254_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "forê",
+     "fichier": "audio/66_254_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "forêt",
+     "fichier": "audio/66_254_281_25b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "fɔ",
+     "fichier": "audio/66_254_-30.mp3"
+    },
+    {
+     "ipa": "ʁɛ",
+     "fichier": "audio/281_25b_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/foret.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "souris",
+   "mot": "souris",
+   "lettres": [
+    "s",
+    "o",
+    "u",
+    "r",
+    "i",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "s",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "so",
+     "fichier": "audio/73_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sou",
+     "fichier": "audio/73_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sour",
+     "fichier": "audio/73_75_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "souri",
+     "fichier": "audio/73_75_281_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "souris",
+     "fichier": "audio/73_75_281_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "su",
+     "fichier": "audio/73_75_-30.mp3"
+    },
+    {
+     "ipa": "ʁi",
+     "fichier": "audio/281_69_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/souris.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "sac",
+   "mot": "sac",
+   "lettres": [
+    "s",
+    "a",
+    "c"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "c",
+     "son": "k"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sa",
+     "fichier": "audio/73_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sac",
+     "fichier": "audio/73_61_6b_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "sak",
+     "fichier": "audio/73_61_6b_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/sac.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "table",
+   "mot": "table",
+   "lettres": [
+    "t",
+    "a",
+    "b",
+    "l",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "t",
+     "fichier": "audio/74_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ta",
+     "fichier": "audio/74_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tab",
+     "fichier": "audio/74_61_62_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "tabl",
+     "fichier": "audio/74_61_62_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "table",
+     "fichier": "audio/74_61_62_6c_259_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ta",
+     "fichier": "audio/74_61_-30.mp3"
+    },
+    {
+     "ipa": "blə",
+     "fichier": "audio/62_6c_259_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/table.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "lune",
+   "mot": "lune",
+   "lettres": [
+    "l",
+    "u",
+    "n",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "u",
+     "son": "u"
+    },
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lu",
+     "fichier": "audio/6c_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lun",
+     "fichier": "audio/6c_153_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lune",
+     "fichier": "audio/6c_79_6e_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "lyn",
+     "fichier": "audio/6c_79_6e_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/lune.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "pomme",
+   "mot": "pomme",
+   "lettres": [
+    "p",
+    "o",
+    "m",
+    "m",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "o",
+     "son": "o_ouvert"
+    },
+    {
+     "g": "mm",
+     "son": "m"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pom",
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pomm",
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pomme",
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pɔm",
+     "fichier": "audio/70_254_6d_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/pomme.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "ours",
+   "mot": "ours",
+   "lettres": [
+    "o",
+    "u",
+    "r",
+    "s"
+   ],
+   "cubes": [
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "s",
+     "son": "s"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "o",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ou",
+     "fichier": "audio/75_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "our",
+     "fichier": "audio/75_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ours",
+     "fichier": "audio/75_281_73_-30.mp3",
+     "ecartAvecRegles": true
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "uʁs",
+     "fichier": "audio/75_281_73_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/ours.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "livre",
+   "mot": "livre",
+   "lettres": [
+    "l",
+    "i",
+    "v",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": "schwa"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "li",
+     "fichier": "audio/6c_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "liv",
+     "fichier": "audio/6c_69_76_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "livr",
+     "fichier": "audio/6c_69_76_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "livre",
+     "fichier": "audio/6c_69_76_281_259_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "li",
+     "fichier": "audio/6c_69_-30.mp3"
+    },
+    {
+     "ipa": "vʁə",
+     "fichier": "audio/76_281_259_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/livre.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "rat",
+   "mot": "rat",
+   "lettres": [
+    "r",
+    "a",
+    "t"
+   ],
+   "cubes": [
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "r",
+     "fichier": "audio/281_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ra",
+     "fichier": "audio/281_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "rat",
+     "fichier": "audio/281_61_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ʁa",
+     "fichier": "audio/281_61_-30.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/rat.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  },
+  {
+   "id": "eau",
+   "mot": "eau",
+   "lettres": [
+    "e",
+    "a",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "eau",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "e",
+     "fichier": "audio/259_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ea",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "eau",
+     "fichier": "audio/6f_0.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "o",
+     "fichier": "audio/6f_0.mp3"
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/eau.png",
+   "source": "Canva (génération d'images, compte de JF), style papier découpé, fond bleu ciel",
+   "licence": "Canva : conditions d'usage à vérifier"
+  }
+ ]
+}

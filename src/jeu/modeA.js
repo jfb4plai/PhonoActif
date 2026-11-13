@@ -9,6 +9,12 @@ const VOYELLES = 'aàâäeéèêëiîïoôöuùûüyœ';
 const POOL_INTRUS = ['s', 'm', 'l', 'r', 't', 'f', 'v', 'z', 'j', 'a', 'i', 'o', 'e', 'ch', 'ou'];
 const MIROIR = { b: 'd', d: 'b', p: 'q', q: 'p', m: 'n', n: 'm', u: 'n' };
 
+// Écoute « par syllabes » : valeurs choisies à l'oreille par JF le 2026-11-13 (espace entre syllabes, vitesse de la dernière). Relecture par un·e spécialiste de phonologie en attente.
+export const REGLAGES_SYLLABES = { pauseMs: 500, vitesseDerniere: 0.75 };
+
+// Une seule syllabe : « par syllabes » n'apporterait rien de plus que « Écouter » : le bouton n'est proposé qu'à partir de deux.
+export const syllabesDeCarte = carte => (carte && Array.isArray(carte.syllabes) && carte.syllabes.length > 1 ? carte.syllabes : null);
+
 export const estPackLettres = pack => !!pack && pack.mode === 'lettres';
 
 // La carte vue par la logique de session : un cube par lettre. Le « son » ne sert qu'à la couleur (voyelle ou consonne).

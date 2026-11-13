@@ -92,3 +92,15 @@ test('packsVisibles : un pack personnel n’est vu que par son propriétaire (em
   assert.deepEqual(packsVisibles(index, undefined).map(p => p.id), ['demo', 'commun']);
   assert.deepEqual(packsVisibles(null, moi), []);
 });
+
+test('syllabes : coupées sur les sons du mot entier, fichiers nommés comme la bibliothèque et ajoutés aux fichiers à générer', () => {
+  const { manifest, fichiersDistincts } = construirePackLettres({ pack: pack(['maman', 'chat', 'petit']), lexique });
+  const par = Object.fromEntries(manifest.cartes.map(c => [c.mot, c]));
+  assert.deepEqual(par.maman.syllabes.map(s => s.ipa), ['ma', 'mɑ̃']);
+  assert.deepEqual(par.maman.syllabes.map(s => s.fichier), ['audio/6d_61_-30.mp3', 'audio/6d_251_303_-30.mp3']);
+  assert.deepEqual(par.petit.syllabes.map(s => s.ipa), ['pə', 'ti']);
+  assert.equal(par.chat.syllabes.length, 1);
+  const noms = fichiersDistincts.map(f => f.fichier);
+  par.maman.syllabes.forEach(s => assert.ok(noms.includes(s.fichier.replace(/^audio\//, '').replace(/\.mp3$/, ''))));
+  assert.equal(new Set(noms).size, noms.length);
+});

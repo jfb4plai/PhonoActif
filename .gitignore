@@ -30,3 +30,4 @@ essai-tts-ipa/pour-logopede/
 essai-tts-ipa/pour-logopede-comparaison/
 essai-tts-ipa/*.zip
 essai-tts-ipa/cle-comparaison-aveugle.json
+!public/packs/p1-20-images/

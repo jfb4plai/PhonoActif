@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { lireAdresse, ecrireAdresse, REGLAGES_PAR_DEFAUT } from './route.js';
 import { codeValide } from './code.js';
 import { chargerPack } from './chargerPack.js';
-import { jouerSons, jouerFichier } from './audio.js';
+import { jouerSons, jouerFichier, jouerSerie } from './audio.js';
 import { stockageLocal, exporterJson, exporterCsv } from '../jeu/essais.js';
 import { chargerTache, envoyerEssais, stockageEnvoyes } from '../sync/envoi.js';
 import { configurationSupabase } from '../lib/supabase.js';
@@ -159,7 +159,7 @@ function AppEleve({ deps }) {
       )}
       {vue === 'jeu' && pack && (
         <Jeu key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
-          deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || (u => jouerFichier(u)), rng: deps.rng, maintenant: deps.maintenant }}
+          deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || (u => jouerFichier(u)), jouerSerie: deps.jouerSerie || ((urls, o) => jouerSerie(urls, o)), rng: deps.rng, maintenant: deps.maintenant }}
           onFin={() => setVue('bilan')} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}
       {vue === 'bilan' && pack && (

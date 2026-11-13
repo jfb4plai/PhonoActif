@@ -78,7 +78,7 @@ def etats_mode_a(liste=None, dest=None):
     import shutil
     liste, dest = liste or MODE_A, dest or DEST_PACK
     items = json.loads(liste.read_text(encoding="utf-8"))["fichiersDistincts"]
-    cle, region = C.cle_region()
+    cle = region = None   # la clé Azure n'est lue que si un fichier manque vraiment
     BRUT.mkdir(parents=True, exist_ok=True)
     NORM.mkdir(parents=True, exist_ok=True)
     dest.mkdir(parents=True, exist_ok=True)
@@ -86,6 +86,8 @@ def etats_mode_a(liste=None, dest=None):
     for x in items:
         f = BRUT / (x["fichier"] + ".mp3")
         if not f.exists():
+            if cle is None:
+                cle, region = C.cle_region()
             try:
                 f.write_bytes(C.E.azure_appel(cle, region, C.ssml(x["ipa"], x["ipa"], x["vitesse"])))
                 nouveaux += 1

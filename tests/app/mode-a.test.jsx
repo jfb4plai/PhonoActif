@@ -17,6 +17,11 @@ const MANIFEST = {
       { lettres: 'c', fichier: 'audio/c.mp3' }, { lettres: 'ch', fichier: 'audio/ch.mp3' },
       { lettres: 'cha', fichier: 'audio/cha.mp3' }, { lettres: 'chat', fichier: 'audio/chat.mp3' }
     ]
+  }, {
+    id: 'maman', mot: 'maman', lettres: ['m', 'a', 'm', 'a', 'n'],
+    cubes: [{ g: 'm', son: 'm' }, { g: 'a', son: 'a' }, { g: 'm', son: 'm' }, { g: 'an', son: 'an' }],
+    etats: ['m', 'ma', 'mam', 'mama', 'maman'].map(l => ({ lettres: l, fichier: `audio/${l}.mp3` })),
+    syllabes: [{ ipa: 'ma', fichier: 'audio/syl-ma.mp3' }, { ipa: 'mɑ̃', fichier: 'audio/syl-man.mp3' }]
   }]
 };
 const reponse = corps => async () => ({ ok: true, status: 200, json: async () => corps });
@@ -24,11 +29,12 @@ const reponse = corps => async () => ({ ok: true, status: 200, json: async () =>
 function monter(manifest = MANIFEST) {
   const stockage = stockageMemoire();
   const jouerFichier = vi.fn(async () => ({ manquants: [] }));
-  const deps = { fetch: reponse(manifest), stockage, jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier, rng: () => 0.5,
+  const jouerSerie = vi.fn(async () => ({ manquants: [] }));
+  const deps = { fetch: reponse(manifest), stockage, jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier, jouerSerie, rng: () => 0.5,
     maintenant: () => '2026-11-13T10:00:00.000Z', hash: '#/jeu?pack=essai-a&mode=sans&intrus=0', base: '/' };
   const user = userEvent.setup();
   render(<App deps={deps} />);
-  return { user, stockage, jouerFichier };
+  return { user, stockage, jouerFichier, jouerSerie };
 }
 async function commencer(user) {
   await user.type(screen.getByLabelText(/Code de l.élève/), 'E07');
@@ -99,5 +105,28 @@ describe('Mode A : lecture de ce qui est posé', () => {
     await commencer(user);
     const img = screen.getByAltText('Image du mot à écrire');
     expect(img.getAttribute('src')).toBe('/packs/essai-a/images/chat.png');
+  });
+
+  it('mot d’une seule syllabe : pas de bouton « Écouter par syllabes »', async () => {
+    const { user } = monter();
+    await commencer(user);
+    expect(screen.queryByRole('button', { name: /par syllabes/ })).toBeNull();
+  });
+
+  it('mot de deux syllabes : le bouton joue les syllabes en série avec les réglages de JF (500 ms, dernière syllabe à 75 %)', async () => {
+    const { user, jouerSerie, jouerFichier } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] });
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: /Écouter le mot par syllabes/ }));
+    expect(jouerSerie).toHaveBeenCalledTimes(1);
+    expect(jouerSerie).toHaveBeenCalledWith(['/packs/essai-a/audio/syl-ma.mp3', '/packs/essai-a/audio/syl-man.mp3'], { pauseMs: 500, vitesseDerniere: 0.75 });
+    expect(jouerFichier).not.toHaveBeenCalled();
+  });
+
+  it('syllabes dont un fichier manque : message « Pas de son pour le moment »', async () => {
+    const { user, jouerSerie } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] });
+    jouerSerie.mockResolvedValueOnce({ manquants: ['/packs/essai-a/audio/syl-man.mp3'] });
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: /par syllabes/ }));
+    expect(await screen.findByRole('status')).toHaveTextContent('Pas de son pour le moment.');
   });
 });

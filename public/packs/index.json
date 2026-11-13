@@ -6,5 +6,10 @@
  {
   "id": "p1-100",
   "label": "100 mots de P1, lecture lettre par lettre (voix Charline)"
+ },
+ {
+  "id": "p1-20-images",
+  "label": "20 mots de P1 avec images (papier découpé)",
+  "visibilite": "commun"
  }
 ]

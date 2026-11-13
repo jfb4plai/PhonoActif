@@ -28,6 +28,12 @@ Dossier de travail : `C:\Users\jfbeg\OneDrive\claude-workspace\phonoactif`
 6. **Pack « à partager avec tous »** : cohérence graphique relue par JF et un autre administrateur (style papier découpé, un seul objet, fond uni, sans texte ni visage).
 7. **Publier** : `npx vite build`, puis commit et push (accord de JF). Le pack apparaît dans la liste des packs (`public/packs/index.json`).
 
+## Écoute par syllabes
+
+- Le constructeur ajoute à chaque carte les **syllabes** du mot (coupées sur les sons du mot entier) et les fichiers audio correspondants : ils sont réutilisés s'ils existent déjà dans la bibliothèque, sinon à générer avec la même commande que les états.
+- Dans le jeu, un mot de **deux syllabes ou plus** reçoit un bouton « Écouter par syllabes » : syllabes l'une après l'autre, espace de 500 ms, dernière syllabe à 75 % de la vitesse (hauteur conservée). Valeurs choisies à l'oreille par JF, modifiables dans `src/jeu/modeA.js` (`REGLAGES_SYLLABES`). Pas de bouton pour un mot d'une seule syllabe.
+- Un pack sans syllabes dans son manifeste n'a pas le bouton. C'est le cas de `p1-100` (fabriqué avec `tools/mode_a_mots.js`, pas avec cette chaîne) : pour lui donner le bouton, il faudrait le refaire avec la chaîne ci-dessus (tableau Excel puis `construire_pack_atelier.js`).
+
 ## Pack « pour mon usage »
 
 - Le pack n'est proposé que dans l'espace enseignant du compte dont l'adresse est dans le tableau.
