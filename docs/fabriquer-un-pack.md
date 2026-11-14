@@ -42,6 +42,10 @@ Dossier de travail : `C:\Users\jfbeg\OneDrive\claude-workspace\phonoactif`
 
 Source : règles recoupées avec la syllabation de Lexique 4.1 (`docs/rapport-lexique-org.md`) ; « taxi » = tak-si, décision de JF le 2026-11-14. La même phrase s'affiche sous la zone de construction pendant l'écoute (`REGLE_COUPURE` dans `src/jeu/modeA.js`). Le code est dans `src/core/syllabes.js`.
 
+## Ajouter des images à un pack déjà fabriqué
+
+`node tools/ajouter_images_pack.js <pack> --dossier <dossier-d-images> [--dossier <autre>]` : pour chaque carte dont le fichier `<mot sans accent>.png` existe dans l'un des dossiers (le premier trouvé l'emporte), copie l'image dans `public/packs/<pack>/images/` et renseigne `image_sans_mot`, `source` et `licence` (par défaut : image générée par IA, Canva). Les cartes sans image ne changent pas ; relançable après chaque nouvelle image. Exemple du pack de 100 mots : `--dossier docs/images-canva/lot2 --dossier public/packs/p1-20-images/images` (25 mots illustrés sur 100).
+
 ## Pack « pour mon usage »
 
 - Le pack n'est proposé que dans l'espace enseignant du compte dont l'adresse est dans le tableau.

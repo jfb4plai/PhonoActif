@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Pack de 100 mots : 25 images intégrées (les 5 du lot 2 + les 20 du pack illustré) par tools/ajouter_images_pack.js ; bilan sur 100 : image 25, états audio 100, écoute par syllabes 27 sur 27 mots de 2 syllabes ou plus ; 75 mots sans image (mots-outils, verbes, adjectifs, noms abstraits ou de personnes) ; images du lot 2 à fond #cde7f7, celles du pack des 20 non uniformisées ; non commité", "N6, N8, N20"),
     ("2026-11-14", "« rivière » v2 générée (tuile verte, une rivière en S à deux bandes bleues) : fond obtenu #cae7f7 (écart 4), ramené à #cde7f7 ; lot 2 complet (5 sur 5), à valider par JF", "N6"),
     ("2026-11-14", "« rivière » v1 refusée par JF (illisible) : archivée dans lot2/v1 ; consigne v2 écrite dans le script (tuile verte, une rivière en S, deux bandes bleues) ; génération en attente du plafond Canva", "N6"),
     ("2026-11-14", "Image « rivière » générée avec le prompt v2.2 : fond obtenu #94c1fc (écart 57), ramené à #cde7f7 par l'outil ; lot 2 complet (5 images), à valider par JF ; rivière lisible comme un ruban ondulé plutôt qu'une rivière ; défaut de traiter_lot2 corrigé (ne touche plus aux planches-contact)", "N6"),

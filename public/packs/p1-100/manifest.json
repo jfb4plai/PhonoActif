@@ -859,7 +859,10 @@
      "fichier": "audio/283_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/chat.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "moi",
@@ -1061,7 +1064,10 @@
      "fichier": "audio/7a_254_303_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "image_sans_mot": "images/maison.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "nous",
@@ -1457,7 +1463,10 @@
      "fichier": "audio/6f_0.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/eau.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "quand",
@@ -1587,7 +1596,10 @@
      "fichier": "audio/64_25b_303_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "image_sans_mot": "images/jardin.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "école",
@@ -1659,7 +1671,10 @@
      "fichier": "audio/6b_254_6c_-30.mp3",
      "cubes": 4
     }
-   ]
+   ],
+   "image_sans_mot": "images/ecole.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "alors",
@@ -1981,7 +1996,10 @@
      "fichier": "audio/6c_69_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/lit.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "peu",
@@ -2183,7 +2201,10 @@
      "fichier": "audio/283_6a_25b_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/chien.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "voiture",
@@ -2271,7 +2292,10 @@
      "fichier": "audio/74_79_281_-30.mp3",
      "cubes": 4
     }
-   ]
+   ],
+   "image_sans_mot": "images/voiture.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "trois",
@@ -2407,7 +2431,10 @@
      "fichier": "audio/73_254_303_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "image_sans_mot": "images/poisson.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "trop",
@@ -2995,7 +3022,10 @@
      "fichier": "audio/75_281_73_-30.mp3",
      "ecartAvecRegles": true
     }
-   ]
+   ],
+   "image_sans_mot": "images/ours.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "grand",
@@ -3333,7 +3363,10 @@
      "fichier": "audio/76_281_259_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "image_sans_mot": "images/livre.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "rouge",
@@ -3451,7 +3484,10 @@
      "fichier": "audio/6c_6f_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "image_sans_mot": "images/velo.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "voir",
@@ -3701,7 +3737,10 @@
      "fichier": "audio/6e_25b_292_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/neige.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "porte",
@@ -3761,7 +3800,10 @@
      "fichier": "audio/70_254_281_74_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/porte.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "ami",
@@ -4199,7 +4241,10 @@
      "fichier": "audio/6c_75_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/loup.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "tortue",
@@ -4281,7 +4326,10 @@
      "fichier": "audio/74_79_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "image_sans_mot": "images/tortue.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "forêt",
@@ -4353,7 +4401,10 @@
      "fichier": "audio/281_25b_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "image_sans_mot": "images/foret.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "vrai",
@@ -4477,7 +4528,10 @@
      "fichier": "audio/281_69_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "image_sans_mot": "images/souris.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "père",
@@ -4663,7 +4717,10 @@
      "fichier": "audio/73_61_6b_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/sac.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "table",
@@ -4735,7 +4792,10 @@
      "fichier": "audio/62_6c_259_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "image_sans_mot": "images/table.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "feu",
@@ -4771,7 +4831,10 @@
      "fichier": "audio/66_f8_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/feu.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "yeux",
@@ -4929,7 +4992,10 @@
      "fichier": "audio/6c_79_6e_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/lune.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "rivière",
@@ -5021,7 +5087,10 @@
      "fichier": "audio/76_6a_25b_281_-30.mp3",
      "cubes": 5
     }
-   ]
+   ],
+   "image_sans_mot": "images/riviere.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "pomme",
@@ -5077,7 +5146,10 @@
      "fichier": "audio/70_254_6d_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/pomme.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "être",
@@ -5313,7 +5385,10 @@
      "fichier": "audio/281_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "image_sans_mot": "images/rat.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   }
  ]
 }
