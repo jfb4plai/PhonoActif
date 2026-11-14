@@ -23,21 +23,21 @@ function lireUn(url, creerAudio, vitesse = 1) {
 
 // Un son par graphème : <base><id>.wav, joués l'un après l'autre.
 export async function jouerSons(ids, options = {}) {
-  const { base = '/sons/', extension = '.wav', creerAudio = url => new Audio(url) } = options;
+  const { base = '/sons/', extension = '.wav', creerAudio = url => new Audio(url), vitesse = 1 } = options;
   const mon = ++jeton;
   const manquants = [];
   for (const id of ids) {
     if (mon !== jeton) break;
-    if (!(await lireUn(`${base}${encodeURIComponent(id)}${extension}`, creerAudio))) manquants.push(id);
+    if (!(await lireUn(`${base}${encodeURIComponent(id)}${extension}`, creerAudio, vitesse))) manquants.push(id);
   }
   return { manquants };
 }
 
 // Un fichier entier (par exemple le mot prononcé en une fois) à l'adresse donnée.
 export async function jouerFichier(url, options = {}) {
-  const { creerAudio = u => new Audio(u) } = options;
+  const { creerAudio = u => new Audio(u), vitesse = 1 } = options;
   ++jeton;
-  return { manquants: (await lireUn(url, creerAudio)) ? [] : [url] };
+  return { manquants: (await lireUn(url, creerAudio, vitesse)) ? [] : [url] };
 }
 
 /* Écoute « par syllabes » : les fichiers l'un après l'autre, avec un espace entre eux, la dernière syllabe ralentie.

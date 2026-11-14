@@ -109,6 +109,16 @@ export default function Accueil({
                 <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni dans un pack sans syllabes.</p>
               </div>
               <div className="plai-field">
+                <label className="plai-label" htmlFor="vitesse">Vitesse de la voix</label>
+                <select id="vitesse" className="plai-input" value={tache.vitesse || 100} onChange={e => onTache({ vitesse: Number(e.target.value) })}>
+                  <option value={100}>Normale (100 %)</option>
+                  <option value={75}>Lente (75 %)</option>
+                  <option value={50}>Très lente (50 %)</option>
+                </select>
+                <label className="plai-label" htmlFor="verrou"><input id="verrou" type="checkbox" checked={!!tache.vitesseVerrou} onChange={e => onTache({ vitesseVerrou: e.target.checked })} /> Verrouiller cette vitesse</label>
+                <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres.</p>
+              </div>
+              <div className="plai-field">
                 <label className="plai-label" htmlFor="lien">Lien de la tâche</label>
                 <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir un pack pour obtenir le lien" onFocus={e => e.target.select()} />
                 {qr && <img src={qr} alt="QR-code du lien de la tâche" width="200" height="200" className="qr-accueil" />}

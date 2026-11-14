@@ -120,6 +120,43 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect(screen.getByText('Voix de synthèse (Microsoft Azure).')).toBeInTheDocument();
   });
 
+  it('vitesse de la voix : boutons visibles par défaut, départ à normale ; « Lente » ralentit « Écouter » à 0,75 ; l’écoute par syllabes garde ses valeurs', async () => {
+    const { user, jouerFichier } = monter();
+    await commencer(user);
+    expect(screen.getByRole('button', { name: 'Normale' })).toHaveAttribute('aria-pressed', 'true');
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3');
+    await user.click(screen.getByRole('button', { name: 'Lente' }));
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3', { vitesse: 0.75 });
+    await user.click(screen.getByRole('button', { name: 'Très lente' }));
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3', { vitesse: 0.5 });
+  });
+
+  it('vitesse de la voix : la tâche donne la vitesse de départ, boutons encore là sans verrou', async () => {
+    const { user, jouerFichier } = monter(MANIFEST, '&vitesse=50');
+    await commencer(user);
+    expect(screen.getByRole('button', { name: 'Très lente' })).toHaveAttribute('aria-pressed', 'true');
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3', { vitesse: 0.5 });
+  });
+
+  it('vitesse de la voix verrouillée : pas de boutons, tous entendent la vitesse de la tâche', async () => {
+    const { user, jouerFichier } = monter(MANIFEST, '&vitesse=75&verrou=1');
+    await commencer(user);
+    expect(screen.queryByRole('group', { name: 'Vitesse de la voix' })).toBeNull();
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3', { vitesse: 0.75 });
+  });
+
+  it('vitesse lente : « Écouter par syllabes » ne reçoit pas la vitesse (valeurs de JF inchangées)', async () => {
+    const { user, jouerSerie } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] }, '&vitesse=50');
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: /Écouter le mot par syllabes/ }));
+    expect(jouerSerie).toHaveBeenCalledWith(expect.any(Array), expect.objectContaining({ pauseMs: 500, vitesseDerniere: 0.75 }));
+  });
+
   it('mot d’une seule syllabe : pas de bouton « Écouter par syllabes »', async () => {
     const { user } = monter();
     await commencer(user);

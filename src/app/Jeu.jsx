@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
-import { REGLAGES_PAR_DEFAUT } from './route.js';
+import { REGLAGES_PAR_DEFAUT, VALEURS_VITESSE } from './route.js';
 import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, phraseDeCarte, reperesLettres, boutonSyllabesVisible, REGLAGES_SYLLABES, REGLE_COUPURE } from '../jeu/modeA.js';
 
 const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
@@ -29,16 +29,19 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     manquants.forEach(id => onSignalement('son', id));
     if (manquants.length > 0) setSonAbsent(true);
   };
+  // Vitesse de la voix (mots entiers et sons isolés, pas l'écoute par syllabes) : départ = réglage de la tâche ; boutons chez l'élève sauf si l'enseignant a verrouillé.
+  const [vitesse, setVitesse] = useState(VALEURS_VITESSE.includes(tache.vitesse) ? tache.vitesse : 100);
+  const optsVitesse = vitesse === 100 ? [] : [{ vitesse: vitesse / 100 }]; // rien d'ajouté à vitesse normale : appels identiques à avant
   const jouer = ids => {
     if (ids.length === 0) return;
     setSonAbsent(false);
-    Promise.resolve(deps.jouerSons(ids)).then(signalerSons).catch(() => {});
+    Promise.resolve(deps.jouerSons(ids, ...optsVitesse)).then(signalerSons).catch(() => {});
   };
   // Le mot entier est préféré : enchaîner des sons isolés donne « che-a ». Sans fichier du mot, on retombe sur les sons.
   const jouerEtat = e => {
     if (!e || !e.fichier || !deps.jouerFichier) { setSonAbsent(true); return; }
     setSonAbsent(false);
-    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${e.fichier}`)).then(signalerSons).catch(() => {});
+    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${e.fichier}`, ...optsVitesse)).then(signalerSons).catch(() => {});
   };
   // Entrée complémentaire : le mot syllabe par syllabe (espace de 500 ms, dernière syllabe à 75 %)
   const jouerSyllabes = c => {
@@ -61,7 +64,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     if (lettres) { jouerEtat(etatFinal(c)); return; }
     if (!c.audio_mot || !deps.jouerFichier) { jouer(sonsDuMot(c)); return; }
     setSonAbsent(false);
-    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${c.audio_mot}`)).then(signalerSons).catch(() => {});
+    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${c.audio_mot}`, ...optsVitesse)).then(signalerSons).catch(() => {});
   };
   const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
   // Mode A : le suivi reste en graphèmes-sons (liaisons), calculé à partir des lettres posées.
@@ -156,6 +159,15 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))}>Tout effacer</button>
         <button type="button" disabled={!enCours} onClick={surAide}>Besoin d’aide ?</button>
       </div>
+
+      {!tache.vitesseVerrou && (
+        <div className="vitesse" role="group" aria-label="Vitesse de la voix">
+          <span>Voix :</span>
+          {[[100, 'Normale'], [75, 'Lente'], [50, 'Très lente']].map(([v, nom]) => (
+            <button key={v} type="button" aria-pressed={vitesse === v} className={vitesse === v ? 'principal' : ''} onClick={() => setVitesse(v)}>{nom}</button>
+          ))}
+        </div>
+      )}
 
       {lettres && (tache.syllabes || 'toujours') !== 'non' && (
         boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat)

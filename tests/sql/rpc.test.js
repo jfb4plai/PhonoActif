@@ -32,7 +32,7 @@ const nb = async db => (await db.query('select count(*)::int as n from phono_att
 
 test('phono_lire_tache : les réglages, sans nom de classe ni identifiant', async () => {
   const { db } = await monde();
-  assert.deepEqual(await lire(db, T1), { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'toujours' });
+  assert.deepEqual(await lire(db, T1), { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'toujours', vitesse: 100, vitesse_verrou: false });
 });
 
 test('phono_lire_tache : jeton inconnu, révoqué ou mal formé', async () => {
@@ -243,4 +243,17 @@ test('syllabes : « toujours » par défaut, trois valeurs acceptées, la lectur
   await assert.rejects(db.query("update phono_tasks set syllabes = 'partout' where token = $1", [T1]), /syllabes_valeurs|check/);
   await comme(db, 'authenticated', m1, () => db.query("insert into phono_tasks (class_id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, created_by) values ($1, $2, 'demo', 'avec', 'sobre', 2, false, 'aide', $3)", [c1, 'd4'.repeat(12), m1]));
   assert.equal((await lire(db, 'd4'.repeat(12))).syllabes, 'aide');
+});
+
+// ---- Réglage de tâche « vitesse de la voix » (migration 20261114020000) ----
+test('vitesse : 100 sans verrou par défaut, 100/75/50 acceptés, autre refusé, la lecture de la tâche les rend', async () => {
+  const { db } = await monde();
+  const l0 = await lire(db, T1);
+  assert.equal(l0.vitesse, 100); assert.equal(l0.vitesse_verrou, false);
+  for (const v of [75, 50]) {
+    await db.query('update phono_tasks set vitesse = $1, vitesse_verrou = true where token = $2', [v, T1]);
+    const l = await lire(db, T1);
+    assert.equal(l.vitesse, v); assert.equal(l.vitesse_verrou, true);
+  }
+  await assert.rejects(db.query('update phono_tasks set vitesse = 60 where token = $1', [T1]), /vitesse_valeurs|check/);
 });

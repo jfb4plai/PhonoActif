@@ -33,7 +33,8 @@ export async function chargerTache(token, supabase) {
   const bon = j && typeof j.pack === 'string' && (j.mode_mot === 'avec' || j.mode_mot === 'sans') && (j.habillage === 'album' || j.habillage === 'sobre')
     && Number.isInteger(j.nb_intrus) && typeof j.exiger_accents === 'boolean';
   if (!bon) throw new Error('refusé');
-  return { pack: j.pack, modeMot: j.mode_mot, habillage: j.habillage, nbIntrus: j.nb_intrus, exigerAccents: j.exiger_accents, syllabes: ['non', 'toujours', 'aide'].includes(j.syllabes) ? j.syllabes : 'toujours' }; // serveur sans le champ : comportement d'avant
+  return { pack: j.pack, modeMot: j.mode_mot, habillage: j.habillage, nbIntrus: j.nb_intrus, exigerAccents: j.exiger_accents, syllabes: ['non', 'toujours', 'aide'].includes(j.syllabes) ? j.syllabes : 'toujours',
+    vitesse: [100, 75, 50].includes(j.vitesse) ? j.vitesse : 100, vitesseVerrou: j.vitesse_verrou === true }; // serveur sans les champs : comportement d'avant
 }
 
 const versServeur = l => ({ id: l.id, session: l.session, carte: l.carte, mot: l.mot, tentative: l.tentative, juste: l.juste, aide: l.aide, positions: l.positions, date: l.date });

@@ -1,8 +1,10 @@
 /* Adresses des tâches et des cartes : un lien ou un QR ouvre un pack avec ses réglages (#/jeu?...) ou une seule carte
    (#/carte/<pack>/<id>?...), sans compte. Les valeurs hors liste sont ignorées champ par champ, jamais corrigées. */
 
-export const REGLAGES_PAR_DEFAUT = { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours' };
+export const REGLAGES_PAR_DEFAUT = { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false };
 export const VALEURS_SYLLABES = ['non', 'toujours', 'aide'];
+// Vitesse de la voix en % (mots entiers et sons isolés, pas l'écoute par syllabes). Échelle retenue par JF le 2026-11-14 après écoute.
+export const VALEURS_VITESSE = [100, 75, 50];
 
 function tacheDepuisRequete(requete) {
   const p = new URLSearchParams(requete);
@@ -22,6 +24,9 @@ function tacheDepuisRequete(requete) {
   if (intrus !== null && /^\d$/.test(intrus) && Number(intrus) <= 5) tache.nbIntrus = Number(intrus);
   const syllabes = p.get('syllabes');
   if (VALEURS_SYLLABES.includes(syllabes)) tache.syllabes = syllabes;
+  const vitesse = Number(p.get('vitesse'));
+  if (VALEURS_VITESSE.includes(vitesse)) tache.vitesse = vitesse;
+  if (p.get('verrou') === '1') tache.vitesseVerrou = true;
   const accents = p.get('accents');
   if (accents === '1') tache.exigerAccents = true;
   if (accents === '0') tache.exigerAccents = false;
@@ -52,7 +57,8 @@ export function lireAdresse(hash) {
 export function ecrireAdresse(base, ecran, tache, carte) {
   const racine = base.replace(/\/+$/, '') + '/';
   const e = encodeURIComponent;
-  const reglages = [`mode=${e(tache.modeMot)}`, `habillage=${e(tache.habillage)}`, `intrus=${e(tache.nbIntrus)}`, `accents=${tache.exigerAccents ? 1 : 0}`, `syllabes=${e(tache.syllabes || REGLAGES_PAR_DEFAUT.syllabes)}`];
+  const reglages = [`mode=${e(tache.modeMot)}`, `habillage=${e(tache.habillage)}`, `intrus=${e(tache.nbIntrus)}`, `accents=${tache.exigerAccents ? 1 : 0}`, `syllabes=${e(tache.syllabes || REGLAGES_PAR_DEFAUT.syllabes)}`,
+    `vitesse=${e(tache.vitesse || REGLAGES_PAR_DEFAUT.vitesse)}`, `verrou=${tache.vitesseVerrou ? 1 : 0}`];
   if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;
   return `${racine}#/jeu?${[`pack=${e(tache.pack)}`, ...reglages].join('&')}`;

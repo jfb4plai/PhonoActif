@@ -25,9 +25,9 @@ function supa(reponses) {
 const succes = (n, appel) => ({ status: 200, corps: { recus: appel.corps.p_lignes.length, ignores: 0 } });
 
 test('chargerTache : adresse, en-têtes et corps exacts, réponse en camelCase', async () => {
-  const s = supa(() => ({ status: 200, corps: { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide' } }));
+  const s = supa(() => ({ status: 200, corps: { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide', vitesse: 50, vitesse_verrou: true } }));
   const t = await chargerTache(TOKEN, s);
-  assert.deepEqual(t, { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide' });
+  assert.deepEqual(t, { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide', vitesse: 50, vitesseVerrou: true });
   const a = s.appels[0];
   assert.equal(a.u, 'https://x.supabase.co/rest/v1/rpc/phono_lire_tache');
   assert.equal(a.init.method, 'POST');
@@ -126,4 +126,12 @@ test('chargerTache : serveur sans le champ syllabes ou valeur inconnue : « touj
   const base = { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true };
   assert.equal((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: base })))).syllabes, 'toujours');
   assert.equal((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: { ...base, syllabes: 'zzz' } })))).syllabes, 'toujours');
+});
+
+test('chargerTache : serveur sans les champs vitesse ou valeur inconnue : 100 sans verrou (comportement d’avant)', async () => {
+  const base = { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true };
+  const sans = await chargerTache(TOKEN, supa(() => ({ status: 200, corps: base })));
+  assert.equal(sans.vitesse, 100); assert.equal(sans.vitesseVerrou, false);
+  const hors = await chargerTache(TOKEN, supa(() => ({ status: 200, corps: { ...base, vitesse: 60, vitesse_verrou: 'oui' } })));
+  assert.equal(hors.vitesse, 100); assert.equal(hors.vitesseVerrou, false);
 });

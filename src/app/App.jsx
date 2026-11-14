@@ -65,7 +65,7 @@ function AppEleve({ deps, hash, partie }) {
   const stockage = useRef(deps.stockage || stockageLocal()).current;
   const envoyes = useRef(deps.stockageEnvoyes || stockageEnvoyes()).current;
   const config = useRef(deps.supabase !== undefined ? deps.supabase : configurationSupabase(import.meta.env)).current;
-  const jouer = deps.jouerSons || (ids => jouerSons(ids, { base: `${base}sons/` }));
+  const jouer = deps.jouerSons || ((ids, o) => jouerSons(ids, { base: `${base}sons/`, ...o }));
 
   const jeton = adresse.tache && adresse.tache.jeton;
   const enLigne = !!jeton;
@@ -99,7 +99,7 @@ function AppEleve({ deps, hash, partie }) {
     chargerTache(jeton, config)
       .then(t => {
         if (!actif) return;
-        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes }));
+        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou }));
         setEtatTache('ok');
       })
       .catch(e => { if (actif) setEtatTache(e.message === 'tâche inconnue' ? 'inconnue' : e.message === 'réseau' ? 'reseau' : 'hors_service'); });
@@ -188,7 +188,7 @@ function AppEleve({ deps, hash, partie }) {
       )}
       {vue === 'jeu' && pack && (
         <Jeu key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
-          deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || (u => jouerFichier(u)), jouerSerie: deps.jouerSerie || ((urls, o) => jouerSerie(urls, o)), rng: deps.rng, maintenant: deps.maintenant }}
+          deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), jouerSerie: deps.jouerSerie || ((urls, o) => jouerSerie(urls, o)), rng: deps.rng, maintenant: deps.maintenant }}
           onFin={() => setVue('bilan')} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}
       {vue === 'bilan' && pack && (

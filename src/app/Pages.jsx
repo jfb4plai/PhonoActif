@@ -57,6 +57,7 @@ export function ModeEmploi({ base = '/' }) {
             <li><strong>Nombre de cubes en trop</strong> : 0 est le plus facile.</li>
             <li><strong>Exiger les accents</strong> : si la case est vide, « e » est accepté à la place de « é ».</li>
             <li><strong>Écoute par syllabes</strong> : ce réglage <em>ne lit rien tout seul</em>, il rend disponible le bouton « Écouter par syllabes ». « Pour tous les mots » : le bouton est là dès le départ. « Seulement quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? », donc seulement pour les mots qui posent problème. « Jamais » : pas de bouton.</li>
+            <li><strong>Vitesse de la voix</strong> : normale (100 %), lente (75 %) ou très lente (50 %), pour les mots et les sons lus. C’est la vitesse de départ. Case « Verrouiller » vide : l’élève voit trois boutons et peut changer. Case cochée : pas de boutons, tout le monde entend la vitesse choisie. L’écoute par syllabes garde ses réglages propres.</li>
           </ul>
           <p>Puis « Créer la tâche et les liens des élèves » : la tâche est créée et le lien et le QR-code de <strong>chaque élève</strong> s’affichent aussitôt en dessous.</p>
           <p>Pour fabriquer votre propre pack (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Le pack est fabriqué par l’équipe PLAI : l’application ne choisit jamais les mots à votre place.</p>

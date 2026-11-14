@@ -6,18 +6,18 @@ const TACHE = { pack: 'été', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2,
 const hashDe = url => new URL(url).hash;
 
 test('réglages par défaut', () => {
-  assert.deepEqual(REGLAGES_PAR_DEFAUT, { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours' });
+  assert.deepEqual(REGLAGES_PAR_DEFAUT, { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false });
 });
 
 test('aller-retour jeu avec un nom de pack accentué', () => {
   const url = ecrireAdresse('https://exemple.test/', 'jeu', TACHE);
-  assert.equal(url, 'https://exemple.test/#/jeu?pack=%C3%A9t%C3%A9&mode=avec&habillage=sobre&intrus=2&accents=1&syllabes=toujours');
-  assert.deepEqual(lireAdresse(hashDe(url)), { ecran: 'jeu', tache: { ...TACHE, syllabes: 'toujours' } });
+  assert.equal(url, 'https://exemple.test/#/jeu?pack=%C3%A9t%C3%A9&mode=avec&habillage=sobre&intrus=2&accents=1&syllabes=toujours&vitesse=100&verrou=0');
+  assert.deepEqual(lireAdresse(hashDe(url)), { ecran: 'jeu', tache: { ...TACHE, syllabes: 'toujours', vitesse: 100 } });
 });
 
 test('aller-retour carte', () => {
   const url = ecrireAdresse('https://exemple.test/', 'carte', TACHE, 'pêche-2');
-  assert.deepEqual(lireAdresse(hashDe(url)), { ecran: 'carte', tache: { ...TACHE, syllabes: 'toujours' }, carte: 'pêche-2' });
+  assert.deepEqual(lireAdresse(hashDe(url)), { ecran: 'carte', tache: { ...TACHE, syllabes: 'toujours', vitesse: 100 }, carte: 'pêche-2' });
 });
 
 test('la base avec ou sans barre finale donne la même adresse', () => {

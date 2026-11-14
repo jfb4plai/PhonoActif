@@ -95,7 +95,7 @@ test('creerTache : jeton, réglages, lien, créateur', async () => {
   const r = await creerTache(c, 'c1', { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide' }, MASTER, 'https://x.test/');
   assert.match(r.jeton, /^[a-f0-9]{24}$/);
   assert.equal(r.lien, `https://x.test/#/jeu?t=${r.jeton}`);
-  assert.deepEqual(c.tables.phono_tasks[0], { id: r.id, class_id: 'c1', token: r.jeton, pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide', created_by: MASTER });
+  assert.deepEqual(c.tables.phono_tasks[0], { id: r.id, class_id: 'c1', token: r.jeton, pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide', vitesse: 100, vitesse_verrou: false, created_by: MASTER });
   await assert.rejects(creerTache(c, 'c1', { pack: '', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: false }, MASTER, 'https://x.test/'), /pack/);
 });
 
