@@ -169,4 +169,14 @@ describe('Mode A : lecture de ce qui est posé', () => {
     await user.click(screen.getByRole('button', { name: /par syllabes/ }));
     expect(await screen.findByRole('status')).toHaveTextContent('Pas de son pour le moment.');
   });
+
+  it('accueil sans lien : les packs publiés sont proposés dans une liste (packs personnels exclus), plus de nom à taper', async () => {
+    const index = [{ id: 'p1-20-images', label: '20 mots de P1 avec images', visibilite: 'commun' }, { id: 'demo', label: 'Pack d’essai' }, { id: 'perso', label: 'Pack personnel', visibilite: 'prive' }];
+    const deps = { fetch: reponse(index), stockage: stockageMemoire(), jouerSons: vi.fn(), rng: () => 0.5, maintenant: () => '2026-11-14T10:00:00.000Z', hash: '', base: '/' };
+    render(<App deps={deps} />);
+    await screen.findByRole('option', { name: 'Pack d’essai' });
+    const liste = screen.getByLabelText('Pack de cartes');
+    expect(liste.tagName).toBe('SELECT');
+    expect([...liste.options].map(o => o.textContent)).toEqual(['Choisir un pack', '20 mots de P1 avec images', 'Pack d’essai']);
+  });
 });

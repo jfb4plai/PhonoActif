@@ -64,6 +64,17 @@ function AppEleve({ deps }) {
   const [signalements, setSignalements] = useState({});
   const [messageEnvoi, setMessageEnvoi] = useState('');
   const [, rafraichir] = useState(0);
+  // Liste des packs publiés (packs/index.json) : l'écran d'accueil propose une liste plutôt qu'un nom à taper. Packs personnels exclus (visibles seulement dans l'espace enseignant).
+  const [packsListe, setPacksListe] = useState([]);
+  useEffect(() => {
+    if (enLigne) return undefined;
+    let actif = true;
+    (deps.fetch || fetch)(`${base.replace(/\/+$/, '')}/packs/index.json`)
+      .then(r => (r.ok ? r.json() : []))
+      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && p.label && p.visibilite !== 'prive')); })
+      .catch(() => {});
+    return () => { actif = false; };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!enLigne || !config) return undefined;
@@ -154,7 +165,7 @@ function AppEleve({ deps }) {
       {vue === 'accueil' && (
         <Accueil base={base} tache={tache} code={code} onCode={setCode} onTache={surTache} onCommencer={commencer} erreur={erreur}
           avertissements={avertissements} persistant={stockage.persistant} lien={lien} nbEssais={stockage.lire().length}
-          enLigne={enLigne} lienPersonnel={!!tache.cle} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
+          packsListe={packsListe} enLigne={enLigne} lienPersonnel={!!tache.cle} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
           onExportJson={() => telecharger('essais.json', exporterJson(stockage.lire()), 'application/json')}
           onExportCsv={() => telecharger('essais.csv', exporterCsv(stockage.lire()), 'text/csv;charset=utf-8')} />
       )}

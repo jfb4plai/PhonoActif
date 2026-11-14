@@ -1,0 +1,60 @@
+/* Écran d'accueil : même univers visuel que les lettres IA PLAI (papier crème, rayons jaunes, disque turquoise, cartes à ombre dure).
+   Réservé à l'accueil (.accueil-page) : le jeu garde ses habillages. Aucune police chargée depuis un service externe (RGPD, élèves) :
+   piles de polices du système. Texte d'au moins 16 px, contrastes encre sur crème, aucune animation. */
+.accueil-page {
+  --papier: #F9F0D9; --carte: #FFF8EA; --encre: #1A1713; --soleil: #F7C01E; --rayon: #F6D97A; --turquoise: #0E7C8E; --turquoise-fonce: #0B6573; --ombre: rgba(26, 23, 19, .3);
+  --f-titre: Rockwell, 'Rockwell Extra Bold', 'Roboto Slab', Georgia, serif;
+  --f-texte: 'Atkinson Hyperlegible', 'Segoe UI', Verdana, Arial, sans-serif;
+  background: var(--papier); color: var(--encre); font-family: var(--f-texte); min-height: 100vh;
+}
+.accueil-page .plai-nav { background: var(--carte); border-bottom: 3px solid var(--encre); backdrop-filter: none; }
+.accueil-page .plai-nav-logo { font-family: var(--f-titre); color: var(--encre); font-size: 20px; }
+
+/* Bandeau : rayons jaunes qui s'estompent dans le papier, disque turquoise cerclé de noir, carte d'accroche */
+.accueil-scene {
+  position: relative; overflow: hidden; padding: 44px 16px;
+  background: repeating-conic-gradient(from 6deg at 50% 62%, var(--rayon) 0deg 9deg, transparent 9deg 26deg), var(--papier);
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 44px), transparent);
+}
+.accueil-scene-int { max-width: 760px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 24px 36px; }
+.accueil-disque {
+  position: relative; flex: 0 0 auto; width: clamp(140px, 26vw, 210px); aspect-ratio: 1; border-radius: 50%; background: var(--turquoise); display: grid; place-items: center;
+}
+.accueil-disque::after { content: ""; position: absolute; inset: -7px -3px 7px 5px; border: 2px solid var(--encre); border-radius: 50%; pointer-events: none; }
+.accueil-lettres {
+  position: relative; z-index: 1; font-family: var(--f-titre); font-weight: 900; font-size: clamp(3.4rem, 11vw, 5.4rem); line-height: 1; color: var(--soleil);
+  -webkit-text-stroke: 3px var(--encre); paint-order: stroke fill; text-shadow: 5px 5px 0 var(--ombre);
+}
+.accueil-accroche {
+  flex: 1 1 15rem; max-width: 26rem; background: var(--carte); border: 2px solid var(--encre); box-shadow: 7px 8px 0 var(--ombre); padding: 18px 20px 20px; transform: rotate(-1.2deg);
+}
+.accueil-accroche p:first-child { margin: 0; font-family: var(--f-titre); font-size: clamp(1.4rem, 4.4vw, 1.9rem); line-height: 1.2; }
+.accueil-accroche p + p { margin: 10px 0 0; font-size: 18px; }
+
+/* Formulaires : une carte crème à ombre dure par bloc */
+.accueil-page .plai-container { padding-top: 8px; padding-bottom: 32px; }
+.accueil-page .plai-section { background: var(--carte); border: 2px solid var(--encre); box-shadow: 7px 8px 0 var(--ombre); padding: 20px 22px 22px; margin: 28px 0; }
+.accueil-page .plai-section h1, .accueil-page .plai-section h2 { font-family: var(--f-titre); font-weight: 700; color: var(--encre); font-size: 26px; margin: 0 0 14px; }
+.accueil-page .plai-label { font-size: 17px; font-weight: 700; color: var(--encre); }
+.accueil-page .plai-input { font-family: var(--f-texte); font-size: 18px; border: 2px solid var(--encre); border-radius: 4px; background: #fff; color: var(--encre); }
+.accueil-page .plai-input:focus { border-color: var(--turquoise-fonce); box-shadow: 0 0 0 3px var(--soleil); outline: none; }
+.accueil-page .aide { font-size: 16px; opacity: 1; color: #3d372f; }
+.accueil-page .plai-btn { font-family: var(--f-texte); font-size: 19px; font-weight: 700; background: var(--soleil); color: var(--encre); border: 2px solid var(--encre); border-radius: 4px; box-shadow: 4px 5px 0 var(--ombre); padding: 10px 24px; min-height: 48px; }
+.accueil-page .plai-btn:hover:not(:disabled) { opacity: 1; background: #fbd04e; }
+.accueil-page .plai-btn:active:not(:disabled) { box-shadow: 1px 2px 0 var(--ombre); transform: translate(3px, 3px); }
+.accueil-page .plai-btn:disabled { opacity: 1; background: #e6dcc0; color: #5c5446; border-color: #8c8268; box-shadow: none; cursor: not-allowed; }
+.accueil-page .plai-btn-ghost { font-family: var(--f-texte); font-size: 16px; font-weight: 700; background: var(--carte); color: var(--encre); border: 2px solid var(--encre); border-radius: 4px; min-height: 44px; }
+.accueil-page .plai-btn-ghost:disabled { color: #5c5446; border-color: #8c8268; opacity: 1; }
+.accueil-page .plai-card { background: #fff; border: 2px solid var(--encre); border-radius: 4px; }
+.accueil-page .plai-error { color: #9c1c0c; }
+.accueil-page a { color: var(--turquoise-fonce); text-underline-offset: 3px; }
+.accueil-page :focus-visible { outline: 3px solid var(--encre); outline-offset: 2px; }
+.accueil-page .plai-footer { background: var(--carte); border-top: 3px solid var(--encre); color: var(--encre); }
+.accueil-page .plai-footer a { color: var(--turquoise-fonce); }
+
+@media (max-width: 520px) {
+  .accueil-scene { padding: 28px 12px; }
+  .accueil-accroche { transform: none; }
+  .accueil-page .plai-section { padding: 16px 14px 18px; box-shadow: 5px 6px 0 var(--ombre); }
+}
+@media print { .accueil-scene { display: none; } }

@@ -4,5 +4,6 @@ import App from './App.jsx';
 import './plai.css';
 import './habillages.css';
 import './jeu.css';
+import './accueil.css';
 
 createRoot(document.getElementById('racine')).render(<App />);

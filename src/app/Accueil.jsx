@@ -9,15 +9,24 @@ const MESSAGES_TACHE = {
 
 export default function Accueil({
   base = '/', tache, code, onCode, onTache, onCommencer, erreur, avertissements, persistant, lien, nbEssais, onExportJson, onExportCsv,
-  enLigne = false, lienPersonnel = false, etatTache = 'non', peutEnvoyer = false, enAttente = 0, onEnvoyerAttente, messageEnvoi = ''
+  packsListe = [], enLigne = false, lienPersonnel = false, etatTache = 'non', peutEnvoyer = false, enAttente = 0, onEnvoyerAttente, messageEnvoi = ''
 }) {
   const messageTache = enLigne ? MESSAGES_TACHE[etatTache] : null;
   const alerte = erreur || messageTache;
   return (
-    <>
+    <div className="accueil-page">
       <nav className="plai-nav">
         <span className="plai-nav-logo"><img className="logo-nav" src={`${base}plai-logo.jpg`} alt="PLAI" /> PhonoActif</span>
       </nav>
+      <div className="accueil-scene" aria-hidden="true">
+        <div className="accueil-scene-int">
+          <div className="accueil-disque"><span className="accueil-lettres">ma</span></div>
+          <div className="accueil-accroche">
+            <p>Poser les lettres, écouter le mot.</p>
+            <p>Un cube après l’autre, la voix lit ce qui est posé.</p>
+          </div>
+        </div>
+      </div>
       <main className="plai-container accueil">
         <section className="plai-section">
           <h1>Bonjour</h1>
@@ -45,8 +54,15 @@ export default function Accueil({
             <>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="pack">Pack de cartes</label>
-                <input id="pack" className="plai-input" type="text" placeholder="demo" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value.trim() })} />
-                <p className="aide">Nom du dossier du pack, dans « packs ». Il décide des mots proposés aux élèves.</p>
+                {packsListe.length > 0
+                  ? (
+                    <select id="pack" className="plai-input" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value })}>
+                      <option value="">Choisir un pack</option>
+                      {packsListe.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
+                    </select>
+                  )
+                  : <input id="pack" className="plai-input" type="text" placeholder="demo" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value.trim() })} />}
+                <p className="aide">Il décide des mots proposés à l’élève. Choisir un pack pour pouvoir commencer.</p>
               </div>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="mode">Cartes</label>
@@ -107,6 +123,6 @@ export default function Accueil({
         <p><img className="logo-pied" src={`${base}plai-logo.jpg`} alt="PLAI" /></p>
         <p>Pôle Liégeois d’Accompagnement vers une École Inclusive</p>
       </footer>
-    </>
+    </div>
   );
 }

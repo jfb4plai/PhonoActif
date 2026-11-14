@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Accueil élève : liste de packs au lieu d'un nom à taper ; style des lettres IA PLAI (papier crème, rayons, disque turquoise, cartes à ombre dure, sans police externe) ; non poussé", "N11"),
     ("2026-11-14", "Audit S1 : limite de débit + lien/QR personnel par élève (clé) écrits et testés en base simulée, migration APPLIQUÉE sur la base réelle (historique des 3 migrations précédentes régularisé) ; écran enseignant « Liens et QR-codes personnels »", "N22, N9, S5"),
     ("2026-11-13", "Création du logigramme statique puis interactif (25 étapes, 4 couloirs, fiches d'état)", "toutes"),
     ("2026-11-13", "Étape 2 : VOB validé par JF ; modèle xlsx pour l'enseignant ; principe de centralisation (JF et un autre admin)", "N2, N2b, N6, N6b, N8, S1"),
