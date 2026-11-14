@@ -234,4 +234,17 @@ describe('Mode A : lecture de ce qui est posé', () => {
     await commencer(m3.user);
     expect(document.querySelector('.aide-syllabes')).toBeNull();
   });
+
+  it('phrase audio d’aide : bouton seulement si la carte a une phrase, lit le fichier, sans afficher le texte', async () => {
+    const avecPhrase = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], phrase: 'Le chat dort sur le lit.', phraseAudio: 'audio/phrase-chat.mp3' }] };
+    const { user, jouerFichier } = monter(avecPhrase);
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: /Écouter le mot dans une phrase/ }));
+    expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/phrase-chat.mp3');
+    expect(screen.queryByText(/Le chat dort/)).toBeNull();
+    cleanup();
+    const sans = monter();
+    await commencer(sans.user);
+    expect(screen.queryByRole('button', { name: /dans une phrase/ })).toBeNull();
+  });
 });

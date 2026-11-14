@@ -78,6 +78,7 @@ export function ModeEmploi({ base = '/' }) {
             <li>Au bilan, « Envoyer mes résultats ». Ils sont aussi renvoyés automatiquement à l’ouverture suivante ou au retour de la connexion : sans réseau, ils restent sur l’appareil et partent plus tard.</li>
           </ol>
           <p><strong>Écoute par syllabes.</strong> Le bouton « Écouter par syllabes » (à côté de « Écouter ») lit les syllabes phonétiques l’une après l’autre, avec une pause de 500 ms et la dernière syllabe plus lente (75 %). Pendant la lecture, la syllabe dite est entourée dans la zone de construction, un trait marque la coupure et les lettres muettes sont grisées. La règle de coupure s’affiche sous la zone.</p>
+          <p><strong>Phrase d’aide.</strong> Pour les mots qui ne se dessinent pas (dans, avec, mais…), un pack peut proposer le bouton « Écouter une phrase » : la voix dit une courte phrase qui contient le mot. Le texte de la phrase n’est jamais affiché, parce qu’il contient le mot à écrire. Ces phrases sont écrites par l’enseignant, jamais par l’application.</p>
           <p>Il n’y a pas de bouton pour un mot d’une seule syllabe, ni dans un pack qui n’a pas encore ses syllabes (les 100 mots de P1 n’en ont que pour une partie des mots), ni si le réglage est sur « Jamais ». Les syllabes sont coupées sur les <em>sons</em> du mot, pas sur les lettres : « maison » se coupe « mè-zon ».</p>
         </section>
 

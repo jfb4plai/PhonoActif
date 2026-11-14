@@ -46,6 +46,16 @@ Source : règles recoupées avec la syllabation de Lexique 4.1 (`docs/rapport-le
 
 `node tools/ajouter_images_pack.js <pack> --dossier <dossier-d-images> [--dossier <autre>]` : pour chaque carte dont le fichier `<mot sans accent>.png` existe dans l'un des dossiers (le premier trouvé l'emporte), copie l'image dans `public/packs/<pack>/images/` et renseigne `image_sans_mot`, `source` et `licence` (par défaut : image générée par IA, Canva). Les cartes sans image ne changent pas ; relançable après chaque nouvelle image. Exemple du pack de 100 mots : `--dossier docs/images-canva/lot2 --dossier public/packs/p1-20-images/images` (25 mots illustrés sur 100).
 
+## Phrases d'aide pour les mots sans image
+
+Idée de JF (2026-11-13) : un mot qui ne se dessine pas reçoit une courte phrase **audio** qui le contient (« Le chat dort dans le panier »). Le bouton « Écouter une phrase » apparaît dans le jeu quand la carte a `phraseAudio` ; le texte n'est **jamais affiché** (il contient le mot). **Les phrases sont écrites par l'enseignant, jamais par une IA** (le tableau est livré vide).
+1. `python -I tools/phrases_pack_xlsx.py creer p1-100` : écrit `docs/phrases-p1-100-a-remplir.xlsx` (les mots du pack sans image, colonne « Phrase » vide).
+2. L'enseignant remplit la colonne « Phrase » (le mot doit y figurer tel quel ; 120 caractères au plus ; pas de chiffre ni de nom de personne).
+3. `python -I tools/phrases_pack_xlsx.py lire <tableau-rempli.xlsx> p1-100` : vérifie et écrit `data/packs-atelier/p1-100/phrases.json` (les phrases refusées sont listées avec la raison).
+4. `node tools/ajouter_phrases_pack.js p1-100` : liste les audios à produire (`phrases-a-generer.json`) et ajoute `phrase` au manifeste.
+5. `python -I essai-tts-ipa/generer-bibliotheque.py phrases p1-100` (clé Azure, par JF) : le mot cible est lu avec son IPA, le reste de la phrase par la voix Charline, en variante « neutre » (aucune insistance ; les variantes volume, emphase, complet de `essai-tts-ipa/essai-phrases.py` ne sont pas retenues tant que JF n'a pas choisi).
+6. Relancer `node tools/ajouter_phrases_pack.js p1-100` : `phraseAudio` n'est ajouté que pour les fichiers présents. Puis contrôle, commit, push.
+
 ## Pack « pour mon usage »
 
 - Le pack n'est proposé que dans l'espace enseignant du compte dont l'adresse est dans le tableau.

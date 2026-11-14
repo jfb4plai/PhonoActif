@@ -27,6 +27,7 @@ function validerPackLettres(manifest) {
     if (c.lettres.join('') !== c.mot) faute('les lettres ne recomposent pas le mot');
     if (!Array.isArray(c.cubes) || c.cubes.map(x => x.g).join('') !== c.mot) faute('les graphèmes ne recomposent pas le mot');
     if (!Array.isArray(c.etats) || c.etats.length !== c.lettres.length) faute('un état par lettre est attendu');
+    if (c.phraseAudio !== undefined && (typeof c.phraseAudio !== 'string' || !/^audio\/[^\/\\]+\.mp3$/.test(c.phraseAudio))) faute('phraseAudio doit être un fichier audio/….mp3');
   });
   return [];
 }

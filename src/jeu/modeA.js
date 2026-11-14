@@ -42,6 +42,9 @@ export function boutonSyllabesVisible(carte, regle, etat) {
   return true;
 }
 
+// Phrase audio d'aide (pour les mots sans image notamment) : fichier de la carte, ou null. Le texte de la phrase n'est jamais affiché (il contient le mot).
+export const phraseDeCarte = carte => (carte && typeof carte.phraseAudio === 'string' && carte.phraseAudio !== '' ? carte.phraseAudio : null);
+
 export const estPackLettres =pack => !!pack && pack.mode === 'lettres';
 
 // La carte vue par la logique de session : un cube par lettre. Le « son » ne sert qu'à la couleur (voyelle ou consonne).

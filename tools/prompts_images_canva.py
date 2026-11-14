@@ -92,12 +92,33 @@ MOTS_LOT2 = [
      "UNE seule rivière, large, en S doux, de haut en bas de la tuile verte ; deux bandes de papier bleu seulement ; ni rayures, ni lignes blanches, ni pont, ni bateau, ni arbre",
      "v2 de Claude 2026-11-14 : la v1 (ruban vert en S rayé de bleu) ne se lisait pas comme une rivière"),
 ]
-TOUS = MOTS + MOTS_LOT2   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 3 : autres mots du pack p1-100 qui se dessinent comme UN objet ou UN petit groupe, sans visage ni personne (proposition de Claude, 2026-11-14,
+# à valider par JF image par image ; rien n'entre dans un pack avant son accord). Écartés : tête, nez, yeux (visage), maman, papa, ami, garçon, père (personnes),
+# mots-outils, verbes, adjectifs de comparaison, notions de temps abstraites.
+MOTS_LOT3 = [
+    ("monde", "monde", "a globe of the Earth on a small stand", DE_PROFIL, "aucun", "teal #0f6e56, soft green #86b98f, light blue #93c5fd, deep blue #1d4ed8, cream",
+     " Blue oceans and a few simple green continents on a round globe, a small cream stand. No text, no lines of latitude, no stars.",
+     "UN globe ; océans bleus et quelques continents verts ; ni texte ni quadrillage", "choix de Claude : « monde » = le globe"),
+    ("deux", "deux", "two identical red apples side by side", DE_FACE, "aucun", "red-orange #f97316, soft green #86b98f, cream",
+     " Exactly two apples, the same size, each with one small green leaf. No numbers, no text.",
+     "EXACTEMENT deux pommes identiques, côte à côte ; aucun chiffre", "choix de Claude : « deux » = deux objets identiques"),
+    ("trois", "trois", "three identical red apples side by side", DE_FACE, "aucun", "red-orange #f97316, soft green #86b98f, cream",
+     " Exactly three apples, the same size, each with one small green leaf. No numbers, no text.",
+     "EXACTEMENT trois pommes identiques, côte à côte ; aucun chiffre", "choix de Claude : « trois » = trois objets identiques"),
+    ("jour", "jour", "a bright round sun with short straight rays", DE_FACE, "aucun", "warm yellow #fbbf24, orange #f97316, cream",
+     " One round yellow sun with eight short straight rays around it, no face, no clouds.",
+     "UN soleil rond avec des rayons courts ; ni visage ni nuage", "choix de Claude : « jour » = le soleil"),
+    ("fête", "fete", "a bunch of three party balloons tied together with strings", DE_FACE, "aucun", None,
+     " Three round balloons of three different palette colors, one string each gathered at the bottom. No confetti, no text.",
+     "UN bouquet de TROIS ballons ; ni confettis ni texte", "choix de Claude : « fête » = des ballons"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
     mot, _, obj, vue, yeux, palette, plus, _, _ = m
-    intro = "A group of" if obj.startswith("several") else "One single"   # un seul sujet, sauf un groupe voulu (neige)
+    intro = "A group of" if obj.startswith(("several", "two ", "three ")) else "One single"   # un seul sujet, sauf un groupe voulu (neige)
     return BLOC.format(fond=FOND, intro=intro, obj=obj, vue=vue, yeux=YEUX[yeux], palette=palette or PALETTE_STD, plus=plus)
 
 
