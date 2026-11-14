@@ -107,6 +107,19 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect(img.getAttribute('src')).toBe('/packs/essai-a/images/chat.png');
   });
 
+  it('mention IA : image générée par IA et voix de synthèse signalées', async () => {
+    const ia = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], image_sans_mot: 'images/chat.png', licence: 'Image générée par IA (Canva), usage scolaire' }] };
+    const { user } = monter(ia);
+    await commencer(user);
+    expect(screen.getByText(/Image créée par une IA\. Voix de synthèse \(Microsoft Azure\)\./)).toBeInTheDocument();
+  });
+
+  it('pack sans image : seule la mention de voix de synthèse', async () => {
+    const { user } = monter();
+    await commencer(user);
+    expect(screen.getByText('Voix de synthèse (Microsoft Azure).')).toBeInTheDocument();
+  });
+
   it('mot d’une seule syllabe : pas de bouton « Écouter par syllabes »', async () => {
     const { user } = monter();
     await commencer(user);

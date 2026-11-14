@@ -100,6 +100,10 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
       </div>
+      {(!imageAbsente && /\bIA\b/.test(carte.licence || '')) || lettres
+        ? <p className="mention-ia" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>
+            {!imageAbsente && /\bIA\b/.test(carte.licence || '') ? 'Image créée par une IA. ' : ''}{lettres ? 'Voix de synthèse (Microsoft Azure).' : ''}
+          </p> : null}
 
       <div className="zone" role="group" aria-label="Mot à construire">
         {carte.cubes.map((c, i) => {
