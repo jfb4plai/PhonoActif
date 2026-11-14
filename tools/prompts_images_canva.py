@@ -5,7 +5,12 @@ Source unique du script d'images (version 2, 2026-11-13). Écrit docs/images-can
   python -I tools/prompts_images_canva.py              # écrit le CSV
   python -I tools/prompts_images_canva.py ours rat     # affiche les prompts de ces mots (à coller dans Canva ou à envoyer au connecteur)
 
-Historique : v2.1 (2026-11-13) = fond bleu ciel pastel #cde7f7 pour toutes les images (décision de JF), à la place du fond crème.
+Historique : v2.2 (2026-11-14) = le fond ne peut pas être garanti par le prompt (Canva approche #cde7f7 avec un écart mesuré jusqu'à 26/255) :
+le prompt décrit maintenant le fond en valeurs exactes (hex et RVB, plat, sans dégradé), ET chaque image passe ensuite par
+`python -I tools/uniformiser_fond.py <dossier>` qui ramène le fond à #cde7f7 sans toucher au dessin (originaux gardés dans originaux-canva).
+En une commande (copie + uniformisation + planche) : `python -I tools/traiter_lot2.py <image.png> <nom>`.
+Contrôle : `python -I tools/uniformiser_fond.py --mesure <images>` doit donner un écart <= 3/255. La planche (tools/planche_lot2.py) l'affiche.
+v2.1 (2026-11-13) = fond bleu ciel pastel #cde7f7 pour toutes les images (décision de JF), à la place du fond crème.
 v1 = bloc du 2026-11-10 (essai-images-canva/script-generation-images.md). v2 ajoute : exceptions par mot (palette, précisions),
 yeux selon la vue (un point de profil, deux points de face), et vérifications obligatoires après génération."""
 import csv
@@ -25,9 +30,10 @@ BLOC = ("Children's picture book illustration in cut-paper collage style. {intro
         "Each piece is one flat uniform color, no patterns, no decoration, no face{yeux}. "
         "Palette strictly limited to: {palette}. "
         "Plain flat {fond}, no ground, no props, no text, no letters, no people.{plus}")
-FOND = "pastel light sky-blue background #cde7f7"   # v2.1 (2026-11-13, JF) : plus universel que le crème (ancien fond : cream #faf3e3)
+FOND = "pastel light sky-blue background, exactly the flat solid color #cde7f7 (RGB 205, 231, 247), perfectly uniform, no gradient, no vignette, no lighting variation"   # v2.1 (2026-11-13, JF) : plus universel que le crème ; v2.2 : valeurs exactes + uniformisation après coup
 
-VERIF_COMMUNES = "un seul sujet (un seul groupe pour la neige) ; aucun texte ni lettre ; aucun motif ni décoration ; aucun visage sauf les yeux prévus ; fond bleu ciel pastel uni (#cde7f7)"
+POST_TRAITEMENT = "python -I tools/uniformiser_fond.py <dossier> (ramène le fond à #cde7f7, garde l'original), puis python -I tools/uniformiser_fond.py --mesure <images> : écart <= 3/255"
+VERIF_COMMUNES = "un seul sujet (un seul groupe pour la neige) ; aucun texte ni lettre ; aucun motif ni décoration ; aucun visage sauf les yeux prévus ; fond bleu ciel pastel uni ; APRÈS uniformisation (tools/uniformiser_fond.py), fond mesuré à 3/255 ou moins de #cde7f7"
 VERIF_YEUX = {"aucun": "", "profil": " ; exactement UN œil (point sombre)", "face": " ; exactement DEUX yeux visibles (point sombre de chaque côté du visage)"}
 
 # mot, fichier, objet, vue, yeux, palette, précisions (ajoutées en fin de prompt), vérification propre au mot, motif de l'exception
@@ -102,9 +108,9 @@ def ecrire_csv():
     chemin = RACINE / "docs" / "images-canva-20-mots.csv"
     with chemin.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.writer(f, delimiter=";")
-        w.writerow(["mot", "fichier", "exception (décision de JF)", "à vérifier après génération", "prompt (bloc v2, tools/prompts_images_canva.py)"])
+        w.writerow(["mot", "fichier", "exception (décision de JF)", "à vérifier après génération", "prompt (bloc v2.2, tools/prompts_images_canva.py)", "après génération"])
         for m in MOTS:
-            w.writerow([m[0], m[1] + ".png", m[8], verification(m), prompt(m)])
+            w.writerow([m[0], m[1] + ".png", m[8], verification(m), prompt(m), POST_TRAITEMENT])
     return chemin
 
 

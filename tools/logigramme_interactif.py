@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Fonds du lot 2 uniformisés à #cde7f7 par tools/uniformiser_fond.py (écart 5 à 26 -> 1 sur 255, dessin inchangé, originaux conservés) ; script de génération v2.2 (fond en valeurs exactes + étape d'uniformisation + contrôle) ; planche du lot 2 générée par tools/planche_lot2.py (4 images sur 5) ; une seule commande tools/traiter_lot2.py pour toute nouvelle image ; les 20 images du pack non touchées", "N6"),
     ("2026-11-14", "Brouillon d'information aux représentants légaux (8 décisions DPO à trancher, non diffusable) ; déroulé de relecture pour la logopède (HTML à remplir, 17 liens de cartes vérifiés, 45 états + 8 découpes à noter) ; image « école » du lot 2 générée, « lit » en cours, non publiées", "N25, N6, N20"),
     ("2026-11-14", "Essai de bout en bout sur la base réelle (Chrome, compte de JF, classe « essai ») : code de test, tâche « syllabes sur difficulté », lien personnel, 4 essais envoyés et lus côté enseignant ; clé fausse/absente/d'un autre élève refusée ; ancienne fonction absente ; code et tâche de test retirés/révoquée. Son non écouté", "N22, N10, S5, N20"),
     ("2026-11-14", "Pack de 100 mots : les 27 mots de deux syllabes ou plus ont leurs syllabes (21 fichiers audio ajoutés, 0 généré par Azure : tous déjà dans la bibliothèque) ; rendu sonore non écouté", "N20, N8"),
