@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Liste des classes : bouton « Supprimer » en face de chaque classe (responsable seulement) ; avertissement chiffré (codes, essais, tâches, invités, définitif) puis confirmation explicite ou annulation ; 2 tests ; vérification visuelle sur une copie de la mise en page ; non commité", "N9"),
     ("2026-11-14", "Retours de JF sur l'interface : (1) case « Exiger les accents » alignée sur son libellé (CSS espace enseignant) ; (2) liens : « Créer la tâche et les liens des élèves » affiche aussitôt les liens et QR personnels sous le bouton, lien général replié, plus de lien brut dans la liste des tâches ; (3) écoute par syllabes : les césures et la règle restent après la lecture, bouton « Masquer les césures » ; contrôlé dans le navigateur local pour (1) et (3), (2) par tests seulement ; non commité", "N9, N10, N20"),
     ("2026-11-14", "« fête » : v1 (trois ballons, nœud rose) reçue et gardée dans lot3/v1 ; JF demande confettis et notes de musique : v2 = retouche de la v1 (image de référence) avec ~8 confettis et exactement 3 notes ; relancée par la tâche récurrente", "N6"),
     ("2026-11-14", "« jour » v1 (soleil) refusée par JF (se lit « soleil ») : archivée dans lot3/v1 ; v2 = page de calendrier qui tombe (idée de JF), sans chiffre ni lettre ; relancée par la tâche récurrente", "N6"),

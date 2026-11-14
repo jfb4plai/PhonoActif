@@ -65,7 +65,7 @@ describe('espace enseignant', () => {
     expect(await screen.findByRole('heading', { name: '5P B' })).toBeTruthy();
     expect(screen.getByLabelText('Codes des élèves')).toBeTruthy();
     await userEvent.click(screen.getByRole('button', { name: 'Retour aux classes' }));
-    expect(await screen.findByRole('button', { name: /5P B/ })).toBeTruthy();
+    expect(await screen.findByRole('button', { name: '5P B' })).toBeTruthy();
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
     const champ = await screen.findByLabelText('Codes des élèves');
     expect(champ.getAttribute('placeholder')).toBe('E01, E02, E03');
@@ -190,6 +190,37 @@ describe('espace enseignant', () => {
     expect(note.textContent).toMatch(/enseignants de la classe/);
     expect(note.textContent).toMatch(/Supabase/);
     expect(note.textContent).toMatch(/purge annuelle.*pas encore en service/);
+  });
+
+  it('liste des classes : un bouton Supprimer par classe (responsable seulement), avertissement chiffré puis confirmation', async () => {
+    const tables = { ...classeTables('master'),
+      phono_students: [{ id: 's1', class_id: 'c1', code: 'E01' }, { id: 's2', class_id: 'c1', code: 'E02' }],
+      phono_attempts: [{ id: 'a1', class_id: 'c1', student_id: 's1', task_id: 't1', attempt: 1, correct: true, positions: [], played_at: '2026-11-11T10:00:00Z' }],
+      phono_tasks: [{ id: 't1', class_id: 'c1', token: 'a1'.repeat(12), pack: 'demo', mode_mot: 'sans', habillage: 'album', nb_intrus: 3, exiger_accents: false, revoked: false, created_at: '2026-11-11T10:00:00Z' }] };
+    const client = avecAuth(fauxClient({ tables }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: 'Supprimer la classe 3P A' }));
+    const alerte = await screen.findByRole('alertdialog');
+    expect(within(alerte).getByText(/Supprimer la classe « 3P A » \?/)).toBeInTheDocument();
+    expect(within(alerte).getByText(/rien ne pourra être récupéré/)).toBeInTheDocument();
+    expect(within(alerte).getByText('2 codes d’élève')).toBeInTheDocument();
+    expect(within(alerte).getByText('1 essai enregistré')).toBeInTheDocument();
+    expect(within(alerte).getByText(/1 tâche, dont les liens/)).toBeInTheDocument();
+    expect(client.tables.phono_classes.length).toBe(1);          // rien n'est supprimé avant la confirmation
+    await userEvent.click(within(alerte).getByRole('button', { name: 'Annuler' }));
+    expect(screen.queryByRole('alertdialog')).toBeNull();
+    expect(client.tables.phono_classes.length).toBe(1);
+    await userEvent.click(screen.getByRole('button', { name: 'Supprimer la classe 3P A' }));
+    await userEvent.click(within(await screen.findByRole('alertdialog')).getByRole('button', { name: 'Oui, supprimer définitivement la classe' }));
+    await waitFor(() => expect(client.tables.phono_classes.length).toBe(0));
+    expect(await screen.findByText(/La classe « 3P A » est supprimée/)).toBeInTheDocument();
+  });
+
+  it('liste des classes : pas de bouton Supprimer pour une classe où l’on est invité', async () => {
+    const client = avecAuth(fauxClient({ role: 'invite', tables: classeTables('invite') }), { session: { user: USER } });
+    monter(client);
+    await screen.findByRole('button', { name: '3P A' });
+    expect(screen.queryByRole('button', { name: /Supprimer la classe 3P A/ })).toBeNull();
   });
 
   it('invité : ni invitation, ni suppression, ni retrait d’élève', async () => {

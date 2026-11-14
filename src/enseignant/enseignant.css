@@ -8,6 +8,10 @@
 .ens .principal { font-weight: bold; padding: 0.7rem 1.2rem; }
 .ens details { margin: 0.6rem 0; }
 .ens summary { cursor: pointer; font-weight: bold; }
+.ens .danger { background: #fff; color: #9c1c0c; border: 2px solid #9c1c0c; font-weight: bold; margin-left: 0.75rem; }
+.ens-alerte { background: #fff3f0; border: 2px solid #9c1c0c; border-radius: 6px; padding: 0.8rem 1rem; margin: 0.8rem 0; }
+.ens-alerte h2 { margin: 0 0 0.4rem; font-size: 1.2rem; }
+.ens-alerte .danger { background: #9c1c0c; color: #fff; margin-left: 0; }
 .ens .aide { font-size: 0.9rem; color: #444; margin: 0.25rem 0 0; }
 .ens button { font: inherit; padding: 0.5rem 0.9rem; margin: 0.5rem 0.5rem 0 0; cursor: pointer; }
 .ens table { width: 100%; border-collapse: collapse; }

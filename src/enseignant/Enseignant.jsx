@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { configurationSupabase } from '../lib/supabase.js';
 import { packsVisibles, empreinteCourriel } from '../core/packAtelier.js';
-import { creerClasse, lister, supprimerClasse } from './api.js';
+import { creerClasse, lister, supprimerClasse, resultats, listerTaches } from './api.js';
 import Connexion from './Connexion.jsx';
 import Classe from './Classe.jsx';
 import './enseignant.css';
@@ -18,6 +18,7 @@ export default function Enseignant({ deps = {} }) {
   const [utilisateur, setUtilisateur] = useState(null);
   const [pret, setPret] = useState(false);
   const [classes, setClasses] = useState([]);
+  const [aSupprimer, setASupprimer] = useState(null); // { classe, nbEleves, nbEssais, nbTaches } : avertissement en attente de confirmation
   const [courante, setCourante] = useState(null);
   const [nom, setNom] = useState('');
   const [message, setMessage] = useState('');
@@ -70,6 +71,24 @@ export default function Enseignant({ deps = {} }) {
     } catch (e) { setMessage(e.message); }
   }
 
+  // Suppression depuis la liste : d'abord un avertissement chiffré (codes, essais, tâches), puis une confirmation explicite
+  async function demanderSuppression(c) {
+    setMessage('');
+    try {
+      const lignes = await resultats(client, c.id);
+      const taches = await listerTaches(client, c.id, base);
+      setASupprimer({ classe: c, nbEleves: lignes.length, nbEssais: lignes.reduce((t, l) => t + l.essais, 0), nbTaches: taches.length });
+    } catch (e) { setMessage(e.message); }
+  }
+  async function confirmerSuppression() {
+    const c = aSupprimer.classe;
+    try {
+      await supprimerClasse(client, c.id);
+      setASupprimer(null); await charger();
+      setMessage(`La classe « ${c.name} » est supprimée.`);
+    } catch (e) { setMessage(e.message); }
+  }
+
   async function supprimer() {
     if (!window.confirm(`Supprimer la classe « ${courante.name} », ses élèves et leurs résultats ? Cette action est définitive.`)) return;
     try { await supprimerClasse(client, courante.id); setCourante(null); await charger(); } catch (e) { setMessage(e.message); }
@@ -89,9 +108,26 @@ export default function Enseignant({ deps = {} }) {
           {message && <p role="status" className="ens-message">{message}</p>}
           <ul>
             {classes.map(c => (
-              <li key={c.id}><button type="button" onClick={() => setCourante(c)}>{c.name}</button> {c.role === 'master' ? '' : '(invité)'}</li>
+              <li key={c.id}>
+                <button type="button" onClick={() => setCourante(c)}>{c.name}</button> {c.role === 'master' ? '' : '(invité)'}
+                {c.role === 'master' && <button type="button" className="danger" aria-label={`Supprimer la classe ${c.name}`} onClick={() => demanderSuppression(c)}>Supprimer</button>}
+              </li>
             ))}
           </ul>
+          {aSupprimer && (
+            <div role="alertdialog" aria-labelledby="ens-supp-titre" className="ens-alerte">
+              <h2 id="ens-supp-titre">Supprimer la classe « {aSupprimer.classe.name} » ?</h2>
+              <p><strong>Cette action est définitive : rien ne pourra être récupéré.</strong> Seront supprimés :</p>
+              <ul>
+                <li>{aSupprimer.nbEleves} code{aSupprimer.nbEleves > 1 ? 's' : ''} d’élève</li>
+                <li>{aSupprimer.nbEssais} essai{aSupprimer.nbEssais > 1 ? 's' : ''} enregistré{aSupprimer.nbEssais > 1 ? 's' : ''}</li>
+                <li>{aSupprimer.nbTaches} tâche{aSupprimer.nbTaches > 1 ? 's' : ''}, dont les liens et QR-codes déjà remis aux élèves cesseront de fonctionner</li>
+              </ul>
+              <p>Les enseignants invités dans cette classe perdront aussi l’accès. Si vous voulez garder les résultats, ouvrez la classe et notez-les avant de supprimer.</p>
+              <button type="button" className="danger" onClick={confirmerSuppression}>Oui, supprimer définitivement la classe</button>
+              <button type="button" onClick={() => setASupprimer(null)}>Annuler</button>
+            </div>
+          )}
           {classes.length === 0 ? <p>Aucune classe pour l’instant.</p> : <p className="aide">Cliquer sur le nom d’une classe pour l’ouvrir : élèves, tâches, résultats.</p>}
           <label htmlFor="ens-nom">Nom de la classe</label>
           <input id="ens-nom" value={nom} placeholder="3P A, école de Fléron" onChange={e => setNom(e.target.value)} />
