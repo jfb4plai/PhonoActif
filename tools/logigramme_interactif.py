@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Pack de 100 mots : les 27 mots de deux syllabes ou plus ont leurs syllabes (21 fichiers audio ajoutés, 0 généré par Azure : tous déjà dans la bibliothèque) ; rendu sonore non écouté", "N20, N8"),
     ("2026-11-14", "Écoute par syllabes : réglage de tâche (jamais / toujours / seulement quand l'élève a du mal) dans l'espace enseignant et le lien rapide, phrase explicative sous le bouton, mode d'emploi ; outil d'ajout des syllabes au pack de 100 mots (7 mots sur 27 faits, 20 attendent 21 fichiers audio) ; migration APPLIQUÉE sur la base réelle (sans erreur, non essayée sur une tâche réelle) ; poussé", "N20, N8, N10"),
     ("2026-11-14", "Vraie page d'accueil du site (deux portes élève/enseignant), barre de navigation, mode d'emploi enseignant en 7 étapes, page Gestion des données, page À propos, pied de page PLAI avec contact ; lien rapide sans compte déplacé sur #/lien ; non poussé", "N10, N11, N25"),
     ("2026-11-14", "Lot 2 d'images du pack de 100 mots : 1 image générée (jardin, à valider par JF, non publiée) ; 4 autres bloquées par le plafond Canva (quota_cooldown) ; QR-code automatique sur l'accueil", "N6, N11"),
