@@ -1,0 +1,849 @@
+{
+ "nom": "p1-illustre-3",
+ "mode": "lettres",
+ "titre": "12 mots de P1 avec images, suite 2 (papier découpé)",
+ "visibilite": "commun",
+ "source": "tableau rempli par un enseignant (modèle xlsx), mots filtrés sans IA",
+ "cartes": [
+  {
+   "id": "verre",
+   "mot": "verre",
+   "lettres": [
+    "v",
+    "e",
+    "r",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "v",
+     "son": "v"
+    },
+    {
+     "g": "e",
+     "son": "e_ouvert"
+    },
+    {
+     "g": "rr",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "v",
+     "fichier": "audio/76_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ve",
+     "fichier": "audio/76_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ver",
+     "fichier": "audio/76_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "verr",
+     "fichier": "audio/76_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "verre",
+     "fichier": "audio/76_25b_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "vɛʁ",
+     "fichier": "audio/76_25b_281_-30.mp3",
+     "cubes": 4
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/verre.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "nid",
+   "mot": "nid",
+   "lettres": [
+    "n",
+    "i",
+    "d"
+   ],
+   "cubes": [
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "d",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "n",
+     "fichier": "audio/6e_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ni",
+     "fichier": "audio/6e_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "nid",
+     "fichier": "audio/6e_69_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ni",
+     "fichier": "audio/6e_69_-30.mp3",
+     "cubes": 3
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/nid.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "sapin",
+   "mot": "sapin",
+   "lettres": [
+    "s",
+    "a",
+    "p",
+    "i",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "s",
+     "son": "s"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "in",
+     "son": "in"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "s",
+     "fichier": "audio/73_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sa",
+     "fichier": "audio/73_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sap",
+     "fichier": "audio/73_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sapi",
+     "fichier": "audio/73_61_70_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "sapin",
+     "fichier": "audio/73_61_70_25b_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "sa",
+     "fichier": "audio/73_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "pɛ̃",
+     "fichier": "audio/70_25b_303_-30.mp3",
+     "cubes": 2
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/sapin.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "ballon",
+   "mot": "ballon",
+   "lettres": [
+    "b",
+    "a",
+    "l",
+    "l",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "ll",
+     "son": "l"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "b",
+     "fichier": "audio/62_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ba",
+     "fichier": "audio/62_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bal",
+     "fichier": "audio/62_61_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ball",
+     "fichier": "audio/62_61_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ballo",
+     "fichier": "audio/62_61_6c_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ballon",
+     "fichier": "audio/62_61_6c_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ba",
+     "fichier": "audio/62_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "lɔ̃",
+     "fichier": "audio/6c_254_303_-30.mp3",
+     "cubes": 2
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/ballon.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "fleur",
+   "mot": "fleur",
+   "lettres": [
+    "f",
+    "l",
+    "e",
+    "u",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "f",
+     "son": "f"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "eu",
+     "son": "eu_ouvert"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "f",
+     "fichier": "audio/66_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fl",
+     "fichier": "audio/66_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fle",
+     "fichier": "audio/66_6c_259_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fleu",
+     "fichier": "audio/66_6c_f8_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "fleur",
+     "fichier": "audio/66_6c_153_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "flœʁ",
+     "fichier": "audio/66_6c_153_281_-30.mp3",
+     "cubes": 4
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/fleur.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "lion",
+   "mot": "lion",
+   "lettres": [
+    "l",
+    "i",
+    "o",
+    "n"
+   ],
+   "cubes": [
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "on",
+     "son": "on"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "l",
+     "fichier": "audio/6c_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "li",
+     "fichier": "audio/6c_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lio",
+     "fichier": "audio/6c_6a_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "lion",
+     "fichier": "audio/6c_6a_254_303_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ljɔ̃",
+     "fichier": "audio/6c_6a_254_303_-30.mp3",
+     "cubes": 3
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/lion.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "panier",
+   "mot": "panier",
+   "lettres": [
+    "p",
+    "a",
+    "n",
+    "i",
+    "e",
+    "r"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "i",
+     "son": "yod"
+    },
+    {
+     "g": "er",
+     "son": "e_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pan",
+     "fichier": "audio/70_251_303_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pani",
+     "fichier": "audio/70_61_6e_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "panie",
+     "fichier": "audio/70_61_6e_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "panier",
+     "fichier": "audio/70_61_6e_6a_65_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "nje",
+     "fichier": "audio/6e_6a_65_-30.mp3",
+     "cubes": 3
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/panier.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "bateau",
+   "mot": "bateau",
+   "lettres": [
+    "b",
+    "a",
+    "t",
+    "e",
+    "a",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "b",
+     "son": "b"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "eau",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "b",
+     "fichier": "audio/62_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ba",
+     "fichier": "audio/62_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bat",
+     "fichier": "audio/62_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bate",
+     "fichier": "audio/62_61_74_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "batea",
+     "fichier": "audio/62_61_74_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "bateau",
+     "fichier": "audio/62_61_74_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ba",
+     "fichier": "audio/62_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "to",
+     "fichier": "audio/74_6f_-30.mp3",
+     "cubes": 2
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/bateau.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "guitare",
+   "mot": "guitare",
+   "lettres": [
+    "g",
+    "u",
+    "i",
+    "t",
+    "a",
+    "r",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "gu",
+     "son": "g"
+    },
+    {
+     "g": "i",
+     "son": "i"
+    },
+    {
+     "g": "t",
+     "son": "t"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "r",
+     "son": "r"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "g",
+     "fichier": "audio/261_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gu",
+     "fichier": "audio/261_79_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "gui",
+     "fichier": "audio/261_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "guit",
+     "fichier": "audio/261_69_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "guita",
+     "fichier": "audio/261_69_74_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "guitar",
+     "fichier": "audio/261_69_74_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "guitare",
+     "fichier": "audio/261_69_74_61_281_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ɡi",
+     "fichier": "audio/261_69_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "taʁ",
+     "fichier": "audio/74_61_281_-30.mp3",
+     "cubes": 4
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/guitare.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "cadeau",
+   "mot": "cadeau",
+   "lettres": [
+    "c",
+    "a",
+    "d",
+    "e",
+    "a",
+    "u"
+   ],
+   "cubes": [
+    {
+     "g": "c",
+     "son": "k"
+    },
+    {
+     "g": "a",
+     "son": "a"
+    },
+    {
+     "g": "d",
+     "son": "d"
+    },
+    {
+     "g": "eau",
+     "son": "o_ferme"
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "c",
+     "fichier": "audio/6b_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ca",
+     "fichier": "audio/6b_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cad",
+     "fichier": "audio/6b_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cade",
+     "fichier": "audio/6b_61_64_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cadea",
+     "fichier": "audio/6b_61_64_61_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "cadeau",
+     "fichier": "audio/6b_61_64_6f_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ka",
+     "fichier": "audio/6b_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "do",
+     "fichier": "audio/64_6f_-30.mp3",
+     "cubes": 2
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/cadeau.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "ane",
+   "mot": "âne",
+   "lettres": [
+    "â",
+    "n",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "â",
+     "son": "a"
+    },
+    {
+     "g": "n",
+     "son": "n"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "â",
+     "fichier": "audio/61_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "ân",
+     "fichier": "audio/61_6e_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "âne",
+     "fichier": "audio/61_6e_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "an",
+     "fichier": "audio/61_6e_-30.mp3",
+     "cubes": 3
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/ane.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  },
+  {
+   "id": "poule",
+   "mot": "poule",
+   "lettres": [
+    "p",
+    "o",
+    "u",
+    "l",
+    "e"
+   ],
+   "cubes": [
+    {
+     "g": "p",
+     "son": "p"
+    },
+    {
+     "g": "ou",
+     "son": "ou"
+    },
+    {
+     "g": "l",
+     "son": "l"
+    },
+    {
+     "g": "e",
+     "son": ""
+    }
+   ],
+   "etats": [
+    {
+     "lettres": "p",
+     "fichier": "audio/70_0.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "po",
+     "fichier": "audio/70_6f_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "pou",
+     "fichier": "audio/70_75_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poul",
+     "fichier": "audio/70_75_6c_-30.mp3",
+     "ecartAvecRegles": false
+    },
+    {
+     "lettres": "poule",
+     "fichier": "audio/70_75_6c_-30.mp3",
+     "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pul",
+     "fichier": "audio/70_75_6c_-30.mp3",
+     "cubes": 4
+    }
+   ],
+   "niveau": "P1",
+   "image_sans_mot": "images/poule.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+  }
+ ]
+}

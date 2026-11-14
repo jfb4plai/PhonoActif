@@ -33,7 +33,7 @@ BLOC = ("Children's picture book illustration in cut-paper collage style. {intro
 FOND = "pastel light sky-blue background, exactly the flat solid color #cde7f7 (RGB 205, 231, 247), perfectly uniform, no gradient, no vignette, no lighting variation"   # v2.1 (2026-11-13, JF) : plus universel que le crème ; v2.2 : valeurs exactes + uniformisation après coup
 
 POST_TRAITEMENT = "python -I tools/uniformiser_fond.py <dossier> (ramène le fond à #cde7f7, garde l'original), puis python -I tools/uniformiser_fond.py --mesure <images> : écart <= 3/255"
-VERIF_COMMUNES = "un seul sujet (un seul groupe pour la neige) ; aucun texte ni lettre ; aucun motif ni décoration ; aucun visage sauf les yeux prévus ; fond bleu ciel pastel uni ; APRÈS uniformisation (tools/uniformiser_fond.py), fond mesuré à 3/255 ou moins de #cde7f7"
+VERIF_COMMUNES = "QUESTION À SE POSER POUR CHAQUE IMAGE (JF 2026-11-14) : que voit un enfant de 6 ans ? (le mot attendu, ou autre chose : pot, pizza, soleil, liquide vert…) ; un seul sujet (un seul groupe pour la neige) ; aucun texte ni lettre ; aucun motif ni décoration ; aucun visage sauf les yeux prévus ; fond bleu ciel pastel uni ; APRÈS uniformisation (tools/uniformiser_fond.py), fond mesuré à 3/255 ou moins de #cde7f7"
 VERIF_YEUX = {"aucun": "", "profil": " ; exactement UN œil (point sombre)", "face": " ; exactement DEUX yeux visibles (point sombre de chaque côté du visage)"}
 
 # mot, fichier, objet, vue, yeux, palette, précisions (ajoutées en fin de prompt), vérification propre au mot, motif de l'exception
@@ -179,8 +179,51 @@ MOTS_LOT4 = [
      " A simple passenger plane, cream body, orange tail, small round windows. No clouds, no people, no text.",
      "UN avion ; ni nuage ni personne ni texte", "choix de Claude : avion de ligne simple"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 5 : mots de la liste P1 de JF (rangs 259 à 325, noms communs passant le filtre déterministe de tools/mode_a_mots.js, absents des packs existants) qui se dessinent comme UN objet ou UN animal.
+# Choix des mots à illustrer = proposition de Claude (2026-11-14), à valider par JF image par image ; mots eux-mêmes : liste de JF. Écartés : boîte (se confond avec cadeau), musique, ciel, bleu (pas un objet).
+MOTS_LOT5 = [
+    ("verre", "verre", "a tall drinking glass, half full of water", DE_FACE, "aucun", "pale light blue #bfdbfe, medium blue #3b82f6, cream",
+     " Straight-sided glass in very pale light blue paper with a cream rim, filled to half height with water in a clear medium blue (#3b82f6), the water must be blue, never green. No straw, no bottle, no cup handle.",
+     "UN verre droit à moitié plein d'EAU BLEUE (jamais verte) ; ni paille ni anse ni bouteille", "JF 2026-11-14 : eau bleue (v1 : eau vert foncé, refusée, gardée dans lot5/v1)"),
+    ("nid", "nid", "a natural bird's nest made of loose, irregular twigs, low and shallow, holding three small eggs", DE_FACE, "aucun", "warm brown #a16207, golden ochre #e3a21a, cream, soft green #86b98f",
+     " The nest is a shallow, uneven tangle of thin twig strips in brown and ochre, crossing in all directions, with a few twig ends sticking out of the edge; the outline is irregular and slightly flattened, not a round pot, not a basket, not a bowl. Three small plain cream eggs rest in the shallow hollow, visible from slightly above. No bird, no branch, no leaves, no handle.",
+     "UN nid NATUREL (brindilles croisées, irrégulier, peu profond, bouts de brindilles qui dépassent), trois œufs ; PAS un pot, un panier ni un bol ; ni oiseau ni branche",
+     "JF 2026-11-14 : « on dirait un pot de cuisine contenant des œufs » (v1 : bol rond tressé orange, gardé dans lot5/v1)"),
+    ("sapin", "sapin", "a fir tree made of three stacked triangular tiers on a short trunk", DE_FACE, "aucun", "teal #0f6e56, soft green #86b98f, warm yellow #fbbf24",
+     " Teal and soft green tiers, a short warm yellow trunk. No star, no balls, no lights, no gifts, no snow.",
+     "UN sapin à trois étages ; ni étoile ni boules ni cadeaux ni neige", "choix de Claude : sapin nu"),
+    ("ballon", "ballon", "a classic football (soccer ball), a round sphere with soft three-dimensional roundness", DE_FACE, "aucun", "cream, teal #0f6e56",
+     " A cream sphere with one dark teal pentagon at the center and five dark teal half-pentagons around the edge, as on a real football, thin cream seams between them. It must clearly look round like a ball, not like a flat disc or a plate. A football, not a balloon and not a planet: no string, no knot, no stripes, no bounce lines.",
+     "UN ballon de football (sphère crème, pentagone sombre au centre et cinq autres sur le pourtour) ; PAS un disque plat, une assiette ni une planète ; ni ficelle ni rayures",
+     "JF 2026-11-14 : « je ne vois pas un ballon logique » (v1 : disque plat à trois bandes orange, crème et vert, lu comme une assiette ; gardé dans lot5/v1)"),
+    ("fleur", "fleur", "a single flower with a round yellow center, five rounded pink petals and a green stem with two leaves", DE_FACE, "aucun", None,
+     " One flower only, upright. No bee, no pot, no ground.",
+     "UNE fleur à cinq pétales roses, cœur jaune, tige et deux feuilles ; ni abeille ni pot", "choix de Claude : fleur simple"),
+    ("lion", "lion", "a lion standing, with a big round mane and a tail with a tuft", DE_PROFIL, "profil", "warm yellow #fbbf24, orange #f97316, cream, teal #0f6e56",
+     " A lion, not a cat: a big round orange mane around the face, a warm yellow body, a long tail ending in an orange tuft.",
+     "se lit comme un lion (grande crinière ronde, queue à touffe), pas un chat", "choix de Claude : lion"),
+    ("panier", "panier", "an empty wicker basket with one tall arched handle", DE_FACE, "aucun", "warm yellow #fbbf24, golden ochre #e3a21a, cream",
+     " A shallow basket that is wider at the top than at the bottom, made of thin straw-colored strips woven crosswise in warm yellow and golden ochre, with one tall arched handle clearly rising above the rim like a shopping or picnic basket. Not a pot, not a bowl, not a bucket, not a vase. Empty: no fruit, no flowers, no cloth.",
+     "UN panier d'osier vide, plus large en haut qu'en bas, avec UNE grande anse arquée bien visible ; PAS un pot, un bol, un seau ni un vase ; ni fruit ni fleur ni tissu", "choix de Claude : panier d'osier (prompt renforcé d'emblée après le « pot de cuisine » du nid, JF 2026-11-14)"),
+    ("bateau", "bateau", "a small sailing boat with a hull and one triangular sail on a mast", DE_PROFIL, "aucun", "teal #0f6e56, cream, orange #f97316, warm yellow #fbbf24",
+     " A teal hull, a cream triangular sail, an orange small flag at the top of the mast. No sea, no waves, no people.",
+     "UN petit voilier (coque, un mât, une voile triangulaire) ; ni mer ni vagues ni personne", "choix de Claude : voilier simple"),
+    ("guitare", "guitare", "an acoustic guitar standing upright, with a round body, a sound hole and a long neck", DE_FACE, "aucun", "orange #f97316, warm yellow #fbbf24, cream, teal #0f6e56",
+     " An orange guitar body with the classic figure-eight shape (a larger lower lobe, a smaller upper lobe and a narrow waist between them), a dark teal round sound hole in the middle, a long cream neck going straight up with a warm yellow head with small round tuners. A guitar, not a racket, not a banjo, not a violin. No strings drawn, no pick, no person.",
+     "UNE guitare droite (corps rond, rosace, long manche) ; ni cordes dessinées ni personne", "choix de Claude : guitare"),
+    ("cadeau", "cadeau", "a gift box with a flat lid and a ribbon tied in a bow on top", DE_FACE, "aucun", "soft pink #f4a9b0, warm yellow #fbbf24, cream",
+     " A pink box with a slightly wider pink lid, a warm yellow ribbon band going straight down the front of the box and one warm yellow bow on top. Only three colors: pink, warm yellow and cream. The ribbon is one plain continuous yellow band: no square, no patch, no knot piece and no orange anywhere, nothing where the ribbon meets the lid except the bow. No text, no tag, no wrapping pattern.",
+     "UN paquet cadeau rose, ruban jaune et nœud ; AUCUN carré ni pièce d'une autre couleur, AUCUN orange ; ni texte ni étiquette ni motif",
+     "JF 2026-11-14 : « c'est quoi le carré orange ? » (v1 : rectangle orange au croisement des rubans, gardé dans lot5/v1)"),
+    ("âne", "ane", "a donkey standing, with two very long upright ears and a short mane", DE_PROFIL, "profil", "soft grey #a8a29e, dark grey #57534e, cream, soft pink #f4a9b0",
+     " A grey donkey, not a horse: a small sturdy grey body, a cream muzzle and belly, a short dark grey mane, very long upright ears with a soft pink inside, a thin tail with a small dark grey tuft. No saddle, no cart.",
+     "se lit comme un âne GRIS (oreilles très longues, petit et trapu, museau crème), pas un cheval ni un animal vert", "choix de Claude : âne gris (prompt corrigé d'emblée : couleur cohérente avec l'animal)"),
+    ("poule", "poule", "a hen standing, with a round body, a small orange comb and a short yellow beak", DE_PROFIL, "profil", "cream, orange #f97316, warm yellow #fbbf24, warm brown #a16207",
+     " A cream hen with a warm brown wing and warm brown tail feathers (no green, no blue), a small orange comb on the head, one small orange wattle, a short warm yellow beak, thin yellow legs. A hen, not a duck. No eggs, no chicks.",
+     "UNE poule (crête et barbillon orange, bec court) ; pas un canard ; ni œuf ni poussin", "choix de Claude : poule"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
