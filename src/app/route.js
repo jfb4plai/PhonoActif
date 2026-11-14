@@ -32,6 +32,8 @@ export function lireAdresse(hash) {
   const [chemin, ...reste] = h.slice(2).split('?');
   const requete = reste.join('?');
   const morceaux = chemin.split('/');
+  const PAGES = { eleve: 'eleve', lien: 'lien', 'mode-d-emploi': 'mode_emploi', donnees: 'donnees', apropos: 'apropos' };
+  if (morceaux.length === 1 && Object.hasOwn(PAGES, morceaux[0])) return { ecran: PAGES[morceaux[0]], tache: tacheDepuisRequete(requete) };
   try {
     if (morceaux[0] === 'jeu' && morceaux.length === 1) return { ecran: 'jeu', tache: tacheDepuisRequete(requete) };
     if (morceaux[0] === 'enseignant' && morceaux.length === 1) return { ecran: 'enseignant' };

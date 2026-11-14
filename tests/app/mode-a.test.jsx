@@ -172,11 +172,22 @@ describe('Mode A : lecture de ce qui est posé', () => {
 
   it('accueil sans lien : les packs publiés sont proposés dans une liste (packs personnels exclus), plus de nom à taper', async () => {
     const index = [{ id: 'p1-20-images', label: '20 mots de P1 avec images', visibilite: 'commun' }, { id: 'demo', label: 'Pack d’essai' }, { id: 'perso', label: 'Pack personnel', visibilite: 'prive' }];
-    const deps = { fetch: reponse(index), stockage: stockageMemoire(), jouerSons: vi.fn(), rng: () => 0.5, maintenant: () => '2026-11-14T10:00:00.000Z', hash: '', base: '/' };
+    const deps = { fetch: reponse(index), stockage: stockageMemoire(), jouerSons: vi.fn(), rng: () => 0.5, maintenant: () => '2026-11-14T10:00:00.000Z', hash: '#/eleve', base: '/' };
     render(<App deps={deps} />);
     await screen.findByRole('option', { name: 'Pack d’essai' });
     const liste = screen.getByLabelText('Pack de cartes');
     expect(liste.tagName).toBe('SELECT');
     expect([...liste.options].map(o => o.textContent)).toEqual(['Choisir un pack', '20 mots de P1 avec images', 'Pack d’essai']);
+  });
+
+  it('accueil : un pack choisi donne un lien et son QR-code, sans clic', async () => {
+    const index = [{ id: 'p1-20-images', label: '20 mots de P1 avec images', visibilite: 'commun' }];
+    const deps = { fetch: reponse(index), stockage: stockageMemoire(), jouerSons: vi.fn(), rng: () => 0.5, maintenant: () => '2026-11-14T10:00:00.000Z', hash: '#/lien', base: '/' };
+    render(<App deps={deps} />);
+    await screen.findByRole('option', { name: '20 mots de P1 avec images' });
+    expect(screen.queryByAltText('QR-code du lien de la tâche')).toBeNull();
+    await userEvent.setup().selectOptions(screen.getByLabelText('Pack de cartes'), 'p1-20-images');
+    const img = await screen.findByAltText('QR-code du lien de la tâche');
+    expect(img.getAttribute('src')).toMatch(/^data:image\/png;base64,/);
   });
 });

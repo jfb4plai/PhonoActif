@@ -51,7 +51,7 @@ describe('Accueil', () => {
   });
 
   it('le lien de tâche reflète les réglages', async () => {
-    const { user } = monter();
+    const { user } = monter({ deps: { hash: '#/lien?pack=essai&mode=sans&habillage=album' } });
     const lien = screen.getByLabelText(/Lien de la tâche/);
     expect(lien.value).toContain('mode=sans');
     await user.selectOptions(screen.getByLabelText(/Cartes/), 'avec');
@@ -61,7 +61,7 @@ describe('Accueil', () => {
   });
 
   it('l\'élément racine porte data-habillage', async () => {
-    const { user, container } = monter();
+    const { user, container } = monter({ deps: { hash: '#/lien?pack=essai&mode=sans&habillage=album' } });
     expect(container.querySelector('[data-habillage="album"]')).not.toBeNull();
     await user.selectOptions(screen.getByLabelText(/Habillage/), 'sobre');
     expect(container.querySelector('[data-habillage="sobre"]')).not.toBeNull();

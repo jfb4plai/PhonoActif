@@ -7,6 +7,9 @@ import { stockageLocal, exporterJson, exporterCsv } from '../jeu/essais.js';
 import { chargerTache, envoyerEssais, stockageEnvoyes } from '../sync/envoi.js';
 import { configurationSupabase } from '../lib/supabase.js';
 import Accueil from './Accueil.jsx';
+import Cadre from './Cadre.jsx';
+import Landing from './Landing.jsx';
+import { ModeEmploi, Donnees, APropos } from './Pages.jsx';
 import Jeu from './Jeu.jsx';
 import Bilan from './Bilan.jsx';
 
@@ -31,20 +34,34 @@ const TEXTES_ENVOI = {
 const Enseignant = React.lazy(() => import('../enseignant/Enseignant.jsx'));
 
 export default function App({ deps = {} }) {
-  const enseignant = lireAdresse(deps.hash ?? window.location.hash).ecran === 'enseignant';
-  if (enseignant) {
+  const [hash, setHash] = useState(() => deps.hash ?? window.location.hash);
+  useEffect(() => {
+    if (deps.hash !== undefined) return undefined; // tests : adresse imposée
+    const surChangement = () => { setHash(window.location.hash); try { window.scrollTo(0, 0); } catch (e) { /* hors navigateur */ } };
+    window.addEventListener('hashchange', surChangement);
+    return () => window.removeEventListener('hashchange', surChangement);
+  }, [deps.hash]);
+  const base = deps.base ?? (import.meta.env && import.meta.env.BASE_URL) ?? '/';
+  const ecran = lireAdresse(hash).ecran;
+  if (ecran === 'accueil') return <Landing base={base} />;
+  if (ecran === 'mode_emploi') return <ModeEmploi base={base} />;
+  if (ecran === 'donnees') return <Donnees base={base} />;
+  if (ecran === 'apropos') return <APropos base={base} />;
+  if (ecran === 'enseignant') {
     return (
-      <React.Suspense fallback={<p>Chargement…</p>}>
-        <Enseignant deps={deps.enseignant || {}} />
-      </React.Suspense>
+      <Cadre base={base} actif="enseignant">
+        <React.Suspense fallback={<p className="plai-container">Chargement…</p>}>
+          <Enseignant deps={deps.enseignant || {}} />
+        </React.Suspense>
+      </Cadre>
     );
   }
-  return <AppEleve deps={deps} />;
+  return <AppEleve key={hash} deps={deps} hash={hash} partie={ecran === 'lien' ? 'lien' : 'eleve'} />;
 }
 
-function AppEleve({ deps }) {
+function AppEleve({ deps, hash, partie }) {
   const base = deps.base ?? (import.meta.env && import.meta.env.BASE_URL) ?? '/';
-  const adresse = useRef(lireAdresse(deps.hash ?? window.location.hash)).current;
+  const adresse = useRef(lireAdresse(hash)).current;
   const stockage = useRef(deps.stockage || stockageLocal()).current;
   const envoyes = useRef(deps.stockageEnvoyes || stockageEnvoyes()).current;
   const config = useRef(deps.supabase !== undefined ? deps.supabase : configurationSupabase(import.meta.env)).current;
@@ -163,7 +180,7 @@ function AppEleve({ deps }) {
   return (
     <div className="app" data-habillage={tache.habillage}>
       {vue === 'accueil' && (
-        <Accueil base={base} tache={tache} code={code} onCode={setCode} onTache={surTache} onCommencer={commencer} erreur={erreur}
+        <Accueil base={base} partie={partie} tache={tache} code={code} onCode={setCode} onTache={surTache} onCommencer={commencer} erreur={erreur}
           avertissements={avertissements} persistant={stockage.persistant} lien={lien} nbEssais={stockage.lire().length}
           packsListe={packsListe} enLigne={enLigne} lienPersonnel={!!tache.cle} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
           onExportJson={() => telecharger('essais.json', exporterJson(stockage.lire()), 'application/json')}

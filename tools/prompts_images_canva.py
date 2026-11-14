@@ -72,6 +72,21 @@ MOTS = [
      "JF 2026-11-13 : eau dans des nuances de bleu (v1 : goutte verte, orange, jaune)"),
 ]
 
+# Lot 2 : mots du pack p1-100 qui se dessinent comme UN objet (proposition de Claude, à valider par JF mot par mot ; images non publiées avant son accord).
+# Écartés faute de pouvoir respecter « un seul objet, sans visage » : rue, tête, nez, yeux (visage), terre (sol ou planète ?), mots-outils, verbes, adjectifs.
+MOTS_LOT2 = [
+    ("jardin", "jardin", "a small garden bed with three tall simple flowers with round heads and straight green stems", DE_FACE, "aucun", None, "", "", ""),
+    ("école", "ecole", "a small school building with a little bell on the roof", DE_FACE, "aucun", None, "", "", ""),
+    ("lit", "lit", "a bed with a pillow and a folded blanket", DE_PROFIL, "aucun", None, "", "", ""),
+    ("feu", "feu", "a flame made of layered paper pieces", DE_FACE, "aucun", "orange #f97316, warm yellow #fbbf24, cream only",
+     " No other color in the flame: orange outer pieces, yellow inner pieces, cream center. No wood, no sparks, no smoke.",
+     "UNE seule flamme ; uniquement orange, jaune et crème ; ni bois, ni étincelles, ni fumée", "choix de Claude : flamme seule (sinon lecture « feu rouge »)"),
+    ("rivière", "riviere", "a winding river seen from above between two green banks", "seen from above", "aucun", "light blue #93c5fd, deep blue #1d4ed8, soft green #86b98f, cream",
+     " One single river from top to bottom of the frame, deep blue outer layers so it stands out from the pastel sky-blue background; green banks on both sides; no bridge, no boat.",
+     "UNE seule rivière ; contour bleu profond bien distinct du fond ; berges vertes ; ni pont ni bateau", "choix de Claude : vue de dessus"),
+]
+TOUS = MOTS + MOTS_LOT2   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+
 
 def prompt(m):
     mot, _, obj, vue, yeux, palette, plus, _, _ = m
@@ -96,7 +111,7 @@ def ecrire_csv():
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         for mot in sys.argv[1:]:
-            m = next((x for x in MOTS if x[0] == mot or x[1] == mot), None)
+            m = next((x for x in TOUS if x[0] == mot or x[1] == mot), None)
             if not m:
                 sys.exit(f"mot inconnu : {mot}")
             print(f"--- {m[0]} ---\n{prompt(m)}\nA VERIFIER : {verification(m)}\n")

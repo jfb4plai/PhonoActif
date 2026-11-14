@@ -251,6 +251,8 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Vraie page d'accueil du site (deux portes élève/enseignant), barre de navigation, mode d'emploi enseignant en 7 étapes, page Gestion des données, page À propos, pied de page PLAI avec contact ; lien rapide sans compte déplacé sur #/lien ; non poussé", "N10, N11, N25"),
+    ("2026-11-14", "Lot 2 d'images du pack de 100 mots : 1 image générée (jardin, à valider par JF, non publiée) ; 4 autres bloquées par le plafond Canva (quota_cooldown) ; QR-code automatique sur l'accueil", "N6, N11"),
     ("2026-11-14", "Pack de 100 mots : 220 fichiers audio publiés (2 Mo) ; pack d'essai retiré de la liste publique (sons isolés retirés du site, pas de remplacement)", "N8, N11"),
     ("2026-11-14", "Accueil élève : liste de packs au lieu d'un nom à taper ; style des lettres IA PLAI (papier crème, rayons, disque turquoise, cartes à ombre dure, sans police externe) ; non poussé", "N11"),
     ("2026-11-14", "Audit S1 : limite de débit + lien/QR personnel par élève (clé) écrits et testés en base simulée, migration APPLIQUÉE sur la base réelle (historique des 3 migrations précédentes régularisé) ; écran enseignant « Liens et QR-codes personnels »", "N22, N9, S5"),
