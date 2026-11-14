@@ -93,5 +93,16 @@ class TestFete(unittest.TestCase):
         self.assertIn("exactly as in the reference image", p)
 
 
+class TestLot4(unittest.TestCase):
+    def test_lot_4_douze_mots_de_la_liste_p1(self):
+        self.assertEqual([m[0] for m in P.MOTS_LOT4], ["oiseau", "renard", "arbre", "lapin", "fenêtre", "train", "chapeau", "château", "cheval", "fromage", "gâteau", "avion"])
+        self.assertEqual(len(set(m[1] for m in P.MOTS_LOT4)), 12)
+
+    def test_animaux_de_profil_un_seul_oeil(self):
+        for m in P.MOTS_LOT4:
+            if m[0] in ("oiseau", "renard", "lapin", "cheval"):
+                self.assertIn("single small dark dot for the eye", P.prompt(m), m[0])
+
+
 if __name__ == "__main__":
     unittest.main()

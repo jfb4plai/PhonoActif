@@ -46,6 +46,14 @@ Source : règles recoupées avec la syllabation de Lexique 4.1 (`docs/rapport-le
 
 `node tools/ajouter_images_pack.js <pack> --dossier <dossier-d-images> [--dossier <autre>]` : pour chaque carte dont le fichier `<mot sans accent>.png` existe dans l'un des dossiers (le premier trouvé l'emporte), copie l'image dans `public/packs/<pack>/images/` et renseigne `image_sans_mot`, `source` et `licence` (par défaut : image générée par IA, Canva). Les cartes sans image ne changent pas ; relançable après chaque nouvelle image. Exemple du pack de 100 mots : `--dossier docs/images-canva/lot2 --dossier public/packs/p1-20-images/images` (25 mots illustrés sur 100).
 
+## Pack illustré « suite » (p1-illustre-2) : de la liste de JF à un pack complet
+
+1. Mots : liste P1 de JF, noms communs passant le filtre déterministe, absents du pack de 100 (rangs 133 à 257 ; choix de ceux qui se dessinent : proposition de Claude, à valider).
+2. `data/packs-atelier/p1-illustre-2/pack.json` puis `node tools/construire_pack_atelier.js p1-illustre-2` : manifeste, syllabes et liste des audios (`a-generer.json`). Il ajoute le pack à `public/packs/index.json` : retirer cette ligne tant que l'audio et les images ne sont pas complets (sinon le pack apparaît en ligne incomplet).
+3. Audio (par JF, clé Azure) : `python -I essai-tts-ipa/generer-bibliotheque.py pack p1-illustre-2`.
+4. Images : lot 4 (`tools/prochaine_image.py --lot 4`, `tools/traiter_lot.py --lot 4`), puis, une fois validées : `node tools/ajouter_images_pack.js p1-illustre-2 --dossier docs/images-canva/lot4`.
+5. Publication : exception dans `.gitignore` (`!public/packs/p1-illustre-2/`), `construire_pack_atelier.js` pour l'index, contrôle, commit, push.
+
 ## Phrases d'aide pour les mots sans image
 
 Idée de JF (2026-11-13) : un mot qui ne se dessine pas reçoit une courte phrase **audio** qui le contient (« Le chat dort dans le panier »). Le bouton « Écouter une phrase » apparaît dans le jeu quand la carte a `phraseAudio` ; le texte n'est **jamais affiché** (il contient le mot). **Les phrases sont écrites par l'enseignant, jamais par une IA** (le tableau est livré vide).

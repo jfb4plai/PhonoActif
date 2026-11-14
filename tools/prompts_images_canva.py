@@ -144,8 +144,42 @@ MOTS_LOT3 = [
      "UN bouquet de TROIS ballons identique à la référence ; une dizaine de confettis ; EXACTEMENT trois notes de musique ; aucune lettre, aucun texte",
      "JF 2026-11-14 : « fête » avec des confettis et des notes de musique (v1 : ballons seuls, gardée dans lot3/v1 comme référence)"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 4 : mots de la liste P1 de JF (rangs 133 à 257, noms communs passant le filtre déterministe de tools/mode_a_mots.js, absents du pack de 100) qui se dessinent comme UN objet
+# ou UN animal, sans personne ni visage. Choix des mots à illustrer = proposition de Claude (2026-11-14), à valider par JF image par image ; mots eux-mêmes : liste de JF.
+MOTS_LOT4 = [
+    ("oiseau", "oiseau", "a small bird perched, with a round body and a short beak", DE_PROFIL, "profil", None, "", "", ""),
+    ("renard", "renard", "a fox sitting with a bushy tail", DE_PROFIL, "profil", "orange #f97316, cream, teal #0f6e56, warm yellow #fbbf24",
+     " Orange fur, a bushy tail with a cream tip, pointed ears. A fox, not a wolf and not a dog.",
+     "se lit comme un renard (queue touffue à bout crème, oreilles pointues), pas un chien ni un loup", "choix de Claude : renard roux"),
+    ("arbre", "arbre", "a tree with a brown trunk and a big round green crown", DE_FACE, "aucun", "soft green #86b98f, teal #0f6e56, warm yellow #fbbf24, cream",
+     " A simple trunk in warm yellow and a round crown made of two layers of green. No fruit, no birds, no flowers.",
+     "UN arbre ; tronc et couronne ronde ; ni fruit ni oiseau", "choix de Claude : arbre simple"),
+    ("lapin", "lapin", "a rabbit sitting, with two long upright ears", DE_PROFIL, "profil", None, "", "", ""),
+    ("fenêtre", "fenetre", "a closed window with a frame and four panes", DE_FACE, "aucun", "teal #0f6e56, cream, light blue #93c5fd, warm yellow #fbbf24",
+     " A wooden-style frame in teal, four equal light blue panes, one small cream sill under it. No curtains, no view, no people.",
+     "UNE fenêtre fermée à quatre carreaux ; ni rideau ni personne", "choix de Claude : fenêtre simple"),
+    ("train", "train", "a small toy steam train with a chimney and three round wheels", DE_PROFIL, "aucun", None,
+     " Locomotive only, with one small wagon. No track, no smoke, no people.",
+     "UN petit train (locomotive et un wagon) ; ni rails ni fumée ni personne", "choix de Claude : train jouet"),
+    ("chapeau", "chapeau", "a hat with a wide brim and a band", DE_PROFIL, "aucun", None, "", "", ""),
+    ("château", "chateau", "a castle with two towers, a gate and a small flag", DE_FACE, "aucun", None,
+     " Simple castle walls in cream, two round towers with orange cone roofs, a flag on one tower. No people, no trees.",
+     "UN château à deux tours et un drapeau ; ni personne ni arbre", "choix de Claude : château simple"),
+    ("cheval", "cheval", "a horse standing, with a mane and a tail", DE_PROFIL, "profil", "warm yellow #fbbf24, orange #f97316, cream, teal #0f6e56",
+     " A horse, not a dog: long legs, long neck, flowing mane and tail.",
+     "se lit comme un cheval (longues pattes, crinière), pas un chien", "choix de Claude : cheval"),
+    ("fromage", "fromage", "a wedge of cheese with round holes", DE_PROFIL, "aucun", "warm yellow #fbbf24, orange #f97316, cream",
+     " Warm yellow wedge with three round holes in a darker yellow. No mouse, no plate.",
+     "UN morceau de fromage à trous ; ni souris ni assiette", "choix de Claude : fromage à trous"),
+    ("gâteau", "gateau", "a round cake with two layers, pink icing and one candle", DE_PROFIL, "aucun", None,
+     " Pink icing dripping on the sides, one small candle with a yellow flame. No text, no people.",
+     "UN gâteau à deux étages et une bougie ; aucun texte", "choix de Claude : gâteau d'anniversaire"),
+    ("avion", "avion", "an airplane seen from the side with two wings", DE_PROFIL, "aucun", "teal #0f6e56, cream, orange #f97316, light blue #93c5fd",
+     " A simple passenger plane, cream body, orange tail, small round windows. No clouds, no people, no text.",
+     "UN avion ; ni nuage ni personne ni texte", "choix de Claude : avion de ligne simple"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
