@@ -222,8 +222,48 @@ MOTS_LOT5 = [
      " A cream hen with a warm brown wing and warm brown tail feathers (no green, no blue), a small orange comb on the head, one small orange wattle, a short warm yellow beak, thin yellow legs. A hen, not a duck. No eggs, no chicks.",
      "UNE poule (crête et barbillon orange, bec court) ; pas un canard ; ni œuf ni poussin", "choix de Claude : poule"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 6 : mots de la liste P1 de JF (rangs 333 à 430, noms communs passant le filtre déterministe de tools/mode_a_mots.js, absents des packs existants) qui se dessinent comme UN objet ou UN animal.
+# Choix des mots à illustrer = proposition de Claude (2026-11-14), à valider par JF image par image ; mots eux-mêmes : liste de JF. Prompts écrits avec la question « que voit un enfant de 6 ans ? » : couleurs cohérentes, « not a … » pour chaque confusion probable.
+MOTS_LOT6 = [
+    ("corbeau", "corbeau", "a crow standing, with a glossy black body, a thick strong beak and long folded wings", DE_PROFIL, "profil", "very dark grey #292524, dark grey #57534e, cream",
+     " A black crow, not a duck and not a hen: a very dark grey body, a thick pointed dark grey beak, long wings folded over the back, one small cream dot for the eye, thin dark grey legs.",
+     "se lit comme un corbeau NOIR (gros bec, ailes repliées), pas un canard ni une poule", "choix de Claude : corbeau noir"),
+    ("vache", "vache", "a cow standing, with two small horns, a pink udder and large patches", DE_PROFIL, "profil", "cream, dark grey #57534e, soft pink #f4a9b0, warm yellow #fbbf24",
+     " A white-cream cow with three large dark grey patches, a pink muzzle and a pink udder, two small warm yellow horns, a thin tail ending in a dark tuft. A cow, not a horse and not a dog.",
+     "se lit comme une vache (taches, pis rose, petites cornes), pas un cheval ni un chien", "choix de Claude : vache à taches"),
+    ("chemise", "chemise", "a shirt with a collar, two long sleeves and a row of three round buttons down the front", DE_FACE, "aucun", "light blue #93c5fd, cream, dark blue #3b82f6",
+     " A light blue shirt laid flat, a pointed cream-edged collar, two long sleeves hanging at the sides, a straight row of three small cream round buttons. A shirt with a collar and buttons, not a T-shirt, not a jacket, not a dress. No pocket text, no tie.",
+     "UNE chemise à col, manches longues et trois boutons ; PAS un tee-shirt ni une veste", "choix de Claude : chemise bleue"),
+    ("étoile", "etoile", "a five-pointed star", DE_FACE, "aucun", "warm yellow #fbbf24, cream",
+     " A flat five-pointed star with equal pointed arms, warm yellow with a slightly paler cream star on top of it at the center. A star, not a flower and not a sun: no face, no rays, no sparkle.",
+     "UNE étoile à cinq branches ; PAS une fleur ni un soleil", "choix de Claude : étoile jaune"),
+    ("mouton", "mouton", "a sheep standing, with a round fluffy cloud-like woolly body", DE_PROFIL, "profil", "cream, dark grey #57534e, soft pink #f4a9b0",
+     " A sheep, not a cloud: a big round woolly cream body made of overlapping round cream pieces, a small dark grey head with a small ear, four thin dark grey legs.",
+     "se lit comme un mouton (corps de laine bouclé, tête et pattes sombres), pas un nuage", "choix de Claude : mouton"),
+    ("camion", "camion", "a delivery truck with a cab and a large rectangular cargo box on wheels", DE_PROFIL, "aucun", "orange #f97316, cream, teal #0f6e56, dark grey #57534e",
+     " An orange cab with one window, a big cream rectangular cargo box behind it, three dark grey round wheels with cream centers. A truck, not a bus and not a train. No text, no logo, no driver.",
+     "UN camion (cabine orange, grande caisse crème, roues) ; PAS un bus ni un train ; aucun texte", "choix de Claude : camion de livraison"),
+    ("coq", "coq", "a rooster standing, with a large comb, a wattle and tall curved tail feathers", DE_PROFIL, "profil", "warm yellow #fbbf24, orange #f97316, teal #0f6e56, cream",
+     " A rooster, not a hen: a large orange comb, a small orange wattle, a golden yellow body, a tall arched tail made of long curved teal and orange feathers, thin yellow legs.",
+     "se lit comme un coq (grande crête, queue haute en plumes arquées), pas une poule", "choix de Claude : coq"),
+    ("canard", "canard", "a duck standing, with a round body and a flat wide bill", DE_PROFIL, "profil", "warm yellow #fbbf24, orange #f97316, cream",
+     " A duck, not a hen: a round warm yellow body, a short tail, a flat wide orange bill, two orange webbed feet. No water, no ducklings.",
+     "se lit comme un canard (bec plat large, pattes palmées orange), pas une poule", "choix de Claude : canard jaune"),
+    ("chaise", "chaise", "a simple wooden chair with four legs, a flat seat and a straight back", DE_PROFIL, "aucun", "warm yellow #fbbf24, golden ochre #e3a21a, cream",
+     " A kitchen chair in profile: a straight back with two bars, a flat seat, four thin straight legs. A chair, not a stool, not an armchair, not a bench. Empty: no cushion, no person.",
+     "UNE chaise de profil (dossier droit, assise plate, quatre pieds) ; PAS un tabouret ni un fauteuil", "choix de Claude : chaise simple"),
+    ("lampe", "lampe", "a table lamp with a round base, a thin stem and a wide cone-shaped lampshade", DE_FACE, "aucun", "teal #0f6e56, cream, warm yellow #fbbf24",
+     " A teal round base, a thin straight teal stem, a wide cream cone lampshade that is narrow at the top and wide at the bottom, one small warm yellow bulb tip visible under the shade. A lamp, not an ice cream cone and not a lantern. No light rays, no cord.",
+     "UNE lampe de table (pied rond, tige, grand abat-jour conique évasé vers le bas) ; PAS une glace ni une lanterne", "choix de Claude : lampe de chevet"),
+    ("tambour", "tambour", "a drum, a short cylinder with a cream top and two crossed drumsticks on top", DE_PROFIL, "aucun", "orange #f97316, cream, warm yellow #fbbf24",
+     " A drum seen from a slight angle: a plain orange side, a cream oval top skin, cream rims at the top and the bottom, two warm yellow drumsticks crossed on top. A drum, not a cake and not a pot.",
+     "UN tambour (cylindre orange, peau crème, deux baguettes croisées) ; PAS un gâteau ni un pot", "choix de Claude : tambour"),
+    ("pull", "pull", "a knitted sweater with a round neck and two long sleeves", DE_FACE, "aucun", "orange #f97316, cream",
+     " An orange sweater laid flat: a round neck with a thick cream ribbed collar, two long sleeves with thick cream cuffs, a thick cream ribbed hem. A sweater, not a shirt: no collar points, no buttons, no zipper, no pocket.",
+     "UN pull à col rond (côtes crème au col, aux poignets et en bas) ; PAS une chemise (ni boutons ni col pointu)", "choix de Claude : pull orange"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
