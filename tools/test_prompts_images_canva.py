@@ -60,5 +60,27 @@ class TestFileDAttente(unittest.TestCase):
         self.assertTrue(P.prompt(deux).startswith("Children's picture book illustration in cut-paper collage style. A group of two identical"))
 
 
+class TestNombres(unittest.TestCase):
+    def test_tout_nombre_est_des_pommes_identiques_a_celles_de_deux(self):
+        for mot, (en, n) in P.NOMBRES.items():
+            e = P.entree_nombre(mot)
+            self.assertIn(f"Exactly {en} apples", P.prompt(e), mot)
+            self.assertIn("identical red apple", P.prompt(e), mot)
+        quatre = P.prompt(P.entree_nombre("quatre"))
+        self.assertTrue(quatre.startswith("Children's picture book illustration in cut-paper collage style. A group of four identical"))
+
+    def test_la_reference_est_deux_et_les_autres_nombres_la_citent(self):
+        self.assertEqual(P.references_de("deux"), [])
+        self.assertEqual(P.references_de("trois"), [P.MEDIA_NOMBRE_DE_REFERENCE])
+        self.assertEqual(P.references_de("jour"), [])
+        self.assertNotIn("reference image", P.prompt(P.entree_nombre("deux")))
+        self.assertIn("exactly the same apple as in the reference image", P.prompt(P.entree_nombre("trois")))
+
+    def test_le_prompt_de_deux_est_celui_qui_a_servi_a_generer_l_image(self):
+        p = P.prompt(P.entree_nombre("deux"))
+        self.assertIn("A group of two identical red apples side by side, seen flat from the front", p)
+        self.assertTrue(p.endswith("Exactly two apples, the same size, each with one small green leaf. No numbers, no text."))
+
+
 if __name__ == "__main__":
     unittest.main()

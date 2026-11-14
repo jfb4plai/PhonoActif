@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Règle des nombres (JF) : tout nombre = pommes identiques à celles de « deux » ; trois, quatre… générés avec l'image de « deux » en référence ; ajouté au script (NOMBRES, entree_nombre, references_de) et à la file d'attente ; non commité", "N6"),
     ("2026-11-14", "Phrases audio d'aide construites (bouton « Écouter une phrase », texte jamais affiché, tableau Excel vide à remplir par JF, outils de lecture/ajout, commande de voix à lancer par JF avec sa clé Azure ; non essayée avec Azure) ; lot 3 d'images (monde, deux, trois, jour, fête) en génération automatique toutes les 5 minutes, à valider par JF", "N8, N12, N6"),
     ("2026-11-14", "Pack de 100 mots : 25 images intégrées (les 5 du lot 2 + les 20 du pack illustré) par tools/ajouter_images_pack.js ; bilan sur 100 : image 25, états audio 100, écoute par syllabes 27 sur 27 mots de 2 syllabes ou plus ; 75 mots sans image (mots-outils, verbes, adjectifs, noms abstraits ou de personnes) ; images du lot 2 à fond #cde7f7, celles du pack des 20 non uniformisées ; non commité", "N6, N8, N20"),
     ("2026-11-14", "« rivière » v2 générée (tuile verte, une rivière en S à deux bandes bleues) : fond obtenu #cae7f7 (écart 4), ramené à #cde7f7 ; lot 2 complet (5 sur 5), à valider par JF", "N6"),

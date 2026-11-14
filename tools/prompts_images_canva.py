@@ -92,6 +92,34 @@ MOTS_LOT2 = [
      "UNE seule rivière, large, en S doux, de haut en bas de la tuile verte ; deux bandes de papier bleu seulement ; ni rayures, ni lignes blanches, ni pont, ni bateau, ni arbre",
      "v2 de Claude 2026-11-14 : la v1 (ruban vert en S rayé de bleu) ne se lisait pas comme une rivière"),
 ]
+# RÈGLE DES NOMBRES (décision de JF, 2026-11-14) : tout nombre est représenté par des pommes rouges IDENTIQUES à celles de « deux », côte à côte, une pomme par unité,
+# sans chiffre ni texte. Les nombres suivants (trois, quatre…) sont générés AVEC l'image de « deux » comme référence (imageReferences du connecteur Canva) pour que la pomme
+# soit exactement la même. Référence = identifiant MEDIA Canva de l'image « deux » du lot 3 (MAHa5AjV92w, générée le 2026-11-14).
+NOMBRES = {"un": ("one", 1), "deux": ("two", 2), "trois": ("three", 3), "quatre": ("four", 4), "cinq": ("five", 5), "six": ("six", 6),
+           "sept": ("seven", 7), "huit": ("eight", 8), "neuf": ("nine", 9), "dix": ("ten", 10)}
+NOMBRE_DE_REFERENCE = "deux"
+MEDIA_NOMBRE_DE_REFERENCE = "MAHa5AjV92w"
+PHRASE_REFERENCE = " The apples must be exactly the same apple as in the reference image (same shape, size, colors, leaf and highlight): only the number of apples changes."
+
+
+def entree_nombre(mot):
+    """Entrée de script d'un nombre : n pommes identiques ; sauf « deux » (la référence), la consigne renvoie à l'image de référence."""
+    en, n = NOMBRES[mot]
+    plus = f" Exactly {en} apples, the same size, each with one small green leaf. No numbers, no text."
+    if mot != NOMBRE_DE_REFERENCE:
+        plus += PHRASE_REFERENCE
+    pluriel = en if n > 1 else "one"
+    obj = f"{pluriel} identical red apple{'s side by side' if n > 1 else ''}"
+    return (mot, mot, obj, DE_FACE, "aucun", "red-orange #f97316, soft green #86b98f, cream", plus,
+            f"EXACTEMENT {n} pomme{'s identiques, côte à côte' if n > 1 else ''} ; aucun chiffre ; même pomme que « deux »",
+            f"JF 2026-11-14 : tout nombre = pommes identiques à celles de « deux » ({n})")
+
+
+def references_de(mot):
+    """Identifiants MEDIA Canva à passer en imageReferences pour ce mot (vide si aucun)."""
+    return [MEDIA_NOMBRE_DE_REFERENCE] if mot in NOMBRES and mot != NOMBRE_DE_REFERENCE else []
+
+
 # Lot 3 : autres mots du pack p1-100 qui se dessinent comme UN objet ou UN petit groupe, sans visage ni personne (proposition de Claude, 2026-11-14,
 # à valider par JF image par image ; rien n'entre dans un pack avant son accord). Écartés : tête, nez, yeux (visage), maman, papa, ami, garçon, père (personnes),
 # mots-outils, verbes, adjectifs de comparaison, notions de temps abstraites.
@@ -99,12 +127,8 @@ MOTS_LOT3 = [
     ("monde", "monde", "a globe of the Earth on a small stand", DE_PROFIL, "aucun", "teal #0f6e56, soft green #86b98f, light blue #93c5fd, deep blue #1d4ed8, cream",
      " Blue oceans and a few simple green continents on a round globe, a small cream stand. No text, no lines of latitude, no stars.",
      "UN globe ; océans bleus et quelques continents verts ; ni texte ni quadrillage", "choix de Claude : « monde » = le globe"),
-    ("deux", "deux", "two identical red apples side by side", DE_FACE, "aucun", "red-orange #f97316, soft green #86b98f, cream",
-     " Exactly two apples, the same size, each with one small green leaf. No numbers, no text.",
-     "EXACTEMENT deux pommes identiques, côte à côte ; aucun chiffre", "choix de Claude : « deux » = deux objets identiques"),
-    ("trois", "trois", "three identical red apples side by side", DE_FACE, "aucun", "red-orange #f97316, soft green #86b98f, cream",
-     " Exactly three apples, the same size, each with one small green leaf. No numbers, no text.",
-     "EXACTEMENT trois pommes identiques, côte à côte ; aucun chiffre", "choix de Claude : « trois » = trois objets identiques"),
+    entree_nombre("deux"),
+    entree_nombre("trois"),
     ("jour", "jour", "a bright round sun with short straight rays", DE_FACE, "aucun", "warm yellow #fbbf24, orange #f97316, cream",
      " One round yellow sun with eight short straight rays around it, no face, no clouds.",
      "UN soleil rond avec des rayons courts ; ni visage ni nuage", "choix de Claude : « jour » = le soleil"),
@@ -118,7 +142,7 @@ TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3   # le CSV reste celui des 20 mots du pack i
 
 def prompt(m):
     mot, _, obj, vue, yeux, palette, plus, _, _ = m
-    intro = "A group of" if obj.startswith(("several", "two ", "three ")) else "One single"   # un seul sujet, sauf un groupe voulu (neige)
+    intro = "A group of" if obj.startswith(("several",) + tuple(en + " " for en, n in NOMBRES.values() if n > 1)) else "One single"   # un seul sujet, sauf un groupe voulu (neige)
     return BLOC.format(fond=FOND, intro=intro, obj=obj, vue=vue, yeux=YEUX[yeux], palette=palette or PALETTE_STD, plus=plus)
 
 

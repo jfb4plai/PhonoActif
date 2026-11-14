@@ -2,9 +2,10 @@
 r"""File d'attente d'un lot d'images : dit quelle image générer ensuite et garde la trace d'une génération en cours.
 Pensé pour être appelé toutes les 5 minutes (le plafond de Canva impose une pause entre deux images).
 Usage :
-  python -I tools/prochaine_image.py --lot 3                          # JSON : en_cours, prochain (mot, fichier, prompt), restants, termine
+  python -I tools/prochaine_image.py --lot 3                          # JSON : en_cours, prochain (mot, fichier, prompt, references), restants, termine
   python -I tools/prochaine_image.py --lot 3 --en-cours <mot> <idTravail>   # note qu'une génération est lancée (docs/images-canva/lot3/en-cours.json)
   python -I tools/prochaine_image.py --lot 3 --effacer-en-cours       # efface la note (image reçue ou abandon)
+Si `references` n'est pas vide, passer ces identifiants MEDIA en imageReferences ([{"type": "MEDIA", "id": "…"}]) au connecteur Canva.
 Une image est « faite » quand docs/images-canva/lot<N>/<fichier>.png existe.
 """
 import json
@@ -36,7 +37,7 @@ def etat(lot, dossier=None):
     prochain = None
     if not en_cours and restants:
         m = restants[0]
-        prochain = {"mot": m[0], "fichier": m[1], "prompt": P.prompt(m), "a_verifier": P.verification(m)}
+        prochain = {"mot": m[0], "fichier": m[1], "prompt": P.prompt(m), "a_verifier": P.verification(m), "references": P.references_de(m[0])}
     return {"lot": lot, "termine": not restants, "restants": [m[0] for m in restants], "en_cours": en_cours, "prochain": prochain}
 
 
