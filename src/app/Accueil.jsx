@@ -31,6 +31,8 @@ export default function Accueil({
                     <select id="pack" className="plai-input" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value })}>
                       <option value="">Choisir un pack</option>
                       {packsListe.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
+                      {/* pack venu d'un lien mais absent de la liste publique (pack en validation) : sans cette ligne, la liste afficherait « Choisir un pack » alors que le pack est retenu */}
+                      {tache.pack && !packsListe.some(p => p.id === tache.pack) && <option value={tache.pack}>{tache.pack} (pack ouvert par lien)</option>}
                     </select>
                   )
                   : <input id="pack" className="plai-input" type="text" placeholder="demo" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value.trim() })} />}

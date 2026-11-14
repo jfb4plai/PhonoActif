@@ -222,6 +222,16 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect([...liste.options].map(o => o.textContent)).toEqual(['Choisir un pack', '20 mots de P1 avec images', 'Pack d’essai']);
   });
 
+  it('accueil : un pack venu d’un lien mais absent de la liste publique reste affiché comme choisi', async () => {
+    const index = [{ id: 'p1-20-images', label: '20 mots de P1 avec images', visibilite: 'commun' }];
+    const deps = { fetch: reponse(index), stockage: stockageMemoire(), jouerSons: vi.fn(), rng: () => 0.5, maintenant: () => '2026-11-14T10:00:00.000Z', hash: '#/carte/p1-illustre-2/oiseau', base: '/' };
+    render(<App deps={deps} />);
+    await screen.findByRole('option', { name: '20 mots de P1 avec images' });
+    const liste = screen.getByLabelText('Pack de cartes');
+    expect(liste.value).toBe('p1-illustre-2');
+    expect([...liste.options].map(o => o.textContent)).toContain('p1-illustre-2 (pack ouvert par lien)');
+  });
+
   it('accueil : un pack choisi donne un lien et son QR-code, sans clic', async () => {
     const index = [{ id: 'p1-20-images', label: '20 mots de P1 avec images', visibilite: 'commun' }];
     const deps = { fetch: reponse(index), stockage: stockageMemoire(), jouerSons: vi.fn(), rng: () => 0.5, maintenant: () => '2026-11-14T10:00:00.000Z', hash: '#/lien', base: '/' };
