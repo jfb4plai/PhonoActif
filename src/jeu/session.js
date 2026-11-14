@@ -32,16 +32,16 @@ function positionsDe(etat) {
 function ligneEssai(etat, positions, juste) {
   const carte = carteCourante(etat);
   return {
-    id: etat.outils.nouvelId(), jeton: etat.jeton, session: etat.session, code: etat.code, pack: etat.pack, carte: carte.id, mot: carte.mot, modeMot: etat.reglages.modeMot,
+    id: etat.outils.nouvelId(), jeton: etat.jeton, ...(etat.cle ? { cle: etat.cle } : {}), session: etat.session, code: etat.code, pack: etat.pack, carte: carte.id, mot: carte.mot, modeMot: etat.reglages.modeMot,
     tentative: etat.tentative, juste, aide: etat.aide, positions, date: etat.outils.maintenant()
   };
 }
 
-export function demarrerJeu({ pack, reglages, code, jeton = null, session, rng = Math.random, maintenant = () => new Date().toISOString(), nouvelId = () => globalThis.crypto.randomUUID() }) {
+export function demarrerJeu({ pack, reglages, code, jeton = null, cle = null, session, rng = Math.random, maintenant = () => new Date().toISOString(), nouvelId = () => globalThis.crypto.randomUUID() }) {
   const cartes = reglages.melanger ? melanger(pack.cartes, rng) : [...pack.cartes];
   const id = session || `s-${maintenant().replace(/\D/g, '').slice(0, 14)}-${Math.floor(rng() * 36 ** 4).toString(36).padStart(4, '0')}`;
   const base = {
-    pack: pack.nom, code, jeton, session: id, cartes, index: 0, poses: [], tentative: 1, aide: 'aucune', indice: null,
+    pack: pack.nom, code, jeton, cle, session: id, cartes, index: 0, poses: [], tentative: 1, aide: 'aucune', indice: null,
     statut: 'en_cours', reglages, essais: [], outils: { rng, maintenant, nouvelId }
   };
   if (cartes.length === 0) return { ...base, plateau: [], statut: 'fini' };

@@ -104,3 +104,10 @@ test('résumé : la casse compte, S et s sont deux liaisons', () => {
 test('résumé : liste vide', () => {
   assert.deepEqual(resumerParLiaison([]), []);
 });
+
+test('exporterJson : la clé personnelle de l’élève n’est jamais exportée', () => {
+  const l = { id: 'x', code: 'E07', jeton: 'a'.repeat(24), cle: '0123456789abcdef0123', positions: [] };
+  const sortie = exporterJson([l]);
+  assert.ok(!sortie.includes('0123456789abcdef0123'));
+  assert.equal(JSON.parse(sortie)[0].code, 'E07');
+});

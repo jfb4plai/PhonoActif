@@ -97,6 +97,22 @@ describe('espace enseignant', () => {
     expect(client.tables.phono_students.map(s => s.code)).toContain('E06');
   });
 
+  it('liens et QR-codes personnels : un par élève, avec son code et sa clé', async () => {
+    const tables = { ...classeTables('master'), phono_students: [{ id: 's1', class_id: 'c1', code: 'E01', secret: 'a'.repeat(20) }, { id: 's2', class_id: 'c1', code: 'E02', secret: 'b'.repeat(20) }],
+      phono_tasks: [{ id: 't1', class_id: 'c1', token: 'a1'.repeat(12), pack: 'demo', mode_mot: 'sans', habillage: 'sobre', nb_intrus: 2, exiger_accents: false, revoked: false, created_at: '2026-11-14T10:00:00Z' }] };
+    const client = avecAuth(fauxClient({ tables }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('button', { name: 'Liens et QR-codes personnels' }));
+    const region = await screen.findByRole('region', { name: 'Liens personnels des élèves' });
+    expect(await screen.findByAltText('QR-code personnel de E01')).toBeInTheDocument();
+    expect(screen.getByAltText('QR-code personnel de E02')).toBeInTheDocument();
+    expect(region.querySelector(`a[href$="&e=E01&k=${'a'.repeat(20)}"]`)).not.toBeNull();
+    await userEvent.click(screen.getByRole('button', { name: 'Nouvelle clé pour E01' }));
+    await waitFor(() => expect(client.tables.phono_students[0].secret).not.toBe('a'.repeat(20)));
+    expect(client.tables.phono_students[1].secret).toBe('b'.repeat(20));
+  });
+
   it('crée un lien de tâche avec QR-code', async () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);

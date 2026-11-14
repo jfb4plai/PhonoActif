@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
 import {
-  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve
+  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
 } from './api.js';
 
 const PAS_DE_TACHE = { pack: '', modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents };
@@ -17,6 +17,7 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
   const [lien, setLien] = useState(null);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [perso, setPerso] = useState(null); // liens personnels d'une tâche : { tache, items: [{ id, code, lien, qr }] }
 
   const recharger = useCallback(async () => {
     try { setLignes(await resultats(client, classe.id)); } catch (e) { setMessage(e.message); }
@@ -47,6 +48,11 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
     setLien({ ...t, qr: await qrDeLien(t.lien) });
     await rechargerTaches();
   });
+  const ouvrirPerso = t => agir(async () => {
+    const liens = await liensEleves(client, classe.id, t.jeton, base);
+    setPerso({ tache: t, items: await Promise.all(liens.map(async l => ({ ...l, qr: await qrDeLien(l.lien) }))) });
+  });
+  const changerCle = (t, id) => agir(async () => { await nouvelleCleEleve(client, id); await ouvrirPerso(t); setMessage('Nouvelle clé créée : l’ancien lien de cet élève ne fonctionne plus.'); });
   const revoquer = id => agir(async () => { await revoquerTache(client, id); setMessage('Lien révoqué.'); await rechargerTaches(); });
   const inviterCollegue = () => agir(async () => { await inviter(client, classe.id, email); setEmail(''); setMessage('Enseignant invité.'); });
   const retirer = id => agir(async () => { await supprimerEleve(client, id); await recharger(); });
@@ -108,7 +114,8 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <button type="button" onClick={creer} disabled={packs.length === 0}>Créer le lien et le QR-code</button>
       {lien && (
         <div>
-          <p>Lien : <a href={lien.lien}>{lien.lien}</a></p>
+          <p>Lien de la tâche : <a href={lien.lien}>{lien.lien}</a></p>
+          <p className="aide">Ce lien ouvre le jeu mais n’est pas personnel : les résultats ne sont enregistrés que si l’élève utilise son lien ou son QR-code personnel (bouton « Liens et QR-codes personnels » dans la liste des tâches).</p>
           <img src={lien.qr} alt="QR-code de la tâche" width="256" height="256" />
           <p className="aide">Réglages de ce lien : {resumeTache(taches.find(x => x.id === lien.id) || { ...tache })}</p>
         </div>
@@ -121,11 +128,31 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
               <li key={t.id}>
                 {t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
                 <br /><a href={t.lien}>{t.lien}</a>
+                {!t.revoked && <button type="button" onClick={() => ouvrirPerso(t)}>Liens et QR-codes personnels</button>}
                 {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
               </li>
             ))}
           </ul>
         </>
+      )}
+
+      {perso && (
+        <div className="liens-perso" role="region" aria-label="Liens personnels des élèves">
+          <h3>Liens personnels : {perso.tache.pack}</h3>
+          <p className="aide">Chaque lien ou QR-code contient le code et la clé d’un seul élève. Seuls les résultats envoyés avec la bonne clé sont enregistrés : un élève ne peut plus écrire sous le code d’un camarade. Remettre à chaque élève uniquement le sien (imprimer puis découper) et ne pas les publier. Un lien perdu ou transmis à quelqu’un d’autre : créer une nouvelle clé.</p>
+          <button type="button" onClick={() => window.print()}>Imprimer</button>
+          <button type="button" onClick={() => setPerso(null)}>Fermer</button>
+          <ul className="liens-perso-liste">
+            {perso.items.map(i => (
+              <li key={i.id}>
+                <strong>{i.code}</strong>
+                <img src={i.qr} alt={`QR-code personnel de ${i.code}`} width="160" height="160" />
+                <a href={i.lien}>Lien de {i.code}</a>
+                <button type="button" className="hors-impression" onClick={() => changerCle(perso.tache, i.id)}>Nouvelle clé pour {i.code}</button>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
 
       <h2>Résultats</h2>

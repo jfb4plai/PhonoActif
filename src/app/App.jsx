@@ -23,6 +23,7 @@ const TEXTES_ENVOI = {
   reseau: 'Pas de connexion : l’envoi se fera plus tard.',
   code_inconnu: 'Ce code n’est pas dans la classe : demander à l’enseignant.',
   tache_inconnue: 'Cette tâche n’existe plus.',
+  limite: 'Trop de résultats envoyés en peu de temps : l’envoi reprendra plus tard.',
   refuse: 'L’envoi a été refusé : prévenir l’enseignant.'
 };
 
@@ -54,7 +55,7 @@ function AppEleve({ deps }) {
 
   const [tache, setTache] = useState({ ...REGLAGES_PAR_DEFAUT, pack: '', ...adresse.tache });
   const [etatTache, setEtatTache] = useState(enLigne ? (config ? 'chargement' : 'hors_service') : 'non');
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState(adresse.tache && adresse.tache.codeEleve ? adresse.tache.codeEleve : ''); // lien personnel : code déjà rempli
   const [vue, setVue] = useState('accueil');
   const [pack, setPack] = useState(null);
   const [cleJeu, setCleJeu] = useState(0);
@@ -84,13 +85,13 @@ function AppEleve({ deps }) {
     const dejaEnvoyes = envoyes.lire();
     const groupes = new Map();
     for (const l of stockage.lire()) {
-      if (!l.jeton || dejaEnvoyes.has(l.id)) continue;
-      const cle = `${l.jeton}|${l.code}`;
+      if (!l.jeton || !l.cle || dejaEnvoyes.has(l.id)) continue; // sans clé personnelle, rien ne part : les résultats restent sur l'appareil
+      const cle = `${l.jeton}|${l.code}|${l.cle}`;
       if (!groupes.has(cle)) groupes.set(cle, []);
       groupes.get(cle).push(l);
     }
     for (const lignes of groupes.values()) {
-      const r = await envoyerEssais({ lignes, dejaEnvoyes, token: lignes[0].jeton, code: lignes[0].code, supabase: config });
+      const r = await envoyerEssais({ lignes, dejaEnvoyes, token: lignes[0].jeton, code: lignes[0].code, cle: lignes[0].cle, supabase: config });
       envoyes.ajouter(r.ids);
       r.ids.forEach(i => dejaEnvoyes.add(i));
       resume.envoyes += r.envoyes; resume.restants += r.restants;
@@ -123,7 +124,7 @@ function AppEleve({ deps }) {
   const origine = typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}` : base;
   const lien = tache.pack ? ecrireAdresse(origine, carteUnique ? 'carte' : 'jeu', { ...tache, jeton: undefined }, adresse.carte) : '';
   const dejaEnvoyes = envoyes.lire();
-  const enAttente = stockage.lire().filter(l => l.jeton && !dejaEnvoyes.has(l.id)).length;
+  const enAttente = stockage.lire().filter(l => l.jeton && l.cle && !dejaEnvoyes.has(l.id)).length;
 
   async function commencer() {
     if (!codeValide(code) || !tache.pack) return;
@@ -153,7 +154,7 @@ function AppEleve({ deps }) {
       {vue === 'accueil' && (
         <Accueil base={base} tache={tache} code={code} onCode={setCode} onTache={surTache} onCommencer={commencer} erreur={erreur}
           avertissements={avertissements} persistant={stockage.persistant} lien={lien} nbEssais={stockage.lire().length}
-          enLigne={enLigne} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
+          enLigne={enLigne} lienPersonnel={!!tache.cle} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
           onExportJson={() => telecharger('essais.json', exporterJson(stockage.lire()), 'application/json')}
           onExportCsv={() => telecharger('essais.csv', exporterCsv(stockage.lire()), 'text/csv;charset=utf-8')} />
       )}

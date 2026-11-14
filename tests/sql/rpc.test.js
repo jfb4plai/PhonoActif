@@ -22,7 +22,12 @@ const ligne = (plus = {}) => ({
   date: '2026-11-11T10:00:00.000Z', ...plus
 });
 const lire = (db, token) => comme(db, 'anon', null, async () => (await db.query('select public.phono_lire_tache($1) as r', [token])).rows[0].r);
-const envoyer = (db, token, code, lignes) => comme(db, 'anon', null, async () => (await db.query('select public.phono_envoyer_essais($1, $2, $3::jsonb) as r', [token, code, JSON.stringify(lignes)])).rows[0].r);
+const cleDe = async (db, code, token = T1) => ((await db.query('select s.secret from phono_students s join phono_tasks t on t.class_id = s.class_id where t.token = $1 and s.code = $2', [token, code])).rows[0] || {}).secret ?? null;
+// cle : par défaut la clé réelle de l'élève ; on peut en imposer une autre pour tester les refus
+const envoyer = async (db, token, code, lignes, cle) => {
+  const k = cle === undefined ? await cleDe(db, code, token) : cle;
+  return comme(db, 'anon', null, async () => (await db.query('select public.phono_envoyer_essais($1, $2, $3, $4::jsonb) as r', [token, code, k, JSON.stringify(lignes)])).rows[0].r);
+};
 const nb = async db => (await db.query('select count(*)::int as n from phono_attempts')).rows[0].n;
 
 test('phono_lire_tache : les réglages, sans nom de classe ni identifiant', async () => {
@@ -128,4 +133,101 @@ test('anon et authenticated n\'ont toujours aucun accès direct aux essais, anon
   await assert.rejects(comme(db, 'anon', null, () => db.query('select * from phono_attempts')), /permission denied/);
   await assert.rejects(comme(db, 'authenticated', m1, () => db.query("insert into phono_attempts (id, class_id, student_id, task_id, session, card, word, attempt, correct, help, positions, played_at) select gen_random_uuid(), class_id, id, (select id from phono_tasks limit 1), 's', 'c', 'c', 1, true, 'aucune', '[]', now() from phono_students limit 1")), /permission denied/);
   await assert.rejects(comme(db, 'anon', null, () => db.query('select public.phono_is_member(gen_random_uuid())')), /permission denied/);
+});
+
+// ---- Audit S1 : limites de débit de l'écriture anonyme (migration 20261114000000) ----
+const lignes = n => Array.from({ length: n }, () => ligne());
+
+test('limite : un élève ne peut pas déposer plus de 300 lignes neuves par heure, rien d\'écrit au-delà', async () => {
+  const { db } = await monde();
+  assert.deepEqual(await envoyer(db, T1, 'E01', lignes(200)), { recus: 200, ignores: 0 });
+  assert.deepEqual(await envoyer(db, T1, 'E01', lignes(100)), { recus: 100, ignores: 0 });
+  await assert.rejects(envoyer(db, T1, 'E01', lignes(1)), /limite_atteinte/);
+  assert.equal(await nb(db), 300);
+});
+
+test('limite : renvoyer des lignes déjà reçues ne compte pas (reprise après coupure réseau)', async () => {
+  const { db } = await monde();
+  const deja = lignes(200);
+  await envoyer(db, T1, 'E01', deja);
+  await envoyer(db, T1, 'E01', lignes(100));
+  assert.deepEqual(await envoyer(db, T1, 'E01', deja), { recus: 0, ignores: 200 });
+});
+
+test('limite : le plafond d\'un élève ne bloque pas un autre élève de la même classe', async () => {
+  const { db, c1 } = await monde();
+  await db.query("insert into phono_students (class_id, code) values ($1, 'E02')", [c1]);
+  await envoyer(db, T1, 'E01', lignes(200)); await envoyer(db, T1, 'E01', lignes(100));
+  assert.deepEqual(await envoyer(db, T1, 'E02', lignes(5)), { recus: 5, ignores: 0 });
+});
+
+test('limite : seules les lignes reçues dans la dernière heure comptent', async () => {
+  const { db } = await monde();
+  await envoyer(db, T1, 'E01', lignes(200)); await envoyer(db, T1, 'E01', lignes(100));
+  await db.query("update phono_attempts set received_at = now() - interval '2 hours'");
+  assert.deepEqual(await envoyer(db, T1, 'E01', lignes(10)), { recus: 10, ignores: 0 });
+});
+
+test('limite : une tâche (une classe) est plafonnée à 3000 lignes par heure, tous élèves confondus', async () => {
+  const { db, c1 } = await monde();
+  const tache = (await db.query('select id from phono_tasks where token = $1', [T1])).rows[0].id;
+  for (let k = 0; k < 10; k++) {
+    const s = (await db.query("insert into phono_students (class_id, code) values ($1, $2) returning id", [c1, 'X' + k])).rows[0].id;
+    await db.query("insert into phono_attempts (id, class_id, student_id, task_id, session, card, word, attempt, correct, help, positions, played_at) select gen_random_uuid(), $1, $2, $3, 's', 'c', 'c', 1, true, 'aucune', '[]'::jsonb, now() from generate_series(1, 300)", [c1, s, tache]);
+  }
+  await assert.rejects(envoyer(db, T1, 'E01', lignes(1)), /limite_atteinte/);
+});
+
+test('limite : un lot invalide est toujours refusé comme avant (charge_invalide), la limite ne masque rien', async () => {
+  const { db } = await monde();
+  await assert.rejects(envoyer(db, T1, 'E01', [ligne({ tentative: 0 })]), /charge_invalide/);
+  await assert.rejects(envoyer(db, T1, 'ZZ9', lignes(1)), /code_inconnu/);
+});
+
+// ---- Audit S1 : clé personnelle par élève ----
+test('clé : chaque élève a une clé aléatoire de 20 caractères hexadécimaux, différente de celle des autres', async () => {
+  const { db, c1 } = await monde();
+  await db.query("insert into phono_students (class_id, code) values ($1, 'E02')", [c1]);
+  const r = await db.query('select secret from phono_students');
+  assert.ok(r.rows.every(x => /^[a-f0-9]{20}$/.test(x.secret)));
+  assert.equal(new Set(r.rows.map(x => x.secret)).size, r.rows.length);
+});
+
+test("clé : connaître le code ne suffit plus, clé absente, fausse ou d'un autre élève refusée comme un code inconnu", async () => {
+  const { db, c1 } = await monde();
+  await db.query("insert into phono_students (class_id, code) values ($1, 'E02')", [c1]);
+  const cleE2 = await cleDe(db, 'E02', T1);
+  await assert.rejects(envoyer(db, T1, 'E01', [ligne()], null), /code_inconnu/);
+  await assert.rejects(envoyer(db, T1, 'E01', [ligne()], 'f'.repeat(20)), /code_inconnu/);
+  await assert.rejects(envoyer(db, T1, 'E01', [ligne()], cleE2), /code_inconnu/); // usurpation : code d'un camarade avec sa propre clé
+  await assert.rejects(envoyer(db, T1, 'ZZ9', [ligne()]), /code_inconnu/);
+  assert.equal(await nb(db), 0);
+  assert.deepEqual(await envoyer(db, T1, 'E01', [ligne()]), { recus: 1, ignores: 0 });
+});
+
+test("clé : la clé d'un élève d'une autre classe n'ouvre rien", async () => {
+  const { db } = await monde();
+  await assert.rejects(envoyer(db, T1, 'E01', [ligne()], await cleDe(db, 'E02')), /code_inconnu/);
+});
+
+test("clé : l'ancienne fonction à trois paramètres n'existe plus (sinon la clé serait contournable)", async () => {
+  const { db } = await monde();
+  await assert.rejects(comme(db, 'anon', null, () => db.query("select public.phono_envoyer_essais($1, 'E01', '[]'::jsonb)", [T1])), /does not exist|function/i);
+});
+
+test('clé : anon ne peut pas lire les clés ; un membre de la classe les lit, pas ceux des autres classes', async () => {
+  const { db, m1 } = await monde();
+  await assert.rejects(comme(db, 'anon', null, () => db.query('select secret from phono_students')), /permission denied/);
+  const r = await comme(db, 'authenticated', m1, () => db.query('select code, secret from phono_students'));
+  assert.deepEqual(r.rows.map(x => x.code), ['E01']);
+  assert.match(r.rows[0].secret, /^[a-f0-9]{20}$/);
+});
+
+test("clé : un membre peut changer la clé d'un élève (révoque son ancien lien), format imposé", async () => {
+  const { db, m1 } = await monde();
+  const ancienne = await cleDe(db, 'E01', T1);
+  await comme(db, 'authenticated', m1, () => db.query("update phono_students set secret = $1 where code = 'E01'", ['0123456789abcdef0123']));
+  await assert.rejects(envoyer(db, T1, 'E01', [ligne()], ancienne), /code_inconnu/);
+  assert.deepEqual(await envoyer(db, T1, 'E01', [ligne()]), { recus: 1, ignores: 0 });
+  await assert.rejects(comme(db, 'authenticated', m1, () => db.query("update phono_students set secret = 'court' where code = 'E01'")), /secret_format|check/);
 });

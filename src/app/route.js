@@ -10,6 +10,9 @@ function tacheDepuisRequete(requete) {
   if (pack) tache.pack = pack;
   const jeton = p.get('t');
   if (jeton && /^[a-f0-9]{24}$/.test(jeton)) tache.jeton = jeton;
+  // Lien personnel d'un élève : son code (e) et sa clé (k), les deux ou aucun. Sans clé, aucun résultat ne peut être envoyé au serveur.
+  const codeEleve = p.get('e'), cle = p.get('k');
+  if (codeEleve && /^[A-Za-z0-9-]{1,12}$/.test(codeEleve) && cle && /^[a-f0-9]{20}$/.test(cle)) { tache.codeEleve = codeEleve; tache.cle = cle; }
   const mode = p.get('mode');
   if (mode === 'avec' || mode === 'sans') tache.modeMot = mode;
   const habillage = p.get('habillage');
@@ -45,7 +48,7 @@ export function ecrireAdresse(base, ecran, tache, carte) {
   const racine = base.replace(/\/+$/, '') + '/';
   const e = encodeURIComponent;
   const reglages = [`mode=${e(tache.modeMot)}`, `habillage=${e(tache.habillage)}`, `intrus=${e(tache.nbIntrus)}`, `accents=${tache.exigerAccents ? 1 : 0}`];
-  if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}`;
+  if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;
   return `${racine}#/jeu?${[`pack=${e(tache.pack)}`, ...reglages].join('&')}`;
 }

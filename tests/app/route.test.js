@@ -74,3 +74,17 @@ test('écran enseignant', () => {
   assert.deepEqual(lireAdresse('#/enseignant'), { ecran: 'enseignant' });
   assert.equal(lireAdresse('#/enseignant/extra').ecran, 'inconnue');
 });
+
+test('lien personnel d’un élève : code et clé lus ensemble, réécrits à l’identique', () => {
+  const cle = '0123456789abcdef0123';
+  const a = lireAdresse(`#/jeu?t=${'a'.repeat(24)}&e=E07&k=${cle}`);
+  assert.equal(a.tache.codeEleve, 'E07'); assert.equal(a.tache.cle, cle); assert.equal(a.tache.jeton, 'a'.repeat(24));
+  assert.equal(ecrireAdresse('https://x.test/', 'jeu', a.tache), `https://x.test/#/jeu?t=${'a'.repeat(24)}&e=E07&k=${cle}`);
+});
+
+test('lien personnel : clé ou code mal formé, ou un seul des deux : ignorés', () => {
+  for (const q of ['&e=E07', '&k=0123456789abcdef0123', '&e=E07&k=court', '&e=E07&k=ZZZZZZZZZZZZZZZZZZZZ', '&e=a%20b&k=0123456789abcdef0123']) {
+    const a = lireAdresse(`#/jeu?t=${'a'.repeat(24)}${q}`);
+    assert.equal(a.tache.cle, undefined, q); assert.equal(a.tache.codeEleve, undefined, q);
+  }
+});

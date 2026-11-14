@@ -48,10 +48,10 @@ test('envoyerEssais : 230 lignes dont 20 déjà envoyées, trois paquets de 100,
   const s = supa(succes);
   const tout = lignes(230);
   const deja = new Set(tout.slice(0, 20).map(l => l.id));
-  const r = await envoyerEssais({ lignes: tout, dejaEnvoyes: deja, token: TOKEN, code: 'E01', supabase: s });
+  const r = await envoyerEssais({ lignes: tout, dejaEnvoyes: deja, token: TOKEN, code: 'E01', cle: 'cle-eleve', supabase: s });
   assert.deepEqual(s.appels.map(a => a.corps.p_lignes.length), [100, 100, 10]);
   assert.equal(r.envoyes, 210); assert.equal(r.restants, 0); assert.equal(r.erreur, null); assert.equal(r.ids.length, 210);
-  assert.ok(s.appels.every(a => a.corps.p_token === TOKEN && a.corps.p_code === 'E01'));
+  assert.ok(s.appels.every(a => a.corps.p_token === TOKEN && a.corps.p_code === 'E01' && a.corps.p_cle === 'cle-eleve'));
 });
 
 test('envoyerEssais : seuls les champs attendus par le serveur partent', async () => {
@@ -72,7 +72,7 @@ test('envoyerEssais : erreur 500 : même comportement, rien de marqué', async (
 });
 
 test('envoyerEssais : code inconnu ou tâche inconnue, pas de réessai, rien de marqué', async () => {
-  for (const [message, erreur] of [['code_inconnu', 'code_inconnu'], ['tache_inconnue', 'tache_inconnue'], ['charge_invalide', 'refuse']]) {
+  for (const [message, erreur] of [['code_inconnu', 'code_inconnu'], ['tache_inconnue', 'tache_inconnue'], ['charge_invalide', 'refuse'], ['limite_atteinte', 'limite']]) {
     const s = supa(() => ({ status: 400, corps: { message } }));
     const r = await envoyerEssais({ lignes: lignes(250), dejaEnvoyes: new Set(), token: TOKEN, code: 'E01', supabase: s });
     assert.equal(r.erreur, erreur, message);

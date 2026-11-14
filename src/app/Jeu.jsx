@@ -10,7 +10,7 @@ const classeDe = son => CLASSES[classeCube(son)];
 export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onFin, onAccueil, onSignalement }) {
   const lettres = estPackLettres(pack); // mode A : l'élève pose des lettres, l'app lit la chaîne posée
   const [etat, setEtat] = useState(() => demarrerJeu({
-    pack: lettres ? packDeSession(pack) : pack, code, jeton: tache.jeton || null, rng: deps.rng, maintenant: deps.maintenant,
+    pack: lettres ? packDeSession(pack) : pack, code, jeton: tache.jeton || null, cle: tache.cle || null, rng: deps.rng, maintenant: deps.maintenant,
     reglages: { ...REGLAGES_PAR_DEFAUT, modeMot: tache.modeMot, habillage: tache.habillage, nbIntrus: tache.nbIntrus, exigerAccents: tache.exigerAccents, ...(lettres ? { construirePlateau: construirePlateauLettres } : {}) }
   }));
   const [message, setMessage] = useState(null);

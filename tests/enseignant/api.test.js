@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   genererJeton, genererCodes, prochainDebut, creerCodesAuto, listerTaches, resumeTache, decouperCodes, lienDeTache, qrDeLien, creerClasse, lister, ajouterEleves, creerTache, revoquerTache,
-  resultats, inviter, supprimerEleve, supprimerClasse
+  resultats, inviter, supprimerEleve, supprimerClasse, lienEleve, liensEleves, genererCle, nouvelleCleEleve
 } from '../../src/enseignant/api.js';
 import { fauxClient } from './fauxClient.js';
 
@@ -170,4 +170,29 @@ test('supprimerEleve et supprimerClasse : le master supprime, l\'invité reçoit
   await assert.rejects(supprimerEleve(i, 's1'), /Réservé au master de la classe/);
   await assert.rejects(supprimerClasse(i, 'c1'), /Réservé au master de la classe/);
   assert.equal(i.tables.phono_students.length, 1);
+});
+
+test('genererCle : 20 caractères hexadécimaux, aucun doublon sur 1000 tirages', () => {
+  const vus = new Set();
+  for (let i = 0; i < 1000; i++) { const k = genererCle(); assert.match(k, /^[a-f0-9]{20}$/); vus.add(k); }
+  assert.equal(vus.size, 1000);
+});
+
+test('lienEleve et liensEleves : un lien par élève, trié, avec son code et sa propre clé', async () => {
+  const jeton = 'a1'.repeat(12);
+  assert.equal(lienEleve('https://x.test/', jeton, 'E07', '0123456789abcdef0123'), `https://x.test/#/jeu?t=${jeton}&e=E07&k=0123456789abcdef0123`);
+  const client = fauxClient({ tables: { phono_students: [
+    { id: 's2', class_id: 'c1', code: 'E02', secret: 'b'.repeat(20) }, { id: 's1', class_id: 'c1', code: 'E01', secret: 'a'.repeat(20) }, { id: 's9', class_id: 'c2', code: 'E09', secret: 'c'.repeat(20) }
+  ] } });
+  const liens = await liensEleves(client, 'c1', jeton, 'https://x.test/');
+  assert.deepEqual(liens.map(l => l.code), ['E01', 'E02']);
+  assert.ok(liens[0].lien.endsWith(`&e=E01&k=${'a'.repeat(20)}`) && liens[1].lien.endsWith(`&e=E02&k=${'b'.repeat(20)}`));
+});
+
+test('nouvelleCleEleve : la clé de cet élève change, pas celle des autres', async () => {
+  const client = fauxClient({ tables: { phono_students: [{ id: 's1', class_id: 'c1', code: 'E01', secret: 'a'.repeat(20) }, { id: 's2', class_id: 'c1', code: 'E02', secret: 'b'.repeat(20) }] } });
+  await nouvelleCleEleve(client, 's1');
+  const [s1, s2] = client.tables.phono_students;
+  assert.match(s1.secret, /^[a-f0-9]{20}$/); assert.notEqual(s1.secret, 'a'.repeat(20));
+  assert.equal(s2.secret, 'b'.repeat(20));
 });

@@ -9,7 +9,7 @@ const MESSAGES_TACHE = {
 
 export default function Accueil({
   base = '/', tache, code, onCode, onTache, onCommencer, erreur, avertissements, persistant, lien, nbEssais, onExportJson, onExportCsv,
-  enLigne = false, etatTache = 'non', peutEnvoyer = false, enAttente = 0, onEnvoyerAttente, messageEnvoi = ''
+  enLigne = false, lienPersonnel = false, etatTache = 'non', peutEnvoyer = false, enAttente = 0, onEnvoyerAttente, messageEnvoi = ''
 }) {
   const messageTache = enLigne ? MESSAGES_TACHE[etatTache] : null;
   const alerte = erreur || messageTache;
@@ -23,12 +23,14 @@ export default function Accueil({
           <h1>Bonjour</h1>
           <div className="plai-field">
             <label className="plai-label" htmlFor="code">Code de l’élève</label>
-            <input id="code" className="plai-input" type="text" placeholder="E07" value={code} onChange={e => onCode(e.target.value)} autoComplete="off" maxLength={40} />
+            <input id="code" className="plai-input" type="text" placeholder="E07" value={code} onChange={e => onCode(e.target.value)} readOnly={lienPersonnel} autoComplete="off" maxLength={40} />
             <p className="aide">Un code, pas un nom. Lettres, chiffres et tiret, 12 au plus.{enLigne ? '' : ' Il reste sur cet appareil.'}</p>
           </div>
           {enLigne && (
             <aside role="note" aria-label="Tes données" className="plai-card">
-              <p>Tes résultats sont envoyés à ton enseignant avec ton code. Ton nom n’est jamais demandé.</p>
+              {lienPersonnel
+                ? <p>Tes résultats sont envoyés à ton enseignant avec ton code. Ton nom n’est jamais demandé.</p>
+                : <p>Ce lien n’est pas ton lien personnel : tes résultats restent sur cet appareil. Demander à ton enseignant ton lien ou ton QR-code.</p>}
             </aside>
           )}
           {alerte && <p role="alert" className="plai-error">{alerte}</p>}

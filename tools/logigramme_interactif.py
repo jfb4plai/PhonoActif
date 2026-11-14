@@ -206,7 +206,7 @@ def details(c):
       ["Les niveaux d'aide sont figés dans la base (4 valeurs) : en ajouter un demande une migration."], valid=["Testé automatiquement."], fichiers=["src/jeu/session.js"], tableau="21")
     d("N22", "Essais gardés sur l'appareil, puis envoyés", "code", "sans_objet",
       ["Journal local ; envoi avec jeton de tâche et code d'élève ; envoi différé si hors ligne ; idempotent."],
-      ["Aucune limite de débit sur l'envoi anonyme (audit, déduit)."], blocages=["Même réserve que l'étape 9 : jamais testé sur la base réelle."],
+      ["Limite de débit écrite (migration 20261114000000, APPLIQUÉE à la base réelle le 2026-11-14) : 300 lignes neuves par heure et par élève, 3000 par tâche ; le client réessaie plus tard.", "Lien ou QR personnel par élève (choix de JF) : le lien porte le code et une clé aléatoire ; le serveur refuse l'écriture sans la bonne clé ; l'enseignant imprime les QR et peut changer une clé. Un lien de tâche sans clé laisse jouer mais n'envoie rien.", "Reste ouvert : un élève qui récupère le lien (ou une photo du QR) d'un camarade écrit sous son code."], blocages=["Migration appliquée le 2026-11-14 : fonction à 4 paramètres présente et ancienne fonction absente (constaté par appel API) ; aucune partie complète jouée sur la base réelle."],
       valid=["Testé automatiquement (envoi, lots invalides, doublons)."], fichiers=["src/sync/envoi.js", "src/jeu/essais.js"], tableau="22")
     d("N23", "Lire les résultats", "partiel", "demande",
       ["Liste brute des essais par classe, avec droits (maître ou invité)."], ["Aucune synthèse par liaison graphème-son."],
@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Audit S1 : limite de débit + lien/QR personnel par élève (clé) écrits et testés en base simulée, migration APPLIQUÉE sur la base réelle (historique des 3 migrations précédentes régularisé) ; écran enseignant « Liens et QR-codes personnels »", "N22, N9, S5"),
     ("2026-11-13", "Création du logigramme statique puis interactif (25 étapes, 4 couloirs, fiches d'état)", "toutes"),
     ("2026-11-13", "Étape 2 : VOB validé par JF ; modèle xlsx pour l'enseignant ; principe de centralisation (JF et un autre admin)", "N2, N2b, N6, N6b, N8, S1"),
     ("2026-11-13", "Modèle xlsx, lecteur, constructeur de pack, audio par pack, packs « pour mon usage » (adresse remplacée par une empreinte) : créés et testés", "N2b, N9"),

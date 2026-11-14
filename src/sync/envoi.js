@@ -1,6 +1,6 @@
 /* Envoi des essais vers Supabase (fonctions SQL phono_lire_tache et phono_envoyer_essais) avec la clé publique « anon ».
    L'envoi est idempotent : chaque ligne a un identifiant ; ce que le serveur confirme est marqué envoyé, le reste attend.
-   Aucune donnée ne part sans jeton de tâche et code d'élève. */
+   Aucune donnée ne part sans jeton de tâche, code d'élève et clé personnelle (lien ou QR de l'élève). */
 
 const CLE_ENVOYES = 'phonoactif-envoyes-v1';
 const PAQUET = 100;
@@ -38,16 +38,16 @@ export async function chargerTache(token, supabase) {
 
 const versServeur = l => ({ id: l.id, session: l.session, carte: l.carte, mot: l.mot, tentative: l.tentative, juste: l.juste, aide: l.aide, positions: l.positions, date: l.date });
 
-export async function envoyerEssais({ lignes, dejaEnvoyes, token, code, supabase }) {
+export async function envoyerEssais({ lignes, dejaEnvoyes, token, code, cle, supabase }) {
   const attente = lignes.filter(l => !dejaEnvoyes.has(l.id));
   const ids = [];
   let envoyes = 0, erreur = null;
   for (let i = 0; i < attente.length && erreur === null; i += PAQUET) {
     const paquet = attente.slice(i, i + PAQUET);
-    const r = await appeler(supabase, 'phono_envoyer_essais', { p_token: token, p_code: code, p_lignes: paquet.map(versServeur) });
+    const r = await appeler(supabase, 'phono_envoyer_essais', { p_token: token, p_code: code, p_cle: cle, p_lignes: paquet.map(versServeur) });
     if (pasDeReseau(r)) { erreur = 'reseau'; break; }
     if (!r.ok) {
-      erreur = r.message.includes('code_inconnu') ? 'code_inconnu' : r.message.includes('tache_inconnue') ? 'tache_inconnue' : 'refuse';
+      erreur = r.message.includes('code_inconnu') ? 'code_inconnu' : r.message.includes('tache_inconnue') ? 'tache_inconnue' : r.message.includes('limite_atteinte') ? 'limite' : 'refuse'; // limite : les lignes restent en attente, nouvel essai plus tard
       break;
     }
     const j = r.json;

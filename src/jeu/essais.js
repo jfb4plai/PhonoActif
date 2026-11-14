@@ -43,7 +43,7 @@ export function stockageLocal(options = {}) {
   };
 }
 
-export const exporterJson = lignes => JSON.stringify(lignes, null, 1);
+export const exporterJson = lignes => JSON.stringify(lignes.map(({ cle, ...reste }) => reste), null, 1); // la clé personnelle de l’élève n’est jamais exportée
 
 const champ = v => (/[;"\r\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
 

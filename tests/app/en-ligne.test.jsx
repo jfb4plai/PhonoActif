@@ -11,6 +11,8 @@ import App from '../../src/app/App.jsx';
 afterEach(cleanup);
 
 const TOKEN = 'a1b2c3d4e5f6a7b8c9d0e1f2';
+const CLE = '0123456789abcdef0123';
+const PERSO = `#/jeu?t=${TOKEN}&e=E07&k=${CLE}`; // lien personnel d'un élève : code et clé dans l'adresse
 const lex = creerLexique(fixture);
 const MANIFEST = preparerPack({ nom: 'essai', mots: ['chat'], source: 's', licence: 'l', lexique: lex }).manifest;
 const graine = (g = 1) => () => (g = (g * 16807) % 2147483647) / 2147483647;
@@ -32,7 +34,7 @@ function fauxSupabase({ tache = reponse(200, TACHE), envoi } = {}) {
   return { appels, config: { url: 'https://x.supabase.co', anonKey: 'cle', fetch } };
 }
 
-function monter({ hash = `#/jeu?t=${TOKEN}`, supa = fauxSupabase(), stockage = stockageMemoire(), envoyes } = {}) {
+function monter({ hash = PERSO, supa = fauxSupabase(), stockage = stockageMemoire(), envoyes } = {}) {
   const user = userEvent.setup();
   const deps = {
     fetch: async () => ({ ok: true, json: async () => MANIFEST }), stockage, supabase: supa.config, stockageEnvoyes: envoyes || stockageEnvoyes({ storage: undefined }),
@@ -43,7 +45,8 @@ function monter({ hash = `#/jeu?t=${TOKEN}`, supa = fauxSupabase(), stockage = s
 
 async function jouerChat(user, code = 'E07') {
   await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled === undefined || true);
-  await user.type(screen.getByLabelText(/Code de l.élève/), code);
+  const champ = screen.getByLabelText(/Code de l.élève/);
+  if (!champ.value) await user.type(champ, code); // lien personnel : code déjà rempli
   await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
   await user.click(screen.getByRole('button', { name: 'Commencer' }));
   await screen.findByRole('group', { name: 'Mot à construire' });
@@ -105,6 +108,7 @@ describe('tâche en ligne', () => {
     const c = supa.appels.envoi[0];
     expect(c.p_token).toBe(TOKEN);
     expect(c.p_code).toBe('E07');
+    expect(c.p_cle).toBe(CLE);
     expect(c.p_lignes).toHaveLength(1);
     expect(c.p_lignes[0]).toMatchObject({ carte: 'chat', mot: 'chat', juste: true, tentative: 1, aide: 'aucune' });
     expect(c.p_lignes[0].code).toBeUndefined();
@@ -145,7 +149,7 @@ describe('tâche en ligne', () => {
   it('les essais en attente partent au retour du réseau, sans bouton', async () => {
     const supa = fauxSupabase();
     const stockage = stockageMemoire();
-    stockage.ajouter({ id: '00000000-0000-4000-8000-000000000001', jeton: TOKEN, code: 'E07', session: 's', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'avec', tentative: 1, juste: true, aide: 'aucune', positions: [{ liaison: 'ch=ch', pose: 'ch', juste: true }], date: '2026-11-11T10:00:00.000Z' });
+    stockage.ajouter({ id: '00000000-0000-4000-8000-000000000001', jeton: TOKEN, cle: CLE, code: 'E07', session: 's', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'avec', tentative: 1, juste: true, aide: 'aucune', positions: [{ liaison: 'ch=ch', pose: 'ch', juste: true }], date: '2026-11-11T10:00:00.000Z' });
     const { unmount } = monter({ supa, stockage });
     await waitFor(() => expect(supa.appels.envoi.length).toBeGreaterThanOrEqual(1));
     const avant = supa.appels.envoi.length;
@@ -158,7 +162,7 @@ describe('tâche en ligne', () => {
   it('retour du réseau : l\'événement online relance l\'envoi des lignes encore en attente', async () => {
     const supa = fauxSupabase({ envoi: (corps, n) => (n === 1 ? new Error('Failed to fetch') : reponse(200, { recus: corps.p_lignes.length, ignores: 0 })) });
     const stockage = stockageMemoire();
-    stockage.ajouter({ id: '00000000-0000-4000-8000-000000000002', jeton: TOKEN, code: 'E07', session: 's', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'avec', tentative: 1, juste: true, aide: 'aucune', positions: [{ liaison: 'ch=ch', pose: 'ch', juste: true }], date: '2026-11-11T10:00:00.000Z' });
+    stockage.ajouter({ id: '00000000-0000-4000-8000-000000000002', jeton: TOKEN, cle: CLE, code: 'E07', session: 's', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'avec', tentative: 1, juste: true, aide: 'aucune', positions: [{ liaison: 'ch=ch', pose: 'ch', juste: true }], date: '2026-11-11T10:00:00.000Z' });
     monter({ supa, stockage });
     await waitFor(() => expect(supa.appels.envoi).toHaveLength(1));
     fireEvent(window, new Event('online'));
@@ -180,5 +184,28 @@ describe('tâche en ligne', () => {
     const { user } = monter();
     await jouerChat(user);
     expect(document.body.textContent).not.toMatch(/classe|[0-9a-f]{8}-[0-9a-f]{4}-/i);
+  });
+
+  it('lien personnel : le code est déjà rempli et ne se modifie pas', async () => {
+    monter();
+    const champ = screen.getByLabelText(/Code de l.élève/);
+    expect(champ).toHaveValue('E07');
+    expect(champ).toHaveAttribute('readonly');
+  });
+
+  it("lien de tâche sans clé : l'élève joue, mais rien n'est envoyé et le message le dit", async () => {
+    const supa = fauxSupabase();
+    const { user, stockage } = monter({ hash: `#/jeu?t=${TOKEN}`, supa });
+    expect(await screen.findByText(/n’est pas ton lien personnel/)).toBeInTheDocument();
+    await jouerChat(user);
+    await new Promise(r => setTimeout(r, 50));
+    expect(supa.appels.envoi).toEqual([]);
+    expect(stockage.lire().length).toBeGreaterThan(0);
+  });
+
+  it('clé incomplète ou mal formée dans le lien : ignorée, comme un lien sans clé', async () => {
+    monter({ hash: `#/jeu?t=${TOKEN}&e=E07&k=zzz` });
+    expect(await screen.findByText(/n’est pas ton lien personnel/)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Code de l.élève/)).toHaveValue('');
   });
 });

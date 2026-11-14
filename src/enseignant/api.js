@@ -27,6 +27,24 @@ export const decouperCodes = texte => (typeof texte === 'string' ? texte.split(/
 
 export const lienDeTache = (base, jeton) => ecrireAdresse(base, 'jeu', { jeton });
 
+// Lien personnel d'un élève (audit S1) : la tâche + le code + la clé de l'élève. Sans la clé, le serveur refuse ses résultats.
+export const lienEleve = (base, jeton, code, cle) => ecrireAdresse(base, 'jeu', { jeton, codeEleve: code, cle });
+
+export function genererCle() {
+  return [...crypto.getRandomValues(new Uint8Array(10))].map(o => o.toString(16).padStart(2, '0')).join('');
+}
+
+export async function liensEleves(client, classId, jeton, base) {
+  const r = await client.from('phono_students').select('id, code, secret').eq('class_id', classId);
+  verifier(r);
+  return [...r.data].sort((a, b) => a.code.localeCompare(b.code)).map(e => ({ id: e.id, code: e.code, lien: lienEleve(base, jeton, e.code, e.secret) }));
+}
+
+// Change la clé d'un élève : son ancien lien ou QR ne fonctionne plus (à faire si un lien a été perdu ou transmis à quelqu'un d'autre).
+export async function nouvelleCleEleve(client, id) {
+  verifier(await client.from('phono_students').update({ secret: genererCle() }).eq('id', id));
+}
+
 export async function qrDeLien(lien) {
   const QR = await import('qrcode');
   return (QR.default || QR).toDataURL(lien, { margin: 1, width: 256 });
