@@ -20,14 +20,14 @@ def racine_test(d):
 
 
 class TestPhrases(unittest.TestCase):
-    def test_le_tableau_liste_les_mots_sans_image_et_aucune_phrase_n_est_preremplie(self):
+    def test_le_tableau_liste_tous_les_mots_et_aucune_phrase_n_est_preremplie(self):
         with tempfile.TemporaryDirectory() as t:
             r = racine_test(t)
             sortie, n = P.creer("x", r)
-            self.assertEqual(n, 3)
+            self.assertEqual(n, 4)
             ws = openpyxl.load_workbook(sortie)[P.FEUILLE_PHRASES]
             lignes = [(c[0].value, c[1].value) for c in ws.iter_rows(min_row=2)]
-            self.assertEqual(lignes, [("dans", None), ("avec", None), ("plus", None)])
+            self.assertEqual(lignes, [("chat", None), ("dans", None), ("avec", None), ("plus", None)])
 
     def test_lecture_acceptee_et_refusee(self):
         with tempfile.TemporaryDirectory() as t:
@@ -35,12 +35,13 @@ class TestPhrases(unittest.TestCase):
             sortie, _ = P.creer("x", r)
             wb = openpyxl.load_workbook(sortie)
             ws = wb[P.FEUILLE_PHRASES]
-            ws["B2"] = "Le chat dort dans le panier."           # dans : accepté
-            ws["B3"] = "Je joue sans mon chien."                 # avec : le mot n'y est pas
-            ws["B4"] = "Je veux du pain, et du lait en plus."    # plus : accepté
+            ws["B2"] = "Le chat boit du lait."                   # chat : accepté (mot avec image)
+            ws["B3"] = "Le chat dort dans le panier."           # dans : accepté
+            ws["B4"] = "Je joue sans mon chien."                 # avec : le mot n'y est pas
+            ws["B5"] = "Je veux du pain, et du lait en plus."    # plus : accepté
             wb.save(sortie)
             phrases, refuses, notes, attendus = P.lire(sortie, "x", r)
-            self.assertEqual(sorted(phrases), ["dans", "plus"])
+            self.assertEqual(sorted(phrases), ["chat", "dans", "plus"])
             self.assertEqual([m for m, _ in refuses], ["avec"])
             ecrit = json.loads((r / "data" / "packs-atelier" / "x" / "phrases.json").read_text(encoding="utf-8"))
             self.assertEqual(ecrit, phrases)

@@ -23,7 +23,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const [sonAbsent, setSonAbsent] = useState(false);
   const [syllabeActive, setSyllabeActive] = useState(null); // index de la syllabe lue pendant « Écouter par syllabes » (césures visibles seulement alors)
   const [cesures, setCesures] = useState(false); // césures laissées à l'écran après l'écoute, jusqu'au bouton « Masquer les césures »
-  useEffect(() => { setSyllabeActive(null); setCesures(false); }, [carte.id]);
+  const [imageVue, setImageVue] = useState(false); // mode A : l'image existe mais reste cachée tant que l'élève n'appuie pas sur « Voir l'image » (décision de JF 2026-11-14)
+  useEffect(() => { setSyllabeActive(null); setCesures(false); setImageVue(false); }, [carte.id]);
   const signalerSons = r => {
     const manquants = r && r.manquants ? r.manquants : [];
     manquants.forEach(id => onSignalement('son', id));
@@ -102,7 +103,9 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const fichierImage = modeAvec ? carte.image_avec_mot : carte.image_sans_mot;
   const sansImage = !fichierImage; // pack sans image (mode A) : le mot s'affiche ou se dit, selon le réglage
   const urlImage = `${base}packs/${encodeURIComponent(etat.pack)}/${String(fichierImage).split("/").map(encodeURIComponent).join("/")}`; // sous-dossier images/ autorisé
-  const imageAbsente = sansImage || !!imagesAbsentes[carte.id];
+  const imageDisponible = !sansImage && !imagesAbsentes[carte.id];
+  const imageCachee = lettres && imageDisponible && !imageVue; // image non montrée : le fichier n'est pas chargé tant que le bouton n'est pas pressé
+  const imageAbsente = !imageDisponible || imageCachee;
   const reperes = reperesLettres(carte); // null si le manifeste n'a pas le nombre de cubes par syllabe : pas de surlignage
   const posees = etat.poses.map(id => etat.plateau.find(p => p.id === id));
   const surPlateau = etat.plateau.filter(p => !etat.poses.includes(p.id));
@@ -112,7 +115,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       <p className="compteur">Carte {etat.index + 1} sur {etat.cartes.length}</p>
       <div className="carte-jeu">
         {imageAbsente
-          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage ? 'Écouter le mot, puis le construire.' : 'Image absente'}</p>)
+          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? 'Écouter le mot, puis le construire.' : 'Image absente'}</p>)
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
       </div>
@@ -150,6 +153,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
       <div className="actions" role="toolbar" aria-label="Actions">
         <button type="button" onClick={() => jouerMot(carte)}>Écouter</button>
+        {lettres && imageDisponible && <button type="button" aria-pressed={imageVue} onClick={() => setImageVue(v => !v)}>{imageVue ? 'Cacher l’image' : 'Voir l’image'}</button>}
         {lettres && phraseDeCarte(carte) && <button type="button" onClick={() => jouerPhrase(carte)} aria-label="Écouter le mot dans une phrase">Écouter une phrase</button>}
         {lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat) && <button type="button" onClick={() => jouerSyllabes(carte)} aria-label="Écouter le mot par syllabes">Écouter par syllabes</button>}
         {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}

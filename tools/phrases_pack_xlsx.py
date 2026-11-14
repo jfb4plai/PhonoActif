@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-r"""Tableau Excel des phrases d'aide d'un pack : UNE courte phrase par mot sans image, écrite par l'enseignant (jamais par une IA).
+r"""Tableau Excel des phrases d'aide d'un pack : UNE courte phrase de contexte par mot (avec ou sans image), simple et de niveau P1. L'IA peut proposer un brouillon (data/phrases-propositions-ia.json), l'enseignant relit et corrige.
 La phrase est seulement ENTENDUE par l'élève (bouton « Écouter une phrase ») : le texte n'est jamais affiché, il contient le mot.
 
   python -I tools/phrases_pack_xlsx.py creer <pack>
-      écrit docs/phrases-<pack>-a-remplir.xlsx : la liste des mots du pack qui n'ont pas d'image, avec une colonne vide « Phrase » à remplir
+      écrit docs/phrases-<pack>-a-remplir.xlsx : la liste de tous les mots du pack, avec une colonne vide « Phrase » à remplir
   python -I tools/phrases_pack_xlsx.py lire <tableau-rempli.xlsx> <pack>
       vérifie les phrases et écrit data/packs-atelier/<pack>/phrases.json ; rien n'est publié
       suite : node tools/ajouter_phrases_pack.js <pack>, puis python -I essai-tts-ipa/generer-bibliotheque.py phrases <pack> (clé Azure, par JF)
@@ -24,22 +24,23 @@ FEUILLE_PHRASES, FEUILLE_NOTICE = "Phrases", "Mode d'emploi"
 MAX_CAR = 120
 
 
-def mots_sans_image(pack, racine=RACINE):
+def mots_du_pack(pack, racine=RACINE):
+    """Tous les mots du pack : une phrase de contexte pour chaque mot, avec ou sans image (décision de JF le 2026-11-14)."""
     m = json.loads((racine / "public" / "packs" / pack / "manifest.json").read_text(encoding="utf-8"))
-    return [c["mot"] for c in m["cartes"] if not c.get("image_sans_mot")]
+    return [c["mot"] for c in m["cartes"]]
 
 
 def creer(pack, racine=RACINE, sortie=None):
-    mots = mots_sans_image(pack, racine)
+    mots = mots_du_pack(pack, racine)
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = FEUILLE_NOTICE
     lignes = [
-        f"Phrases d'aide du pack « {pack} » : {len(mots)} mots sans image",
+        f"Phrases d'aide du pack « {pack} » : {len(mots)} mots",
         "",
-        "Ce que vous écrivez : UNE courte phrase par mot, avec vos mots, pour vos élèves. L'application ne la propose pas à votre place.",
+        "Ce que vous écrivez ou corrigez : UNE courte phrase par mot, avec vos mots, pour vos élèves. Une proposition de l'IA peut y figurer : à relire, corriger ou effacer.",
         "La phrase est seulement ENTENDUE (bouton « Écouter une phrase ») : son texte n'est jamais affiché, parce qu'il contient le mot à écrire.",
-        f"Consignes : le mot doit figurer dans la phrase, tel quel ; {MAX_CAR} caractères au plus ; pas de chiffre ; pas de prénom d'élève ni de nom de personne ; une phrase simple, dite à voix haute, qui donne du sens au mot.",
+        f"Consignes : le mot doit figurer dans la phrase, tel quel ; {MAX_CAR} caractères au plus ; pas de chiffre ; pas de prénom d'élève ni de nom de personne ; une phrase simple, de niveau P1 (mots courants des manuels de CP : contrôle avec tools/niveau_phrases.py), dite à voix haute, qui donne du sens au mot.",
         "Pour un mot-outil (dans, avec, mais…), une phrase où le mot est bien audible. Pour un mot à plusieurs sens, la phrase du sens que vous voulez travailler.",
         "Remplir la colonne « Phrase » de la feuille « Phrases ». Laisser vide un mot pour lequel vous ne voulez pas de phrase.",
         "Ensuite : envoyer le fichier à JF, qui fait lire les phrases par la voix et les ajoute au pack.",
@@ -93,14 +94,14 @@ def lire(chemin, pack, racine=RACINE):
     wb = openpyxl.load_workbook(chemin, data_only=True)
     if FEUILLE_PHRASES not in wb.sheetnames:
         sys.exit(f"Feuille « {FEUILLE_PHRASES} » introuvable.")
-    attendus = set(mots_sans_image(pack, racine))
+    attendus = set(mots_du_pack(pack, racine))
     phrases, refuses, ignores = {}, [], []
     for ligne in wb[FEUILLE_PHRASES].iter_rows(min_row=2, values_only=True):
         mot, phrase = (ligne[0] or "").strip(), (ligne[1] or "").strip()
         if not mot or not phrase:
             continue
         if mot not in attendus:
-            ignores.append((mot, "mot absent de la liste des mots sans image de ce pack"))
+            ignores.append((mot, "mot absent de ce pack"))
             continue
         pb = verifier(mot, phrase)
         graves = [x for x in pb if not x.startswith("une majuscule")]
@@ -123,7 +124,7 @@ def main(argv):
         return 0
     if len(argv) >= 3 and argv[0] == "lire":
         phrases, refuses, notes, attendus = lire(argv[1], argv[2])
-        print(f"{len(phrases)} phrase(s) acceptée(s) sur {len(attendus)} mots sans image ; {len(refuses)} refusée(s).")
+        print(f"{len(phrases)} phrase(s) acceptée(s) sur {len(attendus)} mots ; {len(refuses)} refusée(s).")
         for mot, raison in refuses:
             print(f"  refusée : {mot} : {raison}")
         for mot, note in notes:

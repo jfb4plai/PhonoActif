@@ -47,7 +47,9 @@
      "fichier": "audio/64_251_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le chat dort dans le panier.",
+   "phraseAudio": "audio/phrase-dans.mp3"
   },
   {
    "id": "elle",
@@ -93,7 +95,9 @@
      "fichier": "audio/25b_6c_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Elle mange une pomme.",
+   "phraseAudio": "audio/phrase-elle.mp3"
   },
   {
    "id": "qui",
@@ -129,7 +133,9 @@
      "fichier": "audio/6b_69_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Qui a pris mon crayon ?",
+   "phraseAudio": "audio/phrase-qui.mp3"
   },
   {
    "id": "pour",
@@ -175,7 +181,9 @@
      "fichier": "audio/70_75_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Ce cadeau est pour toi.",
+   "phraseAudio": "audio/phrase-pour.mp3"
   },
   {
    "id": "avec",
@@ -237,7 +245,9 @@
      "fichier": "audio/76_25b_6b_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "phrase": "Je joue avec mon ami.",
+   "phraseAudio": "audio/phrase-avec.mp3"
   },
   {
    "id": "sur",
@@ -277,7 +287,9 @@
      "fichier": "audio/73_79_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le livre est sur la table.",
+   "phraseAudio": "audio/phrase-sur.mp3"
   },
   {
    "id": "son",
@@ -313,7 +325,9 @@
      "fichier": "audio/73_254_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Il lave son vélo.",
+   "phraseAudio": "audio/phrase-son.mp3"
   },
   {
    "id": "pas",
@@ -353,7 +367,9 @@
      "fichier": "audio/70_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je ne veux pas dormir.",
+   "phraseAudio": "audio/phrase-pas.mp3"
   },
   {
    "id": "petit",
@@ -425,7 +441,9 @@
      "fichier": "audio/74_69_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "phrase": "Le petit chat boit du lait.",
+   "phraseAudio": "audio/phrase-petit.mp3"
   },
   {
    "id": "mais",
@@ -471,7 +489,9 @@
      "fichier": "audio/6d_25b_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je veux jouer, mais il pleut.",
+   "phraseAudio": "audio/phrase-mais.mp3"
   },
   {
    "id": "que",
@@ -507,7 +527,9 @@
      "fichier": "audio/6b_259_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je sais que tu es là.",
+   "phraseAudio": "audio/phrase-que.mp3"
   },
   {
    "id": "plus",
@@ -557,7 +579,9 @@
      "fichier": "audio/70_6c_79_73_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je n'ai plus faim.",
+   "phraseAudio": "audio/phrase-plus.mp3"
   },
   {
    "id": "bien",
@@ -603,7 +627,9 @@
      "fichier": "audio/62_6a_25b_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Tu as bien lu.",
+   "phraseAudio": "audio/phrase-bien.mp3"
   },
   {
    "id": "maman",
@@ -671,7 +697,9 @@
      "fichier": "audio/6d_251_303_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Maman lit une histoire.",
+   "phraseAudio": "audio/phrase-maman.mp3"
   },
   {
    "id": "très",
@@ -721,7 +749,9 @@
      "fichier": "audio/74_281_25b_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Il fait très chaud.",
+   "phraseAudio": "audio/phrase-tres.mp3"
   },
   {
    "id": "faire",
@@ -777,7 +807,9 @@
      "fichier": "audio/66_25b_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je vais faire un dessin.",
+   "phraseAudio": "audio/phrase-faire.mp3"
   },
   {
    "id": "mon",
@@ -813,7 +845,9 @@
      "fichier": "audio/6d_254_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Voici mon sac.",
+   "phraseAudio": "audio/phrase-mon.mp3"
   },
   {
    "id": "chat",
@@ -862,7 +896,9 @@
    ],
    "image_sans_mot": "images/chat.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le chat boit du lait.",
+   "phraseAudio": "audio/phrase-chat.mp3"
   },
   {
    "id": "moi",
@@ -898,7 +934,9 @@
      "fichier": "audio/6d_77_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Viens jouer avec moi.",
+   "phraseAudio": "audio/phrase-moi.mp3"
   },
   {
    "id": "tout",
@@ -944,7 +982,9 @@
      "fichier": "audio/74_75_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "J'ai tout mangé.",
+   "phraseAudio": "audio/phrase-tout.mp3"
   },
   {
    "id": "vous",
@@ -990,7 +1030,9 @@
      "fichier": "audio/76_75_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Vous êtes en rang.",
+   "phraseAudio": "audio/phrase-vous.mp3"
   },
   {
    "id": "maison",
@@ -1067,7 +1109,9 @@
    ],
    "image_sans_mot": "images/maison.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Ma maison est grande.",
+   "phraseAudio": "audio/phrase-maison.mp3"
   },
   {
    "id": "nous",
@@ -1113,7 +1157,9 @@
      "fichier": "audio/6e_75_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Nous allons à l'école.",
+   "phraseAudio": "audio/phrase-nous.mp3"
   },
   {
    "id": "vite",
@@ -1163,7 +1209,9 @@
      "fichier": "audio/76_69_74_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Cours vite !",
+   "phraseAudio": "audio/phrase-vite.mp3"
   },
   {
    "id": "aussi",
@@ -1227,7 +1275,9 @@
      "fichier": "audio/73_69_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Moi aussi, j'ai un chien.",
+   "phraseAudio": "audio/phrase-aussi.mp3"
   },
   {
    "id": "papa",
@@ -1289,7 +1339,9 @@
      "fichier": "audio/70_61_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Papa conduit la voiture.",
+   "phraseAudio": "audio/phrase-papa.mp3"
   },
   {
    "id": "deux",
@@ -1335,7 +1387,9 @@
      "fichier": "audio/64_f8_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "J'ai deux mains.",
+   "phraseAudio": "audio/phrase-deux.mp3"
   },
   {
    "id": "par",
@@ -1375,7 +1429,9 @@
      "fichier": "audio/70_61_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Il passe par la porte.",
+   "phraseAudio": "audio/phrase-par.mp3"
   },
   {
    "id": "comme",
@@ -1431,7 +1487,9 @@
      "fichier": "audio/6b_254_6d_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Il est grand comme un arbre.",
+   "phraseAudio": "audio/phrase-comme.mp3"
   },
   {
    "id": "eau",
@@ -1466,7 +1524,9 @@
    ],
    "image_sans_mot": "images/eau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je bois de l'eau.",
+   "phraseAudio": "audio/phrase-eau.mp3"
   },
   {
    "id": "quand",
@@ -1518,7 +1578,9 @@
      "fichier": "audio/6b_251_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Quand il pleut, je prends mon parapluie.",
+   "phraseAudio": "audio/phrase-quand.mp3"
   },
   {
    "id": "jardin",
@@ -1599,7 +1661,9 @@
    ],
    "image_sans_mot": "images/jardin.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa est dans le jardin.",
+   "phraseAudio": "audio/phrase-jardin.mp3"
   },
   {
    "id": "école",
@@ -1674,7 +1738,9 @@
    ],
    "image_sans_mot": "images/ecole.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je vais à l'école avec mon ami.",
+   "phraseAudio": "audio/phrase-ecole.mp3"
   },
   {
    "id": "alors",
@@ -1746,7 +1812,9 @@
      "fichier": "audio/6c_254_281_-30.mp3",
      "cubes": 4
     }
-   ]
+   ],
+   "phrase": "Il pleut, alors je prends mon manteau.",
+   "phraseAudio": "audio/phrase-alors.mp3"
   },
   {
    "id": "chez",
@@ -1788,7 +1856,9 @@
      "fichier": "audio/283_65_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je vais chez ma grand-mère.",
+   "phraseAudio": "audio/phrase-chez.mp3"
   },
   {
    "id": "tête",
@@ -1838,7 +1908,9 @@
      "fichier": "audio/74_25b_74_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le chapeau est sur ma tête.",
+   "phraseAudio": "audio/phrase-tete.mp3"
   },
   {
    "id": "toi",
@@ -1874,7 +1946,9 @@
      "fichier": "audio/74_77_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Et toi, tu aimes la soupe ?",
+   "phraseAudio": "audio/phrase-toi.mp3"
   },
   {
    "id": "non",
@@ -1910,7 +1984,9 @@
      "fichier": "audio/6e_254_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Non, je n'ai pas fini.",
+   "phraseAudio": "audio/phrase-non.mp3"
   },
   {
    "id": "jour",
@@ -1956,7 +2032,9 @@
      "fichier": "audio/292_75_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le jour se lève.",
+   "phraseAudio": "audio/phrase-jour.mp3"
   },
   {
    "id": "lit",
@@ -1999,7 +2077,9 @@
    ],
    "image_sans_mot": "images/lit.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je dors dans mon lit.",
+   "phraseAudio": "audio/phrase-lit.mp3"
   },
   {
    "id": "peu",
@@ -2035,7 +2115,9 @@
      "fichier": "audio/70_f8_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Il reste peu de pain.",
+   "phraseAudio": "audio/phrase-peu.mp3"
   },
   {
    "id": "oui",
@@ -2071,7 +2153,9 @@
      "fichier": "audio/77_69_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Oui, je veux bien.",
+   "phraseAudio": "audio/phrase-oui.mp3"
   },
   {
    "id": "encore",
@@ -2149,7 +2233,9 @@
      "fichier": "audio/6b_254_281_-30.mp3",
      "cubes": 4
     }
-   ]
+   ],
+   "phrase": "Je veux encore du riz.",
+   "phraseAudio": "audio/phrase-encore.mp3"
   },
   {
    "id": "chien",
@@ -2204,7 +2290,9 @@
    ],
    "image_sans_mot": "images/chien.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le chien court dans le jardin.",
+   "phraseAudio": "audio/phrase-chien.mp3"
   },
   {
    "id": "voiture",
@@ -2295,7 +2383,9 @@
    ],
    "image_sans_mot": "images/voiture.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa a une voiture rouge.",
+   "phraseAudio": "audio/phrase-voiture.mp3"
   },
   {
    "id": "trois",
@@ -2351,7 +2441,9 @@
      "fichier": "audio/74_281_77_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je vois trois oiseaux.",
+   "phraseAudio": "audio/phrase-trois.mp3"
   },
   {
    "id": "poisson",
@@ -2434,7 +2526,9 @@
    ],
    "image_sans_mot": "images/poisson.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le poisson nage dans l'eau.",
+   "phraseAudio": "audio/phrase-poisson.mp3"
   },
   {
    "id": "trop",
@@ -2484,7 +2578,9 @@
      "fichier": "audio/74_281_6f_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Ce sac est trop lourd.",
+   "phraseAudio": "audio/phrase-trop.mp3"
   },
   {
    "id": "rue",
@@ -2524,7 +2620,9 @@
      "fichier": "audio/281_79_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je marche dans la rue avec papa.",
+   "phraseAudio": "audio/phrase-rue.mp3"
   },
   {
    "id": "temps",
@@ -2580,7 +2678,9 @@
      "fichier": "audio/74_251_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Quel beau temps !",
+   "phraseAudio": "audio/phrase-temps.mp3"
   },
   {
    "id": "gros",
@@ -2630,7 +2730,9 @@
      "fichier": "audio/261_281_6f_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le gros chien dort.",
+   "phraseAudio": "audio/phrase-gros.mp3"
   },
   {
    "id": "matin",
@@ -2698,7 +2800,9 @@
      "fichier": "audio/74_25b_303_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Le matin, je me lave.",
+   "phraseAudio": "audio/phrase-matin.mp3"
   },
   {
    "id": "sans",
@@ -2744,7 +2848,9 @@
      "fichier": "audio/73_251_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je bois sans paille.",
+   "phraseAudio": "audio/phrase-sans.mp3"
   },
   {
    "id": "bon",
@@ -2780,7 +2886,9 @@
      "fichier": "audio/62_254_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Ce gâteau est bon.",
+   "phraseAudio": "audio/phrase-bon.mp3"
   },
   {
    "id": "chaque",
@@ -2842,7 +2950,9 @@
      "fichier": "audio/283_61_6b_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Chaque élève a un cahier.",
+   "phraseAudio": "audio/phrase-chaque.mp3"
   },
   {
    "id": "fois",
@@ -2888,7 +2998,9 @@
      "fichier": "audio/66_77_61_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je saute deux fois.",
+   "phraseAudio": "audio/phrase-fois.mp3"
   },
   {
    "id": "beau",
@@ -2930,7 +3042,9 @@
      "fichier": "audio/62_6f_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le ciel est beau.",
+   "phraseAudio": "audio/phrase-beau.mp3"
   },
   {
    "id": "rien",
@@ -2976,7 +3090,9 @@
      "fichier": "audio/281_6a_25b_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je ne vois rien.",
+   "phraseAudio": "audio/phrase-rien.mp3"
   },
   {
    "id": "ours",
@@ -3025,7 +3141,9 @@
    ],
    "image_sans_mot": "images/ours.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'ours est gros.",
+   "phraseAudio": "audio/phrase-ours.mp3"
   },
   {
    "id": "grand",
@@ -3081,7 +3199,9 @@
      "fichier": "audio/261_281_251_303_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Mon frère est grand.",
+   "phraseAudio": "audio/phrase-grand.mp3"
   },
   {
    "id": "lire",
@@ -3131,7 +3251,9 @@
      "fichier": "audio/6c_69_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "J'aime lire un livre.",
+   "phraseAudio": "audio/phrase-lire.mp3"
   },
   {
    "id": "sous",
@@ -3177,7 +3299,9 @@
      "fichier": "audio/73_75_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le chat dort sous la chaise.",
+   "phraseAudio": "audio/phrase-sous.mp3"
   },
   {
    "id": "peur",
@@ -3223,7 +3347,9 @@
      "fichier": "audio/70_153_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le chat a peur du chien.",
+   "phraseAudio": "audio/phrase-peur.mp3"
   },
   {
    "id": "voilà",
@@ -3291,7 +3417,9 @@
      "fichier": "audio/6c_61_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Voilà ton sac !",
+   "phraseAudio": "audio/phrase-voila.mp3"
   },
   {
    "id": "livre",
@@ -3366,7 +3494,9 @@
    ],
    "image_sans_mot": "images/livre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je lis un livre.",
+   "phraseAudio": "audio/phrase-livre.mp3"
   },
   {
    "id": "rouge",
@@ -3422,7 +3552,9 @@
      "fichier": "audio/281_75_292_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "La pomme est rouge.",
+   "phraseAudio": "audio/phrase-rouge.mp3"
   },
   {
    "id": "vélo",
@@ -3487,7 +3619,9 @@
    ],
    "image_sans_mot": "images/velo.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je fais du vélo.",
+   "phraseAudio": "audio/phrase-velo.mp3"
   },
   {
    "id": "voir",
@@ -3533,7 +3667,9 @@
      "fichier": "audio/76_77_61_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Je vais voir le chien.",
+   "phraseAudio": "audio/phrase-voir.mp3"
   },
   {
    "id": "terre",
@@ -3589,7 +3725,9 @@
      "fichier": "audio/74_25b_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le ver vit dans la terre.",
+   "phraseAudio": "audio/phrase-terre.mp3"
   },
   {
    "id": "monde",
@@ -3645,7 +3783,9 @@
      "fichier": "audio/6d_254_303_64_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Tout le monde chante.",
+   "phraseAudio": "audio/phrase-monde.mp3"
   },
   {
    "id": "nez",
@@ -3681,7 +3821,9 @@
      "fichier": "audio/6e_65_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le clown a un nez rouge.",
+   "phraseAudio": "audio/phrase-nez.mp3"
   },
   {
    "id": "neige",
@@ -3740,7 +3882,9 @@
    ],
    "image_sans_mot": "images/neige.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La neige est blanche.",
+   "phraseAudio": "audio/phrase-neige.mp3"
   },
   {
    "id": "porte",
@@ -3803,7 +3947,9 @@
    ],
    "image_sans_mot": "images/porte.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je ferme la porte.",
+   "phraseAudio": "audio/phrase-porte.mp3"
   },
   {
    "id": "ami",
@@ -3855,7 +4001,9 @@
      "fichier": "audio/6d_69_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Mon ami joue avec moi.",
+   "phraseAudio": "audio/phrase-ami.mp3"
   },
   {
    "id": "quel",
@@ -3901,7 +4049,9 @@
      "fichier": "audio/6b_25b_6c_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Quel beau dessin !",
+   "phraseAudio": "audio/phrase-quel.mp3"
   },
   {
    "id": "leur",
@@ -3947,7 +4097,9 @@
      "fichier": "audio/6c_153_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Les enfants ont leur sac.",
+   "phraseAudio": "audio/phrase-leur.mp3"
   },
   {
    "id": "garçon",
@@ -4025,7 +4177,9 @@
      "fichier": "audio/73_254_303_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Le garçon court vite.",
+   "phraseAudio": "audio/phrase-garcon.mp3"
   },
   {
    "id": "manger",
@@ -4099,7 +4253,9 @@
      "fichier": "audio/292_65_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Il est l'heure de manger.",
+   "phraseAudio": "audio/phrase-manger.mp3"
   },
   {
    "id": "même",
@@ -4149,7 +4305,9 @@
      "fichier": "audio/6d_25b_6d_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Nous avons le même sac.",
+   "phraseAudio": "audio/phrase-meme.mp3"
   },
   {
    "id": "soir",
@@ -4195,7 +4353,9 @@
      "fichier": "audio/73_77_61_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le soir, je lis un livre.",
+   "phraseAudio": "audio/phrase-soir.mp3"
   },
   {
    "id": "loup",
@@ -4244,7 +4404,9 @@
    ],
    "image_sans_mot": "images/loup.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le loup court dans la forêt.",
+   "phraseAudio": "audio/phrase-loup.mp3"
   },
   {
    "id": "tortue",
@@ -4329,7 +4491,9 @@
    ],
    "image_sans_mot": "images/tortue.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La tortue est dans le jardin.",
+   "phraseAudio": "audio/phrase-tortue.mp3"
   },
   {
    "id": "forêt",
@@ -4404,7 +4568,9 @@
    ],
    "image_sans_mot": "images/foret.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Il y a un ours dans la forêt.",
+   "phraseAudio": "audio/phrase-foret.mp3"
   },
   {
    "id": "vrai",
@@ -4450,7 +4616,9 @@
      "fichier": "audio/76_281_25b_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Ce n'est pas vrai.",
+   "phraseAudio": "audio/phrase-vrai.mp3"
   },
   {
    "id": "souris",
@@ -4531,7 +4699,9 @@
    ],
    "image_sans_mot": "images/souris.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La souris a peur du chat.",
+   "phraseAudio": "audio/phrase-souris.mp3"
   },
   {
    "id": "père",
@@ -4581,7 +4751,9 @@
      "fichier": "audio/70_25b_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Mon père lit le journal.",
+   "phraseAudio": "audio/phrase-pere.mp3"
   },
   {
    "id": "coup",
@@ -4627,7 +4799,9 @@
      "fichier": "audio/6b_75_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Il donne un coup de pied dans le ballon.",
+   "phraseAudio": "audio/phrase-coup.mp3"
   },
   {
    "id": "vers",
@@ -4677,7 +4851,9 @@
      "fichier": "audio/76_25b_281_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Le chat court vers la porte.",
+   "phraseAudio": "audio/phrase-vers.mp3"
   },
   {
    "id": "sac",
@@ -4720,7 +4896,9 @@
    ],
    "image_sans_mot": "images/sac.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Mon sac est rouge.",
+   "phraseAudio": "audio/phrase-sac.mp3"
   },
   {
    "id": "table",
@@ -4795,7 +4973,9 @@
    ],
    "image_sans_mot": "images/table.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La table est grande.",
+   "phraseAudio": "audio/phrase-table.mp3"
   },
   {
    "id": "feu",
@@ -4834,7 +5014,9 @@
    ],
    "image_sans_mot": "images/feu.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa fait du feu.",
+   "phraseAudio": "audio/phrase-feu.mp3"
   },
   {
    "id": "yeux",
@@ -4880,7 +5062,9 @@
      "fichier": "audio/6a_f8_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Elle ferme les yeux.",
+   "phraseAudio": "audio/phrase-yeux.mp3"
   },
   {
    "id": "côté",
@@ -4942,7 +5126,9 @@
      "fichier": "audio/74_65_-30.mp3",
      "cubes": 2
     }
-   ]
+   ],
+   "phrase": "Je suis assis à côté de toi.",
+   "phraseAudio": "audio/phrase-cote.mp3"
   },
   {
    "id": "lune",
@@ -4995,7 +5181,9 @@
    ],
    "image_sans_mot": "images/lune.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La lune est dans le ciel.",
+   "phraseAudio": "audio/phrase-lune.mp3"
   },
   {
    "id": "rivière",
@@ -5090,7 +5278,9 @@
    ],
    "image_sans_mot": "images/riviere.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le poisson nage dans la rivière.",
+   "phraseAudio": "audio/phrase-riviere.mp3"
   },
   {
    "id": "pomme",
@@ -5149,7 +5339,9 @@
    ],
    "image_sans_mot": "images/pomme.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je veux une pomme.",
+   "phraseAudio": "audio/phrase-pomme.mp3"
   },
   {
    "id": "être",
@@ -5211,7 +5403,9 @@
      "fichier": "audio/74_281_259_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "phrase": "Je veux être pompier.",
+   "phraseAudio": "audio/phrase-etre.mp3"
   },
   {
    "id": "pendant",
@@ -5295,7 +5489,9 @@
      "fichier": "audio/64_251_303_-30.mp3",
      "cubes": 3
     }
-   ]
+   ],
+   "phrase": "Je dors pendant la nuit.",
+   "phraseAudio": "audio/phrase-pendant.mp3"
   },
   {
    "id": "fête",
@@ -5345,7 +5541,9 @@
      "fichier": "audio/66_25b_74_-30.mp3",
      "ecartAvecRegles": false
     }
-   ]
+   ],
+   "phrase": "Demain, c'est la fête de l'école.",
+   "phraseAudio": "audio/phrase-fete.mp3"
   },
   {
    "id": "rat",
@@ -5388,7 +5586,9 @@
    ],
    "image_sans_mot": "images/rat.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le rat a peur du chat.",
+   "phraseAudio": "audio/phrase-rat.mp3"
   }
  ]
 }

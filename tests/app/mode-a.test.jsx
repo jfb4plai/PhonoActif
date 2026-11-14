@@ -99,18 +99,39 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect(l.positions.map(p => p.juste)).toEqual([false, false, true]);
   });
 
-  it('carte avec une image rangée dans un sous-dossier : l’adresse de l’image garde la barre', async () => {
+  it('carte avec une image rangée dans un sous-dossier : cachée au départ, « Voir l’image » l’affiche, l’adresse garde la barre', async () => {
     const avecImage = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], image_sans_mot: 'images/chat.png' }] };
     const { user } = monter(avecImage);
     await commencer(user);
+    expect(screen.queryByAltText('Image du mot à écrire')).toBeNull();
+    expect(screen.getByText('Écouter le mot, puis le construire.')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Voir l’image' }));
     const img = screen.getByAltText('Image du mot à écrire');
     expect(img.getAttribute('src')).toBe('/packs/essai-a/images/chat.png');
   });
 
-  it('mention IA : image générée par IA et voix de synthèse signalées', async () => {
+  it('« Cacher l’image » la remet de côté', async () => {
+    const avecImage = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], image_sans_mot: 'images/chat.png' }] };
+    const { user } = monter(avecImage);
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: 'Voir l’image' }));
+    await user.click(screen.getByRole('button', { name: 'Cacher l’image' }));
+    expect(screen.queryByAltText('Image du mot à écrire')).toBeNull();
+    expect(screen.getByRole('button', { name: 'Voir l’image' })).toBeInTheDocument();
+  });
+
+  it('pack sans image : aucun bouton image', async () => {
+    const { user } = monter();
+    await commencer(user);
+    expect(screen.queryByRole('button', { name: /l’image/ })).toBeNull();
+  });
+
+  it('mention IA : image générée par IA signalée seulement quand l’image est montrée, voix de synthèse toujours', async () => {
     const ia = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], image_sans_mot: 'images/chat.png', licence: 'Image générée par IA (Canva), usage scolaire' }] };
     const { user } = monter(ia);
     await commencer(user);
+    expect(screen.getByText('Voix de synthèse (Microsoft Azure).')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Voir l’image' }));
     expect(screen.getByText(/Image créée par une IA\. Voix de synthèse \(Microsoft Azure\)\./)).toBeInTheDocument();
   });
 

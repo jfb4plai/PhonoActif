@@ -75,7 +75,7 @@ export function ModeEmploi({ base = '/' }) {
           <h2>6. Ce que fait l’élève</h2>
           <ol>
             <li>Il scanne son QR-code ou ouvre son lien : son code est déjà rempli.</li>
-            <li>« Commencer ». Il voit l’image (ou le mot), peut « Écouter » le mot, et pose les lettres une à une. À chaque lettre, la voix lit ce qui est posé.</li>
+            <li>« Commencer ». Il entend le mot avec « Écouter » (et « Écouter une phrase » quand le pack en a une), peut appuyer sur « Voir l’image » si le mot en a une, et pose les lettres une à une. À chaque lettre, la voix lit ce qui est posé.</li>
             <li>« Vérifier ». Après trois essais, le mot est montré. Il n’y a pas de score affiché à l’élève.</li>
             <li>Au bilan, « Envoyer mes résultats ». Ils sont aussi renvoyés automatiquement à l’ouverture suivante ou au retour de la connexion : sans réseau, ils restent sur l’appareil et partent plus tard.</li>
           </ol>

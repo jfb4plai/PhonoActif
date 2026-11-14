@@ -57,7 +57,7 @@ Source : règles recoupées avec la syllabation de Lexique 4.1 (`docs/rapport-le
 
 ## Phrases d'aide pour les mots sans image
 
-Idée de JF (2026-11-13) : un mot qui ne se dessine pas reçoit une courte phrase **audio** qui le contient (« Le chat dort dans le panier »). Le bouton « Écouter une phrase » apparaît dans le jeu quand la carte a `phraseAudio` ; le texte n'est **jamais affiché** (il contient le mot). **Les phrases sont écrites par l'enseignant, jamais par une IA** (le tableau est livré vide).
+Idée de JF (2026-11-13), étendue le 2026-11-14 : **chaque mot** (avec ou sans image) reçoit une courte phrase **audio** de niveau P1 qui le contient ; l'image, si elle existe, est cachée au départ et s'affiche avec le bouton « Voir l'image » (mode lettres) ; (« Le chat dort dans le panier »). Le bouton « Écouter une phrase » apparaît dans le jeu quand la carte a `phraseAudio` ; le texte n'est **jamais affiché** (il contient le mot). **L'IA peut proposer un brouillon** (`python -I tools/propositions_phrases_xlsx.py <pack>` → `docs/phrases-<pack>-propositions-ia.xlsx` ; niveau contrôlé par `python -I tools/niveau_phrases.py`) ; l'enseignant relit, corrige ou efface chaque phrase avant la suite (tableau officiel livré vide).
 1. `python -I tools/phrases_pack_xlsx.py creer p1-100` : écrit `docs/phrases-p1-100-a-remplir.xlsx` (les mots du pack sans image, colonne « Phrase » vide).
 2. L'enseignant remplit la colonne « Phrase » (le mot doit y figurer tel quel ; 120 caractères au plus ; pas de chiffre ni de nom de personne).
 3. `python -I tools/phrases_pack_xlsx.py lire <tableau-rempli.xlsx> p1-100` : vérifie et écrit `data/packs-atelier/p1-100/phrases.json` (les phrases refusées sont listées avec la raison).

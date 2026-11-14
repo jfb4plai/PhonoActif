@@ -60,7 +60,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/chat.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le chat boit du lait.",
+   "phraseAudio": "audio/phrase-chat.mp3"
   },
   {
    "id": "maison",
@@ -138,7 +140,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/maison.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Ma maison est grande.",
+   "phraseAudio": "audio/phrase-maison.mp3"
   },
   {
    "id": "chien",
@@ -201,7 +205,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/chien.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le chien court dans le jardin.",
+   "phraseAudio": "audio/phrase-chien.mp3"
   },
   {
    "id": "voiture",
@@ -293,7 +299,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/voiture.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa a une voiture rouge.",
+   "phraseAudio": "audio/phrase-voiture.mp3"
   },
   {
    "id": "poisson",
@@ -377,7 +385,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/poisson.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le poisson nage dans l'eau.",
+   "phraseAudio": "audio/phrase-poisson.mp3"
   },
   {
    "id": "velo",
@@ -443,7 +453,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/velo.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je fais du vélo.",
+   "phraseAudio": "audio/phrase-velo.mp3"
   },
   {
    "id": "porte",
@@ -514,7 +526,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/porte.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je ferme la porte.",
+   "phraseAudio": "audio/phrase-porte.mp3"
   },
   {
    "id": "neige",
@@ -581,7 +595,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/neige.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La neige est blanche.",
+   "phraseAudio": "audio/phrase-neige.mp3"
   },
   {
    "id": "loup",
@@ -638,7 +654,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/loup.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le loup court dans la forêt.",
+   "phraseAudio": "audio/phrase-loup.mp3"
   },
   {
    "id": "tortue",
@@ -724,7 +742,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/tortue.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La tortue est dans le jardin.",
+   "phraseAudio": "audio/phrase-tortue.mp3"
   },
   {
    "id": "foret",
@@ -800,7 +820,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/foret.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Il y a un ours dans la forêt.",
+   "phraseAudio": "audio/phrase-foret.mp3"
   },
   {
    "id": "souris",
@@ -882,7 +904,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/souris.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La souris a peur du chat.",
+   "phraseAudio": "audio/phrase-souris.mp3"
   },
   {
    "id": "sac",
@@ -933,7 +957,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/sac.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Mon sac est rouge.",
+   "phraseAudio": "audio/phrase-sac.mp3"
   },
   {
    "id": "table",
@@ -1009,7 +1035,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/table.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La table est grande.",
+   "phraseAudio": "audio/phrase-table.mp3"
   },
   {
    "id": "lune",
@@ -1070,7 +1098,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/lune.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La lune est dans le ciel.",
+   "phraseAudio": "audio/phrase-lune.mp3"
   },
   {
    "id": "pomme",
@@ -1137,7 +1167,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/pomme.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je veux une pomme.",
+   "phraseAudio": "audio/phrase-pomme.mp3"
   },
   {
    "id": "ours",
@@ -1194,7 +1226,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/ours.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'ours est gros.",
+   "phraseAudio": "audio/phrase-ours.mp3"
   },
   {
    "id": "livre",
@@ -1270,7 +1304,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/livre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je lis un livre.",
+   "phraseAudio": "audio/phrase-livre.mp3"
   },
   {
    "id": "rat",
@@ -1321,7 +1357,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/rat.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le rat a peur du chat.",
+   "phraseAudio": "audio/phrase-rat.mp3"
   },
   {
    "id": "eau",
@@ -1364,7 +1402,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/eau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je bois de l'eau.",
+   "phraseAudio": "audio/phrase-eau.mp3"
   }
  ]
 }

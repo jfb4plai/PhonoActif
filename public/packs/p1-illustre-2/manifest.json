@@ -77,7 +77,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/oiseau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'oiseau chante dans l'arbre.",
+   "phraseAudio": "audio/phrase-oiseau.mp3"
   },
   {
    "id": "renard",
@@ -163,7 +165,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/renard.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le renard court vite.",
+   "phraseAudio": "audio/phrase-renard.mp3"
   },
   {
    "id": "arbre",
@@ -239,7 +243,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/arbre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'arbre est grand.",
+   "phraseAudio": "audio/phrase-arbre.mp3"
   },
   {
    "id": "lapin",
@@ -311,7 +317,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/lapin.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le lapin mange de l'herbe.",
+   "phraseAudio": "audio/phrase-lapin.mp3"
   },
   {
    "id": "fenetre",
@@ -412,7 +420,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/fenetre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Ouvre la fenêtre.",
+   "phraseAudio": "audio/phrase-fenetre.mp3"
   },
   {
    "id": "train",
@@ -475,7 +485,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/train.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je prends le train avec maman.",
+   "phraseAudio": "audio/phrase-train.mp3"
   },
   {
    "id": "chapeau",
@@ -559,7 +571,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/chapeau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa a un chapeau.",
+   "phraseAudio": "audio/phrase-chapeau.mp3"
   },
   {
    "id": "chateau",
@@ -643,7 +657,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/chateau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le roi vit dans un château.",
+   "phraseAudio": "audio/phrase-chateau.mp3"
   },
   {
    "id": "cheval",
@@ -725,7 +741,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/cheval.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le cheval court vite.",
+   "phraseAudio": "audio/phrase-cheval.mp3"
   },
   {
    "id": "fromage",
@@ -821,7 +839,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/fromage.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je mange du fromage.",
+   "phraseAudio": "audio/phrase-fromage.mp3"
   },
   {
    "id": "gateau",
@@ -899,7 +919,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/gateau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Maman fait un gâteau.",
+   "phraseAudio": "audio/phrase-gateau.mp3"
   },
   {
    "id": "avion",
@@ -971,7 +993,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/avion.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'avion est dans le ciel.",
+   "phraseAudio": "audio/phrase-avion.mp3"
   }
  ]
 }
