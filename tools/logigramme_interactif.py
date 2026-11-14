@@ -251,6 +251,7 @@ def details(c):
 
 # Journal des mises à jour du logigramme (consigne de JF, 2026-11-13 : mettre à jour à chaque action). Ajouter une ligne à chaque action qui change l'état du projet.
 JOURNAL = [
+    ("2026-11-14", "Brouillon d'information aux représentants légaux (8 décisions DPO à trancher, non diffusable) ; déroulé de relecture pour la logopède (HTML à remplir, 17 liens de cartes vérifiés, 45 états + 8 découpes à noter) ; image « école » du lot 2 générée, « lit » en cours, non publiées", "N25, N6, N20"),
     ("2026-11-14", "Essai de bout en bout sur la base réelle (Chrome, compte de JF, classe « essai ») : code de test, tâche « syllabes sur difficulté », lien personnel, 4 essais envoyés et lus côté enseignant ; clé fausse/absente/d'un autre élève refusée ; ancienne fonction absente ; code et tâche de test retirés/révoquée. Son non écouté", "N22, N10, S5, N20"),
     ("2026-11-14", "Pack de 100 mots : les 27 mots de deux syllabes ou plus ont leurs syllabes (21 fichiers audio ajoutés, 0 généré par Azure : tous déjà dans la bibliothèque) ; rendu sonore non écouté", "N20, N8"),
     ("2026-11-14", "Écoute par syllabes : réglage de tâche (jamais / toujours / seulement quand l'élève a du mal) dans l'espace enseignant et le lien rapide, phrase explicative sous le bouton, mode d'emploi ; outil d'ajout des syllabes au pack de 100 mots (7 mots sur 27 faits, 20 attendent 21 fichiers audio) ; migration APPLIQUÉE sur la base réelle (sans erreur, non essayée sur une tâche réelle) ; poussé", "N20, N8, N10"),
