@@ -135,7 +135,7 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect(jouerFichier).not.toHaveBeenCalled();
   });
 
-  it('écoute par syllabes : la syllabe lue est surlignée, un trait marque la coupure, rien de tout cela hors écoute', async () => {
+  it('écoute par syllabes : la syllabe lue est surlignée, un trait marque la coupure ; à la fin, la césure reste jusqu’au bouton « Masquer les césures »', async () => {
     const { user, jouerSerie } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] });
     const vues = [];
     jouerSerie.mockImplementation(async (urls, o) => {
@@ -148,9 +148,14 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect(document.querySelectorAll('.zone .cesure').length).toBe(0);
     await user.click(screen.getByRole('button', { name: /par syllabes/ }));
     expect(vues).toEqual(['2/1/regle', '3/1/regle']); // « ma » : 2 lettres posées surlignées ; « man » : la lettre posée (m) + 2 cases vides
+    // à la fin de l'écoute : plus de surlignage, mais la césure et la règle RESTENT jusqu'au bouton « Masquer les césures »
     expect(document.querySelectorAll('.zone .syl-active').length).toBe(0);
+    expect(document.querySelectorAll('.zone .cesure').length).toBe(1);
+    expect(document.querySelector('.regle-coupure')).not.toBeNull();
+    await user.click(screen.getByRole('button', { name: 'Masquer les césures' }));
     expect(document.querySelectorAll('.zone .cesure').length).toBe(0);
     expect(document.querySelector('.regle-coupure')).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Masquer les césures' })).toBeNull();
   });
 
   it('écoute par syllabes sans le nombre de cubes dans le manifeste (ancien pack) : lecture normale, pas de surlignage', async () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect, afterEach, vi } from 'vitest';
-import { render, screen, cleanup, waitFor } from '@testing-library/react';
+import { render, screen, cleanup, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../../src/app/App.jsx';
 import { fauxClient } from './fauxClient.js';
@@ -121,7 +121,7 @@ describe('espace enseignant', () => {
     expect(choix).toHaveValue('toujours');
     expect(screen.getByText(/Ce réglage ne lit rien tout seul/)).toBeInTheDocument();
     await userEvent.selectOptions(choix, 'aide');
-    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks[0].syllabes).toBe('aide'));
     expect((await screen.findAllByText(/syllabes sur difficulté/)).length).toBeGreaterThan(0);
   });
@@ -134,12 +134,18 @@ describe('espace enseignant', () => {
     expect(liste.tagName).toBe('SELECT');
     expect([...liste.options].map(o => o.textContent)).toEqual(['Pack d’essai (5 mots)', 'Pack second']);
     await userEvent.selectOptions(liste, 'second');
-    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks[0].pack).toBe('second'));
+    // les liens des élèves s'affichent tout de suite ; le lien général est replié dessous
+    const region = await screen.findByRole('region', { name: 'Liens personnels des élèves' });
+    expect(within(region).getByText(/Liens et QR-codes des élèves : second/)).toBeInTheDocument();
     const img = await screen.findByAltText('QR-code de la tâche');
     expect(img.getAttribute('src')).toMatch(/^data:image\/png;base64,/);
-    expect(screen.getAllByText(/https:\/\/x\.test\/#\/jeu\?t=[a-f0-9]{24}/).length).toBeGreaterThan(0);
-    expect(await screen.findByText(/Réglages de ce lien : album · avec le mot|Réglages de ce lien : album · sans le mot/)).toBeTruthy();
+    const general = region.querySelector('details');
+    expect(general).not.toBeNull();
+    expect(general.open).toBe(false);
+    expect(general.textContent).toMatch(/https:\/\/x\.test\/#\/jeu\?t=[a-f0-9]{24}/);
+    expect(await screen.findByText(/Réglages : album · (avec|sans) le mot/)).toBeTruthy();
   });
 
   it('tâche : l’enseignant choisit habillage, cartes, cubes en trop et accents ; défauts = ceux de l’app élève', async () => {
@@ -150,14 +156,14 @@ describe('espace enseignant', () => {
     expect(screen.getByLabelText('Cartes avec ou sans le mot écrit').value).toBe('sans');
     expect(screen.getByLabelText('Nombre de cubes en trop').value).toBe('3');
     expect(screen.getByLabelText('Exiger les accents').checked).toBe(false);
-    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks.length).toBe(1));
     expect(client.tables.phono_tasks[0]).toMatchObject({ habillage: 'album', mode_mot: 'sans', nb_intrus: 3, exiger_accents: false });
     await userEvent.selectOptions(screen.getByLabelText('Habillage'), 'sobre');
     await userEvent.selectOptions(screen.getByLabelText('Cartes avec ou sans le mot écrit'), 'avec');
     await userEvent.selectOptions(screen.getByLabelText('Nombre de cubes en trop'), '1');
     await userEvent.click(screen.getByLabelText('Exiger les accents'));
-    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks.length).toBe(2));
     expect(client.tables.phono_tasks[1]).toMatchObject({ habillage: 'sobre', mode_mot: 'avec', nb_intrus: 1, exiger_accents: true });
   });
@@ -211,7 +217,7 @@ describe('espace enseignant', () => {
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
     expect((await screen.findByLabelText('Pack de cartes')).disabled).toBe(true);
     expect(screen.getByText(/Aucun pack publié/)).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }).disabled).toBe(true);
+    expect(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }).disabled).toBe(true);
   });
 
   it('service non configuré : message clair', () => {

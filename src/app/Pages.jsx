@@ -58,14 +58,14 @@ export function ModeEmploi({ base = '/' }) {
             <li><strong>Exiger les accents</strong> : si la case est vide, « e » est accepté à la place de « é ».</li>
             <li><strong>Écoute par syllabes</strong> : ce réglage <em>ne lit rien tout seul</em>, il rend disponible le bouton « Écouter par syllabes ». « Pour tous les mots » : le bouton est là dès le départ. « Seulement quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? », donc seulement pour les mots qui posent problème. « Jamais » : pas de bouton.</li>
           </ul>
-          <p>Puis « Créer le lien et le QR-code ».</p>
+          <p>Puis « Créer la tâche et les liens des élèves » : la tâche est créée et le lien et le QR-code de <strong>chaque élève</strong> s’affichent aussitôt en dessous.</p>
           <p>Pour fabriquer votre propre pack (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Le pack est fabriqué par l’équipe PLAI : l’application ne choisit jamais les mots à votre place.</p>
         </section>
 
         <section className="plai-section" id="etape5">
           <h2>5. Donner à chaque élève son lien ou son QR-code</h2>
-          <p>Dans la liste « Tâches de la classe », cliquer sur <strong>« Liens et QR-codes personnels »</strong>. Chaque élève a son propre lien et son propre QR-code, qui contiennent son code et une clé secrète. Imprimer (« Imprimer »), découper, remettre à chaque élève uniquement le sien.</p>
-          <p><strong>Pourquoi un lien par élève ?</strong> Sans la clé, un élève qui connaît le code d’un camarade ne peut pas enregistrer de résultats à sa place. Le lien général de la tâche ouvre bien le jeu, mais les résultats ne sont <strong>pas</strong> enregistrés : l’élève en est averti à l’écran.</p>
+          <p>Les liens des élèves s’affichent juste après la création de la tâche ; plus tard, dans la liste « Tâches de la classe », le bouton <strong>« Liens et QR-codes personnels »</strong> les rouvre. Chaque élève a son propre lien et son propre QR-code, qui contiennent son code et une clé secrète. Imprimer (« Imprimer »), découper, remettre à chaque élève uniquement le sien.</p>
+          <p><strong>Pourquoi un lien par élève ?</strong> Sans la clé, un élève qui connaît le code d’un camarade ne peut pas enregistrer de résultats à sa place. Le lien général de la tâche (replié sous les liens des élèves) ouvre bien le jeu, mais les résultats ne sont <strong>pas</strong> enregistrés : l’élève en est averti à l’écran.</p>
           <p>Un lien perdu, ou donné à quelqu’un d’autre : « Nouvelle clé pour E07 ». L’ancien lien ne fonctionne plus. « Révoquer ce lien » arrête toute une tâche.</p>
         </section>
 
@@ -77,7 +77,7 @@ export function ModeEmploi({ base = '/' }) {
             <li>« Vérifier ». Après trois essais, le mot est montré. Il n’y a pas de score affiché à l’élève.</li>
             <li>Au bilan, « Envoyer mes résultats ». Ils sont aussi renvoyés automatiquement à l’ouverture suivante ou au retour de la connexion : sans réseau, ils restent sur l’appareil et partent plus tard.</li>
           </ol>
-          <p><strong>Écoute par syllabes.</strong> Le bouton « Écouter par syllabes » (à côté de « Écouter ») lit les syllabes phonétiques l’une après l’autre, avec une pause de 500 ms et la dernière syllabe plus lente (75 %). Pendant la lecture, la syllabe dite est entourée dans la zone de construction, un trait marque la coupure et les lettres muettes sont grisées. La règle de coupure s’affiche sous la zone.</p>
+          <p><strong>Écoute par syllabes.</strong> Le bouton « Écouter par syllabes » (à côté de « Écouter ») lit les syllabes phonétiques l’une après l’autre, avec une pause de 500 ms et la dernière syllabe plus lente (75 %). Pendant la lecture, la syllabe dite est entourée dans la zone de construction, un trait marque la coupure et les lettres muettes sont grisées. La règle de coupure s’affiche sous la zone. À la fin de la lecture, les césures et la règle restent affichées jusqu’au bouton « Masquer les césures ».</p>
           <p><strong>Phrase d’aide.</strong> Pour les mots qui ne se dessinent pas (dans, avec, mais…), un pack peut proposer le bouton « Écouter une phrase » : la voix dit une courte phrase qui contient le mot. Le texte de la phrase n’est jamais affiché, parce qu’il contient le mot à écrire. Ces phrases sont écrites par l’enseignant, jamais par l’application.</p>
           <p>Il n’y a pas de bouton pour un mot d’une seule syllabe, ni dans un pack qui n’a pas encore ses syllabes (les 100 mots de P1 n’en ont que pour une partie des mots), ni si le réglage est sur « Jamais ». Les syllabes sont coupées sur les <em>sons</em> du mot, pas sur les lettres : « maison » se coupe « mè-zon ».</p>
         </section>

@@ -22,7 +22,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
   const [sonAbsent, setSonAbsent] = useState(false);
   const [syllabeActive, setSyllabeActive] = useState(null); // index de la syllabe lue pendant « Écouter par syllabes » (césures visibles seulement alors)
-  useEffect(() => { setSyllabeActive(null); }, [carte.id]);
+  const [cesures, setCesures] = useState(false); // césures laissées à l'écran après l'écoute, jusqu'au bouton « Masquer les césures »
+  useEffect(() => { setSyllabeActive(null); setCesures(false); }, [carte.id]);
   const signalerSons = r => {
     const manquants = r && r.manquants ? r.manquants : [];
     manquants.forEach(id => onSignalement('son', id));
@@ -46,6 +47,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     setSonAbsent(false);
     const urls = syl.map(s => `${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${s.fichier}`);
     const surligner = !!reperesLettres(c);
+    if (surligner) setCesures(true);
     Promise.resolve(deps.jouerSerie(urls, { ...REGLAGES_SYLLABES, onDebut: i => setSyllabeActive(i === null || !surligner ? null : i) })).then(signalerSons).catch(() => {}).finally(() => setSyllabeActive(null));
   };
   // Phrase audio qui contient le mot (aide pour les mots sans image) : le texte n'est pas affiché, seulement lu
@@ -119,11 +121,11 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       <div className="zone" role="group" aria-label="Mot à construire">
         {carte.cubes.map((c, i) => {
           const p = posees[i];
-          const r = syllabeActive === null || !reperes ? null : reperes[i];
+          const r = (syllabeActive === null && !cesures) || !reperes ? null : reperes[i];
           const s = r ? r.syl : null;
           const coupure = r !== null && i > 0 && reperes[i - 1].syl !== s; // trait de césure entre deux syllabes
           const sep = coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null;
-          const actif = r !== null && s === syllabeActive ? ' syl-active' : '';
+          const actif = r !== null && syllabeActive !== null && s === syllabeActive ? ' syl-active' : '';
           if (!p) return <React.Fragment key={`vide-${i}`}>{sep}<span className={`vide${actif}`} aria-hidden="true" /></React.Fragment>;
           const derniere = i === posees.length - 1;
           return (
@@ -135,7 +137,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         })}
       </div>
 
-      {syllabeActive !== null && reperes && <p className="regle-coupure" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>{REGLE_COUPURE}</p>}
+      {(syllabeActive !== null || cesures) && reperes && <p className="regle-coupure" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>{REGLE_COUPURE}</p>}
 
       <div className="plateau">
         {surPlateau.map(p => (
@@ -147,6 +149,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         <button type="button" onClick={() => jouerMot(carte)}>Écouter</button>
         {lettres && phraseDeCarte(carte) && <button type="button" onClick={() => jouerPhrase(carte)} aria-label="Écouter le mot dans une phrase">Écouter une phrase</button>}
         {lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat) && <button type="button" onClick={() => jouerSyllabes(carte)} aria-label="Écouter le mot par syllabes">Écouter par syllabes</button>}
+        {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
         {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
         <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
         <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>

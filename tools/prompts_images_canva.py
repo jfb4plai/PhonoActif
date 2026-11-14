@@ -115,8 +115,14 @@ def entree_nombre(mot):
             f"JF 2026-11-14 : tout nombre = pommes identiques à celles de « deux » ({n})")
 
 
+# Images de référence propres à un mot (retouche d'une image déjà générée) : « fête » v1 (ballons seuls) à laquelle JF demande d'ajouter confettis et notes de musique.
+REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"]}
+
+
 def references_de(mot):
     """Identifiants MEDIA Canva à passer en imageReferences pour ce mot (vide si aucun)."""
+    if mot in REFERENCES_PAR_MOT:
+        return list(REFERENCES_PAR_MOT[mot])
     return [MEDIA_NOMBRE_DE_REFERENCE] if mot in NOMBRES and mot != NOMBRE_DE_REFERENCE else []
 
 
@@ -129,12 +135,14 @@ MOTS_LOT3 = [
      "UN globe ; océans bleus et quelques continents verts ; ni texte ni quadrillage", "choix de Claude : « monde » = le globe"),
     entree_nombre("deux"),
     entree_nombre("trois"),
-    ("jour", "jour", "a bright round sun with short straight rays", DE_FACE, "aucun", "warm yellow #fbbf24, orange #f97316, cream",
-     " One round yellow sun with eight short straight rays around it, no face, no clouds.",
-     "UN soleil rond avec des rayons courts ; ni visage ni nuage", "choix de Claude : « jour » = le soleil"),
-    ("fête", "fete", "a bunch of three party balloons tied together with strings", DE_FACE, "aucun", None,
-     " Three round balloons of three different palette colors, one string each gathered at the bottom. No confetti, no text.",
-     "UN bouquet de TROIS ballons ; ni confettis ni texte", "choix de Claude : « fête » = des ballons"),
+    ("jour", "jour", "a single page torn from a wall calendar, tilted and falling", DE_FACE, "aucun", "red-orange #f97316, warm yellow #fbbf24, cream, teal #0f6e56",
+     " A cream paper page with a thick orange header strip and two small round ring holes at the top, a grid of four rows of five small plain cream squares, exactly one square filled in warm yellow, the page slightly tilted with one corner curled as if it was falling. No numbers, no digits, no letters, no text anywhere on the page.",
+     "UNE seule page de calendrier ; bandeau orange et deux trous ; grille de petites cases vides, UNE case jaune ; AUCUN chiffre, AUCUNE lettre ; se lit comme une page de calendrier, pas comme un soleil",
+     "JF 2026-11-14 : « jour » en soleil refusé (se lit « soleil ») ; v2 : page de calendrier qui tombe (idée de JF)"),
+    ("fête", "fete", "a bunch of three party balloons tied together with strings, with confetti and musical notes floating around", DE_FACE, "aucun", None,
+     " Keep the three balloons, their strings and the small pink bow exactly as in the reference image. Add around them about eight small confetti pieces (small circles and short strips in palette colors) and exactly three simple cut-paper musical notes (two eighth notes and one quarter note) floating in the air. No letters, no text.",
+     "UN bouquet de TROIS ballons identique à la référence ; une dizaine de confettis ; EXACTEMENT trois notes de musique ; aucune lettre, aucun texte",
+     "JF 2026-11-14 : « fête » avec des confettis et des notes de musique (v1 : ballons seuls, gardée dans lot3/v1 comme référence)"),
 ]
 LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3}
 TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2

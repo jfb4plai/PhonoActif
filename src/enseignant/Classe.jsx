@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
 import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
@@ -14,7 +14,7 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
   const [nb, setNb] = useState(20);
   const [refuses, setRefuses] = useState([]);
   const [tache, setTache] = useState({ ...PAS_DE_TACHE, pack: packs[0] ? packs[0].id : '' });
-  const [lien, setLien] = useState(null);
+  const zonePerso = useRef(null);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [perso, setPerso] = useState(null); // liens personnels d'une tâche : { tache, items: [{ id, code, lien, qr }] }
@@ -43,15 +43,19 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
     setMessage(`${r.ajoutes.length} code(s) ajouté(s).`);
     await recharger();
   });
+  // Panneau des liens : les liens PERSONNELS des élèves d'abord (ce sont eux qui enregistrent les résultats) ; le lien général est replié dessous.
+  const ouvrirPerso = async t => {
+    const liens = await liensEleves(client, classe.id, t.jeton, base);
+    const items = await Promise.all(liens.map(async l => ({ ...l, qr: await qrDeLien(l.lien) })));
+    setPerso({ tache: t, items, general: { lien: t.lien, qr: await qrDeLien(t.lien) } });
+  };
   const creer = () => agir(async () => {
     const t = await creerTache(client, classe.id, tache, userId, base);
-    setLien({ ...t, qr: await qrDeLien(t.lien) });
     await rechargerTaches();
+    await ouvrirPerso({ ...t, pack: tache.pack, resume: resumeTache(tache) });   // les liens des élèves s'affichent tout de suite
   });
-  const ouvrirPerso = t => agir(async () => {
-    const liens = await liensEleves(client, classe.id, t.jeton, base);
-    setPerso({ tache: t, items: await Promise.all(liens.map(async l => ({ ...l, qr: await qrDeLien(l.lien) }))) });
-  });
+  const ouvrirDepuisListe = t => agir(() => ouvrirPerso({ ...t, resume: resumeTache(t) }));
+  useEffect(() => { if (perso && zonePerso.current && zonePerso.current.scrollIntoView) zonePerso.current.scrollIntoView({ block: 'start' }); }, [perso && perso.tache && perso.tache.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const changerCle = (t, id) => agir(async () => { await nouvelleCleEleve(client, id); await ouvrirPerso(t); setMessage('Nouvelle clé créée : l’ancien lien de cet élève ne fonctionne plus.'); });
   const revoquer = id => agir(async () => { await revoquerTache(client, id); setMessage('Lien révoqué.'); await rechargerTaches(); });
   const inviterCollegue = () => agir(async () => { await inviter(client, classe.id, email); setEmail(''); setMessage('Enseignant invité.'); });
@@ -118,36 +122,15 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni dans un pack sans syllabes.</p>
       <p className="aide">{packs.length === 0 ? 'Aucun pack publié pour l’instant.' : 'Les élèves qui ouvrent le lien jouent les cartes de ce pack.'}</p>
       <p className="aide">Un pack « personnel » n’apparaît que pour vous. Pour fabriquer le vôtre : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de pack (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images.</p>
-      <button type="button" onClick={creer} disabled={packs.length === 0}>Créer le lien et le QR-code</button>
-      {lien && (
-        <div>
-          <p>Lien de la tâche : <a href={lien.lien}>{lien.lien}</a></p>
-          <p className="aide">Ce lien ouvre le jeu mais n’est pas personnel : les résultats ne sont enregistrés que si l’élève utilise son lien ou son QR-code personnel (bouton « Liens et QR-codes personnels » dans la liste des tâches).</p>
-          <img src={lien.qr} alt="QR-code de la tâche" width="256" height="256" />
-          <p className="aide">Réglages de ce lien : {resumeTache(taches.find(x => x.id === lien.id) || { ...tache })}</p>
-        </div>
-      )}
-      {taches.length > 0 && (
-        <>
-          <h3>Tâches de la classe</h3>
-          <ul>
-            {taches.map(t => (
-              <li key={t.id}>
-                {t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
-                <br /><a href={t.lien}>{t.lien}</a>
-                {!t.revoked && <button type="button" onClick={() => ouvrirPerso(t)}>Liens et QR-codes personnels</button>}
-                {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <button type="button" className="principal" onClick={creer} disabled={packs.length === 0}>Créer la tâche et les liens des élèves</button>
+      <p className="aide">La tâche est créée, puis le lien et le QR-code de chaque élève s’affichent juste en dessous : ce sont eux qu’il faut remettre aux élèves.</p>
 
       {perso && (
-        <div className="liens-perso" role="region" aria-label="Liens personnels des élèves">
-          <h3>Liens personnels : {perso.tache.pack}</h3>
-          <p className="aide">Chaque lien ou QR-code contient le code et la clé d’un seul élève. Seuls les résultats envoyés avec la bonne clé sont enregistrés : un élève ne peut plus écrire sous le code d’un camarade. Remettre à chaque élève uniquement le sien (imprimer puis découper) et ne pas les publier. Un lien perdu ou transmis à quelqu’un d’autre : créer une nouvelle clé.</p>
-          <button type="button" onClick={() => window.print()}>Imprimer</button>
+        <div className="liens-perso" role="region" aria-label="Liens personnels des élèves" ref={zonePerso}>
+          <h3>Liens et QR-codes des élèves : {perso.tache.pack}</h3>
+          {perso.tache.resume && <p className="aide">Réglages : {perso.tache.resume}</p>}
+          <p className="aide">Chaque lien ou QR-code contient le code et la clé d’un seul élève. Seuls les résultats envoyés avec la bonne clé sont enregistrés : un élève ne peut plus écrire sous le code d’un camarade. Remettre à chaque élève uniquement le sien (imprimer puis découper) et ne pas les publier. Un lien perdu ou transmis à quelqu’un d’autre : « Nouvelle clé ».</p>
+          <button type="button" className="principal" onClick={() => window.print()}>Imprimer les QR-codes</button>
           <button type="button" onClick={() => setPerso(null)}>Fermer</button>
           <ul className="liens-perso-liste">
             {perso.items.map(i => (
@@ -159,7 +142,28 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
               </li>
             ))}
           </ul>
+          <details className="hors-impression">
+            <summary>Lien général de la tâche (pour essayer : les résultats ne sont pas enregistrés)</summary>
+            <p>Lien de la tâche : <a href={perso.general.lien}>{perso.general.lien}</a></p>
+            <img src={perso.general.qr} alt="QR-code de la tâche" width="200" height="200" />
+            <p className="aide">Ce lien ouvre le jeu mais n’est pas personnel : l’élève qui l’utilise joue, sans que ses résultats soient enregistrés chez vous.</p>
+          </details>
         </div>
+      )}
+      {taches.length > 0 && (
+        <>
+          <h3>Tâches de la classe</h3>
+          <ul>
+            {taches.map(t => (
+              <li key={t.id}>
+                {t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
+                <br />
+                {!t.revoked && <button type="button" className="principal" onClick={() => ouvrirDepuisListe(t)}>Liens et QR-codes personnels</button>}
+                {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
+              </li>
+            ))}
+          </ul>
+        </>
       )}
 
       <h2>Résultats</h2>

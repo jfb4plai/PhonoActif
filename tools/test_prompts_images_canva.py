@@ -82,5 +82,16 @@ class TestNombres(unittest.TestCase):
         self.assertTrue(p.endswith("Exactly two apples, the same size, each with one small green leaf. No numbers, no text."))
 
 
+class TestFete(unittest.TestCase):
+    def test_fete_est_une_retouche_de_la_v1_avec_confettis_et_notes(self):
+        fete = next(m for m in P.MOTS_LOT3 if m[0] == "fête")
+        self.assertEqual(P.references_de("fête"), ["MAHa5Zs7GdA"])
+        p = P.prompt(fete)
+        self.assertIn("confetti", p)
+        self.assertIn("musical notes", p)
+        self.assertNotIn("No confetti", p)
+        self.assertIn("exactly as in the reference image", p)
+
+
 if __name__ == "__main__":
     unittest.main()
