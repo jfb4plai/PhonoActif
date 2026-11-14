@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhonoActif : déroulé de relecture</title>
+<style>
+:root { --papier:#F9F0D9; --carte:#FFF8EA; --encre:#1A1713; --soleil:#F7C01E; --turquoise:#0B6573; --ombre:rgba(26,23,19,.3); }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--papier); color:var(--encre); font-family:'Segoe UI', Verdana, Arial, sans-serif; font-size:18px; line-height:1.6; }
+.page { max-width:56rem; margin:0 auto; padding:16px; }
+h1 { font-family:Rockwell, Georgia, serif; font-size:clamp(1.8rem,5vw,2.5rem); line-height:1.15; margin:.4em 0 .2em; }
+h2 { font-family:Rockwell, Georgia, serif; font-size:1.5rem; margin:0 0 .5em; }
+h3 { font-size:1.15rem; margin:1.1em 0 .3em; }
+.carte { background:var(--carte); border:2px solid var(--encre); box-shadow:6px 7px 0 var(--ombre); padding:16px 20px 18px; margin:24px 0; }
+a { color:var(--turquoise); text-underline-offset:3px; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { outline:3px solid var(--encre); outline-offset:2px; }
+.duree { display:inline-block; background:var(--soleil); border:2px solid var(--encre); padding:0 10px; font-weight:700; font-size:16px; }
+.avertissement { background:#fff; border:2px solid var(--encre); border-left-width:8px; padding:8px 12px; }
+table { border-collapse:collapse; width:100%; margin:.6em 0; font-size:17px; }
+th, td { border:1px solid #8c8268; padding:6px 8px; text-align:left; vertical-align:top; background:#fff; }
+th { background:#efe3bf; }
+td.ipa { font-family:'Segoe UI Symbol','Lucida Sans Unicode','DejaVu Sans',sans-serif; white-space:nowrap; }
+select, input[type=text], textarea { font:inherit; font-size:16px; padding:6px 8px; border:2px solid var(--encre); background:#fff; border-radius:3px; max-width:100%; }
+textarea { width:100%; min-height:5.5em; }
+input[type=text].large { width:100%; }
+.liens a { display:inline-block; margin:3px 6px 3px 0; padding:4px 10px; border:2px solid var(--encre); background:#fff; text-decoration:none; font-weight:700; }
+.liens a:hover { background:var(--soleil); }
+button { font:inherit; font-weight:700; background:var(--soleil); color:var(--encre); border:2px solid var(--encre); box-shadow:4px 5px 0 var(--ombre); padding:10px 22px; cursor:pointer; min-height:48px; }
+button:active { box-shadow:1px 2px 0 var(--ombre); transform:translate(3px,3px); }
+.pas { font-size:16px; }
+ol.etapes li, ul li { margin:5px 0; }
+@media print { button, .liens a { border:1px solid #000; } .carte { box-shadow:none; break-inside:avoid; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>PhonoActif : déroulé de relecture</h1>
+<p>À l’attention de la personne qui relit (logopédie, phonologie). Ce document vous guide pas à pas pour écouter, essayer l’application et noter ce que vous constatez. Vous pouvez le remplir à l’écran ou l’imprimer.</p>
+
+<div class="carte">
+<h2>1. De quoi s’agit-il ?</h2>
+<p>PhonoActif est une application pour les élèves qui apprennent à relier les sons et les lettres (P1 à P3, Fédération Wallonie-Bruxelles). L’élève pose des lettres une à une dans une zone ; <strong>à chaque lettre posée, une voix de synthèse belge lit tout ce qui est posé jusque-là</strong> (par exemple « m », « ma », « mè », « mèz », « mèzo », « maison »). Un bouton « Écouter par syllabes » dit ensuite le mot syllabe par syllabe.</p>
+<p>Ce qu’on vous demande : <strong>votre regard d’experte sur la phonologie.</strong> Les sons sont-ils les bons ? Les découpes en syllabes sont-elles celles que vous donneriez ? Ce que l’élève entend pendant la construction du mot l’aide-t-il, ou risque-t-il de le troubler ?</p>
+<p class="avertissement"><strong>État de l’outil.</strong> C’est une version d’essai. Elle n’a jamais été utilisée avec des élèves. Les réglages et les choix de lecture ont été faits par l’auteur seul, à l’oreille. La voix est <strong>synthétique</strong> : elle lit une transcription phonétique issue d’un lexique, sans enregistrement humain. Ce qui n’est pas demandé : l’avis sur le graphisme ou sur la pédagogie générale.</p>
+</div>
+
+<div class="carte">
+<h2>2. Avant de commencer</h2>
+<ul>
+<li><strong>Matériel :</strong> un casque ou de bonnes enceintes, une pièce calme, un ordinateur avec Chrome, Edge ou Firefox. Prévoir le volume à un niveau confortable avant la première écoute.</li>
+<li><strong>Pas de compte, pas de donnée d’élève :</strong> les liens ci-dessous s’ouvrent sans connexion. Avec eux, <strong>rien n’est envoyé</strong> : les essais restent sur votre ordinateur. Quand l’application demande un « code de l’élève », écrire par exemple ESSAI.</li>
+<li><strong>Deux paquets d’écoute</strong> sont joints à l’e-mail (fichiers « zip » : les extraire, puis ouvrir la page <code>.html</code> qu’ils contiennent). Ils fonctionnent hors connexion.</li>
+<li><strong>Durée totale : environ 1 h 30</strong>, répartie en deux séances possibles :
+  <ul>
+  <li>Séance 1 (environ 45 min) : parties A et B, avec les deux paquets joints.</li>
+  <li>Séance 2 (environ 45 min) : parties C, D et E, avec l’application en ligne.</li>
+  </ul>
+  Chaque partie est indépendante : vous pouvez en faire une seule, faire des pauses, ou vous arrêter quand vous voulez.</li>
+<li><strong>Noter au fil de l’eau.</strong> Les tableaux ci-dessous se remplissent à l’écran ; le bouton en fin de document copie votre bilan pour le coller dans un e-mail.</li>
+</ul>
+</div>
+
+<div class="carte">
+<h2>Partie A : la voix de synthèse, comparée à des voix humaines <span class="duree">environ 25 min</span></h2>
+<p><strong>Paquet joint : « pour-logopede-comparaison »</strong> (page <code>ecoute-comparaison.html</code>).</p>
+<ol class="etapes">
+<li>Ouvrir la page. Elle propose 30 mots courants du début du primaire, chacun dit par quatre voix : une voix de synthèse et trois enregistrements humains de mots isolés. <strong>Les voix sont mélangées et numérotées : vous ne savez pas laquelle est la synthèse.</strong></li>
+<li>Pour chaque voix, noter : <em>bon</em> (je le donnerais à un élève), <em>passable</em>, <em>faux</em> (autre son ou mot mal dit) ou <em>bruit</em> (défaut technique).</li>
+<li>Si le temps manque, faire au moins les 10 premiers mots.</li>
+<li>À la fin, la page permet de « Copier le bilan » : le coller dans l’e-mail de retour.</li>
+</ol>
+<p><strong>Ce que nous cherchons à savoir :</strong> la voix de synthèse est-elle acceptable pour des mots isolés ? Pour lesquels pose-t-elle problème ? Un enregistrement humain serait-il préférable pour des élèves dyslexiques (clarté, rythme, accent belge) ? Quels défauts sont rédhibitoires (accent non belge, e muet, voyelles ouvertes ou fermées, consonnes finales) ?</p>
+</div>
+
+<div class="carte">
+<h2>Partie B : l’écoute par syllabes, réglages <span class="duree">environ 20 min</span></h2>
+<p><strong>Paquet joint : « pour-logopede »</strong> (page <code>ecoute-syllabes.html</code>).</p>
+<ol class="etapes">
+<li>La page propose 17 mots (12 de deux syllabes, 5 de trois). Trois boutons par mot : <em>Entier</em> (le mot d’un seul tenant), <em>Collé</em> (les syllabes bout à bout) et <em>Réglé</em> (avec un espace entre les syllabes et une dernière syllabe plus lente).</li>
+<li>Deux curseurs : l’espace entre les syllabes (500 ms au départ) et la vitesse de la dernière syllabe (75 % au départ). <strong>Faites varier les curseurs et dites ce qui vous semble le plus juste.</strong></li>
+<li>Noter pour chaque mot : la découpe en syllabes vous convient-elle ?</li>
+<li>« Copier le bilan », puis le coller dans l’e-mail de retour.</li>
+</ol>
+<p><strong>Questions :</strong> l’espace de 500 ms est-il adapté à un élève qui apprend à fusionner ? Trop court, trop long, trop uniforme ? L’allongement de la dernière syllabe aide-t-il, ou déforme-t-il le mot ? Les e muets prononcés (fenêtre = fə | nɛ | tʁə, mercredi = mɛʁ | kʁə | di, petit = pə | ti) correspondent-ils à votre prononciation de référence ?</p>
+</div>
+
+<div class="carte">
+<h2>Partie C : ce que l’élève entend pendant qu’il construit le mot <span class="duree">environ 30 min</span></h2>
+<p>C’est le cœur de l’application et la partie la moins mesurée : <strong>les états intermédiaires sont des suites de lettres qui ne sont pas toujours des mots</strong> (« mai » lu /mɛ/, « maiso » lu /mɛzo/). La voix lit chaque état par des règles de correspondance lettres-sons ; seul l’état final utilise le lexique. La lecture d’une même lettre peut donc changer en cours de route (par exemple « pe » /pə/, puis « peu » /pø/, puis « peur » /pœʁ/).</p>
+<h3>Comment faire</h3>
+<ol class="etapes">
+<li>Cliquer sur le lien du mot (tableau ci-dessous). L’application s’ouvre sur une carte unique. Saisir un code (ESSAI) puis « Commencer ».</li>
+<li>Poser les lettres <strong>dans l’ordre du mot</strong>, en cliquant une à une sur les cubes du bas. <strong>Après chaque lettre, écouter la lecture.</strong> Il n’y a pas de cube en trop.</li>
+<li>Comparer avec la colonne « lecture attendue » du tableau, puis noter : <em>acceptable</em> (je l’accepterais dans la bouche d’un adulte qui épelle un mot pour un élève), <em>douteux</em> ou <em>faux</em>.</li>
+<li>La lecture « attendue » est ce que le programme <em>veut</em> faire dire à la voix. Si ce que vous entendez diffère, notez-le aussi : c’est une erreur de la voix.</li>
+</ol>
+<p class="pas">Le bouton « Écouter » lit le mot entier. Les liens ouvrent le jeu sans image pour les mots du pack de 100 mots.</p>
+
+<h3>Mots à essayer, avec les lectures attendues</h3>
+<p class="liens">
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/maison?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">maison</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/voiture?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">voiture</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/tortue?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">tortue</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/table?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">table</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/chat?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">chat</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-100/peur?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">peur</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-100/yeux?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">yeux</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-100/bien?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">bien</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-100/quand?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">quand</a>
+</p>
+<p class="pas">Si un lien ne s’ouvre pas, aller sur <a href="https://phonoactif.jfb4plai.com/#/lien" target="_blank" rel="noopener">phonoactif.jfb4plai.com/#/lien</a>, choisir un pack et copier le lien proposé.</p>
+
+<table id="tab-etats">
+<thead><tr><th>Mot</th><th>Lettres posées</th><th>Lecture attendue</th><th>Votre avis</th><th>Remarque (ce que vous entendez)</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+
+<div class="carte">
+<h2>Partie D : « Écouter par syllabes » et la vue des césures <span class="duree">environ 15 min</span></h2>
+<p>Dans l’application, sur les mots de deux syllabes ou plus, le bouton « Écouter par syllabes » est à côté de « Écouter ». <strong>Pendant la lecture, la syllabe dite est entourée dans la zone de construction, un trait marque la coupure, et les lettres muettes sont grisées.</strong> La règle de coupure s’affiche sous la zone. Il faut avoir posé quelques lettres, ou tous les cubes, pour voir les césures sur les lettres.</p>
+<p><strong>Règle affichée :</strong> « On coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède. » <em>Cette règle a été tirée du comportement du programme, pas d’un texte de phonologie : c’est ce que nous vous demandons de juger.</em></p>
+<p class="liens">
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/maison?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">maison</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/voiture?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">voiture</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/tortue?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">tortue</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/foret?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">forêt</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/table?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">table</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/livre?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">livre</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/poisson?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">poisson</a>
+<a href="https://phonoactif.jfb4plai.com/#/carte/p1-20-images/souris?mode=sans&habillage=sobre&intrus=0&accents=1&syllabes=toujours" target="_blank" rel="noopener">souris</a>
+</p>
+<table id="tab-syllabes">
+<thead><tr><th>Mot</th><th>Découpe produite</th><th>Découpe acceptable ?</th><th>Remarque (pause, vitesse, voix, e muet…)</th></tr></thead>
+<tbody></tbody>
+</table>
+<p><strong>Autres questions :</strong> la vue des césures aide-t-elle ou surcharge-t-elle l’élève (surlignage + trait + règle écrite) ? Faut-il montrer les syllabes en permanence, ou seulement à la demande comme ici ? Faut-il d’autres entrées (attaque et rime, par exemple) ?</p>
+</div>
+
+<div class="carte">
+<h2>Partie E : votre regard d’experte <span class="duree">environ 10 min</span></h2>
+<p>Quelques questions larges. Répondre en quelques lignes ; « je ne sais pas » est une réponse utile.</p>
+<table id="tab-libre"><tbody></tbody></table>
+</div>
+
+<div class="carte">
+<h2>Renvoyer votre bilan</h2>
+<p>Remplir ci-dessous votre nom et la date, puis cliquer sur « Copier mon bilan » et le <strong>coller dans un e-mail</strong>, avec les bilans copiés depuis les pages des deux paquets (parties A et B). Si vous préférez, imprimer ce document, le compléter à la main et le scanner.</p>
+<p><label for="nom">Nom et fonction :</label><br><input type="text" id="nom" class="large" data-q="Identité"></p>
+<p><label for="date">Date et matériel (casque, navigateur) :</label><br><input type="text" id="date" class="large" data-q="Date et matériel"></p>
+<p><button type="button" id="copier">Copier mon bilan</button> <span id="etat" role="status"></span></p>
+<p>Adresse de retour : <a href="mailto:jeanfrancois.beguin@ens.ecl.be">jeanfrancois.beguin@ens.ecl.be</a></p>
+<p class="pas">Un grand merci. Votre bilan sert à corriger la voix, les règles de lecture et la découpe en syllabes avant toute utilisation avec des élèves. Il ne sera utilisé que pour améliorer cet outil.</p>
+</div>
+
+</div>
+
+<script>
+// Contenu des tableaux : mot, lettres posées, lecture attendue (produite par le programme au 2026-11-14).
+const ETATS = [
+  ['maison', [['m','m'],['ma','ma'],['mai','mɛ'],['mais','mɛ'],['maiso','mɛzo'],['maison','mɛzɔ̃']]],
+  ['voiture', [['v','v'],['vo','vo'],['voi','vwa'],['voit','vwa'],['voitu','vwaty'],['voitur','vwatyʁ'],['voiture','vwatyʁ']]],
+  ['tortue', [['t','t'],['to','to'],['tor','tɔʁ'],['tort','tɔʁ'],['tortu','tɔʁty'],['tortue','tɔʁty']]],
+  ['table', [['t','t'],['ta','ta'],['tab','tab'],['tabl','tabl'],['table','tablə']]],
+  ['chat', [['c','k'],['ch','ʃ'],['cha','ʃa'],['chat','ʃa']]],
+  ['peur', [['p','p'],['pe','pə'],['peu','pø'],['peur','pœʁ']]],
+  ['yeux', [['y','i'],['ye','j'],['yeu','jø'],['yeux','jø']]],
+  ['bien', [['b','b'],['bi','bi'],['bie','bi'],['bien','bjɛ̃']]],
+  ['quand', [['q','k'],['qu','k'],['qua','ka'],['quan','kɑ̃'],['quand','kɑ̃']]]
+];
+const SYLLABES = [
+  ['maison','mɛ | zɔ̃'],['voiture','vwa | tyʁ'],['tortue','tɔʁ | ty'],['forêt','fɔ | ʁɛ'],
+  ['table','ta | blə'],['livre','li | vʁə'],['poisson','pwa | sɔ̃'],['souris','su | ʁi']
+];
+const LIBRES = [
+  ['Les sons','Parmi les sons entendus, certains sont-ils trop ouverts, trop fermés, trop nasalisés, ou un e muet est-il prononcé à tort ? Lesquels ?'],
+  ['Pendant la construction','Entendre des suites de lettres qui ne sont pas des mots (« mai », « maiso »), dont la lecture change quand on ajoute une lettre (« pe » puis « peu » puis « peur »), vous semble-t-il une aide, un risque de confusion, ou les deux ? Pour quels élèves ?'],
+  ['Lettres isolées','Lire « c » /k/ puis « ch » /ʃ/ (chat), ou « y » /i/ puis « ye » /j/ (yeux), vous paraît-il acceptable à ce stade ?'],
+  ['Voix','La voix de synthèse suffit-elle pour des élèves dyslexiques ou en difficulté de fusion ? Faut-il prévoir des enregistrements humains, et pour quels mots ?'],
+  ['Syllabation','La règle de coupure affichée est-elle correcte et compréhensible ? Quels cas manquent (consonnes doubles, semi-voyelles, mots à e muet final) ?'],
+  ['Risques','Voyez-vous un risque pour un élève (surcharge, mauvaise habitude de lecture, confusion graphème-phonème) que nous n’avons pas vu ?'],
+  ['Pour la suite','Que faudrait-il mesurer ou faire valider (par exemple avec des élèves, ou par une autre personne) avant de proposer l’outil à une classe ?']
+];
+const ctt = document.querySelector('#tab-etats tbody');
+ETATS.forEach(([mot, lignes]) => lignes.forEach(([lettres, ipa], i) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td>' + (i === 0 ? '<strong>' + mot + '</strong>' : '') + '</td><td>' + lettres + '</td><td class="ipa">/' + ipa + '/</td>' +
+    '<td><select data-q="C · ' + mot + ' · ' + lettres + ' (attendu /' + ipa + '/)" aria-label="Votre avis sur ' + lettres + '"><option value="">…</option><option>acceptable</option><option>douteux</option><option>faux</option></select></td>' +
+    '<td><input type="text" class="large" data-q="C · ' + mot + ' · ' + lettres + ' · remarque" aria-label="Remarque sur ' + lettres + '"></td>';
+  ctt.appendChild(tr);
+}));
+const cts = document.querySelector('#tab-syllabes tbody');
+SYLLABES.forEach(([mot, coupe]) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td><strong>' + mot + '</strong></td><td class="ipa">' + coupe + '</td>' +
+    '<td><select data-q="D · ' + mot + ' (' + coupe + ')" aria-label="Découpe de ' + mot + '"><option value="">…</option><option>oui</option><option>discutable</option><option>non</option></select></td>' +
+    '<td><input type="text" class="large" data-q="D · ' + mot + ' · remarque" aria-label="Remarque sur ' + mot + '"></td>';
+  cts.appendChild(tr);
+});
+const ctl = document.querySelector('#tab-libre tbody');
+LIBRES.forEach(([titre, q]) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = '<td style="width:30%"><strong>' + titre + '</strong><br><span class="pas">' + q + '</span></td><td><textarea data-q="E · ' + titre + '" aria-label="' + titre + '"></textarea></td>';
+  ctl.appendChild(tr);
+});
+document.getElementById('copier').addEventListener('click', async () => {
+  const lignes = ['Bilan de relecture PhonoActif (partie C, D, E)'];
+  document.querySelectorAll('[data-q]').forEach(el => { if (el.value && el.value.trim()) lignes.push(el.dataset.q + ' : ' + el.value.trim()); });
+  const texte = lignes.join('\n');
+  const etat = document.getElementById('etat');
+  try { await navigator.clipboard.writeText(texte); etat.textContent = 'Bilan copié : le coller dans un e-mail.'; }
+  catch (e) { const z = document.createElement('textarea'); z.value = texte; document.body.appendChild(z); z.select(); document.execCommand('copy'); z.remove(); etat.textContent = 'Bilan copié (méthode de secours) : le coller dans un e-mail.'; }
+});
+</script>
+</body>
+</html>
