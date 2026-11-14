@@ -34,5 +34,22 @@ export function syllabesDeSons(entree) {
   return coupes.slice(0, -1).map((c, i) => sons.slice(c, coupes[i + 1])).filter(x => x.length);
 }
 
+// Pour l'affichage : combien de cubes (graphèmes) couvre chaque syllabe. Un cube muet suit la syllabe du cube précédent
+// (le premier, la première syllabe) ; un cube dont les sons chevauchent une coupure (x = k+s) va avec la syllabe où il commence.
+// Rend un tableau dont la somme vaut cubes.length, ou null si les sons ne se découpent pas.
+export function cubesParSyllabe(cubes) {
+  const proprio = [];
+  const sons = [];
+  cubes.forEach((c, i) => composants(c.son).flatMap(s => (s === 'ks' ? ['k', 's'] : [s])).forEach(s => { sons.push(s); proprio.push(i); }));
+  const syl = syllabesDeSons(sons);
+  if (!syl.length) return null;
+  const parCube = new Array(cubes.length).fill(null);
+  let k = 0;
+  syl.forEach((s, si) => { for (let j = 0; j < s.length; j++, k++) if (parCube[proprio[k]] === null) parCube[proprio[k]] = si; });
+  let dernier = 0;
+  const attribue = parCube.map(v => (v === null ? dernier : (dernier = v)));
+  return syl.map((_, si) => attribue.filter(v => v === si).length);
+}
+
 // Même découpage, en IPA : une chaîne par syllabe, prête pour la bibliothèque audio.
 export const syllabesIPA = sons => syllabesDeSons(sons).map(syl => syl.map(s => SON_VERS_IPA[s]).join(''));

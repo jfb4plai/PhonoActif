@@ -21,7 +21,7 @@ const MANIFEST = {
     id: 'maman', mot: 'maman', lettres: ['m', 'a', 'm', 'a', 'n'],
     cubes: [{ g: 'm', son: 'm' }, { g: 'a', son: 'a' }, { g: 'm', son: 'm' }, { g: 'an', son: 'an' }],
     etats: ['m', 'ma', 'mam', 'mama', 'maman'].map(l => ({ lettres: l, fichier: `audio/${l}.mp3` })),
-    syllabes: [{ ipa: 'ma', fichier: 'audio/syl-ma.mp3' }, { ipa: 'mɑ̃', fichier: 'audio/syl-man.mp3' }]
+    syllabes: [{ ipa: 'ma', fichier: 'audio/syl-ma.mp3', cubes: 2 }, { ipa: 'mɑ̃', fichier: 'audio/syl-man.mp3', cubes: 2 }]
   }]
 };
 const reponse = corps => async () => ({ ok: true, status: 200, json: async () => corps });
@@ -131,8 +131,35 @@ describe('Mode A : lecture de ce qui est posé', () => {
     await commencer(user);
     await user.click(screen.getByRole('button', { name: /Écouter le mot par syllabes/ }));
     expect(jouerSerie).toHaveBeenCalledTimes(1);
-    expect(jouerSerie).toHaveBeenCalledWith(['/packs/essai-a/audio/syl-ma.mp3', '/packs/essai-a/audio/syl-man.mp3'], { pauseMs: 500, vitesseDerniere: 0.75 });
+    expect(jouerSerie).toHaveBeenCalledWith(['/packs/essai-a/audio/syl-ma.mp3', '/packs/essai-a/audio/syl-man.mp3'], expect.objectContaining({ pauseMs: 500, vitesseDerniere: 0.75 }));
     expect(jouerFichier).not.toHaveBeenCalled();
+  });
+
+  it('écoute par syllabes : la syllabe lue est surlignée, un trait marque la coupure, rien de tout cela hors écoute', async () => {
+    const { user, jouerSerie } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] });
+    const vues = [];
+    jouerSerie.mockImplementation(async (urls, o) => {
+      for (const i of [0, 1]) { o.onDebut(i); await Promise.resolve(); await new Promise(r => setTimeout(r, 0)); vues.push(document.querySelectorAll('.zone .syl-active').length + '/' + document.querySelectorAll('.zone .cesure').length + '/' + (document.querySelector('.regle-coupure') ? 'regle' : '')); }
+      o.onDebut(null);
+      return { manquants: [] };
+    });
+    await commencer(user);
+    for (const l of ['m', 'a', 'm']) await lettre(user, l);
+    expect(document.querySelectorAll('.zone .cesure').length).toBe(0);
+    await user.click(screen.getByRole('button', { name: /par syllabes/ }));
+    expect(vues).toEqual(['2/1/regle', '3/1/regle']); // « ma » : 2 lettres posées surlignées ; « man » : la lettre posée (m) + 2 cases vides
+    expect(document.querySelectorAll('.zone .syl-active').length).toBe(0);
+    expect(document.querySelectorAll('.zone .cesure').length).toBe(0);
+    expect(document.querySelector('.regle-coupure')).toBeNull();
+  });
+
+  it('écoute par syllabes sans le nombre de cubes dans le manifeste (ancien pack) : lecture normale, pas de surlignage', async () => {
+    const ancien = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[1], syllabes: MANIFEST.cartes[1].syllabes.map(({ ipa, fichier }) => ({ ipa, fichier })) }] };
+    const { user, jouerSerie } = monter(ancien);
+    jouerSerie.mockImplementation(async (urls, o) => { o.onDebut(0); await new Promise(r => setTimeout(r, 0)); expect(document.querySelectorAll('.zone .syl-active').length).toBe(0); return { manquants: [] }; });
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: /par syllabes/ }));
+    expect(jouerSerie).toHaveBeenCalledTimes(1);
   });
 
   it('syllabes dont un fichier manque : message « Pas de son pour le moment »', async () => {

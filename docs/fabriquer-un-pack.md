@@ -31,8 +31,14 @@ Dossier de travail : `C:\Users\jfbeg\OneDrive\claude-workspace\phonoactif`
 ## Écoute par syllabes
 
 - Le constructeur ajoute à chaque carte les **syllabes** du mot (coupées sur les sons du mot entier) et les fichiers audio correspondants : ils sont réutilisés s'ils existent déjà dans la bibliothèque, sinon à générer avec la même commande que les états.
-- Dans le jeu, un mot de **deux syllabes ou plus** reçoit un bouton « Écouter par syllabes » : syllabes l'une après l'autre, espace de 500 ms, dernière syllabe à 75 % de la vitesse (hauteur conservée). Valeurs choisies à l'oreille par JF, modifiables dans `src/jeu/modeA.js` (`REGLAGES_SYLLABES`). Pas de bouton pour un mot d'une seule syllabe.
+- Dans le jeu, un mot de **deux syllabes ou plus** reçoit un bouton « Écouter par syllabes » : syllabes l'une après l'autre, espace de 500 ms, dernière syllabe à 75 % de la vitesse (hauteur conservée). Valeurs choisies à l'oreille par JF, modifiables dans `src/jeu/modeA.js` (`REGLAGES_SYLLABES`). Pas de bouton pour un mot d'une seule syllabe. Pendant l'écoute, la syllabe lue est surlignée dans la zone de construction, un trait marque la coupure et les lettres muettes sont grisées (le manifeste porte `cubes`, nombre de graphèmes par syllabe ; un ancien manifeste sans ce champ garde l'écoute, sans surlignage).
 - Un pack sans syllabes dans son manifeste n'a pas le bouton. C'est le cas de `p1-100` (fabriqué avec `tools/mode_a_mots.js`, pas avec cette chaîne) : pour lui donner le bouton, il faudrait le refaire avec la chaîne ci-dessus (tableau Excel puis `construire_pack_atelier.js`).
+
+### Règle de coupure des syllabes (à reprendre dans tout mode d'emploi)
+
+> Règle de coupure : on coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède.
+
+Source : règles recoupées avec la syllabation de Lexique 4.1 (`docs/rapport-lexique-org.md`) ; « taxi » = tak-si, décision de JF le 2026-11-14. La même phrase s'affiche sous la zone de construction pendant l'écoute (`REGLE_COUPURE` dans `src/jeu/modeA.js`). Le code est dans `src/core/syllabes.js`.
 
 ## Pack « pour mon usage »
 

@@ -53,7 +53,8 @@
    "syllabes": [
     {
      "ipa": "ʃa",
-     "fichier": "audio/283_61_-30.mp3"
+     "fichier": "audio/283_61_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -125,11 +126,13 @@
    "syllabes": [
     {
      "ipa": "mɛ",
-     "fichier": "audio/6d_25b_-30.mp3"
+     "fichier": "audio/6d_25b_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "zɔ̃",
-     "fichier": "audio/7a_254_303_-30.mp3"
+     "fichier": "audio/7a_254_303_-30.mp3",
+     "cubes": 2
     }
    ],
    "niveau": "P1",
@@ -191,7 +194,8 @@
    "syllabes": [
     {
      "ipa": "ʃjɛ̃",
-     "fichier": "audio/283_6a_25b_303_-30.mp3"
+     "fichier": "audio/283_6a_25b_303_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -277,11 +281,13 @@
    "syllabes": [
     {
      "ipa": "vwa",
-     "fichier": "audio/76_77_61_-30.mp3"
+     "fichier": "audio/76_77_61_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "tyʁ",
-     "fichier": "audio/74_79_281_-30.mp3"
+     "fichier": "audio/74_79_281_-30.mp3",
+     "cubes": 4
     }
    ],
    "niveau": "P1",
@@ -359,11 +365,13 @@
    "syllabes": [
     {
      "ipa": "pwa",
-     "fichier": "audio/70_77_61_-30.mp3"
+     "fichier": "audio/70_77_61_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "sɔ̃",
-     "fichier": "audio/73_254_303_-30.mp3"
+     "fichier": "audio/73_254_303_-30.mp3",
+     "cubes": 2
     }
    ],
    "niveau": "P1",
@@ -423,11 +431,13 @@
    "syllabes": [
     {
      "ipa": "ve",
-     "fichier": "audio/76_65_-30.mp3"
+     "fichier": "audio/76_65_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "lo",
-     "fichier": "audio/6c_6f_-30.mp3"
+     "fichier": "audio/6c_6f_-30.mp3",
+     "cubes": 2
     }
    ],
    "niveau": "P1",
@@ -497,7 +507,8 @@
    "syllabes": [
     {
      "ipa": "pɔʁt",
-     "fichier": "audio/70_254_281_74_-30.mp3"
+     "fichier": "audio/70_254_281_74_-30.mp3",
+     "cubes": 5
     }
    ],
    "niveau": "P1",
@@ -563,7 +574,8 @@
    "syllabes": [
     {
      "ipa": "nɛʒ",
-     "fichier": "audio/6e_25b_292_-30.mp3"
+     "fichier": "audio/6e_25b_292_-30.mp3",
+     "cubes": 4
     }
    ],
    "niveau": "P1",
@@ -619,7 +631,8 @@
    "syllabes": [
     {
      "ipa": "lu",
-     "fichier": "audio/6c_75_-30.mp3"
+     "fichier": "audio/6c_75_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -699,11 +712,13 @@
    "syllabes": [
     {
      "ipa": "tɔʁ",
-     "fichier": "audio/74_254_281_-30.mp3"
+     "fichier": "audio/74_254_281_-30.mp3",
+     "cubes": 3
     },
     {
      "ipa": "ty",
-     "fichier": "audio/74_79_-30.mp3"
+     "fichier": "audio/74_79_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -773,11 +788,13 @@
    "syllabes": [
     {
      "ipa": "fɔ",
-     "fichier": "audio/66_254_-30.mp3"
+     "fichier": "audio/66_254_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "ʁɛ",
-     "fichier": "audio/281_25b_-30.mp3"
+     "fichier": "audio/281_25b_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -853,11 +870,13 @@
    "syllabes": [
     {
      "ipa": "su",
-     "fichier": "audio/73_75_-30.mp3"
+     "fichier": "audio/73_75_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "ʁi",
-     "fichier": "audio/281_69_-30.mp3"
+     "fichier": "audio/281_69_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -907,7 +926,8 @@
    "syllabes": [
     {
      "ipa": "sak",
-     "fichier": "audio/73_61_6b_-30.mp3"
+     "fichier": "audio/73_61_6b_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -977,11 +997,13 @@
    "syllabes": [
     {
      "ipa": "ta",
-     "fichier": "audio/74_61_-30.mp3"
+     "fichier": "audio/74_61_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "blə",
-     "fichier": "audio/62_6c_259_-30.mp3"
+     "fichier": "audio/62_6c_259_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -1041,7 +1063,8 @@
    "syllabes": [
     {
      "ipa": "lyn",
-     "fichier": "audio/6c_79_6e_-30.mp3"
+     "fichier": "audio/6c_79_6e_-30.mp3",
+     "cubes": 4
     }
    ],
    "niveau": "P1",
@@ -1107,7 +1130,8 @@
    "syllabes": [
     {
      "ipa": "pɔm",
-     "fichier": "audio/70_254_6d_-30.mp3"
+     "fichier": "audio/70_254_6d_-30.mp3",
+     "cubes": 4
     }
    ],
    "niveau": "P1",
@@ -1163,7 +1187,8 @@
    "syllabes": [
     {
      "ipa": "uʁs",
-     "fichier": "audio/75_281_73_-30.mp3"
+     "fichier": "audio/75_281_73_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -1233,11 +1258,13 @@
    "syllabes": [
     {
      "ipa": "li",
-     "fichier": "audio/6c_69_-30.mp3"
+     "fichier": "audio/6c_69_-30.mp3",
+     "cubes": 2
     },
     {
      "ipa": "vʁə",
-     "fichier": "audio/76_281_259_-30.mp3"
+     "fichier": "audio/76_281_259_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -1287,7 +1314,8 @@
    "syllabes": [
     {
      "ipa": "ʁa",
-     "fichier": "audio/281_61_-30.mp3"
+     "fichier": "audio/281_61_-30.mp3",
+     "cubes": 3
     }
    ],
    "niveau": "P1",
@@ -1329,7 +1357,8 @@
    "syllabes": [
     {
      "ipa": "o",
-     "fichier": "audio/6f_0.mp3"
+     "fichier": "audio/6f_0.mp3",
+     "cubes": 1
     }
    ],
    "niveau": "P1",

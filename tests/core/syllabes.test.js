@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { lireRegles, composants, syllabesDeSons, syllabesIPA } from '../../src/core/index.js';
+import { lireRegles, composants, syllabesDeSons, syllabesIPA, cubesParSyllabe } from '../../src/core/index.js';
 
 const sons = mot => lireRegles(mot).flatMap(c => composants(c.son));
 const coupe = mot => syllabesDeSons(sons(mot)).map(s => s.join(' ')).join(' | ');
@@ -30,8 +30,16 @@ test('suite vide ou sans voyelle : pas d\'erreur', () => {
   assert.deepEqual(syllabesDeSons(['p', 't']), [['p', 't']]);
 });
 
-test('s + occlusive reste en attaque (ex-cuse, ex-plique) et x se décompose en k + s (tak-si)', () => {
+test('s + occlusive reste en attaque (ex-cuse, ex-plique) et x se décompose en k + s et se coupe (tak-si, comme Lexique 4.1)', () => {
   assert.equal(coupe('excuse'), 'e_ouvert k | s k u z');   // Lexique 4.1 : Ek-skyz
   assert.equal(coupe('expliquer'), 'e_ouvert k | s p l i | k e_ferme');
-  assert.equal(coupe('taxi'), 't a k | s i');
+  assert.equal(coupe('taxi'), 't a k | s i'); // Lexique 4.1 : tak-si (décision JF 2026-11-14, après essai de ta-xi)
+});
+
+test('cubesParSyllabe : nombre de graphèmes par syllabe, la lettre muette suit la syllabe précédente', () => {
+  assert.deepEqual(cubesParSyllabe(lireRegles('maison')), [2, 2]);          // m ai | s on
+  assert.deepEqual(cubesParSyllabe(lireRegles('voiture')), [2, 4]);         // v oi | t u r e(muet)
+  assert.deepEqual(cubesParSyllabe(lireRegles('taxi')), [3, 1]);            // t a x | i : le cube x (k+s) va avec la syllabe où il commence
+  assert.deepEqual(cubesParSyllabe(lireRegles('chat')), [3]);
+  assert.equal(cubesParSyllabe(lireRegles('maison')).reduce((a, b) => a + b), lireRegles('maison').length);
 });

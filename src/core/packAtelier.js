@@ -1,7 +1,7 @@
 import { etatsDuMot } from './etats.js';
 import { composants } from './sons.js';
 import { SON_VERS_IPA } from './ipa.js';
-import { syllabesDeSons } from './syllabes.js';
+import { syllabesDeSons, cubesParSyllabe } from './syllabes.js';
 
 /* Pack « lettres » (mode A) fabriqué à partir d'un tableau rempli par un enseignant (voir tools/modele_pack_xlsx.py).
    Fonction pure : prend le pack lu et le lexique, rend le manifeste, la liste des fichiers audio à générer, les mots écartés.
@@ -60,12 +60,14 @@ export function construirePackLettres({ pack, lexique, corrections = null, inclu
       })
     };
     // Syllabes du mot entier (coupées sur les sons, pas sur les lettres) : servent à l'écoute « par syllabes ».
-    carte.syllabes = syllabesDeSons(dernier.cubes.flatMap(x => composants(x.son))).map(s => {
+    // `cubes` = nombre de cubes (graphèmes) de la syllabe : sert à surligner la syllabe à l'écran pendant l'écoute.
+    const nbCubes = cubesParSyllabe(dernier.cubes);
+    carte.syllabes = syllabesDeSons(dernier.cubes.flatMap(x => composants(x.son))).map((s, i) => {
       const ipa = ipaDe(s);
       const vitesse = nbSonsIpa(ipa) > 1 ? -30 : 0;
       const fichier = nomFichierAudio(ipa, vitesse);
       if (!distincts.has(fichier)) distincts.set(fichier, { ipa, vitesse, fichier });
-      return { ipa, fichier: `audio/${fichier}.mp3` };
+      return { ipa, fichier: `audio/${fichier}.mp3`, ...(nbCubes ? { cubes: nbCubes[i] } : {}) };
     });
     if (c.niveau) carte.niveau = c.niveau;
     if (c.image) { carte.image_sans_mot = c.image; carte.source = c.source; carte.licence = c.licence; }

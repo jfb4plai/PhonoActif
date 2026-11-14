@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT } from './route.js';
-import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, REGLAGES_SYLLABES } from '../jeu/modeA.js';
+import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, reperesLettres, REGLAGES_SYLLABES, REGLE_COUPURE } from '../jeu/modeA.js';
 
 const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
 const classeDe = son => CLASSES[classeCube(son)];
@@ -21,6 +21,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const enCours = etat.statut === 'en_cours';
 
   const [sonAbsent, setSonAbsent] = useState(false);
+  const [syllabeActive, setSyllabeActive] = useState(null); // index de la syllabe lue pendant « Écouter par syllabes » (césures visibles seulement alors)
+  useEffect(() => { setSyllabeActive(null); }, [carte.id]);
   const signalerSons = r => {
     const manquants = r && r.manquants ? r.manquants : [];
     manquants.forEach(id => onSignalement('son', id));
@@ -43,7 +45,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     if (!syl || !deps.jouerSerie) { setSonAbsent(true); return; }
     setSonAbsent(false);
     const urls = syl.map(s => `${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${s.fichier}`);
-    Promise.resolve(deps.jouerSerie(urls, REGLAGES_SYLLABES)).then(signalerSons).catch(() => {});
+    const surligner = !!reperesLettres(c);
+    Promise.resolve(deps.jouerSerie(urls, { ...REGLAGES_SYLLABES, onDebut: i => setSyllabeActive(i === null || !surligner ? null : i) })).then(signalerSons).catch(() => {}).finally(() => setSyllabeActive(null));
   };
   const jouerMot = c => {
     if (lettres) { jouerEtat(etatFinal(c)); return; }
@@ -88,6 +91,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const sansImage = !fichierImage; // pack sans image (mode A) : le mot s'affiche ou se dit, selon le réglage
   const urlImage = `${base}packs/${encodeURIComponent(etat.pack)}/${String(fichierImage).split("/").map(encodeURIComponent).join("/")}`; // sous-dossier images/ autorisé
   const imageAbsente = sansImage || !!imagesAbsentes[carte.id];
+  const reperes = reperesLettres(carte); // null si le manifeste n'a pas le nombre de cubes par syllabe : pas de surlignage
   const posees = etat.poses.map(id => etat.plateau.find(p => p.id === id));
   const surPlateau = etat.plateau.filter(p => !etat.poses.includes(p.id));
 
@@ -108,14 +112,23 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       <div className="zone" role="group" aria-label="Mot à construire">
         {carte.cubes.map((c, i) => {
           const p = posees[i];
-          if (!p) return <span key={`vide-${i}`} className="vide" aria-hidden="true" />;
+          const r = syllabeActive === null || !reperes ? null : reperes[i];
+          const s = r ? r.syl : null;
+          const coupure = r !== null && i > 0 && reperes[i - 1].syl !== s; // trait de césure entre deux syllabes
+          const sep = coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null;
+          const actif = r !== null && s === syllabeActive ? ' syl-active' : '';
+          if (!p) return <React.Fragment key={`vide-${i}`}>{sep}<span className={`vide${actif}`} aria-hidden="true" /></React.Fragment>;
           const derniere = i === posees.length - 1;
           return (
-            <button key={p.id} type="button" className={`cube ${classeDe(p.son)}`} aria-label={`Retirer ${p.g}`}
-              disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
+            <React.Fragment key={p.id}>{sep}
+              <button type="button" className={`cube ${r && r.muet ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
+                disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
+            </React.Fragment>
           );
         })}
       </div>
+
+      {syllabeActive !== null && reperes && <p className="regle-coupure" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>{REGLE_COUPURE}</p>}
 
       <div className="plateau">
         {surPlateau.map(p => (

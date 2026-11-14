@@ -43,14 +43,16 @@ export async function jouerFichier(url, options = {}) {
 /* Écoute « par syllabes » : les fichiers l'un après l'autre, avec un espace entre eux, la dernière syllabe ralentie.
    Valeurs choisies à l'oreille par JF (2026-11-13) : 500 ms et 75 % (voir REGLAGES_SYLLABES dans src/jeu/modeA.js). */
 export async function jouerSerie(urls, options = {}) {
-  const { pauseMs = 500, vitesseDerniere = 0.75, creerAudio = u => new Audio(u), attendre = ms => new Promise(r => setTimeout(r, ms)) } = options;
+  const { pauseMs = 500, vitesseDerniere = 0.75, creerAudio = u => new Audio(u), attendre = ms => new Promise(r => setTimeout(r, ms)), onDebut = () => {} } = options;
   const mon = ++jeton;
   const manquants = [];
   for (let i = 0; i < urls.length; i++) {
     if (mon !== jeton) break;
     const dernier = i === urls.length - 1;
+    onDebut(i); // l'écran surligne la syllabe en cours
     if (!(await lireUn(urls[i], creerAudio, dernier ? vitesseDerniere : 1))) manquants.push(urls[i]);
     if (!dernier && mon === jeton) await attendre(pauseMs);
   }
+  if (mon === jeton) onDebut(null); // fin de la série (pas si une autre lecture a pris la suite)
   return { manquants };
 }

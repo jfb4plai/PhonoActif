@@ -15,7 +15,25 @@ export const REGLAGES_SYLLABES = { pauseMs: 500, vitesseDerniere: 0.75 };
 // Une seule syllabe : « par syllabes » n'apporterait rien de plus que « Écouter » : le bouton n'est proposé qu'à partir de deux.
 export const syllabesDeCarte = carte => (carte && Array.isArray(carte.syllabes) && carte.syllabes.length > 1 ? carte.syllabes : null);
 
-export const estPackLettres = pack => !!pack && pack.mode === 'lettres';
+// Pour surligner la syllabe lue : un repère par LETTRE du mot { syl: index de syllabe, muet: lettre sans son }, ou null si le manifeste n'a pas
+// le nombre de cubes par syllabe (ancien pack) ou s'il est incohérent. Les graphèmes (ch, ou, ai…) couvrent plusieurs lettres.
+export function reperesLettres(carte) {
+  const syl = syllabesDeCarte(carte);
+  const graphemes = carte && (carte.graphemes || carte.cubes);
+  if (!syl || !Array.isArray(graphemes) || syl.some(s => !Number.isInteger(s.cubes))) return null;
+  if (syl.reduce((t, s) => t + s.cubes, 0) !== graphemes.length) return null;
+  const repères = [];
+  let g = 0;
+  syl.forEach((s, si) => {
+    for (let k = 0; k < s.cubes; k++, g++) [...graphemes[g].g].forEach(() => repères.push({ syl: si, muet: graphemes[g].son === '' }));
+  });
+  return repères;
+}
+
+// Règle de coupure énoncée à l'élève et dans les modes d'emploi (décision JF 2026-11-14 : tak-si, comme Lexique 4.1).
+export const REGLE_COUPURE = "Règle de coupure : on coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède.";
+
+export const estPackLettres =pack => !!pack && pack.mode === 'lettres';
 
 // La carte vue par la logique de session : un cube par lettre. Le « son » ne sert qu'à la couleur (voyelle ou consonne).
 export function carteDeSession(carte) {

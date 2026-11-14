@@ -63,3 +63,17 @@ test('jouerSerie : un nouvel appel interrompt la série en cours', async () => {
   const urls = journal.filter(j => j.evt === 'lecture').map(j => j.url);
   assert.deepEqual(urls, ['/a.mp3', '/x.mp3']);
 });
+
+test('jouerSerie : onDebut annonce chaque syllabe puis null à la fin, et pas de null si une autre lecture a pris la suite', async () => {
+  const debuts = [];
+  await jouerSerie(['/a.mp3', '/b.mp3'], { creerAudio: fabrique([]), attendre: () => Promise.resolve(), onDebut: i => debuts.push(i) });
+  assert.deepEqual(debuts, [0, 1, null]);
+  const d2 = [];
+  let relache; const bloque = new Promise(r => { relache = r; });
+  const premiere = jouerSerie(['/a.mp3', '/b.mp3'], { creerAudio: fabrique([]), attendre: () => bloque, onDebut: i => d2.push(i) });
+  await new Promise(r => setTimeout(r, 5));
+  const seconde = jouerSerie(['/x.mp3'], { creerAudio: fabrique([]), attendre: () => Promise.resolve(), onDebut: i => d2.push('x' + i) });
+  relache();
+  await Promise.all([premiere, seconde]);
+  assert.deepEqual(d2, [0, 'x0', 'xnull']);
+});
