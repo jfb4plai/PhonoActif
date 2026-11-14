@@ -88,7 +88,9 @@
      "cubes": 2
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Le corbeau est noir.",
+   "phraseAudio": "audio/phrase-corbeau.mp3"
   },
   {
    "id": "vache",
@@ -152,7 +154,9 @@
      "cubes": 4
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "La vache mange de l'herbe.",
+   "phraseAudio": "audio/phrase-vache.mp3"
   },
   {
    "id": "chemise",
@@ -241,7 +245,9 @@
      "cubes": 4
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Papa met sa chemise.",
+   "phraseAudio": "audio/phrase-chemise.mp3"
   },
   {
    "id": "etoile",
@@ -320,7 +326,9 @@
      "cubes": 4
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Une étoile brille dans le ciel.",
+   "phraseAudio": "audio/phrase-etoile.mp3"
   },
   {
    "id": "mouton",
@@ -395,7 +403,9 @@
      "cubes": 2
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Le mouton est blanc.",
+   "phraseAudio": "audio/phrase-mouton.mp3"
   },
   {
    "id": "camion",
@@ -474,7 +484,9 @@
      "cubes": 3
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Le camion roule vite.",
+   "phraseAudio": "audio/phrase-camion.mp3"
   },
   {
    "id": "coq",
@@ -522,7 +534,9 @@
      "cubes": 3
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Le coq chante le matin.",
+   "phraseAudio": "audio/phrase-coq.mp3"
   },
   {
    "id": "canard",
@@ -605,7 +619,9 @@
      "cubes": 4
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Le canard nage dans l'eau.",
+   "phraseAudio": "audio/phrase-canard.mp3"
   },
   {
    "id": "chaise",
@@ -675,7 +691,9 @@
      "cubes": 4
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Le chat dort sur la chaise.",
+   "phraseAudio": "audio/phrase-chaise.mp3"
   },
   {
    "id": "lampe",
@@ -739,7 +757,9 @@
      "cubes": 4
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "La lampe est sur la table.",
+   "phraseAudio": "audio/phrase-lampe.mp3"
   },
   {
    "id": "tambour",
@@ -824,7 +844,9 @@
      "cubes": 3
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Je joue du tambour.",
+   "phraseAudio": "audio/phrase-tambour.mp3"
   },
   {
    "id": "pull",
@@ -878,7 +900,9 @@
      "cubes": 3
     }
    ],
-   "niveau": "P1"
+   "niveau": "P1",
+   "phrase": "Il fait froid, je mets mon pull.",
+   "phraseAudio": "audio/phrase-pull.mp3"
   }
  ]
 }

@@ -70,7 +70,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/verre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je bois de l'eau dans un verre.",
+   "phraseAudio": "audio/phrase-verre.mp3"
   },
   {
    "id": "nid",
@@ -121,7 +123,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/nid.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'oiseau dort dans son nid.",
+   "phraseAudio": "audio/phrase-nid.mp3"
   },
   {
    "id": "sapin",
@@ -193,7 +197,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/sapin.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le sapin est vert et grand.",
+   "phraseAudio": "audio/phrase-sapin.mp3"
   },
   {
    "id": "ballon",
@@ -271,7 +277,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/ballon.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je joue au ballon avec mon ami.",
+   "phraseAudio": "audio/phrase-ballon.mp3"
   },
   {
    "id": "fleur",
@@ -338,7 +346,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/fleur.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La fleur est rose et jolie.",
+   "phraseAudio": "audio/phrase-fleur.mp3"
   },
   {
    "id": "lion",
@@ -395,7 +405,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/lion.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le lion est très fort.",
+   "phraseAudio": "audio/phrase-lion.mp3"
   },
   {
    "id": "panier",
@@ -477,7 +489,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/panier.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Maman met du pain dans le panier.",
+   "phraseAudio": "audio/phrase-panier.mp3"
   },
   {
    "id": "bateau",
@@ -555,7 +569,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/bateau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le bateau est sur l'eau.",
+   "phraseAudio": "audio/phrase-bateau.mp3"
   },
   {
    "id": "guitare",
@@ -647,7 +663,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/guitare.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa joue de la guitare.",
+   "phraseAudio": "audio/phrase-guitare.mp3"
   },
   {
    "id": "cadeau",
@@ -725,7 +743,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/cadeau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je donne un cadeau à maman.",
+   "phraseAudio": "audio/phrase-cadeau.mp3"
   },
   {
    "id": "ane",
@@ -776,7 +796,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/ane.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "L'âne a de grandes oreilles.",
+   "phraseAudio": "audio/phrase-ane.mp3"
   },
   {
    "id": "poule",
@@ -843,7 +865,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/poule.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La poule mange du pain.",
+   "phraseAudio": "audio/phrase-poule.mp3"
   }
  ]
 }
