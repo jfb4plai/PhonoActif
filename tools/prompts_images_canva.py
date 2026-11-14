@@ -87,9 +87,10 @@ MOTS_LOT2 = [
     ("feu", "feu", "a flame made of layered paper pieces", DE_FACE, "aucun", "orange #f97316, warm yellow #fbbf24, cream only",
      " No other color in the flame: orange outer pieces, yellow inner pieces, cream center. No wood, no sparks, no smoke.",
      "UNE seule flamme ; uniquement orange, jaune et crème ; ni bois, ni étincelles, ni fumée", "choix de Claude : flamme seule (sinon lecture « feu rouge »)"),
-    ("rivière", "riviere", "a winding river seen from above between two green banks", "seen from above", "aucun", "light blue #93c5fd, deep blue #1d4ed8, soft green #86b98f, cream",
-     " One single river from top to bottom of the frame, deep blue outer layers so it stands out from the pastel sky-blue background; green banks on both sides; no bridge, no boat.",
-     "UNE seule rivière ; contour bleu profond bien distinct du fond ; berges vertes ; ni pont ni bateau", "choix de Claude : vue de dessus"),
+    ("rivière", "riviere", "a rounded-rectangle green paper landscape tile with one wide winding river crossing it", "seen from above", "aucun", "light blue #93c5fd, deep blue #1d4ed8, soft green #86b98f, cream",
+     " The river is made of exactly two layered blue paper strips (deep blue outer, light blue inner), one smooth gentle S curve running from the top edge of the green tile to its bottom edge, wider than a thin line. No stripes, no white lines, no extra shapes, no bridge, no boat, no trees, no houses.",
+     "UNE seule rivière, large, en S doux, de haut en bas de la tuile verte ; deux bandes de papier bleu seulement ; ni rayures, ni lignes blanches, ni pont, ni bateau, ni arbre",
+     "v2 de Claude 2026-11-14 : la v1 (ruban vert en S rayé de bleu) ne se lisait pas comme une rivière"),
 ]
 TOUS = MOTS + MOTS_LOT2   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 

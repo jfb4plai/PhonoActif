@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Une seule commande pour toute nouvelle image du lot 2 : copie, uniformisation du fond, planche.
+r"""Une seule commande pour toute nouvelle image du lot 2 : copie, uniformisation du fond, planche.
 Usage :
   python -I tools/traiter_lot2.py [<image.png> [<nom-de-fichier>]] ...    copie l'image dans docs/images-canva/lot2 (sous <nom-de-fichier>.png, par défaut son nom),
                                                                        uniformise le fond de TOUTES les images du dossier (idempotent, originaux conservés),
@@ -28,7 +28,10 @@ def traiter(source=None, nom=None):
         cible = DOSSIER / ((nom or source.stem).removesuffix(".png") + ".png")
         shutil.copyfile(source, cible)
         print(f"copié : {cible.name}")
-    uniformiser_fond.main([str(DOSSIER)])
+    # seulement les images attendues du lot (MOTS_LOT2) : pas les planches-contact ni les autres PNG du dossier
+    fichiers = [str(DOSSIER / (f + ".png")) for _, f in planche_lot2.charger_mots() if (DOSSIER / (f + ".png")).exists()]
+    if fichiers:
+        uniformiser_fond.main(fichiers + ["--originaux", str(DOSSIER / "originaux-canva")])
     planche_lot2.main()
 
 

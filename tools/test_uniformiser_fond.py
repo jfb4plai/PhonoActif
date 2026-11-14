@@ -74,11 +74,28 @@ class TestTraiterLot2(unittest.TestCase):
             PL.DOSSIER = d / "lot2"
             source = d / "brut.png"
             image_test().save(source)
-            T.traiter(str(source), "essai")
-            m = U.mesure(Image.open(d / "lot2" / "essai.png"))
+            T.traiter(str(source), "jardin")
+            m = U.mesure(Image.open(d / "lot2" / "jardin.png"))
             self.assertTrue(all(abs(m[i] - CIBLE[i]) <= 1 for i in range(3)), m)
-            self.assertTrue((d / "lot2" / "originaux-canva" / "essai.png").exists())
+            self.assertTrue((d / "lot2" / "originaux-canva" / "jardin.png").exists())
             self.assertTrue((d / "lot2" / "planche-lot2.html").exists())
+
+    def test_un_png_etranger_au_lot_n_est_pas_modifie(self):
+        import traiter_lot2 as T
+        import planche_lot2 as PL
+        with tempfile.TemporaryDirectory() as d:
+            d = pathlib.Path(d)
+            T.DOSSIER = d / "lot2"
+            PL.DOSSIER = d / "lot2"
+            (d / "lot2").mkdir()
+            image_test().save(d / "lot2" / "jardin.png")
+            image_test().save(d / "lot2" / "planche-contact.png")
+            octets = (d / "lot2" / "planche-contact.png").read_bytes()
+            T.traiter()
+            self.assertEqual((d / "lot2" / "planche-contact.png").read_bytes(), octets)
+            self.assertFalse((d / "lot2" / "originaux-canva" / "planche-contact.png").exists())
+            m = U.mesure(Image.open(d / "lot2" / "jardin.png"))
+            self.assertTrue(all(abs(m[i] - CIBLE[i]) <= 1 for i in range(3)), m)
 
 
 if __name__ == "__main__":
