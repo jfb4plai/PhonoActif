@@ -90,7 +90,10 @@
    ],
    "niveau": "P1",
    "phrase": "Le corbeau est noir.",
-   "phraseAudio": "audio/phrase-corbeau.mp3"
+   "phraseAudio": "audio/phrase-corbeau.mp3",
+   "image_sans_mot": "images/corbeau.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "vache",
@@ -156,7 +159,10 @@
    ],
    "niveau": "P1",
    "phrase": "La vache mange de l'herbe.",
-   "phraseAudio": "audio/phrase-vache.mp3"
+   "phraseAudio": "audio/phrase-vache.mp3",
+   "image_sans_mot": "images/vache.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "chemise",
@@ -247,7 +253,10 @@
    ],
    "niveau": "P1",
    "phrase": "Papa met sa chemise.",
-   "phraseAudio": "audio/phrase-chemise.mp3"
+   "phraseAudio": "audio/phrase-chemise.mp3",
+   "image_sans_mot": "images/chemise.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "etoile",
@@ -328,7 +337,10 @@
    ],
    "niveau": "P1",
    "phrase": "Une étoile brille dans le ciel.",
-   "phraseAudio": "audio/phrase-etoile.mp3"
+   "phraseAudio": "audio/phrase-etoile.mp3",
+   "image_sans_mot": "images/etoile.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "mouton",
@@ -405,7 +417,10 @@
    ],
    "niveau": "P1",
    "phrase": "Le mouton est blanc.",
-   "phraseAudio": "audio/phrase-mouton.mp3"
+   "phraseAudio": "audio/phrase-mouton.mp3",
+   "image_sans_mot": "images/mouton.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "camion",
@@ -486,7 +501,10 @@
    ],
    "niveau": "P1",
    "phrase": "Le camion roule vite.",
-   "phraseAudio": "audio/phrase-camion.mp3"
+   "phraseAudio": "audio/phrase-camion.mp3",
+   "image_sans_mot": "images/camion.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "coq",
@@ -536,7 +554,10 @@
    ],
    "niveau": "P1",
    "phrase": "Le coq chante le matin.",
-   "phraseAudio": "audio/phrase-coq.mp3"
+   "phraseAudio": "audio/phrase-coq.mp3",
+   "image_sans_mot": "images/coq.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "canard",
@@ -621,7 +642,10 @@
    ],
    "niveau": "P1",
    "phrase": "Le canard nage dans l'eau.",
-   "phraseAudio": "audio/phrase-canard.mp3"
+   "phraseAudio": "audio/phrase-canard.mp3",
+   "image_sans_mot": "images/canard.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "chaise",
@@ -693,7 +717,10 @@
    ],
    "niveau": "P1",
    "phrase": "Le chat dort sur la chaise.",
-   "phraseAudio": "audio/phrase-chaise.mp3"
+   "phraseAudio": "audio/phrase-chaise.mp3",
+   "image_sans_mot": "images/chaise.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "lampe",
@@ -759,7 +786,10 @@
    ],
    "niveau": "P1",
    "phrase": "La lampe est sur la table.",
-   "phraseAudio": "audio/phrase-lampe.mp3"
+   "phraseAudio": "audio/phrase-lampe.mp3",
+   "image_sans_mot": "images/lampe.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "tambour",
@@ -846,7 +876,10 @@
    ],
    "niveau": "P1",
    "phrase": "Je joue du tambour.",
-   "phraseAudio": "audio/phrase-tambour.mp3"
+   "phraseAudio": "audio/phrase-tambour.mp3",
+   "image_sans_mot": "images/tambour.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "pull",
@@ -902,7 +935,10 @@
    ],
    "niveau": "P1",
    "phrase": "Il fait froid, je mets mon pull.",
-   "phraseAudio": "audio/phrase-pull.mp3"
+   "phraseAudio": "audio/phrase-pull.mp3",
+   "image_sans_mot": "images/pull.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   }
  ]
 }
