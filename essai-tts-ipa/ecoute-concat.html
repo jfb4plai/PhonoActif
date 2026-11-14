@@ -1,0 +1,22 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entier ou syllabes collées</title>
+<style>body{font-family:Arial,sans-serif;font-size:16px;margin:16px;background:#faf9f7;color:#222}table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:6px;vertical-align:middle}th{background:#0f6e56;color:#fff;text-align:left}audio{width:190px;height:34px}
+select{font-size:16px}button{font-size:16px;padding:8px 14px}pre{background:#fff;border:1px solid #ccc;padding:8px;white-space:pre-wrap}</style></head><body>
+<h1>Mot entier ou syllabes collées ?</h1>
+<p>Pour chaque mot, comparer. Noter les versions collée et fondue : <b>aussi bien que l'entier</b>, <b>acceptable</b>, <b>on entend la coupure</b>, <b>faux</b>.</p>
+<div id="t"></div><button onclick="bilan()">Copier le bilan</button><pre id="b"></pre>
+<script>
+var DATA = [{"mot": "maison", "entier": "mɛzɔ̃", "syl": ["mɛ", "zɔ̃"]}, {"mot": "chocolat", "entier": "ʃɔkɔla", "syl": ["ʃɔ", "kɔ", "la"]}, {"mot": "matin", "entier": "matɛ̃", "syl": ["ma", "tɛ̃"]}, {"mot": "chapeau", "entier": "ʃapo", "syl": ["ʃa", "po"]}, {"mot": "secret", "entier": "səkʁɛ", "syl": ["sə", "kʁɛ"]}, {"mot": "lupa", "entier": "lypa", "syl": ["ly", "pa"]}], cle = "essai-concat-v1", ETAT = {};
+try { ETAT = JSON.parse(localStorage.getItem(cle) || "{}"); } catch (e) {}
+function sauve(k, v) { ETAT[k] = v; try { localStorage.setItem(cle, JSON.stringify(ETAT)); } catch (e) {} }
+function sel(k) { return "<select onchange=\"sauve('" + k + "', this.value)\">" + ["", "aussi bien que l'entier", "acceptable", "on entend la coupure", "faux"].map(function (o) { return "<option" + ((ETAT[k] || "") === o ? " selected" : "") + ">" + o + "</option>"; }).join("") + "</select>"; }
+function au(d, f) { return "<audio controls preload='none' src='sortie/azure__fr-BE-CharlineNeural__concat/" + d + "/" + encodeURIComponent(f) + ".mp3'></audio>"; }
+var h = "<table><tr><th>Mot</th><th>Syllabes</th><th>Entier</th><th>Collé</th><th>Fondu 20 ms</th></tr>";
+DATA.forEach(function (m) {
+  h += "<tr><td><b>" + m.mot + "</b><br>/" + m.entier + "/</td><td>" + m.syl.join(" | ") + "</td><td>" + au("norm", m.mot + "-entier") + "</td><td>" + au("assemble", m.mot + "-colle") + "<br>" + sel(m.mot + "|colle") + "</td><td>" + au("assemble", m.mot + "-fondu") + "<br>" + sel(m.mot + "|fondu") + "</td></tr>";
+});
+document.getElementById("t").innerHTML = h + "</table>";
+function bilan() { var l = []; Object.keys(ETAT).forEach(function (k) { if (ETAT[k]) l.push(k + " : " + ETAT[k]); });
+  var t = l.join("\n") || "(rien noté)"; document.getElementById("b").textContent = t; try { navigator.clipboard.writeText(t); } catch (e) {} }
+</script></body></html>

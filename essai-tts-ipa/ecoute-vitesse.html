@@ -1,0 +1,41 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essai de vitesse d'écoute</title>
+<style>body{font-family:Arial,sans-serif;font-size:18px;margin:16px;background:#faf9f7;color:#222}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:8px;vertical-align:middle}th{background:#0f6e56;color:#fff;text-align:left}
+.m{font-size:22px;font-weight:bold}
+button{font-size:18px;min-height:46px;min-width:76px;padding:6px 12px;border:2px solid #0f6e56;border-radius:8px;background:#fff;cursor:pointer}
+button.p{background:#0f6e56;color:#fff}select{font-size:15px;max-width:120px}pre{background:#fff;border:1px solid #ccc;padding:8px;white-space:pre-wrap}
+.n{background:#fff;border-left:5px solid #f97316;padding:8px 12px;margin:10px 0}</style></head><body>
+<h1>Essai de vitesse d'écoute : 100 / 85 / 70 / 50 %</h1>
+<div class="n"><b>Attention.</b> Les 16 mots ci-dessous sont les fichiers « entier » de l'essai de collage : ils sont <b>déjà générés à -30 %</b> par la voix Azure (suffixe _-30). Un ralentissement de 70 % s'ajoute donc à ce -30 %. Les 8 sons du bas sont les sons isolés de l'app, à vitesse normale.</div>
+<p>Pour chaque mot : écouter 100, 85, 70, 50, puis noter dans la liste sous chaque bouton : <b>net</b> (voix propre), <b>abîmé</b> (grésille, vibre, coupe), ou <b>pareil</b> (aucune différence audible avec le palier juste au-dessus). Écouter au casque ET au haut-parleur du poste de classe.</p>
+<table id="t"><tr><th>Mot</th><th>100 %</th><th>85 %</th><th>70 %</th><th>50 %</th></tr></table>
+<p><button class="p" onclick="bilan()">Copier le bilan</button></p><pre id="b"></pre>
+<script>
+var MOTS = [{"mot": "petit", "f": "sortie/collage/audio/70_259_74_69_-30.mp3"}, {"mot": "maman", "f": "sortie/collage/audio/6d_61_6d_251_303_-30.mp3"}, {"mot": "maison", "f": "sortie/collage/audio/6d_25b_7a_254_303_-30.mp3"}, {"mot": "avec", "f": "sortie/collage/audio/61_76_25b_6b_-30.mp3"}, {"mot": "jardin", "f": "sortie/collage/audio/292_61_281_64_25b_303_-30.mp3"}, {"mot": "école", "f": "sortie/collage/audio/65_6b_254_6c_-30.mp3"}, {"mot": "voiture", "f": "sortie/collage/audio/76_77_61_74_79_281_-30.mp3"}, {"mot": "livre", "f": "sortie/collage/audio/6c_69_76_281_259_-30.mp3"}, {"mot": "table", "f": "sortie/collage/audio/74_61_62_6c_259_-30.mp3"}, {"mot": "rivière", "f": "sortie/collage/audio/281_69_76_6a_25b_281_-30.mp3"}, {"mot": "pendant", "f": "sortie/collage/audio/70_251_303_64_251_303_-30.mp3"}, {"mot": "forêt", "f": "sortie/collage/audio/66_254_281_25b_-30.mp3"}, {"mot": "chocolat", "f": "sortie/collage/audio/283_254_6b_254_6c_61_-30.mp3"}, {"mot": "fenêtre", "f": "sortie/collage/audio/66_259_6e_25b_74_281_259_-30.mp3"}, {"mot": "éléphant", "f": "sortie/collage/audio/65_6c_65_66_251_303_-30.mp3"}, {"mot": "mercredi", "f": "sortie/collage/audio/6d_25b_281_6b_281_259_64_69_-30.mp3"}, {"mot": "animal", "f": "sortie/collage/audio/61_6e_69_6d_61_6c_-30.mp3"}, {"mot": "son a", "f": "../public/sons/a.wav"}, {"mot": "son ch", "f": "../public/sons/ch.wav"}, {"mot": "son on", "f": "../public/sons/on.wav"}, {"mot": "son ou", "f": "../public/sons/ou.wav"}, {"mot": "son r", "f": "../public/sons/r.wav"}, {"mot": "son s", "f": "../public/sons/s.wav"}, {"mot": "son t", "f": "../public/sons/t.wav"}, {"mot": "son ui", "f": "../public/sons/ui.wav"}];
+var V = [1, 0.85, 0.7, 0.5], cur = null;
+function jouer(f, v){
+  if (cur) { cur.pause(); cur = null; }
+  var a = new Audio(encodeURI(f));
+  try { a.preservesPitch = true; a.webkitPreservesPitch = true; a.playbackRate = v; } catch (e) {}
+  cur = a; a.play().catch(function(){ alert('Lecture impossible : ' + f); });
+}
+var t = document.getElementById('t');
+MOTS.forEach(function(m, i){
+  var tr = document.createElement('tr');
+  var h = '<td class="m">' + m.mot + '</td>';
+  V.forEach(function(v, j){
+    h += '<td><button onclick="jouer(MOTS[' + i + '].f,' + v + ')">' + Math.round(v*100) + ' %</button><br>' +
+      '<select id="s' + i + '_' + j + '"><option value="">?</option><option>net</option><option>abîmé</option><option>pareil</option></select></td>';
+  });
+  tr.innerHTML = h; t.appendChild(tr);
+});
+function bilan(){
+  var out = [];
+  MOTS.forEach(function(m, i){
+    out.push(m.mot + ' : ' + V.map(function(v, j){ return Math.round(v*100) + ' % ' + (document.getElementById('s'+i+'_'+j).value || '?'); }).join(' | '));
+  });
+  var txt = out.join('\n'); document.getElementById('b').textContent = txt;
+  if (navigator.clipboard) navigator.clipboard.writeText(txt).catch(function(){});
+}
+</script></body></html>

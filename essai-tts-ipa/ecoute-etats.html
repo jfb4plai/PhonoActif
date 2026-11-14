@@ -1,0 +1,24 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>États lettre par lettre (Charline)</title>
+<style>body{font-family:Arial,sans-serif;font-size:16px;margin:16px;background:#faf9f7;color:#222}
+h2{color:#0f6e56;margin-top:28px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #ccc;padding:6px;vertical-align:middle}
+th{background:#0f6e56;color:#fff;text-align:left}.l{font-size:24px;font-weight:bold}audio{width:200px;height:34px}
+select{font-size:16px}button{font-size:16px;padding:8px 14px}pre{background:#fff;border:1px solid #ccc;padding:8px;white-space:pre-wrap}</style></head><body>
+<h1>États lettre par lettre : écoute</h1>
+<p>Pour chaque lettre posée, écouter ce que l'app dirait. Noter : <b>bon</b>, <b>faux</b> (autre son attendu), <b>voyelle ajoutée</b>, <b>coupé ou bruit</b>.
+La colonne « lecture » montre comment les règles ont découpé et lu (le point d'interrogation = choix signalé à l'enseignant).</p>
+<div id="t"></div><button onclick="bilan()">Copier le bilan</button><pre id="b"></pre>
+<script>
+var DATA = [{"id": "maison-1-m", "mot": "maison", "lettres": "m", "ipa": "m", "nbSons": 1, "lecture": "m=m", "vitesse": 0}, {"id": "maison-2-ma", "mot": "maison", "lettres": "ma", "ipa": "ma", "nbSons": 2, "lecture": "m=m a=a", "vitesse": -30}, {"id": "maison-3-mai", "mot": "maison", "lettres": "mai", "ipa": "mɛ", "nbSons": 2, "lecture": "m=m ai=e_ouvert", "vitesse": -30}, {"id": "maison-4-mais", "mot": "maison", "lettres": "mais", "ipa": "mɛ", "nbSons": 2, "lecture": "m=m ai=e_ouvert s=muet?", "vitesse": -30}, {"id": "maison-5-maiso", "mot": "maison", "lettres": "maiso", "ipa": "mɛzo", "nbSons": 4, "lecture": "m=m ai=e_ouvert s=z o=o_ferme", "vitesse": -30}, {"id": "maison-6-maison", "mot": "maison", "lettres": "maison", "ipa": "mɛzɔ̃", "nbSons": 4, "lecture": "m=m ai=e_ouvert s=z on=on", "vitesse": -30}, {"id": "chien-1-c", "mot": "chien", "lettres": "c", "ipa": "k", "nbSons": 1, "lecture": "c=k", "vitesse": 0}, {"id": "chien-2-ch", "mot": "chien", "lettres": "ch", "ipa": "ʃ", "nbSons": 1, "lecture": "ch=ch", "vitesse": 0}, {"id": "chien-3-chi", "mot": "chien", "lettres": "chi", "ipa": "ʃi", "nbSons": 2, "lecture": "ch=ch i=i", "vitesse": -30}, {"id": "chien-4-chie", "mot": "chien", "lettres": "chie", "ipa": "ʃi", "nbSons": 2, "lecture": "ch=ch i=i e=muet", "vitesse": -30}, {"id": "chien-5-chien", "mot": "chien", "lettres": "chien", "ipa": "ʃjɛ̃", "nbSons": 3, "lecture": "ch=ch i=yod en=in", "vitesse": -30}, {"id": "pomme-1-p", "mot": "pomme", "lettres": "p", "ipa": "p", "nbSons": 1, "lecture": "p=p", "vitesse": 0}, {"id": "pomme-2-po", "mot": "pomme", "lettres": "po", "ipa": "po", "nbSons": 2, "lecture": "p=p o=o_ferme", "vitesse": -30}, {"id": "pomme-3-pom", "mot": "pomme", "lettres": "pom", "ipa": "pɔm", "nbSons": 3, "lecture": "p=p o=o_ouvert m=m", "vitesse": -30}, {"id": "pomme-4-pomm", "mot": "pomme", "lettres": "pomm", "ipa": "pɔm", "nbSons": 3, "lecture": "p=p o=o_ouvert mm=m", "vitesse": -30}, {"id": "pomme-5-pomme", "mot": "pomme", "lettres": "pomme", "ipa": "pɔm", "nbSons": 3, "lecture": "p=p o=o_ouvert mm=m e=muet", "vitesse": -30}], cle = "essai-etats-v1", ETAT = {};
+try { ETAT = JSON.parse(localStorage.getItem(cle) || "{}"); } catch (e) {}
+function sauve(k, v) { ETAT[k] = v; try { localStorage.setItem(cle, JSON.stringify(ETAT)); } catch (e) {} }
+var h = "", mot = "";
+DATA.forEach(function (e) {
+  if (e.mot !== mot) { if (mot) h += "</table>"; mot = e.mot; h += "<h2>" + e.mot + "</h2><table><tr><th>Posé</th><th>Écouter (normalisé)</th><th>Original</th><th>IPA</th><th>Vitesse</th><th>Lecture</th><th>Note</th></tr>"; }
+  h += "<tr><td class='l'>" + e.lettres + "</td><td><audio controls preload='none' src='sortie/azure__fr-BE-CharlineNeural__etats_norm/" + encodeURIComponent(e.id) + ".mp3'></audio></td><td><audio controls preload='none' src='sortie/azure__fr-BE-CharlineNeural__etats/" + encodeURIComponent(e.id) + ".mp3'></audio></td><td>/" + e.ipa + "/</td><td>" + e.vitesse + " %</td><td>" + e.lecture + "</td><td><select onchange=\"sauve('" + e.id + "', this.value)\">" +
+    ["", "bon", "faux", "voyelle ajoutée", "coupé ou bruit"].map(function (o) { return "<option" + ((ETAT[e.id] || "") === o ? " selected" : "") + ">" + o + "</option>"; }).join("") + "</select></td></tr>";
+});
+document.getElementById("t").innerHTML = h + "</table>";
+function bilan() { var l = []; Object.keys(ETAT).forEach(function (k) { if (ETAT[k]) l.push(k + " : " + ETAT[k]); });
+  var t = l.join("\n") || "(rien noté)"; document.getElementById("b").textContent = t; try { navigator.clipboard.writeText(t); } catch (e) {} }
+</script></body></html>

@@ -1,0 +1,212 @@
+[
+ {
+  "mot": "maison",
+  "ipa": "mɛzɔ̃",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "chat",
+  "ipa": "ʃa",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "pomme",
+  "ipa": "pɔm",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "école",
+  "ipa": "ekɔl",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "ville",
+  "ipa": "vil",
+  "source": "a la main",
+  "aVerifier": true,
+  "vitesse": -30
+ },
+ {
+  "mot": "fille",
+  "ipa": "fij",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "soleil",
+  "ipa": "sɔlɛj",
+  "source": "a la main",
+  "aVerifier": true,
+  "vitesse": -30
+ },
+ {
+  "mot": "roi",
+  "ipa": "ʁwa",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "pain",
+  "ipa": "pɛ̃",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "chien",
+  "ipa": "ʃjɛ̃",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "bateau",
+  "ipa": "bato",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "champignon",
+  "ipa": "ʃɑ̃piɲɔ̃",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "oiseau",
+  "ipa": "wazo",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "tableau",
+  "ipa": "tablo",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "garçon",
+  "ipa": "ɡaʁsɔ̃",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "lune",
+  "ipa": "lyn",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "rouge",
+  "ipa": "ʁuʒ",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "vélo",
+  "ipa": "velo",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "rat",
+  "ipa": "ʁa",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "ré",
+  "ipa": "ʁe",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "dé",
+  "ipa": "de",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "nuit",
+  "ipa": "nɥi",
+  "source": "a la main",
+  "aVerifier": true,
+  "vitesse": -30
+ },
+ {
+  "mot": "feuille",
+  "ipa": "fœj",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "travail",
+  "ipa": "tʁavaj",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "crayon",
+  "ipa": "kʁɛjɔ̃",
+  "source": "a la main",
+  "aVerifier": true,
+  "vitesse": -30
+ },
+ {
+  "mot": "cartable",
+  "ipa": "kaʁtablə",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "fromage",
+  "ipa": "fʁɔmaʒ",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "lundi",
+  "ipa": "lœ̃di",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "jaune",
+  "ipa": "ʒon",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ },
+ {
+  "mot": "singe",
+  "ipa": "sɛ̃ʒ",
+  "source": "lexique",
+  "aVerifier": false,
+  "vitesse": -30
+ }
+]

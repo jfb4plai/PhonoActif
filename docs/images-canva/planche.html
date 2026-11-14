@@ -1,0 +1,22 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Planche d'images : validation (v2)</title>
+<style>body{font-family:Arial,sans-serif;font-size:16px;margin:16px;background:#faf9f7;color:#222}
+.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}.c{background:#fff;border:1px solid #ccc;border-radius:8px;padding:10px}
+.c img{width:200px;height:200px;display:block;margin:0 auto 6px}.m{font-size:20px;font-weight:bold}.r{color:#7c2d12;font-size:14px;min-height:34px}.id{color:#555;font-size:12px;word-break:break-all}
+select{font-size:16px;min-height:36px;width:100%}button{font-size:16px;padding:8px 14px}pre{background:#fff;border:1px solid #ccc;padding:8px;white-space:pre-wrap}</style></head><body>
+<h1>Planche d'images (papier découpé) : 20 mots, version 2</h1>
+<p>Ce sont des <b>aperçus de 200 px</b>, pas les fichiers définitifs. Pour chaque image : <b>OK</b>, <b>à refaire</b> (même mot, nouvelle génération) ou <b>à remplacer</b> (autre mot ou pas d'image). Les anciennes versions des images corrigées sont dans le dossier v1. Les remarques en orange sont de Claude et ne sont qu'un avis à vérifier.</p>
+<div class="g" id="g"></div><p><button onclick="bilan()">Copier le bilan</button></p><pre id="b"></pre>
+<script>
+var DATA = [{"mot": "chat", "f": "chat", "id": "MAHaz2YTDQo", "r": ""}, {"mot": "maison", "f": "maison", "id": "MAHaz7F4rU4", "r": ""}, {"mot": "chien", "f": "chien", "id": "MAHaz2z-zvw", "r": ""}, {"mot": "voiture", "f": "voiture", "id": "MAHaz9XCZXc", "r": ""}, {"mot": "poisson", "f": "poisson", "id": "MAHaz0CJdNo", "r": ""}, {"mot": "vélo", "f": "velo", "id": "MAHaz4Ib1b8", "r": ""}, {"mot": "porte", "f": "porte", "id": "MAHaz0v2fdo", "r": ""}, {"mot": "neige", "f": "neige", "id": "MAHa0K0bIkU", "r": "v2 : plusieurs flocons en nuances de blanc (correction de JF). Contraste faible : blanc sur fond crème ; fond plus foncé possible pour cette image seule."}, {"mot": "loup", "f": "loup", "id": "MAHa0Hj4qSk", "r": "v2 : plus d'orange, queue verte (correction de JF). Se lit comme un loup ou un grand chien."}, {"mot": "tortue", "f": "tortue", "id": "MAHaz3YoO-I", "r": ""}, {"mot": "forêt", "f": "foret", "id": "MAHaz_frIT0", "r": ""}, {"mot": "souris", "f": "souris", "id": "MAHaz9VoN6E", "r": "Presque identique à « rat » : un enfant ne les distinguera pas."}, {"mot": "sac", "f": "sac", "id": "MAHaz6Rcw0Y", "r": ""}, {"mot": "table", "f": "table", "id": "MAHazxJyX94", "r": ""}, {"mot": "lune", "f": "lune", "id": "MAHa0MPCKx8", "r": "v2 : uniquement jaune (correction de JF)."}, {"mot": "pomme", "f": "pomme", "id": "MAHaz4gwppw", "r": ""}, {"mot": "ours", "f": "ours", "id": "MAHa0EIcAAQ", "r": "v2 : deux yeux visibles (correction de JF). Reste orange : peut se lire comme un ours en peluche."}, {"mot": "livre", "f": "livre", "id": "MAHaz2xlPSI", "r": ""}, {"mot": "rat", "f": "rat", "id": "MAHa0PWSDqc", "r": "v2 : allongé, museau pointu, queue fine, moins sympathique (correction de JF). Peut se lire comme un fourmilier ou une musaraigne."}, {"mot": "eau", "f": "eau", "id": "MAHa0HQXHos", "r": "v2 : nuances de bleu (correction de JF). Les bleus sont des valeurs choisies par Claude (#93c5fd, #3b82f6, #1d4ed8), à valider."}], cle = "planche-images-v2", ETAT = {};
+try { ETAT = JSON.parse(localStorage.getItem(cle) || "{}"); } catch (e) {}
+function sauve(k, v) { ETAT[k] = v; try { localStorage.setItem(cle, JSON.stringify(ETAT)); } catch (e) {} }
+var OPT = ["", "OK", "à refaire", "à remplacer"], h = "";
+DATA.forEach(function (d) {
+  h += "<div class='c'><img src='" + d.f + ".png' alt='Image du mot " + d.mot + "'><div class='m'>" + d.mot + "</div><div class='r'>" + d.r + "</div><div class='id'>Canva : " + d.id + "</div><select aria-label='Avis pour " + d.mot + "' onchange=\"sauve('" + d.mot + "', this.value)\">" +
+    OPT.map(function (o) { return "<option" + ((ETAT[d.mot] || "") === o ? " selected" : "") + ">" + o + "</option>"; }).join("") + "</select></div>";
+});
+document.getElementById("g").innerHTML = h;
+function bilan() { var l = []; Object.keys(ETAT).forEach(function (k) { if (ETAT[k]) l.push(k + " : " + ETAT[k]); });
+  var t = l.join("\n") || "(rien noté)"; document.getElementById("b").textContent = t; try { navigator.clipboard.writeText(t); } catch (e) {} }
+</script></body></html>

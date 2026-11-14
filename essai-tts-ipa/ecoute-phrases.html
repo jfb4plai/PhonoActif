@@ -1,0 +1,24 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le mot dans une phrase</title>
+<style>body{font-family:Arial,sans-serif;font-size:16px;margin:16px;background:#faf9f7;color:#222}table{border-collapse:collapse;width:100%}
+th,td{border:1px solid #ccc;padding:6px;vertical-align:top}th{background:#0f6e56;color:#fff;text-align:left}.m{font-size:20px;font-weight:bold}.p{font-size:16px;font-weight:normal}
+audio{width:170px;height:32px}select{font-size:15px}button{font-size:16px;padding:8px 14px}pre{background:#fff;border:1px solid #ccc;padding:8px;white-space:pre-wrap}</style></head><body>
+<h1>Le mot cible dans une phrase</h1>
+<p>Écouter les quatre versions de chaque phrase. Le mot cible doit se détacher sans être déformé. Noter : <b>bon</b>, <b>mot pas assez marqué</b>, <b>mot trop marqué ou déformé</b>, <b>mal lu</b> (autre prononciation), <b>coupé ou bruit</b>. Les phrases sont des propositions à réécrire.</p>
+<div id="t"></div><button onclick="bilan()">Copier le bilan</button><pre id="b"></pre>
+<script>
+var DATA = [{"mot": "dans", "phrase": "Le chat dort <b>dans<\/b> le panier.", "ipa": "dɑ̃"}, {"mot": "elle", "phrase": "Lola est contente, <b>elle<\/b> chante.", "ipa": "ɛl"}, {"mot": "qui", "phrase": "Le garçon <b>qui<\/b> rit est mon frère.", "ipa": "ki"}, {"mot": "pour", "phrase": "Ce gâteau est <b>pour<\/b> mamie.", "ipa": "puʁ"}, {"mot": "avec", "phrase": "Je joue <b>avec<\/b> mon chien.", "ipa": "avɛk"}, {"mot": "que", "phrase": "Je pense <b>que<\/b> la lune brille.", "ipa": "kə"}, {"mot": "plus", "phrase": "Je veux du pain, et du lait en <b>plus<\/b>.", "ipa": "plys"}, {"mot": "tout", "phrase": "Il mange <b>tout<\/b> son pain.", "ipa": "tu"}, {"mot": "quand", "phrase": "Viens <b>quand<\/b> tu veux.", "ipa": "kɑ̃"}, {"mot": "chez", "phrase": "Léo dort <b>chez<\/b> sa tante.", "ipa": "ʃe"}], cle = "ecoute-phrases-v1", ETAT = {};
+try { ETAT = JSON.parse(localStorage.getItem(cle) || "{}"); } catch (e) {}
+function sauve(k, v) { ETAT[k] = v; try { localStorage.setItem(cle, JSON.stringify(ETAT)); } catch (e) {} }
+var V = ["neutre", "volume", "emphase", "complet"], OPT = ["", "bon", "mot pas assez marqué", "mot trop marqué ou déformé", "mal lu", "coupé ou bruit"];
+var h = "<table><tr><th>Mot et phrase</th><th>1. neutre</th><th>2. mot plus fort</th><th>3. balise emphase</th><th>4. phrase + mot seul</th></tr>";
+DATA.forEach(function (d) {
+  h += "<tr><td class='m'>" + d.mot + "<div class='p'>" + d.phrase + "<br>/" + d.ipa + "/</div></td>" + V.map(function (v) {
+    var k = d.mot + "|" + v;
+    return "<td><audio controls preload='none' src='sortie/phrases/norm/" + encodeURIComponent(d.mot + "_" + v) + ".mp3'></audio><br><select onchange=\"sauve('" + k + "', this.value)\">" +
+      OPT.map(function (o) { return "<option" + ((ETAT[k] || "") === o ? " selected" : "") + ">" + o + "</option>"; }).join("") + "</select></td>"; }).join("") + "</tr>";
+});
+document.getElementById("t").innerHTML = h + "</table>";
+function bilan() { var l = []; Object.keys(ETAT).forEach(function (k) { if (ETAT[k]) l.push(k + " : " + ETAT[k]); });
+  var t = l.join("\n") || "(rien noté)"; document.getElementById("b").textContent = t; try { navigator.clipboard.writeText(t); } catch (e) {} }
+</script></body></html>

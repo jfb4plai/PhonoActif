@@ -1,0 +1,29 @@
+{
+ "decision": "JF 2026-11-13 : fond bleu ciel pastel #cde7f7 pour toutes les images, appliqué par édition d'image Canva (sujet inchangé)",
+ "fait": {
+  "pomme": "MAHa0G-2_ZQ",
+  "eau": "MAHa0LN3tXY",
+  "neige": "MAHa0MTbcA8",
+  "chat": "MAHa0IezUac",
+  "maison": "MAHa0ALP1OU",
+  "chien": "MAHa0PDZ9jU",
+  "voiture": "MAHa0KWPprk",
+  "poisson": "MAHa0Fs5kNU",
+  "velo": "MAHa0L0l758",
+  "porte": "MAHa0Jp4Sx8",
+  "tortue": "MAHa0JJ8MV8",
+  "foret": "MAHa0UB7Qio",
+  "souris": "MAHa0T5nlQo",
+  "sac": "MAHa0VN01MQ",
+  "table": "MAHa0VRQ_2o",
+  "lune": "MAHa0b4lmwc",
+  "ours": "MAHa0dVR508",
+  "livre": "MAHa0Z3UxBI",
+  "rat": "MAHa0Up-t08",
+  "loup": "MAHa0fYdKSE"
+ },
+ "a_faire_source": {},
+ "contrainte": "limite de débit Canva (quota_cooldown) : environ 1 à 2 travaux acceptés par minute ; réessayer après une pause",
+ "constat_2026-11-13": "Compte Canva Pro : la limite persiste (quota_cooldown) ; environ une édition acceptée toutes les quelques minutes ; une erreur serveur du connecteur observée une fois.",
+ "termine": "2026-11-13 : 20 images sur 20 en fond bleu ciel pastel #cde7f7"
+}
