@@ -52,7 +52,8 @@ Source : règles recoupées avec la syllabation de Lexique 4.1 (`docs/rapport-le
 2. `data/packs-atelier/p1-illustre-2/pack.json` puis `node tools/construire_pack_atelier.js p1-illustre-2` : manifeste, syllabes et liste des audios (`a-generer.json`). Il ajoute le pack à `public/packs/index.json` : retirer cette ligne tant que l'audio et les images ne sont pas complets (sinon le pack apparaît en ligne incomplet).
 3. Audio (par JF, clé Azure) : `python -I essai-tts-ipa/generer-bibliotheque.py pack p1-illustre-2`.
 4. Images : lot 4 (`tools/prochaine_image.py --lot 4`, `tools/traiter_lot.py --lot 4`), puis, une fois validées : `node tools/ajouter_images_pack.js p1-illustre-2 --dossier docs/images-canva/lot4`.
-5. Publication : exception dans `.gitignore` (`!public/packs/p1-illustre-2/`), `construire_pack_atelier.js` pour l'index, contrôle, commit, push.
+5. Dépôt : exception dans `.gitignore` (`!public/packs/p1-illustre-2/`) ; commit et push mettent les fichiers en ligne, **sans** entrée dans `public/packs/index.json` : le pack n'est alors pas dans les listes, il ne s'ouvre que par lien (`#/jeu?pack=p1-illustre-2`, `#/carte/p1-illustre-2/<mot>`), par exemple pour la relectrice ou la testeuse.
+6. Publication (V1 : décision de JF seul) : après validation, ajouter l'entrée du pack à `public/packs/index.json` (id, label, `"visibilite": "commun"`), puis commit et push. Ne pas relancer `construire_pack_atelier.js` sur un pack qui a déjà ses images : il reconstruit le manifeste et les efface.
 
 ## Phrases d'aide pour les mots sans image
 

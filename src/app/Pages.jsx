@@ -51,7 +51,7 @@ export function ModeEmploi({ base = '/' }) {
           <h2>4. Créer une tâche</h2>
           <p>Une tâche = un pack de mots et des réglages. Dans la classe :</p>
           <ul>
-            <li><strong>Pack de cartes</strong> : la liste des mots proposés. Les packs publiés sont dans la liste ; un pack « personnel » n’apparaît que pour vous.</li>
+            <li><strong>Pack de cartes</strong> : la liste des mots proposés. Les packs publiés sont dans la liste ; un pack « personnel » n’apparaît que pour vous. Un pack encore en validation n’est pas dans la liste : il ne s’ouvre que par un lien donné par l’auteur de l’outil.</li>
             <li><strong>Cartes sans le mot</strong> : l’élève trouve le mot à l’oreille et avec l’image. <strong>Avec le mot</strong> : il recopie le modèle.</li>
             <li><strong>Habillage</strong> : « album » (P1 à P3) ou « sobre » (P4 et au-delà). Les mots restent en Arial.</li>
             <li><strong>Nombre de cubes en trop</strong> : 0 est le plus facile.</li>
@@ -61,7 +61,7 @@ export function ModeEmploi({ base = '/' }) {
           </ul>
           <p className="important">Les images ont été conçues pour centrer l’attention sur le mot et enlever tout autre distracteur.</p>
           <p>Puis « Créer la tâche et les liens des élèves » : la tâche est créée et le lien et le QR-code de <strong>chaque élève</strong> s’affichent aussitôt en dessous.</p>
-          <p>Pour fabriquer votre propre pack (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Le pack est fabriqué par l’équipe PLAI : l’application ne choisit jamais les mots à votre place.</p>
+          <p>Pour fabriquer votre propre pack (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Dans cette première version, les packs sont fabriqués et publiés par l’auteur de l’outil, et seulement après sa validation des mots, des images et des sons : l’application ne choisit jamais les mots à votre place.</p>
         </section>
 
         <section className="plai-section" id="etape5">

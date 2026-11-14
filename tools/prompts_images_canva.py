@@ -116,7 +116,7 @@ def entree_nombre(mot):
 
 
 # Images de référence propres à un mot (retouche d'une image déjà générée) : « fête » v1 (ballons seuls) à laquelle JF demande d'ajouter confettis et notes de musique.
-REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"]}
+REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"]}   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
 
 
 def references_de(mot):
@@ -151,9 +151,10 @@ MOTS_LOT4 = [
     ("renard", "renard", "a fox sitting with a bushy tail", DE_PROFIL, "profil", "orange #f97316, cream, teal #0f6e56, warm yellow #fbbf24",
      " Orange fur, a bushy tail with a cream tip, pointed ears. A fox, not a wolf and not a dog.",
      "se lit comme un renard (queue touffue à bout crème, oreilles pointues), pas un chien ni un loup", "choix de Claude : renard roux"),
-    ("arbre", "arbre", "a tree with a brown trunk and a big round green crown", DE_FACE, "aucun", "soft green #86b98f, teal #0f6e56, warm yellow #fbbf24, cream",
-     " A simple trunk in warm yellow and a round crown made of two layers of green. No fruit, no birds, no flowers.",
-     "UN arbre ; tronc et couronne ronde ; ni fruit ni oiseau", "choix de Claude : arbre simple"),
+    ("arbre", "arbre", "a tree with a yellow trunk and a big round green crown showing a few branches among the leaves", DE_FACE, "aucun", "soft green #86b98f, teal #0f6e56, warm yellow #fbbf24, cream",
+     " Keep the tree, its trunk and its round green crown with the teal edge exactly as in the reference image. Add four to five thin branches in warm yellow, drawn as cut-paper strips that fork out of the trunk into the crown, partly hidden behind the leaves so they show through the foliage. No fruit, no birds, no flowers.",
+     "UN arbre identique à la référence ; QUATRE à CINQ branches visibles dans le feuillage, partant du tronc ; ni fruit ni oiseau ni fleur",
+     "JF 2026-11-14 : ajouter quelques branches dans le feuillage (v1 : couronne verte sans branches, gardée dans lot4/v1)"),
     ("lapin", "lapin", "a rabbit sitting, with two long upright ears", DE_PROFIL, "profil", None, "", "", ""),
     ("fenêtre", "fenetre", "a closed window with a frame and four panes", DE_FACE, "aucun", "teal #0f6e56, cream, light blue #93c5fd, warm yellow #fbbf24",
      " A wooden-style frame in teal, four equal light blue panes, one small cream sill under it. No curtains, no view, no people.",
@@ -168,9 +169,9 @@ MOTS_LOT4 = [
     ("cheval", "cheval", "a horse standing, with a mane and a tail", DE_PROFIL, "profil", "warm yellow #fbbf24, orange #f97316, cream, teal #0f6e56",
      " A horse, not a dog: long legs, long neck, flowing mane and tail.",
      "se lit comme un cheval (longues pattes, crinière), pas un chien", "choix de Claude : cheval"),
-    ("fromage", "fromage", "a wedge of cheese with round holes", DE_PROFIL, "aucun", "warm yellow #fbbf24, orange #f97316, cream",
-     " Warm yellow wedge with three round holes in a darker yellow. No mouse, no plate.",
-     "UN morceau de fromage à trous ; ni souris ni assiette", "choix de Claude : fromage à trous"),
+    ("fromage", "fromage", "a classic wedge of Swiss cheese with holes", DE_PROFIL, "aucun", "warm yellow #fbbf24, pale butter yellow, soft golden ochre #e3a21a",
+     " A thick wedge of cheese as a three-dimensional triangular block seen from a slight angle: pale butter-yellow top face, warm yellow front face and a narrow darker side face. Three round holes in golden ochre on the front face and one round bite cut out of the edge. No orange, no pizza, no mouse, no plate.",
+     "UN morceau de fromage épais en volume (dessus clair, face jaune, trous ocre), pas une part de pizza ; ni souris ni assiette", "choix de Claude : fromage à trous"),
     ("gâteau", "gateau", "a round cake with two layers, pink icing and one candle", DE_PROFIL, "aucun", None,
      " Pink icing dripping on the sides, one small candle with a yellow flame. No text, no people.",
      "UN gâteau à deux étages et une bougie ; aucun texte", "choix de Claude : gâteau d'anniversaire"),

@@ -71,7 +71,7 @@ class TestTraiterLot2(unittest.TestCase):
             d = pathlib.Path(d)
             source = d / "brut.png"
             image_test().save(source)
-            T.traiter(str(source), "jardin", 2, d / "lot2")
+            T.traiter(str(source), "jardin", 2, d / "lot2", racine_galerie=False)
             m = U.mesure(Image.open(d / "lot2" / "jardin.png"))
             self.assertTrue(all(abs(m[i] - CIBLE[i]) <= 1 for i in range(3)), m)
             self.assertTrue((d / "lot2" / "originaux-canva" / "jardin.png").exists())
@@ -85,7 +85,7 @@ class TestTraiterLot2(unittest.TestCase):
             image_test().save(d / "lot2" / "jardin.png")
             image_test().save(d / "lot2" / "planche-contact.png")
             octets = (d / "lot2" / "planche-contact.png").read_bytes()
-            T.traiter(None, None, 2, d / "lot2")
+            T.traiter(None, None, 2, d / "lot2", racine_galerie=False)
             self.assertEqual((d / "lot2" / "planche-contact.png").read_bytes(), octets)
             self.assertFalse((d / "lot2" / "originaux-canva" / "planche-contact.png").exists())
             m = U.mesure(Image.open(d / "lot2" / "jardin.png"))

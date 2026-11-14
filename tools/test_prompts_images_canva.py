@@ -93,6 +93,15 @@ class TestFete(unittest.TestCase):
         self.assertIn("exactly as in the reference image", p)
 
 
+class TestArbre(unittest.TestCase):
+    def test_arbre_est_une_retouche_de_la_v1_avec_des_branches(self):
+        arbre = next(m for m in P.MOTS_LOT4 if m[0] == "arbre")
+        self.assertEqual(P.references_de("arbre"), ["MAHa5sjOz-w"])
+        p = P.prompt(arbre)
+        self.assertIn("four to five thin branches", p)
+        self.assertIn("exactly as in the reference image", p)
+
+
 class TestLot4(unittest.TestCase):
     def test_lot_4_douze_mots_de_la_liste_p1(self):
         self.assertEqual([m[0] for m in P.MOTS_LOT4], ["oiseau", "renard", "arbre", "lapin", "fenêtre", "train", "chapeau", "château", "cheval", "fromage", "gâteau", "avion"])
