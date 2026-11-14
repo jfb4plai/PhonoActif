@@ -26,12 +26,12 @@ const MANIFEST = {
 };
 const reponse = corps => async () => ({ ok: true, status: 200, json: async () => corps });
 
-function monter(manifest = MANIFEST) {
+function monter(manifest = MANIFEST, plusHash = '') {
   const stockage = stockageMemoire();
   const jouerFichier = vi.fn(async () => ({ manquants: [] }));
   const jouerSerie = vi.fn(async () => ({ manquants: [] }));
   const deps = { fetch: reponse(manifest), stockage, jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier, jouerSerie, rng: () => 0.5,
-    maintenant: () => '2026-11-13T10:00:00.000Z', hash: '#/jeu?pack=essai-a&mode=sans&intrus=0', base: '/' };
+    maintenant: () => '2026-11-13T10:00:00.000Z', hash: `#/jeu?pack=essai-a&mode=sans&intrus=0${plusHash}`, base: '/' };
   const user = userEvent.setup();
   render(<App deps={deps} />);
   return { user, stockage, jouerFichier, jouerSerie };
@@ -189,5 +189,49 @@ describe('Mode A : lecture de ce qui est posé', () => {
     await userEvent.setup().selectOptions(screen.getByLabelText('Pack de cartes'), 'p1-20-images');
     const img = await screen.findByAltText('QR-code du lien de la tâche');
     expect(img.getAttribute('src')).toMatch(/^data:image\/png;base64,/);
+  });
+
+  it('réglage syllabes « non » : jamais de bouton, même pour un mot de deux syllabes', async () => {
+    const { user } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] }, '&syllabes=non');
+    await commencer(user);
+    expect(screen.queryByRole('button', { name: /par syllabes/ })).toBeNull();
+  });
+
+  it('réglage syllabes « aide » : pas de bouton au départ, il apparaît après un clic sur « Besoin d’aide ? »', async () => {
+    const { user } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] }, '&syllabes=aide');
+    await commencer(user);
+    expect(screen.queryByRole('button', { name: /par syllabes/ })).toBeNull();
+    await user.click(screen.getByRole('button', { name: /Besoin d.aide/ }));
+    expect(screen.getByRole('button', { name: /par syllabes/ })).toBeInTheDocument();
+  });
+
+  it('réglage syllabes « aide » : le bouton apparaît aussi après une erreur sur la carte', async () => {
+    const { user } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] }, '&syllabes=aide');
+    await commencer(user);
+    for (const l of ['n', 'm', 'a', 'm', 'a']) await lettre(user, l);
+    await user.click(screen.getByRole('button', { name: 'Vérifier' }));
+    expect(screen.getByText(/Pas tout à fait/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /par syllabes/ })).toBeInTheDocument();
+  });
+
+  it('réglage syllabes « toujours » (par défaut) : le bouton est là dès le départ', async () => {
+    const { user } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] });
+    await commencer(user);
+    expect(screen.getByRole('button', { name: /par syllabes/ })).toBeInTheDocument();
+  });
+
+  it('phrase explicative : sous le bouton pour un mot à syllabes, « une seule syllabe » pour un mot court, rien avec « non »', async () => {
+    const { user } = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] });
+    await commencer(user);
+    expect(screen.getByText(/la voix dit une syllabe après l’autre/)).toBeInTheDocument();
+    cleanup();
+    const court = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], syllabes: [{ ipa: 'ʃa', fichier: 'audio/sha.mp3', cubes: 3 }] }] };
+    const m2 = monter(court);
+    await commencer(m2.user);
+    expect(screen.getByText(/Ce mot n’a qu’une syllabe/)).toBeInTheDocument();
+    cleanup();
+    const m3 = monter({ ...MANIFEST, cartes: [MANIFEST.cartes[1]] }, '&syllabes=non');
+    await commencer(m3.user);
+    expect(document.querySelector('.aide-syllabes')).toBeNull();
   });
 });

@@ -99,7 +99,7 @@ function AppEleve({ deps, hash, partie }) {
     chargerTache(jeton, config)
       .then(t => {
         if (!actif) return;
-        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents }));
+        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes }));
         setEtatTache('ok');
       })
       .catch(e => { if (actif) setEtatTache(e.message === 'tâche inconnue' ? 'inconnue' : e.message === 'réseau' ? 'reseau' : 'hors_service'); });

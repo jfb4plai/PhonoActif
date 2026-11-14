@@ -25,9 +25,9 @@ function supa(reponses) {
 const succes = (n, appel) => ({ status: 200, corps: { recus: appel.corps.p_lignes.length, ignores: 0 } });
 
 test('chargerTache : adresse, en-têtes et corps exacts, réponse en camelCase', async () => {
-  const s = supa(() => ({ status: 200, corps: { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true } }));
+  const s = supa(() => ({ status: 200, corps: { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide' } }));
   const t = await chargerTache(TOKEN, s);
-  assert.deepEqual(t, { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true });
+  assert.deepEqual(t, { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide' });
   const a = s.appels[0];
   assert.equal(a.u, 'https://x.supabase.co/rest/v1/rpc/phono_lire_tache');
   assert.equal(a.init.method, 'POST');
@@ -120,4 +120,10 @@ test('stockageEnvoyes : stockage qui lève, contenu illisible, absent : fonction
   const b = stockageEnvoyes({ storage: undefined });
   b.ajouter(['z']);
   assert.ok(b.lire().has('z'));
+});
+
+test('chargerTache : serveur sans le champ syllabes ou valeur inconnue : « toujours » (comportement d’avant)', async () => {
+  const base = { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true };
+  assert.equal((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: base })))).syllabes, 'toujours');
+  assert.equal((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: { ...base, syllabes: 'zzz' } })))).syllabes, 'toujours');
 });

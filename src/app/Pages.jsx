@@ -56,6 +56,7 @@ export function ModeEmploi({ base = '/' }) {
             <li><strong>Habillage</strong> : « album » (P1 à P3) ou « sobre » (P4 et au-delà). Les mots restent en Arial.</li>
             <li><strong>Nombre de cubes en trop</strong> : 0 est le plus facile.</li>
             <li><strong>Exiger les accents</strong> : si la case est vide, « e » est accepté à la place de « é ».</li>
+            <li><strong>Écoute par syllabes</strong> : ce réglage <em>ne lit rien tout seul</em>, il rend disponible le bouton « Écouter par syllabes ». « Pour tous les mots » : le bouton est là dès le départ. « Seulement quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? », donc seulement pour les mots qui posent problème. « Jamais » : pas de bouton.</li>
           </ul>
           <p>Puis « Créer le lien et le QR-code ».</p>
           <p>Pour fabriquer votre propre pack (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Le pack est fabriqué par l’équipe PLAI : l’application ne choisit jamais les mots à votre place.</p>
@@ -76,7 +77,8 @@ export function ModeEmploi({ base = '/' }) {
             <li>« Vérifier ». Après trois essais, le mot est montré. Il n’y a pas de score affiché à l’élève.</li>
             <li>Au bilan, « Envoyer mes résultats ». Ils sont aussi renvoyés automatiquement à l’ouverture suivante ou au retour de la connexion : sans réseau, ils restent sur l’appareil et partent plus tard.</li>
           </ol>
-          <p>Pour les mots de deux syllabes ou plus, le bouton « Écouter par syllabes » lit les syllabes l’une après l’autre ; la syllabe lue est surlignée.</p>
+          <p><strong>Écoute par syllabes.</strong> Le bouton « Écouter par syllabes » (à côté de « Écouter ») lit les syllabes phonétiques l’une après l’autre, avec une pause de 500 ms et la dernière syllabe plus lente (75 %). Pendant la lecture, la syllabe dite est entourée dans la zone de construction, un trait marque la coupure et les lettres muettes sont grisées. La règle de coupure s’affiche sous la zone.</p>
+          <p>Il n’y a pas de bouton pour un mot d’une seule syllabe, ni dans un pack qui n’a pas encore ses syllabes (les 100 mots de P1 n’en ont que pour une partie des mots), ni si le réglage est sur « Jamais ». Les syllabes sont coupées sur les <em>sons</em> du mot, pas sur les lettres : « maison » se coupe « mè-zon ».</p>
         </section>
 
         <section className="plai-section" id="etape7">

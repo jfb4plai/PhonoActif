@@ -24,6 +24,17 @@ const nbSonsIpa = ipa => [...ipa.normalize('NFD').replace(/[̃͡]/g, '')].length
 const sansAccent = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '');
 export const identifiantCarte = mot => sansAccent(mot).replace(/œ/g, 'oe').replace(/æ/g, 'ae').replace(/[^a-z0-9]/g, '');
 
+// Syllabes d'un mot à partir de ses cubes finaux (graphème, son) : IPA, vitesse, nom du fichier audio et nombre de cubes couverts.
+// Utilisé à la fabrication d'un pack et pour ajouter les syllabes à un pack déjà fabriqué (tools/ajouter_syllabes_pack.js).
+export function syllabesPourCubes(cubes) {
+  const nbCubes = cubesParSyllabe(cubes);
+  return syllabesDeSons(cubes.flatMap(x => composants(x.son))).map((s, i) => {
+    const ipa = ipaDe(s);
+    const vitesse = nbSonsIpa(ipa) > 1 ? -30 : 0;
+    return { ipa, vitesse, fichier: nomFichierAudio(ipa, vitesse), ...(nbCubes ? { cubes: nbCubes[i] } : {}) };
+  });
+}
+
 export function construirePackLettres({ pack, lexique, corrections = null, inclureAVerifier = false }) {
   if (pack.visibilite === 'prive' && !/^[a-f0-9]{64}$/.test(pack.proprietaireEmpreinte || '')) {
     throw new Error("Pack personnel : calculer d'abord l'empreinte du propriétaire (pack.proprietaireEmpreinte), l'adresse e-mail ne doit pas être publiée en clair.");
@@ -61,13 +72,9 @@ export function construirePackLettres({ pack, lexique, corrections = null, inclu
     };
     // Syllabes du mot entier (coupées sur les sons, pas sur les lettres) : servent à l'écoute « par syllabes ».
     // `cubes` = nombre de cubes (graphèmes) de la syllabe : sert à surligner la syllabe à l'écran pendant l'écoute.
-    const nbCubes = cubesParSyllabe(dernier.cubes);
-    carte.syllabes = syllabesDeSons(dernier.cubes.flatMap(x => composants(x.son))).map((s, i) => {
-      const ipa = ipaDe(s);
-      const vitesse = nbSonsIpa(ipa) > 1 ? -30 : 0;
-      const fichier = nomFichierAudio(ipa, vitesse);
+    carte.syllabes = syllabesPourCubes(dernier.cubes).map(({ ipa, vitesse, fichier, cubes }) => {
       if (!distincts.has(fichier)) distincts.set(fichier, { ipa, vitesse, fichier });
-      return { ipa, fichier: `audio/${fichier}.mp3`, ...(nbCubes ? { cubes: nbCubes[i] } : {}) };
+      return { ipa, fichier: `audio/${fichier}.mp3`, ...(cubes !== undefined ? { cubes } : {}) };
     });
     if (c.niveau) carte.niveau = c.niveau;
     if (c.image) { carte.image_sans_mot = c.image; carte.source = c.source; carte.licence = c.licence; }

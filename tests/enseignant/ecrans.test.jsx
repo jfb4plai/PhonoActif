@@ -113,6 +113,19 @@ describe('espace enseignant', () => {
     expect(client.tables.phono_students[1].secret).toBe('b'.repeat(20));
   });
 
+  it('réglage « écoute par syllabes » : choisi dans la tâche, enregistré, rappelé dans le résumé', async () => {
+    const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    const choix = await screen.findByLabelText('Écoute par syllabes');
+    expect(choix).toHaveValue('toujours');
+    expect(screen.getByText(/Ce réglage ne lit rien tout seul/)).toBeInTheDocument();
+    await userEvent.selectOptions(choix, 'aide');
+    await userEvent.click(screen.getByRole('button', { name: 'Créer le lien et le QR-code' }));
+    await waitFor(() => expect(client.tables.phono_tasks[0].syllabes).toBe('aide'));
+    expect((await screen.findAllByText(/syllabes sur difficulté/)).length).toBeGreaterThan(0);
+  });
+
   it('crée un lien de tâche avec QR-code', async () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);

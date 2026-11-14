@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { creerLexique, construirePackLettres, packsVisibles, identifiantCarte, nomFichierAudio, empreinteCourriel } from '../../src/core/index.js';
+import { creerLexique, construirePackLettres, packsVisibles, identifiantCarte, nomFichierAudio, empreinteCourriel, syllabesPourCubes } from '../../src/core/index.js';
 
 const lexique = creerLexique(JSON.parse(readFileSync(new URL('../fixtures/lexique-extrait.json', import.meta.url), 'utf8')));
 const pack = (mots, plus = {}) => ({ nom: 'essai', titre: 'Essai', visibilite: 'commun', proprietaire: '', cartes: mots.map(m => (typeof m === 'string' ? { mot: m } : m)), ...plus });
@@ -103,4 +103,12 @@ test('syllabes : coupées sur les sons du mot entier, fichiers nommés comme la 
   const noms = fichiersDistincts.map(f => f.fichier);
   par.maman.syllabes.forEach(s => assert.ok(noms.includes(s.fichier.replace(/^audio\//, '').replace(/\.mp3$/, ''))));
   assert.equal(new Set(noms).size, noms.length);
+});
+
+test('syllabesPourCubes : IPA, vitesse, fichier et nombre de cubes par syllabe', () => {
+  const syl = syllabesPourCubes([{ g: 'm', son: 'm' }, { g: 'ai', son: 'e_ouvert' }, { g: 's', son: 'z' }, { g: 'on', son: 'on' }]);
+  assert.deepEqual(syl.map(s => s.ipa), ['mɛ', 'zɔ̃']);
+  assert.deepEqual(syl.map(s => s.cubes), [2, 2]);
+  assert.ok(syl.every(s => s.vitesse === -30 && s.fichier === nomFichierAudio(s.ipa, -30)));
+  assert.equal(syllabesPourCubes([{ g: 'ch', son: 'ch' }, { g: 'a', son: 'a' }, { g: 't', son: '' }]).length, 1); // chat : une seule syllabe
 });

@@ -45,6 +45,8 @@ describe('pages du site', () => {
     monter('#/mode-d-emploi');
     for (const n of [1, 2, 3, 4, 5, 6, 7]) expect(screen.getByRole('heading', { level: 2, name: new RegExp(`^${n}\. `) })).toBeInTheDocument();
     expect(screen.getByText(/Liens et QR-codes personnels/)).toBeInTheDocument();
+    expect(screen.getByText(/ne lit rien tout seul/)).toBeInTheDocument();
+    expect(screen.getByText(/Seulement quand l’élève a du mal/, { exact: false })).toBeInTheDocument();
     const sommaire = screen.getByRole('navigation', { name: 'Sommaire' });
     for (const a of within(sommaire).getAllByRole('link')) expect(a.getAttribute('href')).toBe('#/mode-d-emploi');
   });

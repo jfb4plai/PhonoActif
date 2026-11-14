@@ -635,6 +635,18 @@
      "fichier": "audio/6d_61_6d_251_303_-30.mp3",
      "ecartAvecRegles": false
     }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ma",
+     "fichier": "audio/6d_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "mɑ̃",
+     "fichier": "audio/6d_251_303_-30.mp3",
+     "cubes": 2
+    }
    ]
   },
   {
@@ -1210,6 +1222,18 @@
      "lettres": "papa",
      "fichier": "audio/70_61_70_61_-30.mp3",
      "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "pa",
+     "fichier": "audio/70_61_-30.mp3",
+     "cubes": 2
     }
    ]
   },
@@ -2263,6 +2287,18 @@
      "fichier": "audio/70_77_61_73_254_303_-30.mp3",
      "ecartAvecRegles": false
     }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pwa",
+     "fichier": "audio/70_77_61_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "sɔ̃",
+     "fichier": "audio/73_254_303_-30.mp3",
+     "cubes": 2
+    }
    ]
   },
   {
@@ -3259,6 +3295,18 @@
      "fichier": "audio/76_65_6c_6f_-30.mp3",
      "ecartAvecRegles": false
     }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ve",
+     "fichier": "audio/76_65_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "lo",
+     "fichier": "audio/6c_6f_-30.mp3",
+     "cubes": 2
+    }
    ]
   },
   {
@@ -3767,6 +3815,18 @@
      "fichier": "audio/261_61_281_73_254_303_-30.mp3",
      "ecartAvecRegles": false
     }
+   ],
+   "syllabes": [
+    {
+     "ipa": "ɡaʁ",
+     "fichier": "audio/261_61_281_-30.mp3",
+     "cubes": 3
+    },
+    {
+     "ipa": "sɔ̃",
+     "fichier": "audio/73_254_303_-30.mp3",
+     "cubes": 2
+    }
    ]
   },
   {
@@ -4212,6 +4272,18 @@
      "lettres": "souris",
      "fichier": "audio/73_75_281_69_-30.mp3",
      "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "su",
+     "fichier": "audio/73_75_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "ʁi",
+     "fichier": "audio/281_69_-30.mp3",
+     "cubes": 3
     }
    ]
   },
@@ -4898,6 +4970,18 @@
      "lettres": "pendant",
      "fichier": "audio/70_251_303_64_251_303_-30.mp3",
      "ecartAvecRegles": false
+    }
+   ],
+   "syllabes": [
+    {
+     "ipa": "pɑ̃",
+     "fichier": "audio/70_251_303_-30.mp3",
+     "cubes": 2
+    },
+    {
+     "ipa": "dɑ̃",
+     "fichier": "audio/64_251_303_-30.mp3",
+     "cubes": 3
     }
    ]
   },

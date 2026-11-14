@@ -33,6 +33,15 @@ export function reperesLettres(carte) {
 // Règle de coupure énoncée à l'élève et dans les modes d'emploi (décision JF 2026-11-14 : tak-si, comme Lexique 4.1).
 export const REGLE_COUPURE = "Règle de coupure : on coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède.";
 
+// Le bouton « Écouter par syllabes » est-il proposé ? regle = réglage de la tâche : « non », « toujours », « aide » (seulement quand l'élève a du mal :
+// après une erreur sur cette carte, ou après avoir demandé de l'aide). Jamais pour un mot d'une seule syllabe ni pour un pack sans syllabes.
+export function boutonSyllabesVisible(carte, regle, etat) {
+  if (!syllabesDeCarte(carte)) return false;
+  if (regle === 'non') return false;
+  if (regle === 'aide') return !!etat && (etat.tentative >= 2 || etat.aide !== 'aucune');
+  return true;
+}
+
 export const estPackLettres =pack => !!pack && pack.mode === 'lettres';
 
 // La carte vue par la logique de session : un cube par lettre. Le « son » ne sert qu'à la couleur (voyelle ou consonne).

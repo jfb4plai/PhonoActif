@@ -102,7 +102,7 @@ export async function creerTache(client, classId, tache, userId, base) {
   const jeton = genererJeton();
   const r = await client.from('phono_tasks').insert({
     class_id: classId, token: jeton, pack: tache.pack, mode_mot: tache.modeMot, habillage: tache.habillage,
-    nb_intrus: tache.nbIntrus, exiger_accents: tache.exigerAccents, created_by: userId
+    nb_intrus: tache.nbIntrus, exiger_accents: tache.exigerAccents, syllabes: tache.syllabes || 'toujours', created_by: userId
   }).select('id').single();
   verifier(r);
   return { id: r.data.id, jeton, lien: lienDeTache(base, jeton) };
@@ -110,11 +110,11 @@ export async function creerTache(client, classId, tache, userId, base) {
 
 export async function listerTaches(client, classId, base) {
   const r = await client.from('phono_tasks')
-    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, revoked, created_at').eq('class_id', classId);
+    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, revoked, created_at').eq('class_id', classId);
   verifier(r);
   return [...r.data].sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map(t => ({
     id: t.id, jeton: t.token, pack: t.pack, modeMot: t.mode_mot, habillage: t.habillage, nbIntrus: t.nb_intrus,
-    exigerAccents: t.exiger_accents, revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
+    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
   }));
 }
 
@@ -122,7 +122,8 @@ export const resumeTache = t => [
   t.habillage,
   t.modeMot === 'avec' ? 'avec le mot' : 'sans le mot',
   `${t.nbIntrus} cube${t.nbIntrus > 1 ? 's' : ''} en trop`,
-  t.exigerAccents ? 'accents exigés' : 'accents non exigés'
+  t.exigerAccents ? 'accents exigés' : 'accents non exigés',
+  { non: 'sans écoute par syllabes', aide: 'syllabes sur difficulté' }[t.syllabes] || 'syllabes toujours proposées'
 ].join(' · ');
 
 export async function revoquerTache(client, id) {

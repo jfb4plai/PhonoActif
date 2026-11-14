@@ -4,7 +4,7 @@ import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
 } from './api.js';
 
-const PAS_DE_TACHE = { pack: '', modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents };
+const PAS_DE_TACHE = { pack: '', modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes };
 
 export default function Classe({ client, userId, classe, base, packs = [], onRetour, onSupprimer }) {
   const master = classe.role === 'master';
@@ -109,6 +109,13 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       <p className="aide">Des cubes qui ne servent pas, pour que l’élève doive choisir. 0 rend la tâche plus facile.</p>
       <label htmlFor="ens-accents"><input id="ens-accents" type="checkbox" checked={tache.exigerAccents} onChange={e => setTache(t => ({ ...t, exigerAccents: e.target.checked }))} /> Exiger les accents</label>
       <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
+      <label htmlFor="ens-syllabes">Écoute par syllabes</label>
+      <select id="ens-syllabes" value={tache.syllabes} onChange={e => setTache(t => ({ ...t, syllabes: e.target.value }))}>
+        <option value="toujours">Proposée pour tous les mots de deux syllabes ou plus</option>
+        <option value="aide">Proposée seulement quand l’élève a du mal</option>
+        <option value="non">Jamais</option>
+      </select>
+      <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni dans un pack sans syllabes.</p>
       <p className="aide">{packs.length === 0 ? 'Aucun pack publié pour l’instant.' : 'Les élèves qui ouvrent le lien jouent les cartes de ce pack.'}</p>
       <p className="aide">Un pack « personnel » n’apparaît que pour vous. Pour fabriquer le vôtre : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de pack (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images.</p>
       <button type="button" onClick={creer} disabled={packs.length === 0}>Créer le lien et le QR-code</button>

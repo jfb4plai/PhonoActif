@@ -100,6 +100,15 @@ export default function Accueil({
                 <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
               </div>
               <div className="plai-field">
+                <label className="plai-label" htmlFor="syllabes">Écoute par syllabes</label>
+                <select id="syllabes" className="plai-input" value={tache.syllabes || 'toujours'} onChange={e => onTache({ syllabes: e.target.value })}>
+                  <option value="toujours">Proposée pour tous les mots de deux syllabes ou plus</option>
+                  <option value="aide">Proposée seulement quand l’élève a du mal</option>
+                  <option value="non">Jamais</option>
+                </select>
+                <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni dans un pack sans syllabes.</p>
+              </div>
+              <div className="plai-field">
                 <label className="plai-label" htmlFor="lien">Lien de la tâche</label>
                 <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir un pack pour obtenir le lien" onFocus={e => e.target.select()} />
                 {qr && <img src={qr} alt="QR-code du lien de la tâche" width="200" height="200" className="qr-accueil" />}
