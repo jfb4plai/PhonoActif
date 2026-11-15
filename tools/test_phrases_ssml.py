@@ -15,6 +15,11 @@ class TestSsml(unittest.TestCase):
         self.assertIn(" le panier.", s)
         self.assertIn('<voice name="fr-BE-CharlineNeural">', s)
 
+    def test_phrase_ralentie_a_75_pour_cent(self):
+        s = S.ssml_phrase("Il danse dans le noir.", "dans", "dɑ̃")
+        self.assertIn('<prosody rate="0.75">', s)
+        self.assertTrue(s.index("<prosody") < s.index("<phoneme") < s.index("</prosody>"))
+
     def test_mot_entier_seulement_et_majuscule_conservee(self):
         s = S.ssml_phrase("Dans la maison, il dort dansant.", "dans", "dɑ̃")
         self.assertIn('<phoneme alphabet="ipa" ph="dɑ̃">Dans</phoneme>', s)    # première occurrence, casse de la phrase

@@ -7,6 +7,7 @@ import html
 import re
 
 VOIX = "fr-BE-CharlineNeural"
+DEBIT = "0.75"    # multiplicateur Azure (1 = vitesse normale) : phrases jugées trop rapides par JF le 2026-11-15, ralenties à 75 %
 LETTRES = "A-Za-zÀ-ÿœŒæÆ0-9_"
 
 
@@ -24,9 +25,9 @@ def ssml_phrase(phrase, mot, ipa, voix=VOIX):
     else:
         corps = html.escape(phrase)    # mot non retrouvé tel quel : phrase lue sans consigne de prononciation
     return ('<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-BE">'
-            f'<voice name="{voix}">{corps}</voice></speak>')
+            f'<voice name="{voix}"><prosody rate="{DEBIT}">{corps}</prosody></voice></speak>')
 
 
 def empreinte(phrase, ipa):
-    """Nom stable du fichier brut : change si la phrase ou l'IPA change, pour ne pas réutiliser un audio périmé."""
-    return hashlib.sha1((phrase + "|" + ipa).encode("utf-8")).hexdigest()[:10]
+    """Nom stable du fichier brut : change si la phrase, l'IPA ou le débit change, pour ne pas réutiliser un audio périmé."""
+    return hashlib.sha1((phrase + "|" + ipa + "|" + DEBIT).encode("utf-8")).hexdigest()[:10]
