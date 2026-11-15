@@ -79,7 +79,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/zebre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le zèbre a des rayures noires et blanches.",
+   "phraseAudio": "audio/phrase-zebre.mp3"
   },
   {
    "id": "girafe",
@@ -165,7 +167,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/girafe.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La girafe a un très long cou.",
+   "phraseAudio": "audio/phrase-girafe.mp3"
   },
   {
    "id": "tigre",
@@ -241,7 +245,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/tigre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le tigre court dans la forêt.",
+   "phraseAudio": "audio/phrase-tigre.mp3"
   },
   {
    "id": "hibou",
@@ -313,7 +319,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/hibou.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le hibou dort le jour.",
+   "phraseAudio": "audio/phrase-hibou.mp3"
   },
   {
    "id": "cochon",
@@ -391,7 +399,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/cochon.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le cochon est rose et gros.",
+   "phraseAudio": "audio/phrase-cochon.mp3"
   },
   {
    "id": "serpent",
@@ -483,7 +493,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/serpent.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le serpent est long et vert.",
+   "phraseAudio": "audio/phrase-serpent.mp3"
   },
   {
    "id": "baleine",
@@ -575,7 +587,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/baleine.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La baleine nage dans la mer.",
+   "phraseAudio": "audio/phrase-baleine.mp3"
   },
   {
    "id": "banane",
@@ -661,7 +675,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/banane.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je mange une banane.",
+   "phraseAudio": "audio/phrase-banane.mp3"
   },
   {
    "id": "fraise",
@@ -738,7 +754,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/fraise.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La fraise est rouge et douce.",
+   "phraseAudio": "audio/phrase-fraise.mp3"
   },
   {
    "id": "citron",
@@ -820,7 +838,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/citron.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Le citron est jaune.",
+   "phraseAudio": "audio/phrase-citron.mp3"
   },
   {
    "id": "poire",
@@ -887,7 +907,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/poire.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Maman coupe une poire.",
+   "phraseAudio": "audio/phrase-poire.mp3"
   },
   {
    "id": "taxi",
@@ -953,7 +975,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/taxi.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa prend un taxi.",
+   "phraseAudio": "audio/phrase-taxi.mp3"
   },
   {
    "id": "fusee",
@@ -1029,7 +1053,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/fusee.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La fusée monte dans le ciel.",
+   "phraseAudio": "audio/phrase-fusee.mp3"
   },
   {
    "id": "valise",
@@ -1115,7 +1141,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/valise.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je mets mes habits dans la valise.",
+   "phraseAudio": "audio/phrase-valise.mp3"
   },
   {
    "id": "balai",
@@ -1187,7 +1215,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/balai.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa passe le balai.",
+   "phraseAudio": "audio/phrase-balai.mp3"
   },
   {
    "id": "echelle",
@@ -1275,7 +1305,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/echelle.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa monte sur l'échelle.",
+   "phraseAudio": "audio/phrase-echelle.mp3"
   },
   {
    "id": "tulipe",
@@ -1361,7 +1393,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/tulipe.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "La tulipe est une jolie fleur.",
+   "phraseAudio": "audio/phrase-tulipe.mp3"
   },
   {
    "id": "jupe",
@@ -1422,7 +1456,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/jupe.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Ma sœur met sa jupe.",
+   "phraseAudio": "audio/phrase-jupe.mp3"
   },
   {
    "id": "montre",
@@ -1504,7 +1540,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/montre.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Papa regarde sa montre.",
+   "phraseAudio": "audio/phrase-montre.mp3"
   },
   {
    "id": "seau",
@@ -1557,7 +1595,9 @@
    "niveau": "P1",
    "image_sans_mot": "images/seau.png",
    "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
-   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+   "phrase": "Je mets de l'eau dans le seau.",
+   "phraseAudio": "audio/phrase-seau.mp3"
   }
  ]
 }
