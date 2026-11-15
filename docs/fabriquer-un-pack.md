@@ -1,3 +1,5 @@
+> **Mise à jour du 2026-11-15 — base de mots.** Les mots, leurs sons, audios et images vivent maintenant dans `data/base/` (une fiche par mot) et sont publiés dans `public/mots/` par `node tools/base/publier.js`. Les dossiers `public/packs/` ont été retirés ; les anciens « packs » sont des *modèles de listes* (`data/base/packs.json`). Les outils ci-dessous (`construire_pack_atelier.js`, `ajouter_images_pack.js`, `ajouter_phrases_pack.js`) écrivent encore au format d'un dossier de pack : pour ajouter de nouveaux mots, il faut en faire des fiches dans `data/base/fiches.json` (et leurs fichiers dans `data/base/assets/`), puis relancer `publier.js`. Cette adaptation des outils reste à faire.
+
 # Fabriquer un pack à partir du tableau d'un enseignant (pour JF ou un administrateur)
 
 Décision du 2026-11-13 (option « a ») : l'enseignant remplit un modèle Excel et envoie le tableau avec ses images ; JF ou un autre administrateur fabrique le pack. La voix (Azure) et les images restent sous des comptes centraux, donc un seul coût pour tous.

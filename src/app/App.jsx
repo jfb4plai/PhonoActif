@@ -82,14 +82,14 @@ function AppEleve({ deps, hash, partie }) {
   const [signalements, setSignalements] = useState({});
   const [messageEnvoi, setMessageEnvoi] = useState('');
   const [, rafraichir] = useState(0);
-  // Liste des packs publiés (packs/index.json) : l'écran d'accueil propose une liste plutôt qu'un nom à taper. Packs personnels exclus (visibles seulement dans l'espace enseignant).
+  // Modèles de listes publiés (mots/modeles.json, fabriqué par tools/base/publier.js) : l'écran d'accueil propose une liste plutôt qu'un nom à taper.
   const [packsListe, setPacksListe] = useState([]);
   useEffect(() => {
     if (enLigne) return undefined;
     let actif = true;
-    (deps.fetch || fetch)(`${base.replace(/\/+$/, '')}/packs/index.json`)
+    (deps.fetch || fetch)(`${base.replace(/\/+$/, '')}/mots/modeles.json`)
       .then(r => (r.ok ? r.json() : []))
-      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && p.label && p.visibilite !== 'prive')); })
+      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && (p.titre || p.label) && p.visibilite !== 'prive').map(p => ({ id: p.id, label: p.titre || p.label, mots: p.mots }))); })
       .catch(() => {});
     return () => { actif = false; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -161,8 +161,11 @@ function AppEleve({ deps, hash, partie }) {
     setErreur('');
     try {
       // Tâche à listes (mots copiés dans la tâche par l'enseignant) : chargement par identifiant ; sinon ancien pack.
+      // Modèle publié (lien rapide) : ses mots sont chargés par identifiant. Sinon, dossier de pack (ancien format, conservé pour de futurs packs et pour les tests du moteur).
+      const modele = packsListe.find(p => p.id === tache.pack && Array.isArray(p.mots) && p.mots.length > 0);
       const { pack: charge, avertissements: av } = Array.isArray(tache.mots) && tache.mots.length > 0
         ? await chargerMots(tache.mots, { base, fetch: deps.fetch })
+        : modele ? await chargerMots(modele.mots, { base, fetch: deps.fetch })
         : await chargerPack(tache.pack, { base, fetch: deps.fetch });
       let utilise = charge;
       if (carteUnique) {

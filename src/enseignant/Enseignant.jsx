@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { configurationSupabase } from '../lib/supabase.js';
-import { packsVisibles, empreinteCourriel } from '../core/packAtelier.js';
 import { creerClasse, lister, supprimerClasse, resultats, listerTaches } from './api.js';
 import Connexion from './Connexion.jsx';
 import Classe from './Classe.jsx';
 import './enseignant.css';
 
-// deps : client (Supabase injecté pour les tests), base, packs
+// deps : client (Supabase injecté pour les tests), base, catalogue, modeles, jouer, fetch
 export default function Enseignant({ deps = {} }) {
   const [client] = useState(() => {
     if (deps.client) return deps.client;
@@ -22,20 +21,6 @@ export default function Enseignant({ deps = {} }) {
   const [courante, setCourante] = useState(null);
   const [nom, setNom] = useState('');
   const [message, setMessage] = useState('');
-  // Packs publiés : liste fournie (tests) ou lue dans packs/index.json
-  const [packs, setPacks] = useState(deps.packs || null);
-
-  useEffect(() => {
-    if (deps.packs) return undefined;
-    let actif = true;
-    const racine = base.replace(/\/+$/, '') + '/';
-    (deps.fetch || fetch)(`${racine}packs/index.json`)
-      .then(r => (r.ok ? r.json() : []))
-      .then(l => { if (actif) setPacks(Array.isArray(l) ? l.filter(p => p && p.id && p.label) : []); })
-      .catch(() => { if (actif) setPacks([]); });
-    return () => { actif = false; };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   // Catalogue des mots et modèles de listes (public/mots/) : fournis par les tests, sinon lus ; un échec donne des listes vides et un message.
   const [catalogue, setCatalogue] = useState(deps.catalogue || null);
   const [modeles, setModeles] = useState(deps.modeles || null);
@@ -59,22 +44,13 @@ export default function Enseignant({ deps = {} }) {
     return () => { actif = false; data.subscription.unsubscribe(); };
   }, [client]);
 
-  // Les packs personnels sont reconnus par une empreinte de l'adresse e-mail, jamais par l'adresse elle-même
-  const [empreinte, setEmpreinte] = useState('');
-  useEffect(() => {
-    let actif = true;
-    if (utilisateur && utilisateur.email) empreinteCourriel(utilisateur.email).then(e => { if (actif) setEmpreinte(e); }).catch(() => {});
-    else setEmpreinte('');
-    return () => { actif = false; };
-  }, [utilisateur]);
-
   const charger = async () => {
     try { setClasses(await lister(client, utilisateur.id)); } catch (e) { setMessage(e.message); }
   };
   useEffect(() => { if (client && utilisateur) charger(); }, [client, utilisateur]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!client) return <main className="ens"><p>Espace enseignant indisponible : service non configuré.</p></main>;
-  if (!pret || packs === null || catalogue === null || modeles === null) return <main className="ens"><p>Chargement…</p></main>;
+  if (!pret || catalogue === null || modeles === null) return <main className="ens"><p>Chargement…</p></main>;
   if (!utilisateur) return <main className="ens"><Connexion auth={client.auth} redirection={base} /></main>;
 
   async function ajouterClasse() {

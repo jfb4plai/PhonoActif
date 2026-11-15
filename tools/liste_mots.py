@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-r"""Liste de TOUS les mots disponibles (packs publics de public/packs/index.json) avec leurs informations liées.
-Lit les manifestes (source unique) et, pour l'IPA du mot, data/packs-atelier/<pack>/phrases-a-generer.json quand il existe.
+r"""Liste de TOUS les mots disponibles (base data/base/) avec leurs informations liées, une ligne par (modèle, mot).
+L'IPA du mot est reconstitué depuis les syllabes quand elles existent (sinon vide).
 Écrit docs/liste-des-mots.xlsx (2 feuilles : Mots, Packs) et docs/liste-des-mots.csv (UTF-8 avec BOM, séparateur point-virgule).
 Usage : python -I tools/liste_mots.py"""
 import csv
@@ -18,28 +18,22 @@ def lire(chemin):
     return json.loads(pathlib.Path(chemin).read_text(encoding="utf-8"))
 
 
-def ipa_depuis_fichier(pack):
-    ch = RACINE / "data" / "packs-atelier" / pack / "phrases-a-generer.json"
-    if not ch.exists():
-        return {}
-    return {p["mot"]: p.get("ipa", "") for p in lire(ch).get("phrases", [])}
-
-
 def lignes():
-    index = lire(RACINE / "public" / "packs" / "index.json")
+    """Lit la base de mots (data/base/fiches.json et packs.json) : source unique depuis le 2026-11-15."""
+    base = RACINE / "data" / "base"
+    fiches = {f["id"]: f for f in lire(base / "fiches.json")}
+    ipas = {e["id"]: e["ipa"] for e in lire(RACINE / "public" / "mots" / "catalogue.json")}  # IPA du mot entier, calculé par tools/base/publier.js
     sortie, packs = [], []
-    for entree in index:
-        pid = entree["id"]
-        m = lire(RACINE / "public" / "packs" / pid / "manifest.json")
-        ipas = ipa_depuis_fichier(pid)
-        titre = m.get("titre") or entree.get("label", pid)
-        cartes = m["cartes"]
+    for p in lire(base / "packs.json"):
+        pid = p["id"]
+        titre = p["manifeste"].get("titre") or p["entree"].get("label", pid)
         avec_image = 0
+        cartes = [fiches[i] for i in p["mots"]]
         for c in cartes:
             sons = " | ".join(f"{x['g']}→{x['son'] or '(muet)'}" for x in c.get("cubes", []))
             syll = c.get("syllabes") or []
             ipa_syll = "-".join(s.get("ipa", "") for s in syll)
-            ipa = ipas.get(c["mot"]) or ("".join(s.get("ipa", "") for s in syll))
+            ipa = ipas.get(c["id"], "")
             etats = c.get("etats") or []
             ecart = any(e.get("ecartAvecRegles") for e in etats)
             image = c.get("image_sans_mot") or c.get("image_avec_mot") or ""

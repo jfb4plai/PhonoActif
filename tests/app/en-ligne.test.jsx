@@ -61,7 +61,7 @@ describe('tâche en ligne', () => {
     const { user, container } = monter();
     await waitFor(() => expect(container.querySelector('[data-habillage="sobre"]')).not.toBeNull());
     expect(screen.queryByLabelText(/Habillage/)).toBeNull();
-    expect(screen.queryByLabelText(/Pack de cartes/)).toBeNull();
+    expect(screen.queryByLabelText(/Liste de mots/)).toBeNull();
     await user.type(screen.getByLabelText(/Code de l.élève/), 'E07');
     await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
     await user.click(screen.getByRole('button', { name: 'Commencer' }));

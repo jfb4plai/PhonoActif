@@ -64,3 +64,23 @@ describe('tâche à listes : côté élève', () => {
     expect(await screen.findByText("Les mots n'ont pas pu être chargés.")).toBeInTheDocument();
   });
 });
+
+describe('lien rapide : un modèle de liste se charge par identifiants (mots/modeles.json puis mots/fiches.json)', () => {
+  const MODELES = [{ id: 'm-essai', titre: 'Mon modèle', mots: ['lune', 'chat'] }];
+  const fetchModele = vi.fn(async url => (url.endsWith('/mots/modeles.json') ? reponse(200, MODELES) : url.endsWith('/mots/fiches.json') ? reponse(200, fiches) : reponse(404, null)));
+
+  it('liste proposée à l’élève = les modèles ; le jeu joue ses mots dans l’ordre', async () => {
+    fetchModele.mockClear();
+    const user = userEvent.setup();
+    render(<App deps={{ fetch: fetchModele, stockage: stockageMemoire(), jouerSons: vi.fn(), jouerFichier: vi.fn(async () => ({ manquants: [] })), rng: graine(5), maintenant: () => '2026-11-15T10:00:00.000Z', hash: '#/jeu?pack=m-essai', base: '/' }} />);
+    expect(await screen.findByRole('option', { name: 'Mon modèle' })).toBeInTheDocument();
+    await user.type(screen.getByLabelText(/Code de l.élève/), 'E07');
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
+    await user.click(screen.getByRole('button', { name: 'Commencer' }));
+    await screen.findByRole('group', { name: 'Mot à construire' });
+    await construire(user, 'lune');
+    await construire(user, 'chat');
+    await screen.findByText(/Pack terminé/);
+    expect(fetchModele.mock.calls.map(c => c[0])).toEqual(['/mots/modeles.json', '/mots/fiches.json']);
+  });
+});

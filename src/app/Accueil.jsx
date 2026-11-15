@@ -25,18 +25,18 @@ export default function Accueil({
   const bandeauPack = !enLigne && (
     <>
               <div className="plai-field">
-                <label className="plai-label" htmlFor="pack">Pack de cartes</label>
+                <label className="plai-label" htmlFor="pack">Liste de mots</label>
                 {packsListe.length > 0
                   ? (
                     <select id="pack" className="plai-input" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value })}>
-                      <option value="">Choisir un pack</option>
+                      <option value="">Choisir une liste</option>
                       {packsListe.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
-                      {/* pack venu d'un lien mais absent de la liste publique (pack en validation) : sans cette ligne, la liste afficherait « Choisir un pack » alors que le pack est retenu */}
-                      {tache.pack && !packsListe.some(p => p.id === tache.pack) && <option value={tache.pack}>{tache.pack} (pack ouvert par lien)</option>}
+                      {/* pack venu d'un lien mais absent de la liste publique (pack en validation) : sans cette ligne, la liste afficherait « Choisir une liste » alors que le pack est retenu */}
+                      {tache.pack && !packsListe.some(p => p.id === tache.pack) && <option value={tache.pack}>{tache.pack} (liste ouverte par lien)</option>}
                     </select>
                   )
                   : <input id="pack" className="plai-input" type="text" placeholder="demo" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value.trim() })} />}
-                <p className="aide">Il décide des mots proposés à l’élève. Choisir un pack pour pouvoir commencer.</p>
+                <p className="aide">Elle décide des mots proposés à l’élève. Choisir une liste pour pouvoir commencer.</p>
               </div>
     </>
   );
@@ -69,7 +69,7 @@ export default function Accueil({
       <Cadre base={base} actif="enseignant">
         <main className="plai-container page">
           <h1 className="page-titre">Lien rapide, sans compte</h1>
-          <p className="page-chapo">Pour un essai : choisir un pack et des réglages, puis copier le lien ou faire scanner le QR-code.</p>
+          <p className="page-chapo">Pour un essai : choisir une liste de mots et des réglages, puis copier le lien ou faire scanner le QR-code.</p>
           <p className="aide">Avec ce lien, <strong>rien n’est envoyé</strong> : les essais restent sur l’appareil de l’élève et s’exportent en fichier. Pour recevoir les résultats d’une classe, utiliser l’<a href="#/enseignant">espace enseignant</a> (<a href="#/mode-d-emploi">mode d’emploi</a>).</p>
           <section className="plai-section" aria-label="Réglages du lien">
             <h2>Réglages</h2>
@@ -122,9 +122,9 @@ export default function Accueil({
               </div>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="lien">Lien de la tâche</label>
-                <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir un pack pour obtenir le lien" onFocus={e => e.target.select()} />
+                <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir une liste pour obtenir le lien" onFocus={e => e.target.select()} />
                 {qr && <img src={qr} alt="QR-code du lien de la tâche" width="200" height="200" className="qr-accueil" />}
-                <p className="aide">À copier ou à scanner : il ouvre ce pack avec ces réglages. Chaque élève saisit ensuite son code.</p>
+                <p className="aide">À copier ou à scanner : il ouvre cette liste avec ces réglages. Chaque élève saisit ensuite son code.</p>
               </div>
           </section>
         </main>
@@ -153,7 +153,7 @@ export default function Accueil({
           {alerte && <p role="alert" className="plai-error">{alerte}</p>}
           {enLigne && etatTache === 'chargement' && <p role="status" className="aide">Chargement de la tâche…</p>}
           <button type="button" className="plai-btn" disabled={!codeValide(code) || !tache.pack || (enLigne && etatTache !== 'ok')} onClick={onCommencer}>Commencer</button>
-          {!enLigne && codeValide(code) && !tache.pack && <p className="aide">Choisir un pack de cartes.</p>}
+          {!enLigne && codeValide(code) && !tache.pack && <p className="aide">Choisir une liste de cartes.</p>}
         </section>
         {blocEssais}
         <p className="aide retour-accueil"><a href="#/">Retour à l’accueil</a> · <a href="#/enseignant">Je suis enseignant</a></p>

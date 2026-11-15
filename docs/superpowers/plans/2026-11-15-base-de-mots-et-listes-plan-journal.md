@@ -9,11 +9,11 @@ Plan : `2026-11-15-base-de-mots-et-listes-plan.md`. Méthode : exécution native
 | 3 Publier `public/mots/` | faite | `tests/tools/base-publier.test.js` : 2 réussis ; `fiches.json` 131 Ko ; 156 mots |
 | 4 Règles des listes | faite | `tests/core/liste.test.js` : 8 réussis |
 | 5 Chargeur par identifiant + `urlFichier` | faite | `tests/app/chargerMots.test.js` : 6 réussis ; `Jeu.jsx` : 5 adresses remplacées, suite UI inchangée |
-| 6 Migration SQL | écrite, NON APPLIQUÉE | `npm run test:sql` : 52 réussis (dont 6 nouveaux) |
+| 6 Migration SQL | APPLIQUÉE le 2026-11-15 par JF (constaté : table `public.phono_listes` présente, historique distant à jour) | `npm run test:sql` : 52 réussis (dont 6 nouveaux) |
 | 7 Accès aux listes, création de tâche | faite | `tests/enseignant/listes.test.js` : 8 réussis ; `tests/sync/envoi.test.js` : 15 |
 | 8 Interface enseignant | faite | `tests/enseignant/listes-ui.test.jsx` : 9 réussis ; anciens tests « Pack de cartes » réécrits |
 | 9 Côté élève | faite | `tests/app/taches-a-listes.test.jsx` : 3 réussis |
-| 10 Retrait des anciens packs | NON FAITE (attend le GO de JF) | |
+| 10 Retrait des anciens packs | faite (GO de JF), non commitée | `public/packs/` supprimé (6 packs + pack d'essai + index) ; `dist` sans `packs/` ; accueil élève et liens rapides lisent `mots/modeles.json` ; essai navigateur réel : modèle « 20 mots de P1 » → `mots/fiches.json`, image `/mots/images/chat.png` (200), audio `/mots/audio/…mp3`, « Carte 1 sur 20 » |
 
 Suites au dernier passage (après la revue) : `npm test` 438, `npm run test:ui` 124, `npm run test:sql` 52, `npx vite build` sans erreur. Non vérifié : essai dans un navigateur réel (jsdom seulement), migration sur la vraie base.
 
@@ -40,3 +40,11 @@ Mineurs corrigés : M1 (catalogue en 404/500 : message), M2 (confirmation avant 
 - M5 : un identifiant mal formé hors interface est refusé par la base avec un message anglais.
 - M7 : les essais locaux enregistrent `pack: 'liste'` pour toute tâche à listes (l'export CSV ne dit pas quelle liste).
 - M8 : le filtre « par son » est en fait une recherche par groupe de lettres (le mode d'emploi dit « par son ») ; mise en page 375 px non vérifiée.
+
+## Task 10 — rulings
+- Task 10 — `chargerPack.js` (chargement d'un dossier de pack) est CONSERVÉ comme repli, au lieu d'être supprimé comme le plan le disait. Raison : une soixantaine de tests du moteur (mode lettres, syllabes, vitesses) l'utilisent avec un manifeste simulé ; les réécrire n'apportait rien. Coût si faux : un chemin de code mort tant qu'aucun dossier `public/packs/` n'existe.
+- Task 10 — le paramètre d'adresse `pack=` est conservé (sa valeur est un identifiant de modèle). Le plan prévoyait `modele=`. Raison : les anciens liens sont supprimables, mais rien ne gagne à renommer. Coût si faux : un nom de paramètre peu parlant.
+- Task 10 — vocabulaire élève : « Liste de mots » à la place de « Pack de cartes ».
+- Task 10 — `tools/base/compiler.js` et son test (preuve d'équivalence, servie une fois) supprimés ; le test d'amorçage sur les vrais packs aussi (les packs n'existent plus) ; `tools/liste_mots.py` lit `data/base/`.
+- Task 10 — les outils `construire_pack_atelier.js`, `ajouter_images_pack.js`, `ajouter_phrases_pack.js` écrivent encore au format dossier de pack : à adapter pour ajouter de nouveaux mots à `data/base/` (noté dans `docs/fabriquer-un-pack.md`).
+- `docs/liste-des-mots.xlsx` n'a pas pu être régénéré (fichier verrouillé, sans doute ouvert) ; le `.csv` l'est.

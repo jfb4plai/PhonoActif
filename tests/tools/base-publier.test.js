@@ -49,3 +49,12 @@ test('publier refuse une base qui contient deux fiches de même identifiant', as
   await writeFile(path.join(base, 'packs.json'), '[]');
   await assert.rejects(publier({ racine: RACINE, base, sortie }), /identifiant en double : la/);
 });
+
+test('la base (data/base) est cohérente : 156 fiches valides, identifiants ASCII uniques, 6 modèles', async () => {
+  const fiches = await lire(path.join(RACINE, 'data', 'base', 'fiches.json'));
+  assert.equal(fiches.length, 156);
+  assert.equal(new Set(fiches.map(f => f.id)).size, 156);
+  for (const f of fiches) { assert.match(f.id, /^[a-z0-9-]{1,60}$/); assert.equal(f.statut, 'valide'); }
+  const packs = await lire(path.join(RACINE, 'data', 'base', 'packs.json'));
+  assert.deepEqual(packs.map(p => p.id), ['p1-100', 'p1-20-images', 'p1-illustre-2', 'p1-illustre-3', 'p1-illustre-4', 'p1-illustre-5']);
+});

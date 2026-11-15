@@ -3,8 +3,8 @@
    - phono_tasks.mots : instantané des mots de la tâche à sa création (0 à 200 ; plusieurs listes fusionnées pour les révisions). La colonne `pack` devient une étiquette libre (nom des listes).
    - phono_lire_tache renvoie aussi `mots`.
    - Décision 4 de JF : les liens existants n'ont jamais été partagés ; les anciennes tâches sont supprimées (leurs essais de test par cascade).
-   NON APPLIQUÉE : accord de JF requis avant exécution sur la base partagée (elle supprime les tâches et essais existants).
-   ORDRE DE MISE EN LIGNE : appliquer cette migration AVANT de pousser le code (le nouvel espace enseignant écrit `mots` et lit `phono_listes`). */
+   APPLIQUÉE le 2026-11-15 par JF (éditeur SQL du tableau de bord, projet RetroActif) ; historique marqué appliqué par `supabase migration repair`. Elle a supprimé les tâches et essais existants.
+   ORDRE DE MISE EN LIGNE : le code qui écrit `mots` et lit `phono_listes` peut maintenant être poussé. */
 
 delete from public.phono_tasks;
 
