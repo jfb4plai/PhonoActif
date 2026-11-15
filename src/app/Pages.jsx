@@ -49,9 +49,9 @@ export function ModeEmploi({ base = '/' }) {
 
         <section className="plai-section" id="etape4">
           <h2>4. Créer une tâche</h2>
-          <p>Une tâche = un pack de mots et des réglages. Dans la classe :</p>
+          <p>Une tâche = une ou plusieurs listes de mots et des réglages. Dans la classe :</p>
           <ul>
-            <li><strong>Pack de cartes</strong> : la liste des mots proposés. Les packs publiés sont dans la liste ; un pack « personnel » n’apparaît que pour vous. Un pack encore en validation n’est pas dans la liste : il ne s’ouvre que par un lien donné par l’auteur de l’outil.</li>
+            <li><strong>Mots de la tâche</strong> : cochez une de vos listes ou un modèle prêt. Cochez-en plusieurs pour une révision : les mots en double sont retirés. Pour fabriquer une liste, « Composer une liste » : on cherche dans le catalogue (par morceau de mot, par son, par nombre de syllabes, avec ou sans image), on écoute chaque mot avant de l’ajouter, on choisit l’ordre. Une liste contient de 1 à 50 mots, une tâche au plus 200 mots. Les mots sont copiés dans la tâche à sa création : modifier la liste ensuite ne change pas les tâches déjà données.</li>
             <li><strong>Cartes sans le mot</strong> : l’élève trouve le mot à l’oreille et avec l’image. <strong>Avec le mot</strong> : il recopie le modèle.</li>
             <li><strong>Habillage</strong> : « album » (P1 à P3) ou « sobre » (P4 et au-delà). Les mots restent en Arial.</li>
             <li><strong>Nombre de cubes en trop</strong> : 0 est le plus facile.</li>

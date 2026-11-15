@@ -25,3 +25,18 @@
   .ens-carte > *:not(.liens-perso) { display: none; }
   .liens-perso button, .liens-perso .aide, .hors-impression { display: none; }
 }
+
+/* Listes de mots (choix dans la tâche, éditeur, catalogue) */
+.ens-listes { border: 1px solid #c8c8c8; border-radius: 6px; margin: 0.8rem 0; padding: 0.6rem 0.8rem; }
+.ens-listes legend { font-weight: bold; padding: 0 0.4rem; }
+.ens-listes h3 { font-size: 1rem; margin: 0.8rem 0 0.2rem; }
+.ens-choix { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem 0.5rem; }
+.ens-choix label { margin-top: 0.2rem; flex: 1 1 14rem; }
+.ens-editeur { background: #f6fbf9; border: 2px solid #0f6e56; border-radius: 8px; padding: 0.8rem 1rem; margin: 1rem 0; }
+.ens-compteur { font-size: 1.1rem; margin: 0.6rem 0 0.2rem; }
+.ens-liste-choisie { padding-left: 1.4rem; }
+.ens-liste-choisie li { margin: 0.2rem 0; }
+.ens-catalogue-liste { list-style: none; padding: 0; max-height: 22rem; overflow-y: auto; border: 1px solid #ddd; border-radius: 6px; }
+.ens-catalogue-liste li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.6rem; padding: 0.35rem 0.5rem; border-bottom: 1px solid #eee; }
+.ens-catalogue-liste input[type="checkbox"] { margin: 0; }
+@media (max-width: 480px) { .ens-choix label { flex-basis: 100%; } }

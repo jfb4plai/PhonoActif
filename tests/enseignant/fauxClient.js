@@ -1,7 +1,7 @@
 // Faux client Supabase en mémoire : juste assez de la chaîne from().select().eq()... pour tester src/enseignant/api.js.
 // role « invite » simule les politiques du serveur : une suppression d'élève ou de classe ne touche aucune ligne.
 export function fauxClient({ userId = 'u-master', role = 'master', tables = {}, rpcErreurs = {} } = {}) {
-  const t = { phono_classes: [], phono_class_members: [], phono_students: [], phono_tasks: [], phono_attempts: [], ...tables };
+  const t = { phono_classes: [], phono_class_members: [], phono_students: [], phono_tasks: [], phono_attempts: [], phono_listes: [], ...tables };
   const rpcs = [];
   class Requete {
     constructor(table) { this.table = table; this.op = 'select'; this.filtres = []; this.payload = null; this.unique = false; this.cols = ''; this.retour = false; }

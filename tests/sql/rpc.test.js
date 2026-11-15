@@ -32,7 +32,7 @@ const nb = async db => (await db.query('select count(*)::int as n from phono_att
 
 test('phono_lire_tache : les réglages, sans nom de classe ni identifiant', async () => {
   const { db } = await monde();
-  assert.deepEqual(await lire(db, T1), { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'toujours', vitesse: 100, vitesse_verrou: false });
+  assert.deepEqual(await lire(db, T1), { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'toujours', vitesse: 100, vitesse_verrou: false, mots: [] });
 });
 
 test('phono_lire_tache : jeton inconnu, révoqué ou mal formé', async () => {

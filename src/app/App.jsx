@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { lireAdresse, ecrireAdresse, REGLAGES_PAR_DEFAUT } from './route.js';
 import { codeValide } from './code.js';
 import { chargerPack } from './chargerPack.js';
+import { chargerMots } from './chargerMots.js';
 import { jouerSons, jouerFichier, jouerSerie } from './audio.js';
 import { stockageLocal, exporterJson, exporterCsv } from '../jeu/essais.js';
 import { chargerTache, envoyerEssais, stockageEnvoyes } from '../sync/envoi.js';
@@ -99,7 +100,7 @@ function AppEleve({ deps, hash, partie }) {
     chargerTache(jeton, config)
       .then(t => {
         if (!actif) return;
-        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou }));
+        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou, mots: t.mots }));
         setEtatTache('ok');
       })
       .catch(e => { if (actif) setEtatTache(e.message === 'tâche inconnue' ? 'inconnue' : e.message === 'réseau' ? 'reseau' : 'hors_service'); });
@@ -159,7 +160,10 @@ function AppEleve({ deps, hash, partie }) {
     if (enLigne && etatTache !== 'ok') return;
     setErreur('');
     try {
-      const { pack: charge, avertissements: av } = await chargerPack(tache.pack, { base, fetch: deps.fetch });
+      // Tâche à listes (mots copiés dans la tâche par l'enseignant) : chargement par identifiant ; sinon ancien pack.
+      const { pack: charge, avertissements: av } = Array.isArray(tache.mots) && tache.mots.length > 0
+        ? await chargerMots(tache.mots, { base, fetch: deps.fetch })
+        : await chargerPack(tache.pack, { base, fetch: deps.fetch });
       let utilise = charge;
       if (carteUnique) {
         const cartes = charge.cartes.filter(c => c.id === adresse.carte);

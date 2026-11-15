@@ -21,7 +21,11 @@ function avecAuth(client, { session = null, signIn } = {}) {
   return client;
 }
 
-const monter = (client, hash = '#/enseignant') => render(<App deps={{ hash, enseignant: { client, base: 'https://x.test/', packs: [{ id: 'demo', label: 'Pack d’essai (5 mots)' }, { id: 'second', label: 'Pack second' }] } }} />);
+const mot = id => ({ id, mot: id, ipa: id, nbSyllabes: 1, cubes: id.split(''), sons: id.split(''), image: true, phrase: true, syllabes: false, audio: `audio/${id}.mp3`, packs: [] });
+const CATALOGUE = ['chat', 'lune', 'terre'].map(mot);
+const MODELES = [{ id: 'demo', titre: 'Pack d’essai (5 mots)', mots: ['chat', 'lune'] }, { id: 'second', titre: 'Pack second', mots: ['terre'] }];
+const monter = (client, hash = '#/enseignant') => render(<App deps={{ hash, enseignant: { client, base: 'https://x.test/', packs: [], catalogue: CATALOGUE, modeles: MODELES } }} />);
+const cocher = async nom => userEvent.click(await screen.findByLabelText(new RegExp(nom)));
 
 const classeTables = role => ({
   phono_classes: [{ id: 'c1', name: '3P A' }],
@@ -121,6 +125,7 @@ describe('espace enseignant', () => {
     expect(choix).toHaveValue('toujours');
     expect(screen.getByText(/Ce réglage ne lit rien tout seul/)).toBeInTheDocument();
     await userEvent.selectOptions(choix, 'aide');
+    await cocher('Pack d’essai');
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks[0].syllabes).toBe('aide'));
     expect((await screen.findAllByText(/syllabes sur difficulté/)).length).toBeGreaterThan(0);
@@ -130,15 +135,13 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
-    const liste = await screen.findByLabelText('Pack de cartes');
-    expect(liste.tagName).toBe('SELECT');
-    expect([...liste.options].map(o => o.textContent)).toEqual(['Pack d’essai (5 mots)', 'Pack second']);
-    await userEvent.selectOptions(liste, 'second');
+    await cocher('Pack second');
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
-    await waitFor(() => expect(client.tables.phono_tasks[0].pack).toBe('second'));
+    await waitFor(() => expect(client.tables.phono_tasks[0].listes_noms).toBe('Pack second'));
+    expect(client.tables.phono_tasks[0].mots).toEqual(['terre']);
     // les liens des élèves s'affichent tout de suite ; le lien général est replié dessous
     const region = await screen.findByRole('region', { name: 'Liens personnels des élèves' });
-    expect(within(region).getByText(/Liens et QR-codes des élèves : second/)).toBeInTheDocument();
+    expect(within(region).getByText(/Liens et QR-codes des élèves : Pack second/)).toBeInTheDocument();
     const img = await screen.findByAltText('QR-code de la tâche');
     expect(img.getAttribute('src')).toMatch(/^data:image\/png;base64,/);
     const general = region.querySelector('details');
@@ -156,6 +159,7 @@ describe('espace enseignant', () => {
     expect(screen.getByLabelText('Cartes avec ou sans le mot écrit').value).toBe('sans');
     expect(screen.getByLabelText('Nombre de cubes en trop').value).toBe('3');
     expect(screen.getByLabelText('Exiger les accents').checked).toBe(false);
+    await cocher('Pack second');
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks.length).toBe(1));
     expect(client.tables.phono_tasks[0]).toMatchObject({ habillage: 'album', mode_mot: 'sans', nb_intrus: 3, exiger_accents: false });
@@ -233,22 +237,17 @@ describe('espace enseignant', () => {
     expect(screen.queryByRole('button', { name: 'Retirer E01' })).toBeNull();
   });
 
-  it('sans liste fournie : lit packs/index.json ; sans pack publié, le choix est désactivé avec explication', async () => {
+  it('sans catalogue fourni : lit mots/catalogue.json et mots/modeles.json ; sans liste ni modèle, la création est désactivée avec explication', async () => {
     const appels = [];
-    const fetch = async url => { appels.push(url); return { ok: true, json: async () => [{ id: 'demo', label: 'Pack d’essai (5 mots)' }] }; };
+    const fetch = async url => { appels.push(url); return { ok: true, json: async () => (/catalogue\.json$/.test(url) ? CATALOGUE : /modeles\.json$/.test(url) ? [MODELES[0]] : []) }; };
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
-    render(<App deps={{ hash: '#/enseignant', enseignant: { client, base: 'https://x.test/', fetch } }} />);
+    render(<App deps={{ hash: '#/enseignant', enseignant: { client, base: 'https://x.test/', packs: [], fetch } }} />);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
-    const liste = await screen.findByLabelText('Pack de cartes');
-    await waitFor(() => expect([...liste.options].map(o => o.value)).toEqual(['demo']));
-    expect(appels[0]).toMatch(/packs\/index\.json$/);
-    cleanup();
-    const vide = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
-    render(<App deps={{ hash: '#/enseignant', enseignant: { client: vide, base: 'https://x.test/', packs: [] } }} />);
-    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
-    expect((await screen.findByLabelText('Pack de cartes')).disabled).toBe(true);
-    expect(screen.getByText(/Aucun pack publié/)).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }).disabled).toBe(true);
+    expect(await screen.findByLabelText(/Pack d’essai/)).toBeInTheDocument();
+    expect(appels.some(u => /mots\/catalogue\.json$/.test(u))).toBe(true);
+    expect(appels.some(u => /mots\/modeles\.json$/.test(u))).toBe(true);
+    expect(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' })).toBeDisabled();
+    expect(screen.getByText('0 mot dans la tâche (maximum 200)')).toBeInTheDocument();
   });
 
   it('service non configuré : message clair', () => {

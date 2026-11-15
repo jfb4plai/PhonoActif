@@ -2,6 +2,7 @@
 import { codeValide } from '../app/code.js';
 import { ecrireAdresse } from '../app/route.js';
 import { resumerParLiaison } from '../jeu/essais.js';
+import { validerTache, couper } from '../core/liste.js';
 
 const RESERVE = 'Réservé au master de la classe';
 
@@ -98,12 +99,21 @@ export async function creerCodesAuto(client, classId, prefixe, n) {
 }
 
 export async function creerTache(client, classId, tache, userId, base) {
-  if (!tache.pack) throw new Error('Choisir un pack.');
+  // Tâche à listes : `mots` = mots des listes choisies (copiés dans la tâche, doublons retirés) ; sinon ancien mode « un pack ».
+  const parListes = Array.isArray(tache.mots);
+  const mots = parListes ? [...new Set(tache.mots)] : [];
+  if (parListes) {
+    const { erreurs } = validerTache(mots);
+    if (erreurs.length) throw new Error(erreurs[0]);
+  } else if (!tache.pack) throw new Error('Choisir un pack.');
   const jeton = genererJeton();
+  const noms = parListes ? String(tache.listesNoms || 'Liste').trim() || 'Liste' : '';
   const r = await client.from('phono_tasks').insert({
-    class_id: classId, token: jeton, pack: tache.pack, mode_mot: tache.modeMot, habillage: tache.habillage,
+    // `pack` est renvoyé aux élèves par phono_lire_tache : libellé neutre pour une tâche à listes ; les noms des listes restent dans listes_noms (RGPD)
+    class_id: classId, token: jeton, pack: parListes ? 'Liste' : tache.pack, mode_mot: tache.modeMot, habillage: tache.habillage,
     nb_intrus: tache.nbIntrus, exiger_accents: tache.exigerAccents, syllabes: tache.syllabes || 'toujours',
-    vitesse: tache.vitesse || 100, vitesse_verrou: !!tache.vitesseVerrou, created_by: userId
+    vitesse: tache.vitesse || 100, vitesse_verrou: !!tache.vitesseVerrou, created_by: userId,
+    ...(parListes ? { mots, listes_noms: couper(noms, 300) } : {})
   }).select('id').single();
   verifier(r);
   return { id: r.data.id, jeton, lien: lienDeTache(base, jeton) };
@@ -111,11 +121,11 @@ export async function creerTache(client, classId, tache, userId, base) {
 
 export async function listerTaches(client, classId, base) {
   const r = await client.from('phono_tasks')
-    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, vitesse, vitesse_verrou, revoked, created_at').eq('class_id', classId);
+    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, vitesse, vitesse_verrou, mots, listes_noms, revoked, created_at').eq('class_id', classId);
   verifier(r);
   return [...r.data].sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map(t => ({
     id: t.id, jeton: t.token, pack: t.pack, modeMot: t.mode_mot, habillage: t.habillage, nbIntrus: t.nb_intrus,
-    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
+    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
   }));
 }
 

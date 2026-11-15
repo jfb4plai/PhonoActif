@@ -1,3 +1,4 @@
+import { urlFichier } from './urlFichier.js';
 import React, { useState, useEffect } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
@@ -42,14 +43,14 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const jouerEtat = e => {
     if (!e || !e.fichier || !deps.jouerFichier) { setSonAbsent(true); return; }
     setSonAbsent(false);
-    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${e.fichier}`, ...optsVitesse)).then(signalerSons).catch(() => {});
+    Promise.resolve(deps.jouerFichier(urlFichier(base, pack, e.fichier), ...optsVitesse)).then(signalerSons).catch(() => {});
   };
   // Entrée complémentaire : le mot syllabe par syllabe (espace de 500 ms, dernière syllabe à 75 %)
   const jouerSyllabes = c => {
     const syl = syllabesDeCarte(c);
     if (!syl || !deps.jouerSerie) { setSonAbsent(true); return; }
     setSonAbsent(false);
-    const urls = syl.map(s => `${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${s.fichier}`);
+    const urls = syl.map(s => urlFichier(base, pack, s.fichier));
     const surligner = !!reperesLettres(c);
     if (surligner) setCesures(true);
     Promise.resolve(deps.jouerSerie(urls, { ...REGLAGES_SYLLABES, onDebut: i => setSyllabeActive(i === null || !surligner ? null : i) })).then(signalerSons).catch(() => {}).finally(() => setSyllabeActive(null));
@@ -59,13 +60,13 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     const f = phraseDeCarte(c);
     if (!f || !deps.jouerFichier) { setSonAbsent(true); return; }
     setSonAbsent(false);
-    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${f}`)).then(signalerSons).catch(() => {});
+    Promise.resolve(deps.jouerFichier(urlFichier(base, pack, f))).then(signalerSons).catch(() => {});
   };
   const jouerMot = c => {
     if (lettres) { jouerEtat(etatFinal(c)); return; }
     if (!c.audio_mot || !deps.jouerFichier) { jouer(sonsDuMot(c)); return; }
     setSonAbsent(false);
-    Promise.resolve(deps.jouerFichier(`${base}packs/${encodeURIComponent(pack.dossier || pack.nom)}/${c.audio_mot}`, ...optsVitesse)).then(signalerSons).catch(() => {});
+    Promise.resolve(deps.jouerFichier(urlFichier(base, pack, c.audio_mot), ...optsVitesse)).then(signalerSons).catch(() => {});
   };
   const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
   // Mode A : le suivi reste en graphèmes-sons (liaisons), calculé à partir des lettres posées.
@@ -102,7 +103,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
   const fichierImage = modeAvec ? carte.image_avec_mot : carte.image_sans_mot;
   const sansImage = !fichierImage; // pack sans image (mode A) : le mot s'affiche ou se dit, selon le réglage
-  const urlImage = `${base}packs/${encodeURIComponent(etat.pack)}/${String(fichierImage).split("/").map(encodeURIComponent).join("/")}`; // sous-dossier images/ autorisé
+  const urlImage = urlFichier(base, pack, String(fichierImage)); // sous-dossier images/ autorisé
   const imageDisponible = !sansImage && !imagesAbsentes[carte.id];
   const imageCachee = lettres && imageDisponible && !imageVue; // image non montrée : le fichier n'est pas chargé tant que le bouton n'est pas pressé
   const imageAbsente = !imageDisponible || imageCachee;

@@ -1,19 +1,26 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
+import { fusionnerListes, validerTache, TACHE_MAX } from '../core/liste.js';
+import { listerListes, supprimerListe, dupliquerListe } from './listes.js';
+import ListeEditeur from './ListeEditeur.jsx';
 import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
 } from './api.js';
 
-const PAS_DE_TACHE = { pack: '', modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou };
+const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou };
 
-export default function Classe({ client, userId, classe, base, packs = [], onRetour, onSupprimer }) {
+export default function Classe({ client, userId, classe, base, catalogue = [], modeles = [], jouer, onRetour, onSupprimer }) {
   const master = classe.role === 'master';
   const [lignes, setLignes] = useState([]);
   const [saisie, setSaisie] = useState('');
   const [prefixe, setPrefixe] = useState('E');
   const [nb, setNb] = useState(20);
   const [refuses, setRefuses] = useState([]);
-  const [tache, setTache] = useState({ ...PAS_DE_TACHE, pack: packs[0] ? packs[0].id : '' });
+  const [tache, setTache] = useState({ ...PAS_DE_TACHE });
+  const [listes, setListes] = useState([]);     // listes de l'enseignant
+  const [choix, setChoix] = useState([]);       // clés cochées, dans l'ordre : « l:<id> » (ma liste) ou « m:<id> » (modèle)
+  const [editeur, setEditeur] = useState(null); // null | { liste } : éditeur de liste ouvert
+  const catalogueIds = new Set(catalogue.map(e => e.id));
   const zonePerso = useRef(null);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -28,6 +35,11 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
     try { setTaches(await listerTaches(client, classe.id, base)); } catch (e) { setMessage(e.message); }
   }, [client, classe.id, base]);
   useEffect(() => { rechargerTaches(); }, [rechargerTaches]);
+
+  const rechargerListes = useCallback(async () => {
+    try { setListes(await listerListes(client, userId)); } catch (e) { setMessage(e.message); }
+  }, [client, userId]);
+  useEffect(() => { rechargerListes(); }, [rechargerListes]);
 
   const agir = async fn => { setMessage(''); try { await fn(); } catch (e) { setMessage(e.message); } };
 
@@ -49,11 +61,25 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
     const items = await Promise.all(liens.map(async l => ({ ...l, qr: await qrDeLien(l.lien) })));
     setPerso({ tache: t, items, general: { lien: t.lien, qr: await qrDeLien(t.lien) } });
   };
+  // Sources cochées (mes listes ou modèles), dans l'ordre du clic ; les mots sont fusionnés sans doublon (révision).
+  const sources = choix.map(cle => {
+    const [genre, id] = [cle.slice(0, 1), cle.slice(2)];
+    if (genre === 'l') { const l = listes.find(x => x.id === id); return l ? { nom: l.nom, mots: l.mots.filter(m => catalogueIds.has(m)) } : null; }
+    const m = modeles.find(x => x.id === id);
+    return m ? { nom: m.titre, mots: m.mots } : null;
+  }).filter(Boolean);
+  const motsTache = fusionnerListes(sources.map(x => x.mots));
+  const nomsTache = sources.map(x => x.nom).join(' + ');
+  const erreurTache = motsTache.length > 0 ? validerTache(motsTache).erreurs[0] : '';
+  const basculerChoix = cle => setChoix(c => (c.includes(cle) ? c.filter(x => x !== cle) : [...c, cle]));
   const creer = () => agir(async () => {
-    const t = await creerTache(client, classe.id, tache, userId, base);
+    const t = await creerTache(client, classe.id, { ...tache, mots: motsTache, listesNoms: nomsTache }, userId, base);
     await rechargerTaches();
-    await ouvrirPerso({ ...t, pack: tache.pack, resume: resumeTache(tache) });   // les liens des élèves s'affichent tout de suite
+    await ouvrirPerso({ ...t, pack: nomsTache, resume: resumeTache(tache) });   // les liens des élèves s'affichent tout de suite
   });
+  const apresEnregistrement = async l => { setEditeur(null); await rechargerListes(); setChoix(c => (c.includes(`l:${l.id}`) ? c : [...c, `l:${l.id}`])); setMessage(`Liste « ${l.nom} » enregistrée.`); };
+  const retirerListe = l => agir(async () => { if (!window.confirm(`Supprimer la liste « ${l.nom} » ? Les tâches déjà données gardent leurs mots.`)) return; await supprimerListe(client, l.id); setChoix(c => c.filter(x => x !== `l:${l.id}`)); await rechargerListes(); });
+  const copierListe = l => agir(async () => { await dupliquerListe(client, userId, l, { catalogueIds }); await rechargerListes(); });
   const ouvrirDepuisListe = t => agir(() => ouvrirPerso({ ...t, resume: resumeTache(t) }));
   useEffect(() => { if (perso && zonePerso.current && zonePerso.current.scrollIntoView) zonePerso.current.scrollIntoView({ block: 'start' }); }, [perso && perso.tache && perso.tache.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const changerCle = (t, id) => agir(async () => { await nouvelleCleEleve(client, id); await ouvrirPerso(t); setMessage('Nouvelle clé créée : l’ancien lien de cet élève ne fonctionne plus.'); });
@@ -90,10 +116,30 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       )}
 
       <h2>Tâche pour les élèves</h2>
-      <label htmlFor="ens-pack">Pack de cartes</label>
-      <select id="ens-pack" value={tache.pack} disabled={packs.length === 0} onChange={e => setTache(t => ({ ...t, pack: e.target.value }))}>
-        {packs.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
-      </select>
+      <fieldset className="ens-listes">
+        <legend>Mots de la tâche</legend>
+        <p className="aide">Cochez une liste : les élèves jouent ses mots. Cochez-en plusieurs pour une révision : les mots en double sont retirés.</p>
+        {listes.length > 0 && <h3>Mes listes</h3>}
+        {listes.map(l => (
+          <div key={l.id} className="ens-choix">
+            <label htmlFor={`ens-l-${l.id}`}><input id={`ens-l-${l.id}`} type="checkbox" checked={choix.includes(`l:${l.id}`)} onChange={() => basculerChoix(`l:${l.id}`)} /> {l.nom} ({l.mots.length} mots)</label>
+            <button type="button" onClick={() => setEditeur({ liste: l })}>Modifier</button>
+            <button type="button" onClick={() => copierListe(l)}>Copier</button>
+            <button type="button" className="danger" onClick={() => retirerListe(l)}>Supprimer</button>
+          </div>
+        ))}
+        {modeles.length > 0 && <h3>Modèles prêts</h3>}
+        {modeles.map(m => (
+          <div key={m.id} className="ens-choix">
+            <label htmlFor={`ens-m-${m.id}`}><input id={`ens-m-${m.id}`} type="checkbox" checked={choix.includes(`m:${m.id}`)} onChange={() => basculerChoix(`m:${m.id}`)} /> {m.titre} ({m.mots.length} mots)</label>
+          </div>
+        ))}
+        <button type="button" onClick={() => setEditeur({ liste: null })}>Composer une liste</button>
+        <p className="aide">Une liste contient de 1 à 50 mots, choisis par vous dans le catalogue. Un modèle sert de point de départ : on le coche tel quel, ou on le copie dans une liste pour le modifier.</p>
+        <p role="status">{motsTache.length} mot{motsTache.length > 1 ? 's' : ''} dans la tâche (maximum {TACHE_MAX})</p>
+        {erreurTache && <p role="alert" className="ens-message">{erreurTache}</p>}
+      </fieldset>
+      {editeur && <ListeEditeur key={editeur.liste ? editeur.liste.id : 'nouvelle'} client={client} userId={userId} catalogue={catalogue} modeles={modeles} liste={editeur.liste} jouer={jouer} base={base} onFini={apresEnregistrement} onAnnuler={() => setEditeur(null)} />}
       <label htmlFor="ens-mode">Cartes avec ou sans le mot écrit</label>
       <select id="ens-mode" value={tache.modeMot} onChange={e => setTache(t => ({ ...t, modeMot: e.target.value }))}>
         <option value="sans">sans le mot : l’élève trouve le mot à l’oreille</option>
@@ -128,9 +174,8 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
       </select>
       <label htmlFor="ens-verrou"><input id="ens-verrou" type="checkbox" checked={tache.vitesseVerrou} onChange={e => setTache(t => ({ ...t, vitesseVerrou: e.target.checked }))} /> Verrouiller cette vitesse</label>
       <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres (500 ms, dernière syllabe à 75 %).</p>
-      <p className="aide">{packs.length === 0 ? 'Aucun pack publié pour l’instant.' : 'Les élèves qui ouvrent le lien jouent les cartes de ce pack.'}</p>
-      <p className="aide">Un pack « personnel » n’apparaît que pour vous. Pour fabriquer le vôtre : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de pack (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images.</p>
-      <button type="button" className="principal" onClick={creer} disabled={packs.length === 0}>Créer la tâche et les liens des élèves</button>
+      <p className="aide">Un mot qui n’est pas dans le catalogue ? Pour fabriquer des cartes avec vos propres mots et images : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de pack (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images. Les mots n’entrent dans le catalogue qu’après sa validation.</p>
+      <button type="button" className="principal" onClick={creer} disabled={motsTache.length === 0 || !!erreurTache}>Créer la tâche et les liens des élèves</button>
       <p className="aide">La tâche est créée, puis le lien et le QR-code de chaque élève s’affichent juste en dessous : ce sont eux qu’il faut remettre aux élèves.</p>
 
       {perso && (
@@ -164,7 +209,7 @@ export default function Classe({ client, userId, classe, base, packs = [], onRet
           <ul>
             {taches.map(t => (
               <li key={t.id}>
-                {t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
+                {t.listesNoms || t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
                 <br />
                 {!t.revoked && <button type="button" className="principal" onClick={() => ouvrirDepuisListe(t)}>Liens et QR-codes personnels</button>}
                 {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}

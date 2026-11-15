@@ -41,6 +41,16 @@ describe('pages du site', () => {
     expect(within(nav).getByRole('link', { name: 'Mode d’emploi' })).toBeInTheDocument();
   });
 
+  it('mode d’emploi, étape 4 : une tâche = une ou plusieurs listes de 1 à 50 mots (plus de « pack de cartes »)', () => {
+    monter('#/mode-d-emploi');
+    const etape = document.getElementById('etape4');
+    expect(etape.textContent).toMatch(/Une tâche = une ou plusieurs listes de mots/);
+    expect(etape.textContent).toMatch(/de 1 à 50 mots/);
+    expect(etape.textContent).toMatch(/révision/);
+    expect(etape.textContent).toMatch(/Composer une liste/);
+    expect(etape.textContent).not.toMatch(/Pack de cartes/);
+  });
+
   it('mode d’emploi : sept étapes, sommaire sans lien cassant l’adresse du site', () => {
     monter('#/mode-d-emploi');
     for (const n of [1, 2, 3, 4, 5, 6, 7]) expect(screen.getByRole('heading', { level: 2, name: new RegExp(`^${n}\. `) })).toBeInTheDocument();

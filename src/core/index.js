@@ -18,3 +18,4 @@ export * from './ipa.js';
 export * from './etats.js';
 export * from './syllabes.js';
 export * from './packAtelier.js';
+export * from './liste.js';

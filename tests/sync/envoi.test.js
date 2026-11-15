@@ -27,7 +27,7 @@ const succes = (n, appel) => ({ status: 200, corps: { recus: appel.corps.p_ligne
 test('chargerTache : adresse, en-têtes et corps exacts, réponse en camelCase', async () => {
   const s = supa(() => ({ status: 200, corps: { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide', vitesse: 50, vitesse_verrou: true } }));
   const t = await chargerTache(TOKEN, s);
-  assert.deepEqual(t, { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide', vitesse: 50, vitesseVerrou: true });
+  assert.deepEqual(t, { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide', vitesse: 50, vitesseVerrou: true, mots: [] });
   const a = s.appels[0];
   assert.equal(a.u, 'https://x.supabase.co/rest/v1/rpc/phono_lire_tache');
   assert.equal(a.init.method, 'POST');
@@ -35,6 +35,12 @@ test('chargerTache : adresse, en-têtes et corps exacts, réponse en camelCase',
   assert.equal(a.init.headers.Authorization, 'Bearer cle-anon');
   assert.equal(a.init.headers['Content-Type'], 'application/json');
   assert.deepEqual(a.corps, { p_token: TOKEN });
+});
+
+test('chargerTache : les mots de la tâche (identifiants texte seulement) sont lus ; absents → liste vide', async () => {
+  const corps = mots => ({ pack: 'S3', mode_mot: 'sans', habillage: 'album', nb_intrus: 3, exiger_accents: false, mots });
+  assert.deepEqual((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: corps(['chat', 'lune', 3, null]) })))).mots, ['chat', 'lune']);
+  assert.deepEqual((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: corps(undefined) })))).mots, []);
 });
 
 test('chargerTache : tâche inconnue, réseau coupé, réponse inattendue', async () => {

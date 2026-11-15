@@ -36,6 +36,21 @@ export default function Enseignant({ deps = {} }) {
     return () => { actif = false; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Catalogue des mots et modèles de listes (public/mots/) : fournis par les tests, sinon lus ; un échec donne des listes vides et un message.
+  const [catalogue, setCatalogue] = useState(deps.catalogue || null);
+  const [modeles, setModeles] = useState(deps.modeles || null);
+  useEffect(() => {
+    if (deps.catalogue && deps.modeles) return undefined;
+    let actif = true;
+    const racine = base.replace(/\/+$/, '') + '/';
+    const lire = fichier => (deps.fetch || fetch)(`${racine}mots/${fichier}`).then(r => (r.ok ? r.json() : Promise.reject(new Error('http')))).then(l => (Array.isArray(l) ? l : []));
+    Promise.all([lire('catalogue.json'), lire('modeles.json')])
+      .then(([c, m]) => { if (actif) { setCatalogue(c); setModeles(m); } })
+      .catch(() => { if (actif) { setCatalogue([]); setModeles([]); setMessage("Les mots n'ont pas pu être chargés."); } });
+    return () => { actif = false; };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const jouer = deps.jouer || (url => { try { return new Audio(url).play(); } catch (e) { return undefined; } });
+
   useEffect(() => {
     if (!client) return undefined;
     let actif = true;
@@ -59,7 +74,7 @@ export default function Enseignant({ deps = {} }) {
   useEffect(() => { if (client && utilisateur) charger(); }, [client, utilisateur]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!client) return <main className="ens"><p>Espace enseignant indisponible : service non configuré.</p></main>;
-  if (!pret || packs === null) return <main className="ens"><p>Chargement…</p></main>;
+  if (!pret || packs === null || catalogue === null || modeles === null) return <main className="ens"><p>Chargement…</p></main>;
   if (!utilisateur) return <main className="ens"><Connexion auth={client.auth} redirection={base} /></main>;
 
   async function ajouterClasse() {
@@ -100,7 +115,7 @@ export default function Enseignant({ deps = {} }) {
         {utilisateur.email} <button type="button" onClick={() => client.auth.signOut()}>Se déconnecter</button>
       </p>
       {courante ? (
-        <Classe client={client} userId={utilisateur.id} classe={courante} base={base} packs={packsVisibles(packs, empreinte)}
+        <Classe client={client} userId={utilisateur.id} classe={courante} base={base} catalogue={catalogue} modeles={modeles} jouer={jouer}
           onRetour={() => setCourante(null)} onSupprimer={supprimer} />
       ) : (
         <section className="ens-carte">
