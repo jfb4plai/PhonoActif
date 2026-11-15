@@ -110,7 +110,7 @@ def entree_nombre(mot):
 
 
 # Images de référence propres à un mot (retouche d'une image déjà générée) : « fête » v1 (ballons seuls) à laquelle JF demande d'ajouter confettis et notes de musique.
-REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"]}   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
+REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"], "sur": ["MAHa_AOCW34"], "sous": ["MAHa_AOCW34", "MAHa_AZNijw"], "vers": ["MAHa_AOCW34"], "avec": ["MAHa_AOCW34"]}   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
 
 
 def references_de(mot):
@@ -326,22 +326,22 @@ MOTS_LOT7 = [
 PERSONNES = {"garçon", "père", "papa", "maman", "ami", "manger", "lire", "voir", "peur"}
 PEAU = "peach #f2b48a, dark brown #5b3a29"
 MOTS_LOT8 = [
-    ("rouge", "rouge", "a single organic paint-stain blob, a smooth irregular rounded shape with three or four soft round bulges", DE_FACE, "aucun", "red #dc2626",
+    ("rouge", "rouge", "a single irregular paint-stain blob, a lopsided asymmetric rounded shape with five or six uneven bulges of different sizes and one small narrow lobe, clearly not symmetric, not a clover, not a flower, not a cloud", DE_FACE, "aucun", "red #dc2626",
      " The whole blob is ONE single flat red paper piece: no stacked layer, no second piece underneath, no dark edge, no line, no outline, no vein, no highlight, no texture lines. The same blob shape is meant to be reused for other colors, so keep it a plain stain. Nothing else on the image.",
      "UNE seule tache rouge, d'une seule pièce ; AUCUNE ligne noire, aucun bord sombre, aucune pièce en dessous ; rien d'autre",
      "JF 2026-11-15 : « pourquoi une ligne noire dans le rouge ? » (v1 : rond à deux disques empilés, bord sombre) ; principe retenu : une forme de tache dont la couleur change"),
-    ("terre", "terre", "a rounded heap of dark brown soil with a small green seedling growing out of the top", DE_FACE, "aucun", "warm brown #a16207, soft green #86b98f",
-     " The heap is entirely ONE single uniform warm brown, a smooth rounded mound; the seedling has a thin green stem and two small green leaves. Soil, not a planet and not a hill with trees: no pot, no hand, no tool, no flower.",
-     "UN tas de terre brune d'une seule couleur avec une jeune pousse verte ; PAS une planète ni un pot", "choix de Claude : « terre » = le sol (le globe est déjà « monde »)"),
+    ("terre", "terre", "a big tall block of brown soil seen in cross-section that fills almost the whole frame, with one or two small green plants growing out of its top edge and one SMALL pink earthworm crawling inside the lower part of the soil", DE_FACE, "aucun", "warm brown #a16207, soft green #86b98f, pink #f9a8d4",
+     " The soil is the main subject: ONE single uniform warm brown flat rectangle, tall and wide, taking about 75% of the frame, with a slightly wavy top edge, cut open so we see inside it. Most of the picture is plain brown soil. One or two small plants grow upward out of the top edge of the soil: each plant has a thin green stem and two or three small green leaves, all ONE single flat soft green, clearly sprouting from the soil. The earthworm is small, about one quarter of the width of the soil, placed low in the bottom left part, NOT in the center. One single plain pink earthworm, a long curved tube of one single pink color with one small dark dot for the eye at its head end, lies inside the brown soil, bending in a gentle S shape. Nothing else: no flower, no tree, no grass blades, no stones, no pot, no hand, not a planet, no text.",
+     "Une grande coupe de terre brune (90 % de l'image) avec une ou deux petites plantes vertes qui sortent du dessus et UN petit ver de terre rose en bas à gauche, pas au centre ; la TERRE est le sujet, pas le ver (S doux, un œil) ; rien d'autre ; illustre « Le ver vit dans la terre. »", "JF 2026-11-15 (+ une ou deux petites plantes qui sortent de la terre, brun et vert) : le dessin doit imager la phrase « Le ver vit dans la terre. » ; v1 (tas de terre + pousse, sans ver) archivée"),
     ("rue", "rue", "a street seen from the front, a grey road narrowing toward the top between two simple houses on each side", DE_FACE, "aucun", "dark grey #57534e, cream, orange #f97316, teal #0f6e56, warm yellow #fbbf24",
      " A wide grey road shaped like a trapezoid that narrows toward the top, a thin cream pavement strip on each side, two small simple houses on the left and two on the right (cream walls, orange or teal roofs, one small window each). No cars, no people, no trees, no signs, no text.",
      "UNE rue (route grise qui s'éloigne, deux maisons de chaque côté) ; ni voiture ni personne ni arbre ni panneau", "choix de Claude : rue"),
     ("tête", "tete", "a child's head and neck only, seen from the front, with short brown hair", DE_FACE, "face", f"{PEAU}, orange #f97316",
      " A round peach-colored head with short dark brown hair, two small ears, two small dark dots for the eyes, a tiny nose and a small curved smile, and a short neck. Head and neck only: no shoulders, no body, no hat, no glasses.",
      "UNE tête d'enfant (cheveux, yeux, nez, sourire, cou) ; pas de corps ; aucun texte", "choix de Claude : tête d'enfant"),
-    ("nez", "nez", "a large round plain skin-colored face seen from the front on which only the nose is drawn", DE_FACE, "aucun", f"{PEAU}",
-     " Only ONE feature: a prominent rounded nose in the center, drawn as one clear rounded shape in a slightly darker peach. The face is a plain round peach disc: no eyes, no mouth, no eyebrows, no hair, no ears.",
-     "UN nez bien visible au centre d'un disque couleur peau ; ni yeux ni bouche ni cheveux", "choix de Claude : nez"),
+    ("nez", "nez", "a natural human nose seen in three-quarter side view, with the nostril, the wing of the nostril and a little of the cheek, softly shaded, realistic and not stylized", DE_FACE, "aucun", f"{PEAU}",
+     " A realistic nose, not a cartoon and not a geometric shape: the bridge, the rounded tip, the wing of the nostril and a clearly visible dark nostril opening, with a little cheek and upper lip around it, softly shaded in natural skin tones with gentle volume, like a simple soft illustration of a real nose. Cropped to the nose area only. No eye, no mouth, no ear, no hair, no disc, no text.",
+     "UN nez réaliste, peu stylisé (arête, bout, aile, narine visible, un peu de joue), ombré en tons peau", "JF 2026-11-15 : « fais un nez moins stylisé » ; v1 disque, v2 silhouette abstraite refusées"),
     ("yeux", "yeux", "a pair of big open eyes seen from the front, side by side, each with a thin eyebrow above", DE_FACE, "aucun", "cream, warm brown #a16207, very dark grey #292524",
      " Each eye is a cream oval with a large round warm brown iris and a smaller very dark pupil; one thin dark brown eyebrow above each eye. Only the two eyes and their eyebrows floating on the plain background: no face outline, no nose, no mouth, no hair.",
      "DEUX grands yeux ouverts côte à côte avec un sourcil chacun ; ni visage ni nez ni bouche", "choix de Claude : yeux"),
@@ -357,21 +357,21 @@ MOTS_LOT8 = [
     ("maman", "maman", "an adult woman, a mother, standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, soft green #86b98f, orange #f97316",
      " A friendly woman: a round peach-colored face with two small dark dots for the eyes and a small curved dark smile, shoulder-length dark brown hair, a soft green dress, two arms hanging at her sides. One single woman, simple flat shapes.",
      "UNE femme adulte (visage avec deux yeux et un sourire, cheveux mi-longs, robe verte), de face, en pied ; un seul personnage", "proposition de Claude : maman (même style que père et papa)"),
-    ("ami", "ami", "two children standing side by side holding hands, seen from the front, full body", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316, soft pink #f4a9b0",
-     " A boy and a girl of the same size, both smiling: round peach-colored faces with two small dark dots for the eyes and a small curved dark smile, the boy with short dark brown hair, a teal t-shirt and orange shorts, the girl with two dark brown ponytails and a soft pink dress; they hold hands in the middle. Exactly two children, simple flat shapes.",
-     "DEUX enfants (un garçon et une fille) qui se tiennent la main et sourient, de face ; exactement deux personnages", "proposition de Claude : ami = deux enfants qui se tiennent la main"),
-    ("manger", "manger", "a child sitting at a small table eating, holding a sandwich up to an open mouth", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm yellow #fbbf24, cream",
-     " A child with a round peach-colored face, two small dark dots for the eyes, short dark brown hair and a wide open mouth about to bite a sandwich made of two cream slices with a warm yellow filling held in both hands; a teal t-shirt. Only the child and the sandwich: no plate full of food, no table setting, no second person.",
-     "UN enfant qui va mordre dans un sandwich (bouche ouverte, sandwich tenu à deux mains) ; un seul personnage ; aucun texte", "JF 2026-11-15 : go pour manger, lire, voir, peur (enfants avec visage)"),
-    ("lire", "lire", "a child sitting and reading a big open book held in both hands, looking down at the book", DE_FACE, "face", f"{PEAU}, orange #f97316, teal #0f6e56, cream",
-     " A child with a round peach-colored face, two small dark dots for the eyes looking down, short dark brown hair, an orange t-shirt, holding a big open book with a teal cover and cream pages that shows no text and no pictures (blank pages). One child only.",
-     "UN enfant qui lit un grand livre ouvert (pages blanches, sans texte) ; un seul personnage", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
-    ("voir", "voir", "a child standing with one hand held flat above the eyes like a visor, looking far into the distance", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm yellow #fbbf24",
-     " A child with a round peach-colored face, two small dark dots for the eyes wide open, short dark brown hair, a teal t-shirt, one flat peach hand raised above the eyebrows shading the eyes, the other arm down. One child only, nothing in the distance.",
-     "UN enfant qui regarde au loin, une main à plat au-dessus des yeux ; un seul personnage", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
-    ("peur", "peur", "a scared child standing with both hands raised to the cheeks, eyes wide open and mouth open in a round O", DE_FACE, "face", f"{PEAU}, soft pink #f4a9b0, dark brown #5b3a29",
-     " A child with a round peach-colored face, two small dark dots for the eyes with tiny raised eyebrows, a small round open mouth, short dark brown hair, a soft pink t-shirt, both hands on the cheeks. One child only, no monster, no ghost, no dark background.",
-     "UN enfant qui a peur (yeux écarquillés, bouche en O, mains aux joues) ; un seul personnage ; ni monstre ni fantôme", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
+    ("ami", "ami", "two boys standing side by side holding hands, seen from the front, full body; the boy on the left is in full color and the boy on the right is entirely in flat grey", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316, light grey #a8a29e",
+     " Two boys of the same size holding hands in the middle. The boy on the left is in full color: round peach-colored face with two small dark dots for the eyes and a small curved dark smile, short dark brown hair, a teal t-shirt and orange shorts. The boy on the right is the same shape and size but entirely in ONE single flat light grey (face, hair, clothes, arms and legs all the same grey #a8a29e), with only two small darker grey dots for the eyes and a small smile. Exactly two boys, no girl, no dress, simple flat shapes.",
+     "DEUX garçons qui se tiennent la main : celui de gauche en couleurs (l'ami), celui de droite entièrement en gris ; exactement deux personnages", "JF 2026-11-15 : « ami » au singulier : un en couleurs, l'autre en gris ; v1 garçon + fille archivée"),
+    ("manger", "manger", "a child holding a big sandwich in front of the chest, with a bite taken out of it, smiling and chewing", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm yellow #fbbf24, cream",
+     " A child with a round peach-colored face, TWO clearly visible small dark dots for the eyes high on the face, short dark brown hair, and a small closed smiling mouth (a small curved line, no big dark shape); a teal t-shirt. The child holds with both hands, in front of the chest and well BELOW the face, one big sandwich made of two cream slices with a warm yellow filling, with a round bite clearly missing from one corner. The sandwich never covers the face. No table, no plate, no second person, no mustache, no dark shape on the face.",
+     "UN enfant, deux yeux bien visibles, qui tient devant la poitrine un gros sandwich dont un morceau est mordu ; le sandwich ne cache pas le visage ; un seul personnage", "JF 2026-11-15 : go pour manger, lire, voir, peur ; v1 refusée (yeux absents, bouche ouverte lue comme moustache)"),
+    ("lire", "lire", "a girl sitting and reading a big open book held in both hands, looking down at the book", DE_FACE, "face", f"{PEAU}, orange #f97316, teal #0f6e56, cream",
+     " A girl with a round peach-colored face, two small dark dots for the eyes looking down, two dark brown ponytails, an orange dress, holding a big open book with a teal cover and cream pages that shows no text and no pictures (blank pages). One girl only.",
+     "UNE fille qui lit un grand livre ouvert (pages blanches, sans texte) ; un seul personnage", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
+    ("voir", "voir", "a girl standing and looking toward a small brown dog sitting on her right, her eyes wide open and turned toward the dog", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm brown #a16207, cream",
+     " A girl with a round peach-colored face, two small dark dots for the eyes wide open and clearly shifted toward her right side (looking at the dog), two dark brown ponytails, a teal dress, both arms down; on her right, a small warm brown dog with floppy ears and one small dark dot for the eye, sitting and facing her. Her head slightly turned toward the dog. Both hands down: no hand near the face, no salute, no binoculars.",
+     "UNE fille qui regarde, les yeux écarquillés tournés vers un petit chien assis à sa droite ; mains en bas, aucun salut ; illustre « Je peux voir le chien. »", "JF 2026-11-15 : le geste de la main au-dessus des yeux n'est pas évident (se lit comme un salut) ; v1 archivée ; phrase du pack : « Je peux voir le chien. » (JF)"),
+    ("peur", "peur", "a scared girl standing with both hands raised to the cheeks, eyes wide open and mouth open in a round O", DE_FACE, "face", f"{PEAU}, soft pink #f4a9b0, dark brown #5b3a29",
+     " A girl with a round peach-colored face, two small dark dots for the eyes with tiny raised eyebrows, a small round open mouth, two dark brown ponytails, a soft pink dress, both hands on the cheeks. One girl only, no monster, no ghost, no dark background.",
+     "UNE fille qui a peur (yeux écarquillés, bouche en O, mains aux joues) ; un seul personnage ; ni monstre ni fantôme", "JF 2026-11-15 : go pour manger, lire, voir, peur ; phrase du pack : « La fille a peur. » (JF)"),
 ]
 # Lot 9 : images d'ESSAI demandées par JF le 2026-11-15, pour qu'il évalue le principe avant d'en faire d'autres.
 # « dans » : un ballon et une boîte (même couple pour sur, sous, vers, côté, avec, sans plus tard). « grand-petit » : une paire (un grand et un petit objet) ; la flèche est ajoutée par programme
@@ -383,13 +383,15 @@ MOTS_LOT9 = [
     ("dans", "dans", "a small orange cat sleeping curled up inside a wide round basket", DE_PROFIL, "profil", "orange #f97316, cream, warm yellow #fbbf24",
      " The cat is a small orange tabby with a cream belly, cream paws and a cream muzzle, asleep with its eye shown as one short curved dark line. The basket is wide and shallow with a low rim, made of ONE single warm yellow color. The cat's body is clearly INSIDE the basket: only its head, its back and its tail rise above the rim. A cat in a basket, not a bowl, not a pot, not a hat. Nothing else: no cushion, no toy, no text.",
      "UN chat orange endormi DANS un panier large et bas (le corps dans le panier, seuls la tête, le dos et la queue dépassent) ; panier d'une seule couleur ; rien d'autre", "essai pour JF : « dans » = « Le chat dort dans le panier »"),
-    ("grand-petit", "grand-petit", "two round balls of exactly the same teal color side by side, one big and one small, resting on the same invisible line", DE_FACE, "aucun", "teal #0f6e56",
-     " The big ball is about three times as wide as the small one. Both are plain flat teal discs shaded only by the soft paper shadow, no highlight, no outline, no line. Nothing else on the image: no arrow, no text.",
-     "DEUX ballons vert uni, l'un trois fois plus large que l'autre, côte à côte ; aucune flèche ni texte", "essai pour JF : paire de base pour grand / petit (flèche ajoutée par programme)"),
+    # Images dérivées de la paire de base par tools/fleche_comparaison.py (flèche ajoutée par programme, jamais générée par Canva) : même image, flèche différente.
+    ("grand", "grand", "the base pair of two teal balls with an orange arrow above the BIG ball", DE_FACE, "aucun", "teal #0f6e56, orange #f97316", "",
+     "flèche orange au-dessus du GRAND rond", "dérivée de grand-petit (flèche ajoutée par programme)"),
+    ("petit", "petit", "the base pair of two teal balls with an orange arrow above the SMALL ball", DE_FACE, "aucun", "teal #0f6e56, orange #f97316", "",
+     "flèche orange au-dessus du PETIT rond", "dérivée de grand-petit (flèche ajoutée par programme)"),
 ]
-# Mots de position en ATTENTE de l'accord de JF sur « dans » (image d'essai). Une fois « dans » validé, ils reprennent son image comme référence (REFERENCES_PAR_MOT) pour garder le même chat,
-# puis rejoignent MOTS_LOT9 (ou un lot 10).
-MOTS_SERIE_CHAT_EN_ATTENTE = [
+# Mots de position (série du chat) : « dans » validé par JF le 2026-11-15 (« Dans est OK, il faudra continuer ») ; ces mots reprennent son image comme référence (REFERENCES_PAR_MOT, identifiant Canva MAHa_AOCW34)
+# pour garder exactement le même chat.
+MOTS_SERIE_CHAT = [
     ("sur", "sur", "a small orange cat sleeping curled up on top of the seat of a simple wooden chair", DE_PROFIL, "profil", "orange #f97316, cream, warm yellow #fbbf24",
      " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle), asleep with its eye shown as one short curved dark line, lying ON the flat seat of a simple chair seen from the side. The chair is made of ONE single warm yellow color: a flat seat, a straight back and four thin legs. The cat is clearly on the seat, not in front of the chair and not behind it. Nothing else.",
      "LE MÊME chat orange endormi SUR l'assise d'une chaise simple (jaune d'une seule couleur) ; nettement dessus ; rien d'autre", "série des mots de position : « Le chat dort sur la chaise »"),
@@ -399,12 +401,12 @@ MOTS_SERIE_CHAT_EN_ATTENTE = [
     ("vers", "vers", "a small orange cat running to the right toward a closed door", DE_PROFIL, "profil", "orange #f97316, cream, teal #0f6e56, warm yellow #fbbf24",
      " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle) with one small dark dot for the eye, in a running pose with legs stretched, moving toward a plain teal door standing at the right of the picture with a small round warm yellow handle. The cat is on the left, the door on the right, with some empty space between them. Nothing else: no wall, no floor, no person.",
      "LE MÊME chat orange qui COURT vers une porte verte (chat à gauche, porte à droite, de l'espace entre les deux) ; rien d'autre", "série des mots de position : « Le chat court vers la porte »"),
-    ("avec", "avec", "a small orange cat and a small brown dog sitting side by side, both touching the same small red ball", DE_PROFIL, "profil", "orange #f97316, cream, warm brown #a16207, red #dc2626",
-     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle) on the left and a small warm brown dog with floppy ears on the right, both seen from the side facing each other, each with one small dark dot for the eye, each one touching the same small red ball between them with a front paw. Two animals only, playing together. Nothing else.",
-     "LE MÊME chat orange ET un petit chien brun qui jouent ensemble avec une même balle rouge ; exactement deux animaux ; rien d'autre", "série des mots de position : « Le chat joue avec le chien »"),
+    ("avec", "avec", "a small orange cat playing with a small red ball, one front paw on the ball", DE_PROFIL, "profil", "orange #f97316, cream, red #dc2626",
+     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle), awake and playful, seen from the side, one front paw resting on one small plain red ball (one single red color) in front of it. One animal only. Nothing else: no dog, no yarn, no toy, no text.",
+     "LE MÊME chat orange qui joue avec UNE balle rouge (une patte dessus) ; un seul animal ; rien d'autre", "série des mots de position, un seul personnage (JF) : « Le chat joue avec la balle »"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):

@@ -246,7 +246,7 @@
      "cubes": 3
     }
    ],
-   "phrase": "Le chat joue avec le chien.",
+   "phrase": "Le chat joue avec la balle.",
    "phraseAudio": "audio/phrase-avec.mp3"
   },
   {
@@ -3357,7 +3357,7 @@
      "ecartAvecRegles": false
     }
    ],
-   "phrase": "Le chat a peur du chien.",
+   "phrase": "La fille a peur.",
    "phraseAudio": "audio/phrase-peur.mp3"
   },
   {
@@ -3677,7 +3677,7 @@
      "ecartAvecRegles": false
     }
    ],
-   "phrase": "Je vais voir le chien.",
+   "phrase": "Je peux voir le chien.",
    "phraseAudio": "audio/phrase-voir.mp3"
   },
   {
