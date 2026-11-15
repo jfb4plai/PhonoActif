@@ -246,7 +246,7 @@
      "cubes": 3
     }
    ],
-   "phrase": "Je joue avec mon ami.",
+   "phrase": "Le chat joue avec le chien.",
    "phraseAudio": "audio/phrase-avec.mp3"
   },
   {
@@ -288,7 +288,7 @@
      "ecartAvecRegles": false
     }
    ],
-   "phrase": "Le livre est sur la table.",
+   "phrase": "Le chat dort sur la chaise.",
    "phraseAudio": "audio/phrase-sur.mp3"
   },
   {
@@ -1389,7 +1389,10 @@
     }
    ],
    "phrase": "J'ai deux mains.",
-   "phraseAudio": "audio/phrase-deux.mp3"
+   "phraseAudio": "audio/phrase-deux.mp3",
+   "image_sans_mot": "images/deux.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "par",
@@ -2034,7 +2037,10 @@
     }
    ],
    "phrase": "Le jour se lève.",
-   "phraseAudio": "audio/phrase-jour.mp3"
+   "phraseAudio": "audio/phrase-jour.mp3",
+   "image_sans_mot": "images/jour.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "lit",
@@ -2443,7 +2449,10 @@
     }
    ],
    "phrase": "Je vois trois oiseaux.",
-   "phraseAudio": "audio/phrase-trois.mp3"
+   "phraseAudio": "audio/phrase-trois.mp3",
+   "image_sans_mot": "images/trois.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "poisson",
@@ -3785,7 +3794,10 @@
     }
    ],
    "phrase": "Tout le monde chante.",
-   "phraseAudio": "audio/phrase-monde.mp3"
+   "phraseAudio": "audio/phrase-monde.mp3",
+   "image_sans_mot": "images/monde.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "nez",
@@ -5543,7 +5555,10 @@
     }
    ],
    "phrase": "Demain, c'est la fête de l'école.",
-   "phraseAudio": "audio/phrase-fete.mp3"
+   "phraseAudio": "audio/phrase-fete.mp3",
+   "image_sans_mot": "images/fete.png",
+   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
   },
   {
    "id": "rat",

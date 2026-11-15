@@ -29,7 +29,7 @@ BLOC = ("Children's picture book illustration in cut-paper collage style. {intro
         "Built from a few simple layered paper pieces with clean cut edges, subtle paper grain, soft small drop shadows, no outline. "
         "Each piece is one flat uniform color, no patterns, no decoration, no face{yeux}. "
         "Palette strictly limited to: {palette}. "
-        "Plain flat {fond}, no ground, no props, no text, no letters, no people.{plus}")
+        "Plain flat {fond}, no ground, no props, no text, no letters{pas_de_personne}.{plus}")
 FOND = "pastel light sky-blue background, exactly the flat solid color #cde7f7 (RGB 205, 231, 247), perfectly uniform, no gradient, no vignette, no lighting variation"   # v2.1 (2026-11-13, JF) : plus universel que le crème ; v2.2 : valeurs exactes + uniformisation après coup
 
 POST_TRAITEMENT = "python -I tools/uniformiser_fond.py <dossier> (ramène le fond à #cde7f7, garde l'original), puis python -I tools/uniformiser_fond.py --mesure <images> : écart <= 3/255"
@@ -92,27 +92,21 @@ MOTS_LOT2 = [
      "UNE seule rivière, large, en S doux, de haut en bas de la tuile verte ; deux bandes de papier bleu seulement ; ni rayures, ni lignes blanches, ni pont, ni bateau, ni arbre",
      "v2 de Claude 2026-11-14 : la v1 (ruban vert en S rayé de bleu) ne se lisait pas comme une rivière"),
 ]
-# RÈGLE DES NOMBRES (décision de JF, 2026-11-14) : tout nombre est représenté par des pommes rouges IDENTIQUES à celles de « deux », côte à côte, une pomme par unité,
-# sans chiffre ni texte. Les nombres suivants (trois, quatre…) sont générés AVEC l'image de « deux » comme référence (imageReferences du connecteur Canva) pour que la pomme
-# soit exactement la même. Référence = identifiant MEDIA Canva de l'image « deux » du lot 3 (MAHa5AjV92w, générée le 2026-11-14).
+# RÈGLE DES NOMBRES (décision de JF, 2026-11-15, qui remplace celle du 2026-11-14 : « des pommes identiques ») : tout nombre est une carte avec le CHIFFRE SEUL, sans pommes ni autre objet.
+# Raison : des pommes forcent l'élève à les compter, ce qui n'est pas l'objectif. Le mot écrit n'apparaît pas non plus (c'est lui que l'élève construit). Chiffre d'une seule couleur (orange).
 NOMBRES = {"un": ("one", 1), "deux": ("two", 2), "trois": ("three", 3), "quatre": ("four", 4), "cinq": ("five", 5), "six": ("six", 6),
            "sept": ("seven", 7), "huit": ("eight", 8), "neuf": ("nine", 9), "dix": ("ten", 10)}
-NOMBRE_DE_REFERENCE = "deux"
-MEDIA_NOMBRE_DE_REFERENCE = "MAHa5AjV92w"
-PHRASE_REFERENCE = " The apples must be exactly the same apple as in the reference image (same shape, size, colors, leaf and highlight): only the number of apples changes."
 
 
 def entree_nombre(mot):
-    """Entrée de script d'un nombre : n pommes identiques ; sauf « deux » (la référence), la consigne renvoie à l'image de référence."""
+    """Entrée de script d'un nombre : le chiffre seul (« 2 » pour deux), sans pommes ni image de référence."""
     en, n = NOMBRES[mot]
-    plus = f" Exactly {en} apples, the same size, each with one small green leaf. No numbers, no text."
-    if mot != NOMBRE_DE_REFERENCE:
-        plus += PHRASE_REFERENCE
-    pluriel = en if n > 1 else "one"
-    obj = f"{pluriel} identical red apple{'s side by side' if n > 1 else ''}"
-    return (mot, mot, obj, DE_FACE, "aucun", "red-orange #f97316, soft green #86b98f, cream", plus,
-            f"EXACTEMENT {n} pomme{'s identiques, côte à côte' if n > 1 else ''} ; aucun chiffre ; même pomme que « deux »",
-            f"JF 2026-11-14 : tout nombre = pommes identiques à celles de « deux » ({n})")
+    obj = f"the numeral {n}, the number {en}"
+    plus = (f" The numeral {n} drawn as one single bold rounded shape cut from one single flat orange paper piece, upright, not mirrored, with the exact correct shape of the digit{'s' if n > 9 else ''} {n}, perfectly legible. "
+            "Nothing else on the image: no apples, no dots, no other digits, no letters, no words, no objects.")
+    return (mot, mot, obj, DE_FACE, "aucun", "orange #f97316", plus,
+            f"UN seul chiffre {n} (orange), lisible, non inversé, forme exacte ; AUCUN autre caractère ni objet ; ni pommes ni mot écrit",
+            f"JF 2026-11-15 : un nombre = le chiffre seul, sans pommes (compter n'est pas l'objectif) ({n})")
 
 
 # Images de référence propres à un mot (retouche d'une image déjà générée) : « fête » v1 (ballons seuls) à laquelle JF demande d'ajouter confettis et notes de musique.
@@ -123,7 +117,7 @@ def references_de(mot):
     """Identifiants MEDIA Canva à passer en imageReferences pour ce mot (vide si aucun)."""
     if mot in REFERENCES_PAR_MOT:
         return list(REFERENCES_PAR_MOT[mot])
-    return [MEDIA_NOMBRE_DE_REFERENCE] if mot in NOMBRES and mot != NOMBRE_DE_REFERENCE else []
+    return []   # les nombres n'ont plus d'image de référence (chiffre seul)
 
 
 # Lot 3 : autres mots du pack p1-100 qui se dessinent comme UN objet ou UN petit groupe, sans visage ni personne (proposition de Claude, 2026-11-14,
@@ -326,14 +320,98 @@ MOTS_LOT7 = [
      " A beach bucket entirely in ONE single uniform red (body and rim the same red, no second color on the bucket), wider at the top than at the bottom, with a warm yellow handle arched clearly over the top (the handle may differ). A bucket, not a pot and not a cup: no sand, no water, no spade.",
      "UN seau rouge plus large en haut avec UNE anse arquée ; pas un pot ni un gobelet ; ni sable ni pelle", "choix de Claude : seau de plage"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 8 : mots du pack p1-100 qui n'ont pas d'image (proposition de Claude, 2026-11-15, à valider par JF image par image). Garçon, père, papa : AVEC VISAGE (décision de JF, 2026-11-15) ;
+# maman et ami : même style, proposés par Claude (extension évidente, à confirmer). Les personnages ont deux petits points pour les yeux et un petit sourire, des formes plates en papier découpé.
+# PERSONNES : mots dont le prompt n'écrit pas « no people » (le bloc commun l'interdit pour tous les autres mots).
+PERSONNES = {"garçon", "père", "papa", "maman", "ami", "manger", "lire", "voir", "peur"}
+PEAU = "peach #f2b48a, dark brown #5b3a29"
+MOTS_LOT8 = [
+    ("rouge", "rouge", "a single organic paint-stain blob, a smooth irregular rounded shape with three or four soft round bulges", DE_FACE, "aucun", "red #dc2626",
+     " The whole blob is ONE single flat red paper piece: no stacked layer, no second piece underneath, no dark edge, no line, no outline, no vein, no highlight, no texture lines. The same blob shape is meant to be reused for other colors, so keep it a plain stain. Nothing else on the image.",
+     "UNE seule tache rouge, d'une seule pièce ; AUCUNE ligne noire, aucun bord sombre, aucune pièce en dessous ; rien d'autre",
+     "JF 2026-11-15 : « pourquoi une ligne noire dans le rouge ? » (v1 : rond à deux disques empilés, bord sombre) ; principe retenu : une forme de tache dont la couleur change"),
+    ("terre", "terre", "a rounded heap of dark brown soil with a small green seedling growing out of the top", DE_FACE, "aucun", "warm brown #a16207, soft green #86b98f",
+     " The heap is entirely ONE single uniform warm brown, a smooth rounded mound; the seedling has a thin green stem and two small green leaves. Soil, not a planet and not a hill with trees: no pot, no hand, no tool, no flower.",
+     "UN tas de terre brune d'une seule couleur avec une jeune pousse verte ; PAS une planète ni un pot", "choix de Claude : « terre » = le sol (le globe est déjà « monde »)"),
+    ("rue", "rue", "a street seen from the front, a grey road narrowing toward the top between two simple houses on each side", DE_FACE, "aucun", "dark grey #57534e, cream, orange #f97316, teal #0f6e56, warm yellow #fbbf24",
+     " A wide grey road shaped like a trapezoid that narrows toward the top, a thin cream pavement strip on each side, two small simple houses on the left and two on the right (cream walls, orange or teal roofs, one small window each). No cars, no people, no trees, no signs, no text.",
+     "UNE rue (route grise qui s'éloigne, deux maisons de chaque côté) ; ni voiture ni personne ni arbre ni panneau", "choix de Claude : rue"),
+    ("tête", "tete", "a child's head and neck only, seen from the front, with short brown hair", DE_FACE, "face", f"{PEAU}, orange #f97316",
+     " A round peach-colored head with short dark brown hair, two small ears, two small dark dots for the eyes, a tiny nose and a small curved smile, and a short neck. Head and neck only: no shoulders, no body, no hat, no glasses.",
+     "UNE tête d'enfant (cheveux, yeux, nez, sourire, cou) ; pas de corps ; aucun texte", "choix de Claude : tête d'enfant"),
+    ("nez", "nez", "a large round plain skin-colored face seen from the front on which only the nose is drawn", DE_FACE, "aucun", f"{PEAU}",
+     " Only ONE feature: a prominent rounded nose in the center, drawn as one clear rounded shape in a slightly darker peach. The face is a plain round peach disc: no eyes, no mouth, no eyebrows, no hair, no ears.",
+     "UN nez bien visible au centre d'un disque couleur peau ; ni yeux ni bouche ni cheveux", "choix de Claude : nez"),
+    ("yeux", "yeux", "a pair of big open eyes seen from the front, side by side, each with a thin eyebrow above", DE_FACE, "aucun", "cream, warm brown #a16207, very dark grey #292524",
+     " Each eye is a cream oval with a large round warm brown iris and a smaller very dark pupil; one thin dark brown eyebrow above each eye. Only the two eyes and their eyebrows floating on the plain background: no face outline, no nose, no mouth, no hair.",
+     "DEUX grands yeux ouverts côte à côte avec un sourcil chacun ; ni visage ni nez ni bouche", "choix de Claude : yeux"),
+    ("garçon", "garcon", "a boy about seven years old, standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316",
+     " A friendly boy: a round peach-colored face with two small dark dots for the eyes and a small curved dark smile, short dark brown hair, a teal t-shirt, orange shorts, two short legs and two arms hanging at his sides. One single boy, simple flat shapes.",
+     "UN garçon (visage avec deux yeux et un sourire, cheveux courts, t-shirt, short), de face, en pied ; un seul personnage ; aucun texte", "JF 2026-11-15 : garçon avec visage"),
+    ("père", "pere", "an adult man, a father, standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, dark grey #57534e, teal #0f6e56, cream",
+     " A friendly man: a round peach-colored face with two small dark dots for the eyes and a small curved dark smile, short dark brown hair, a dark grey sweater, teal trousers, two arms hanging at his sides. One single man, taller than a child would be, simple flat shapes, no beard, no glasses.",
+     "UN homme adulte (visage avec deux yeux et un sourire, cheveux courts, pull gris, pantalon), de face, en pied ; un seul personnage", "JF 2026-11-15 : père avec visage"),
+    ("papa", "papa", "an adult man, a dad, standing, seen from the front, full body, with one arm raised in a friendly wave", DE_FACE, "face", f"{PEAU}, dark grey #57534e, teal #0f6e56, cream",
+     " The same kind of friendly man as a father figure: a round peach-colored face with two small dark dots for the eyes and a big curved dark smile, short dark brown hair, a dark grey sweater, teal trousers, one arm hanging and the other arm raised waving. One single man, simple flat shapes, no beard, no glasses.",
+     "UN homme adulte souriant qui salue d'un bras levé ; un seul personnage ; aucun texte", "JF 2026-11-15 : papa avec visage (même personnage que père, bras levé)"),
+    ("maman", "maman", "an adult woman, a mother, standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, soft green #86b98f, orange #f97316",
+     " A friendly woman: a round peach-colored face with two small dark dots for the eyes and a small curved dark smile, shoulder-length dark brown hair, a soft green dress, two arms hanging at her sides. One single woman, simple flat shapes.",
+     "UNE femme adulte (visage avec deux yeux et un sourire, cheveux mi-longs, robe verte), de face, en pied ; un seul personnage", "proposition de Claude : maman (même style que père et papa)"),
+    ("ami", "ami", "two children standing side by side holding hands, seen from the front, full body", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316, soft pink #f4a9b0",
+     " A boy and a girl of the same size, both smiling: round peach-colored faces with two small dark dots for the eyes and a small curved dark smile, the boy with short dark brown hair, a teal t-shirt and orange shorts, the girl with two dark brown ponytails and a soft pink dress; they hold hands in the middle. Exactly two children, simple flat shapes.",
+     "DEUX enfants (un garçon et une fille) qui se tiennent la main et sourient, de face ; exactement deux personnages", "proposition de Claude : ami = deux enfants qui se tiennent la main"),
+    ("manger", "manger", "a child sitting at a small table eating, holding a sandwich up to an open mouth", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm yellow #fbbf24, cream",
+     " A child with a round peach-colored face, two small dark dots for the eyes, short dark brown hair and a wide open mouth about to bite a sandwich made of two cream slices with a warm yellow filling held in both hands; a teal t-shirt. Only the child and the sandwich: no plate full of food, no table setting, no second person.",
+     "UN enfant qui va mordre dans un sandwich (bouche ouverte, sandwich tenu à deux mains) ; un seul personnage ; aucun texte", "JF 2026-11-15 : go pour manger, lire, voir, peur (enfants avec visage)"),
+    ("lire", "lire", "a child sitting and reading a big open book held in both hands, looking down at the book", DE_FACE, "face", f"{PEAU}, orange #f97316, teal #0f6e56, cream",
+     " A child with a round peach-colored face, two small dark dots for the eyes looking down, short dark brown hair, an orange t-shirt, holding a big open book with a teal cover and cream pages that shows no text and no pictures (blank pages). One child only.",
+     "UN enfant qui lit un grand livre ouvert (pages blanches, sans texte) ; un seul personnage", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
+    ("voir", "voir", "a child standing with one hand held flat above the eyes like a visor, looking far into the distance", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm yellow #fbbf24",
+     " A child with a round peach-colored face, two small dark dots for the eyes wide open, short dark brown hair, a teal t-shirt, one flat peach hand raised above the eyebrows shading the eyes, the other arm down. One child only, nothing in the distance.",
+     "UN enfant qui regarde au loin, une main à plat au-dessus des yeux ; un seul personnage", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
+    ("peur", "peur", "a scared child standing with both hands raised to the cheeks, eyes wide open and mouth open in a round O", DE_FACE, "face", f"{PEAU}, soft pink #f4a9b0, dark brown #5b3a29",
+     " A child with a round peach-colored face, two small dark dots for the eyes with tiny raised eyebrows, a small round open mouth, short dark brown hair, a soft pink t-shirt, both hands on the cheeks. One child only, no monster, no ghost, no dark background.",
+     "UN enfant qui a peur (yeux écarquillés, bouche en O, mains aux joues) ; un seul personnage ; ni monstre ni fantôme", "JF 2026-11-15 : go pour manger, lire, voir, peur"),
+]
+# Lot 9 : images d'ESSAI demandées par JF le 2026-11-15, pour qu'il évalue le principe avant d'en faire d'autres.
+# « dans » : un ballon et une boîte (même couple pour sur, sous, vers, côté, avec, sans plus tard). « grand-petit » : une paire (un grand et un petit objet) ; la flèche est ajoutée par programme
+# (tools/fleche_comparaison.py) pour que « grand » et « petit » aient exactement la même image de base et ne diffèrent que par la flèche.
+MOTS_LOT9 = [
+    # Série des mots de position (décision de JF, 2026-11-15) : UN chat et un décor simple, seule la relation change ; chaque image illustre la phrase du pack
+    # (dans : « Le chat dort dans le panier » ; sur : « Le chat dort sur la chaise » ; sous : « Le chat dort sous la chaise » ; vers : « Le chat court vers la porte » ; avec : « Le chat joue avec le chien »).
+    # « dans » est l'essai à faire valider ; les autres prendront l'image de « dans » comme référence (REFERENCES_PAR_MOT) pour garder le même chat.
+    ("dans", "dans", "a small orange cat sleeping curled up inside a wide round basket", DE_PROFIL, "profil", "orange #f97316, cream, warm yellow #fbbf24",
+     " The cat is a small orange tabby with a cream belly, cream paws and a cream muzzle, asleep with its eye shown as one short curved dark line. The basket is wide and shallow with a low rim, made of ONE single warm yellow color. The cat's body is clearly INSIDE the basket: only its head, its back and its tail rise above the rim. A cat in a basket, not a bowl, not a pot, not a hat. Nothing else: no cushion, no toy, no text.",
+     "UN chat orange endormi DANS un panier large et bas (le corps dans le panier, seuls la tête, le dos et la queue dépassent) ; panier d'une seule couleur ; rien d'autre", "essai pour JF : « dans » = « Le chat dort dans le panier »"),
+    ("grand-petit", "grand-petit", "two round balls of exactly the same teal color side by side, one big and one small, resting on the same invisible line", DE_FACE, "aucun", "teal #0f6e56",
+     " The big ball is about three times as wide as the small one. Both are plain flat teal discs shaded only by the soft paper shadow, no highlight, no outline, no line. Nothing else on the image: no arrow, no text.",
+     "DEUX ballons vert uni, l'un trois fois plus large que l'autre, côte à côte ; aucune flèche ni texte", "essai pour JF : paire de base pour grand / petit (flèche ajoutée par programme)"),
+]
+# Mots de position en ATTENTE de l'accord de JF sur « dans » (image d'essai). Une fois « dans » validé, ils reprennent son image comme référence (REFERENCES_PAR_MOT) pour garder le même chat,
+# puis rejoignent MOTS_LOT9 (ou un lot 10).
+MOTS_SERIE_CHAT_EN_ATTENTE = [
+    ("sur", "sur", "a small orange cat sleeping curled up on top of the seat of a simple wooden chair", DE_PROFIL, "profil", "orange #f97316, cream, warm yellow #fbbf24",
+     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle), asleep with its eye shown as one short curved dark line, lying ON the flat seat of a simple chair seen from the side. The chair is made of ONE single warm yellow color: a flat seat, a straight back and four thin legs. The cat is clearly on the seat, not in front of the chair and not behind it. Nothing else.",
+     "LE MÊME chat orange endormi SUR l'assise d'une chaise simple (jaune d'une seule couleur) ; nettement dessus ; rien d'autre", "série des mots de position : « Le chat dort sur la chaise »"),
+    ("sous", "sous", "a small orange cat sleeping curled up under a simple wooden chair", DE_PROFIL, "profil", "orange #f97316, cream, warm yellow #fbbf24",
+     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle), asleep with its eye shown as one short curved dark line, lying UNDER the seat of the same simple chair seen from the side, between its legs, with the seat clearly above the cat. The chair is made of ONE single warm yellow color: a flat seat, a straight back and four thin legs. Nothing else.",
+     "LE MÊME chat orange endormi SOUS la même chaise (entre les pieds, l'assise au-dessus de lui) ; rien d'autre", "série des mots de position : « Le chat dort sous la chaise »"),
+    ("vers", "vers", "a small orange cat running to the right toward a closed door", DE_PROFIL, "profil", "orange #f97316, cream, teal #0f6e56, warm yellow #fbbf24",
+     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle) with one small dark dot for the eye, in a running pose with legs stretched, moving toward a plain teal door standing at the right of the picture with a small round warm yellow handle. The cat is on the left, the door on the right, with some empty space between them. Nothing else: no wall, no floor, no person.",
+     "LE MÊME chat orange qui COURT vers une porte verte (chat à gauche, porte à droite, de l'espace entre les deux) ; rien d'autre", "série des mots de position : « Le chat court vers la porte »"),
+    ("avec", "avec", "a small orange cat and a small brown dog sitting side by side, both touching the same small red ball", DE_PROFIL, "profil", "orange #f97316, cream, warm brown #a16207, red #dc2626",
+     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle) on the left and a small warm brown dog with floppy ears on the right, both seen from the side facing each other, each with one small dark dot for the eye, each one touching the same small red ball between them with a front paw. Two animals only, playing together. Nothing else.",
+     "LE MÊME chat orange ET un petit chien brun qui jouent ensemble avec une même balle rouge ; exactement deux animaux ; rien d'autre", "série des mots de position : « Le chat joue avec le chien »"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
     mot, _, obj, vue, yeux, palette, plus, _, _ = m
     intro = "A group of" if obj.startswith(("several",) + tuple(en + " " for en, n in NOMBRES.values() if n > 1)) else "One single"   # un seul sujet, sauf un groupe voulu (neige)
-    return BLOC.format(fond=FOND, intro=intro, obj=obj, vue=vue, yeux=YEUX[yeux], palette=palette or PALETTE_STD, plus=plus)
+    pas_de_personne = "" if mot in PERSONNES else ", no people"
+    return BLOC.format(fond=FOND, intro=intro, obj=obj, vue=vue, yeux=YEUX[yeux], palette=palette or PALETTE_STD, plus=plus, pas_de_personne=pas_de_personne)
 
 
 def verification(m):

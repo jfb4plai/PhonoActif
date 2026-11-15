@@ -56,30 +56,28 @@ class TestFileDAttente(unittest.TestCase):
             self.assertTrue(F.etat(3, d)["termine"])
 
     def test_groupes_dans_le_prompt(self):
-        deux = next(m for m in P.MOTS_LOT3 if m[0] == "deux")
-        self.assertTrue(P.prompt(deux).startswith("Children's picture book illustration in cut-paper collage style. A group of two identical"))
+        neige = next(m for m in P.MOTS if m[0] == "neige")
+        self.assertTrue(P.prompt(neige).startswith("Children's picture book illustration in cut-paper collage style. A group of several"))
 
 
 class TestNombres(unittest.TestCase):
-    def test_tout_nombre_est_des_pommes_identiques_a_celles_de_deux(self):
+    def test_tout_nombre_est_le_chiffre_seul_sans_pommes(self):
         for mot, (en, n) in P.NOMBRES.items():
-            e = P.entree_nombre(mot)
-            self.assertIn(f"Exactly {en} apples", P.prompt(e), mot)
-            self.assertIn("identical red apple", P.prompt(e), mot)
-        quatre = P.prompt(P.entree_nombre("quatre"))
-        self.assertTrue(quatre.startswith("Children's picture book illustration in cut-paper collage style. A group of four identical"))
+            p = P.prompt(P.entree_nombre(mot))
+            self.assertIn(f"the numeral {n}", p, mot)
+            self.assertIn("no apples", p, mot)
+            self.assertIn("one single flat orange paper piece", p, mot)
+            self.assertNotIn("identical red apple", p, mot)
+            self.assertNotIn("Exactly", p, mot)                      # plus de « Exactly n apples »
 
-    def test_la_reference_est_deux_et_les_autres_nombres_la_citent(self):
-        self.assertEqual(P.references_de("deux"), [])
-        self.assertEqual(P.references_de("trois"), [P.MEDIA_NOMBRE_DE_REFERENCE])
+    def test_les_nombres_n_ont_plus_d_image_de_reference(self):
+        for mot in P.NOMBRES:
+            self.assertEqual(P.references_de(mot), [], mot)
         self.assertEqual(P.references_de("jour"), [])
-        self.assertNotIn("reference image", P.prompt(P.entree_nombre("deux")))
-        self.assertIn("exactly the same apple as in the reference image", P.prompt(P.entree_nombre("trois")))
 
-    def test_le_prompt_de_deux_est_celui_qui_a_servi_a_generer_l_image(self):
-        p = P.prompt(P.entree_nombre("deux"))
-        self.assertIn("A group of two identical red apples side by side, seen flat from the front", p)
-        self.assertTrue(p.endswith("Exactly two apples, the same size, each with one small green leaf. No numbers, no text."))
+    def test_un_seul_sujet_et_le_chiffre_dix_a_deux_chiffres(self):
+        self.assertTrue(P.prompt(P.entree_nombre("deux")).startswith("Children's picture book illustration in cut-paper collage style. One single the numeral 2"))
+        self.assertIn("digits 10", P.prompt(P.entree_nombre("dix")))
 
 
 class TestFete(unittest.TestCase):
