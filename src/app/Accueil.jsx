@@ -108,7 +108,7 @@ export default function Accueil({
                   <option value="aide">Proposée seulement quand l’élève a du mal</option>
                   <option value="non">Jamais</option>
                 </select>
-                <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni dans un pack sans syllabes.</p>
+                <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni pour un mot dont les syllabes ne sont pas encore préparées.</p>
               </div>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="vitesse">Vitesse de la voix</label>

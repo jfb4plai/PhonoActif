@@ -61,7 +61,7 @@ export function ModeEmploi({ base = '/' }) {
           </ul>
           <p className="important">Les images ont été conçues pour centrer l’attention sur le mot et enlever tout autre distracteur.</p>
           <p>Puis « Créer la tâche et les liens des élèves » : la tâche est créée et le lien et le QR-code de <strong>chaque élève</strong> s’affichent aussitôt en dessous.</p>
-          <p>Pour fabriquer votre propre pack (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Dans cette première version, les packs sont fabriqués et publiés par l’auteur de l’outil, et seulement après sa validation des mots, des images et des sons : l’application ne choisit jamais les mots à votre place.</p>
+          <p>Pour fabriquer vos propres cartes (vos mots, vos images) : <a href={modele} download>télécharger le modèle Excel</a>, le remplir, puis l’envoyer avec vos images à l’adresse de contact. Dans cette première version, les cartes sont fabriquées et publiées par l’auteur de l’outil, et seulement après sa validation des mots, des images et des sons : l’application ne choisit jamais les mots à votre place.</p>
         </section>
 
         <section className="plai-section" id="etape5">
@@ -75,13 +75,13 @@ export function ModeEmploi({ base = '/' }) {
           <h2>6. Ce que fait l’élève</h2>
           <ol>
             <li>Il scanne son QR-code ou ouvre son lien : son code est déjà rempli.</li>
-            <li>« Commencer ». Il entend le mot avec « Écouter » (et « Écouter une phrase » quand le pack en a une), peut appuyer sur « Voir l’image » si le mot en a une, et pose les lettres une à une. À chaque lettre, la voix lit ce qui est posé.</li>
+            <li>« Commencer ». Il entend le mot avec « Écouter » (et « Écouter une phrase » quand le mot en a une), peut appuyer sur « Voir l’image » si le mot en a une, et pose les lettres une à une. À chaque lettre, la voix lit ce qui est posé.</li>
             <li>« Vérifier ». Après trois essais, le mot est montré. Il n’y a pas de score affiché à l’élève.</li>
             <li>Au bilan, « Envoyer mes résultats ». Ils sont aussi renvoyés automatiquement à l’ouverture suivante ou au retour de la connexion : sans réseau, ils restent sur l’appareil et partent plus tard.</li>
           </ol>
           <p><strong>Écoute par syllabes.</strong> Le bouton « Écouter par syllabes » (à côté de « Écouter ») lit les syllabes phonétiques l’une après l’autre, avec une pause de 500 ms et la dernière syllabe plus lente (75 %). Pendant la lecture, la syllabe dite est entourée dans la zone de construction, un trait marque la coupure et les lettres muettes sont grisées. La règle de coupure s’affiche sous la zone. À la fin de la lecture, les césures et la règle restent affichées jusqu’au bouton « Masquer les césures ».</p>
-          <p><strong>Phrase d’aide.</strong> Pour les mots qui ne se dessinent pas (dans, avec, mais…), un pack peut proposer le bouton « Écouter une phrase » : la voix dit une courte phrase qui contient le mot. Le texte de la phrase n’est jamais affiché, parce qu’il contient le mot à écrire. Ces phrases sont écrites par l’enseignant, jamais par l’application.</p>
-          <p>Il n’y a pas de bouton pour un mot d’une seule syllabe, ni dans un pack qui n’a pas encore ses syllabes (les 100 mots de P1 n’en ont que pour une partie des mots), ni si le réglage est sur « Jamais ». Les syllabes sont coupées sur les <em>sons</em> du mot, pas sur les lettres : « maison » se coupe « mè-zon ».</p>
+          <p><strong>Phrase d’aide.</strong> Pour les mots qui ne se dessinent pas (dans, avec, mais…), un mot peut avoir le bouton « Écouter une phrase » : la voix dit une courte phrase qui contient le mot. Le texte de la phrase n’est jamais affiché, parce qu’il contient le mot à écrire. Ces phrases sont écrites par l’enseignant, jamais par l’application.</p>
+          <p>Il n’y a pas de bouton pour un mot d’une seule syllabe, ni pour un mot dont les syllabes ne sont pas encore préparées (c’est le cas d’une partie des mots du modèle « 100 mots de P1 »), ni si le réglage est sur « Jamais ». Les syllabes sont coupées sur les <em>sons</em> du mot, pas sur les lettres : « maison » se coupe « mè-zon ».</p>
         </section>
 
         <section className="plai-section" id="etape7">
@@ -92,14 +92,14 @@ export function ModeEmploi({ base = '/' }) {
 
         <section className="plai-section" id="sans-compte">
           <h2>Sans compte : le lien rapide</h2>
-          <p>Pour un essai sans compte, <a href="#/lien">créer un lien rapide</a> : choisir un pack et des réglages, copier le lien ou le QR-code. Dans ce cas rien n’est envoyé : les essais restent sur l’appareil de l’élève et s’exportent en fichier (JSON ou CSV).</p>
+          <p>Pour un essai sans compte, <a href="#/lien">créer un lien rapide</a> : choisir une liste et des réglages, copier le lien ou le QR-code. Dans ce cas rien n’est envoyé : les essais restent sur l’appareil de l’élève et s’exportent en fichier (JSON ou CSV).</p>
         </section>
 
         <section className="plai-section" id="vos-20">
           <h2>Ce que l’outil ne fait pas, et ce que vous y mettez</h2>
           <ul>
-            <li><strong>Avant de proposer un pack, écoutez-en quelques mots.</strong> La voix lit une transcription préparée à l’avance : une erreur de lecture serait entendue par l’élève.</li>
-            <li><strong>Choisissez les mots et les images</strong> qui correspondent à votre classe : un même pack ne convient pas à tous les élèves.</li>
+            <li><strong>Avant de proposer une liste, écoutez-en quelques mots.</strong> La voix lit une transcription préparée à l’avance : une erreur de lecture serait entendue par l’élève.</li>
+            <li><strong>Choisissez les mots et les images</strong> qui correspondent à votre classe : une même liste ne convient pas à tous les élèves.</li>
             <li><strong>Regardez l’élève jouer</strong> au moins une fois : l’application voit des essais justes ou faux, pas ce qui les explique.</li>
             <li>L’outil n’a pas encore été essayé avec des élèves ni relu par une spécialiste ou un spécialiste de phonologie.</li>
           </ul>
@@ -185,7 +185,7 @@ export function APropos({ base = '/' }) {
         </section>
         <section className="plai-section">
           <h2>Images</h2>
-          <p>Les images des packs illustrés sont <strong>créées par une IA</strong> (Canva), dans un style papier découpé, puis relues par l’auteur. Les conditions de Canva s’appliquent à leur usage ; l’usage de cet outil est scolaire et non commercial.</p>
+          <p>Les images des mots illustrés sont <strong>créées par une IA</strong> (Canva), dans un style papier découpé, puis relues par l’auteur. Les conditions de Canva s’appliquent à leur usage ; l’usage de cet outil est scolaire et non commercial.</p>
         </section>
         <section className="plai-section">
           <h2>Lexique</h2>

@@ -51,6 +51,14 @@ describe('pages du site', () => {
     expect(etape.textContent).not.toMatch(/Pack de cartes/);
   });
 
+  it('plus de mot « pack » dans le texte visible du mode d’emploi, de l’accueil élève ni de l’écran de lien rapide', () => {
+    for (const hash of ['#/mode-d-emploi', '#/eleve', '#/lien']) {
+      monter(hash);
+      expect(document.body.textContent, hash).not.toMatch(/\bpacks?\b/i);
+      cleanup();
+    }
+  });
+
   it('mode d’emploi : sept étapes, sommaire sans lien cassant l’adresse du site', () => {
     monter('#/mode-d-emploi');
     for (const n of [1, 2, 3, 4, 5, 6, 7]) expect(screen.getByRole('heading', { level: 2, name: new RegExp(`^${n}\. `) })).toBeInTheDocument();

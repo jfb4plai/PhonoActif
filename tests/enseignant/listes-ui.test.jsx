@@ -132,6 +132,13 @@ describe('composer une liste', () => {
 });
 
 describe('relecture : nom des tâches, suppression, modèle, catalogue en panne', () => {
+  it('plus de mot « pack » dans le texte visible de l’écran d’une classe', async () => {
+    monter();
+    await ouvrirClasse();
+    await screen.findByRole('button', { name: 'Composer une liste' });
+    expect((document.body.textContent.match(/\bpacks?\b/gi) || []).length, 'mot « pack » encore affiché').toBe(0);
+  });
+
   it('la liste des tâches montre les noms des listes (le libellé neutre « Liste » reste côté serveur)', async () => {
     monter();
     await ouvrirClasse();
