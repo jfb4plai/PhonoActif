@@ -87,6 +87,7 @@
 .accueil-page .porte strong { font-family: var(--f-titre); font-size: 1.5rem; }
 .accueil-page .porte span { font-size: 17px; }
 .accueil-page .porte-enseignant { background: var(--carte); }
+.accueil-page .porte-test { background: #fff; max-width: 34rem; }
 .accueil-page .porte:hover { transform: translate(-2px, -2px); box-shadow: 9px 10px 0 var(--ombre); }
 .accueil-page .porte:active { transform: translate(3px, 3px); box-shadow: 2px 3px 0 var(--ombre); }
 .accueil-page .etapes { list-style: none; counter-reset: e; padding-left: 0 !important; }

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { lireAdresse, ecrireAdresse, REGLAGES_PAR_DEFAUT } from '../../src/app/route.js';
+import { lireAdresse, ecrireAdresse, REGLAGES_PAR_DEFAUT, adresseParcoursTest, PARCOURS_TEST } from '../../src/app/route.js';
 
 const TACHE = { pack: 'été', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true };
 const hashDe = url => new URL(url).hash;
@@ -95,4 +95,18 @@ test('réglage « écoute par syllabes » : trois valeurs lues et réécrites, u
     assert.equal(lireAdresse(hashDe(url)).tache.syllabes, v);
   }
   assert.equal(lireAdresse('#/jeu?pack=x&syllabes=partout').tache.syllabes, undefined);
+});
+
+test('parcours test : liste et code proposés, réglages par défaut, code sans clé = simple préremplissage', () => {
+  const adr = adresseParcoursTest();
+  assert.ok(adr.startsWith('#/jeu?pack=p1-20-images'), adr);
+  const a = lireAdresse(adr);
+  assert.equal(a.ecran, 'jeu');
+  assert.equal(a.tache.pack, PARCOURS_TEST.pack);
+  assert.equal(a.tache.codePropose, 'E01');
+  assert.equal(a.tache.cle, undefined);        // pas de clé : aucun envoi au serveur
+  assert.equal(a.tache.codeEleve, undefined);
+  // les réglages annoncés sur l'accueil sont bien les réglages par défaut
+  assert.deepEqual({ m: a.tache.modeMot, h: a.tache.habillage, i: a.tache.nbIntrus, a: a.tache.exigerAccents, s: a.tache.syllabes, v: a.tache.vitesse, l: !!a.tache.vitesseVerrou },
+    { m: 'sans', h: 'album', i: 3, a: false, s: 'toujours', v: 100, l: false });
 });

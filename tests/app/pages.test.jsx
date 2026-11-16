@@ -21,6 +21,18 @@ describe('adresses des pages', () => {
 });
 
 describe('pages du site', () => {
+  it('accueil : bouton « Parcours test » vers la liste par défaut avec E01 prérempli, réglages annoncés', async () => {
+    monter('#/');
+    const lien = screen.getByRole('link', { name: /Parcours test/ });
+    expect(lien.getAttribute('href')).toMatch(/^#\/jeu\?pack=p1-20-images&.*&e=E01$/);
+    expect(screen.getByText(/Réglages par défaut : cartes sans le mot écrit/)).toBeInTheDocument();
+    cleanup();
+    const { container } = monter(lien.getAttribute('href'));
+    expect(await screen.findByLabelText(/Code de l’élève/)).toHaveValue('E01');
+    expect(screen.getByRole('button', { name: 'Commencer' })).toBeInTheDocument();
+    expect(container.textContent).not.toMatch(/Mes résultats sont envoyés/);
+  });
+
   it('accueil : deux portes visibles (élève, enseignant), accès aux informations', () => {
     monter('#/');
     expect(screen.getByRole('link', { name: /Je suis élève/ })).toHaveAttribute('href', '#/eleve');

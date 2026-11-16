@@ -16,6 +16,8 @@ function tacheDepuisRequete(requete) {
   // Lien personnel d'un élève : son code (e) et sa clé (k), les deux ou aucun. Sans clé, aucun résultat ne peut être envoyé au serveur.
   const codeEleve = p.get('e'), cle = p.get('k');
   if (codeEleve && /^[A-Za-z0-9-]{1,12}$/.test(codeEleve) && cle && /^[a-f0-9]{20}$/.test(cle)) { tache.codeEleve = codeEleve; tache.cle = cle; }
+  // Code seul, sans clé : simple préremplissage du champ (parcours test). Sans clé personnelle, aucun résultat n'est envoyé au serveur.
+  else if (codeEleve && !cle && /^[A-Za-z0-9-]{1,12}$/.test(codeEleve)) tache.codePropose = codeEleve;
   const mode = p.get('mode');
   if (mode === 'avec' || mode === 'sans') tache.modeMot = mode;
   const habillage = p.get('habillage');
@@ -31,6 +33,14 @@ function tacheDepuisRequete(requete) {
   if (accents === '1') tache.exigerAccents = true;
   if (accents === '0') tache.exigerAccents = false;
   return tache;
+}
+
+// Parcours test : liste et code proposés d'avance, réglages par défaut ci-dessus. Les essais restent sur l'appareil (pas de clé, donc pas d'envoi).
+export const PARCOURS_TEST = { pack: 'p1-20-images', titre: '20 mots de P1 avec images (papier découpé)', code: 'E01' };
+
+export function adresseParcoursTest() {
+  const complete = ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: PARCOURS_TEST.pack }); // '/#/jeu?pack=…'
+  return `${complete.slice(1)}&e=${encodeURIComponent(PARCOURS_TEST.code)}`;
 }
 
 export function lireAdresse(hash) {

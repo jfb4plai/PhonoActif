@@ -1,5 +1,6 @@
 import React from 'react';
 import Cadre from './Cadre.jsx';
+import { PARCOURS_TEST, adresseParcoursTest } from './route.js';
 
 /* Page d'accueil du site : deux portes (élève, enseignant), le principe en trois gestes, et l'accès aux informations
    (mode d'emploi, données, crédits). Rien ici ne demande de compte. */
@@ -30,6 +31,17 @@ export default function Landing({ base = '/' }) {
             <span>Classes, liens, QR-codes et résultats. Il faut un compte PLAI.</span>
           </a>
         </div>
+
+        <section className="plai-section" aria-labelledby="essai">
+          <h2 id="essai">Essayer sans rien régler</h2>
+          <div className="portes">
+            <a className="porte porte-test" href={adresseParcoursTest()}>
+              <strong>Parcours test</strong>
+              <span>Liste « {PARCOURS_TEST.titre} », code {PARCOURS_TEST.code} déjà rempli.</span>
+            </a>
+          </div>
+          <p className="aide">Réglages par défaut : cartes sans le mot écrit (l’élève trouve le mot à l’oreille), habillage album, 3 cubes en trop, accents non exigés, écoute par syllabes proposée, voix normale avec les trois vitesses au choix de l’élève. Les essais restent sur cet appareil : rien n’est envoyé à un enseignant.</p>
+        </section>
 
         <section className="plai-section" aria-labelledby="principe">
           <h2 id="principe">Comment ça marche</h2>

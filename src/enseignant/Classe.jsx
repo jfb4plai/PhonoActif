@@ -3,6 +3,7 @@ import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
 import { fusionnerListes, validerTache, TACHE_MAX } from '../core/liste.js';
 import { listerListes, supprimerListe, dupliquerListe } from './listes.js';
 import ListeEditeur from './ListeEditeur.jsx';
+import { libelleLiaison } from './liaison.js';
 import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
 } from './api.js';
@@ -227,12 +228,13 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
             <tr key={l.id}>
               <td>{l.code}</td><td>{l.essais}</td>
               <td>{l.derniereSeance ? l.derniereSeance.slice(0, 10) : 'aucune'}</td>
-              <td>{l.plusRatees.map(x => x.liaison).join(', ') || '-'}</td>
+              <td>{l.plusRatees.map(x => libelleLiaison(x.liaison)).join(', ') || '-'}</td>
               {master && <td><button type="button" onClick={() => retirer(l.id)}>Retirer {l.code}</button></td>}
             </tr>
           ))}
         </tbody>
       </table>
+      <p className="aide">« À retravailler » : les trois liaisons lettres → son que l’élève rate le plus souvent au premier coup. Exemple pour « chat » : « ch → [ʃ] » (les lettres ch font le son « ch »), « a → [a] », « t → muet » (le t ne s’entend pas).</p>
 
       {master && (
         <>

@@ -73,7 +73,7 @@ function AppEleve({ deps, hash, partie }) {
 
   const [tache, setTache] = useState({ ...REGLAGES_PAR_DEFAUT, pack: '', ...adresse.tache });
   const [etatTache, setEtatTache] = useState(enLigne ? (config ? 'chargement' : 'hors_service') : 'non');
-  const [code, setCode] = useState(adresse.tache && adresse.tache.codeEleve ? adresse.tache.codeEleve : ''); // lien personnel : code déjà rempli
+  const [code, setCode] = useState((adresse.tache && (adresse.tache.codeEleve || adresse.tache.codePropose)) || ''); // lien personnel ou parcours test : code déjà rempli
   const [vue, setVue] = useState('accueil');
   const [pack, setPack] = useState(null);
   const [cleJeu, setCleJeu] = useState(0);
