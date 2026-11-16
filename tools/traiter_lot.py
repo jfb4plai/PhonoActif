@@ -25,6 +25,8 @@ def traiter(source=None, nom=None, lot=2, dossier=None, racine_galerie=None):
         if not source.is_file():
             raise SystemExit(f"Introuvable : {source}")
         cible = dossier / ((nom or source.stem).removesuffix(".png") + ".png")
+        # une image remplacée doit remplacer aussi son original : sinon uniformiser_fond la restaure depuis l'ancien original (bug constaté 2026-11-16 : sans, brique)
+        (dossier / "originaux-canva" / cible.name).unlink(missing_ok=True)
         shutil.copyfile(source, cible)
         print(f"copié : {cible.name}")
     # seulement les images attendues du lot : pas les planches-contact ni les autres PNG du dossier

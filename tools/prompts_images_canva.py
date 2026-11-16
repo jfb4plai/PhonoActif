@@ -110,7 +110,7 @@ def entree_nombre(mot):
 
 
 # Images de référence propres à un mot (retouche d'une image déjà générée) : « fête » v1 (ballons seuls) à laquelle JF demande d'ajouter confettis et notes de musique.
-REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"], "sur": ["MAHa_AOCW34"], "sous": ["MAHa_AOCW34", "MAHa_AZNijw"], "vers": ["MAHa_AOCW34"], "avec": ["MAHa_AOCW34"]}   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
+REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"], "sur": ["MAHa_AOCW34"], "sous": ["MAHa_AOCW34", "MAHa_AZNijw"], "vers": ["MAHa_AOCW34"], "avec": ["MAHa_AOCW34"], "côté": ["MAHa_AOCW34"]}   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
 
 
 def references_de(mot):
@@ -323,7 +323,7 @@ MOTS_LOT7 = [
 # Lot 8 : mots du pack p1-100 qui n'ont pas d'image (proposition de Claude, 2026-11-15, à valider par JF image par image). Garçon, père, papa : AVEC VISAGE (décision de JF, 2026-11-15) ;
 # maman et ami : même style, proposés par Claude (extension évidente, à confirmer). Les personnages ont deux petits points pour les yeux et un petit sourire, des formes plates en papier découpé.
 # PERSONNES : mots dont le prompt n'écrit pas « no people » (le bloc commun l'interdit pour tous les autres mots).
-PERSONNES = {"garçon", "père", "papa", "maman", "ami", "manger", "lire", "voir", "peur"}
+PERSONNES = {"garçon", "père", "papa", "maman", "ami", "manger", "lire", "voir", "peur", "sans"}
 PEAU = "peach #f2b48a, dark brown #5b3a29"
 MOTS_LOT8 = [
     ("rouge", "rouge", "a single irregular paint-stain blob, a lopsided asymmetric rounded shape with five or six uneven bulges of different sizes and one small narrow lobe, clearly not symmetric, not a clover, not a flower, not a cloud", DE_FACE, "aucun", "red #dc2626",
@@ -405,8 +405,52 @@ MOTS_SERIE_CHAT = [
      " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle), awake and playful, seen from the side, one front paw resting on one small plain red ball (one single red color) in front of it. One animal only. Nothing else: no dog, no yarn, no toy, no text.",
      "LE MÊME chat orange qui joue avec UNE balle rouge (une patte dessus) ; un seul animal ; rien d'autre", "série des mots de position, un seul personnage (JF) : « Le chat joue avec la balle »"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT   # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 10 : fin du p1-100 (2026-11-16, proposition de Claude, à valider par JF) : côté et sans (suite de la série du chat, même référence que sur/sous), gros (le chien de la phrase du pack).
+# Restent SANS image, par décision de JF : mots-outils, pronoms, oui/non ; matin/soir en réflexion.
+MOTS_LOT10 = [
+    ("côté", "cote", "a small orange cat sitting upright next to a simple wooden chair, beside it and not touching it", DE_PROFIL, "profil", "orange #f97316, cream, warm yellow #fbbf24",
+     " Exactly the same small orange tabby cat as in the reference image (cream belly, cream paws, cream muzzle) with one small dark dot for the eye, sitting upright on the ground at the LEFT of a simple chair seen from the side, close beside it, both at the same level and side by side. The chair is made of ONE single warm yellow color: a flat seat, a straight back and four thin legs. The cat is not on the chair and not under it. Nothing else.",
+     "LE MÊME chat orange assis À CÔTÉ d'une chaise (gauche, au même niveau, ni dessus ni dessous) ; rien d'autre", "série des mots de position : « Le chat est à côté de la chaise » (phrase du pack : « Je suis assis à côté de toi. »)"),
+    ("sans", "sans", "a boy standing, holding in one hand a dog leash whose far end lies on the ground with nothing attached to it, the dog is invisible", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316, red #dc2626, warm yellow #fbbf24",
+     " A friendly boy: round peach-colored face with two small dark dots for the eyes and a small curved smile, short dark brown hair, teal t-shirt, orange shorts. His right arm is stretched out to the side holding the handle of a red leash; the leash is a plain red line that goes out and down to the ground and simply ends in a clearly visible dog collar lying open on the floor (a wide round warm yellow collar ring with a small round tag, big enough to be recognised as a dog collar, not a stick and not a cane) with NO dog, no animal, no silhouette, no shadow at its end. One boy only.",
+     "UN garçon qui tient une laisse rouge dont le bout est vide (pas de chien, ni silhouette ni ombre) ; illustre « Le garçon est sans son chien. »","JF 2026-11-16 : v1 (verre sans paille, paille barrée) pas claire, paille non reconnue ; demande une paire célèbre type Obélix sans Idéfix (personnage protégé : paire générique garçon + chien) ; phrase du pack à adapter"),
+    ("gros", "gros", "a very fat, round, chubby dog sleeping, with a huge round body", DE_PROFIL, "profil", "warm brown #a16207, cream, soft pink #f4a9b0",
+     " A dog whose body is an enormous round ball, much wider and taller than its small head and short legs, asleep with its eye shown as one short curved dark line. Warm brown body, cream belly and muzzle. One animal only. Nothing else.",
+     "UN chien TRÈS gros et rond, endormi ; un seul animal ; rien d'autre", "essai pour JF : « gros » = « Le gros chien dort. »"),
+]
+# Lot 11 : VOB, année P1 (data/listes/vob.json, niveau P1 ; 52 entrées dont 21 noms ; 2026-11-16). Noms d'objets absents des lots précédents ; mots du pack p1-100 exclus.
+# Hors lot, à décider par JF : bébé, fille, femme, homme, fils (personnes, style du lot 8) ; chatte, lapine, lionne (féminins d'animaux : même image que le mâle) ; mal, rive, sud (abstraits).
+MOTS_LOT11 = [
+    ("branche", "branche", "a single tree branch with five or six leaves", DE_FACE, "aucun", "warm brown #a16207, soft green #86b98f, teal #0f6e56",
+     " One slightly curved brown branch with a few short side twigs, each carrying one single flat green leaf. No trunk, no tree, no fruit, no bird.",
+     "UNE branche brune avec quelques feuilles vertes ; pas un arbre entier ; rien d'autre", "VOB P1"),
+    ("brique", "brique", "a small stack of three terracotta-colored bricks laid like the start of a wall", DE_FACE, "aucun", "terracotta brick color #b9532f, cream",
+     " Three rectangular bricks in ONE single flat terracotta brick color #b9532f (an earthy orange-brown clay color, NOT bright red): two side by side on the bottom row and one on top, offset by half a brick like in a real brick wall, separated by thin cream mortar gaps. Each brick is clearly a chunky block, not an envelope and not a box. No wall behind, no ground, no texture lines.",
+     "TROIS briques rouges empilées en quinconce, séparées par un joint crème ; se lit comme des briques, pas une enveloppe ni une boîte", "VOB P1 ; v1 (une seule brique, rectangle rouge à bord crème) archivée : se lit comme une enveloppe"),
+    ("cheminée", "cheminee", "a small house roof with a brick chimney and a little smoke", DE_FACE, "aucun", "orange #f97316, terracotta brick color #b9532f, cream, light grey #a8a29e",
+     " The top part of a house: a triangular orange roof, a tall terracotta brick-colored (#b9532f, not bright red) chimney rising from it, and two or three small round soft grey smoke puffs above the chimney. No walls, no windows, no door.",
+     "UN toit avec UNE cheminée rouge qui fume ; pas de maison entière", "VOB P1"),
+    ("pipe", "pipe", "a single smoking pipe", DE_PROFIL, "aucun", "warm brown #a16207, dark brown #5b3a29, light grey #a8a29e",
+     " One simple tobacco pipe with a round bowl and a curved stem, no smoke, no person, no flame.",
+     "UNE pipe (fourneau rond, tuyau courbe) ; sans fumée ni personne", "VOB P1"),
+    ("plante", "plante", "a green plant in a terracotta pot", DE_FACE, "aucun", "soft green #86b98f, teal #0f6e56, orange #f97316",
+     " One small potted plant: an orange pot with a few flat green leaves of two greens on thin stems. No flower, no saucer, no soil visible.",
+     "UNE plante verte en pot orange ; sans fleur", "VOB P1"),
+    ("robe", "robe", "a single child's dress", DE_FACE, "aucun", "soft pink #f4a9b0, cream, teal #0f6e56",
+     " One simple dress shown alone as if laid flat: two short sleeves, a round neckline, a fitted top and a wide flared skirt, ONE single soft pink with a teal belt. No body, no hanger, no pattern.",
+     "UNE robe rose seule, à plat (manches courtes, jupe évasée) ; sans corps ni cintre", "VOB P1"),
+    ("route", "route", "a straight road going into the distance across a green field", DE_FACE, "aucun", "dark grey #57534e, soft green #86b98f, cream",
+     " A grey road shaped like a trapezoid narrowing toward the top, with a short dashed cream line along its middle, and flat green grass on both sides. No car, no house, no tree, no sign, no person.",
+     "UNE route grise qui s'éloigne entre deux bandes d'herbe ; ni voiture ni maison ni arbre ; différente de « rue »", "VOB P1"),
+    ("soleil", "soleil", "a sun with a round disc and straight rays", DE_FACE, "aucun", "warm yellow #fbbf24, orange #f97316",
+     " A round warm yellow disc with eight short triangular orange rays around it. Face-less: no eyes, no mouth.",
+     "UN soleil (disque jaune, rayons orange) ; sans visage", "VOB P1"),
+    ("sucre", "sucre", "a small low teal bowl heaped with about nine big white sugar lumps, the lumps are the main subject", DE_PROFIL, "aucun", "teal #0f6e56, pure white #ffffff, off-white #f5f5f4, light grey-white #e7e5e4",
+     " A small, low, wide teal bowl filled to overflowing with a pile of about nine BIG white sugar lumps: the pile rises well above the rim and takes about two thirds of the picture, so the white lumps are the main subject and the bowl is secondary. Each lump is a rectangular block (a cuboid) with a SQUARE top and a height clearly smaller than its width, like a real lump of coffee sugar: NOT a cube, NOT a dice, NOT an eraser. Bright white tops, slightly darker off-white side faces, soft shadows between lumps so each lump is distinct, lumps tilted at different angles in the pile. Nothing else: no cup, no coffee, no spoon, no steam, no text.",
+     "UN petit sucrier bas, turquoise, débordant d'une dizaine de GROS morceaux de sucre (pavés à base carrée, plus bas que larges, pas des cubes ni des dés) : les morceaux blancs sont le sujet (deux tiers de l'image), le bol est secondaire ; rien d'autre","VOB P1 ; v1 (deux blocs blancs) lue comme des gommes ; v2 (tasse de café, sucres minuscules sous le bord) trop peu en évidence (JF 2026-11-16)"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
