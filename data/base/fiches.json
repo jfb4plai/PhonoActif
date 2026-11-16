@@ -479,7 +479,7 @@
     "cubes": 3
    }
   ],
-  "phrase": "Le petit chat boit du lait.",
+  "phrase": "Le rond avec la flèche est petit.",
   "phraseAudio": "audio/phrase-petit.mp3",
   "image_sans_mot": "images/petit.png",
   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
@@ -3119,7 +3119,7 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Je bois sans paille.",
+  "phrase": "Le garçon est sans son chien.",
   "phraseAudio": "audio/phrase-sans.mp3",
   "statut": "valide",
   "origine": [
@@ -3507,7 +3507,7 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Mon frère est grand.",
+  "phrase": "Le rond avec la flèche est grand.",
   "phraseAudio": "audio/phrase-grand.mp3",
   "image_sans_mot": "images/grand.png",
   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
@@ -3898,7 +3898,7 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "La pomme est rouge.",
+  "phrase": "La tache est rouge.",
   "phraseAudio": "audio/phrase-rouge.mp3",
   "image_sans_mot": "images/rouge.png",
   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
@@ -5659,7 +5659,7 @@
     "cubes": 2
    }
   ],
-  "phrase": "Je suis assis à côté de toi.",
+  "phrase": "Le chat est à côté de la chaise.",
   "phraseAudio": "audio/phrase-cote.mp3",
   "statut": "valide",
   "origine": [
