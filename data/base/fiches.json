@@ -10886,7 +10886,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La branche a des feuilles vertes.",
   "phraseAudio": "audio/phrase-branche.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -10969,7 +10969,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Les briques font un petit mur.",
   "phraseAudio": "audio/phrase-brique.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11082,7 +11082,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La fumée sort de la cheminée.",
   "phraseAudio": "audio/phrase-cheminee.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11149,7 +11149,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La pipe est en bois.",
   "phraseAudio": "audio/phrase-pipe.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11232,7 +11232,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La plante est dans un pot.",
   "phraseAudio": "audio/phrase-plante.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11299,7 +11299,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Ma robe est rose.",
   "phraseAudio": "audio/phrase-robe.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11372,7 +11372,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La route est longue et grise.",
   "phraseAudio": "audio/phrase-route.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11454,7 +11454,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Il y a beaucoup de sucre dans le bol.",
   "phraseAudio": "audio/phrase-sucre.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11552,7 +11552,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "L'armoire a deux portes.",
   "phraseAudio": "audio/phrase-armoire.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11625,7 +11625,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La balle est ronde et rouge.",
   "phraseAudio": "audio/phrase-balle.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11692,7 +11692,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "L'oiseau est dans la cage.",
   "phraseAudio": "audio/phrase-cage.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11780,7 +11780,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Mon cahier est orange.",
   "phraseAudio": "audio/phrase-cahier.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11903,7 +11903,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La confiture est dans le pot.",
   "phraseAudio": "audio/phrase-confiture.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -11991,7 +11991,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Je mange une orange.",
   "phraseAudio": "audio/phrase-orange.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -12068,7 +12068,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La plume est blanche.",
   "phraseAudio": "audio/phrase-plume.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -12156,7 +12156,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "La poupée est assise.",
   "phraseAudio": "audio/phrase-poupee.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]
@@ -12229,7 +12229,144 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le singe mange une banane.",
   "phraseAudio": "audio/phrase-singe.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "soleil",
+  "mot": "soleil",
+  "lettres": [
+   "s",
+   "o",
+   "l",
+   "e",
+   "i",
+   "l"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "eil",
+    "son": "e_ouvert+yod"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "so",
+    "fichier": "audio/73_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sol",
+    "fichier": "audio/73_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sole",
+    "fichier": "audio/73_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "solei",
+    "fichier": "audio/73_254_6c_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "soleil",
+    "fichier": "audio/73_254_6c_25b_6a_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sɔ",
+    "fichier": "audio/73_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "lɛj",
+    "fichier": "audio/6c_25b_6a_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/soleil.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le soleil brille.",
+  "phraseAudio": "audio/phrase-soleil.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "oeuf",
+  "mot": "œuf",
+  "lettres": [
+   "œ",
+   "u",
+   "f"
+  ],
+  "cubes": [
+   {
+    "g": "œu",
+    "son": "eu_ouvert"
+   },
+   {
+    "g": "f",
+    "son": "f"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "œ",
+    "fichier": null,
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "œu",
+    "fichier": "audio/f8_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "œuf",
+    "fichier": "audio/153_66_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "œf",
+    "fichier": "audio/153_66_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/oeuf.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Voici un œuf blanc.",
+  "phraseAudio": "audio/phrase-oeuf.mp3",
+  "statut": "valide",
   "origine": [
    "vob-lots-11-12"
   ]

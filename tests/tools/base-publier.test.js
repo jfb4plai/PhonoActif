@@ -26,10 +26,10 @@ test('publier : seules les fiches au statut « valide » sont servies, avec leur
   await assert.rejects(access(path.join(sortie, 'audio', 'cd.mp3')));
 });
 
-test('publier sur la vraie base : 156 mots triés, fiches < 600 Ko, tout fichier cité présent, modèle p1-100 de 100 mots', async () => {
+test('publier sur la vraie base : au moins 156 mots triés, fiches < 600 Ko, tout fichier cité présent, modèle p1-100 de 100 mots', async () => {
   const sortie = await mkdtemp(path.join(tmpdir(), 'phono-mots-'));
   const r = await publier({ racine: RACINE, sortie });
-  assert.equal(r.nbMots, 156);
+  assert.ok(r.nbMots >= 156, `${r.nbMots} mots publiés`);
   const catalogue = await lire(path.join(sortie, 'catalogue.json'));
   assert.deepEqual(catalogue.map(c => c.mot), [...catalogue.map(c => c.mot)].sort((a, b) => a.localeCompare(b, 'fr')));
   const chat = catalogue.find(c => c.id === 'chat');

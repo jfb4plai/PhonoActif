@@ -1,1 +1,18 @@
-[]
+[
+ {
+  "mot": "soleil",
+  "cubes": [{ "g": "s", "son": "s" }, { "g": "o", "son": "o_ouvert" }, { "g": "l", "son": "l" }, { "g": "eil", "son": "e_ouvert+yod" }],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-16 : les 6 états « bon »)",
+  "date": "2026-11-16",
+  "raison": ""
+ },
+ {
+  "mot": "œuf",
+  "cubes": [{ "g": "œu", "son": "eu_ouvert" }, { "g": "f", "son": "f" }],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-16 : états œu et œuf « bon »)",
+  "date": "2026-11-16",
+  "raison": ""
+ }
+]

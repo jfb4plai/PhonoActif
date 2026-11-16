@@ -34,28 +34,33 @@ async function ajouter(chemin) {
   const existants = new Map(fiches.map(f => [f.id, f]));
   const lexique = await chargerLexique(path.join(racine, 'data', 'lexique.json'));
   const { corrections } = await chargerCorrections(path.join(racine, 'data', 'corrections.json'));
-  const nouveaux = lot.mots.filter(m => !existants.has(identifiantCarte(m.mot)));
   const deja = lot.mots.filter(m => existants.has(identifiantCarte(m.mot))).map(m => m.mot);
   const pack = {
     nom: lot.nom, titre: lot.titre || lot.nom, visibilite: 'commun',
-    cartes: nouveaux.map(m => ({ mot: m.mot, niveau: m.niveau || lot.niveau,image: `images/${identifiantCarte(m.mot)}.png`, source: SOURCE, licence: LICENCE, phrase: m.phrase || '' }))
+    // les fichiers de génération (a-generer, phrases) couvrent TOUT le lot, même les mots déjà ajoutés : on peut relancer l'outil sans perdre la liste d'audio
+    cartes: lot.mots.map(m => ({ mot: m.mot, niveau: m.niveau || lot.niveau, image: `images/${identifiantCarte(m.mot)}.png`, source: SOURCE, licence: LICENCE, phrase: m.phrase || '' }))
   };
   const r = construirePackLettres({ pack, lexique, corrections });
-  const parMot = new Map(nouveaux.map(m => [m.mot, m]));
+  const parMot = new Map(lot.mots.map(m => [m.mot, m]));
   await mkdir(path.join(base, 'assets', 'images'), { recursive: true });
   const phrasesAGenerer = [], phrases = {};
+  let ajoutees = 0;
   for (const carte of r.manifest.cartes) {
     const m = parMot.get(carte.mot);
-    const src = path.resolve(racine, m.image);
-    if (!existsSync(src)) throw new Error(`Image introuvable pour « ${carte.mot} » : ${src}`);
-    await copyFile(src, path.join(base, 'assets', carte.image_sans_mot));
-    const fiche = { ...carte, ...(carte.phrase ? { phraseAudio: `audio/phrase-${carte.id}.mp3` } : {}), statut: 'brouillon', origine: [lot.nom] };
-    delete fiche.aVerifier;
-    fiches.push(fiche);
+    const phraseAudio = carte.phrase ? `audio/phrase-${carte.id}.mp3` : null;
+    if (!existants.has(carte.id)) {
+      const src = path.resolve(racine, m.image);
+      if (!existsSync(src)) throw new Error(`Image introuvable pour « ${carte.mot} » : ${src}`);
+      await copyFile(src, path.join(base, 'assets', carte.image_sans_mot));
+      const fiche = { ...carte, ...(phraseAudio ? { phraseAudio } : {}), statut: 'brouillon', origine: [lot.nom] };
+      delete fiche.aVerifier;
+      fiches.push(fiche);
+      ajoutees++;
+    }
     if (carte.phrase) {
       const ipa = carte.cubes.flatMap(c => composants(c.son)).map(s => SON_VERS_IPA[s]).join('');
       phrases[carte.mot] = carte.phrase;
-      phrasesAGenerer.push({ id: carte.id, mot: carte.mot, ipa, phrase: carte.phrase, fichier: fiche.phraseAudio });
+      phrasesAGenerer.push({ id: carte.id, mot: carte.mot, ipa, phrase: carte.phrase, fichier: phraseAudio });
     }
   }
   const rattachees = [];
@@ -76,7 +81,7 @@ async function ajouter(chemin) {
   await ecrire(path.join(dossier, 'a-generer.json'), { nom: lot.nom, fichiersDistincts: r.fichiersDistincts });
   await ecrire(path.join(dossier, 'phrases.json'), phrases);
   await ecrire(path.join(dossier, 'phrases-a-generer.json'), { nom: lot.nom, phrases: phrasesAGenerer });
-  console.log(`${r.manifest.cartes.length} fiches « brouillon » ajoutées (${deja.length ? 'déjà présents : ' + deja.join(', ') + ' ; ' : ''}${r.exclus.length} écartés).`);
+  console.log(`${ajoutees} fiches « brouillon » ajoutées (${deja.length ? 'déjà présentes : ' + deja.length + ' ; ' : ''}${r.exclus.length} écartés).`);
   r.exclus.forEach(e => console.log(`  écarté : ${e.mot} : ${e.raison}`));
   r.avertissements.forEach(a => console.log(`  attention : ${a}`));
   rattachees.forEach(x => console.log(`  ${x}`));
