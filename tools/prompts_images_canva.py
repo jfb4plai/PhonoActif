@@ -526,8 +526,49 @@ MOTS_LOT13 = [
      " A child standing at the left, round peach-colored face with two small dark dots for the eyes and a big smile, short dark brown hair, teal t-shirt, the right arm stretched out and ONE index finger pointing at a small orange tabby cat (cream belly, one small dark dot for the eye) sitting upright at the right. One child and one cat only. No text.",
      "UN enfant qui montre du doigt un petit chat orange assis à droite ; un enfant et un chat ; aucun texte", "p1-100 ; phrase adaptée : « Voilà mon chat ! »"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 14 (2026-11-16) : VOB P1 (personnes, même style que le lot 8) puis les 8 premiers noms dessinables du VOB P2 non illustrés (blé, bouche, café, car, chambre, chemin, cœur, costume).
+# Non tentés, décisions de JF : fils, chatte, lapine, lionne, mal, rive, sud, matin. Phrase écrite d'après l'image, mot cible tel quel. À valider par JF image par image.
+PERSONNES |= {"bébé", "fille", "femme", "homme", "bouche"}
+MOTS_LOT14 = [
+    ("bébé", "bebe", "a baby sitting on the floor, seen from the front, smiling, with a big round head and a tiny tuft of hair", DE_FACE, "face", f"{PEAU}, soft pink #f4a9b0, cream",
+     " A baby sitting upright with legs stretched in front: an oversized round peach-colored head with two small dark dots for the eyes, a small smile and one tiny curl of dark brown hair on top, a soft pink one-piece suit, short chubby arms and legs, no shoes. One baby only. No toys, no text.",
+     "UN bébé assis (grosse tête ronde, deux yeux, sourire, une mèche, combinaison rose) ; un seul personnage", "VOB P1 ; phrase : « Le bébé sourit. »"),
+    ("fille", "fille", "a girl standing, seen from the front, full body, with two dark brown braids", DE_FACE, "face", f"{PEAU}, orange #f97316, teal #0f6e56",
+     " A friendly girl: a round peach-colored face with two small dark dots for the eyes and a small curved smile, two dark brown braids hanging on each side, an orange dress, teal shoes, two arms hanging at her sides. One girl only, simple flat shapes.",
+     "UNE fille (deux yeux, sourire, deux tresses, robe orange), de face, en pied ; un seul personnage", "VOB P1 ; phrase : « La fille a une robe orange. »"),
+    ("femme", "femme", "an adult woman carrying a shopping bag, standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, teal #0f6e56, warm yellow #fbbf24, cream",
+     " A friendly woman: a round peach-colored face with two small dark dots for the eyes and a small curved smile, a dark brown bun on top of her head, a teal coat down to the knees, one hand holding a big warm yellow shopping bag. One woman only, simple flat shapes.",
+     "UNE femme adulte (chignon, manteau turquoise) qui porte un grand sac jaune ; un seul personnage", "VOB P1 ; phrase : « La femme porte un sac. »"),
+    ("homme", "homme", "an adult man wearing a round hat, standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, warm brown #a16207, orange #f97316, dark grey #57534e",
+     " A friendly man: a round peach-colored face with two small dark dots for the eyes and a small curved smile, a clearly visible round warm brown hat on his head, an orange jacket, dark grey trousers, two arms hanging at his sides. One man only, simple flat shapes, no beard, no glasses.",
+     "UN homme adulte avec un chapeau rond bien visible, veste orange ; un seul personnage", "VOB P1 ; phrase : « L'homme porte un chapeau. »"),
+    ("blé", "ble", "three golden wheat ears standing together on thin stems", DE_FACE, "aucun", "warm yellow #fbbf24, warm brown #a16207, soft green #86b98f",
+     " Three tall wheat stems side by side of slightly different heights, each topped by one elongated ear made of overlapping small warm yellow grain shapes with thin long awns pointing up; thin soft green stems. No field, no sack, no bread, no text.",
+     "TROIS épis de blé dorés sur leurs tiges ; ni champ ni pain", "VOB P2 ; phrase : « Le blé est jaune. »"),
+    ("bouche", "bouche", "a child's mouth, with red lips slightly open in a smile showing white teeth, cropped close", DE_FACE, "aucun", f"{PEAU}, red #dc2626, cream, soft pink #f4a9b0",
+     " Only a mouth with a little skin around it: soft red lips forming a wide open smile, a row of plain white teeth at the top, a small soft pink tongue inside; a little peach skin around the lips. No nose, no eye, no chin line beyond the lips, no text.",
+     "UNE bouche souriante (lèvres rouges, dents blanches, langue rose) cadrée de près ; ni nez ni yeux", "VOB P2 ; phrase : « J'ouvre la bouche. »"),
+    ("café", "cafe", "a cup of hot coffee on a saucer with a little steam", DE_PROFIL, "aucun", "teal #0f6e56, warm brown #a16207, cream",
+     " A teal cup seen from the side, filled to the top with dark brown coffee, with a small handle, on a cream saucer, and two or three small curved cream steam lines above it. No spoon, no sugar, no table, no text.",
+     "UNE tasse turquoise de café chaud sur sa soucoupe, avec de la vapeur ; rien d'autre", "VOB P2 ; phrase : « Le café est chaud. »"),
+    ("car", "car", "a yellow coach bus seen from the side with a row of windows", DE_PROFIL, "aucun", "warm yellow #fbbf24, teal #0f6e56, dark grey #57534e, cream",
+     " A long yellow coach bus: a rounded rectangular body in ONE single warm yellow, a row of seven cream windows, a larger front window at the right end, two dark grey wheels, a thin teal stripe along the body. No people, no road, no text, no number.",
+     "UN autocar jaune de profil (rangée de fenêtres, deux roues) ; ni personne ni route ni texte", "VOB P2 ; phrase : « Le car est jaune. »"),
+    ("chambre", "chambre", "a small bedroom seen from the front with a bed, a window and a rug", DE_FACE, "aucun", "teal #0f6e56, soft pink #f4a9b0, cream, warm yellow #fbbf24, warm brown #a16207",
+     " A simple bedroom wall seen from the front: a single bed with a soft pink blanket and a cream pillow at the left, a square window with a warm yellow curtain on the right wall, a small round teal rug on the floor, a plain cream wall. No people, no toys, no pictures, no text.",
+     "UNE chambre simple (un lit rose, une fenêtre, un tapis rond) ; ni personne ni jouet", "VOB P2 ; phrase : « Il y a un lit dans la chambre. »"),
+    ("chemin", "chemin", "a narrow winding brown dirt path through green grass", DE_FACE, "aucun", "warm brown #a16207, soft green #86b98f, teal #0f6e56, soft pink #f4a9b0",
+     " A narrow brown dirt path that winds in an S curve from the bottom of the picture toward the top, getting thinner, between two flat soft green grass areas, with three small pink flowers in the grass. Narrower and curvier than a road: no lines on it, no cars, no houses, no text.",
+     "UN sentier brun étroit qui serpente entre deux zones d'herbe, trois petites fleurs ; différent de « route » ; rien d'autre", "VOB P2 ; phrase : « Le chemin tourne dans l'herbe. »"),
+    ("cœur", "coeur", "one big plain red heart shape", DE_FACE, "aucun", "red #dc2626, cream",
+     " One large symmetrical heart symbol in ONE single plain red, smooth rounded shape, with one soft small cream highlight on the upper left lobe. Not an anatomical heart: no veins, no valves, no tubes. No text.",
+     "UN grand cœur rouge symétrique, une seule couleur ; pas un organe", "VOB P2 ; phrase : « Voici un cœur rouge. »"),
+    ("costume", "costume", "a man's suit on a hanger: a dark teal jacket with a red tie and matching trousers hanging below", DE_FACE, "aucun", "teal #0f6e56, red #dc2626, cream, warm brown #a16207",
+     " A men's suit hanging on a wooden hanger seen from the front: a dark teal jacket with two lapels and a cream shirt collar, a red tie in the middle, and matching dark teal trousers hanging straight below. No person, no body, no wall, no text.",
+     "UN costume (veste turquoise foncé, cravate rouge, pantalon) sur un cintre ; aucune personne", "VOB P2 ; phrase : « Le costume est vert. » (l'image montre un costume vert turquoise : la phrase d'abord prévue, « bleu », ne correspondait pas)"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):

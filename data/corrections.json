@@ -1,7 +1,24 @@
 [
  {
   "mot": "soleil",
-  "cubes": [{ "g": "s", "son": "s" }, { "g": "o", "son": "o_ouvert" }, { "g": "l", "son": "l" }, { "g": "eil", "son": "e_ouvert+yod" }],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "eil",
+    "son": "e_ouvert+yod"
+   }
+  ],
   "statut": "valide",
   "auteur": "JF (écoute du 2026-11-16 : les 6 états « bon »)",
   "date": "2026-11-16",
@@ -9,9 +26,64 @@
  },
  {
   "mot": "œuf",
-  "cubes": [{ "g": "œu", "son": "eu_ouvert" }, { "g": "f", "son": "f" }],
+  "cubes": [
+   {
+    "g": "œu",
+    "son": "eu_ouvert"
+   },
+   {
+    "g": "f",
+    "son": "f"
+   }
+  ],
   "statut": "valide",
   "auteur": "JF (écoute du 2026-11-16 : états œu et œuf « bon »)",
+  "date": "2026-11-16",
+  "raison": ""
+ },
+ {
+  "mot": "chemin",
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "in",
+    "son": "in"
+   }
+  ],
+  "statut": "corrige",
+  "auteur": "JF (écoute du 2026-11-16)",
+  "date": "2026-11-16",
+  "raison": "Le e de chemin se prononce /ə/ (/ʃəmɛ̃/) ; la lecture du lexique /ʃmɛ̃/ (e muet) est fausse pour l'app."
+ },
+ {
+  "mot": "cœur",
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "œu",
+    "son": "eu_ouvert"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-16 : états c, coe, coeu, coeur « ok »)",
   "date": "2026-11-16",
   "raison": ""
  }

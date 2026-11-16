@@ -1,0 +1,21 @@
+{
+ "nom": "vob-lot14",
+ "titre": "VOB P1 (personnes) et P2 avec images (lot 14, papier découpé)",
+ "niveau": "P1",
+ "mots": [
+  { "mot": "bébé", "niveau": "P1", "image": "docs/images-canva/lot14/bebe.png", "phrase": "Le bébé sourit.", "commentaire": "VOB P1, lot 14 ; phrase proposée d'après l'image, à valider par JF" },
+  { "mot": "fille", "niveau": "P1", "image": "docs/images-canva/lot14/fille.png", "phrase": "La fille a une robe orange.", "commentaire": "VOB P1, lot 14 ; phrase à valider" },
+  { "mot": "femme", "niveau": "P1", "image": "docs/images-canva/lot14/femme.png", "phrase": "La femme porte un sac.", "commentaire": "VOB P1, lot 14 ; phrase à valider" },
+  { "mot": "homme", "niveau": "P1", "image": "docs/images-canva/lot14/homme.png", "phrase": "L'homme porte un chapeau.", "commentaire": "VOB P1, lot 14 ; phrase à valider" },
+  { "mot": "blé", "niveau": "P2", "image": "docs/images-canva/lot14/ble.png", "phrase": "Le blé est jaune.", "commentaire": "VOB P2, lot 14 ; phrase à valider" },
+  { "mot": "bouche", "niveau": "P2", "image": "docs/images-canva/lot14/bouche.png", "phrase": "J'ouvre la bouche.", "commentaire": "VOB P2, lot 14 ; lèvres rouges plutôt adultes : à valider ; phrase à valider" },
+  { "mot": "café", "niveau": "P2", "image": "docs/images-canva/lot14/cafe.png", "phrase": "Le café est chaud.", "commentaire": "VOB P2, lot 14 ; phrase à valider" },
+  { "mot": "car", "niveau": "P2", "image": "docs/images-canva/lot14/car.png", "phrase": "Le car est jaune.", "commentaire": "VOB P2, lot 14 ; phrase à valider" },
+  { "mot": "chambre", "niveau": "P2", "image": "docs/images-canva/lot14/chambre.png", "phrase": "Il y a un lit dans la chambre.", "commentaire": "VOB P2, lot 14 ; phrase à valider" },
+  { "mot": "chemin", "niveau": "P2", "image": "docs/images-canva/lot14/chemin.png", "phrase": "Le chemin tourne dans l'herbe.", "commentaire": "VOB P2, lot 14 ; phrase à valider" },
+  { "mot": "cœur", "niveau": "P2", "image": "docs/images-canva/lot14/coeur.png", "phrase": "Voici un cœur rouge.", "commentaire": "VOB P2, lot 14 ; reflet crème proche d'un pansement : à valider ; phrase à valider" },
+  { "mot": "costume", "niveau": "P2", "image": "docs/images-canva/lot14/costume.png", "phrase": "Le costume est vert.", "commentaire": "VOB P2, lot 14 ; phrase corrigée (vert, pas bleu) d'après l'image ; à valider" }
+ ],
+ "images_existantes": [],
+ "phrases_existantes": []
+}

@@ -12406,5 +12406,900 @@
   "origine": [
    "vob-lots-11-12"
   ]
+ },
+ {
+  "id": "bebe",
+  "mot": "bébé",
+  "lettres": [
+   "b",
+   "é",
+   "b",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bé",
+    "fichier": "audio/62_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "béb",
+    "fichier": "audio/62_65_62_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bébé",
+    "fichier": "audio/62_65_62_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "be",
+    "fichier": "audio/62_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "be",
+    "fichier": "audio/62_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/bebe.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le bébé sourit.",
+  "phraseAudio": "audio/phrase-bebe.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "fille",
+  "mot": "fille",
+  "lettres": [
+   "f",
+   "i",
+   "l",
+   "l",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "ill",
+    "son": "ij"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fil",
+    "fichier": "audio/66_69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fill",
+    "fichier": "audio/66_69_6a_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fille",
+    "fichier": "audio/66_69_6a_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fij",
+    "fichier": "audio/66_69_6a_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/fille.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La fille a une robe orange.",
+  "phraseAudio": "audio/phrase-fille.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "femme",
+  "mot": "femme",
+  "lettres": [
+   "f",
+   "e",
+   "m",
+   "m",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "e",
+    "son": "a"
+   },
+   {
+    "g": "mm",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fe",
+    "fichier": "audio/66_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fem",
+    "fichier": "audio/66_25b_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "femm",
+    "fichier": "audio/66_25b_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "femme",
+    "fichier": "audio/66_61_6d_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fam",
+    "fichier": "audio/66_61_6d_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/femme.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La femme porte un sac.",
+  "phraseAudio": "audio/phrase-femme.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "homme",
+  "mot": "homme",
+  "lettres": [
+   "h",
+   "o",
+   "m",
+   "m",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "h",
+    "son": ""
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "mm",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "h",
+    "fichier": null,
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ho",
+    "fichier": "audio/6f_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "hom",
+    "fichier": "audio/254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "homm",
+    "fichier": "audio/254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "homme",
+    "fichier": "audio/254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔm",
+    "fichier": "audio/254_6d_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/homme.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'homme porte un chapeau.",
+  "phraseAudio": "audio/phrase-homme.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "ble",
+  "mot": "blé",
+  "lettres": [
+   "b",
+   "l",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bl",
+    "fichier": "audio/62_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "blé",
+    "fichier": "audio/62_6c_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ble",
+    "fichier": "audio/62_6c_65_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/ble.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le blé est jaune.",
+  "phraseAudio": "audio/phrase-ble.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "bouche",
+  "mot": "bouche",
+  "lettres": [
+   "b",
+   "o",
+   "u",
+   "c",
+   "h",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   },
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bo",
+    "fichier": "audio/62_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bou",
+    "fichier": "audio/62_75_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bouc",
+    "fichier": "audio/62_75_6b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bouch",
+    "fichier": "audio/62_75_283_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bouche",
+    "fichier": "audio/62_75_283_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "buʃ",
+    "fichier": "audio/62_75_283_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/bouche.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "J'ouvre la bouche.",
+  "phraseAudio": "audio/phrase-bouche.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "cafe",
+  "mot": "café",
+  "lettres": [
+   "c",
+   "a",
+   "f",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ca",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "caf",
+    "fichier": "audio/6b_61_66_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "café",
+    "fichier": "audio/6b_61_66_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ka",
+    "fichier": "audio/6b_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "fe",
+    "fichier": "audio/66_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/cafe.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le café est chaud.",
+  "phraseAudio": "audio/phrase-cafe.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "car",
+  "mot": "car",
+  "lettres": [
+   "c",
+   "a",
+   "r"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ca",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "car",
+    "fichier": "audio/6b_61_281_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "kaʁ",
+    "fichier": "audio/6b_61_281_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/car.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le car est jaune.",
+  "phraseAudio": "audio/phrase-car.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "chambre",
+  "mot": "chambre",
+  "lettres": [
+   "c",
+   "h",
+   "a",
+   "m",
+   "b",
+   "r",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "am",
+    "son": "an"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ch",
+    "fichier": "audio/283_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cha",
+    "fichier": "audio/283_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cham",
+    "fichier": "audio/283_61_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chamb",
+    "fichier": "audio/283_251_303_62_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chambr",
+    "fichier": "audio/283_251_303_62_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chambre",
+    "fichier": "audio/283_251_303_62_281_259_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʃɑ̃",
+    "fichier": "audio/283_251_303_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "bʁə",
+    "fichier": "audio/62_281_259_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/chambre.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il y a un lit dans la chambre.",
+  "phraseAudio": "audio/phrase-chambre.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "costume",
+  "mot": "costume",
+  "lettres": [
+   "c",
+   "o",
+   "s",
+   "t",
+   "u",
+   "m",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "co",
+    "fichier": "audio/6b_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cos",
+    "fichier": "audio/6b_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cost",
+    "fichier": "audio/6b_254_73_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "costu",
+    "fichier": "audio/6b_254_73_74_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "costum",
+    "fichier": "audio/6b_254_73_74_79_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "costume",
+    "fichier": "audio/6b_254_73_74_79_6d_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "kɔs",
+    "fichier": "audio/6b_254_73_-30.mp3",
+    "cubes": 3
+   },
+   {
+    "ipa": "tym",
+    "fichier": "audio/74_79_6d_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/costume.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le costume est vert.",
+  "phraseAudio": "audio/phrase-costume.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "chemin",
+  "mot": "chemin",
+  "lettres": [
+   "c",
+   "h",
+   "e",
+   "m",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "in",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ch",
+    "fichier": "audio/283_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "che",
+    "fichier": "audio/283_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chem",
+    "fichier": "audio/283_25b_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chemi",
+    "fichier": "audio/283_259_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chemin",
+    "fichier": "audio/283_259_6d_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʃə",
+    "fichier": "audio/283_259_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mɛ̃",
+    "fichier": "audio/6d_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/chemin.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le chemin tourne dans l'herbe.",
+  "phraseAudio": "audio/phrase-chemin.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
+ },
+ {
+  "id": "coeur",
+  "mot": "cœur",
+  "lettres": [
+   "c",
+   "œ",
+   "u",
+   "r"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "œu",
+    "son": "eu_ouvert"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cœ",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cœu",
+    "fichier": "audio/6b_f8_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cœur",
+    "fichier": "audio/6b_153_281_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "kœʁ",
+    "fichier": "audio/6b_153_281_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/coeur.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Voici un cœur rouge.",
+  "phraseAudio": "audio/phrase-coeur.mp3",
+  "statut": "valide",
+  "origine": [
+   "vob-lot14"
+  ]
  }
 ]
