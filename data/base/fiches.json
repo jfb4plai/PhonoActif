@@ -2998,7 +2998,10 @@
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/gros.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "matin",
@@ -3124,7 +3127,10 @@
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/sans.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "bon",
@@ -5664,7 +5670,10 @@
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/cote.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "lune",
@@ -10791,6 +10800,1438 @@
   "statut": "valide",
   "origine": [
    "p1-illustre-5"
+  ]
+ },
+ {
+  "id": "branche",
+  "mot": "branche",
+  "lettres": [
+   "b",
+   "r",
+   "a",
+   "n",
+   "c",
+   "h",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "an",
+    "son": "an"
+   },
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "br",
+    "fichier": "audio/62_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bra",
+    "fichier": "audio/62_281_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bran",
+    "fichier": "audio/62_281_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "branc",
+    "fichier": "audio/62_281_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "branch",
+    "fichier": "audio/62_281_251_303_283_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "branche",
+    "fichier": "audio/62_281_251_303_283_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "bʁɑ̃ʃ",
+    "fichier": "audio/62_281_251_303_283_-30.mp3",
+    "cubes": 5
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/branche.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La branche a des feuilles vertes.",
+  "phraseAudio": "audio/phrase-branche.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "brique",
+  "mot": "brique",
+  "lettres": [
+   "b",
+   "r",
+   "i",
+   "q",
+   "u",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "qu",
+    "son": "k"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "br",
+    "fichier": "audio/62_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bri",
+    "fichier": "audio/62_281_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "briq",
+    "fichier": "audio/62_281_69_6b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "briqu",
+    "fichier": "audio/62_281_69_6b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "brique",
+    "fichier": "audio/62_281_69_6b_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "bʁik",
+    "fichier": "audio/62_281_69_6b_-30.mp3",
+    "cubes": 5
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/brique.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Les briques font un petit mur.",
+  "phraseAudio": "audio/phrase-brique.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "cheminee",
+  "mot": "cheminée",
+  "lettres": [
+   "c",
+   "h",
+   "e",
+   "m",
+   "i",
+   "n",
+   "é",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ch",
+    "fichier": "audio/283_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "che",
+    "fichier": "audio/283_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chem",
+    "fichier": "audio/283_25b_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chemi",
+    "fichier": "audio/283_259_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chemin",
+    "fichier": "audio/283_259_6d_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cheminé",
+    "fichier": "audio/283_259_6d_69_6e_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cheminée",
+    "fichier": "audio/283_259_6d_69_6e_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʃə",
+    "fichier": "audio/283_259_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ne",
+    "fichier": "audio/6e_65_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/cheminee.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La fumée sort de la cheminée.",
+  "phraseAudio": "audio/phrase-cheminee.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "pipe",
+  "mot": "pipe",
+  "lettres": [
+   "p",
+   "i",
+   "p",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pi",
+    "fichier": "audio/70_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pip",
+    "fichier": "audio/70_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pipe",
+    "fichier": "audio/70_69_70_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "pip",
+    "fichier": "audio/70_69_70_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/pipe.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La pipe est en bois.",
+  "phraseAudio": "audio/phrase-pipe.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "plante",
+  "mot": "plante",
+  "lettres": [
+   "p",
+   "l",
+   "a",
+   "n",
+   "t",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "an",
+    "son": "an"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pl",
+    "fichier": "audio/70_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pla",
+    "fichier": "audio/70_6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "plan",
+    "fichier": "audio/70_6c_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "plant",
+    "fichier": "audio/70_6c_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "plante",
+    "fichier": "audio/70_6c_251_303_74_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "plɑ̃t",
+    "fichier": "audio/70_6c_251_303_74_-30.mp3",
+    "cubes": 5
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/plante.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La plante est dans un pot.",
+  "phraseAudio": "audio/phrase-plante.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "robe",
+  "mot": "robe",
+  "lettres": [
+   "r",
+   "o",
+   "b",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ro",
+    "fichier": "audio/281_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rob",
+    "fichier": "audio/281_254_62_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "robe",
+    "fichier": "audio/281_254_62_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁɔb",
+    "fichier": "audio/281_254_62_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/robe.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Ma robe est rose.",
+  "phraseAudio": "audio/phrase-robe.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "route",
+  "mot": "route",
+  "lettres": [
+   "r",
+   "o",
+   "u",
+   "t",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ro",
+    "fichier": "audio/281_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rou",
+    "fichier": "audio/281_75_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rout",
+    "fichier": "audio/281_75_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "route",
+    "fichier": "audio/281_75_74_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁut",
+    "fichier": "audio/281_75_74_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/route.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La route est longue et grise.",
+  "phraseAudio": "audio/phrase-route.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "sucre",
+  "mot": "sucre",
+  "lettres": [
+   "s",
+   "u",
+   "c",
+   "r",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "su",
+    "fichier": "audio/73_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "suc",
+    "fichier": "audio/73_79_6b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sucr",
+    "fichier": "audio/73_79_6b_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sucre",
+    "fichier": "audio/73_79_6b_281_259_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sy",
+    "fichier": "audio/73_79_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "kʁə",
+    "fichier": "audio/6b_281_259_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/sucre.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il y a beaucoup de sucre dans le bol.",
+  "phraseAudio": "audio/phrase-sucre.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "armoire",
+  "mot": "armoire",
+  "lettres": [
+   "a",
+   "r",
+   "m",
+   "o",
+   "i",
+   "r",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "oi",
+    "son": "oi"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "a",
+    "fichier": "audio/61_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ar",
+    "fichier": "audio/61_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "arm",
+    "fichier": "audio/61_281_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "armo",
+    "fichier": "audio/61_281_6d_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "armoi",
+    "fichier": "audio/61_281_6d_77_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "armoir",
+    "fichier": "audio/61_281_6d_77_61_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "armoire",
+    "fichier": "audio/61_281_6d_77_61_281_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "aʁ",
+    "fichier": "audio/61_281_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mwaʁ",
+    "fichier": "audio/6d_77_61_281_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/armoire.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'armoire a deux portes.",
+  "phraseAudio": "audio/phrase-armoire.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "balle",
+  "mot": "balle",
+  "lettres": [
+   "b",
+   "a",
+   "l",
+   "l",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "ll",
+    "son": "l"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ba",
+    "fichier": "audio/62_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bal",
+    "fichier": "audio/62_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ball",
+    "fichier": "audio/62_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "balle",
+    "fichier": "audio/62_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "bal",
+    "fichier": "audio/62_61_6c_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/balle.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La balle est ronde et rouge.",
+  "phraseAudio": "audio/phrase-balle.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "cage",
+  "mot": "cage",
+  "lettres": [
+   "c",
+   "a",
+   "g",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "g",
+    "son": "j"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ca",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cag",
+    "fichier": "audio/6b_61_261_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cage",
+    "fichier": "audio/6b_61_292_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "kaʒ",
+    "fichier": "audio/6b_61_292_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/cage.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'oiseau est dans la cage.",
+  "phraseAudio": "audio/phrase-cage.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "cahier",
+  "mot": "cahier",
+  "lettres": [
+   "c",
+   "a",
+   "h",
+   "i",
+   "e",
+   "r"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "h",
+    "son": ""
+   },
+   {
+    "g": "i",
+    "son": "yod"
+   },
+   {
+    "g": "er",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ca",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cah",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cahi",
+    "fichier": "audio/6b_61_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cahie",
+    "fichier": "audio/6b_61_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cahier",
+    "fichier": "audio/6b_61_6a_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ka",
+    "fichier": "audio/6b_61_-30.mp3",
+    "cubes": 3
+   },
+   {
+    "ipa": "je",
+    "fichier": "audio/6a_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/cahier.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Mon cahier est orange.",
+  "phraseAudio": "audio/phrase-cahier.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "confiture",
+  "mot": "confiture",
+  "lettres": [
+   "c",
+   "o",
+   "n",
+   "f",
+   "i",
+   "t",
+   "u",
+   "r",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "on",
+    "son": "on"
+   },
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "co",
+    "fichier": "audio/6b_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "con",
+    "fichier": "audio/6b_254_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "conf",
+    "fichier": "audio/6b_254_303_66_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "confi",
+    "fichier": "audio/6b_254_303_66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "confit",
+    "fichier": "audio/6b_254_303_66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "confitu",
+    "fichier": "audio/6b_254_303_66_69_74_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "confitur",
+    "fichier": "audio/6b_254_303_66_69_74_79_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "confiture",
+    "fichier": "audio/6b_254_303_66_69_74_79_281_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "kɔ̃",
+    "fichier": "audio/6b_254_303_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "tyʁ",
+    "fichier": "audio/74_79_281_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/confiture.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La confiture est dans le pot.",
+  "phraseAudio": "audio/phrase-confiture.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "orange",
+  "mot": "orange",
+  "lettres": [
+   "o",
+   "r",
+   "a",
+   "n",
+   "g",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "an",
+    "son": "an"
+   },
+   {
+    "g": "g",
+    "son": "j"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/6f_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "or",
+    "fichier": "audio/254_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ora",
+    "fichier": "audio/254_281_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "oran",
+    "fichier": "audio/254_281_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "orang",
+    "fichier": "audio/254_281_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "orange",
+    "fichier": "audio/254_281_251_303_292_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔ",
+    "fichier": "audio/254_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "ʁɑ̃ʒ",
+    "fichier": "audio/281_251_303_292_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/orange.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je mange une orange.",
+  "phraseAudio": "audio/phrase-orange.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "plume",
+  "mot": "plume",
+  "lettres": [
+   "p",
+   "l",
+   "u",
+   "m",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pl",
+    "fichier": "audio/70_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "plu",
+    "fichier": "audio/70_6c_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "plum",
+    "fichier": "audio/70_6c_79_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "plume",
+    "fichier": "audio/70_6c_79_6d_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "plym",
+    "fichier": "audio/70_6c_79_6d_-30.mp3",
+    "cubes": 5
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/plume.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La plume est blanche.",
+  "phraseAudio": "audio/phrase-plume.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "poupee",
+  "mot": "poupée",
+  "lettres": [
+   "p",
+   "o",
+   "u",
+   "p",
+   "é",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   },
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "po",
+    "fichier": "audio/70_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pou",
+    "fichier": "audio/70_75_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poup",
+    "fichier": "audio/70_75_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poupé",
+    "fichier": "audio/70_75_70_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poupée",
+    "fichier": "audio/70_75_70_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "pu",
+    "fichier": "audio/70_75_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "pe",
+    "fichier": "audio/70_65_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/poupee.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La poupée est assise.",
+  "phraseAudio": "audio/phrase-poupee.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
+  ]
+ },
+ {
+  "id": "singe",
+  "mot": "singe",
+  "lettres": [
+   "s",
+   "i",
+   "n",
+   "g",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "in",
+    "son": "in"
+   },
+   {
+    "g": "g",
+    "son": "j"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "si",
+    "fichier": "audio/73_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sin",
+    "fichier": "audio/73_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sing",
+    "fichier": "audio/73_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "singe",
+    "fichier": "audio/73_25b_303_292_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sɛ̃ʒ",
+    "fichier": "audio/73_25b_303_292_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P2",
+  "image_sans_mot": "images/singe.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le singe mange une banane.",
+  "phraseAudio": "audio/phrase-singe.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "vob-lots-11-12"
   ]
  }
 ]

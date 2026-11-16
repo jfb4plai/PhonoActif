@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, readFile, writeFile, access, stat } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -50,11 +51,15 @@ test('publier refuse une base qui contient deux fiches de même identifiant', as
   await assert.rejects(publier({ racine: RACINE, base, sortie }), /identifiant en double : la/);
 });
 
-test('la base (data/base) est cohérente : 156 fiches valides, identifiants ASCII uniques, 6 modèles', async () => {
+test('la base (data/base) est cohérente : au moins 156 fiches valides, identifiants ASCII uniques, fichiers présents, 6 modèles', async () => {
   const fiches = await lire(path.join(RACINE, 'data', 'base', 'fiches.json'));
-  assert.equal(fiches.length, 156);
-  assert.equal(new Set(fiches.map(f => f.id)).size, 156);
-  for (const f of fiches) { assert.match(f.id, /^[a-z0-9-]{1,60}$/); assert.equal(f.statut, 'valide'); }
+  assert.equal(new Set(fiches.map(f => f.id)).size, fiches.length);
+  for (const f of fiches) { assert.match(f.id, /^[a-z0-9-]{1,60}$/); assert.ok(['valide', 'brouillon'].includes(f.statut), `${f.id} : statut ${f.statut}`); }
+  const valides = fiches.filter(f => f.statut === 'valide');
+  assert.ok(valides.length >= 156, `${valides.length} fiches valides`);
+  // une fiche « valide » est servie : tous ses fichiers doivent exister (un brouillon peut en attendre : audio à générer)
+  const fichiers = f => [f.image_sans_mot, f.phraseAudio, ...(f.etats || []).map(e => e.fichier), ...(f.syllabes || []).map(s => s.fichier)].filter(Boolean);
+  for (const f of valides) for (const x of fichiers(f)) assert.ok(existsSync(path.join(RACINE, 'data', 'base', 'assets', x)), `${f.id} : fichier absent ${x}`);
   const packs = await lire(path.join(RACINE, 'data', 'base', 'packs.json'));
   assert.deepEqual(packs.map(p => p.id), ['p1-100', 'p1-20-images', 'p1-illustre-2', 'p1-illustre-3', 'p1-illustre-4', 'p1-illustre-5']);
 });

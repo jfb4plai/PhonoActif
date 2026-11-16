@@ -1,0 +1,31 @@
+{
+ "nom": "vob-lots-11-12",
+ "titre": "VOB P1 (lot 11) et P2 (lot 12) avec images (papier découpé)",
+ "niveau": "P1",
+ "mots": [
+  { "mot": "branche", "niveau": "P1", "image": "docs/images-canva/lot11/branche.png", "phrase": "La branche a des feuilles vertes.", "commentaire": "VOB P1, lot 11 ; phrase proposée par Claude d'après l'image, à valider par JF" },
+  { "mot": "brique", "niveau": "P1", "image": "docs/images-canva/lot11/brique.png", "phrase": "Les briques font un petit mur.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "cheminée", "niveau": "P1", "image": "docs/images-canva/lot11/cheminee.png", "phrase": "La fumée sort de la cheminée.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "pipe", "niveau": "P1", "image": "docs/images-canva/lot11/pipe.png", "phrase": "La pipe est en bois.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "plante", "niveau": "P1", "image": "docs/images-canva/lot11/plante.png", "phrase": "La plante est dans un pot.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "robe", "niveau": "P1", "image": "docs/images-canva/lot11/robe.png", "phrase": "Ma robe est rose.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "route", "niveau": "P1", "image": "docs/images-canva/lot11/route.png", "phrase": "La route est longue et grise.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "soleil", "niveau": "P1", "image": "docs/images-canva/lot11/soleil.png", "phrase": "Le soleil brille.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "sucre", "niveau": "P1", "image": "docs/images-canva/lot11/sucre.png", "phrase": "Il y a beaucoup de sucre dans le bol.", "commentaire": "VOB P1, lot 11 ; phrase à valider" },
+  { "mot": "armoire", "niveau": "P2", "image": "docs/images-canva/lot12/armoire.png", "phrase": "L'armoire a deux portes.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "balle", "niveau": "P2", "image": "docs/images-canva/lot12/balle.png", "phrase": "La balle est ronde et rouge.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "cage", "niveau": "P2", "image": "docs/images-canva/lot12/cage.png", "phrase": "L'oiseau est dans la cage.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "cahier", "niveau": "P2", "image": "docs/images-canva/lot12/cahier.png", "phrase": "Mon cahier est orange.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "confiture", "niveau": "P2", "image": "docs/images-canva/lot12/confiture.png", "phrase": "La confiture est dans le pot.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "œuf", "niveau": "P2", "image": "docs/images-canva/lot12/oeuf.png", "phrase": "Voici un œuf blanc.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "orange", "niveau": "P2", "image": "docs/images-canva/lot12/orange.png", "phrase": "Je mange une orange.", "commentaire": "VOB P2, lot 12 ; le fruit, pas la couleur ; phrase à valider" },
+  { "mot": "plume", "niveau": "P2", "image": "docs/images-canva/lot12/plume.png", "phrase": "La plume est blanche.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "poupée", "niveau": "P2", "image": "docs/images-canva/lot12/poupee.png", "phrase": "La poupée est assise.", "commentaire": "VOB P2, lot 12 ; phrase à valider" },
+  { "mot": "singe", "niveau": "P2", "image": "docs/images-canva/lot12/singe.png", "phrase": "Le singe mange une banane.", "commentaire": "VOB P2, lot 12 ; phrase à valider" }
+ ],
+ "images_existantes": [
+  { "mot": "côté", "image": "docs/images-canva/lot10/cote.png" },
+  { "mot": "sans", "image": "docs/images-canva/lot10/sans.png" },
+  { "mot": "gros", "image": "docs/images-canva/lot10/gros.png" }
+ ]
+}
