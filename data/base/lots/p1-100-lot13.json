@@ -1,0 +1,35 @@
+{
+ "nom": "p1-100-lot13",
+ "titre": "Fin du P1-100 : mots sans objet illustrés (lot 13)",
+ "niveau": "P1",
+ "mots": [],
+ "images_existantes": [
+  { "mot": "vite", "image": "docs/images-canva/lot13/vite.png" },
+  { "mot": "trop", "image": "docs/images-canva/lot13/trop.png" },
+  { "mot": "peu", "image": "docs/images-canva/lot13/peu.png" },
+  { "mot": "plus", "image": "docs/images-canva/lot13/plus.png" },
+  { "mot": "beau", "image": "docs/images-canva/lot13/beau.png" },
+  { "mot": "bon", "image": "docs/images-canva/lot13/bon.png" },
+  { "mot": "vrai", "image": "docs/images-canva/lot13/vrai.png" },
+  { "mot": "coup", "image": "docs/images-canva/lot13/coup.png" },
+  { "mot": "rien", "image": "docs/images-canva/lot13/rien.png" },
+  { "mot": "faire", "image": "docs/images-canva/lot13/faire.png" },
+  { "mot": "même", "image": "docs/images-canva/lot13/meme.png" },
+  { "mot": "voilà", "image": "docs/images-canva/lot13/voila.png" }
+ ],
+ "phrases_existantes": [
+  { "mot": "vite", "phrase": "Le lièvre court vite." },
+  { "mot": "trop", "phrase": "Le panier est trop plein de pommes." },
+  { "mot": "peu", "phrase": "Il y a peu de pommes dans le panier." },
+  { "mot": "plus", "phrase": "Il y a plus de pommes à droite." },
+  { "mot": "beau", "phrase": "Quel beau bouquet !" },
+  { "mot": "bon", "phrase": "Le gâteau est bon." },
+  { "mot": "vrai", "phrase": "Ce que tu dis est vrai." },
+  { "mot": "coup", "phrase": "Il donne un coup de pied dans la balle." },
+  { "mot": "rien", "phrase": "Il n'y a rien dans la boîte." },
+  { "mot": "faire", "phrase": "Je vais faire un dessin." },
+  { "mot": "même", "phrase": "Les deux tasses ont la même couleur." },
+  { "mot": "voilà", "phrase": "Voilà mon chat !" },
+  { "mot": "brique", "phrase": "Une brique est posée sur deux briques." }
+ ]
+}

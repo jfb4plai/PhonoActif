@@ -73,6 +73,24 @@ async function ajouter(chemin) {
     await copyFile(src, path.join(base, 'assets', f.image_sans_mot));
     rattachees.push(`${e.mot} : image rattachée`);
   }
+  // Phrases d'aide à remplacer sur des fiches existantes (accord phrase-image, règle de JF) : le texte change ici, l'audio se régénère ensuite (clé Azure) puis `finaliser` le remplace.
+  const phrasesChangees = [], avertPhrases = [];
+  const toutesPhrases = [...lot.mots.filter(m => m.phrase).map(m => ({ mot: m.mot, phrase: m.phrase })), ...(lot.phrases_existantes || [])];
+  for (const e of toutesPhrases) {   // le mot cible doit apparaître TEL QUEL dans la phrase (« même », pas « mêmes »)
+    const jetons = e.phrase.toLowerCase().replace(/[.,;:!?«»"()]/g, ' ').replace(/[’]/g, "'").split(/[\s']+/).filter(Boolean);
+    if (!jetons.includes(e.mot.toLowerCase())) avertPhrases.push(`« ${e.mot} » : absent tel quel de la phrase « ${e.phrase} »`);
+  }
+  for (const e of lot.phrases_existantes || []) {
+    const f = existants.get(identifiantCarte(e.mot));
+    if (!f) { rattachees.push(`${e.mot} : fiche introuvable (phrase)`); continue; }
+    // pas de « continue » si la phrase est déjà à jour : l'outil reste relançable, la liste des audios à remplacer se reconstruit à chaque passage
+    f.phrase = e.phrase; f.phraseAudio = f.phraseAudio || `audio/phrase-${f.id}.mp3`;
+    phrasesChangees.push(f.id);
+    const ipa = f.cubes.flatMap(c => composants(c.son)).map(s => SON_VERS_IPA[s]).join('');
+    phrases[f.mot] = e.phrase;
+    phrasesAGenerer.push({ id: f.id, mot: f.mot, ipa, phrase: e.phrase, fichier: f.phraseAudio });
+    rattachees.push(`${e.mot} : phrase remplacée`);
+  }
   await ecrire(path.join(base, 'fiches.json'), fiches);
   const dossier = path.join(racine, 'data', 'packs-atelier', lot.nom);
   await mkdir(dossier, { recursive: true });
@@ -81,6 +99,8 @@ async function ajouter(chemin) {
   await ecrire(path.join(dossier, 'a-generer.json'), { nom: lot.nom, fichiersDistincts: r.fichiersDistincts });
   await ecrire(path.join(dossier, 'phrases.json'), phrases);
   await ecrire(path.join(dossier, 'phrases-a-generer.json'), { nom: lot.nom, phrases: phrasesAGenerer });
+  await ecrire(path.join(dossier, 'phrases-changees.json'), { ids: phrasesChangees });
+  avertPhrases.forEach(a => console.log(`  ATTENTION phrase : ${a}`));
   console.log(`${ajoutees} fiches « brouillon » ajoutées (${deja.length ? 'déjà présentes : ' + deja.length + ' ; ' : ''}${r.exclus.length} écartés).`);
   r.exclus.forEach(e => console.log(`  écarté : ${e.mot} : ${e.raison}`));
   r.avertissements.forEach(a => console.log(`  attention : ${a}`));
@@ -93,7 +113,18 @@ async function ajouter(chemin) {
 async function finaliser(nom, dossierAudio) {
   const fiches = await lire(path.join(base, 'fiches.json'));
   const mesFiches = fiches.filter(f => (f.origine || []).includes(nom) && f.statut === 'brouillon');
-  if (!mesFiches.length) { console.log(`Aucune fiche « brouillon » pour ${nom}.`); return; }
+  // audios de phrases REMPLACÉES (fiches existantes dont la phrase a changé) : on écrase l'ancien fichier
+  const chChangees = path.join(racine, 'data', 'packs-atelier', nom, 'phrases-changees.json');
+  let remplaces = 0;
+  const nonRemplaces = [];
+  if (existsSync(chChangees) && dossierAudio) {
+    for (const id of (await lire(chChangees)).ids) {
+      const src = path.join(path.resolve(dossierAudio), `phrase-${id}.mp3`);
+      if (existsSync(src)) { await copyFile(src, path.join(base, 'assets', 'audio', `phrase-${id}.mp3`)); remplaces++; } else nonRemplaces.push(id);
+    }
+    console.log(`${remplaces} audios de phrases remplacés${nonRemplaces.length ? ' ; absents : ' + nonRemplaces.join(', ') : ''}.`);
+  }
+  if (!mesFiches.length) { console.log(`Aucune fiche « brouillon » pour ${nom}.`); if (remplaces) console.log('Suite : node tools/base/publier.js, puis npx vite build, commit et push.'); return; }
   let copies = 0;
   const manquants = new Set();
   for (const f of mesFiches) {

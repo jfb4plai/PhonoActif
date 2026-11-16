@@ -632,12 +632,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Je n'ai plus faim.",
+  "phrase": "Il y a plus de pommes à droite.",
   "phraseAudio": "audio/phrase-plus.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/plus.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "bien",
@@ -884,7 +887,10 @@
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/faire.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "mon",
@@ -1324,12 +1330,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Cours vite !",
+  "phrase": "Le lièvre court vite.",
   "phraseAudio": "audio/phrase-vite.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/vite.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "aussi",
@@ -2319,12 +2328,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Il reste peu de pain.",
+  "phrase": "Il y a peu de pommes dans le panier.",
   "phraseAudio": "audio/phrase-peu.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/peu.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "oui",
@@ -2826,12 +2838,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Ce sac est trop lourd.",
+  "phrase": "Le panier est trop plein de pommes.",
   "phraseAudio": "audio/phrase-trop.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/trop.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "rue",
@@ -3167,12 +3182,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Ce gâteau est bon.",
+  "phrase": "Le gâteau est bon.",
   "phraseAudio": "audio/phrase-bon.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/bon.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "chaque",
@@ -3335,12 +3353,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Le ciel est beau.",
+  "phrase": "Quel beau bouquet !",
   "phraseAudio": "audio/phrase-beau.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/beau.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "rien",
@@ -3387,12 +3408,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Je ne vois rien.",
+  "phrase": "Il n'y a rien dans la boîte.",
   "phraseAudio": "audio/phrase-rien.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/rien.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "ours",
@@ -3759,12 +3783,15 @@
     "cubes": 2
    }
   ],
-  "phrase": "Voilà ton sac !",
+  "phrase": "Voilà mon chat !",
   "phraseAudio": "audio/phrase-voila.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/voila.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "livre",
@@ -4753,12 +4780,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Nous avons le même sac.",
+  "phrase": "Les deux tasses ont la même couleur.",
   "phraseAudio": "audio/phrase-meme.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/meme.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "soir",
@@ -5097,12 +5127,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Ce n'est pas vrai.",
+  "phrase": "Ce que tu dis est vrai.",
   "phraseAudio": "audio/phrase-vrai.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/vrai.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "souris",
@@ -5297,12 +5330,15 @@
     "ecartAvecRegles": false
    }
   ],
-  "phrase": "Il donne un coup de pied dans le ballon.",
+  "phrase": "Il donne un coup de pied dans la balle.",
   "phraseAudio": "audio/phrase-coup.mp3",
   "statut": "valide",
   "origine": [
    "p1-100"
-  ]
+  ],
+  "image_sans_mot": "images/coup.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial"
  },
  {
   "id": "vers",
@@ -10967,7 +11003,7 @@
   "image_sans_mot": "images/brique.png",
   "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
-  "phrase": "Les briques font un petit mur.",
+  "phrase": "Une brique est posée sur deux briques.",
   "phraseAudio": "audio/phrase-brique.mp3",
   "statut": "valide",
   "origine": [

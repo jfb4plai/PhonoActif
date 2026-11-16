@@ -110,7 +110,7 @@ def entree_nombre(mot):
 
 
 # Images de référence propres à un mot (retouche d'une image déjà générée) : « fête » v1 (ballons seuls) à laquelle JF demande d'ajouter confettis et notes de musique.
-REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"], "sur": ["MAHa_AOCW34"], "sous": ["MAHa_AOCW34", "MAHa_AZNijw"], "vers": ["MAHa_AOCW34"], "avec": ["MAHa_AOCW34"], "côté": ["MAHa_AOCW34"]}   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
+REFERENCES_PAR_MOT = {"fête": ["MAHa5Zs7GdA"], "arbre": ["MAHa5sjOz-w"], "sur": ["MAHa_AOCW34"], "sous": ["MAHa_AOCW34", "MAHa_AZNijw"], "vers": ["MAHa_AOCW34"], "avec": ["MAHa_AOCW34"], "côté": ["MAHa_AOCW34"], "peu": ["MAHbGSrGu-Q"]}   # peu : le panier de « trop » (lot 13, v2)   # arbre : la v1 sans branches (lot4/v1), à laquelle JF demande d'ajouter des branches
 
 
 def references_de(mot):
@@ -484,8 +484,50 @@ MOTS_LOT12 = [
      " A small monkey sitting upright: a warm brown body, a cream round face patch with one small dark dot for the eye, round brown ears, long arms, a long thin brown tail curling up. Optionally one yellow banana in one hand. One animal only.",
      "UN singe brun assis, queue longue enroulée, un seul œil ; peut tenir une banane ; un seul animal", "VOB P2"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12# le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 13 : fin du p1-100 (2026-11-16, demande de JF) : mots sans objet qu'on peut montrer honnêtement ; la PHRASE du pack est adaptée à l'image (règle de JF). À valider par JF image par image.
+# Restent sans image (décisions de JF) : mots-outils, pronoms, oui/non ; matin/soir en réflexion ; temps, fois, encore, tout : trop ambigus, non tentés.
+# « trop » et « peu » : le MÊME verre (peu reprend l'image de trop en référence : REFERENCES_PAR_MOT).
+PERSONNES |= {"coup", "faire", "voilà"}
+MOTS_LOT13 = [
+    ("vite", "vite", "a hare running very fast, stretched out in a long leap with its long ears flat back, and three short thin cream speed strokes behind it", DE_PROFIL, "profil", "warm brown #a16207, cream, warm yellow #fbbf24",
+     " One brown hare in full gallop, body long and stretched, legs extended front and back, long ears laid back along its neck, one small dark dot for the eye, a small cream tail. Behind it, three short thin horizontal cream strokes show its speed. No ground, no grass, no text.",
+     "UN lièvre brun en plein galop, corps étiré, oreilles couchées, trois traits de vitesse crème derrière ; un seul animal", "p1-100 ; phrase adaptée : « Le lièvre court vite. »"),
+    ("trop", "trop", "a wide wooden basket piled so high with red apples that many apples are falling over the edge and rolling on the ground", DE_FACE, "aucun", "warm yellow #fbbf24, red #dc2626, soft green #86b98f",
+     " One wide shallow warm yellow basket heaped with a big pile of about fifteen plain red apples, the pile rising high above the rim; four apples are tumbling down over the edge and three more lie on the ground in front of the basket. Each apple is one plain red round with one small green leaf. It is clearly TOO full. No table, no text.",
+     "UN panier tellement plein de pommes rouges qu'elles tombent par-dessus bord et roulent par terre ; lisible comme « trop plein »", "p1-100 ; phrase adaptée (JF 2026-11-16) : « Le panier est trop plein de pommes. » ; v1 (verre de jus qui déborde) refusée : illisible (JF : « c'est quoi ça ! »)"),
+    ("peu", "peu", "the same wide wooden basket almost empty, with only two red apples at the bottom", DE_FACE, "aucun", "warm yellow #fbbf24, red #dc2626, soft green #86b98f",
+     " Exactly the same wide shallow warm yellow basket as in the reference image, seen the same way and at the same size, but almost empty: only two plain red apples (each with one small green leaf) lying at the bottom, the rest of the basket empty. No apples on the ground, no table, no text.",
+     "LE MÊME panier presque vide : seulement deux pommes ; un seul panier", "p1-100 ; phrase adaptée : « Il y a peu de pommes dans le panier. »"),
+    ("plus", "plus", "two small wooden baskets side by side: the left basket holds two red apples and the right basket holds six red apples", DE_FACE, "aucun", "warm yellow #fbbf24, red #dc2626, soft green #86b98f",
+     " Two identical shallow warm yellow baskets side by side. Left basket: exactly two plain red apples. Right basket: exactly six plain red apples piled up. Each apple is one plain red round with one small green leaf. The right basket clearly has many more apples than the left one. No table, no text, no numbers.",
+     "DEUX paniers identiques : 2 pommes à gauche, 6 pommes à droite ; ni chiffre ni texte", "p1-100 ; phrase adaptée : « Il y a plus de pommes à droite. »"),
+    ("beau", "beau", "a beautiful bouquet of five flowers tied with a ribbon", DE_FACE, "aucun", "soft pink #f4a9b0, warm yellow #fbbf24, orange #f97316, soft green #86b98f, teal #0f6e56",
+     " One bouquet seen from the front: five simple round-petal flowers (pink, yellow, orange, pink, yellow), each flower with a plain yellow or orange center, thin green stems gathered in the middle and tied with a teal ribbon bow. Nothing else: no vase, no table, no text.",
+     "UN beau bouquet de cinq fleurs simples liées par un ruban turquoise ; ni vase ni texte", "p1-100 ; phrase adaptée : « Quel beau bouquet ! »"),
+    ("bon", "bon", "a slice of cake with pink icing and one red cherry on top, with a small fork", DE_FACE, "aucun", "soft pink #f4a9b0, cream, warm brown #a16207, red #dc2626",
+     " One triangular slice of layered cake seen from the side: cream sponge layers, warm brown chocolate layers between them, a thick soft pink icing on top and one red cherry with a tiny green stem. Next to it a small fork resting on its side. No plate, no table, no text.",
+     "UNE part de gâteau (glaçage rose, cerise) avec une petite fourchette ; ni assiette ni texte", "p1-100 ; phrase adaptée : « Le gâteau est bon. »"),
+    ("vrai", "vrai", "one big bold green check mark inside a round cream badge", DE_FACE, "aucun", "teal #0f6e56, soft green #86b98f, cream",
+     " One large cream round badge with a thick green check mark (a tick) in the middle, made of one single green paper piece with rounded ends. Nothing else: no text, no letters, no cross, no second mark.",
+     "UNE grande coche verte dans un rond crème ; aucun texte ni croix", "p1-100 ; phrase adaptée : « Ce que tu dis est vrai. »"),
+    ("coup", "coup", "a boy kicking a red ball with his right foot, one leg stretched forward at the ball, the ball just leaving the foot", DE_PROFIL, "face", f"{PEAU}, teal #0f6e56, orange #f97316, red #dc2626",
+     " A friendly boy seen from the side kicking a ball: round peach-colored face with ONE small dark dot for the eye and a small smile, short dark brown hair, teal t-shirt, orange shorts, brown shoes. His right leg is swung forward and the foot touches a plain red ball just in front of it; the left leg stands firm. One boy and one ball only. No goal, no grass, no text.",
+     "UN garçon qui donne un coup de pied dans une balle rouge (jambe tendue, pied sur la balle) ; un seul personnage", "p1-100 ; phrase adaptée : « Il donne un coup de pied dans la balle. »"),
+    ("rien", "rien", "an empty open cardboard box seen from the front, completely empty inside", DE_FACE, "aucun", "warm brown #a16207, cream, warm yellow #fbbf24",
+     " One open cardboard box seen from the front and slightly above: warm brown outside, the open flaps folded outward, and a plain cream empty inside with nothing in it at all. No object inside, no tape, no label, no text.",
+     "UNE boîte en carton ouverte et COMPLÈTEMENT vide ; ni objet ni étiquette", "p1-100 ; phrase adaptée : « Il n'y a rien dans la boîte. »"),
+    ("faire", "faire", "a child drawing a house with a big crayon on a sheet of paper", DE_FACE, "face", f"{PEAU}, orange #f97316, teal #0f6e56, cream, red #dc2626",
+     " A child with a round peach-colored face with two small dark dots for the eyes and a small smile, short dark brown hair, an orange t-shirt, holding a big teal crayon above a large cream sheet of paper; on the sheet a very simple drawing of a house made of a red square and a triangle roof. No table, no text.",
+     "UN enfant qui dessine une maison simple avec un gros crayon sur une feuille ; un seul personnage ; aucun texte", "p1-100 ; phrase du pack conservée : « Je vais faire un dessin. »"),
+    ("même", "meme", "two identical teal mugs standing side by side, exactly the same size, shape and color", DE_FACE, "aucun", "teal #0f6e56, cream",
+     " Two mugs side by side, perfectly identical: same size, same shape, same teal color, same cream handle on the right side, same height. Nothing else: no table, no steam, no pattern, no text.",
+     "DEUX tasses strictement identiques côte à côte ; ni motif ni texte", "p1-100 ; phrase adaptée : « Les deux tasses ont la même couleur. » (JF 2026-11-16 : le mot cible est « même » au singulier, pas « mêmes »)"),
+    ("voilà", "voila", "a child pointing with one index finger toward a small orange cat sitting at the right, the child looking at the viewer with a happy face", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316, cream",
+     " A child standing at the left, round peach-colored face with two small dark dots for the eyes and a big smile, short dark brown hair, teal t-shirt, the right arm stretched out and ONE index finger pointing at a small orange tabby cat (cream belly, one small dark dot for the eye) sitting upright at the right. One child and one cat only. No text.",
+     "UN enfant qui montre du doigt un petit chat orange assis à droite ; un enfant et un chat ; aucun texte", "p1-100 ; phrase adaptée : « Voilà mon chat ! »"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
