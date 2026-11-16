@@ -100,3 +100,10 @@ describe('pages du site', () => {
     window.location.hash = '';
   });
 });
+
+describe('mode d’emploi : délai d’affichage des résultats', () => {
+  it('l’étape « Lire les résultats » dit quand les essais arrivent dans le tableau', () => {
+    monter('#/mode-d-emploi');
+    expect(screen.getByText(/juste après une carte jouée, le tableau peut encore afficher 0 essai/)).toBeInTheDocument();
+  });
+});

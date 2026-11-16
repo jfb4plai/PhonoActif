@@ -234,6 +234,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
           ))}
         </tbody>
       </table>
+      <p className="aide">Les essais d’un élève n’apparaissent ici qu’après son « Envoyer mes résultats » au bilan de fin de liste, ou quand il rouvre la page élève avec son lien : juste après une carte jouée, le tableau peut encore afficher 0 essai. Rouvrir la classe pour actualiser.</p>
       <p className="aide">« À retravailler » : les trois liaisons lettres → son que l’élève rate le plus souvent au premier coup. Exemple pour « chat » : « ch → [ʃ] » (les lettres ch font le son « ch »), « a → [a] », « t → muet » (le t ne s’entend pas).</p>
 
       {master && (

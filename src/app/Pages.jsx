@@ -87,6 +87,7 @@ export function ModeEmploi({ base = '/' }) {
         <section className="plai-section" id="etape7">
           <h2>7. Lire les résultats</h2>
           <p>Dans la classe, le tableau « Résultats » donne, par code : le nombre d’essais, la date de la dernière séance et les trois liaisons son-lettre à retravailler (celles qui échouent le plus au premier coup).</p>
+          <p>Les essais d’un élève arrivent dans ce tableau après son « Envoyer mes résultats » au bilan de fin de liste, ou quand il rouvre son lien : juste après une carte jouée, le tableau peut encore afficher 0 essai. Rouvrir la classe pour actualiser.</p>
           <p>Ce tableau ne décide rien : c’est une aide à votre observation, pas un diagnostic.</p>
         </section>
 
