@@ -449,8 +449,43 @@ MOTS_LOT11 = [
      " A small, low, wide teal bowl filled to overflowing with a pile of about nine BIG white sugar lumps: the pile rises well above the rim and takes about two thirds of the picture, so the white lumps are the main subject and the bowl is secondary. Each lump is a rectangular block (a cuboid) with a SQUARE top and a height clearly smaller than its width, like a real lump of coffee sugar: NOT a cube, NOT a dice, NOT an eraser. Bright white tops, slightly darker off-white side faces, soft shadows between lumps so each lump is distinct, lumps tilted at different angles in the pile. Nothing else: no cup, no coffee, no spoon, no steam, no text.",
      "UN petit sucrier bas, turquoise, débordant d'une dizaine de GROS morceaux de sucre (pavés à base carrée, plus bas que larges, pas des cubes ni des dés) : les morceaux blancs sont le sujet (deux tiers de l'image), le bol est secondaire ; rien d'autre","VOB P1 ; v1 (deux blocs blancs) lue comme des gommes ; v2 (tasse de café, sucres minuscules sous le bord) trop peu en évidence (JF 2026-11-16)"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 12 : VOB, année P2 (niveau P2 de data/listes/vob.json ; 113 noms de 3 à 9 lettres absents des lots ; 2026-11-16). Les 10 premiers de la liste, dans l'ordre du VOB, qui se dessinent comme UN objet ou UN animal
+# (ordre de la liste, pas de tri par l'IA ; écartés : abstraits, personnes, jours, adjectifs). À valider par JF image par image.
+PERSONNES |= {"poupée"}
+MOTS_LOT12 = [
+    ("armoire", "armoire", "a tall wardrobe with two closed doors", DE_FACE, "aucun", "warm brown #a16207, warm yellow #fbbf24, cream",
+     " One tall wooden wardrobe seen from the front: a rectangular body in ONE single warm brown, two tall closed doors separated by a thin line, one small round warm yellow knob on each door, two short feet. No clothes, no mirror, no room.",
+     "UNE armoire brune à deux portes fermées, deux petits boutons jaunes ; ni vêtements ni miroir", "VOB P2"),
+    ("balle", "balle", "a single plain rubber playground ball, the kind children play with at recess or on the sand", DE_FACE, "aucun", "red #dc2626, cream",
+     " One solid round rubber ball in ONE single plain red, with no stripes, no segments, no lines and no pattern at all. Roundness is shown only by one soft cream highlight spot on the upper left and a slightly darker red crescent along the lower right edge, plus a small soft oval shadow right under it. It must read as a simple bouncy ball: not a beach ball, not a tennis ball, not a football, not a flat disc, not an apple.",
+     "UNE balle de récréation pleine, rouge unie, sans aucune ligne ni quartier, avec un reflet crème et un ombrage ; ni ballon de plage, ni tennis, ni foot, ni disque plat", "VOB P2 ; v1 (yin-yang) et v2 (ballon de plage, non générée) refusées : JF veut la balle de récréation ou de sable"),
+    ("cage", "cage", "a birdcage with a small bird inside, perched in the middle", DE_FACE, "profil", "warm yellow #fbbf24, teal #0f6e56, cream, orange #f97316",
+     " One birdcage: a round base, thin vertical bars in ONE single warm yellow, a dome-shaped top with a small ring to hang it, a small perch bar across the middle. One small teal bird with a cream belly, a small orange beak and ONE small dark dot for the eye, stands on the perch INSIDE the cage, clearly visible between the bars (the bars never hide the bird). One bird only: no seed, no water, no second bird.",
+     "UNE cage à oiseau (barreaux jaunes, dôme, anneau, perchoir) avec UN petit oiseau turquoise DEDANS sur le perchoir, bien visible ; un seul œil", "VOB P2 ; JF 2026-11-16 : mettre un oiseau dedans pour que l'image soit plus explicite (v1 : cage vide)"),
+    ("cahier", "cahier", "a school notebook lying closed with a plain colored cover and a wide white label", DE_FACE, "aucun", "orange #f97316, cream, teal #0f6e56",
+     " One closed school notebook seen from the front: a rectangle with a plain orange cover, a dark teal spine band on the left side, and a cream blank label in the middle. The label stays completely empty: no text, no lines, no letters.",
+     "UN cahier fermé orange, dos turquoise, étiquette crème VIDE ; aucun texte ni ligne", "VOB P2"),
+    ("confiture", "confiture", "a glass jam jar with a closed lid and a round red jam-colored content", DE_FACE, "aucun", "red #dc2626, cream, warm yellow #fbbf24",
+     " One short jar: a cream glass body filled with deep red jam, a warm yellow metal lid, and one plain cream label in the middle left completely empty (no text). A single jar.",
+     "UN pot de confiture rouge fermé (couvercle jaune, étiquette VIDE) ; un seul pot ; aucun texte", "VOB P2"),
+    ("œuf", "oeuf", "one single egg standing on its wide end", DE_FACE, "aucun", "cream only",
+     " One whole egg: a smooth oval in ONE single cream color (#f5ecd0), slightly pointed at the top. Cream is the ONLY color on the egg: no yellow patch, no pink patch, no spot, no crescent, no colored highlight, no shading in another hue. A whole raw egg: no crack, no yolk, no nest, no chick.",
+     "UN œuf entier crème, UNE seule couleur, sans aucune tache ni croissant colorés ; ni fissure ni jaune ni poussin", "VOB P2 ; v1 refusée : tache jaune et croissant rose (règle d'une couleur sur un objet homogène)"),
+    ("orange", "orange", "an orange fruit with one green leaf on top", DE_FACE, "aucun", "orange #f97316, soft green #86b98f, teal #0f6e56",
+     " One round orange fruit in ONE single orange with a small green stem and one green leaf on top. The fruit is a fruit, not a color swatch: it has a small leaf and a tiny dark stem dot, no slice, no peel strip.",
+     "UNE orange (le fruit) avec une petite feuille verte ; entière ; se lit comme un fruit, pas comme une couleur", "VOB P2 ; ambiguïté fruit/couleur : l'image est le fruit"),
+    ("plume", "plume", "a single white bird feather", DE_FACE, "aucun", "shades of white only: pure white #ffffff, off-white #f5f5f4, light grey-white #e7e5e4",
+     " One long feather entirely in white: a thin curved central shaft in off-white and a leaf-shaped soft vane in pure white, slightly tilted, with soft small drop shadows so it stays visible on the pastel sky-blue background. White is the ONLY color: no teal, no green, no colored tip. Only one feather: no bird, no ink, no pen.",
+     "UNE plume d'oiseau toute blanche (nuances de blanc uniquement), ombre douce pour rester lisible sur le fond bleu ; ni oiseau ni stylo", "VOB P2 ; JF 2026-11-16 : une plume est plus souvent blanche (v1 : turquoise)"),
+    ("poupée", "poupee", "a floppy rag doll sitting on the ground with its legs stretched out in front and its head tilted to one side", DE_FACE, "face", f"{PEAU}, soft pink #f4a9b0, warm yellow #fbbf24, teal #0f6e56, cream",
+     " A handmade stuffed rag doll, clearly a TOY and not a real child: it SITS with its legs stretched out in front, soft and floppy, its big round head tilted to one side and its two short stubby cloth arms hanging loosely. Its face is a round cream cloth circle with TWO BIG ROUND TEAL BUTTONS for the eyes (each button a round disc with two tiny holes) and a small stitched smile drawn as one short curved line of tiny dashes, plus two round pink cheeks. Messy warm yellow yarn hair sticking out in short loops, a soft pink dress with one square teal patch sewn on the skirt. Proportions of a toy: a head almost as big as the whole body. One doll only.",
+     "UNE poupée de CHIFFON assise, molle, tête penchée, grosse tête ronde, yeux-boutons turquoise, bouche cousue, cheveux de laine jaune, robe rose avec une pièce ; se lit comme un jouet fait main, pas comme une enfant", "VOB P2 ; JF 2026-11-16 : refaire la poupée (v1 : se lit comme une fillette debout)"),
+    ("singe", "singe", "a monkey sitting, with a long curled tail", DE_PROFIL, "profil", "warm brown #a16207, cream, warm yellow #fbbf24",
+     " A small monkey sitting upright: a warm brown body, a cream round face patch with one small dark dot for the eye, round brown ears, long arms, a long thin brown tail curling up. Optionally one yellow banana in one hand. One animal only.",
+     "UN singe brun assis, queue longue enroulée, un seul œil ; peut tenir une banane ; un seul animal", "VOB P2"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12# le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
