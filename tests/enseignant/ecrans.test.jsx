@@ -107,6 +107,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     await userEvent.click(await screen.findByRole('button', { name: 'Liens et QR-codes personnels' }));
     const region = await screen.findByRole('region', { name: 'Liens personnels des élèves' });
     expect(await screen.findByAltText('QR-code personnel de E01')).toBeInTheDocument();
@@ -121,6 +122,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     const choix = await screen.findByLabelText('Écoute par syllabes');
     expect(choix).toHaveValue('toujours');
     expect(screen.getByText(/Ce réglage ne lit rien tout seul/)).toBeInTheDocument();
@@ -135,6 +137,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     await cocher('Pack second');
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks[0].listes_noms).toBe('Pack second'));
@@ -155,6 +158,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     expect((await screen.findByLabelText('Habillage')).value).toBe('album');
     expect(screen.getByLabelText('Cartes avec ou sans le mot écrit').value).toBe('sans');
     expect(screen.getByLabelText('Nombre de cubes en trop').value).toBe('3');
@@ -177,6 +181,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: { ...classeTables('master'), phono_tasks: [tache('a'), tache('b', { revoked: true, created_at: '2026-11-09T10:00:00Z' })] } }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     expect((await screen.findAllByText(/sobre · avec le mot · 2 cubes en trop · accents non exigés/)).length).toBe(2);
     expect(screen.getByText(/révoquée/)).toBeTruthy();
     expect(screen.getAllByRole('button', { name: /Révoquer/ }).length).toBe(1);
@@ -243,6 +248,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     render(<App deps={{ hash: '#/enseignant', enseignant: { client, base: 'https://x.test/', packs: [], fetch } }} />);
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     expect(await screen.findByLabelText(/Pack d’essai/)).toBeInTheDocument();
     expect(appels.some(u => /mots\/catalogue\.json$/.test(u))).toBe(true);
     expect(appels.some(u => /mots\/modeles\.json$/.test(u))).toBe(true);
@@ -253,5 +259,33 @@ describe('espace enseignant', () => {
   it('service non configuré : message clair', () => {
     render(<App deps={{ hash: '#/enseignant', enseignant: { supabase: null } }} />);
     return screen.findByText(/service non configuré/);
+  });
+  it('onglets : sans essai la classe s’ouvre sur « Élèves et codes » ; avec des essais, sur « Résultats »', async () => {
+    const vide = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    monter(vide);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    expect((await screen.findByRole('tab', { name: 'Élèves et codes' })).getAttribute('aria-selected')).toBe('true');
+    cleanup();
+    const jeu = avecAuth(fauxClient({ tables: { ...classeTables('master'), phono_students: [{ id: 's1', class_id: 'c1', code: 'E01' }],
+      phono_attempts: [{ id: 'a1', class_id: 'c1', student_id: 's1', task_id: 't', session: 's', card: 'chat', word: 'chat', attempt: 1, correct: true, help: 'aucune', positions: [{ liaison: 'a=a', pose: 'a', juste: true }], played_at: '2026-11-10T09:00:00Z' }] } }), { session: { user: USER } });
+    monter(jeu);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    expect((await screen.findByRole('tab', { name: 'Résultats' })).getAttribute('aria-selected')).toBe('true');
+    expect(await screen.findByRole('cell', { name: 'E01' })).toBeTruthy();
+  });
+
+  it('retirer un code : confirmation chiffrée, refus = rien ne change, accord = code et essais supprimés', async () => {
+    const client = avecAuth(fauxClient({ tables: { ...classeTables('master'), phono_students: [{ id: 's1', class_id: 'c1', code: 'E01' }, { id: 's2', class_id: 'c1', code: 'E02' }] } }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Gérer la classe' }));
+    const confirmation = vi.spyOn(window, 'confirm').mockReturnValue(false);
+    await userEvent.click(await screen.findByRole('button', { name: 'Retirer E01' }));
+    expect(confirmation).toHaveBeenCalledWith('Retirer le code E01 et ses 0 essai ? Cette action est définitive.');
+    expect(client.tables.phono_students.length).toBe(2);
+    confirmation.mockReturnValue(true);
+    await userEvent.click(screen.getByRole('button', { name: 'Retirer E01' }));
+    await waitFor(() => expect(client.tables.phono_students.map(s => s.code)).toEqual(['E02']));
+    confirmation.mockRestore();
   });
 });

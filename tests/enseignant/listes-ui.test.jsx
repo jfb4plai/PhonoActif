@@ -19,7 +19,7 @@ function monter({ catalogue = CATALOGUE, modeles = MODELES.slice(1), listes = []
   render(<App deps={{ hash: '#/enseignant', enseignant: { client, base: 'https://x.test/', packs: [], catalogue, modeles, jouer } }} />);
   return { client, jouer };
 }
-const ouvrirClasse = async () => userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+const ouvrirClasse = async () => { await userEvent.click(await screen.findByRole('button', { name: '3P A' })); await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' })); };
 
 describe('choix des listes dans la tâche', () => {
   it('partir d’un modèle : on coche un modèle, le total s’affiche, la tâche reçoit ses mots', async () => {

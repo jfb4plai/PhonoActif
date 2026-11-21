@@ -25,6 +25,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   const zonePerso = useRef(null);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [onglet, setOnglet] = useState(null); // null = choix automatique : Résultats s'il y a des essais, sinon Élèves et codes
   const [perso, setPerso] = useState(null); // liens personnels d'une tâche : { tache, items: [{ id, code, lien, qr }] }
 
   const recharger = useCallback(async () => {
@@ -86,13 +87,27 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   const changerCle = (t, id) => agir(async () => { await nouvelleCleEleve(client, id); await ouvrirPerso(t); setMessage('Nouvelle clé créée : l’ancien lien de cet élève ne fonctionne plus.'); });
   const revoquer = id => agir(async () => { await revoquerTache(client, id); setMessage('Lien révoqué.'); await rechargerTaches(); });
   const inviterCollegue = () => agir(async () => { await inviter(client, classe.id, email); setEmail(''); setMessage('Enseignant invité.'); });
-  const retirer = id => agir(async () => { await supprimerEleve(client, id); await recharger(); });
+  // Retrait d'un code : action définitive (le code et tous ses essais disparaissent), donc confirmation chiffrée, jamais un clic isolé (audit 2026-11-21).
+  const retirer = l => agir(async () => {
+    const q = `Retirer le code ${l.code} et ses ${l.essais} essai${l.essais > 1 ? 's' : ''} ? Cette action est définitive.`;
+    if (!window.confirm(q)) return;
+    await supprimerEleve(client, l.id); await recharger();
+  });
+  const ongletActif = onglet || (lignes.some(l => l.essais > 0) ? 'resultats' : 'eleves');
+  const ONGLETS = [['eleves', 'Élèves et codes'], ['taches', 'Tâches et liens'], ['resultats', 'Résultats'], ...(master ? [['classe', 'Gérer la classe']] : [])];
+  const panneau = id => ({ role: 'tabpanel', id: `ens-panneau-${id}`, 'aria-labelledby': `ens-onglet-${id}`, hidden: ongletActif !== id });
 
   return (
     <section className="ens-carte">
       <button type="button" onClick={onRetour}>Retour aux classes</button>
       <h1>{classe.name}</h1>
       {message && <p role="status" className="ens-message">{message}</p>}
+      <div role="tablist" aria-label="Sections de la classe" className="ens-onglets">
+        {ONGLETS.map(([id, nom]) => (
+          <button key={id} type="button" role="tab" id={`ens-onglet-${id}`} aria-selected={ongletActif === id} aria-controls={`ens-panneau-${id}`} className={ongletActif === id ? 'ens-onglet actif' : 'ens-onglet'} onClick={() => setOnglet(id)}>{nom}</button>
+        ))}
+      </div>
+      <div {...panneau('eleves')}>
       <aside role="note" aria-label="Données des élèves" className="ens-note">
         <strong>Données des élèves.</strong> Chaque élève est repéré par un code, jamais un nom : ne jamais mettre un nom, un prénom ou une date de naissance dans un code.
         Pour chaque essai sont enregistrés : le mot, ce que l’élève a posé, juste ou faux, l’aide, la date.
@@ -116,6 +131,9 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
         <ul aria-label="Codes refusés">{refuses.map((r, i) => <li key={i}>{r.code} : {r.raison}</li>)}</ul>
       )}
 
+      </div>
+
+      <div {...panneau('taches')}>
       <h2>Tâche pour les élèves</h2>
       <fieldset className="ens-listes">
         <legend>Mots de la tâche</legend>
@@ -220,16 +238,18 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
         </>
       )}
 
+      </div>
+
+      <div {...panneau('resultats')}>
       <h2>Résultats</h2>
       <table>
-        <thead><tr><th>Code</th><th>Essais</th><th>Dernière séance</th><th>À retravailler</th>{master && <th />}</tr></thead>
+        <thead><tr><th>Code</th><th>Essais</th><th>Dernière séance</th><th>À retravailler</th></tr></thead>
         <tbody>
           {lignes.map(l => (
             <tr key={l.id}>
               <td>{l.code}</td><td>{l.essais}</td>
               <td>{l.derniereSeance ? l.derniereSeance.slice(0, 10) : 'aucune'}</td>
               <td>{l.plusRatees.map(x => libelleLiaison(x.liaison)).join(', ') || '-'}</td>
-              {master && <td><button type="button" onClick={() => retirer(l.id)}>Retirer {l.code}</button></td>}
             </tr>
           ))}
         </tbody>
@@ -237,8 +257,17 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
       <p className="aide">Les essais d’un élève n’apparaissent ici qu’après son « Envoyer mes résultats » au bilan de fin de liste, ou quand il rouvre la page élève avec son lien : juste après une carte jouée, le tableau peut encore afficher 0 essai. Rouvrir la classe pour actualiser.</p>
       <p className="aide">« À retravailler » : les trois liaisons lettres → son que l’élève rate le plus souvent au premier coup. Exemple pour « chat » : « ch → [ʃ] » (les lettres ch font le son « ch »), « a → [a] », « t → muet » (le t ne s’entend pas).</p>
 
+      </div>
+
       {master && (
-        <>
+        <div {...panneau('classe')}>
+          <h2>Retirer un code d’élève</h2>
+          <p className="aide">Retire le code et tous ses essais, après confirmation. Utile pour un élève parti de la classe ou un code créé par erreur.</p>
+          <ul className="ens-codes">
+            {lignes.map(l => (
+              <li key={l.id}>{l.code} ({l.essais} essai{l.essais > 1 ? 's' : ''}) <button type="button" className="danger" onClick={() => retirer(l)}>Retirer {l.code}</button></li>
+            ))}
+          </ul>
           <h2>Inviter un enseignant</h2>
           <label htmlFor="ens-invite">E-mail de l’enseignant</label>
           <input id="ens-invite" type="email" placeholder="collegue@ecole.be" value={email} onChange={e => setEmail(e.target.value)} />
@@ -247,7 +276,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
           <h2>Supprimer la classe</h2>
           <p className="aide">Supprime aussi les élèves et leurs résultats. Action définitive.</p>
           <button type="button" onClick={onSupprimer}>Supprimer la classe</button>
-        </>
+        </div>
       )}
     </section>
   );

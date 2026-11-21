@@ -24,6 +24,7 @@ describe('mots absents du catalogue', () => {
   it('un lien télécharge le modèle de pack, avec une phrase qui explique la validation', async () => {
     monter();
     await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' }));
     const lien = await screen.findByRole('link', { name: /télécharger le modèle de cartes/ });
     expect(lien.getAttribute('href')).toBe('https://x.test/modeles/modele-pack-plai.xlsx');
     expect(lien.hasAttribute('download')).toBe(true);

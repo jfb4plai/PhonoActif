@@ -40,3 +40,11 @@
 .ens-catalogue-liste li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem 0.6rem; padding: 0.35rem 0.5rem; border-bottom: 1px solid #eee; }
 .ens-catalogue-liste input[type="checkbox"] { margin: 0; }
 @media (max-width: 480px) { .ens-choix label { flex-basis: 100%; } }
+
+/* Onglets de la page classe (audit 2026-11-21) : la liste des résultats n'est plus au bout de trois écrans de réglages. */
+.ens-onglets { display: flex; flex-wrap: wrap; gap: 0.25rem; border-bottom: 2px solid #0f6e56; margin: 0.8rem 0; }
+.ens .ens-onglet { margin: 0; border: 1px solid #c8c8c8; border-bottom: 0; border-radius: 6px 6px 0 0; background: #f3f3f3; font-weight: bold; padding: 0.6rem 1rem; }
+.ens .ens-onglet.actif { background: #0f6e56; color: #fff; border-color: #0f6e56; }
+.ens-codes { list-style: none; padding: 0; }
+.ens-codes li { padding: 0.3rem 0; border-bottom: 1px solid #eee; }
+@media print { .ens-onglets { display: none; } .ens-carte [role="tabpanel"][hidden] { display: block !important; } }
