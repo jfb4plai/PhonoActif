@@ -39,8 +39,16 @@ export function lettresMuettes(carte) {
   return Array.isArray(carte.lettres) && carte.lettres.length !== muets.length ? null : muets;
 }
 
-// La pièce est-elle une lettre muette du mot ? Les ids p0, p1… suivent l'ordre des lettres du mot ; les intrus (ids suivants) ne sont jamais muets.
-export const pieceMuette = (piece, muets) => !!muets && !piece.intrus && muets[Number(piece.id.slice(1))] === true;
+// La pièce est-elle une lettre muette du mot ? Une pièce porte sa position (debut) et son nombre de lettres (n) ; à défaut, l'id p<i> donne la lettre. Les intrus ne sont jamais muets.
+export function pieceMuette(piece, muets) {
+  if (!muets || piece.intrus) return false;
+  const debut = Number.isInteger(piece.debut) ? piece.debut : Number(piece.id.slice(1));
+  const n = Number.isInteger(piece.n) ? piece.n : 1;
+  return muets.slice(debut, debut + n).length === n && muets.slice(debut, debut + n).every(m => m === true);
+}
+
+// Blocs de lettres proposés par Virginie (2026-11-21) : longueur 2, 3 ou 4 lettres. « ouil » compte 4 lettres (décision de JF 2026-11-20).
+export const DIGRAPHES = { 2: ['ch', 'ph', 'ou', 'an', 'oi', 'eu', 'on', 'in', 'en', 'ai', 'au', 'ei', 'un'], 3: ['ein', 'eur', 'eau', 'ail', 'ain', 'eil', 'oin'], 4: ['ouil', 'euil'] };
 
 // Règle de coupure énoncée à l'élève et dans les modes d'emploi (décision JF 2026-11-14 : tak-si, comme Lexique 4.1).
 export const REGLE_COUPURE = "Règle de coupure : on coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède.";
@@ -69,15 +77,27 @@ export function packDeSession(pack) {
 }
 
 // Plateau : une pièce par lettre du mot (répétitions comprises) plus nbIntrus lettres en trop, mélangées. Ids p0, p1... stables.
-export function construirePlateauLettres(carte, { nbIntrus = 3, rng = Math.random } = {}) {
-  const pieces = carte.cubes.map((c, i) => ({ id: `p${i}`, g: c.g, son: c.son, intrus: false }));
+export function construirePlateauLettres(carte, { nbIntrus = 3, rng = Math.random, digraphes = [] } = {}) {
+  // Blocs : un graphème du mot qui est un digraphe d'une longueur cochée devient une seule pièce ; sinon une pièce par lettre.
+  const permis = new Set((digraphes || []).flatMap(n => DIGRAPHES[n] || []));
+  const pieces = [];
+  if (permis.size > 0 && Array.isArray(carte.graphemes)) {
+    let debut = 0;
+    carte.graphemes.forEach(gr => {
+      const lettres = [...gr.g];
+      if (lettres.length > 1 && permis.has(gr.g)) pieces.push({ id: `p${pieces.length}`, g: gr.g, son: carte.cubes[debut].son, intrus: false, debut, n: lettres.length });
+      else lettres.forEach((l, k) => pieces.push({ id: `p${pieces.length}`, g: l, son: carte.cubes[debut + k].son, intrus: false, debut: debut + k, n: 1 }));
+      debut += lettres.length;
+    });
+  } else carte.cubes.forEach((c, i) => pieces.push({ id: `p${i}`, g: c.g, son: c.son, intrus: false, debut: i, n: 1 }));
+  const nbPieces = pieces.length;
   const presents = new Set(carte.cubes.map(c => c.g));
   const interdits = new Set(presents);
   presents.forEach(g => { if (MIROIR[g]) interdits.add(MIROIR[g]); });
   const candidats = POOL_INTRUS.filter(g => !interdits.has(g) && ![...g].every(l => presents.has(l)));
   for (let j = 0; j < nbIntrus && candidats.length; j++) {
     const g = candidats.splice(Math.floor(rng() * candidats.length), 1)[0];
-    pieces.push({ id: `p${carte.cubes.length + j}`, g, son: VOYELLES.includes(g[0]) ? 'a' : 'b', intrus: true });
+    pieces.push({ id: `p${nbPieces + j}`, g, son: VOYELLES.includes(g[0]) ? 'a' : 'b', intrus: true });
   }
   for (let i = pieces.length - 1; i > 0; i--) {
     const j = Math.floor(rng() * (i + 1));

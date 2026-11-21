@@ -101,6 +101,16 @@ export default function Accueil({
                 <label className="plai-label" htmlFor="accents"><input id="accents" type="checkbox" checked={tache.exigerAccents} onChange={e => onTache({ exigerAccents: e.target.checked })} /> Exiger les accents</label>
                 <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
               </div>
+              <fieldset className="plai-field">
+                <legend className="plai-label">Pièces de plusieurs lettres (blocs)</legend>
+                {[[2, 'ch, ou, on, an, oi…'], [3, 'eau, ain, ein, oin…'], [4, 'ouil, euil']].map(([n, ex]) => (
+                  <label key={n} htmlFor={`dig${n}`} style={{ display: 'block' }}>
+                    <input id={`dig${n}`} type="checkbox" checked={(tache.digraphes || []).includes(n)}
+                      onChange={e => onTache({ digraphes: [...(tache.digraphes || []).filter(x => x !== n), ...(e.target.checked ? [n] : [])].sort() })} /> Blocs de {n} lettres ({ex})
+                  </label>
+                ))}
+                <p className="aide">Case cochée : les lettres qui forment ce son (par exemple « ch » dans chat) sont une seule pièce à poser, ce qui aide à mémoriser l’association. Case vide : l’élève pose chaque lettre, donc il doit savoir lui-même qu’il faut « c » puis « h ». Pour les plus jeunes ou les élèves en difficulté, cocher ; pour les plus grands, laisser vide. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
+              </fieldset>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="muet">Lettre muette grisée</label>
                 <select id="muet" className="plai-input" value={tache.muet || 'origine'} onChange={e => onTache({ muet: e.target.value })}>

@@ -19,7 +19,11 @@ function melanger(liste, rng) {
 }
 
 const carteCourante = etat => etat.cartes[etat.index];
-const graphemesPoses = etat => etat.poses.map(id => etat.plateau.find(p => p.id === id).g);
+// Mode lettres (reglages.parLettres) : une pièce « ch » compte pour 2 lettres ; les positions se lisent lettre par lettre.
+const graphemesPoses = etat => {
+  const g = etat.poses.map(id => etat.plateau.find(p => p.id === id).g);
+  return etat.reglages.parLettres ? g.flatMap(x => [...x]) : g;
+};
 
 function positionsDe(etat) {
   const poses = graphemesPoses(etat);
@@ -45,13 +49,15 @@ export function demarrerJeu({ pack, reglages, code, jeton = null, cle = null, se
     statut: 'en_cours', reglages, essais: [], outils: { rng, maintenant, nouvelId }
   };
   if (cartes.length === 0) return { ...base, plateau: [], statut: 'fini' };
-  return { ...base, plateau: (reglages.construirePlateau || construirePlateau)(cartes[0], { nbIntrus: reglages.nbIntrus, rng }) };
+  return { ...base, plateau: (reglages.construirePlateau || construirePlateau)(cartes[0], { nbIntrus: reglages.nbIntrus, rng, digraphes: reglages.digraphes }) };
 }
 
 export function poser(etat, pieceId) {
   if (etat.statut !== 'en_cours') return etat;
   if (!etat.plateau.some(p => p.id === pieceId) || etat.poses.includes(pieceId)) return etat;
-  if (etat.poses.length >= carteCourante(etat).cubes.length) return etat;
+  const piece = etat.plateau.find(p => p.id === pieceId);
+  const poids = etat.reglages.parLettres ? [...piece.g].length : 1;
+  if (graphemesPoses(etat).length + poids > carteCourante(etat).cubes.length) return etat;
   return { ...etat, poses: [...etat.poses, pieceId] };
 }
 
@@ -66,7 +72,7 @@ export function vider(etat) {
 }
 
 export function verifier(etat) {
-  if (etat.statut !== 'en_cours' || etat.poses.length < carteCourante(etat).cubes.length) return { etat, resultat: 'incomplet' };
+  if (etat.statut !== 'en_cours' || graphemesPoses(etat).length < carteCourante(etat).cubes.length) return { etat, resultat: 'incomplet' };
   const positions = positionsDe(etat);
   const juste = positions.every(p => p.juste);
   const essais = [...etat.essais, ligneEssai(etat, positions, juste)];
@@ -101,6 +107,6 @@ export function suivant(etat) {
   const index = etat.index + 1;
   return {
     ...etat, index, poses: [], tentative: 1, aide: 'aucune', indice: null, statut: 'en_cours',
-    plateau: (etat.reglages.construirePlateau || construirePlateau)(etat.cartes[index], { nbIntrus: etat.reglages.nbIntrus, rng: etat.outils.rng })
+    plateau: (etat.reglages.construirePlateau || construirePlateau)(etat.cartes[index], { nbIntrus: etat.reglages.nbIntrus, rng: etat.outils.rng, digraphes: etat.reglages.digraphes })
   };
 }

@@ -14,7 +14,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const lettres = estPackLettres(pack); // mode A : l'élève pose des lettres, l'app lit la chaîne posée
   const [etat, setEtat] = useState(() => demarrerJeu({
     pack: lettres ? packDeSession(pack) : pack, code, jeton: tache.jeton || null, cle: tache.cle || null, rng: deps.rng, maintenant: deps.maintenant,
-    reglages: { ...REGLAGES_PAR_DEFAUT, modeMot: tache.modeMot, habillage: tache.habillage, nbIntrus: tache.nbIntrus, exigerAccents: tache.exigerAccents, ...(lettres ? { construirePlateau: construirePlateauLettres } : {}) }
+    reglages: { ...REGLAGES_PAR_DEFAUT, modeMot: tache.modeMot, habillage: tache.habillage, nbIntrus: tache.nbIntrus, exigerAccents: tache.exigerAccents, ...(lettres ? { construirePlateau: construirePlateauLettres, parLettres: true, digraphes: tache.digraphes || [] } : {}) }
   }));
   const [message, setMessage] = useState(null);
   const [imagesAbsentes, setImagesAbsentes] = useState({});
@@ -129,22 +129,32 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           </p> : null}
 
       <div className="zone" role="group" aria-label="Mot à construire">
-        {carte.cubes.map((c, i) => {
-          const p = posees[i];
-          const r = (syllabeActive === null && !cesures) || !reperes ? null : reperes[i];
-          const s = r ? r.syl : null;
-          const coupure = r !== null && i > 0 && reperes[i - 1].syl !== s; // trait de césure entre deux syllabes
-          const sep = coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null;
-          const actif = r !== null && syllabeActive !== null && s === syllabeActive ? ' syl-active' : '';
-          if (!p) return <React.Fragment key={`vide-${i}`}>{sep}<span className={`vide${actif}`} aria-hidden="true" /></React.Fragment>;
-          const derniere = i === posees.length - 1;
-          return (
-            <React.Fragment key={p.id}>{sep}
-              <button type="button" className={`cube ${(r && r.muet) || pieceMuette(p, muets) ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
-                disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
-            </React.Fragment>
-          );
-        })}
+        {(() => {
+          // Une pièce posée occupe autant de cases que de lettres (un bloc « ch » = 2) ; les cases restantes sont vides.
+          const elements = [];
+          let i = 0;
+          posees.forEach((p, k) => {
+            const n = [...p.g].length;
+            const r = (syllabeActive === null && !cesures) || !reperes ? null : reperes[i];
+            const s = r ? r.syl : null;
+            const coupure = r !== null && i > 0 && reperes[i - 1].syl !== s; // trait de césure entre deux syllabes
+            const actif = r !== null && syllabeActive !== null && s === syllabeActive ? ' syl-active' : '';
+            const derniere = k === posees.length - 1;
+            elements.push(
+              <React.Fragment key={p.id}>{coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null}
+                <button type="button" className={`cube ${(r && r.muet) || pieceMuette(p, muets) ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
+                  disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
+              </React.Fragment>);
+            i += n;
+          });
+          for (; i < carte.cubes.length; i++) {
+            const r = (syllabeActive === null && !cesures) || !reperes ? null : reperes[i];
+            const coupure = r !== null && i > 0 && reperes[i - 1].syl !== r.syl;
+            const actif = r !== null && syllabeActive !== null && r.syl === syllabeActive ? ' syl-active' : '';
+            elements.push(<React.Fragment key={`vide-${i}`}>{coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null}<span className={`vide${actif}`} aria-hidden="true" /></React.Fragment>);
+          }
+          return elements;
+        })()}
       </div>
 
       {(syllabeActive !== null || cesures) && reperes && <p className="regle-coupure" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>{REGLE_COUPURE}</p>}

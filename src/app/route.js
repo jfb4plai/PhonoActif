@@ -1,7 +1,7 @@
 /* Adresses des tâches et des cartes : un lien ou un QR ouvre un pack avec ses réglages (#/jeu?...) ou une seule carte
    (#/carte/<pack>/<id>?...), sans compte. Les valeurs hors liste sont ignorées champ par champ, jamais corrigées. */
 
-export const REGLAGES_PAR_DEFAUT = { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine' };
+export const REGLAGES_PAR_DEFAUT = { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine', digraphes: [] };
 export const VALEURS_SYLLABES = ['non', 'toujours', 'aide'];
 // Lettre muette grisée dès le plateau (origine, comportement historique) ou seulement une fois posée (depot).
 export const VALEURS_MUET = ['origine', 'depot'];
@@ -28,6 +28,9 @@ function tacheDepuisRequete(requete) {
   if (intrus !== null && /^\d$/.test(intrus) && Number(intrus) <= 5) tache.nbIntrus = Number(intrus);
   const syllabes = p.get('syllabes');
   if (VALEURS_SYLLABES.includes(syllabes)) tache.syllabes = syllabes;
+  // Blocs de lettres (ch, ou, eau, ouil…) : longueurs 2, 3, 4 séparées par un tiret (digraphes=2-3) ; « 0 » ou absent = aucun bloc.
+  const dig = p.get('digraphes');
+  if (dig !== null) tache.digraphes = [...new Set(dig.split('-').map(Number))].filter(n => n >= 2 && n <= 4).sort();
   const muet = p.get('muet');
   if (VALEURS_MUET.includes(muet)) tache.muet = muet;
   const vitesse = Number(p.get('vitesse'));
@@ -73,6 +76,7 @@ export function ecrireAdresse(base, ecran, tache, carte) {
   const e = encodeURIComponent;
   const reglages = [`mode=${e(tache.modeMot)}`, `habillage=${e(tache.habillage)}`, `intrus=${e(tache.nbIntrus)}`, `accents=${tache.exigerAccents ? 1 : 0}`, `syllabes=${e(tache.syllabes || REGLAGES_PAR_DEFAUT.syllabes)}`,
     `vitesse=${e(tache.vitesse || REGLAGES_PAR_DEFAUT.vitesse)}`, `verrou=${tache.vitesseVerrou ? 1 : 0}`];
+  if (Array.isArray(tache.digraphes) && tache.digraphes.length > 0) reglages.push(`digraphes=${tache.digraphes.join('-')}`);
   if (tache.muet === 'depot') reglages.push('muet=depot'); // « origine » = défaut, absent de l'adresse
   if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;
