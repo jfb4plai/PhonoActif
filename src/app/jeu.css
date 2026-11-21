@@ -87,3 +87,8 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .jeu-epure .carte-jeu { height: 224px; }
 .jeu-epure .carte-jeu img { max-height: 190px; }
 .jeu-epure .retour { height: 52px; }
+
+/* Survol d'une icône (commandes épurées) : le texte du bouton s'affiche au-dessus. */
+.app .jeu button.icone-seule { position: relative; }
+.app .jeu button.icone-seule .info { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 5; padding: 6px 12px; white-space: nowrap; font-size: 18px; font-weight: bold; background: var(--texte); color: var(--fond); border-radius: var(--rayon-btn); pointer-events: none; }
+.app .jeu button.icone-seule:hover .info, .app .jeu button.icone-seule:focus-visible .info { display: block; }

@@ -14,10 +14,19 @@ const classePlateau = (p, muets, reglage) => pieceMuette(p, muets) && reglage !=
 
 // Bouton de commande : icône + texte (commandes « complètes ») ou icône seule (« épurées », pour les non-lecteurs).
 // Le nom accessible reste toujours le texte français (aria-label en mode épuré ou quand un libellé plus long est donné).
-function Commande({ icone, texte, label, epure, className = '', ...reste }) {
+// Survol d'une icône (commandes épurées) : le texte s'affiche et, si les consignes vocales sont actives, il est dicté (fichier b_<nom>.mp3).
+const CLES_BOUTONS = {
+  'Écouter': 'b_ecouter', 'Vérifier': 'b_verifier', 'Suivant': 'b_suivant', 'Retirer': 'b_retirer', 'Besoin d’aide ?': 'b_aide',
+  'Voir l’image': 'b_image_voir', 'Cacher l’image': 'b_image_cacher', 'Écouter une phrase': 'b_phrase', 'Écouter par syllabes': 'b_syllabes',
+  'Voix lente': 'b_lente', 'Retour à l’accueil': 'b_accueil'
+};
+function Commande({ icone, texte, label, epure, className = '', parle, ...reste }) {
+  const cle = epure && parle ? CLES_BOUTONS[texte] : null;
   return (
-    <button type="button" className={`${className}${epure ? ' icone-seule' : ''}`.trim()} aria-label={label || (epure ? texte : undefined)} {...reste}>
+    <button type="button" className={`${className}${epure ? ' icone-seule' : ''}`.trim()} aria-label={label || (epure ? texte : undefined)}
+      onMouseEnter={cle ? () => parle.demarrer(cle) : undefined} onMouseLeave={cle ? parle.annuler : undefined} onBlur={cle ? parle.annuler : undefined} {...reste}>
       <Icone nom={icone} taille={epure ? 34 : 24} />{!epure && <span>{texte}</span>}
+      {epure && <span className="info" aria-hidden="true">{texte}</span>}
     </button>
   );
 }
@@ -89,6 +98,10 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const jouerConsigne = id => (voix && deps.jouerFichier
     ? Promise.resolve(deps.jouerFichier(urlConsigne(base, id))).catch(() => {})
     : Promise.resolve());
+  // Survol d'une icône : la consigne du bouton est dictée après 0,4 s de survol (pas en passant), et coupée si la souris part.
+  const minuteur = useRef(null);
+  const parle = useRef({ demarrer: id => { clearTimeout(minuteur.current); if (voix) minuteur.current = setTimeout(() => jouerConsigne(id), 400); }, annuler: () => clearTimeout(minuteur.current) }).current;
+  parle.demarrer = id => { clearTimeout(minuteur.current); if (voix) minuteur.current = setTimeout(() => jouerConsigne(id), 400); };
   // À l'arrivée d'une carte : consigne de départ (première carte seulement), puis, en commandes épurées, lecture du mot.
   // Le navigateur peut bloquer le son : le bouton haut-parleur sur l'image reste là.
   useEffect(() => {
@@ -151,16 +164,16 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const classeZone = etat.statut === 'juste' ? ' zone-juste' : (message && message.type === 'faux' ? ' zone-faux' : '');
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
   const aideSyllabes = lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat);
-  const btnImage = lettres && imageDisponible && <Commande icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => setImageVue(v => !v)} />;
-  const btnPhrase = lettres && phraseDeCarte(carte) && <Commande icone="bulle" texte="Écouter une phrase" label="Écouter le mot dans une phrase" epure={epure} onClick={() => jouerPhrase(carte)} />;
-  const btnSyllabes = aideSyllabes && <Commande icone="syllabes" texte="Écouter par syllabes" label="Écouter le mot par syllabes" epure={epure} onClick={() => jouerSyllabes(carte)} />;
+  const btnImage = lettres && imageDisponible && <Commande parle={parle} icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => setImageVue(v => !v)} />;
+  const btnPhrase = lettres && phraseDeCarte(carte) && <Commande parle={parle} icone="bulle" texte="Écouter une phrase" label="Écouter le mot dans une phrase" epure={epure} onClick={() => jouerPhrase(carte)} />;
+  const btnSyllabes = aideSyllabes && <Commande parle={parle} icone="syllabes" texte="Écouter par syllabes" label="Écouter le mot par syllabes" epure={epure} onClick={() => jouerSyllabes(carte)} />;
 
   return (
     <main className={`jeu${epure ? ' jeu-epure' : ''}`}>
       {epure
         ? (
           <div className="barre-haut">
-            <Commande icone="maison" texte="Retour à l’accueil" epure className="discret" onClick={quitter} />
+            <Commande parle={parle} icone="maison" texte="Retour à l’accueil" epure className="discret" onClick={quitter} />
             <div className="points" role="img" aria-label={`Carte ${etat.index + 1} sur ${etat.cartes.length}`}>
               {etat.cartes.slice(0, 30).map((c, k) => <span key={c.id} className={`point${k < etat.index ? ' fait' : ''}${k === etat.index ? ' courant' : ''}`} />)}
             </div>
@@ -172,7 +185,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? (epure ? '' : 'Écouter le mot, puis le construire.') : 'Image absente'}</p>)
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
-        {epure && <Commande icone="hautparleur" texte="Écouter" epure className="principal ecouter-image" onClick={() => jouerMot(carte)} />}
+        {epure && <Commande parle={parle} icone="hautparleur" texte="Écouter" epure className="principal ecouter-image" onClick={() => jouerMot(carte)} />}
       </div>
 
       <div className={`zone${classeZone}`} role="group" aria-label="Mot à construire">
@@ -225,31 +238,31 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       {epure ? (
         <>
           <div className="actions actions-principales actions-epure" role="group" aria-label="Actions principales">
-            <Commande icone="retour" texte="Retirer" epure disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
+            <Commande parle={parle} icone="retour" texte="Retirer" epure disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
             {suivantPret
-              ? <Commande icone="fleche" texte="Suivant" epure className="principal" onClick={surSuivant} />
-              : <Commande icone="coche" texte="Vérifier" epure className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />}
+              ? <Commande parle={parle} icone="fleche" texte="Suivant" epure className="principal" onClick={surSuivant} />
+              : <Commande parle={parle} icone="coche" texte="Vérifier" epure className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />}
           </div>
           <div className="actions actions-aides" role="group" aria-label="Aides">
-            <Commande icone="ampoule" texte="Besoin d’aide ?" epure disabled={!enCours} onClick={surAide} />
+            <Commande parle={parle} icone="ampoule" texte="Besoin d’aide ?" epure disabled={!enCours} onClick={surAide} />
             {btnImage}{btnPhrase}{btnSyllabes}
             {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
-            {!tache.vitesseVerrou && <Commande icone="tortue" texte="Voix lente" epure aria-pressed={vitesse !== 100} className={vitesse !== 100 ? 'principal' : ''} onClick={() => setVitesse(v => (v === 100 ? 75 : 100))} />}
+            {!tache.vitesseVerrou && <Commande parle={parle} icone="tortue" texte="Voix lente" epure aria-pressed={vitesse !== 100} className={vitesse !== 100 ? 'principal' : ''} onClick={() => setVitesse(v => (v === 100 ? 75 : 100))} />}
             {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
           </div>
         </>
       ) : (
         <>
           <div className="actions actions-principales" role="group" aria-label="Actions principales">
-            <Commande icone="hautparleur" texte="Écouter" onClick={() => jouerMot(carte)} />
-            <Commande icone="coche" texte="Vérifier" className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />
-            <Commande icone="fleche" texte="Suivant" className="principal" disabled={!suivantPret} onClick={surSuivant} />
+            <Commande parle={parle} icone="hautparleur" texte="Écouter" onClick={() => jouerMot(carte)} />
+            <Commande parle={parle} icone="coche" texte="Vérifier" className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />
+            <Commande parle={parle} icone="fleche" texte="Suivant" className="principal" disabled={!suivantPret} onClick={surSuivant} />
           </div>
 
           <div className="actions actions-aides" role="group" aria-label="Aides et corrections">
-            <Commande icone="retour" texte="Retirer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
-            <Commande icone="poubelle" texte="Tout effacer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))} />
-            <Commande icone="ampoule" texte="Besoin d’aide ?" disabled={!enCours} onClick={surAide} />
+            <Commande parle={parle} icone="retour" texte="Retirer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
+            <Commande parle={parle} icone="poubelle" texte="Tout effacer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))} />
+            <Commande parle={parle} icone="ampoule" texte="Besoin d’aide ?" disabled={!enCours} onClick={surAide} />
             {btnImage}{btnPhrase}{btnSyllabes}
             {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
             {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
