@@ -127,3 +127,11 @@ test('digraphes : longueurs lues (2-3), valeurs hors 2 à 4 ignorées, écrites 
   assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p' }).includes('digraphes')); // défaut = tous les blocs, absent de l'adresse
   assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', digraphes: [] }).includes('digraphes=0'));
 });
+
+test('commandes : « epure » lu et écrit, « complet » = défaut absent de l\'adresse, valeur inconnue ignorée', () => {
+  assert.equal(lireAdresse('#/jeu?pack=p&commandes=epure').tache.commandes, 'epure');
+  assert.equal(lireAdresse('#/jeu?pack=p&commandes=complet').tache.commandes, 'complet');
+  assert.equal(lireAdresse('#/jeu?pack=p&commandes=zzz').tache.commandes, undefined);
+  assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', commandes: 'epure' }).includes('commandes=epure'));
+  assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', commandes: 'complet' }).includes('commandes'));
+});

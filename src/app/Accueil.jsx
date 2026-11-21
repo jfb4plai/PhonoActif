@@ -139,6 +139,14 @@ export default function Accueil({
                 <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres.</p>
               </div>
               <div className="plai-field">
+                <label className="plai-label" htmlFor="commandes">Commandes de l’élève</label>
+                <select id="commandes" className="plai-input" value={tache.commandes || 'complet'} onChange={e => onTache({ commandes: e.target.value })}>
+                  <option value="complet">Complètes : icônes avec texte, toutes les aides visibles</option>
+                  <option value="epure">Épurées : icônes seules, l’essentiel (pour les élèves qui ne lisent pas encore)</option>
+                </select>
+                <p className="aide">Épurées : la voix lit le mot dès que la carte apparaît, l’écran ne garde que écouter, retirer, aide, image et vérifier ; un seul bouton à droite sert à vérifier puis à passer à la carte suivante ; la vitesse de la voix se règle par une seule icône (tortue). Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
+              </div>
+              <div className="plai-field">
                 <label className="plai-label" htmlFor="lien">Lien de la tâche</label>
                 <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir une liste pour obtenir le lien" onFocus={e => e.target.select()} />
                 {qr && <img src={qr} alt="QR-code du lien de la tâche" width="200" height="200" className="qr-accueil" />}

@@ -1,4 +1,5 @@
 import { urlFichier } from './urlFichier.js';
+import Icone from './Icones.jsx';
 import React, { useState, useEffect } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
@@ -9,6 +10,16 @@ const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
 const classeDe = son => CLASSES[classeCube(son)];
 // Lettre muette grise : sur le plateau seulement si le réglage « muet » vaut « origine » (défaut) ; une fois posée, toujours (les deux réglages).
 const classePlateau = (p, muets, reglage) => pieceMuette(p, muets) && reglage !== 'depot' ? 'm' : classeDe(p.son);
+
+// Bouton de commande : icône + texte (commandes « complètes ») ou icône seule (« épurées », pour les non-lecteurs).
+// Le nom accessible reste toujours le texte français (aria-label en mode épuré ou quand un libellé plus long est donné).
+function Commande({ icone, texte, label, epure, className = '', ...reste }) {
+  return (
+    <button type="button" className={`${className}${epure ? ' icone-seule' : ''}`.trim()} aria-label={label || (epure ? texte : undefined)} {...reste}>
+      <Icone nom={icone} taille={epure ? 34 : 24} />{!epure && <span>{texte}</span>}
+    </button>
+  );
+}
 
 export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onFin, onAccueil, onSignalement }) {
   const lettres = estPackLettres(pack); // mode A : l'élève pose des lettres, l'app lit la chaîne posée
@@ -22,6 +33,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const carte = etat.cartes[etat.index];
   const modeAvec = etat.reglages.modeMot === 'avec';
   const enCours = etat.statut === 'en_cours';
+  const epure = tache.commandes === 'epure';
 
   const [sonAbsent, setSonAbsent] = useState(false);
   const [syllabeActive, setSyllabeActive] = useState(null); // index de la syllabe lue pendant « Écouter par syllabes » (césures visibles seulement alors)
@@ -70,6 +82,9 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     setSonAbsent(false);
     Promise.resolve(deps.jouerFichier(urlFichier(base, pack, c.audio_mot), ...optsVitesse)).then(signalerSons).catch(() => {});
   };
+  // Commandes épurées : la voix lit le mot dès que la carte apparaît (un non-lecteur n'a pas à chercher « Écouter »).
+  // Le navigateur peut bloquer le son : le bouton haut-parleur sur l'image reste là.
+  useEffect(() => { if (epure && enCours) jouerMot(carte); }, [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
   // Mode A : le suivi reste en graphèmes-sons (liaisons), calculé à partir des lettres posées.
   const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(
@@ -107,28 +122,42 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const sansImage = !fichierImage; // pack sans image (mode A) : le mot s'affiche ou se dit, selon le réglage
   const urlImage = urlFichier(base, pack, String(fichierImage)); // sous-dossier images/ autorisé
   const imageDisponible = !sansImage && !imagesAbsentes[carte.id];
-  const imageCachee = lettres && imageDisponible && !imageVue; // image non montrée : le fichier n'est pas chargé tant que le bouton n'est pas pressé
+  const imageCachee = lettres && imageDisponible && !imageVue && !(epure && etat.statut === 'juste'); // commandes épurées : l'image apparaît en récompense quand le mot est juste ; image non montrée : le fichier n'est pas chargé tant que le bouton n'est pas pressé
   const imageAbsente = !imageDisponible || imageCachee;
   const muets = lettres ? lettresMuettes(carte) : null; // mode lettres : quelle lettre est muette (t de chat)
   const reperes = reperesLettres(carte); // null si le manifeste n'a pas le nombre de cubes par syllabe : pas de surlignage
   const posees = etat.poses.map(id => etat.plateau.find(p => p.id === id));
-  const surPlateau = etat.plateau.filter(p => !etat.poses.includes(p.id));
+
+  const toutesCases = posees.reduce((n, p) => n + [...p.g].length, 0) >= carte.cubes.length; // toutes les cases sont remplies
+  const suivantPret = etat.statut === 'juste' || etat.statut === 'revelation';
+  const classeZone = etat.statut === 'juste' ? ' zone-juste' : (message && message.type === 'faux' ? ' zone-faux' : '');
+  const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
+  const aideSyllabes = lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat);
+  const btnImage = lettres && imageDisponible && <Commande icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => setImageVue(v => !v)} />;
+  const btnPhrase = lettres && phraseDeCarte(carte) && <Commande icone="bulle" texte="Écouter une phrase" label="Écouter le mot dans une phrase" epure={epure} onClick={() => jouerPhrase(carte)} />;
+  const btnSyllabes = aideSyllabes && <Commande icone="syllabes" texte="Écouter par syllabes" label="Écouter le mot par syllabes" epure={epure} onClick={() => jouerSyllabes(carte)} />;
 
   return (
-    <main className="jeu">
-      <p className="compteur">Carte {etat.index + 1} sur {etat.cartes.length}</p>
+    <main className={`jeu${epure ? ' jeu-epure' : ''}`}>
+      {epure
+        ? (
+          <div className="barre-haut">
+            <Commande icone="maison" texte="Retour à l’accueil" epure className="discret" onClick={quitter} />
+            <div className="points" role="img" aria-label={`Carte ${etat.index + 1} sur ${etat.cartes.length}`}>
+              {etat.cartes.slice(0, 30).map((c, k) => <span key={c.id} className={`point${k < etat.index ? ' fait' : ''}${k === etat.index ? ' courant' : ''}`} />)}
+            </div>
+          </div>
+        )
+        : <p className="compteur">Carte {etat.index + 1} sur {etat.cartes.length}</p>}
       <div className="carte-jeu">
         {imageAbsente
-          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? 'Écouter le mot, puis le construire.' : 'Image absente'}</p>)
+          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? (epure ? '' : 'Écouter le mot, puis le construire.') : 'Image absente'}</p>)
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
+        {epure && <Commande icone="hautparleur" texte="Écouter" epure className="principal ecouter-image" onClick={() => jouerMot(carte)} />}
       </div>
-      {(!imageAbsente && /\bIA\b/.test(carte.licence || '')) || lettres
-        ? <p className="mention-ia" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>
-            {!imageAbsente && /\bIA\b/.test(carte.licence || '') ? 'Image créée par une IA. ' : ''}{lettres ? 'Voix de synthèse (Microsoft Azure).' : ''}
-          </p> : null}
 
-      <div className="zone" role="group" aria-label="Mot à construire">
+      <div className={`zone${classeZone}`} role="group" aria-label="Mot à construire">
         {(() => {
           // Une pièce posée occupe autant de cases que de lettres (un bloc « ch » = 2) ; les cases restantes sont vides.
           const elements = [];
@@ -157,55 +186,80 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         })()}
       </div>
 
-      {(syllabeActive !== null || cesures) && reperes && <p className="regle-coupure" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>{REGLE_COUPURE}</p>}
-
-      <div className="plateau">
-        {surPlateau.map(p => (
-          <button key={p.id} type="button" className={`cube ${classePlateau(p, muets, tache.muet)}`} disabled={!enCours} onClick={() => surPiece(p)}>{p.g}</button>
-        ))}
-      </div>
-
-      <div className="actions actions-principales" role="group" aria-label="Actions principales">
-        <button type="button" onClick={() => jouerMot(carte)}>Écouter</button>
-        <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
-        <button type="button" className="principal" disabled={!(etat.statut === 'juste' || etat.statut === 'revelation')} onClick={surSuivant}>Suivant</button>
-      </div>
-
-      <div className="actions actions-aides" role="group" aria-label="Aides et corrections">
-        <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>
-        <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))}>Tout effacer</button>
-        <button type="button" disabled={!enCours} onClick={surAide}>Besoin d’aide ?</button>
-        {lettres && imageDisponible && <button type="button" aria-pressed={imageVue} onClick={() => setImageVue(v => !v)}>{imageVue ? 'Cacher l’image' : 'Voir l’image'}</button>}
-        {lettres && phraseDeCarte(carte) && <button type="button" onClick={() => jouerPhrase(carte)} aria-label="Écouter le mot dans une phrase">Écouter une phrase</button>}
-        {lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat) && <button type="button" onClick={() => jouerSyllabes(carte)} aria-label="Écouter le mot par syllabes">Écouter par syllabes</button>}
-        {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
-        {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
-      </div>
-
-      {!tache.vitesseVerrou && (
-        <div className="vitesse" role="group" aria-label="Vitesse de la voix">
-          <span>Voix :</span>
-          {[[100, 'Normale'], [75, 'Lente'], [50, 'Très lente']].map(([v, nom]) => (
-            <button key={v} type="button" aria-pressed={vitesse === v} className={vitesse === v ? 'principal' : ''} onClick={() => setVitesse(v)}>{nom}</button>
-          ))}
-        </div>
-      )}
-
-      {lettres && (tache.syllabes || 'toujours') !== 'non' && (
-        boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat)
-          ? <p className="aide aide-syllabes">Écouter par syllabes : la voix dit une syllabe après l’autre, la syllabe dite est entourée.</p>
-          : (Array.isArray(carte.syllabes) && carte.syllabes.length === 1 ? <p className="aide aide-syllabes">Ce mot n’a qu’une syllabe : pas d’écoute par syllabes.</p> : null)
-      )}
-
+      {/* Retour d'état juste sous les cases : visible sans défiler (audit 2026-11-21). */}
       <div className="retour" aria-live="polite">
         {message && message.type === 'incomplet' && <p>Poser tous les cubes avant de vérifier.</p>}
-        {message && message.type === 'juste' && <p className="bravo">Bravo !</p>}
-        {message && message.type === 'faux' && <p>Pas tout à fait. Essayer encore.</p>}
+        {message && message.type === 'juste' && <p className="bravo"><span aria-hidden="true">✓ </span>Bravo !</p>}
+        {message && message.type === 'faux' && <p><span aria-hidden="true">✗ </span>Pas tout à fait. Essayer encore.</p>}
         {etat.statut === 'revelation' && <p>Voici le mot : <strong>{carte.mot}</strong></p>}
         {etat.indice && enCours && <p>Commencer par : <strong>{etat.indice.g}</strong></p>}
       </div>
 
-      <p><button type="button" className="discret" onClick={onAccueil}>Retour à l’accueil</button></p>
+      {(syllabeActive !== null || cesures) && reperes && <p className="regle-coupure" style={{ fontSize: '0.9rem', margin: '0.25rem 0' }}>{REGLE_COUPURE}</p>}
+
+      <div className="plateau">
+        {/* Chaque pièce garde sa place : une pièce posée laisse un emplacement vide, les autres ne glissent pas (audit 2026-11-21). */}
+        {etat.plateau.map(p => (etat.poses.includes(p.id)
+          ? <span key={p.id} className="cube cube-place" data-g={p.g} aria-hidden="true" />
+          : <button key={p.id} type="button" className={`cube ${classePlateau(p, muets, tache.muet)}`} disabled={!enCours} onClick={() => surPiece(p)}>{p.g}</button>))}
+      </div>
+
+      {epure ? (
+        <>
+          <div className="actions actions-principales actions-epure" role="group" aria-label="Actions principales">
+            <Commande icone="retour" texte="Retirer" epure disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
+            {suivantPret
+              ? <Commande icone="fleche" texte="Suivant" epure className="principal" onClick={surSuivant} />
+              : <Commande icone="coche" texte="Vérifier" epure className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />}
+          </div>
+          <div className="actions actions-aides" role="group" aria-label="Aides">
+            <Commande icone="ampoule" texte="Besoin d’aide ?" epure disabled={!enCours} onClick={surAide} />
+            {btnImage}{btnPhrase}{btnSyllabes}
+            {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
+            {!tache.vitesseVerrou && <Commande icone="tortue" texte="Voix lente" epure aria-pressed={vitesse !== 100} className={vitesse !== 100 ? 'principal' : ''} onClick={() => setVitesse(v => (v === 100 ? 75 : 100))} />}
+            {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="actions actions-principales" role="group" aria-label="Actions principales">
+            <Commande icone="hautparleur" texte="Écouter" onClick={() => jouerMot(carte)} />
+            <Commande icone="coche" texte="Vérifier" className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />
+            <Commande icone="fleche" texte="Suivant" className="principal" disabled={!suivantPret} onClick={surSuivant} />
+          </div>
+
+          <div className="actions actions-aides" role="group" aria-label="Aides et corrections">
+            <Commande icone="retour" texte="Retirer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
+            <Commande icone="poubelle" texte="Tout effacer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))} />
+            <Commande icone="ampoule" texte="Besoin d’aide ?" disabled={!enCours} onClick={surAide} />
+            {btnImage}{btnPhrase}{btnSyllabes}
+            {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
+            {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
+          </div>
+
+          {!tache.vitesseVerrou && (
+            <div className="vitesse" role="group" aria-label="Vitesse de la voix">
+              <span>Voix :</span>
+              {[[100, 'Normale'], [75, 'Lente'], [50, 'Très lente']].map(([v, nom]) => (
+                <button key={v} type="button" aria-pressed={vitesse === v} className={vitesse === v ? 'principal' : ''} onClick={() => setVitesse(v)}>{nom}</button>
+              ))}
+            </div>
+          )}
+
+          {lettres && (tache.syllabes || 'toujours') !== 'non' && (
+            aideSyllabes
+              ? <p className="aide aide-syllabes">Écouter par syllabes : la voix dit une syllabe après l’autre, la syllabe dite est entourée.</p>
+              : (Array.isArray(carte.syllabes) && carte.syllabes.length === 1 ? <p className="aide aide-syllabes">Ce mot n’a qu’une syllabe : pas d’écoute par syllabes.</p> : null)
+          )}
+        </>
+      )}
+
+      {(!imageAbsente && /\bIA\b/.test(carte.licence || '')) || lettres
+        ? <p className="mention-ia" style={{ fontSize: '0.9rem', margin: '0.5rem 0' }}>
+            {!imageAbsente && /\bIA\b/.test(carte.licence || '') ? 'Image créée par une IA. ' : ''}{lettres ? 'Voix de synthèse (Microsoft Azure).' : ''}
+          </p> : null}
+
+      {!epure && <p><button type="button" className="discret" onClick={onAccueil}>Retour à l’accueil</button></p>}
     </main>
   );
 }

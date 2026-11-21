@@ -57,3 +57,33 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .zone .cesure { display: inline-block; width: 4px; height: 64px; margin: 0 6px; background: var(--texte); border-radius: 2px; align-self: center; }
 .zone .syl-active { outline: 4px solid var(--acc); outline-offset: 2px; transform: translateY(-6px); }
 @media (prefers-reduced-motion: reduce) { .zone .syl-active { transform: none; } }
+
+/* Audit 2026-11-21 : image à hauteur réservée (rien ne bouge quand elle apparaît), pièces à emplacement fixe, icônes, commandes épurées. */
+.carte-jeu { position: relative; min-height: 252px; }
+.cube-place { visibility: hidden; cursor: default; }
+.cube-place::before { content: attr(data-g); }
+.zone-juste { border-color: var(--juste); border-style: solid; background: var(--fond-juste); }
+.zone-faux { border-color: var(--faux); border-style: solid; background: var(--fond-faux); }
+.app .jeu button:not(.cube):not(.icone-seule) { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.app .jeu button.attente { opacity: 0.75; }
+
+.jeu-epure .barre-haut { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.jeu-epure .points { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.jeu-epure .point { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--texte); background: transparent; }
+.jeu-epure .point.fait { background: var(--texte); }
+.jeu-epure .point.courant { background: var(--btn); transform: scale(1.25); }
+.app .jeu button.icone-seule { min-width: 64px; min-height: 64px; padding: 8px; display: inline-flex; align-items: center; justify-content: center; }
+.app .jeu .actions-principales button.icone-seule { min-width: 96px; min-height: 76px; }
+.app .jeu .ecouter-image { position: absolute; right: 12px; bottom: 12px; min-width: 80px; min-height: 80px; border-radius: 50%; }
+.app .jeu .actions-epure { justify-content: space-between; max-width: 520px; margin: 16px auto 8px; }
+.app .jeu .actions-epure .principal { margin-left: auto; min-width: 140px; }
+.jeu-epure .actions-aides { border-top: 0; margin-top: 4px; }
+.jeu-epure .retour { min-height: 48px; }
+.jeu-epure .carte-jeu { min-height: 224px; }
+.jeu-epure .carte-jeu img { max-height: 200px; }
+.jeu-epure .retour { height: 64px; min-height: 0; }
+.zone { box-sizing: border-box; min-height: 80px; } /* la zone ne grandit pas quand une pièce y est posée */
+.carte-jeu { box-sizing: border-box; height: 256px; min-height: 0; }
+.jeu-epure .carte-jeu { height: 224px; }
+.jeu-epure .carte-jeu img { max-height: 190px; }
+.jeu-epure .retour { height: 52px; }
