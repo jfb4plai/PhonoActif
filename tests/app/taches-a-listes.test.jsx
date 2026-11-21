@@ -1,3 +1,4 @@
+import { DIGRAPHES } from '../../src/jeu/modeA.js';
 import React from 'react';
 import { describe, it, expect, afterEach, vi } from 'vitest';
 import { render, screen, cleanup, waitFor } from '@testing-library/react';
@@ -33,7 +34,9 @@ const commencer = async user => {
   await screen.findByRole('group', { name: 'Mot à construire' });
 };
 const construire = async (user, id) => {
-  for (const l of fiche(id).lettres) await user.click(screen.getAllByRole('button', { name: l })[0]);
+  // Blocs de lettres cochés par défaut : un graphème qui est un digraphe se pose d'un coup, les autres lettre par lettre.
+  const blocs = new Set(Object.values(DIGRAPHES).flat());
+  for (const c of fiche(id).cubes) for (const piece of (blocs.has(c.g) ? [c.g] : [...c.g])) await user.click(screen.getAllByRole('button', { name: piece })[0]);
   await user.click(screen.getByRole('button', { name: 'Vérifier' }));
   await user.click(screen.getByRole('button', { name: 'Suivant' }));
 };

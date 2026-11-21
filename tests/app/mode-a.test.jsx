@@ -31,7 +31,7 @@ function monter(manifest = MANIFEST, plusHash = '') {
   const jouerFichier = vi.fn(async () => ({ manquants: [] }));
   const jouerSerie = vi.fn(async () => ({ manquants: [] }));
   const deps = { fetch: reponse(manifest), stockage, jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier, jouerSerie, rng: () => 0.5,
-    maintenant: () => '2026-11-13T10:00:00.000Z', hash: `#/jeu?pack=essai-a&mode=sans&intrus=0${plusHash}`, base: '/' };
+    maintenant: () => '2026-11-13T10:00:00.000Z', hash: `#/jeu?pack=essai-a&mode=sans&intrus=0&digraphes=0${plusHash}`, base: '/' };
   const user = userEvent.setup();
   render(<App deps={deps} />);
   return { user, stockage, jouerFichier, jouerSerie };

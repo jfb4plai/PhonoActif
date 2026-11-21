@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { configurationSupabase } from '../lib/supabase.js';
 import { creerClasse, lister, supprimerClasse, resultats, listerTaches } from './api.js';
+import { lectureDuMot } from '../core/transparence.js';
 import Connexion from './Connexion.jsx';
 import Classe from './Classe.jsx';
 import './enseignant.css';
@@ -29,8 +30,12 @@ export default function Enseignant({ deps = {} }) {
     let actif = true;
     const racine = base.replace(/\/+$/, '') + '/';
     const lire = fichier => (deps.fetch || fetch)(`${racine}mots/${fichier}`).then(r => (r.ok ? r.json() : Promise.reject(new Error('http')))).then(l => (Array.isArray(l) ? l : []));
-    Promise.all([lire('catalogue.json'), lire('modeles.json')])
-      .then(([c, m]) => { if (actif) { setCatalogue(c); setModeles(m); } })
+    // fiches.json (cubes complets, lettres muettes comprises) sert à calculer la lecture régulière ou non ; s'il manque, le catalogue reste utilisable sans ce filtre.
+    Promise.all([lire('catalogue.json'), lire('modeles.json'), lire('fiches.json').catch(() => [])])
+      .then(([c, m, f]) => {
+        const parId = new Map(f.map(x => [x.id, x]));
+        if (actif) { setCatalogue(c.map(e => (parId.has(e.id) ? { ...e, lecture: lectureDuMot(parId.get(e.id).cubes) } : e))); setModeles(m); }
+      })
       .catch(() => { if (actif) { setCatalogue([]); setModeles([]); setMessage("Les mots n'ont pas pu être chargés."); } });
     return () => { actif = false; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
