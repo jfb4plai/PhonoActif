@@ -3,7 +3,7 @@ import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
 import { fusionnerListes, validerTache, TACHE_MAX } from '../core/liste.js';
 import { listerListes, supprimerListe, dupliquerListe } from './listes.js';
 import ListeEditeur from './ListeEditeur.jsx';
-import { libelleLiaison } from './liaison.js';
+import { libelleLiaison, syntheseClasse, SYMBOLES, NOMS_ETATS } from './liaison.js';
 import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
 } from './api.js';
@@ -93,6 +93,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
     if (!window.confirm(q)) return;
     await supprimerEleve(client, l.id); await recharger();
   });
+  const synthese = syntheseClasse(lignes);
   const ongletActif = onglet || (lignes.some(l => l.essais > 0) ? 'resultats' : 'eleves');
   const ONGLETS = [['eleves', 'Élèves et codes'], ['taches', 'Tâches et liens'], ['resultats', 'Résultats'], ...(master ? [['classe', 'Gérer la classe']] : [])];
   const panneau = id => ({ role: 'tabpanel', id: `ens-panneau-${id}`, 'aria-labelledby': `ens-onglet-${id}`, hidden: ongletActif !== id });
@@ -242,6 +243,31 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
 
       <div {...panneau('resultats')}>
       <h2>Résultats</h2>
+      <button type="button" onClick={recharger}>Actualiser les résultats</button>
+      {synthese.liaisons.length > 0 && (
+        <section aria-label="Synthèse de la classe" className="ens-synthese">
+          <h3>Ce que la classe rate le plus</h3>
+          <ol>
+            {synthese.liaisons.map(t => (
+              <li key={t.liaison}><strong>{libelleLiaison(t.liaison)}</strong> : {t.nbDifficile} élève{t.nbDifficile > 1 ? 's' : ''} en difficulté, {t.nbConcernes} concerné{t.nbConcernes > 1 ? 's' : ''} sur {lignes.length} ({Math.round(t.taux * 100)} % de ratés au premier coup)</li>
+            ))}
+          </ol>
+          <table className="ens-grille">
+            <caption>Qui rate quoi, au premier coup</caption>
+            <thead><tr><th scope="col">Code</th>{synthese.liaisons.map(t => <th key={t.liaison} scope="col">{libelleLiaison(t.liaison)}</th>)}</tr></thead>
+            <tbody>
+              {synthese.grille.map(g => (
+                <tr key={g.id}>
+                  <th scope="row">{g.code}</th>
+                  {g.cellules.map((etat, i) => <td key={i} className={`st-${etat}`} aria-label={`${g.code}, ${libelleLiaison(synthese.liaisons[i].liaison)} : ${NOMS_ETATS[etat]}`}><span aria-hidden="true">{SYMBOLES[etat]}</span></td>)}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p className="aide">✗ difficile (au moins la moitié des essais ratés au premier coup) · ~ fragile (quelques essais ratés) · ✓ acquis · – pas encore d’essai. Seuils provisoires, à confirmer par un·e spécialiste ; ils servent de repère pour choisir les mots à retravailler, pas de décision sur l’élève.</p>
+        </section>
+      )}
+      <h3>Détail par élève</h3>
       <table>
         <thead><tr><th>Code</th><th>Essais</th><th>Dernière séance</th><th>À retravailler</th></tr></thead>
         <tbody>

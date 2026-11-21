@@ -48,3 +48,14 @@
 .ens-codes { list-style: none; padding: 0; }
 .ens-codes li { padding: 0.3rem 0; border-bottom: 1px solid #eee; }
 @media print { .ens-onglets { display: none; } .ens-carte [role="tabpanel"][hidden] { display: block !important; } }
+
+/* Synthèse de classe : symbole ET couleur (jamais la couleur seule) */
+.ens-synthese ol { padding-left: 1.4rem; }
+.ens .ens-grille { width: auto; margin: 0.6rem 0; }
+.ens .ens-grille caption { text-align: left; font-weight: bold; padding: 0.3rem 0; }
+.ens .ens-grille th, .ens .ens-grille td { text-align: center; padding: 0.4rem 0.7rem; border: 1px solid #ddd; }
+.ens .ens-grille th[scope="row"] { text-align: left; }
+.ens-grille .st-difficile { background: #fbd9d3; color: #8a1c0c; font-weight: bold; }
+.ens-grille .st-fragile { background: #fff0c2; color: #6b4a00; font-weight: bold; }
+.ens-grille .st-acquis { background: #dff3e6; color: #17602c; font-weight: bold; }
+.ens-grille .st-aucun { color: #666; }
