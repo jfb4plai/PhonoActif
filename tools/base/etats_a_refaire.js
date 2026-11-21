@@ -82,8 +82,10 @@ async function appliquer(dossierAudio) {
       if (!e.fichier) continue;
       const dest = path.join(base, 'assets', e.fichier);
       if (existsSync(dest)) continue;
-      const src = path.join(path.resolve(dossierAudio), path.basename(e.fichier));
-      if (existsSync(src)) { await mkdir(path.dirname(dest), { recursive: true }); await copyFile(src, dest); copies++; } else manquants.push(e.fichier);
+      // le générateur ne refait pas un fichier déjà dans la bibliothèque : on le prend là s'il n'est pas dans le dossier du pack
+      const candidats = [path.join(path.resolve(dossierAudio), path.basename(e.fichier)), path.join(racine, 'essai-tts-ipa', 'sortie', 'bibliotheque', 'norm', path.basename(e.fichier))];
+      const src = candidats.find(x => existsSync(x));
+      if (src) { await mkdir(path.dirname(dest), { recursive: true }); await copyFile(src, dest); copies++; } else manquants.push(e.fichier);
     }
     if (manquants.length) { incomplets.push(`${c.mot} : ${manquants.length} audio(s) absent(s)`); continue; } // la fiche garde ses anciens états
     const f = parId.get(c.id);
