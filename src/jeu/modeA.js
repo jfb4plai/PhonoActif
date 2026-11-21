@@ -30,6 +30,18 @@ export function reperesLettres(carte) {
   return repères;
 }
 
+// Une valeur par LETTRE du mot : vraie si la lettre est muette (son vide du graphème qui la contient), ou null si la carte n'a pas ses graphèmes.
+// Un graphème muet de plusieurs lettres (ex. « ent ») rend toutes ses lettres muettes.
+export function lettresMuettes(carte) {
+  const graphemes = carte && (carte.graphemes || carte.cubes);
+  if (!Array.isArray(graphemes)) return null;
+  const muets = graphemes.flatMap(g => [...g.g].map(() => g.son === ''));
+  return Array.isArray(carte.lettres) && carte.lettres.length !== muets.length ? null : muets;
+}
+
+// La pièce est-elle une lettre muette du mot ? Les ids p0, p1… suivent l'ordre des lettres du mot ; les intrus (ids suivants) ne sont jamais muets.
+export const pieceMuette = (piece, muets) => !!muets && !piece.intrus && muets[Number(piece.id.slice(1))] === true;
+
 // Règle de coupure énoncée à l'élève et dans les modes d'emploi (décision JF 2026-11-14 : tak-si, comme Lexique 4.1).
 export const REGLE_COUPURE = "Règle de coupure : on coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède.";
 

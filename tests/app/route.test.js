@@ -6,7 +6,7 @@ const TACHE = { pack: 'été', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2,
 const hashDe = url => new URL(url).hash;
 
 test('réglages par défaut', () => {
-  assert.deepEqual(REGLAGES_PAR_DEFAUT, { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false });
+  assert.deepEqual(REGLAGES_PAR_DEFAUT, { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine' });
 });
 
 test('aller-retour jeu avec un nom de pack accentué', () => {
@@ -109,4 +109,12 @@ test('parcours test : liste et code proposés, réglages par défaut, code sans 
   // les réglages annoncés sur l'accueil sont bien les réglages par défaut
   assert.deepEqual({ m: a.tache.modeMot, h: a.tache.habillage, i: a.tache.nbIntrus, a: a.tache.exigerAccents, s: a.tache.syllabes, v: a.tache.vitesse, l: !!a.tache.vitesseVerrou },
     { m: 'sans', h: 'album', i: 3, a: false, s: 'toujours', v: 100, l: false });
+});
+
+test('muet : « depot » lu et écrit, « origine » = défaut absent de l\'adresse, valeur inconnue ignorée', () => {
+  assert.equal(lireAdresse('#/jeu?pack=p&muet=depot').tache.muet, 'depot');
+  assert.equal(lireAdresse('#/jeu?pack=p&muet=origine').tache.muet, 'origine');
+  assert.equal(lireAdresse('#/jeu?pack=p&muet=zzz').tache.muet, undefined);
+  assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', muet: 'depot' }).includes('muet=depot'));
+  assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p' }).includes('muet'));
 });

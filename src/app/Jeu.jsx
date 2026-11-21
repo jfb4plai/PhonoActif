@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT, VALEURS_VITESSE } from './route.js';
-import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, phraseDeCarte, reperesLettres, boutonSyllabesVisible, REGLAGES_SYLLABES, REGLE_COUPURE } from '../jeu/modeA.js';
+import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, phraseDeCarte, reperesLettres, lettresMuettes, pieceMuette, boutonSyllabesVisible, REGLAGES_SYLLABES, REGLE_COUPURE } from '../jeu/modeA.js';
 
 const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
 const classeDe = son => CLASSES[classeCube(son)];
+// Lettre muette grise : sur le plateau seulement si le réglage « muet » vaut « origine » (défaut) ; une fois posée, toujours (les deux réglages).
+const classePlateau = (p, muets, reglage) => pieceMuette(p, muets) && reglage !== 'depot' ? 'm' : classeDe(p.son);
 
 export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onFin, onAccueil, onSignalement }) {
   const lettres = estPackLettres(pack); // mode A : l'élève pose des lettres, l'app lit la chaîne posée
@@ -107,6 +109,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const imageDisponible = !sansImage && !imagesAbsentes[carte.id];
   const imageCachee = lettres && imageDisponible && !imageVue; // image non montrée : le fichier n'est pas chargé tant que le bouton n'est pas pressé
   const imageAbsente = !imageDisponible || imageCachee;
+  const muets = lettres ? lettresMuettes(carte) : null; // mode lettres : quelle lettre est muette (t de chat)
   const reperes = reperesLettres(carte); // null si le manifeste n'a pas le nombre de cubes par syllabe : pas de surlignage
   const posees = etat.poses.map(id => etat.plateau.find(p => p.id === id));
   const surPlateau = etat.plateau.filter(p => !etat.poses.includes(p.id));
@@ -137,7 +140,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           const derniere = i === posees.length - 1;
           return (
             <React.Fragment key={p.id}>{sep}
-              <button type="button" className={`cube ${r && r.muet ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
+              <button type="button" className={`cube ${(r && r.muet) || pieceMuette(p, muets) ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
                 disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
             </React.Fragment>
           );
@@ -148,21 +151,25 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
       <div className="plateau">
         {surPlateau.map(p => (
-          <button key={p.id} type="button" className={`cube ${classeDe(p.son)}`} disabled={!enCours} onClick={() => surPiece(p)}>{p.g}</button>
+          <button key={p.id} type="button" className={`cube ${classePlateau(p, muets, tache.muet)}`} disabled={!enCours} onClick={() => surPiece(p)}>{p.g}</button>
         ))}
       </div>
 
-      <div className="actions" role="toolbar" aria-label="Actions">
+      <div className="actions actions-principales" role="group" aria-label="Actions principales">
         <button type="button" onClick={() => jouerMot(carte)}>Écouter</button>
+        <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
+        <button type="button" className="principal" disabled={!(etat.statut === 'juste' || etat.statut === 'revelation')} onClick={surSuivant}>Suivant</button>
+      </div>
+
+      <div className="actions actions-aides" role="group" aria-label="Aides et corrections">
+        <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>
+        <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))}>Tout effacer</button>
+        <button type="button" disabled={!enCours} onClick={surAide}>Besoin d’aide ?</button>
         {lettres && imageDisponible && <button type="button" aria-pressed={imageVue} onClick={() => setImageVue(v => !v)}>{imageVue ? 'Cacher l’image' : 'Voir l’image'}</button>}
         {lettres && phraseDeCarte(carte) && <button type="button" onClick={() => jouerPhrase(carte)} aria-label="Écouter le mot dans une phrase">Écouter une phrase</button>}
         {lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat) && <button type="button" onClick={() => jouerSyllabes(carte)} aria-label="Écouter le mot par syllabes">Écouter par syllabes</button>}
         {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
         {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
-        <button type="button" className="principal" disabled={!enCours} onClick={surVerifier}>Vérifier</button>
-        <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))}>Retirer</button>
-        <button type="button" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))}>Tout effacer</button>
-        <button type="button" disabled={!enCours} onClick={surAide}>Besoin d’aide ?</button>
       </div>
 
       {!tache.vitesseVerrou && (
@@ -188,7 +195,6 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         {etat.indice && enCours && <p>Commencer par : <strong>{etat.indice.g}</strong></p>}
       </div>
 
-      {(etat.statut === 'juste' || etat.statut === 'revelation') && <button type="button" className="principal" onClick={surSuivant}>Suivant</button>}
       <p><button type="button" className="discret" onClick={onAccueil}>Retour à l’accueil</button></p>
     </main>
   );

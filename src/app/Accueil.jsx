@@ -102,6 +102,14 @@ export default function Accueil({
                 <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
               </div>
               <div className="plai-field">
+                <label className="plai-label" htmlFor="muet">Lettre muette grisée</label>
+                <select id="muet" className="plai-input" value={tache.muet || 'origine'} onChange={e => onTache({ muet: e.target.value })}>
+                  <option value="origine">Dès le plateau (l’élève voit quelle pièce est muette)</option>
+                  <option value="depot">Seulement une fois posée (l’élève doit décider seul)</option>
+                </select>
+                <p className="aide">Dès le plateau : la pièce muette (le t de « chat ») est déjà grise, c’est une aide. Une fois posée : elle a d’abord la couleur d’une consonne ou d’une voyelle et ne devient grise qu’au dépôt, donc l’élève n’a pas d’indice avant de la poser. Dans les deux cas elle reste grise après le dépôt. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
+              </div>
+              <div className="plai-field">
                 <label className="plai-label" htmlFor="syllabes">Écoute par syllabes</label>
                 <select id="syllabes" className="plai-input" value={tache.syllabes || 'toujours'} onChange={e => onTache({ syllabes: e.target.value })}>
                   <option value="toujours">Proposée pour tous les mots de deux syllabes ou plus</option>
