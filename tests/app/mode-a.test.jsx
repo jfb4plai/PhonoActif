@@ -321,3 +321,27 @@ describe('Mode A : lecture de ce qui est posé', () => {
     expect(screen.queryByRole('button', { name: /dans une phrase/ })).toBeNull();
   });
 });
+
+describe('Mode A : la couleur grise suit la place, pas la pièce', () => {
+  const ELLE = {
+    nom: 'essai-a', mode: 'lettres',
+    cartes: [{
+      id: 'elle', mot: 'elle', lettres: ['e', 'l', 'l', 'e'],
+      cubes: [{ g: 'e', son: 'ɛ' }, { g: 'l', son: 'l' }, { g: 'l', son: 'l' }, { g: 'e', son: '' }],
+      etats: ['e', 'el', 'ell', 'elle'].map(l => ({ lettres: l, fichier: `audio/${l}.mp3` }))
+    }]
+  };
+  it('le « e » grisé du plateau, posé en première place, devient normal ; le « e » posé en dernière place est gris', async () => {
+    const { user } = monter(ELLE);
+    await commencer(user);
+    const plateau = () => screen.getAllByRole('button', { name: 'e' }).filter(b => !b.disabled && b.className.includes('cube'));
+    const grise = plateau().find(b => b.className.split(' ').includes('m'));
+    expect(grise).toBeTruthy(); // sur le plateau, le « e » muet est grisé (réglage « origine »)
+    await user.click(grise);
+    const posee = screen.getByRole('button', { name: 'Retirer e' });
+    expect(posee.className.split(' ')).not.toContain('m'); // 1re place : le « e » se dit, il n'est pas gris
+    await lettre(user, 'l'); await lettre(user, 'l'); await lettre(user, 'e');
+    const poseesE = screen.getAllByRole('button', { name: 'Retirer e' });
+    expect(poseesE[poseesE.length - 1].className.split(' ')).toContain('m'); // dernière place : muet, gris
+  });
+});

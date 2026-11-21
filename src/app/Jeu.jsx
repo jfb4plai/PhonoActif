@@ -142,7 +142,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
             const derniere = k === posees.length - 1;
             elements.push(
               <React.Fragment key={p.id}>{coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null}
-                <button type="button" className={`cube ${(r && r.muet) || pieceMuette(p, muets) ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
+                <button type="button" className={`cube ${(muets ? pieceMuette({ ...p, debut: i }, muets) : r && r.muet) ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
                   disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
               </React.Fragment>);
             i += n;
