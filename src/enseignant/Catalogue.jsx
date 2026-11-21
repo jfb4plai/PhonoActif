@@ -18,7 +18,8 @@ export default function Catalogue({ catalogue, choisis, onBasculer, onEcouter })
       if (image === 'avec' && !e.image) return false;
       if (image === 'sans' && e.image) return false;
       if (lecture === 'reguliere' && !(e.lecture && e.lecture.reguliere)) return false;
-      if (lecture === 'irreguliere' && !(e.lecture && !e.lecture.reguliere)) return false;
+      if (lecture === 'finale' && !(e.lecture && e.lecture.niveau === 'finale')) return false;
+      if (lecture === 'irreguliere' && !(e.lecture && e.lecture.niveau === 'irreguliere')) return false;
       return true;
     });
   }, [catalogue, q, syll, image, lecture]);
@@ -41,9 +42,10 @@ export default function Catalogue({ catalogue, choisis, onBasculer, onEcouter })
           <select id="cat-lecture" value={lecture} onChange={e => setLecture(e.target.value)}>
             <option value="toutes">Tous les mots</option>
             <option value="reguliere">Se lit lettre par lettre (régulière)</option>
-            <option value="irreguliere">À mémoriser (lettre muette ou son inhabituel)</option>
+            <option value="finale">Une seule lettre muette, à la fin (chat, petit)</option>
+            <option value="irreguliere">À mémoriser (plusieurs irrégularités, ou muette au milieu)</option>
           </select>
-          <p className="aide">« Se lit lettre par lettre » : chaque groupe de lettres se lit comme d’habitude et aucune lettre n’est muette ; le mot s’assemble, il convient au travail de décodage. « À mémoriser » : au moins une lettre muette ou un son qui dépend du mot (« elle », « dans », « avec ») ; ces mots s’apprennent plutôt par cœur. Classement calculé par règle, pas par une IA ; à vous de décider quels mots garder.</p>
+          <p className="aide">« Se lit lettre par lettre » : chaque groupe de lettres se lit comme d’habitude et aucune lettre n’est muette ; le mot s’assemble, il convient au travail de décodage. « Une seule lettre muette, à la fin » : le mot se décode, sauf la dernière lettre qui ne se dit pas (le « t » de « chat »). « À mémoriser » : lettre muette au milieu, plusieurs irrégularités ou son inhabituel (« elle », « avec », « bien ») ; ces mots s’apprennent plutôt par cœur. Classement calculé par règle, pas par une IA ; à vous de décider quels mots garder.</p>
         </>
       )}
       <p className="aide" role="status">{visibles.length} mot{visibles.length > 1 ? 's' : ''} affiché{visibles.length > 1 ? 's' : ''} sur {catalogue.length}.</p>
@@ -52,7 +54,7 @@ export default function Catalogue({ catalogue, choisis, onBasculer, onEcouter })
           <li key={e.id}>
             <input type="checkbox" aria-label={`Choisir ${e.mot}`} checked={choisis.has(e.id)} onChange={() => onBasculer(e.id)} />
             <strong>{e.mot}</strong>
-            <span className="aide"> {e.nbSyllabes} syll. · {e.image ? 'image' : 'sans image'} · {e.phrase ? 'phrase' : 'sans phrase'}{e.syllabes ? ' · syllabes' : ''}{e.lecture ? (e.lecture.reguliere ? ' · lettre par lettre' : ' · à mémoriser') : ''}</span>
+            <span className="aide"> {e.nbSyllabes} syll. · {e.image ? 'image' : 'sans image'} · {e.phrase ? 'phrase' : 'sans phrase'}{e.syllabes ? ' · syllabes' : ''}{e.lecture ? (e.lecture.niveau === 'finale' ? ' · muette finale' : e.lecture.reguliere ? ' · lettre par lettre' : ' · à mémoriser') : ''}</span>
             {e.audio && <button type="button" aria-label={`Écouter ${e.mot}`} onClick={() => onEcouter(e)}>Écouter</button>}
           </li>
         ))}

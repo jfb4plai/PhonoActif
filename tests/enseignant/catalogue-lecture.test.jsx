@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Catalogue from '../../src/enseignant/Catalogue.jsx';
 
 afterEach(cleanup);
-const E = (id, mot, reguliere) => ({ id, mot, nbSyllabes: 1, cubes: [mot], image: false, phrase: false, lecture: { reguliere, raisons: reguliere ? [] : ['« t » ne se lit pas'] } });
+const E = (id, mot, reguliere) => ({ id, mot, nbSyllabes: 1, cubes: [mot], image: false, phrase: false, lecture: { reguliere, niveau: reguliere ? 'reguliere' : 'irreguliere', raisons: reguliere ? [] : ['« t » ne se lit pas'] } });
 const CAT = [E('papa', 'papa', true), E('chat', 'chat', false), E('ami', 'ami', true)];
 
 describe('catalogue : lecture du mot', () => {
@@ -21,5 +21,17 @@ describe('catalogue : lecture du mot', () => {
     render(<Catalogue catalogue={CAT.map(({ lecture, ...e }) => e)} choisis={new Set()} onBasculer={() => {}} onEcouter={() => {}} />);
     expect(screen.queryByLabelText('Lecture du mot')).toBeNull();
     expect(screen.getAllByRole('listitem')).toHaveLength(3);
+  });
+});
+
+describe('catalogue : trois niveaux de lecture', () => {
+  it('filtre « une seule lettre muette, à la fin » séparé de « à mémoriser »', async () => {
+    const F = { ...E('chat', 'chat', false), lecture: { reguliere: false, niveau: 'finale', raisons: ['« t » ne se lit pas'] } };
+    const I = { ...E('elle', 'elle', false), lecture: { reguliere: false, niveau: 'irreguliere', raisons: ['x'] } };
+    render(<Catalogue catalogue={[E('papa', 'papa', true), F, I]} choisis={new Set()} onBasculer={() => {}} onEcouter={() => {}} />);
+    await userEvent.selectOptions(screen.getByLabelText('Lecture du mot'), 'finale');
+    expect(screen.getAllByRole('listitem').map(li => li.textContent)).toEqual([expect.stringContaining('chat')]);
+    await userEvent.selectOptions(screen.getByLabelText('Lecture du mot'), 'irreguliere');
+    expect(screen.getAllByRole('listitem').map(li => li.textContent)).toEqual([expect.stringContaining('elle')]);
   });
 });
