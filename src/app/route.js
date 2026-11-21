@@ -7,6 +7,8 @@ export const VALEURS_SYLLABES = ['non', 'toujours', 'aide'];
 export const VALEURS_MUET = ['origine', 'depot'];
 // Commandes de l'écran élève : « complet » (texte + icône, tout visible, comportement historique) ou « epure » (icônes seules, essentiel visible, lecture automatique du mot ; pour les non-lecteurs P1). Audit 2026-11-21.
 export const VALEURS_COMMANDES = ['complet', 'epure'];
+// Consignes vocales (voix qui dit quoi faire, « Bravo », « Essayer encore ») : absent = automatique (oui avec les commandes épurées). Audit 2026-11-21.
+export const VALEURS_CONSIGNES = ['voix', 'non'];
 // Vitesse de la voix en % (mots entiers et sons isolés, pas l'écoute par syllabes). Échelle retenue par JF le 2026-11-14 après écoute.
 export const VALEURS_VITESSE = [100, 75, 50];
 
@@ -37,6 +39,8 @@ function tacheDepuisRequete(requete) {
   if (VALEURS_MUET.includes(muet)) tache.muet = muet;
   const commandes = p.get('commandes');
   if (VALEURS_COMMANDES.includes(commandes)) tache.commandes = commandes;
+  const consignes = p.get('consignes');
+  if (VALEURS_CONSIGNES.includes(consignes)) tache.consignes = consignes;
   const vitesse = Number(p.get('vitesse'));
   if (VALEURS_VITESSE.includes(vitesse)) tache.vitesse = vitesse;
   if (p.get('verrou') === '1') tache.vitesseVerrou = true;
@@ -82,6 +86,7 @@ export function ecrireAdresse(base, ecran, tache, carte) {
     `vitesse=${e(tache.vitesse || REGLAGES_PAR_DEFAUT.vitesse)}`, `verrou=${tache.vitesseVerrou ? 1 : 0}`];
   if (Array.isArray(tache.digraphes) && tache.digraphes.join('-') !== REGLAGES_PAR_DEFAUT.digraphes.join('-')) reglages.push(`digraphes=${tache.digraphes.length > 0 ? tache.digraphes.join('-') : '0'}`); // « 0 » = aucun bloc
   if (tache.muet === 'depot') reglages.push('muet=depot'); // « origine » = défaut, absent de l'adresse
+  if (VALEURS_CONSIGNES.includes(tache.consignes)) reglages.push(`consignes=${tache.consignes}`); // absent = automatique
   if (tache.commandes === 'epure') reglages.push('commandes=epure'); // « complet » = défaut, absent de l'adresse
   if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;

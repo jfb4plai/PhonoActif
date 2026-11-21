@@ -135,3 +135,11 @@ test('commandes : « epure » lu et écrit, « complet » = défaut absent de l\
   assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', commandes: 'epure' }).includes('commandes=epure'));
   assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', commandes: 'complet' }).includes('commandes'));
 });
+
+test('consignes : « voix » et « non » lus et écrits, absent = automatique, valeur inconnue ignorée', () => {
+  assert.equal(lireAdresse('#/jeu?pack=p&consignes=voix').tache.consignes, 'voix');
+  assert.equal(lireAdresse('#/jeu?pack=p&consignes=non').tache.consignes, 'non');
+  assert.equal(lireAdresse('#/jeu?pack=p&consignes=zzz').tache.consignes, undefined);
+  assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', consignes: 'voix' }).includes('consignes=voix'));
+  assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p' }).includes('consignes'));
+});

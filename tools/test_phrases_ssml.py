@@ -35,6 +35,12 @@ class TestSsml(unittest.TestCase):
         self.assertNotEqual(a, S.empreinte("Le chat dort ici.", "a"))
         self.assertNotEqual(a, S.empreinte("Le chat dort.", "b"))
 
+    def test_consigne_texte_echappe_sans_ipa(self):
+        s = S.ssml_consigne("Poser <les> lettres & vérifier.")
+        self.assertIn("&lt;les&gt; lettres &amp; vérifier.", s)
+        self.assertNotIn("<phoneme", s)
+        self.assertIn(S.VOIX, s)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -11,6 +11,7 @@ Génère la bibliothèque audio (syllabes et sons isolés) avec Charline à part
   python generer-bibliotheque.py etats                # états du mode A de data/mode-a.json (node tools/mode_a_mots.js 100) -> public/packs/p1-100/audio
   python generer-bibliotheque.py syllabes-mots        # syllabes manquantes des 100 mots du pack (node tools/syllabes_mots.js), puis normalise
   python generer-bibliotheque.py mots-3               # mots de 3 syllabes (node tools/mots_trois_syllabes.js 5) : syllabes et mot entier, puis normalise
+  python generer-bibliotheque.py consignes            # consignes vocales P1-P3 (src/app/consignes.json, 6 courts textes) -> public/consignes/<id>.mp3
   python generer-bibliotheque.py norm                 # normalise sans appel Azure (ffmpeg local)
   python generer-bibliotheque.py page --n 40          # page d'écoute d'un échantillon au hasard (graine fixe) des fichiers normalisés
 
@@ -150,6 +151,39 @@ def phrases_pack(nom_pack):
     print(f"Suite : node tools/ajouter_phrases_pack.js {nom_pack}")
 
 
+def consignes_vocales():
+    """Consignes vocales (src/app/consignes.json) -> public/consignes/<id>.mp3 : voix Charline, texte simple, sans IPA. Reprenable : un texte inchangé n'est pas redemandé.
+    Seul le texte des consignes part vers Azure. Clé lue seulement si un fichier manque."""
+    import hashlib
+    import shutil
+    textes = json.loads((ICI.parent / "src" / "app" / "consignes.json").read_text(encoding="utf-8"))
+    dest = ICI.parent / "public" / "consignes"
+    brut, norm = BASE / "brut-consignes", BASE / "norm-consignes"
+    for d in (brut, norm, dest):
+        d.mkdir(parents=True, exist_ok=True)
+    cle = region = None
+    nouveaux = erreurs = 0
+    for id_, texte in textes.items():
+        f = brut / f"consigne_{id_}_{hashlib.sha1((texte + '|' + PS.DEBIT_CONSIGNE).encode('utf-8')).hexdigest()[:10]}.mp3"
+        if not f.exists():
+            if cle is None:
+                cle, region = C.cle_region()
+            try:
+                f.write_bytes(C.E.azure_appel(cle, region, PS.ssml_consigne(texte)))
+                nouveaux += 1
+            except Exception as e:
+                erreurs += 1
+                print("ERR", id_, str(e)[:140], flush=True)
+            time.sleep(0.15)
+        if f.exists():
+            n = norm / f.name
+            if not n.exists() or n.stat().st_mtime < f.stat().st_mtime:
+                N.normaliser(f, n)
+            shutil.copyfile(n, dest / f"{id_}.mp3")
+    manque = [i for i in textes if not (dest / f"{i}.mp3").exists()]
+    print(f"{nouveaux} nouvelle(s) consigne(s), {erreurs} erreur(s) ; dans {dest} : {len(textes) - len(manque)}/{len(textes)} ; manquantes : {manque or 'aucune'}")
+
+
 SYLLABES_MOTS = ICI.parent / "data" / "syllabes-mots.json"   # produit par : node tools/syllabes_mots.js
 
 
@@ -271,7 +305,7 @@ def page(n):
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("commande", choices=["liste", "azure", "norm", "page", "etats", "syllabes-mots", "mots-3", "pack", "phrases"])
+    ap.add_argument("commande", choices=["liste", "azure", "norm", "page", "etats", "syllabes-mots", "mots-3", "pack", "phrases", "consignes"])
     ap.add_argument("--n", type=int, default=40)
     ap.add_argument("nom_pack", nargs="?", default=None, help="avec la commande pack : nom du pack fabriqué par construire_pack_atelier.js")
     ap.add_argument("--palier", type=int, default=1, choices=[0, 1, 2, 3, 4])
@@ -295,6 +329,8 @@ if __name__ == "__main__":
         if not a.nom_pack:
             sys.exit("Donner le nom du pack : python generer-bibliotheque.py phrases <nom>")
         phrases_pack(a.nom_pack)
+    elif a.commande == "consignes":
+        consignes_vocales()
     elif a.commande == "etats":
         etats_mode_a()
     elif a.commande == "mots-3":

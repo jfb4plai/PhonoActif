@@ -1,6 +1,7 @@
 import { urlFichier } from './urlFichier.js';
 import Icone from './Icones.jsx';
-import React, { useState, useEffect } from 'react';
+import { urlConsigne, consignesActives } from './consignes.js';
+import React, { useState, useEffect, useRef } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT, VALEURS_VITESSE } from './route.js';
@@ -82,9 +83,20 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     setSonAbsent(false);
     Promise.resolve(deps.jouerFichier(urlFichier(base, pack, c.audio_mot), ...optsVitesse)).then(signalerSons).catch(() => {});
   };
-  // Commandes épurées : la voix lit le mot dès que la carte apparaît (un non-lecteur n'a pas à chercher « Écouter »).
+  // Consignes vocales (P1 à P3) : courts fichiers partagés (public/consignes/). Un fichier absent ne signale rien : l'élève n'a pas à le savoir.
+  const voix = consignesActives(tache);
+  const geste = useRef(0); // compte les gestes de l'élève : une consigne qui se termine après un geste ne relance pas le mot
+  const jouerConsigne = id => (voix && deps.jouerFichier
+    ? Promise.resolve(deps.jouerFichier(urlConsigne(base, id))).catch(() => {})
+    : Promise.resolve());
+  // À l'arrivée d'une carte : consigne de départ (première carte seulement), puis, en commandes épurées, lecture du mot.
   // Le navigateur peut bloquer le son : le bouton haut-parleur sur l'image reste là.
-  useEffect(() => { if (epure && enCours) jouerMot(carte); }, [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (!enCours) return;
+    const g = geste.current;
+    if (voix && etat.index === 0) jouerConsigne('debut').then(() => { if (epure && geste.current === g) jouerMot(carte); });
+    else if (epure) jouerMot(carte);
+  }, [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
   // Mode A : le suivi reste en graphèmes-sons (liaisons), calculé à partir des lettres posées.
   const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(
@@ -93,6 +105,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const surPiece = piece => {
     const apres = poser(etat, piece.id);
     if (apres === etat) return;
+    geste.current++;
     setEtat(apres); setMessage(null);
     if (lettres) {
       // Mode A : lecture de ce qui est posé. Chaîne hors du mot (lettre en trop, ordre autre) : lecture en direct, non construite.
@@ -104,18 +117,22 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const surVerifier = () => {
     const { etat: apres, resultat } = verifier(etat);
     enregistrer(etat, apres);
+    geste.current++;
     setEtat(apres); setMessage({ type: resultat });
+    jouerConsigne(resultat);
   };
   const surAide = () => {
     const { etat: apres, sons } = aider(etat);
     enregistrer(etat, apres);
     setEtat(apres); setMessage({ type: apres.aide });
-    if (apres.aide === 'ecoute') jouerMot(carte); else jouer(sons);
+    geste.current++;
+    if (apres.aide === 'ecoute') jouerMot(carte); else if (apres.aide === 'revelation') jouerConsigne('revelation'); else jouer(sons);
   };
   const surSuivant = () => {
     const apres = suivant(etat);
     setEtat(apres); setMessage(null);
-    if (apres.statut === 'fini') onFin(apres);
+    geste.current++;
+    if (apres.statut === 'fini') { jouerConsigne('fin'); onFin(apres); }
   };
 
   const fichierImage = modeAvec ? carte.image_avec_mot : carte.image_sans_mot;

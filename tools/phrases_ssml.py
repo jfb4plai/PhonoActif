@@ -31,3 +31,12 @@ def ssml_phrase(phrase, mot, ipa, voix=VOIX):
 def empreinte(phrase, ipa):
     """Nom stable du fichier brut : change si la phrase, l'IPA ou le débit change, pour ne pas réutiliser un audio périmé."""
     return hashlib.sha1((phrase + "|" + ipa + "|" + DEBIT).encode("utf-8")).hexdigest()[:10]
+
+
+DEBIT_CONSIGNE = "0.85"   # consignes un peu plus lentes que la parole courante (élèves de P1) ; à confirmer à l'oreille par JF
+
+
+def ssml_consigne(texte, voix=VOIX):
+    """SSML d'une consigne vocale (texte simple, sans IPA)."""
+    return ('<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="fr-BE">'
+            f'<voice name="{voix}"><prosody rate="{DEBIT_CONSIGNE}">{html.escape(texte)}</prosody></voice></speak>')

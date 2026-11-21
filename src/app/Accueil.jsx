@@ -147,6 +147,15 @@ export default function Accueil({
                 <p className="aide">Épurées : la voix lit le mot dès que la carte apparaît, l’écran ne garde que écouter, retirer, aide, image et vérifier ; un seul bouton à droite sert à vérifier puis à passer à la carte suivante ; la vitesse de la voix se règle par une seule icône (tortue). Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </div>
               <div className="plai-field">
+                <label className="plai-label" htmlFor="consignes">Consignes vocales</label>
+                <select id="consignes" className="plai-input" value={tache.consignes || 'auto'} onChange={e => onTache({ consignes: e.target.value === 'auto' ? undefined : e.target.value })}>
+                  <option value="auto">Automatique : oui avec les commandes épurées, non sinon</option>
+                  <option value="voix">Oui : la voix dit quoi faire</option>
+                  <option value="non">Non</option>
+                </select>
+                <p className="aide">Pour P1 à P3 : la voix dit la consigne au départ (« Écouter le mot. Puis poser les lettres dans l’ordre. »), puis « Bravo ! », « Pas tout à fait. Essayer encore. », « Remplir toutes les cases, puis vérifier. » et « C’est fini. » au bon moment. L’élève qui ne lit pas encore n’a ainsi pas besoin des messages écrits. Les fichiers sont à générer une fois avec la voix (python essai-tts-ipa/generer-bibliotheque.py consignes) ; sans eux, la consigne reste silencieuse et le jeu continue. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
+              </div>
+              <div className="plai-field">
                 <label className="plai-label" htmlFor="lien">Lien de la tâche</label>
                 <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir une liste pour obtenir le lien" onFocus={e => e.target.select()} />
                 {qr && <img src={qr} alt="QR-code du lien de la tâche" width="200" height="200" className="qr-accueil" />}
