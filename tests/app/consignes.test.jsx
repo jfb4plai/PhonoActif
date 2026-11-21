@@ -74,6 +74,8 @@ describe('consignes vocales', () => {
   it('commandes épurées : consigne de départ puis lecture du mot (dans cet ordre)', async () => {
     const { user, jouerFichier } = monter('&commandes=epure');
     await commencer(user);
-    await waitFor(() => expect(urls(jouerFichier)).toEqual(['/consignes/debut.mp3', '/packs/essai-a/audio/chat.mp3']));
+    // Silence de 1,5 s entre la consigne et le mot : le mot ne suit pas immédiatement.
+    await waitFor(() => expect(urls(jouerFichier)).toEqual(['/consignes/debut.mp3']));
+    await waitFor(() => expect(urls(jouerFichier)).toEqual(['/consignes/debut.mp3', '/packs/essai-a/audio/chat.mp3']), { timeout: 3000 });
   });
 });

@@ -94,7 +94,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   useEffect(() => {
     if (!enCours) return;
     const g = geste.current;
-    if (voix && etat.index === 0) jouerConsigne('debut').then(() => { if (epure && geste.current === g) jouerMot(carte); });
+    // Silence de 1,5 s entre la consigne et le mot : sinon le mot semble faire partie de la phrase.
+    if (voix && etat.index === 0) jouerConsigne('debut').then(() => new Promise(r => setTimeout(r, 1500))).then(() => { if (epure && geste.current === g) jouerMot(carte); });
     else if (epure) jouerMot(carte);
   }, [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
