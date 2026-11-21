@@ -1,6 +1,7 @@
 /* Lecture des sons. Ne lève jamais : un fichier absent ou un refus du navigateur (lecture automatique bloquée)
    va dans `manquants`, l'élève ne voit rien. Un nouvel appel interrompt le précédent. */
 let jeton = 0;
+let coupeCourant = null; // coupe la lecture en cours : une seule voix à la fois
 
 // Lit un fichier ; résout à true s'il a été lu jusqu'au bout, false s'il est absent ou refusé.
 function lireUn(url, creerAudio, vitesse = 1) {
@@ -9,6 +10,8 @@ function lireUn(url, creerAudio, vitesse = 1) {
     const rate = () => { if (!signale) { signale = true; fini(false); } };
     let audio;
     try { audio = creerAudio(url); } catch (e) { return rate(); }
+    if (coupeCourant) coupeCourant(); // jamais deux voix en même temps
+    coupeCourant = () => { try { audio.pause(); } catch (e) { /* déjà arrêté */ } if (!signale) { signale = true; fini(true); } };
     audio.onended = () => { if (!signale) { signale = true; fini(true); } };
     audio.onerror = rate;
     if (vitesse !== 1) {

@@ -100,8 +100,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     : Promise.resolve());
   // Survol d'une icône : la consigne du bouton est dictée après 0,4 s de survol (pas en passant), et coupée si la souris part.
   const minuteur = useRef(null);
-  const parle = useRef({ demarrer: id => { clearTimeout(minuteur.current); if (voix) minuteur.current = setTimeout(() => jouerConsigne(id), 400); }, annuler: () => clearTimeout(minuteur.current) }).current;
-  parle.demarrer = id => { clearTimeout(minuteur.current); if (voix) minuteur.current = setTimeout(() => jouerConsigne(id), 400); };
+  const parle = useRef({ demarrer: id => { geste.current++; clearTimeout(minuteur.current); if (voix) minuteur.current = setTimeout(() => jouerConsigne(id), 400); }, annuler: () => clearTimeout(minuteur.current) }).current;
+  parle.demarrer = id => { geste.current++; clearTimeout(minuteur.current); if (voix) minuteur.current = setTimeout(() => jouerConsigne(id), 400); };
   // À l'arrivée d'une carte : consigne de départ (première carte seulement), puis, en commandes épurées, lecture du mot.
   // Le navigateur peut bloquer le son : le bouton haut-parleur sur l'image reste là.
   useEffect(() => {

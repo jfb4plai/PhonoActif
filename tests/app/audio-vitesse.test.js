@@ -43,3 +43,15 @@ test('adresse : vitesse et verrou écrits dans le lien d’un pack', () => {
   const d = ecrireAdresse('/', 'jeu', { pack: 'p', modeMot: 'sans', habillage: 'album', nbIntrus: 0, exigerAccents: false });
   assert.match(d, /vitesse=100&verrou=0/);
 });
+
+test('une seule voix à la fois : une nouvelle lecture coupe celle en cours', async () => {
+  const arretes = [];
+  const lente = url => { const a = { url }; a.play = () => Promise.resolve(); a.pause = () => arretes.push(url); return a; }; // ne finit jamais seule
+  const premiere = jouerFichier('/consigne.mp3', { creerAudio: lente });
+  await new Promise(r => setTimeout(r, 0));
+  const j = [];
+  await jouerFichier('/mot.mp3', { creerAudio: fabrique(j) });
+  await premiere;
+  assert.deepEqual(arretes, ['/consigne.mp3']);
+  assert.deepEqual(j.map(x => x.url), ['/mot.mp3']);
+});
