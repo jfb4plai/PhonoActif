@@ -109,7 +109,7 @@ export default function Accueil({
                       onChange={e => onTache({ digraphes: [...(tache.digraphes || []).filter(x => x !== n), ...(e.target.checked ? [n] : [])].sort() })} /> Blocs de {n} lettres ({ex})
                   </label>
                 ))}
-                <p className="aide">Case cochée : les lettres qui forment ce son (par exemple « ch » dans chat) sont une seule pièce à poser, ce qui aide à mémoriser l’association. Case vide : l’élève pose chaque lettre, donc il doit savoir lui-même qu’il faut « c » puis « h ». Pour les plus jeunes ou les élèves en difficulté, cocher ; pour les plus grands, laisser vide. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
+                <p className="aide">Case cochée : les lettres qui forment ce son (par exemple « ch » dans chat) sont une seule pièce à poser, ce qui aide à mémoriser l’association. Case vide : l’élève pose chaque lettre, donc il doit savoir lui-même qu’il faut « c » puis « h ». Par défaut tout est coché (P1). Pour les plus jeunes ou les élèves en difficulté, laisser coché ; pour les plus grands, décocher. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </fieldset>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="muet">Lettre muette grisée</label>

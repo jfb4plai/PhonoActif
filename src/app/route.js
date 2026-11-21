@@ -1,7 +1,7 @@
 /* Adresses des tâches et des cartes : un lien ou un QR ouvre un pack avec ses réglages (#/jeu?...) ou une seule carte
    (#/carte/<pack>/<id>?...), sans compte. Les valeurs hors liste sont ignorées champ par champ, jamais corrigées. */
 
-export const REGLAGES_PAR_DEFAUT = { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine', digraphes: [] };
+export const REGLAGES_PAR_DEFAUT = { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine', digraphes: [2, 3, 4] }; // blocs : tous par défaut (P1, décision de JF 2026-11-21) ; aucun niveau P2+ n'existe encore dans les packs
 export const VALEURS_SYLLABES = ['non', 'toujours', 'aide'];
 // Lettre muette grisée dès le plateau (origine, comportement historique) ou seulement une fois posée (depot).
 export const VALEURS_MUET = ['origine', 'depot'];
@@ -76,7 +76,7 @@ export function ecrireAdresse(base, ecran, tache, carte) {
   const e = encodeURIComponent;
   const reglages = [`mode=${e(tache.modeMot)}`, `habillage=${e(tache.habillage)}`, `intrus=${e(tache.nbIntrus)}`, `accents=${tache.exigerAccents ? 1 : 0}`, `syllabes=${e(tache.syllabes || REGLAGES_PAR_DEFAUT.syllabes)}`,
     `vitesse=${e(tache.vitesse || REGLAGES_PAR_DEFAUT.vitesse)}`, `verrou=${tache.vitesseVerrou ? 1 : 0}`];
-  if (Array.isArray(tache.digraphes) && tache.digraphes.length > 0) reglages.push(`digraphes=${tache.digraphes.join('-')}`);
+  if (Array.isArray(tache.digraphes) && tache.digraphes.join('-') !== REGLAGES_PAR_DEFAUT.digraphes.join('-')) reglages.push(`digraphes=${tache.digraphes.length > 0 ? tache.digraphes.join('-') : '0'}`); // « 0 » = aucun bloc
   if (tache.muet === 'depot') reglages.push('muet=depot'); // « origine » = défaut, absent de l'adresse
   if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;

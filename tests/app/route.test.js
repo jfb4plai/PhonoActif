@@ -6,7 +6,7 @@ const TACHE = { pack: 'été', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2,
 const hashDe = url => new URL(url).hash;
 
 test('réglages par défaut', () => {
-  assert.deepEqual(REGLAGES_PAR_DEFAUT, { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine', digraphes: [] });
+  assert.deepEqual(REGLAGES_PAR_DEFAUT, { modeMot: 'sans', habillage: 'album', nbIntrus: 3, exigerAccents: false, essaisMax: 3, syllabes: 'toujours', vitesse: 100, vitesseVerrou: false, muet: 'origine', digraphes: [2, 3, 4] });
 });
 
 test('aller-retour jeu avec un nom de pack accentué', () => {
@@ -124,5 +124,6 @@ test('digraphes : longueurs lues (2-3), valeurs hors 2 à 4 ignorées, écrites 
   assert.deepEqual(lireAdresse('#/jeu?pack=p&digraphes=0').tache.digraphes, []);
   assert.deepEqual(lireAdresse('#/jeu?pack=p&digraphes=9-4-x').tache.digraphes, [4]);
   assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', digraphes: [2, 4] }).includes('digraphes=2-4'));
-  assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p' }).includes('digraphes'));
+  assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p' }).includes('digraphes')); // défaut = tous les blocs, absent de l'adresse
+  assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', digraphes: [] }).includes('digraphes=0'));
 });
