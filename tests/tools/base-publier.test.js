@@ -26,7 +26,7 @@ test('publier : seules les fiches au statut « valide » sont servies, avec leur
   await assert.rejects(access(path.join(sortie, 'audio', 'cd.mp3')));
 });
 
-test('publier sur la vraie base : au moins 156 mots triés, fiches < 600 Ko, tout fichier cité présent, modèle p1-100 de 100 mots', async () => {
+test('publier sur la vraie base : au moins 156 mots triés, fiches < 600 Ko, tout fichier cité présent, modèle p1-100 de 101 mots', async () => {
   const sortie = await mkdtemp(path.join(tmpdir(), 'phono-mots-'));
   const r = await publier({ racine: RACINE, sortie });
   assert.ok(r.nbMots >= 156, `${r.nbMots} mots publiés`);
@@ -39,7 +39,7 @@ test('publier sur la vraie base : au moins 156 mots triés, fiches < 600 Ko, tou
   const fiches = await lire(path.join(sortie, 'fiches.json'));
   for (const f of fiches) for (const fichier of [f.image_sans_mot, f.phraseAudio, ...f.etats.map(e => e.fichier)].filter(Boolean)) await access(path.join(sortie, fichier));
   const modeles = await lire(path.join(sortie, 'modeles.json'));
-  assert.equal(modeles.find(m => m.id === 'p1-100').mots.length, 100);
+  assert.equal(modeles.find(m => m.id === 'p1-100').mots.length, 101);
 });
 
 test('publier refuse une base qui contient deux fiches de même identifiant', async () => {

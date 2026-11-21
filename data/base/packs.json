@@ -3,7 +3,7 @@
   "id": "p1-100",
   "entree": {
    "id": "p1-100",
-   "label": "100 mots de P1, lecture lettre par lettre (voix Charline)"
+   "label": "101 mots de P1, lecture lettre par lettre (voix Charline)"
   },
   "manifeste": {
    "nom": "p1-100",
@@ -110,7 +110,8 @@
    "etre",
    "pendant",
    "fete",
-   "rat"
+   "rat",
+   "oeuf"
   ]
  },
  {
