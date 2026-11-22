@@ -1,0 +1,82 @@
+{
+ "nom": "pack-progressif-p1-lot17",
+ "titre": "Pack progressif P1 : paliers 4, 5 et 6a (lot 3)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "mal",
+   "niveau": "P1",
+   "phrase": "J'ai mal au ventre.",
+   "commentaire": "Pack progressif P1, palier 4 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "lis",
+   "niveau": "P1",
+   "phrase": "Lis ce petit mot.",
+   "commentaire": "Pack progressif P1, palier 4 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "vol",
+   "niveau": "P1",
+   "phrase": "L'oiseau est en plein vol.",
+   "commentaire": "Pack progressif P1, palier 4 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "vis",
+   "niveau": "P1",
+   "phrase": "Je vis à Liège.",
+   "commentaire": "Pack progressif P1, palier 4 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "jus",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot17/jus.png",
+   "phrase": "Le jus est orange.",
+   "commentaire": "Pack progressif P1, palier 5"
+  },
+  {
+   "mot": "riz",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot17/riz.png",
+   "phrase": "Le riz est blanc.",
+   "commentaire": "Pack progressif P1, palier 5"
+  },
+  {
+   "mot": "lilas",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot17/lilas.png",
+   "phrase": "Le lilas sent bon.",
+   "commentaire": "Pack progressif P1, palier 5"
+  },
+  {
+   "mot": "avis",
+   "niveau": "P1",
+   "phrase": "Je donne mon avis.",
+   "commentaire": "Pack progressif P1, palier 5 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "salut",
+   "niveau": "P1",
+   "phrase": "Je dis salut à mon ami.",
+   "commentaire": "Pack progressif P1, palier 5 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "fou",
+   "niveau": "P1",
+   "phrase": "Le chien est fou de joie.",
+   "commentaire": "Pack progressif P1, palier 6a ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "mou",
+   "niveau": "P1",
+   "phrase": "Le pain est mou.",
+   "commentaire": "Pack progressif P1, palier 6a ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "filou",
+   "niveau": "P1",
+   "phrase": "Ce filou a pris mon gâteau.",
+   "commentaire": "Pack progressif P1, palier 6a ; sans image (décision de JF 2026-11-22)"
+  }
+ ]
+}
