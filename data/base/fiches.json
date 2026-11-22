@@ -14929,7 +14929,7 @@
   "niveau": "P1",
   "phrase": "J'ai mal au ventre.",
   "phraseAudio": "audio/phrase-mal.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -14983,7 +14983,7 @@
   "niveau": "P1",
   "phrase": "L'oiseau est en plein vol.",
   "phraseAudio": "audio/phrase-vol.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15040,7 +15040,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le jus est orange.",
   "phraseAudio": "audio/phrase-jus.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15097,7 +15097,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le riz est blanc.",
   "phraseAudio": "audio/phrase-riz.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15179,7 +15179,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le lilas sent bon.",
   "phraseAudio": "audio/phrase-lilas.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15248,7 +15248,7 @@
   "niveau": "P1",
   "phrase": "Je donne mon avis.",
   "phraseAudio": "audio/phrase-avis.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15327,7 +15327,7 @@
   "niveau": "P1",
   "phrase": "Je dis salut à mon ami.",
   "phraseAudio": "audio/phrase-salut.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15377,7 +15377,7 @@
   "niveau": "P1",
   "phrase": "Le chien est fou de joie.",
   "phraseAudio": "audio/phrase-fou.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15427,7 +15427,7 @@
   "niveau": "P1",
   "phrase": "Le pain est mou.",
   "phraseAudio": "audio/phrase-mou.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15502,7 +15502,7 @@
   "niveau": "P1",
   "phrase": "Ce filou a pris mon gâteau.",
   "phraseAudio": "audio/phrase-filou.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15556,7 +15556,7 @@
   "niveau": "P1",
   "phrase": "Lis ce petit mot.",
   "phraseAudio": "audio/phrase-lis.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
@@ -15610,7 +15610,7 @@
   "niveau": "P1",
   "phrase": "Je vis à Liège.",
   "phraseAudio": "audio/phrase-vis.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot17"
   ]
