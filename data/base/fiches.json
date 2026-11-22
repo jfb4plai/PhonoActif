@@ -15614,5 +15614,731 @@
   "origine": [
    "pack-progressif-p1-lot17"
   ]
+ },
+ {
+  "id": "savon",
+  "mot": "savon",
+  "lettres": [
+   "s",
+   "a",
+   "v",
+   "o",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "on",
+    "son": "on"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sav",
+    "fichier": "audio/73_61_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "savo",
+    "fichier": "audio/73_61_76_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "savon",
+    "fichier": "audio/73_61_76_254_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "vɔ̃",
+    "fichier": "audio/76_254_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/savon.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le savon rose fait de la mousse.",
+  "phraseAudio": "audio/phrase-savon.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "salon",
+  "mot": "salon",
+  "lettres": [
+   "s",
+   "a",
+   "l",
+   "o",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "on",
+    "son": "on"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sal",
+    "fichier": "audio/73_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salo",
+    "fichier": "audio/73_61_6c_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salon",
+    "fichier": "audio/73_61_6c_254_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "lɔ̃",
+    "fichier": "audio/6c_254_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/salon.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Papa lit dans le salon.",
+  "phraseAudio": "audio/phrase-salon.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "melon",
+  "mot": "melon",
+  "lettres": [
+   "m",
+   "e",
+   "l",
+   "o",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "on",
+    "son": "on"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "me",
+    "fichier": "audio/6d_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mel",
+    "fichier": "audio/6d_259_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "melo",
+    "fichier": "audio/6d_259_6c_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "melon",
+    "fichier": "audio/6d_259_6c_254_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mə",
+    "fichier": "audio/6d_259_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "lɔ̃",
+    "fichier": "audio/6c_254_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/melon.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je mange une part de melon.",
+  "phraseAudio": "audio/phrase-melon.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "an",
+  "mot": "an",
+  "lettres": [
+   "a",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "an",
+    "son": "an"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "a",
+    "fichier": "audio/61_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "an",
+    "fichier": "audio/251_303_0.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɑ̃",
+    "fichier": "audio/251_303_0.mp3",
+    "cubes": 1
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Un an a douze mois.",
+  "phraseAudio": "audio/phrase-an.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "fin",
+  "mot": "fin",
+  "lettres": [
+   "f",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "in",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fin",
+    "fichier": "audio/66_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fɛ̃",
+    "fichier": "audio/66_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "C'est la fin de l'histoire.",
+  "phraseAudio": "audio/phrase-fin.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "vin",
+  "mot": "vin",
+  "lettres": [
+   "v",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "in",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vin",
+    "fichier": "audio/76_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vɛ̃",
+    "fichier": "audio/76_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/vin.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Papa verse du vin dans un verre.",
+  "phraseAudio": "audio/phrase-vin.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "marin",
+  "mot": "marin",
+  "lettres": [
+   "m",
+   "a",
+   "r",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "in",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mar",
+    "fichier": "audio/6d_61_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mari",
+    "fichier": "audio/6d_61_281_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "marin",
+    "fichier": "audio/6d_61_281_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ʁɛ̃",
+    "fichier": "audio/281_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/marin.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le marin porte une casquette.",
+  "phraseAudio": "audio/phrase-marin.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "roi",
+  "mot": "roi",
+  "lettres": [
+   "r",
+   "o",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "oi",
+    "son": "oi"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ro",
+    "fichier": "audio/281_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "roi",
+    "fichier": "audio/281_77_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁwa",
+    "fichier": "audio/281_77_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/roi.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le roi porte une couronne.",
+  "phraseAudio": "audio/phrase-roi.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "foi",
+  "mot": "foi",
+  "lettres": [
+   "f",
+   "o",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "oi",
+    "son": "oi"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fo",
+    "fichier": "audio/66_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "foi",
+    "fichier": "audio/66_77_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fwa",
+    "fichier": "audio/66_77_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "J'ai foi en mon ami.",
+  "phraseAudio": "audio/phrase-foi.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "jeu",
+  "mot": "jeu",
+  "lettres": [
+   "j",
+   "e",
+   "u"
+  ],
+  "cubes": [
+   {
+    "g": "j",
+    "son": "j"
+   },
+   {
+    "g": "eu",
+    "son": "eu_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "j",
+    "fichier": "audio/292_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "je",
+    "fichier": "audio/292_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jeu",
+    "fichier": "audio/292_f8_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʒø",
+    "fichier": "audio/292_f8_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Je joue à un jeu.",
+  "phraseAudio": "audio/phrase-jeu.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "main",
+  "mot": "main",
+  "lettres": [
+   "m",
+   "a",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "ain",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mai",
+    "fichier": "audio/6d_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "main",
+    "fichier": "audio/6d_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mɛ̃",
+    "fichier": "audio/6d_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/main.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je lève la main.",
+  "phraseAudio": "audio/phrase-main.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
+ },
+ {
+  "id": "pain",
+  "mot": "pain",
+  "lettres": [
+   "p",
+   "a",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "ain",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pa",
+    "fichier": "audio/70_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pai",
+    "fichier": "audio/70_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pain",
+    "fichier": "audio/70_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "pɛ̃",
+    "fichier": "audio/70_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/pain.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je mange une tranche de pain.",
+  "phraseAudio": "audio/phrase-pain.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot18"
+  ]
  }
 ]

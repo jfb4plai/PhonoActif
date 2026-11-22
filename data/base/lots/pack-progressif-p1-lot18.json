@@ -1,0 +1,87 @@
+{
+ "nom": "pack-progressif-p1-lot18",
+ "titre": "Pack progressif P1 : paliers 6b à 7 (lot 18)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "savon",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/savon.png",
+   "phrase": "Le savon rose fait de la mousse.",
+   "commentaire": "Pack progressif P1, palier 6b ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "salon",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/salon.png",
+   "phrase": "Papa lit dans le salon.",
+   "commentaire": "Pack progressif P1, palier 6b ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "melon",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/melon.png",
+   "phrase": "Je mange une part de melon.",
+   "commentaire": "Pack progressif P1, palier 6b ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "an",
+   "niveau": "P1",
+   "phrase": "Un an a douze mois.",
+   "commentaire": "Pack progressif P1, palier 6c ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "fin",
+   "niveau": "P1",
+   "phrase": "C'est la fin de l'histoire.",
+   "commentaire": "Pack progressif P1, palier 6d ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "vin",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/vin.png",
+   "phrase": "Papa verse du vin dans un verre.",
+   "commentaire": "Pack progressif P1, palier 6d ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "marin",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/marin.png",
+   "phrase": "Le marin porte une casquette.",
+   "commentaire": "Pack progressif P1, palier 6d ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "roi",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/roi.png",
+   "phrase": "Le roi porte une couronne.",
+   "commentaire": "Pack progressif P1, palier 6e ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "foi",
+   "niveau": "P1",
+   "phrase": "J'ai foi en mon ami.",
+   "commentaire": "Pack progressif P1, palier 6e ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "jeu",
+   "niveau": "P1",
+   "phrase": "Je joue à un jeu.",
+   "commentaire": "Pack progressif P1, palier 6f ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "main",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/main.png",
+   "phrase": "Je lève la main.",
+   "commentaire": "Pack progressif P1, palier 7 ; image Canva (validée par JF 2026-11-22)"
+  },
+  {
+   "mot": "pain",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot18/pain.png",
+   "phrase": "Je mange une tranche de pain.",
+   "commentaire": "Pack progressif P1, palier 7 ; image Canva (validée par JF 2026-11-22)"
+  }
+ ]
+}

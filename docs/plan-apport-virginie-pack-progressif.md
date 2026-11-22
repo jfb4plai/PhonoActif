@@ -61,7 +61,7 @@ Légende : `*` déjà au catalogue avec image, `°` au catalogue sans image, san
 | 6d | digraphe in | fin, vin†, marin† |
 | 6e | digraphe oi | roi, moi°, foi† |
 | 6f | digraphe eu | feu*, jeu |
-| 7 | digraphes de 3 lettres | eau*, seau*, main, nain, faim, veau†, sein†, sain† |
+| 7 | digraphes de 3 lettres | eau*, seau*, main, pain, faim, veau†, sein†, sain† |
 
 Contrôle (constaté par exécution) : 65 mots, 0 paire visuelle proche, 0 jumeau phonétique. Présence : **14 au catalogue** (13 avec image, `moi` sans), **51 à créer**. Dans la liste P1 / VOB : 38 sur 65 ; 27 hors liste (†).
 

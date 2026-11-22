@@ -41,7 +41,7 @@ Les lots 1 à 15 existent déjà ; la numérotation continue à 16 (lots 16 à 2
 | Fin du lot 15 | audio Azure + finalisation des 11 brouillons ; « mémé » sort du lot (fichier `data/base/lots/pack-progressif-p1-lot15.json` : entrée à retirer, image `meme.png` inutilisée) | 1-2 |
 | 16 | lama, poli, vie, fée, fumée, vue, série, revue, momie, fil, mur, sol | 1 à 4 |
 | 17 | mal*, lis*, vol*, vis*, jus, riz, lilas, avis, salut, fou, mou, filou | 4 à 6a |
-| 18 | savon, salon, melon, an*, fin, vin, marin, roi, foi*, jeu, main, nain | 6b à 7 |
+| 18 | savon, salon, melon, an*, fin, vin, marin, roi, foi*, jeu, main, pain | 6b à 7 |
 | 19 | faim, veau, sein, sain + chéri, fichu, léché, jet, volet, minet, sujet, zéro (suite) | 7 à 10 |
 | 20 | ici*, ciné, vivre, film, avril, mimosa, safari, salami, révolu + déjà*, cela*, cinéma (palier final F) | 10 à 12 et F |
 | 21 | canapé, pavé, pédalo, mécano (palier final F, 4 mots) | F |
@@ -60,7 +60,7 @@ Les lots 1 à 15 existent déjà ; la numérotation continue à 16 (lots 16 à 2
 
 - Génération Canva : ~6 min par image, 56 images à générer (tous les mots absents, plus les mots du catalogue sans image à vérifier), soit ~5,5 h de génération cumulée au minimum, plus les refus (2-3 essais pour les mots délicats). C'est le goulot.
 - Audio Azure : une session par lot pour JF ; la phrase doit contenir le mot tel quel, sinon le script signale « mot non repéré ».
-- Homophones et ambiguïtés d'image : vie/vis, vue/revue, sein/sain/main/nain/faim, fin/faim, mur/mûr, jus (image d'un verre ?) : chaque image doit être nommée par ce qu'un enfant de 6 ans y voit avant d'être gardée.
+- Homophones et ambiguïtés d'image : vie/vis, vue/revue, sein/sain/main/pain/faim, fin/faim, mur/mûr, jus (image d'un verre ?) : chaque image doit être nommée par ce qu'un enfant de 6 ans y voit avant d'être gardée.
 - 27 mots du noyau sont hors liste P1 / VOB (†) : leur niveau P1 est à valider par JF avant d'investir une image.
 - Rien n'a été testé avec des élèves : l'ordre des paliers est une proposition.
 
