@@ -1,7 +1,11 @@
 /* Fête de réussite, seule animation du jeu (demande de JF 2026-11-22). Volontairement hors de jeu.css, dont un test interdit toute animation. */
+/* Quatre fêtes (0 à 3), choisies d'après l'identifiant de la carte : un même mot a toujours la même. Fête 4 : bilan de fin de pack. */
 /* Réussite : les lettres sautent l'une après l'autre, des confettis jaillissent. Une seule fois, ~1,6 s, sans clignotement. */
 .zone { position: relative; }
 .zone-juste .cube { animation: danse 0.7s ease-in-out both; }
+.zone-juste.fete-1 .cube { animation-name: tourne; }
+.zone-juste.fete-2 .cube { animation-name: pop; }
+.zone-juste.fete-3 .cube { animation-name: balance; }
 .zone-juste .cube:nth-of-type(2) { animation-delay: 0.1s; }
 .zone-juste .cube:nth-of-type(3) { animation-delay: 0.2s; }
 .zone-juste .cube:nth-of-type(4) { animation-delay: 0.3s; }
@@ -12,4 +16,19 @@
 .conf { position: absolute; left: calc(50% + var(--x)); top: 0; width: 10px; height: 14px; border-radius: 2px; opacity: 0; animation: confetti 1.6s ease-out var(--d) forwards; }
 .conf0 { background: var(--v); } .conf1 { background: var(--c); } .conf2 { background: var(--acc); } .conf3 { background: var(--juste); }
 @keyframes confetti { 0% { opacity: 1; transform: translateY(0) rotate(0); } 40% { opacity: 1; transform: translateY(calc(var(--h) * -1)) rotate(calc(var(--r) / 2)); } 100% { opacity: 0; transform: translateY(40px) rotate(var(--r)); } }
-@media (prefers-reduced-motion: reduce) { .zone-juste .cube { animation: none; } .confettis { display: none; } }
+@keyframes tourne { 0%, 100% { transform: rotateY(0); } 50% { transform: rotateY(180deg) translateY(-10px); } }
+@keyframes pop { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.3); } 70% { transform: scale(0.95); } }
+@keyframes balance { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+/* Particules propres à chaque fête : étoiles qui montent, bulles qui montent, confettis qui tombent d'en haut. */
+.fete-1 .conf { width: 16px; height: 16px; border-radius: 0; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); animation-name: monte; }
+.fete-2 .conf { width: 14px; height: 14px; border-radius: 50%; animation-name: monte; }
+.fete-3 .conf { animation-name: tombe; }
+@keyframes monte { 0% { opacity: 1; transform: translateY(0) scale(0.6); } 100% { opacity: 0; transform: translateY(calc(var(--h) * -1.6)) scale(1.1) rotate(var(--r)); } }
+@keyframes tombe { 0% { opacity: 1; transform: translateY(-70px) rotate(0); } 100% { opacity: 0; transform: translateY(50px) rotate(var(--r)); } }
+/* Bilan : plus grande, confettis sur toute la largeur, une seule fois (3 s). */
+.bilan { position: relative; overflow: hidden; }
+.bilan .confettis { top: 0; }
+.bilan .conf { width: 12px; height: 16px; animation: tombe-bilan 3s ease-in var(--d) forwards; left: var(--x); }
+@keyframes tombe-bilan { 0% { opacity: 1; transform: translateY(-20px) rotate(0); } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(420px) rotate(var(--r)); } }
+.bilan h1 { animation: pop 0.9s ease-in-out 0.2s both; }
+@media (prefers-reduced-motion: reduce) { .zone-juste .cube, .bilan h1 { animation: none; } .confettis { display: none; } }

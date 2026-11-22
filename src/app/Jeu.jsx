@@ -164,7 +164,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
   const toutesCases = posees.reduce((n, p) => n + [...p.g].length, 0) >= carte.cubes.length; // toutes les cases sont remplies
   const suivantPret = etat.statut === 'juste' || etat.statut === 'revelation';
-  const classeZone = etat.statut === 'juste' ? ' zone-juste' : (message && message.type === 'faux' ? ' zone-faux' : '');
+  const feteDeCarte = [...String(carte.id)].reduce((n, c) => n + c.charCodeAt(0), 0) % 4; // 4 fêtes, la même pour un même mot
+  const classeZone = etat.statut === 'juste' ? ` zone-juste fete-${feteDeCarte}` : (message && message.type === 'faux' ? ' zone-faux' : '');
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
   const aideSyllabes = lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat);
   const btnImage = lettres && imageDisponible && <Commande parle={parle} icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => setImageVue(v => !v)} />;
@@ -220,7 +221,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         })()}
         {/* Fête de réussite : confettis qui montent et retombent (1,6 s, une seule fois), lettres qui sautent en vague (fete.css). Décoratif, coupé si l'élève réduit les animations. */}
         {etat.statut === 'juste' && (
-          <span className="confettis" aria-hidden="true">
+          <span className={`confettis fete-${feteDeCarte}`} aria-hidden="true">
             {Array.from({ length: 16 }, (_, k) => <i key={k} style={{ '--x': `${(k - 7.5) * 6.5}%`, '--d': `${(k % 5) * 0.06}s`, '--h': `${50 + (k * 37) % 40}px`, '--r': `${(k % 2 ? 1 : -1) * (120 + k * 25)}deg` }} className={`conf conf${k % 4}`} />)}
           </span>
         )}
