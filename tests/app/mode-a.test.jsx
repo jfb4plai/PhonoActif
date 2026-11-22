@@ -144,6 +144,8 @@ describe('Mode A : lecture de ce qui est posé', () => {
   it('vitesse de la voix : boutons visibles par défaut, départ à normale ; « Lente » ralentit « Écouter » à 0,75 ; l’écoute par syllabes garde ses valeurs', async () => {
     const { user, jouerFichier } = monter();
     await commencer(user);
+    expect(screen.queryByRole('button', { name: 'Lente' })).toBeNull(); // replié par défaut
+    await user.click(screen.getByRole('button', { name: /Vitesse de la voix : Normale/ }));
     expect(screen.getByRole('button', { name: 'Normale' })).toHaveAttribute('aria-pressed', 'true');
     await user.click(screen.getByRole('button', { name: 'Écouter' }));
     expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3');
@@ -158,6 +160,7 @@ describe('Mode A : lecture de ce qui est posé', () => {
   it('vitesse de la voix : la tâche donne la vitesse de départ, boutons encore là sans verrou', async () => {
     const { user, jouerFichier } = monter(MANIFEST, '&vitesse=50');
     await commencer(user);
+    await user.click(screen.getByRole('button', { name: /Vitesse de la voix : Très lente/ }));
     expect(screen.getByRole('button', { name: 'Très lente' })).toHaveAttribute('aria-pressed', 'true');
     await user.click(screen.getByRole('button', { name: 'Écouter' }));
     expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3', { vitesse: 0.5 });
@@ -167,6 +170,7 @@ describe('Mode A : lecture de ce qui est posé', () => {
     const { user, jouerFichier } = monter(MANIFEST, '&vitesse=75&verrou=1');
     await commencer(user);
     expect(screen.queryByRole('group', { name: 'Vitesse de la voix' })).toBeNull();
+    expect(screen.queryByRole('button', { name: /Vitesse de la voix/ })).toBeNull();
     await user.click(screen.getByRole('button', { name: 'Écouter' }));
     expect(jouerFichier).toHaveBeenLastCalledWith('/packs/essai-a/audio/chat.mp3', { vitesse: 0.75 });
   });

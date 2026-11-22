@@ -5,6 +5,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT, VALEURS_VITESSE } from './route.js';
+
+const NOMS_VITESSE = { 100: 'Normale', 75: 'Lente', 50: 'Très lente' };
 import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, phraseDeCarte, reperesLettres, lettresMuettes, pieceMuette, boutonSyllabesVisible, REGLAGES_SYLLABES, REGLE_COUPURE } from '../jeu/modeA.js';
 
 const CLASSES = { voyelle: 'v', consonne: 'c', muet: 'm', inconnu: 'm' };
@@ -57,6 +59,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   };
   // Vitesse de la voix (mots entiers et sons isolés, pas l'écoute par syllabes) : départ = réglage de la tâche ; boutons chez l'élève sauf si l'enseignant a verrouillé.
   const [vitesse, setVitesse] = useState(VALEURS_VITESSE.includes(tache.vitesse) ? tache.vitesse : 100);
+  const [vitesseOuverte, setVitesseOuverte] = useState(false); // panneau de réglage de la voix, replié par défaut
   const optsVitesse = vitesse === 100 ? [] : [{ vitesse: vitesse / 100 }]; // rien d'ajouté à vitesse normale : appels identiques à avant
   const jouer = ids => {
     if (ids.length === 0) return;
@@ -274,15 +277,6 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
             {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}
           </div>
 
-          {!tache.vitesseVerrou && (
-            <div className="vitesse" role="group" aria-label="Vitesse de la voix">
-              <span>Voix :</span>
-              {[[100, 'Normale'], [75, 'Lente'], [50, 'Très lente']].map(([v, nom]) => (
-                <button key={v} type="button" aria-pressed={vitesse === v} className={vitesse === v ? 'principal' : ''} onClick={() => setVitesse(v)}>{nom}</button>
-              ))}
-            </div>
-          )}
-
           {lettres && (tache.syllabes || 'toujours') !== 'non' && (
             aideSyllabes
               ? <p className="aide aide-syllabes">Écouter par syllabes : la voix dit une syllabe après l’autre, la syllabe dite est entourée.</p>
@@ -297,6 +291,22 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           </p> : null}
 
       {!epure && <p><button type="button" className="discret" onClick={onAccueil}>Retour à l’accueil</button></p>}
+
+      {/* Réglage pour l'adulte, hors de la zone de travail : replié, séparé par un filet (décision de JF 2026-11-22). */}
+      {!epure && !tache.vitesseVerrou && (
+        <div className="reglage-adulte">
+          <button type="button" className="discret" aria-expanded={vitesseOuverte} aria-controls="panneau-vitesse" onClick={() => setVitesseOuverte(o => !o)}>
+            Vitesse de la voix : {NOMS_VITESSE[vitesse] || 'Normale'}
+          </button>
+          {vitesseOuverte && (
+            <div id="panneau-vitesse" className="vitesse" role="group" aria-label="Vitesse de la voix">
+              {[[100, 'Normale'], [75, 'Lente'], [50, 'Très lente']].map(([v, nom]) => (
+                <button key={v} type="button" aria-pressed={vitesse === v} className={vitesse === v ? 'principal' : ''} onClick={() => setVitesse(v)}>{nom}</button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </main>
   );
 }
