@@ -80,7 +80,7 @@
   "etats": [
    {
     "lettres": "e",
-    "fichier": "audio/259_0.mp3",
+    "fichier": "audio/25b_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -240,7 +240,7 @@
    },
    {
     "lettres": "ave",
-    "fichier": "audio/61_76_-30.mp3",
+    "fichier": "audio/61_76_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -453,7 +453,7 @@
    },
    {
     "lettres": "pet",
-    "fichier": "audio/70_25b_-30.mp3",
+    "fichier": "audio/70_259_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -673,12 +673,12 @@
    },
    {
     "lettres": "bi",
-    "fichier": "audio/62_69_-30.mp3",
+    "fichier": "audio/62_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "bie",
-    "fichier": "audio/62_69_-30.mp3",
+    "fichier": "audio/62_6a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1191,7 +1191,7 @@
    },
    {
     "lettres": "mais",
-    "fichier": "audio/6d_25b_-30.mp3",
+    "fichier": "audio/6d_25b_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1321,7 +1321,7 @@
    },
    {
     "lettres": "vit",
-    "fichier": "audio/76_69_-30.mp3",
+    "fichier": "audio/76_69_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1377,7 +1377,7 @@
    },
    {
     "lettres": "aus",
-    "fichier": "audio/6f_0.mp3",
+    "fichier": "audio/6f_73_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1450,7 +1450,7 @@
    },
    {
     "lettres": "pap",
-    "fichier": "audio/70_61_-30.mp3",
+    "fichier": "audio/70_61_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1618,7 +1618,7 @@
    },
    {
     "lettres": "co",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1803,7 +1803,7 @@
    },
    {
     "lettres": "jard",
-    "fichier": "audio/292_61_281_-30.mp3",
+    "fichier": "audio/292_61_281_64_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1884,7 +1884,7 @@
    },
    {
     "lettres": "éco",
-    "fichier": "audio/65_6b_6f_-30.mp3",
+    "fichier": "audio/65_6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -1965,7 +1965,7 @@
    },
    {
     "lettres": "alo",
-    "fichier": "audio/61_6c_6f_-30.mp3",
+    "fichier": "audio/61_6c_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2086,7 +2086,7 @@
    },
    {
     "lettres": "têt",
-    "fichier": "audio/74_25b_-30.mp3",
+    "fichier": "audio/74_25b_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2364,7 +2364,7 @@
    },
    {
     "lettres": "ou",
-    "fichier": "audio/75_0.mp3",
+    "fichier": "audio/77_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2426,12 +2426,12 @@
    },
    {
     "lettres": "enc",
-    "fichier": "audio/251_303_0.mp3",
+    "fichier": "audio/251_303_6b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "enco",
-    "fichier": "audio/251_303_6b_6f_-30.mp3",
+    "fichier": "audio/251_303_6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2501,12 +2501,12 @@
    },
    {
     "lettres": "chi",
-    "fichier": "audio/283_69_-30.mp3",
+    "fichier": "audio/283_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "chie",
-    "fichier": "audio/283_69_-30.mp3",
+    "fichier": "audio/283_6a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2590,7 +2590,7 @@
    },
    {
     "lettres": "voit",
-    "fichier": "audio/76_77_61_-30.mp3",
+    "fichier": "audio/76_77_61_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2746,7 +2746,7 @@
    },
    {
     "lettres": "pois",
-    "fichier": "audio/70_77_61_-30.mp3",
+    "fichier": "audio/70_77_61_73_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -2938,7 +2938,7 @@
    },
    {
     "lettres": "tem",
-    "fichier": "audio/74_25b_6d_-30.mp3",
+    "fichier": "audio/74_251_303_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -3059,7 +3059,7 @@
    },
    {
     "lettres": "mat",
-    "fichier": "audio/6d_61_-30.mp3",
+    "fichier": "audio/6d_61_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -3394,12 +3394,12 @@
    },
    {
     "lettres": "ri",
-    "fichier": "audio/281_69_-30.mp3",
+    "fichier": "audio/281_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "rie",
-    "fichier": "audio/281_69_-30.mp3",
+    "fichier": "audio/281_6a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -3697,7 +3697,7 @@
    },
    {
     "lettres": "peu",
-    "fichier": "audio/70_f8_-30.mp3",
+    "fichier": "audio/70_153_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -3922,7 +3922,7 @@
    },
    {
     "lettres": "roug",
-    "fichier": "audio/281_75_261_-30.mp3",
+    "fichier": "audio/281_75_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4105,7 +4105,7 @@
    },
    {
     "lettres": "te",
-    "fichier": "audio/74_259_-30.mp3",
+    "fichier": "audio/74_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4180,7 +4180,7 @@
    },
    {
     "lettres": "mond",
-    "fichier": "audio/6d_254_303_-30.mp3",
+    "fichier": "audio/6d_254_303_64_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4290,7 +4290,7 @@
    },
    {
     "lettres": "neig",
-    "fichier": "audio/6e_25b_261_-30.mp3",
+    "fichier": "audio/6e_25b_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4358,7 +4358,7 @@
    },
    {
     "lettres": "po",
-    "fichier": "audio/70_6f_-30.mp3",
+    "fichier": "audio/70_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4368,7 +4368,7 @@
    },
    {
     "lettres": "port",
-    "fichier": "audio/70_254_281_-30.mp3",
+    "fichier": "audio/70_254_281_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4493,7 +4493,7 @@
    },
    {
     "lettres": "que",
-    "fichier": "audio/6b_259_-30.mp3",
+    "fichier": "audio/6b_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4545,7 +4545,7 @@
    },
    {
     "lettres": "leu",
-    "fichier": "audio/6c_f8_-30.mp3",
+    "fichier": "audio/6c_153_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4695,12 +4695,12 @@
    },
    {
     "lettres": "mang",
-    "fichier": "audio/6d_251_303_-30.mp3",
+    "fichier": "audio/6d_251_303_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "mange",
-    "fichier": "audio/6d_251_303_292_-30.mp3",
+    "fichier": "audio/6d_251_303_292_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4951,7 +4951,7 @@
    },
    {
     "lettres": "to",
-    "fichier": "audio/74_6f_-30.mp3",
+    "fichier": "audio/74_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -4961,7 +4961,7 @@
    },
    {
     "lettres": "tort",
-    "fichier": "audio/74_254_281_-30.mp3",
+    "fichier": "audio/74_254_281_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5039,7 +5039,7 @@
    },
    {
     "lettres": "fo",
-    "fichier": "audio/66_6f_-30.mp3",
+    "fichier": "audio/66_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5375,7 +5375,7 @@
    },
    {
     "lettres": "ve",
-    "fichier": "audio/76_259_-30.mp3",
+    "fichier": "audio/76_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5611,12 +5611,12 @@
   "etats": [
    {
     "lettres": "y",
-    "fichier": "audio/69_0.mp3",
+    "fichier": "audio/6a_0.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "ye",
-    "fichier": "audio/6a_0.mp3",
+    "fichier": "audio/6a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5680,7 +5680,7 @@
    },
    {
     "lettres": "côt",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_6f_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5751,7 +5751,7 @@
    },
    {
     "lettres": "lun",
-    "fichier": "audio/6c_153_303_-30.mp3",
+    "fichier": "audio/6c_79_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5839,7 +5839,7 @@
    },
    {
     "lettres": "rivi",
-    "fichier": "audio/281_69_76_69_-30.mp3",
+    "fichier": "audio/281_69_76_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5916,7 +5916,7 @@
    },
    {
     "lettres": "po",
-    "fichier": "audio/70_6f_-30.mp3",
+    "fichier": "audio/70_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5989,7 +5989,7 @@
    },
    {
     "lettres": "êt",
-    "fichier": "audio/25b_0.mp3",
+    "fichier": "audio/25b_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6074,7 +6074,7 @@
    },
    {
     "lettres": "pend",
-    "fichier": "audio/70_251_303_-30.mp3",
+    "fichier": "audio/70_251_303_64_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6152,7 +6152,7 @@
    },
    {
     "lettres": "fêt",
-    "fichier": "audio/66_25b_-30.mp3",
+    "fichier": "audio/66_25b_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6267,12 +6267,12 @@
    },
    {
     "lettres": "ois",
-    "fichier": "audio/77_61_0.mp3",
+    "fichier": "audio/77_61_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "oise",
-    "fichier": "audio/77_61_7a_-30.mp3",
+    "fichier": "audio/77_61_7a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6359,7 +6359,7 @@
    },
    {
     "lettres": "ren",
-    "fichier": "audio/281_251_303_-30.mp3",
+    "fichier": "audio/281_259_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6524,7 +6524,7 @@
    },
    {
     "lettres": "lap",
-    "fichier": "audio/6c_61_-30.mp3",
+    "fichier": "audio/6c_61_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6616,7 +6616,7 @@
    },
    {
     "lettres": "fen",
-    "fichier": "audio/66_251_303_-30.mp3",
+    "fichier": "audio/66_259_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6626,7 +6626,7 @@
    },
    {
     "lettres": "fenêt",
-    "fichier": "audio/66_259_6e_25b_-30.mp3",
+    "fichier": "audio/66_259_6e_25b_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6785,12 +6785,12 @@
    },
    {
     "lettres": "chap",
-    "fichier": "audio/283_61_-30.mp3",
+    "fichier": "audio/283_61_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "chape",
-    "fichier": "audio/283_61_70_-30.mp3",
+    "fichier": "audio/283_61_70_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6875,12 +6875,12 @@
    },
    {
     "lettres": "chât",
-    "fichier": "audio/283_61_-30.mp3",
+    "fichier": "audio/283_61_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "châte",
-    "fichier": "audio/283_61_74_-30.mp3",
+    "fichier": "audio/283_61_74_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -6968,7 +6968,7 @@
    },
    {
     "lettres": "chev",
-    "fichier": "audio/283_25b_76_-30.mp3",
+    "fichier": "audio/283_259_76_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7060,7 +7060,7 @@
    },
    {
     "lettres": "fro",
-    "fichier": "audio/66_281_6f_-30.mp3",
+    "fichier": "audio/66_281_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7075,7 +7075,7 @@
    },
    {
     "lettres": "fromag",
-    "fichier": "audio/66_281_254_6d_61_261_-30.mp3",
+    "fichier": "audio/66_281_254_6d_61_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7149,12 +7149,12 @@
    },
    {
     "lettres": "gât",
-    "fichier": "audio/261_61_-30.mp3",
+    "fichier": "audio/261_61_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "gâte",
-    "fichier": "audio/261_61_74_-30.mp3",
+    "fichier": "audio/261_61_74_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7232,7 +7232,7 @@
    },
    {
     "lettres": "avi",
-    "fichier": "audio/61_76_69_-30.mp3",
+    "fichier": "audio/61_76_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7305,7 +7305,7 @@
    },
    {
     "lettres": "ve",
-    "fichier": "audio/76_259_-30.mp3",
+    "fichier": "audio/76_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7440,7 +7440,7 @@
    },
    {
     "lettres": "sap",
-    "fichier": "audio/73_61_-30.mp3",
+    "fichier": "audio/73_61_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7607,7 +7607,7 @@
    },
    {
     "lettres": "fleu",
-    "fichier": "audio/66_6c_f8_-30.mp3",
+    "fichier": "audio/66_6c_153_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7665,7 +7665,7 @@
    },
    {
     "lettres": "li",
-    "fichier": "audio/6c_69_-30.mp3",
+    "fichier": "audio/6c_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7743,17 +7743,17 @@
    },
    {
     "lettres": "pan",
-    "fichier": "audio/70_251_303_-30.mp3",
+    "fichier": "audio/70_61_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "pani",
-    "fichier": "audio/70_61_6e_69_-30.mp3",
+    "fichier": "audio/70_61_6e_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "panie",
-    "fichier": "audio/70_61_6e_69_-30.mp3",
+    "fichier": "audio/70_61_6e_6a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7827,12 +7827,12 @@
    },
    {
     "lettres": "bat",
-    "fichier": "audio/62_61_-30.mp3",
+    "fichier": "audio/62_61_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "bate",
-    "fichier": "audio/62_61_74_-30.mp3",
+    "fichier": "audio/62_61_74_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7915,7 +7915,7 @@
    },
    {
     "lettres": "gu",
-    "fichier": "audio/261_79_-30.mp3",
+    "fichier": "audio/261_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -7925,7 +7925,7 @@
    },
    {
     "lettres": "guit",
-    "fichier": "audio/261_69_-30.mp3",
+    "fichier": "audio/261_69_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8009,12 +8009,12 @@
    },
    {
     "lettres": "cad",
-    "fichier": "audio/6b_61_-30.mp3",
+    "fichier": "audio/6b_61_64_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "cade",
-    "fichier": "audio/6b_61_64_-30.mp3",
+    "fichier": "audio/6b_61_64_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8223,7 +8223,7 @@
    },
    {
     "lettres": "co",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8238,7 +8238,7 @@
    },
    {
     "lettres": "corbe",
-    "fichier": "audio/6b_254_281_62_-30.mp3",
+    "fichier": "audio/6b_254_281_62_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8404,7 +8404,7 @@
    },
    {
     "lettres": "chem",
-    "fichier": "audio/283_25b_6d_-30.mp3",
+    "fichier": "audio/283_259_6d_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8414,7 +8414,7 @@
    },
    {
     "lettres": "chemis",
-    "fichier": "audio/283_259_6d_69_-30.mp3",
+    "fichier": "audio/283_259_6d_69_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8487,7 +8487,7 @@
    },
    {
     "lettres": "ét",
-    "fichier": "audio/65_0.mp3",
+    "fichier": "audio/65_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8581,7 +8581,7 @@
    },
    {
     "lettres": "mout",
-    "fichier": "audio/6d_75_-30.mp3",
+    "fichier": "audio/6d_75_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8669,7 +8669,7 @@
    },
    {
     "lettres": "cami",
-    "fichier": "audio/6b_61_6d_69_-30.mp3",
+    "fichier": "audio/6b_61_6d_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8736,7 +8736,7 @@
    },
    {
     "lettres": "co",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8813,7 +8813,7 @@
    },
    {
     "lettres": "can",
-    "fichier": "audio/6b_251_303_-30.mp3",
+    "fichier": "audio/6b_61_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8907,7 +8907,7 @@
    },
    {
     "lettres": "chais",
-    "fichier": "audio/283_25b_-30.mp3",
+    "fichier": "audio/283_25b_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -8975,12 +8975,12 @@
    },
    {
     "lettres": "lam",
-    "fichier": "audio/6c_61_6d_-30.mp3",
+    "fichier": "audio/6c_251_303_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "lamp",
-    "fichier": "audio/6c_251_303_-30.mp3",
+    "fichier": "audio/6c_251_303_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9054,7 +9054,7 @@
    },
    {
     "lettres": "tam",
-    "fichier": "audio/74_61_6d_-30.mp3",
+    "fichier": "audio/74_251_303_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9286,7 +9286,7 @@
   "etats": [
    {
     "lettres": "g",
-    "fichier": "audio/261_0.mp3",
+    "fichier": "audio/292_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9535,7 +9535,7 @@
    },
    {
     "lettres": "co",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9628,7 +9628,7 @@
    },
    {
     "lettres": "se",
-    "fichier": "audio/73_259_-30.mp3",
+    "fichier": "audio/73_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9643,7 +9643,7 @@
    },
    {
     "lettres": "serpe",
-    "fichier": "audio/73_25b_281_70_-30.mp3",
+    "fichier": "audio/73_25b_281_70_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9736,7 +9736,7 @@
    },
    {
     "lettres": "bale",
-    "fichier": "audio/62_61_6c_-30.mp3",
+    "fichier": "audio/62_61_6c_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9746,7 +9746,7 @@
    },
    {
     "lettres": "balein",
-    "fichier": "audio/62_61_6c_25b_303_-30.mp3",
+    "fichier": "audio/62_61_6c_25b_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9828,7 +9828,7 @@
    },
    {
     "lettres": "ban",
-    "fichier": "audio/62_251_303_-30.mp3",
+    "fichier": "audio/62_61_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9838,7 +9838,7 @@
    },
    {
     "lettres": "banan",
-    "fichier": "audio/62_61_6e_251_303_-30.mp3",
+    "fichier": "audio/62_61_6e_61_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9926,7 +9926,7 @@
    },
    {
     "lettres": "frais",
-    "fichier": "audio/66_281_25b_-30.mp3",
+    "fichier": "audio/66_281_25b_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9989,7 +9989,7 @@
   "etats": [
    {
     "lettres": "c",
-    "fichier": "audio/6b_0.mp3",
+    "fichier": "audio/73_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -9999,7 +9999,7 @@
    },
    {
     "lettres": "cit",
-    "fichier": "audio/73_69_-30.mp3",
+    "fichier": "audio/73_69_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10154,7 +10154,7 @@
    },
    {
     "lettres": "tax",
-    "fichier": "audio/74_61_-30.mp3",
+    "fichier": "audio/74_61_6b_73_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10231,7 +10231,7 @@
    },
    {
     "lettres": "fus",
-    "fichier": "audio/66_79_73_-30.mp3",
+    "fichier": "audio/66_79_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10328,7 +10328,7 @@
    },
    {
     "lettres": "valis",
-    "fichier": "audio/76_61_6c_69_-30.mp3",
+    "fichier": "audio/76_61_6c_69_7a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10490,7 +10490,7 @@
    },
    {
     "lettres": "éche",
-    "fichier": "audio/65_283_-30.mp3",
+    "fichier": "audio/65_283_25b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10592,7 +10592,7 @@
    },
    {
     "lettres": "tulip",
-    "fichier": "audio/74_79_6c_69_-30.mp3",
+    "fichier": "audio/74_79_6c_69_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10664,7 +10664,7 @@
    },
    {
     "lettres": "jup",
-    "fichier": "audio/292_79_-30.mp3",
+    "fichier": "audio/292_79_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10742,7 +10742,7 @@
    },
    {
     "lettres": "mont",
-    "fichier": "audio/6d_254_303_-30.mp3",
+    "fichier": "audio/6d_254_303_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -10895,7 +10895,7 @@
    },
    {
     "lettres": "branc",
-    "fichier": "audio/62_281_251_303_-30.mp3",
+    "fichier": "audio/62_281_251_303_6b_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11071,7 +11071,7 @@
    },
    {
     "lettres": "chem",
-    "fichier": "audio/283_25b_6d_-30.mp3",
+    "fichier": "audio/283_259_6d_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11081,7 +11081,7 @@
    },
    {
     "lettres": "chemin",
-    "fichier": "audio/283_259_6d_25b_303_-30.mp3",
+    "fichier": "audio/283_259_6d_69_6e_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11163,7 +11163,7 @@
    },
    {
     "lettres": "pip",
-    "fichier": "audio/70_69_-30.mp3",
+    "fichier": "audio/70_69_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11246,7 +11246,7 @@
    },
    {
     "lettres": "plant",
-    "fichier": "audio/70_6c_251_303_-30.mp3",
+    "fichier": "audio/70_6c_251_303_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11308,7 +11308,7 @@
    },
    {
     "lettres": "ro",
-    "fichier": "audio/281_6f_-30.mp3",
+    "fichier": "audio/281_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11386,7 +11386,7 @@
    },
    {
     "lettres": "rout",
-    "fichier": "audio/281_75_-30.mp3",
+    "fichier": "audio/281_75_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11706,7 +11706,7 @@
    },
    {
     "lettres": "cag",
-    "fichier": "audio/6b_61_261_-30.mp3",
+    "fichier": "audio/6b_61_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11784,12 +11784,12 @@
    },
    {
     "lettres": "cahi",
-    "fichier": "audio/6b_61_69_-30.mp3",
+    "fichier": "audio/6b_61_6a_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "cahie",
-    "fichier": "audio/6b_61_69_-30.mp3",
+    "fichier": "audio/6b_61_6a_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11897,7 +11897,7 @@
    },
    {
     "lettres": "confit",
-    "fichier": "audio/6b_254_303_66_69_-30.mp3",
+    "fichier": "audio/6b_254_303_66_69_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -11980,7 +11980,7 @@
   "etats": [
    {
     "lettres": "o",
-    "fichier": "audio/6f_0.mp3",
+    "fichier": "audio/254_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12000,7 +12000,7 @@
    },
    {
     "lettres": "orang",
-    "fichier": "audio/254_281_251_303_-30.mp3",
+    "fichier": "audio/254_281_251_303_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12160,7 +12160,7 @@
    },
    {
     "lettres": "poup",
-    "fichier": "audio/70_75_-30.mp3",
+    "fichier": "audio/70_75_70_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12243,7 +12243,7 @@
    },
    {
     "lettres": "sing",
-    "fichier": "audio/73_25b_303_-30.mp3",
+    "fichier": "audio/73_25b_303_292_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12307,7 +12307,7 @@
    },
    {
     "lettres": "so",
-    "fichier": "audio/73_6f_-30.mp3",
+    "fichier": "audio/73_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12317,7 +12317,7 @@
    },
    {
     "lettres": "sole",
-    "fichier": "audio/73_254_6c_-30.mp3",
+    "fichier": "audio/73_254_6c_259_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12380,7 +12380,7 @@
    },
    {
     "lettres": "œu",
-    "fichier": "audio/f8_0.mp3",
+    "fichier": "audio/153_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12584,17 +12584,17 @@
    },
    {
     "lettres": "fe",
-    "fichier": "audio/66_259_-30.mp3",
+    "fichier": "audio/66_61_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "fem",
-    "fichier": "audio/66_25b_6d_-30.mp3",
+    "fichier": "audio/66_61_6d_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "femm",
-    "fichier": "audio/66_25b_6d_-30.mp3",
+    "fichier": "audio/66_61_6d_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -12657,7 +12657,7 @@
    },
    {
     "lettres": "ho",
-    "fichier": "audio/6f_0.mp3",
+    "fichier": "audio/254_0.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -13011,7 +13011,7 @@
    },
    {
     "lettres": "cham",
-    "fichier": "audio/283_61_6d_-30.mp3",
+    "fichier": "audio/283_251_303_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -13103,17 +13103,17 @@
    },
    {
     "lettres": "co",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_254_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "cos",
-    "fichier": "audio/6b_6f_-30.mp3",
+    "fichier": "audio/6b_254_73_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "cost",
-    "fichier": "audio/6b_254_73_-30.mp3",
+    "fichier": "audio/6b_254_73_74_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -13202,7 +13202,7 @@
    },
    {
     "lettres": "chem",
-    "fichier": "audio/283_25b_6d_-30.mp3",
+    "fichier": "audio/283_259_6d_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -13275,7 +13275,7 @@
    },
    {
     "lettres": "cœu",
-    "fichier": "audio/6b_f8_-30.mp3",
+    "fichier": "audio/6b_153_-30.mp3",
     "ecartAvecRegles": false
    },
    {
