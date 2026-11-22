@@ -215,6 +215,12 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           }
           return elements;
         })()}
+        {/* Fête de réussite : confettis qui montent et retombent (1,6 s, une seule fois), lettres qui sautent en vague (fete.css). Décoratif, coupé si l'élève réduit les animations. */}
+        {etat.statut === 'juste' && (
+          <span className="confettis" aria-hidden="true">
+            {Array.from({ length: 16 }, (_, k) => <i key={k} style={{ '--x': `${(k - 7.5) * 6.5}%`, '--d': `${(k % 5) * 0.06}s`, '--h': `${50 + (k * 37) % 40}px`, '--r': `${(k % 2 ? 1 : -1) * (120 + k * 25)}deg` }} className={`conf conf${k % 4}`} />)}
+          </span>
+        )}
       </div>
 
       {/* Retour d'état juste sous les cases : visible sans défiler (audit 2026-11-21). */}
