@@ -25,10 +25,16 @@
 .fete-3 .conf { animation-name: tombe; }
 @keyframes monte { 0% { opacity: 1; transform: translateY(0) scale(0.6); } 100% { opacity: 0; transform: translateY(calc(var(--h) * -1.6)) scale(1.1) rotate(var(--r)); } }
 @keyframes tombe { 0% { opacity: 1; transform: translateY(-70px) rotate(0); } 100% { opacity: 0; transform: translateY(50px) rotate(var(--r)); } }
-/* Bilan : plus grande, confettis sur toute la largeur, une seule fois (3 s). */
-.bilan { position: relative; overflow: hidden; }
-.bilan .confettis { top: 0; }
-.bilan .conf { width: 12px; height: 16px; animation: tombe-bilan 3s ease-in var(--d) forwards; left: var(--x); }
-@keyframes tombe-bilan { 0% { opacity: 1; transform: translateY(-20px) rotate(0); } 85% { opacity: 1; } 100% { opacity: 0; transform: translateY(420px) rotate(var(--r)); } }
-.bilan h1 { animation: pop 0.9s ease-in-out 0.2s both; }
-@media (prefers-reduced-motion: reduce) { .zone-juste .cube, .bilan h1 { animation: none; } .confettis { display: none; } }
+/* Bilan : feu d'artifice (3 gerbes décalées, 20 étincelles chacune, ~1,2 s par gerbe, sans clignotement) et grande étoile dorée. Une seule fois. */
+.bilan { position: relative; overflow: hidden; min-height: 300px; }
+.bilan .feu { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.bilan h1, .bilan p, .bilan .actions, .bilan .etoile-bilan { position: relative; z-index: 1; }
+.gerbe { position: absolute; width: 0; height: 0; }
+.gerbe i { position: absolute; left: -3px; top: -9px; width: 6px; height: 18px; border-radius: 3px; opacity: 0; animation: etincelle 1.3s ease-out var(--g) forwards; }
+.gerbe0 i { background: var(--v); } .gerbe1 i { background: var(--acc); } .gerbe2 i { background: var(--c); }
+.gerbe i:nth-child(3n) { background: var(--juste); }
+@keyframes etincelle { 0% { opacity: 1; transform: rotate(var(--a)) translateY(0) scale(0.6); } 60% { opacity: 1; transform: rotate(var(--a)) translateY(calc(var(--n) * -1)) scale(1); } 100% { opacity: 0; transform: rotate(var(--a)) translateY(calc(var(--n) * -1.3)) translateY(20px) scale(0.3); } }
+.etoile-bilan { display: block; margin: 0 auto 4px; animation: surgit 1.1s cubic-bezier(0.3, 1.5, 0.5, 1) 0.1s both; }
+@keyframes surgit { 0% { opacity: 0; transform: scale(0) rotate(-200deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
+.bilan h1 { animation: pop 0.9s ease-in-out 0.9s both; }
+@media (prefers-reduced-motion: reduce) { .zone-juste .cube, .bilan h1, .etoile-bilan { animation: none; } .confettis, .feu { display: none; } }
