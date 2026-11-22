@@ -14083,5 +14083,801 @@
   "origine": [
    "pack-progressif-p1-lot15"
   ]
+ },
+ {
+  "id": "lama",
+  "mot": "lama",
+  "lettres": [
+   "l",
+   "a",
+   "m",
+   "a"
+  ],
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "l",
+    "fichier": "audio/6c_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "la",
+    "fichier": "audio/6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lam",
+    "fichier": "audio/6c_61_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lama",
+    "fichier": "audio/6c_61_6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "la",
+    "fichier": "audio/6c_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/lama.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le lama a un long cou.",
+  "phraseAudio": "audio/phrase-lama.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "poli",
+  "mot": "poli",
+  "lettres": [
+   "p",
+   "o",
+   "l",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "po",
+    "fichier": "audio/70_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pol",
+    "fichier": "audio/70_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poli",
+    "fichier": "audio/70_254_6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "pɔ",
+    "fichier": "audio/70_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "li",
+    "fichier": "audio/6c_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "L'enfant est poli : il dit merci.",
+  "phraseAudio": "audio/phrase-poli.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "vie",
+  "mot": "vie",
+  "lettres": [
+   "v",
+   "i",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vie",
+    "fichier": "audio/76_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "La vie est belle.",
+  "phraseAudio": "audio/phrase-vie.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "fee",
+  "mot": "fée",
+  "lettres": [
+   "f",
+   "é",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fé",
+    "fichier": "audio/66_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fée",
+    "fichier": "audio/66_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fe",
+    "fichier": "audio/66_65_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/fee.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La fée agite sa baguette.",
+  "phraseAudio": "audio/phrase-fee.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "fumee",
+  "mot": "fumée",
+  "lettres": [
+   "f",
+   "u",
+   "m",
+   "é",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fu",
+    "fichier": "audio/66_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fum",
+    "fichier": "audio/66_79_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fumé",
+    "fichier": "audio/66_79_6d_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fumée",
+    "fichier": "audio/66_79_6d_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fy",
+    "fichier": "audio/66_79_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "me",
+    "fichier": "audio/6d_65_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/fumee.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La fumée monte vers le ciel.",
+  "phraseAudio": "audio/phrase-fumee.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "vue",
+  "mot": "vue",
+  "lettres": [
+   "v",
+   "u",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vu",
+    "fichier": "audio/76_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vue",
+    "fichier": "audio/76_79_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vy",
+    "fichier": "audio/76_79_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "J'ai une belle vue.",
+  "phraseAudio": "audio/phrase-vue.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "serie",
+  "mot": "série",
+  "lettres": [
+   "s",
+   "é",
+   "r",
+   "i",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sé",
+    "fichier": "audio/73_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sér",
+    "fichier": "audio/73_65_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "séri",
+    "fichier": "audio/73_65_281_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "série",
+    "fichier": "audio/73_65_281_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "se",
+    "fichier": "audio/73_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ʁi",
+    "fichier": "audio/281_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Je regarde une série.",
+  "phraseAudio": "audio/phrase-serie.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "revue",
+  "mot": "revue",
+  "lettres": [
+   "r",
+   "e",
+   "v",
+   "u",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "re",
+    "fichier": "audio/281_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rev",
+    "fichier": "audio/281_259_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "revu",
+    "fichier": "audio/281_259_76_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "revue",
+    "fichier": "audio/281_259_76_79_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁə",
+    "fichier": "audio/281_259_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "vy",
+    "fichier": "audio/76_79_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Papa lit une revue.",
+  "phraseAudio": "audio/phrase-revue.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "momie",
+  "mot": "momie",
+  "lettres": [
+   "m",
+   "o",
+   "m",
+   "i",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mo",
+    "fichier": "audio/6d_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mom",
+    "fichier": "audio/6d_254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "momi",
+    "fichier": "audio/6d_254_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "momie",
+    "fichier": "audio/6d_254_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mɔ",
+    "fichier": "audio/6d_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/momie.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La momie est couverte de bandes.",
+  "phraseAudio": "audio/phrase-momie.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "fil",
+  "mot": "fil",
+  "lettres": [
+   "f",
+   "i",
+   "l"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fil",
+    "fichier": "audio/66_69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fil",
+    "fichier": "audio/66_69_6c_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/fil.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le fil rouge est long.",
+  "phraseAudio": "audio/phrase-fil.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "mur",
+  "mot": "mur",
+  "lettres": [
+   "m",
+   "u",
+   "r"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mu",
+    "fichier": "audio/6d_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mur",
+    "fichier": "audio/6d_79_281_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "myʁ",
+    "fichier": "audio/6d_79_281_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/mur.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le mur est en briques.",
+  "phraseAudio": "audio/phrase-mur.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
+ },
+ {
+  "id": "sol",
+  "mot": "sol",
+  "lettres": [
+   "s",
+   "o",
+   "l"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "so",
+    "fichier": "audio/73_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sol",
+    "fichier": "audio/73_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sɔl",
+    "fichier": "audio/73_254_6c_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Le chat est sur le sol.",
+  "phraseAudio": "audio/phrase-sol.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot16"
+  ]
  }
 ]

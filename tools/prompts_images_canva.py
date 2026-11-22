@@ -607,8 +607,31 @@ MOTS_LOT15 = [
      " The groom on the left: a round peach-colored face with two small dark dots for the eyes and a smile, short dark hair, a dark grey suit. The bride on the right: a round peach-colored face with two small dark dots for the eyes and a smile, a cream veil, a cream dress, a small soft pink bouquet in her free hand. They hold hands in the middle. Exactly two people, simple flat shapes, no text.",
      "DEUX mariés qui se tiennent la main (costume sombre / robe crème), quatre yeux au total, sourires", "Palier 1 ; phrase : « Le mari donne la main à sa femme. »"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+PERSONNES |= {"fée", "momie"}
+# Lot 16 : pack progressif P1, paliers 1 à 4 (fiche d'intention data/base/lots/pack-progressif-p1-lot16-intention.md, validée par JF le 2026-11-22).
+# 6 images ; poli, vie, vue, série, revue, sol : SANS image (décision de JF 2026-11-22), phrases dans le fichier de lot.
+MOTS_LOT16 = [
+    ("lama", "lama", "a llama standing, with a long neck and two small pointed ears", DE_PROFIL, "profil", "cream-beige #e3c9a0, darker brown #8a6a4a",
+     " A llama standing on four thin legs, seen from the side: the whole body, the long neck and the legs in ONE single cream-beige #e3c9a0 (soft rounded fluffy outline, no spots, no stripes), the muzzle and the tips of the four feet in a darker brown #8a6a4a, two small pointed upright ears, one eye. The long neck is clearly visible and the head is held high. No rider, no saddle, no rope, no grass, no ground, no text.",
+     "UN lama beige debout, long cou, deux petites oreilles pointues, un seul œil ; ne doit pas se lire mouton, alpaga ni chameau", "Palier 1 ; phrase : « Le lama a un long cou. »"),
+    ("fée", "fee", "a small friendly fairy with two wings and a magic wand with a star, full body", DE_FACE, "face", f"{PEAU}, soft pink #e88fb4, lilac #b79ce0, warm yellow #f2c94c",
+     " A small fairy standing, full body: a round peach-colored face with two small dark dots for the eyes and a smile, short brown hair, a soft pink #e88fb4 dress, two large rounded lilac #b79ce0 wings clearly visible on both sides behind her shoulders and spreading wider than her body, a thin warm yellow #f2c94c wand held in one hand with a small star at its tip. Generic fairy, simple flat shapes. No flowers, no sparkles around, no castle, no text.",
+     "UNE petite fée de face (deux yeux, sourire), robe rose, deux GRANDES ailes lilas bien visibles (v1 refusée : ailes bleu clair invisibles sur le fond bleu), baguette jaune à étoile ; personnage générique, ni Clochette ni décor", "Palier 3 ; phrase : « La fée agite sa baguette. »"),
+    ("fumée", "fumee", "big soft clouds of grey smoke rising up from a small pile of burnt-out logs", DE_FACE, "aucun", "grey #b8bcc2, dark brown #6b4a2f",
+     " Three large soft rounded swirls of light grey #b8bcc2 smoke curling upwards, filling about two thirds of the picture, rising from a very small pile of three dark brown #6b4a2f logs at the bottom, no flame, no fire. No chimney, no house, no roof, no ham, no cloud shaped like a sky cloud, no text.",
+     "DE LA FUMÉE grise qui monte (3 volutes, 2/3 de l'image) au-dessus de 3 bûches brunes sans flamme ; ni cheminée (voir cheminée) ni jambon fumé ; ne doit pas se lire nuage ni feu", "Palier 3 ; phrase : « La fumée monte vers le ciel. »"),
+    ("momie", "momie", "a friendly mummy standing, wrapped in cream bandages, full body", DE_FACE, "face", "cream #efe6d0, dark brown #5b4a3a",
+     " A friendly mummy standing upright, full body, completely wrapped in horizontal cream #efe6d0 bandage strips with thin dark brown #5b4a3a lines between the strips, one loose bandage end hanging from one arm; in a narrow gap across the face two small dark dots for the eyes and a soft smile. Gentle and cute, not scary, no blood, no sarcophagus, no pyramid, no desert, no text.",
+     "UNE momie debout enroulée de bandelettes crème, deux yeux dans la fente, sourire doux, un bout de bande qui pend ; pas effrayante, ni sarcophage ni pyramide", "Palier 3 ; phrase : « La momie est couverte de bandes. »"),
+    ("fil", "fil", "a wooden spool of red thread with a long wavy loose thread end", DE_FACE, "aucun", "thread brick-red #b9532f, light wood #d9b98a",
+     " A small light wood #d9b98a spool wound with brick-red #b9532f thread, seen from the front, with one very long wavy loose end of the same brick-red thread unwinding from the spool and curling across the picture (the loose thread is long and clearly visible, about as long as the picture is wide). No needle, no fabric, no scissors, no button, no text.",
+     "UNE bobine de fil rouge-brique avec un LONG bout de fil ondulé qui sort ; ni aiguille ni tissu ; le fil libre doit être bien visible (sinon : se lit bobine)", "Palier 4 ; phrase : « Le fil rouge est long. »"),
+    ("mur", "mur", "a whole brick wall, six rows of bricks, seen flat from the front", DE_FACE, "aucun", "brick terracotta #b9532f, cream #efe6d0",
+     " A whole brick wall filling the picture frame: six horizontal rows of terracotta #b9532f bricks with thin cream #efe6d0 joints, the bricks of each row shifted by half a brick, a flat straight top edge with a thin darker terracotta cap. Not a single brick, not a house, no door, no window, no plant, no ground, no text.",
+     "UN mur de briques entier (6 rangées), vu de face, bord supérieur droit ; pas une brique isolée (voir brique), ni maison ni porte", "Palier 4 ; phrase : « Le mur est en briques. »"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15, 16: MOTS_LOT16}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15 + MOTS_LOT16  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):

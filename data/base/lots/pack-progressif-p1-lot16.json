@@ -1,0 +1,85 @@
+{
+ "nom": "pack-progressif-p1-lot16",
+ "titre": "Pack progressif P1 : paliers 1 à 4 (lot 2)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "lama",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot16/lama.png",
+   "phrase": "Le lama a un long cou.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "poli",
+   "niveau": "P1",
+   "phrase": "L'enfant est poli : il dit merci.",
+   "commentaire": "Pack progressif P1, palier 2 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "vie",
+   "niveau": "P1",
+   "phrase": "La vie est belle.",
+   "commentaire": "Pack progressif P1, palier 3 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "fée",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot16/fee.png",
+   "phrase": "La fée agite sa baguette.",
+   "commentaire": "Pack progressif P1, palier 3"
+  },
+  {
+   "mot": "fumée",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot16/fumee.png",
+   "phrase": "La fumée monte vers le ciel.",
+   "commentaire": "Pack progressif P1, palier 3"
+  },
+  {
+   "mot": "vue",
+   "niveau": "P1",
+   "phrase": "J'ai une belle vue.",
+   "commentaire": "Pack progressif P1, palier 3 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "série",
+   "niveau": "P1",
+   "phrase": "Je regarde une série.",
+   "commentaire": "Pack progressif P1, palier 3 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "revue",
+   "niveau": "P1",
+   "phrase": "Papa lit une revue.",
+   "commentaire": "Pack progressif P1, palier 3 ; sans image (décision de JF 2026-11-22)"
+  },
+  {
+   "mot": "momie",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot16/momie.png",
+   "phrase": "La momie est couverte de bandes.",
+   "commentaire": "Pack progressif P1, palier 3"
+  },
+  {
+   "mot": "fil",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot16/fil.png",
+   "phrase": "Le fil rouge est long.",
+   "commentaire": "Pack progressif P1, palier 4"
+  },
+  {
+   "mot": "mur",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot16/mur.png",
+   "phrase": "Le mur est en briques.",
+   "commentaire": "Pack progressif P1, palier 4"
+  },
+  {
+   "mot": "sol",
+   "niveau": "P1",
+   "phrase": "Le chat est sur le sol.",
+   "commentaire": "Pack progressif P1, palier 4 ; sans image (décision de JF 2026-11-22)"
+  }
+ ]
+}

@@ -38,7 +38,8 @@ async function ajouter(chemin) {
   const pack = {
     nom: lot.nom, titre: lot.titre || lot.nom, visibilite: 'commun',
     // les fichiers de génération (a-generer, phrases) couvrent TOUT le lot, même les mots déjà ajoutés : on peut relancer l'outil sans perdre la liste d'audio
-    cartes: lot.mots.map(m => ({ mot: m.mot, niveau: m.niveau || lot.niveau, image: `images/${identifiantCarte(m.mot)}.png`, source: SOURCE, licence: LICENCE, phrase: m.phrase || '' }))
+    // mot sans « image » dans le fichier de lot (mot abstrait, décision de JF) : fiche sans image, comme moi ou pour
+    cartes: lot.mots.map(m => ({ mot: m.mot, niveau: m.niveau || lot.niveau, ...(m.image ? { image: `images/${identifiantCarte(m.mot)}.png`, source: SOURCE, licence: LICENCE } : {}), phrase: m.phrase || '' }))
   };
   const r = construirePackLettres({ pack, lexique, corrections });
   const parMot = new Map(lot.mots.map(m => [m.mot, m]));
@@ -49,9 +50,11 @@ async function ajouter(chemin) {
     const m = parMot.get(carte.mot);
     const phraseAudio = carte.phrase ? `audio/phrase-${carte.id}.mp3` : null;
     if (!existants.has(carte.id)) {
-      const src = path.resolve(racine, m.image);
-      if (!existsSync(src)) throw new Error(`Image introuvable pour « ${carte.mot} » : ${src}`);
-      await copyFile(src, path.join(base, 'assets', carte.image_sans_mot));
+      if (m.image) {
+        const src = path.resolve(racine, m.image);
+        if (!existsSync(src)) throw new Error(`Image introuvable pour « ${carte.mot} » : ${src}`);
+        await copyFile(src, path.join(base, 'assets', carte.image_sans_mot));
+      }
       const fiche = { ...carte, ...(phraseAudio ? { phraseAudio } : {}), statut: 'brouillon', origine: [lot.nom] };
       delete fiche.aVerifier;
       fiches.push(fiche);
