@@ -567,8 +567,48 @@ MOTS_LOT14 = [
      " A men's suit hanging on a wooden hanger seen from the front: a dark teal jacket with two lapels and a cream shirt collar, a red tie in the middle, and matching dark teal trousers hanging straight below. No person, no body, no wall, no text.",
      "UN costume (veste turquoise foncé, cravate rouge, pantalon) sur un cintre ; aucune personne", "VOB P2 ; phrase : « Le costume est vert. » (l'image montre un costume vert turquoise : la phrase d'abord prévue, « bleu », ne correspondait pas)"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+PERSONNES |= {"mari", "ravi", "mémé"}
+# Lot 15 : pack progressif P1, paliers 1 et 2 (plan docs/plan-apport-virginie-pack-progressif.md ; fiche data/base/lots/pack-progressif-p1-lot15-intention.md validée par JF le 2026-11-20)
+MOTS_LOT15 = [
+    ("sofa", "sofa", "a two-seat sofa with two cushions", DE_FACE, "aucun", "teal-green #2f8f83, cream, warm yellow #fbbf24",
+     " A simple sofa seen from the front: the whole body (back, seat and two armrests) in ONE single teal-green #2f8f83, two short feet, one cream cushion and one warm yellow cushion sitting on the seat. No person, no animal, no room, no table, no text.",
+     "UN canapé 2 places vert-bleu uni avec 2 coussins (crème et jaune) ; rien d'autre", "Palier 1 ; phrase : « Le sofa est doux. »"),
+    ("rôti", "roti", "a tied roast of meat, a thick short cylinder wrapped with string", DE_PROFIL, "aucun", "warm brown #8a4b2a, cream",
+     " A roast of meat in ONE single warm brown #8a4b2a: a thick cylinder lying down with a slightly lumpy, irregular outline like a piece of meat (not a straight-edged rectangle, not a loaf of bread, not a gift), seen at a slight angle so that one round end is visible as a lighter cream-brown circle; tied with three thin cream strings that pinch slightly into the meat, and one small cream knot with two short loose ends on top. No ribbon bow, no plate, no vegetables, no knife, no smoke, no text.",
+     "UN rôti brun ficelé (cylindre irrégulier, bout rond visible, 3 ficelles, un petit nœud) ; ne doit pas se lire comme un pain ou un cadeau ; ni assiette ni légume", "Palier 2 ; phrase : « Le rôti est brun. » (v1 refusée : lue comme un pain ou un cadeau)"),
+    ("télé", "tele", "a classic television set with two antennas on top", DE_FACE, "aucun", "dark grey #57534e, medium blue #3b82f6, cream",
+     " A classic children's-book television set seen from the front: a thick rounded dark grey box (a wide chunky frame, not a thin monitor), a plain medium blue #3b82f6 screen with rounded corners and NOTHING drawn on it (no picture, no shape), two short stubby dark grey feet spread apart at the bottom, and two thin dark grey rabbit-ear antennas forming a V on top. Not a computer monitor: no single central stand, no keyboard. No remote control, no room, no text.",
+     "UNE télé (boîtier gris foncé épais, écran bleu uni vide, deux pieds écartés, deux antennes en V) ; ne doit pas se lire comme un écran d'ordinateur", "Palier 2 ; phrase : « La télé est allumée. » (v1 refusée : lue comme un écran d'ordinateur)"),
+    ("épi", "epi", "one single ear of wheat on a thin stem", DE_FACE, "aucun", "warm yellow #fbbf24, warm brown #a16207, soft green #86b98f",
+     " ONE single wheat ear only (not three): an elongated ear made of overlapping small golden warm yellow grain shapes with thin long awns pointing up, on a thin soft green stem with one small leaf. No field, no bread, no text.",
+     "UN seul épi de blé doré sur sa tige (pas trois) ; ni champ ni pain", "Palier 2 ; phrase : « L'épi est doré. »"),
+    ("midi", "midi", "a round wall clock with two hands both pointing straight up, and a small sun above it", DE_FACE, "aucun", "teal #0f6e56, cream, warm yellow #fbbf24",
+     " A round clock with a teal rim and a cream face, twelve small tick marks and NO numbers, two thin dark hands both pointing straight up at twelve; a small warm yellow sun with short rays sitting just above the clock. No text, no digits, no letters.",
+     "UNE horloge ronde SANS chiffres, deux aiguilles vers le haut, un petit soleil au-dessus", "Palier 2 ; phrase : « Il est midi. »"),
+    ("joli", "joli", "a small bouquet of three flowers in a vase", DE_FACE, "aucun", "soft pink #f4a9b0, warm yellow #fbbf24, soft green #86b98f, cream",
+     " Three flowers with round petals (one soft pink, one warm yellow, one soft pink) on thin soft green stems with two leaves, standing in a plain cream vase. No table, no text.",
+     "UN petit bouquet de 3 fleurs (rose, jaune, rose) dans un vase crème ; rien d'autre", "Palier 1 ; phrase : « Ce bouquet est joli. »"),
+    ("volé", "vole", "a bird flying high with its wings wide open", DE_PROFIL, "profil", "teal #0f6e56, soft green #86b98f, warm yellow #fbbf24, cream",
+     " One bird in flight, seen from the side, both wings spread wide open and raised, a teal body and wings with soft green wing tips, a small warm yellow beak, a fanned tail. No branch, no nest, no tree, no ground, no cloud, no text.",
+     "UN oiseau en plein vol, ailes grandes ouvertes, un seul œil ; ni arbre ni sol", "Palier 1 ; phrase : « L'oiseau a volé très haut. »"),
+    ("fumé", "fume", "a whole ham with a thin brown rind", DE_PROFIL, "aucun", "soft pink #e8a0a0, warm brown #a16207, cream",
+     " A whole ham: a big rounded body in ONE single soft pink #e8a0a0 with a thin warm brown rind band along the outer edge, and a small cream bone knob at the narrow end. No smoke, no plate, no knife, no text.",
+     "UN jambon entier rose avec une fine croûte brune ; AUCUNE fumée dessinée", "Palier 1 ; phrase : « Le jambon fumé est rose. »"),
+    ("mimi", "mimi", "a small kitten sitting, with a big round head", DE_PROFIL, "profil", "orange #f97316, cream, soft pink #f4a9b0",
+     " A tiny kitten sitting upright, an oversized round orange head, two small pointed ears with soft pink inside, a small cream muzzle, a short orange body and a curled tail. One kitten only, no ball, no basket, no text.",
+     "UN chaton orange assis, grosse tête, un seul œil ; rien d'autre", "Palier 1 ; phrase : « Le mimi est un petit chat. »"),
+    ("ravi", "ravi", "a boy standing with both arms raised high and a very big smile, full body", DE_FACE, "face", f"{PEAU}, teal #0f6e56, orange #f97316",
+     " A cheerful boy: a round peach-colored face with two small dark dots for the eyes and a very wide curved smile, short dark brown hair, a teal t-shirt, orange shorts, both arms stretched straight up. One boy only, simple flat shapes, no object, no text.",
+     "UN garçon, deux yeux, très grand sourire, les deux bras levés ; un seul personnage", "Palier 1 ; phrase : « Tom est ravi. »"),
+    ("mémé", "meme", "a smiling grandmother standing, seen from the front, full body", DE_FACE, "face", f"{PEAU}, grey #a8a29e, soft blue #93c5fd, teal #0f6e56",
+     " A kind grandmother: a round peach-colored face with two small dark dots for the eyes and a gentle smile, grey hair gathered in a bun, two thin round dark glasses, a soft blue shawl over a teal dress, two arms at her sides. One woman only, simple flat shapes, no stick, no text.",
+     "UNE grand-mère (cheveux gris en chignon, lunettes, châle bleu), deux yeux, sourire ; un seul personnage", "Palier 1 ; phrase : « Mémé sourit. »"),
+    ("mari", "mari", "two newlyweds standing side by side holding hands: a groom in a dark suit and a bride in a cream dress, full body", DE_FACE, "face", f"{PEAU}, dark grey #57534e, cream, soft pink #f4a9b0",
+     " The groom on the left: a round peach-colored face with two small dark dots for the eyes and a smile, short dark hair, a dark grey suit. The bride on the right: a round peach-colored face with two small dark dots for the eyes and a smile, a cream veil, a cream dress, a small soft pink bouquet in her free hand. They hold hands in the middle. Exactly two people, simple flat shapes, no text.",
+     "DEUX mariés qui se tiennent la main (costume sombre / robe crème), quatre yeux au total, sourires", "Palier 1 ; phrase : « Le mari donne la main à sa femme. »"),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):

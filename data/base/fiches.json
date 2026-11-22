@@ -13301,5 +13301,787 @@
   "origine": [
    "vob-lot14"
   ]
+ },
+ {
+  "id": "sofa",
+  "mot": "sofa",
+  "lettres": [
+   "s",
+   "o",
+   "f",
+   "a"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "so",
+    "fichier": "audio/73_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sof",
+    "fichier": "audio/73_254_66_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sofa",
+    "fichier": "audio/73_254_66_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sɔ",
+    "fichier": "audio/73_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "fa",
+    "fichier": "audio/66_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/sofa.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le sofa est doux.",
+  "phraseAudio": "audio/phrase-sofa.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "roti",
+  "mot": "rôti",
+  "lettres": [
+   "r",
+   "ô",
+   "t",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "ô",
+    "son": "o_ferme"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rô",
+    "fichier": "audio/281_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rôt",
+    "fichier": "audio/281_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rôti",
+    "fichier": "audio/281_6f_74_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁo",
+    "fichier": "audio/281_6f_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ti",
+    "fichier": "audio/74_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/roti.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le rôti est brun.",
+  "phraseAudio": "audio/phrase-roti.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "tele",
+  "mot": "télé",
+  "lettres": [
+   "t",
+   "é",
+   "l",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "t",
+    "fichier": "audio/74_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "té",
+    "fichier": "audio/74_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "tél",
+    "fichier": "audio/74_65_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "télé",
+    "fichier": "audio/74_65_6c_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "te",
+    "fichier": "audio/74_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "le",
+    "fichier": "audio/6c_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/tele.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La télé est allumée.",
+  "phraseAudio": "audio/phrase-tele.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "epi",
+  "mot": "épi",
+  "lettres": [
+   "é",
+   "p",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "é",
+    "fichier": "audio/65_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ép",
+    "fichier": "audio/65_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "épi",
+    "fichier": "audio/65_70_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "e",
+    "fichier": "audio/65_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "pi",
+    "fichier": "audio/70_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/epi.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'épi est doré.",
+  "phraseAudio": "audio/phrase-epi.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "midi",
+  "mot": "midi",
+  "lettres": [
+   "m",
+   "i",
+   "d",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "d",
+    "son": "d"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mid",
+    "fichier": "audio/6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "midi",
+    "fichier": "audio/6d_69_64_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "di",
+    "fichier": "audio/64_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/midi.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il est midi.",
+  "phraseAudio": "audio/phrase-midi.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "joli",
+  "mot": "joli",
+  "lettres": [
+   "j",
+   "o",
+   "l",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "j",
+    "son": "j"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "j",
+    "fichier": "audio/292_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jo",
+    "fichier": "audio/292_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jol",
+    "fichier": "audio/292_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "joli",
+    "fichier": "audio/292_254_6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʒɔ",
+    "fichier": "audio/292_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "li",
+    "fichier": "audio/6c_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/joli.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Ce bouquet est joli.",
+  "phraseAudio": "audio/phrase-joli.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "vole",
+  "mot": "volé",
+  "lettres": [
+   "v",
+   "o",
+   "l",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vo",
+    "fichier": "audio/76_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vol",
+    "fichier": "audio/76_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "volé",
+    "fichier": "audio/76_254_6c_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vɔ",
+    "fichier": "audio/76_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "le",
+    "fichier": "audio/6c_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/vole.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'oiseau a volé très haut.",
+  "phraseAudio": "audio/phrase-vole.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "fume",
+  "mot": "fumé",
+  "lettres": [
+   "f",
+   "u",
+   "m",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fu",
+    "fichier": "audio/66_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fum",
+    "fichier": "audio/66_79_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fumé",
+    "fichier": "audio/66_79_6d_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fy",
+    "fichier": "audio/66_79_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "me",
+    "fichier": "audio/6d_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/fume.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le jambon fumé est rose.",
+  "phraseAudio": "audio/phrase-fume.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "mimi",
+  "mot": "mimi",
+  "lettres": [
+   "m",
+   "i",
+   "m",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mim",
+    "fichier": "audio/6d_69_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mimi",
+    "fichier": "audio/6d_69_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/mimi.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le mimi est un petit chat.",
+  "phraseAudio": "audio/phrase-mimi.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "ravi",
+  "mot": "ravi",
+  "lettres": [
+   "r",
+   "a",
+   "v",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ra",
+    "fichier": "audio/281_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rav",
+    "fichier": "audio/281_61_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ravi",
+    "fichier": "audio/281_61_76_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁa",
+    "fichier": "audio/281_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/ravi.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Tom est ravi.",
+  "phraseAudio": "audio/phrase-ravi.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
+ },
+ {
+  "id": "mari",
+  "mot": "mari",
+  "lettres": [
+   "m",
+   "a",
+   "r",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mar",
+    "fichier": "audio/6d_61_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mari",
+    "fichier": "audio/6d_61_281_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ʁi",
+    "fichier": "audio/281_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/mari.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le mari donne la main à sa femme.",
+  "phraseAudio": "audio/phrase-mari.mp3",
+  "statut": "valide",
+  "origine": [
+   "pack-progressif-p1-lot15"
+  ]
  }
 ]

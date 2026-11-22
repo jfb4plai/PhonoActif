@@ -1,0 +1,84 @@
+{
+ "nom": "pack-progressif-p1-lot15",
+ "titre": "Pack progressif P1 : paliers 1 et 2 (lot 1)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "sofa",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/sofa.png",
+   "phrase": "Le sofa est doux.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "rôti",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/roti.png",
+   "phrase": "Le rôti est brun.",
+   "commentaire": "Pack progressif P1, palier 2"
+  },
+  {
+   "mot": "télé",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/tele.png",
+   "phrase": "La télé est allumée.",
+   "commentaire": "Pack progressif P1, palier 2"
+  },
+  {
+   "mot": "épi",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/epi.png",
+   "phrase": "L'épi est doré.",
+   "commentaire": "Pack progressif P1, palier 2"
+  },
+  {
+   "mot": "midi",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/midi.png",
+   "phrase": "Il est midi.",
+   "commentaire": "Pack progressif P1, palier 2"
+  },
+  {
+   "mot": "joli",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/joli.png",
+   "phrase": "Ce bouquet est joli.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "volé",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/vole.png",
+   "phrase": "L'oiseau a volé très haut.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "fumé",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/fume.png",
+   "phrase": "Le jambon fumé est rose.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "mimi",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/mimi.png",
+   "phrase": "Le mimi est un petit chat.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "ravi",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/ravi.png",
+   "phrase": "Tom est ravi.",
+   "commentaire": "Pack progressif P1, palier 1"
+  },
+  {
+   "mot": "mari",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot15/mari.png",
+   "phrase": "Le mari donne la main à sa femme.",
+   "commentaire": "Pack progressif P1, palier 1"
+  }
+ ]
+}
