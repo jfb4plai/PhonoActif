@@ -14879,5 +14879,740 @@
   "origine": [
    "pack-progressif-p1-lot16"
   ]
+ },
+ {
+  "id": "mal",
+  "mot": "mal",
+  "lettres": [
+   "m",
+   "a",
+   "l"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mal",
+    "fichier": "audio/6d_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mal",
+    "fichier": "audio/6d_61_6c_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "J'ai mal au ventre.",
+  "phraseAudio": "audio/phrase-mal.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "vol",
+  "mot": "vol",
+  "lettres": [
+   "v",
+   "o",
+   "l"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vo",
+    "fichier": "audio/76_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vol",
+    "fichier": "audio/76_254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vɔl",
+    "fichier": "audio/76_254_6c_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "L'oiseau est en plein vol.",
+  "phraseAudio": "audio/phrase-vol.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "jus",
+  "mot": "jus",
+  "lettres": [
+   "j",
+   "u",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "j",
+    "son": "j"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "j",
+    "fichier": "audio/292_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ju",
+    "fichier": "audio/292_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jus",
+    "fichier": "audio/292_79_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʒy",
+    "fichier": "audio/292_79_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/jus.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le jus est orange.",
+  "phraseAudio": "audio/phrase-jus.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "riz",
+  "mot": "riz",
+  "lettres": [
+   "r",
+   "i",
+   "z"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "z",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ri",
+    "fichier": "audio/281_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "riz",
+    "fichier": "audio/281_69_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁi",
+    "fichier": "audio/281_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/riz.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le riz est blanc.",
+  "phraseAudio": "audio/phrase-riz.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "lilas",
+  "mot": "lilas",
+  "lettres": [
+   "l",
+   "i",
+   "l",
+   "a",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "l",
+    "fichier": "audio/6c_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "li",
+    "fichier": "audio/6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lil",
+    "fichier": "audio/6c_69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lila",
+    "fichier": "audio/6c_69_6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lilas",
+    "fichier": "audio/6c_69_6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "li",
+    "fichier": "audio/6c_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "la",
+    "fichier": "audio/6c_61_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/lilas.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le lilas sent bon.",
+  "phraseAudio": "audio/phrase-lilas.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "avis",
+  "mot": "avis",
+  "lettres": [
+   "a",
+   "v",
+   "i",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "a",
+    "fichier": "audio/61_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "av",
+    "fichier": "audio/61_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "avi",
+    "fichier": "audio/61_76_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "avis",
+    "fichier": "audio/61_76_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "a",
+    "fichier": "audio/61_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Je donne mon avis.",
+  "phraseAudio": "audio/phrase-avis.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "salut",
+  "mot": "salut",
+  "lettres": [
+   "s",
+   "a",
+   "l",
+   "u",
+   "t"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "t",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sal",
+    "fichier": "audio/73_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salu",
+    "fichier": "audio/73_61_6c_79_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salut",
+    "fichier": "audio/73_61_6c_79_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ly",
+    "fichier": "audio/6c_79_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Je dis salut à mon ami.",
+  "phraseAudio": "audio/phrase-salut.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "fou",
+  "mot": "fou",
+  "lettres": [
+   "f",
+   "o",
+   "u"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fo",
+    "fichier": "audio/66_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fou",
+    "fichier": "audio/66_75_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fu",
+    "fichier": "audio/66_75_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Le chien est fou de joie.",
+  "phraseAudio": "audio/phrase-fou.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "mou",
+  "mot": "mou",
+  "lettres": [
+   "m",
+   "o",
+   "u"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mo",
+    "fichier": "audio/6d_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mou",
+    "fichier": "audio/6d_75_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mu",
+    "fichier": "audio/6d_75_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Le pain est mou.",
+  "phraseAudio": "audio/phrase-mou.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "filou",
+  "mot": "filou",
+  "lettres": [
+   "f",
+   "i",
+   "l",
+   "o",
+   "u"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fil",
+    "fichier": "audio/66_69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "filo",
+    "fichier": "audio/66_69_6c_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "filou",
+    "fichier": "audio/66_69_6c_75_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "lu",
+    "fichier": "audio/6c_75_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Ce filou a pris mon gâteau.",
+  "phraseAudio": "audio/phrase-filou.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "lis",
+  "mot": "lis",
+  "lettres": [
+   "l",
+   "i",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "l",
+    "fichier": "audio/6c_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "li",
+    "fichier": "audio/6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lis",
+    "fichier": "audio/6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "li",
+    "fichier": "audio/6c_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Lis ce petit mot.",
+  "phraseAudio": "audio/phrase-lis.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
+ },
+ {
+  "id": "vis",
+  "mot": "vis",
+  "lettres": [
+   "v",
+   "i",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vis",
+    "fichier": "audio/76_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vi",
+    "fichier": "audio/76_69_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Je vis à Liège.",
+  "phraseAudio": "audio/phrase-vis.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot17"
+  ]
  }
 ]

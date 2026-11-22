@@ -86,5 +86,47 @@
   "auteur": "JF (écoute du 2026-11-16 : états c, coe, coeu, coeur « ok »)",
   "date": "2026-11-16",
   "raison": ""
+ },
+ {
+  "mot": "lis",
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (décision du 2026-11-22 : « option 1 », verbe lire, /li/ ; le lexique ne connaît que les noms lys /lis/ et vis /vis/)",
+  "date": "2026-11-22",
+  "raison": "phrases du lot 17 avec le verbe, s muet"
+ },
+ {
+  "mot": "vis",
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (décision du 2026-11-22 : « option 1 », verbe vivre, /vi/ ; le lexique ne connaît que les noms lys /lis/ et vis /vis/)",
+  "date": "2026-11-22",
+  "raison": "phrases du lot 17 avec le verbe, s muet"
  }
 ]
