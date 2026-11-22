@@ -66,3 +66,29 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .zone-faux { border-color: var(--faux); border-style: solid; background: var(--fond-faux); }
 .app .jeu button:not(.cube):not(.icone-seule) { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
 .app .jeu button.attente { opacity: 0.75; }
+
+.jeu-epure .barre-haut { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
+.jeu-epure .points { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.jeu-epure .point { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--texte); background: transparent; }
+.jeu-epure .point.fait { background: var(--texte); }
+.jeu-epure .point.courant { background: var(--btn); transform: scale(1.25); }
+.app .jeu button.icone-seule { min-width: 64px; min-height: 64px; padding: 8px; display: inline-flex; align-items: center; justify-content: center; }
+.app .jeu .actions-principales button.icone-seule { min-width: 96px; min-height: 76px; }
+.app .jeu .ecouter-image { position: absolute; right: 12px; bottom: 12px; min-width: 80px; min-height: 80px; border-radius: 50%; }
+.app .jeu .actions-epure { justify-content: space-between; max-width: 520px; margin: 16px auto 8px; }
+.app .jeu .actions-epure .principal { margin-left: auto; min-width: 140px; }
+.jeu-epure .actions-aides { border-top: 0; margin-top: 4px; }
+.jeu-epure .retour { min-height: 48px; }
+.jeu-epure .carte-jeu { min-height: 224px; }
+.jeu-epure .carte-jeu img { max-height: 200px; }
+.jeu-epure .retour { height: 64px; min-height: 0; }
+.zone { box-sizing: border-box; min-height: 80px; } /* la zone ne grandit pas quand une pièce y est posée */
+.carte-jeu { box-sizing: border-box; height: 256px; min-height: 0; }
+.jeu-epure .carte-jeu { height: 224px; }
+.jeu-epure .carte-jeu img { max-height: 190px; }
+.jeu-epure .retour { height: 52px; }
+
+/* Survol d'une icône (commandes épurées) : le texte du bouton s'affiche au-dessus. */
+.app .jeu button.icone-seule { position: relative; }
+.app .jeu button.icone-seule .info { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 5; padding: 6px 12px; white-space: nowrap; font-size: 18px; font-weight: bold; background: var(--texte); color: var(--fond); border-radius: var(--rayon-btn); pointer-events: none; }
+.app .jeu button.icone-seule:hover .info, .app .jeu button.icone-seule:focus-visible .info { display: block; }
