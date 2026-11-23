@@ -13,7 +13,8 @@ const TRACES = {
   bulle: <path d="M4 5h16v11H11l-5 4v-4H4z" />,
   syllabes: <><rect x="2.5" y="8" width="8" height="8" rx="2" /><rect x="13.5" y="8" width="8" height="8" rx="2" /></>,
   tortue: <><path d="M5 16a7 7 0 0 1 14 0z" fill="currentColor" /><path d="M19 13.5l3-1.5M7 16v3M16 16v3" /></>,
-  maison: <path d="M3 11l9-7 9 7M6 10v10h12V10" />
+  maison: <path d="M3 11l9-7 9 7M6 10v10h12V10" />,
+  cadenas: <><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></>
 };
 
 export default function Icone({ nom, taille = 28 }) {

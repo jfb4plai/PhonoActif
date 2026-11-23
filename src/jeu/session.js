@@ -3,7 +3,7 @@ import { construirePlateau } from './plateau.js';
 
 /* Logique du jeu de construction de mot : fonctions pures, l'état n'est jamais modifié en place.
    Le hasard (rng) et l'horloge (maintenant) sont injectables. Aucune durée n'est enregistrée.
-   Etat = { pack, code, session, cartes, index, plateau, poses, tentative, aide, indice, statut, reglages, essais, outils } */
+   Etat = { pack, code, session, cartes, index, plateau, poses, verrous, tentative, aide, indice, statut, reglages, essais, outils } */
 
 const NIVEAUX_AIDE = ['aucune', 'ecoute', 'indice', 'revelation'];
 
@@ -45,7 +45,7 @@ export function demarrerJeu({ pack, reglages, code, jeton = null, cle = null, se
   const cartes = reglages.melanger ? melanger(pack.cartes, rng) : [...pack.cartes];
   const id = session || `s-${maintenant().replace(/\D/g, '').slice(0, 14)}-${Math.floor(rng() * 36 ** 4).toString(36).padStart(4, '0')}`;
   const base = {
-    pack: pack.nom, code, jeton, cle, session: id, cartes, index: 0, poses: [], tentative: 1, aide: 'aucune', indice: null,
+    pack: pack.nom, code, jeton, cle, session: id, cartes, index: 0, poses: [], verrous: 0, tentative: 1, aide: 'aucune', indice: null,
     statut: 'en_cours', reglages, essais: [], outils: { rng, maintenant, nouvelId }
   };
   if (cartes.length === 0) return { ...base, plateau: [], statut: 'fini' };
@@ -61,14 +61,34 @@ export function poser(etat, pieceId) {
   return { ...etat, poses: [...etat.poses, pieceId] };
 }
 
+// Les pièces verrouillées (cadenas) sont les premières pièces justes gardées après une vérification fausse : on ne les retire pas.
+const verrousDe = etat => etat.verrous || 0;
+
 export function retirer(etat) {
-  if (etat.statut !== 'en_cours' || etat.poses.length === 0) return etat;
+  if (etat.statut !== 'en_cours' || etat.poses.length <= verrousDe(etat)) return etat;
   return { ...etat, poses: etat.poses.slice(0, -1) };
 }
 
 export function vider(etat) {
-  if (etat.statut !== 'en_cours' || etat.poses.length === 0) return etat;
-  return { ...etat, poses: [] };
+  if (etat.statut !== 'en_cours' || etat.poses.length <= verrousDe(etat)) return etat;
+  return { ...etat, poses: etat.poses.slice(0, verrousDe(etat)) };
+}
+
+// Décision de JF 2026-11-23 (option B) : après une vérification fausse, on garde les pièces justes de gauche à droite, jusqu'à la première pièce fausse.
+// Une pièce de plusieurs lettres (« oi ») compte en entier : elle est gardée seulement si toutes ses lettres sont justes à leur place.
+export function prefixeJuste(etat) {
+  const carte = carteCourante(etat);
+  let debut = 0;
+  let n = 0;
+  for (const id of etat.poses) {
+    const g = etat.plateau.find(p => p.id === id).g;
+    const lettres = etat.reglages.parLettres ? [...g] : [g];
+    const juste = lettres.every((l, j) => carte.cubes[debut + j] !== undefined && reponseJuste([l], [carte.cubes[debut + j].g], etat.reglages.exigerAccents));
+    if (!juste) break;
+    debut += lettres.length;
+    n++;
+  }
+  return n;
 }
 
 export function verifier(etat) {
@@ -77,8 +97,9 @@ export function verifier(etat) {
   const juste = positions.every(p => p.juste);
   const essais = [...etat.essais, ligneEssai(etat, positions, juste)];
   if (juste) return { etat: { ...etat, essais, statut: 'juste' }, resultat: 'juste' };
-  if (etat.tentative >= (etat.reglages.essaisMax ?? 3)) return { etat: { ...etat, essais, poses: [], statut: 'revelation' }, resultat: 'revelation' };
-  return { etat: { ...etat, essais, poses: [], tentative: etat.tentative + 1 }, resultat: 'faux' };
+  if (etat.tentative >= (etat.reglages.essaisMax ?? 3)) return { etat: { ...etat, essais, poses: [], verrous: 0, statut: 'revelation' }, resultat: 'revelation' };
+  const gardees = prefixeJuste(etat);
+  return { etat: { ...etat, essais, poses: etat.poses.slice(0, gardees), verrous: gardees, tentative: etat.tentative + 1 }, resultat: 'faux' };
 }
 
 // Aide graduée : écoute (rejouer le mot), indice (premier graphème à corriger), révélation (fin de la carte, non acquise).
@@ -106,7 +127,7 @@ export function suivant(etat) {
   if (etat.index + 1 >= etat.cartes.length) return { ...etat, statut: 'fini' };
   const index = etat.index + 1;
   return {
-    ...etat, index, poses: [], tentative: 1, aide: 'aucune', indice: null, statut: 'en_cours',
+    ...etat, index, poses: [], verrous: 0, tentative: 1, aide: 'aucune', indice: null, statut: 'en_cours',
     plateau: (etat.reglages.construirePlateau || construirePlateau)(etat.cartes[index], { nbIntrus: etat.reglages.nbIntrus, rng: etat.outils.rng, digraphes: etat.reglages.digraphes })
   };
 }

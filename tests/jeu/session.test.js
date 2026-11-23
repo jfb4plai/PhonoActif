@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { creerLexique, preparerPack } from '../../src/core/index.js';
-import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../../src/jeu/session.js';
+import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot, prefixeJuste } from '../../src/jeu/session.js';
 
 const entrees = JSON.parse(fs.readFileSync(new URL('../fixtures/lexique-extrait.json', import.meta.url), 'utf8'));
 const lex = creerLexique(entrees);
@@ -61,11 +61,12 @@ test('vérifier une zone incomplète : rien n\'est enregistré', () => {
   assert.deepEqual(r.etat.essais, []);
 });
 
-test('mauvaise réponse : zone vidée, tentative suivante, ligne fausse', () => {
+test('mauvaise réponse : préfixe juste gardé et verrouillé, tentative suivante, ligne fausse', () => {
   let e = poser(poser(poser(demarrer(), piece(demarrer(), 'ch').id), piece(demarrer(), 'a').id), pieceIntrus(demarrer()).id);
   const r = verifier(e);
   assert.equal(r.resultat, 'faux');
-  assert.deepEqual(r.etat.poses, []);
+  assert.deepEqual(r.etat.poses, e.poses.slice(0, 2)); // ch, a gardés ; l'intrus retourne au bac
+  assert.equal(r.etat.verrous, 2);
   assert.equal(r.etat.tentative, 2);
   assert.equal(r.etat.statut, 'en_cours');
   assert.equal(r.etat.essais[0].juste, false);
@@ -178,4 +179,38 @@ test('chaque ligne d\'essai a un identifiant unique, injectable', () => {
   assert.match(b.essais[0].id, /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
   const c = verifier(poserMot(demarrer(), ['ch', 'a', 't'])).etat;
   assert.notEqual(b.essais[0].id, c.essais[0].id);
+});
+
+test('correctif B : seule la première pièce fausse et celles qui suivent sont retirées, même si une pièce suivante est juste', () => {
+  const e = poserMot(demarrer(), ['a', 'ch', 't']); // a au lieu de ch : tout est faux dès la première pièce
+  const r = verifier(e);
+  assert.equal(r.resultat, 'faux');
+  assert.deepEqual(r.etat.poses, []); assert.equal(r.etat.verrous, 0);
+  const e2 = poser(poserMot(demarrer(), ['ch']), pieceIntrus(demarrer()).id);
+  const e3 = poserMot(e2, ['t']); // ch, intrus, t : le t final est juste mais après une faute
+  const r3 = verifier(e3);
+  assert.deepEqual(r3.etat.poses, e3.poses.slice(0, 1)); assert.equal(r3.etat.verrous, 1);
+});
+
+test('pièces verrouillées : Retirer et Tout effacer ne les touchent pas ; la carte suivante repart sans verrou', () => {
+  const faux = verifier(poser(poserMot(demarrer(), ['ch', 'a']), pieceIntrus(demarrer()).id)).etat;
+  assert.equal(faux.verrous, 2);
+  assert.equal(retirer(faux), faux);
+  assert.equal(vider(faux), faux);
+  const plus = poser(faux, pieceIntrus(faux).id);
+  assert.equal(retirer(plus).poses.length, 2);
+  assert.equal(vider(plus).poses.length, 2);
+  const juste = verifier(poserMot(faux, ['t'])).etat; // le t complète ch-a-t : juste
+  assert.equal(juste.statut, 'juste');
+  assert.equal(suivant(juste).verrous, 0);
+});
+
+test('prefixeJuste : mode lettres, un bloc de plusieurs lettres compte en entier', () => {
+  const carte = { id: 'voiture', mot: 'voiture', cubes: [...'voiture'].map(l => ({ g: l, son: 'b' })) };
+  const plateau = [{ id: 'p0', g: 'v' }, { id: 'p1', g: 'oi' }, { id: 'p2', g: 'o' }, { id: 'p3', g: 'e' }];
+  const base = { cartes: [carte], index: 0, plateau, reglages: { parLettres: true, exigerAccents: false } };
+  assert.equal(prefixeJuste({ ...base, poses: ['p0', 'p1'] }), 2); // v, oi
+  assert.equal(prefixeJuste({ ...base, poses: ['p0', 'p3'] }), 1); // v, puis e : faux (o attendu)
+  assert.equal(prefixeJuste({ ...base, poses: ['p3'] }), 0);
+  assert.equal(prefixeJuste({ ...base, poses: ['p0', 'p2'] }), 2); // v, o : justes lettre par lettre
 });

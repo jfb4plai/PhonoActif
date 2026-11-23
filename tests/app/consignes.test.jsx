@@ -58,8 +58,9 @@ describe('consignes vocales', () => {
     for (const l of ['c', 'a', 'h', 't']) await lettre(user, l);
     await user.click(screen.getByRole('button', { name: 'Vérifier' }));
     expect(urls(jouerFichier).at(-1)).toBe('/consignes/faux.mp3');
-    await user.click(screen.getByRole('button', { name: 'Tout effacer' }));
-    for (const l of ['c', 'h', 'a', 't']) await lettre(user, l);
+    // Option B (2026-11-23) : le c, juste, reste verrouillé ; les autres pièces retournent au bac.
+    expect(screen.getByRole('button', { name: 'Tout effacer' })).toBeDisabled();
+    for (const l of ['h', 'a', 't']) await lettre(user, l);
     await user.click(screen.getByRole('button', { name: 'Vérifier' }));
     expect(urls(jouerFichier).at(-1)).toBe('/consignes/juste.mp3');
   });

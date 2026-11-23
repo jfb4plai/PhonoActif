@@ -50,8 +50,9 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const [sonAbsent, setSonAbsent] = useState(false);
   const [syllabeActive, setSyllabeActive] = useState(null); // index de la syllabe lue pendant « Écouter par syllabes » (césures visibles seulement alors)
   const [cesures, setCesures] = useState(false); // césures laissées à l'écran après l'écoute, jusqu'au bouton « Masquer les césures »
+  const [aEcoute, setAEcoute] = useState(false); // guidage par étapes : « Écouter » reste agrandi tant que l'élève n'a pas écouté le mot (remis à faux après une erreur)
   const [imageVue, setImageVue] = useState(false); // mode A : l'image existe mais reste cachée tant que l'élève n'appuie pas sur « Voir l'image » (décision de JF 2026-11-14)
-  useEffect(() => { setSyllabeActive(null); setCesures(false); setImageVue(false); }, [carte.id]);
+  useEffect(() => { setSyllabeActive(null); setCesures(false); setImageVue(false); setAEcoute(false); }, [carte.id]);
   const signalerSons = r => {
     const manquants = r && r.manquants ? r.manquants : [];
     manquants.forEach(id => onSignalement('son', id));
@@ -136,6 +137,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     enregistrer(etat, apres);
     geste.current++;
     setEtat(apres); setMessage({ type: resultat });
+    if (resultat === 'faux') setAEcoute(false);
     jouerConsigne(resultat);
   };
   const surAide = () => {
@@ -164,6 +166,18 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
   const toutesCases = posees.reduce((n, p) => n + [...p.g].length, 0) >= carte.cubes.length; // toutes les cases sont remplies
   const suivantPret = etat.statut === 'juste' || etat.statut === 'revelation';
+  // Guidage par étapes (décision de JF 2026-11-23) : un seul bouton agrandi à la fois.
+  // Suivant après un mot juste (ou révélé) ; Vérifier quand toutes les cases sont remplies ; Écouter tant que le mot n'a pas été écouté ;
+  // Besoin d'aide après deux erreurs, si l'aide n'a pas encore servi.
+  const verrous = etat.verrous || 0;
+  const guide = suivantPret ? 'suivant'
+    : !enCours ? null
+      : toutesCases ? 'verifier'
+        : !aEcoute ? 'ecouter'
+          : (etat.tentative >= 3 && etat.aide === 'aucune' ? 'aide' : null);
+  const g = nom => (guide === nom ? ' guide' : '');
+  const retirerPossible = enCours && etat.poses.length > verrous; // les pièces verrouillées (cadenas) ne se retirent pas
+  const ecouter = () => { jouerMot(carte); setAEcoute(true); };
   const feteDeCarte = [...String(carte.id)].reduce((n, c) => n + c.charCodeAt(0), 0) % 4; // 4 fêtes, la même pour un même mot
   const classeZone = etat.statut === 'juste' ? ` zone-juste fete-${feteDeCarte}` : (message && message.type === 'faux' ? ' zone-faux' : '');
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
@@ -189,7 +203,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
           ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? (epure ? '' : 'Écouter le mot, puis le construire.') : 'Image absente'}</p>)
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
-        {epure && <Commande parle={parle} icone="hautparleur" texte="Écouter" epure className="principal ecouter-image" onClick={() => jouerMot(carte)} />}
+        {epure && <Commande parle={parle} icone="hautparleur" texte="Écouter" epure className={`principal ecouter-image${g('ecouter')}`} onClick={ecouter} />}
       </div>
 
       <div className={`zone${classeZone}`} role="group" aria-label="Mot à construire">
@@ -206,8 +220,11 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
             const derniere = k === posees.length - 1;
             elements.push(
               <React.Fragment key={p.id}>{coupure ? <span key={`cesure-${i}`} className="cesure" aria-hidden="true" /> : null}
-                <button type="button" className={`cube ${(muets ? pieceMuette({ ...p, debut: i }, muets) : r && r.muet) ? 'm' : classeDe(p.son)}${actif}`} aria-label={`Retirer ${p.g}`}
-                  disabled={!enCours || !derniere} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>{p.g}</button>
+                <button type="button" className={`cube ${(muets ? pieceMuette({ ...p, debut: i }, muets) : r && r.muet) ? 'm' : classeDe(p.son)}${actif}${k < verrous ? ' verrou' : ''}`}
+                  aria-label={k < verrous ? `${p.g} : juste, verrouillé` : `Retirer ${p.g}`}
+                  disabled={!enCours || !derniere || k < verrous} onClick={() => { setEtat(retirer(etat)); setMessage(null); }}>
+                  {p.g}{k < verrous && <span className="cadenas"><Icone nom="cadenas" taille={16} /></span>}
+                </button>
               </React.Fragment>);
             i += n;
           });
@@ -248,13 +265,13 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       {epure ? (
         <>
           <div className="actions actions-principales actions-epure" role="group" aria-label="Actions principales">
-            <Commande parle={parle} icone="retour" texte="Retirer" epure disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
+            <Commande parle={parle} icone="retour" texte="Retirer" epure disabled={!retirerPossible} onClick={() => setEtat(retirer(etat))} />
             {suivantPret
-              ? <Commande parle={parle} icone="fleche" texte="Suivant" epure className="principal" onClick={surSuivant} />
-              : <Commande parle={parle} icone="coche" texte="Vérifier" epure className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />}
+              ? <Commande parle={parle} icone="fleche" texte="Suivant" epure className={`principal${g('suivant')}`} onClick={surSuivant} />
+              : <Commande parle={parle} icone="coche" texte="Vérifier" epure className={`principal${toutesCases ? '' : ' attente'}${g('verifier')}`} disabled={!enCours} onClick={surVerifier} />}
           </div>
           <div className="actions actions-aides" role="group" aria-label="Aides">
-            <Commande parle={parle} icone="ampoule" texte="Besoin d’aide ?" epure disabled={!enCours} onClick={surAide} />
+            <Commande parle={parle} icone="ampoule" texte="Besoin d’aide ?" epure className={g('aide').trim()} disabled={!enCours} onClick={surAide} />
             {btnImage}{btnPhrase}{btnSyllabes}
             {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
             {!tache.vitesseVerrou && <Commande parle={parle} icone="tortue" texte="Voix lente" epure aria-pressed={vitesse !== 100} className={vitesse !== 100 ? 'principal' : ''} onClick={() => setVitesse(v => (v === 100 ? 75 : 100))} />}
@@ -264,15 +281,15 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
       ) : (
         <>
           <div className="actions actions-principales" role="group" aria-label="Actions principales">
-            <Commande parle={parle} icone="hautparleur" texte="Écouter" onClick={() => jouerMot(carte)} />
-            <Commande parle={parle} icone="coche" texte="Vérifier" className={`principal${toutesCases ? '' : ' attente'}`} disabled={!enCours} onClick={surVerifier} />
-            <Commande parle={parle} icone="fleche" texte="Suivant" className="principal" disabled={!suivantPret} onClick={surSuivant} />
+            <Commande parle={parle} icone="hautparleur" texte="Écouter" className={g('ecouter').trim()} onClick={ecouter} />
+            <Commande parle={parle} icone="coche" texte="Vérifier" className={`principal${toutesCases ? '' : ' attente'}${g('verifier')}`} disabled={!enCours} onClick={surVerifier} />
+            <Commande parle={parle} icone="fleche" texte="Suivant" className={`principal${g('suivant')}`} disabled={!suivantPret} onClick={surSuivant} />
           </div>
 
           <div className="actions actions-aides" role="group" aria-label="Aides et corrections">
-            <Commande parle={parle} icone="retour" texte="Retirer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(retirer(etat))} />
-            <Commande parle={parle} icone="poubelle" texte="Tout effacer" disabled={!enCours || etat.poses.length === 0} onClick={() => setEtat(vider(etat))} />
-            <Commande parle={parle} icone="ampoule" texte="Besoin d’aide ?" disabled={!enCours} onClick={surAide} />
+            <Commande parle={parle} icone="retour" texte="Retirer" disabled={!retirerPossible} onClick={() => setEtat(retirer(etat))} />
+            <Commande parle={parle} icone="poubelle" texte="Tout effacer" disabled={!retirerPossible} onClick={() => setEtat(vider(etat))} />
+            <Commande parle={parle} icone="ampoule" texte="Besoin d’aide ?" className={g('aide').trim()} disabled={!enCours} onClick={surAide} />
             {btnImage}{btnPhrase}{btnSyllabes}
             {lettres && cesures && <button type="button" onClick={() => setCesures(false)}>Masquer les césures</button>}
             {sonAbsent && <span role="status" className="son-absent">Pas de son pour le moment.</span>}

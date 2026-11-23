@@ -349,3 +349,39 @@ describe('Mode A : la couleur grise suit la place, pas la pièce', () => {
     expect(poseesE[poseesE.length - 1].className.split(' ')).toContain('m'); // dernière place : muet, gris
   });
 });
+
+describe('Guidage par étapes et pièces verrouillées (2026-11-23)', () => {
+  const guides = () => [...document.querySelectorAll('button.guide')].map(b => b.textContent.trim());
+
+  it('un seul bouton agrandi à la fois : Écouter, puis Vérifier quand les cases sont pleines, puis Suivant', async () => {
+    const { user } = monter();
+    await commencer(user);
+    expect(guides()).toEqual(['Écouter']);
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    expect(guides()).toEqual([]);
+    await lettre(user, 'c'); await lettre(user, 'h'); await lettre(user, 'a');
+    expect(guides()).toEqual([]);
+    await lettre(user, 't');
+    expect(guides()).toEqual(['Vérifier']);
+    await user.click(screen.getByRole('button', { name: 'Vérifier' }));
+    expect(guides()).toEqual(['Suivant']);
+  });
+
+  it('erreur : les pièces justes de gauche à droite restent verrouillées, Écouter regrandit, puis la correction aboutit', async () => {
+    const { user } = monter();
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: 'Écouter' }));
+    await lettre(user, 'c'); await lettre(user, 'h'); await lettre(user, 't'); await lettre(user, 'a'); // c, h justes ; t à la place de a : faux
+    await user.click(screen.getByRole('button', { name: 'Vérifier' }));
+    expect(screen.getByText(/Pas tout à fait/)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'c : juste, verrouillé' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'h : juste, verrouillé' })).toBeDisabled();
+    expect(screen.queryByRole('button', { name: /^Retirer t$/ })).toBeNull(); // le t fautif est retourné au bac
+    expect(screen.getByRole('button', { name: 'Retirer' })).toBeDisabled(); // rien à retirer hors des pièces verrouillées
+    expect(screen.getByRole('button', { name: 'Tout effacer' })).toBeDisabled();
+    expect(guides()).toEqual(['Écouter']);
+    await lettre(user, 'a'); await lettre(user, 't');
+    await user.click(screen.getByRole('button', { name: 'Vérifier' }));
+    expect(guides()).toEqual(['Suivant']);
+  });
+});

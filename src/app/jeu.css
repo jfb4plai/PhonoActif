@@ -23,11 +23,11 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .image-absente { font-size: 18px; margin: 0; }
 .mot-affiche { font-size: 36px; font-weight: bold; }
 
-.zone { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 72px; margin: 12px 0; padding: 8px; border: 3px dashed var(--zone); border-radius: var(--rayon); background: var(--fond-zone); }
-.zone .vide { display: inline-block; min-width: 48px; height: 48px; border: 2px dashed var(--zone); border-radius: var(--rayon-cube); opacity: 0.6; }
-.plateau { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; min-height: 56px; }
+.zone { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; min-height: 72px; margin: 12px 0; padding: 12px; border: 3px dashed var(--zone); border-radius: var(--rayon); background: var(--fond-zone); }
+.zone .vide { display: inline-block; min-width: 72px; height: 72px; border: 2px dashed var(--zone); border-radius: var(--rayon-cube); opacity: 0.6; }
+.plateau { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; min-height: 72px; }
 
-.cube { min-width: 56px; height: 56px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-size: 26px; font-weight: bold; border: var(--bord-cube); border-radius: var(--rayon-cube); box-shadow: var(--ombre-cube); color: var(--texte-cube); cursor: pointer; }
+.cube { min-width: 72px; height: 72px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: bold; border: var(--bord-cube); border-radius: var(--rayon-cube); box-shadow: var(--ombre-cube); color: var(--texte-cube); cursor: pointer; }
 .cube.v { background: var(--v); }
 .cube.c { background: var(--c); }
 .cube.m { background: var(--m); }
@@ -51,14 +51,14 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .app .reglage-adulte .vitesse { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 .app .jeu .reglage-adulte .vitesse button { min-height: 44px; font-size: 16px; box-shadow: none; }
 .app .jeu button:not(.cube):disabled { opacity: 0.5; cursor: default; }
-.app .jeu .cube { padding: 0 12px; min-height: 56px; }
+.app .jeu .cube { padding: 0 14px; min-height: 72px; }
 
 .retour { min-height: 56px; font-size: 20px; }
 .retour p { margin: 8px 0; }
 .bravo { font-weight: bold; }
 
 /* Écoute par syllabes : la syllabe lue est entourée et soulevée, un trait marque la coupure entre syllabes, la lettre muette reste grise. */
-.zone .cesure { display: inline-block; width: 4px; height: 64px; margin: 0 6px; background: var(--texte); border-radius: 2px; align-self: center; }
+.zone .cesure { display: inline-block; width: 4px; height: 84px; margin: 0 6px; background: var(--texte); border-radius: 2px; align-self: center; }
 .zone .syl-active { outline: 4px solid var(--acc); outline-offset: 2px; transform: translateY(-6px); }
 @media (prefers-reduced-motion: reduce) { .zone .syl-active { transform: none; } }
 
@@ -69,7 +69,7 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .zone-juste { border-color: var(--juste); border-style: solid; background: var(--fond-juste); }
 .zone-faux { border-color: var(--faux); border-style: solid; background: var(--fond-faux); }
 .app .jeu button:not(.cube):not(.icone-seule) { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
-.app .jeu button.attente { opacity: 0.75; }
+.app .jeu button.attente { opacity: 0.55; } /* Vérifier tant que des cases sont vides : cliquable (message « Poser tous les cubes »), mais visiblement en attente */
 
 .jeu-epure .barre-haut { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
 .jeu-epure .points { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
@@ -86,7 +86,7 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .jeu-epure .carte-jeu { min-height: 224px; }
 .jeu-epure .carte-jeu img { max-height: 200px; }
 .jeu-epure .retour { height: 64px; min-height: 0; }
-.zone { box-sizing: border-box; min-height: 80px; } /* la zone ne grandit pas quand une pièce y est posée */
+.zone { box-sizing: border-box; min-height: 108px; } /* la zone ne grandit pas quand une pièce y est posée */
 .carte-jeu { box-sizing: border-box; height: 256px; min-height: 0; }
 .jeu-epure .carte-jeu { height: 224px; }
 .jeu-epure .carte-jeu img { max-height: 190px; }
@@ -96,3 +96,21 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .app .jeu button.icone-seule { position: relative; }
 .app .jeu button.icone-seule .info { display: none; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); z-index: 5; padding: 6px 12px; white-space: nowrap; font-size: 18px; font-weight: bold; background: var(--texte); color: var(--fond); border-radius: var(--rayon-btn); pointer-events: none; }
 .app .jeu button.icone-seule:hover .info, .app .jeu button.icone-seule:focus-visible .info { display: block; }
+
+/* Tuiles plus petites sur écran étroit (4 par ligne à 72 px sur un téléphone) */
+@media (max-width: 480px) {
+  .cube, .app .jeu .cube { min-width: 60px; height: 60px; min-height: 60px; font-size: 28px; }
+  .zone .vide { min-width: 60px; height: 60px; }
+  .zone .cesure { height: 70px; }
+  .zone { min-height: 92px; }
+}
+
+/* Guidage par étapes (2026-11-23) : un seul bouton à la fois est agrandi et en couleur pleine. transform = les voisins ne bougent pas ; pas d'animation. */
+.app .jeu button.guide { transform: scale(1.22); background: var(--btn); color: var(--btn-texte); font-weight: bold; opacity: 1; }
+.app .jeu .actions-aides button.guide { transform: scale(1.1); } /* l'écart entre aides est de 12 px : au-delà, le bouton déborde sur son voisin */
+
+/* Pièce juste gardée après une erreur : cadenas + cadre plein (jamais la couleur seule), sans ombre portée. */
+.zone .cube.verrou { position: relative; box-shadow: 0 0 0 4px var(--texte); }
+.zone .cube .cadenas { position: absolute; top: -12px; right: -12px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: var(--ecran); color: var(--texte); border: 2px solid var(--texte); border-radius: 50%; }
+.zone-juste .cube.verrou { box-shadow: var(--ombre-cube); } /* la fête de réussite efface les cadenas */
+.zone-juste .cube .cadenas { display: none; }
