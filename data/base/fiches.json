@@ -17985,5 +17985,348 @@
   "origine": [
    "pack-progressif-p1-lot20"
   ]
+ },
+ {
+  "id": "tomate",
+  "mot": "tomate",
+  "lettres": [
+   "t",
+   "o",
+   "m",
+   "a",
+   "t",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "t",
+    "fichier": "audio/74_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "to",
+    "fichier": "audio/74_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "tom",
+    "fichier": "audio/74_254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "toma",
+    "fichier": "audio/74_254_6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "tomat",
+    "fichier": "audio/74_254_6d_61_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "tomate",
+    "fichier": "audio/74_254_6d_61_74_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "tɔ",
+    "fichier": "audio/74_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mat",
+    "fichier": "audio/6d_61_74_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/tomate.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La tomate est rouge.",
+  "phraseAudio": "audio/phrase-tomate.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot22"
+  ]
+ },
+ {
+  "id": "cabane",
+  "mot": "cabane",
+  "lettres": [
+   "c",
+   "a",
+   "b",
+   "a",
+   "n",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ca",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cab",
+    "fichier": "audio/6b_61_62_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "caba",
+    "fichier": "audio/6b_61_62_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "caban",
+    "fichier": "audio/6b_61_62_61_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cabane",
+    "fichier": "audio/6b_61_62_61_6e_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ka",
+    "fichier": "audio/6b_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ban",
+    "fichier": "audio/62_61_6e_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/cabane.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La cabane est dans la forêt.",
+  "phraseAudio": "audio/phrase-cabane.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot22"
+  ]
+ },
+ {
+  "id": "vase",
+  "mot": "vase",
+  "lettres": [
+   "v",
+   "a",
+   "s",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "s",
+    "son": "z"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "va",
+    "fichier": "audio/76_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vas",
+    "fichier": "audio/76_61_7a_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vase",
+    "fichier": "audio/76_61_7a_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vaz",
+    "fichier": "audio/76_61_7a_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/vase.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le vase est bleu.",
+  "phraseAudio": "audio/phrase-vase.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot22"
+  ]
+ },
+ {
+  "id": "manege",
+  "mot": "manège",
+  "lettres": [
+   "m",
+   "a",
+   "n",
+   "è",
+   "g",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "è",
+    "son": "e_ouvert"
+   },
+   {
+    "g": "g",
+    "son": "j"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "man",
+    "fichier": "audio/6d_61_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "manè",
+    "fichier": "audio/6d_61_6e_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "manèg",
+    "fichier": "audio/6d_61_6e_25b_292_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "manège",
+    "fichier": "audio/6d_61_6e_25b_292_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "nɛʒ",
+    "fichier": "audio/6e_25b_292_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/manege.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je tourne sur le manège.",
+  "phraseAudio": "audio/phrase-manege.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot22"
+  ]
  }
 ]

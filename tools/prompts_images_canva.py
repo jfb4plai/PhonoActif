@@ -781,8 +781,25 @@ MOTS_LOT21 = [
      "UN os blanc crème en forme d'os de chien ; risque : lu « os de chien » (acceptable) ; pas de chien", "Mode maternelle ; phrase : « Le chien ronge un os. »"),
 ]
 
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15, 16: MOTS_LOT16, 17: MOTS_LOT17, 18: MOTS_LOT18, 19: MOTS_LOT19, 20: MOTS_LOT20, 21: MOTS_LOT21}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15 + MOTS_LOT16 + MOTS_LOT17 + MOTS_LOT18 + MOTS_LOT19 + MOTS_LOT20 + MOTS_LOT21  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 22 : pack progressif P1, palier final F (fiche d'intention data/base/lots/pack-progressif-p1-lot22-intention.md, option B validée par JF le 2026-11-23).
+# 4 images : tomate, cabane, vase, manège (à la place de canapé, pavé, pédalo, mécano).
+MOTS_LOT22 = [
+    ("tomate", "tomate", "one whole red tomato, slightly flattened, with a small star of green leaves and a short stem on top", DE_FACE, "aucun", "red #dc2626, dark red #b91c1c, green #4d8a3a",
+     " One whole round red #dc2626 tomato, slightly flattened and wider than tall, with a soft darker red #b91c1c shadow on its lower side, and on top a small star-shaped crown of five pointed green #4d8a3a leaves with a short green stem. A tomato, not an apple: flattened shape, star-shaped green leaves. No knife, no slice, no table, no text.",
+     "UNE tomate rouge aplatie, couronne de feuilles vertes en étoile et tige ; ne doit pas se lire « pomme » (au catalogue)", "Palier F ; phrase : « La tomate est rouge. »"),
+    ("cabane", "cabane", "a small wooden hut made of rough planks in a forest, between fir trees", DE_FACE, "aucun", "wood #d9b98a, brown #8a5a2b, red #dc2626, dark green #3f7a3a, green #5f9e4f, light green #b7d9a0",
+     " A small rough wooden hut made of vertical planks in wood #d9b98a with brown #8a5a2b gaps, a low pointed red #dc2626 roof and one small brown #8a5a2b door, standing in a forest: three tall pointed fir trees made of stacked green triangles (dark green #3f7a3a and green #5f9e4f) with short brown #8a5a2b trunks, one on the left of the hut, two on the right and slightly behind it, and a thin strip of light green #b7d9a0 grass under the hut and the trees. The hut stays the biggest and clearest shape in the center, the trees frame it. A hut in the woods, not a house in a village: rough planks, no windows, no chimney, no path, no fence, no animals. No text.",
+     "UNE cabane en planches au milieu d'une forêt : trois sapins autour, bande d'herbe ; v1 refusée par JF (cabane seule : « plus cabane dans forêt ») ; la cabane reste la forme principale", "Palier F ; phrase : « La cabane est dans la forêt. » (validée par JF avec l'image v2)"),
+    ("vase", "vase", "a blue vase with a narrow neck and a round belly holding a single yellow flower", DE_FACE, "aucun", "blue #2f6db5, light blue #9fd0ea, warm yellow #f2c94c, green #7fb069",
+     " One blue #2f6db5 vase with a round belly and a narrow neck with a slightly wider rim, a soft lighter blue #9fd0ea highlight on one side, and a single warm yellow #f2c94c flower with a thin green #7fb069 stem and two small leaves coming out of the neck. A vase, not a flowerpot: narrow neck, no soil. No table, no water, no text.",
+     "UN vase bleu à col étroit et ventre rond avec une seule fleur jaune ; ne doit pas se lire « pot » ni « fleur »", "Palier F ; phrase : « Le vase est bleu. »"),
+    ("manège", "manege", "a small carousel: a round platform with a red and cream striped conical roof and two wooden horses on poles", DE_FACE, "aucun", "red #dc2626, cream #efe6d0, brown #8a5a2b, warm yellow #f2c94c",
+     " A small carousel seen from the front: a low round brown #8a5a2b platform, a central pole, a conical roof striped with red #dc2626 and cream #efe6d0 wedges with a small warm yellow #f2c94c flag on top, and two simple wooden horses in cream #efe6d0 with brown #8a5a2b manes hanging from two thin poles under the roof. A carousel, not a tent and not a circus: round roof, horses on poles. No people, no fence, no lights, no text.",
+     "UN petit manège : plateau rond, toit conique rayé rouge et crème, deux chevaux de bois sur des barres ; image la plus complexe du lot (se lit « tente » ou « cirque ») ; repli : orage, visage ou gare", "Palier F ; phrase : « Je tourne sur le manège. »"),
+]
+
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15, 16: MOTS_LOT16, 17: MOTS_LOT17, 18: MOTS_LOT18, 19: MOTS_LOT19, 20: MOTS_LOT20, 21: MOTS_LOT21, 22: MOTS_LOT22}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15 + MOTS_LOT16 + MOTS_LOT17 + MOTS_LOT18 + MOTS_LOT19 + MOTS_LOT20 + MOTS_LOT21 + MOTS_LOT22  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):

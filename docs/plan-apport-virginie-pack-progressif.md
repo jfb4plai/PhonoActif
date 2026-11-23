@@ -79,7 +79,7 @@ Contrôle (constaté par exécution) : 65 mots, 0 paire visuelle proche, 0 jumea
 
 | Palier | Difficulté | Mots (8, validés par JF le 2026-11-22) |
 |---|---|---|
-| F | paire e/a (é/a, e/a, è/a) ; consonnes courtes admises (c, p, d) : cumul assumé pour ce palier | cinéma, café, canapé†, pavé†, pédalo†, mécano†, caméra, salade |
+| F | paire e/a (é/a, e/a, è/a) ; consonnes courtes admises (c, p, d) : cumul assumé pour ce palier | cinéma, café, caméra, salade, tomate, cabane, vase, manège |
 
 Réserve (17 autres candidats, non retenus) : pâté (VOB P3), opéra†, caméra (VOB P6), âgé (VOB P4), lavé†, karaté (VOB P6), salé†, râpé†, karatéka†, municipalité†, nativité†, vitaminé†, animé†, moralité†, ratatiné†, exagéré†, déraciné†. Raisons de non-sélection (déduit) : niveau VOB au-dessus de P1, mots longs ou abstraits, adjectifs difficiles à dessiner honnêtement. « déjà » et « cela » sont des mots-outils : sans image prévue. Fréquence P1 des quatre mots de la liste : déjà 395, cela 301, cinéma 159, café 122.
 

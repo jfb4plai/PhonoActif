@@ -1,4 +1,4 @@
-# Lot 21 (pack progressif P1, palier final F : 4 derniers mots) : fiche d'intention, À VALIDER par JF (2026-11-23)
+# Lot 22 (pack progressif P1, palier final F : 4 derniers mots ; renuméroté 21 vers 22 le 2026-11-23, le numéro 21 des images est pris par le lot maternelle « initiale ») : fiche d'intention, À VALIDER par JF (2026-11-23)
 
 Statut : proposition, aucune image générée, aucune fiche créée. Règles de JF du 2026-11-23 appliquées : mots du langage quotidien d'un élève de P1, mots imageables d'abord, conseils de Virginie contrôlés par `tools/pack_progressif_controle.py` (constaté à l'exécution). Les 4 mots du plan et leurs remplaçants sont absents du catalogue (constaté, 255 mots). Candidats trouvés par filtre sur le lexique et la liste P1 de JF, pas par l'IA.
 

@@ -1,0 +1,35 @@
+{
+ "nom": "pack-progressif-p1-lot22",
+ "titre": "Pack progressif P1 : palier final F (lot 22)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "tomate",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot22/tomate.png",
+   "phrase": "La tomate est rouge.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "cabane",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot22/cabane.png",
+   "phrase": "La cabane est dans la forêt.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "vase",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot22/vase.png",
+   "phrase": "Le vase est bleu.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "manège",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot22/manege.png",
+   "phrase": "Je tourne sur le manège.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  }
+ ]
+}
