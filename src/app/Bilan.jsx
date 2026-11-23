@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Bilan({ nbCartes, onRejouer, onAccueil, peutEnvoyer, onEnvoyer, messageEnvoi }) {
+export default function Bilan({ nbCartes, arret = null, paliersSautes = [], onRejouer, onAccueil, peutEnvoyer, onEnvoyer, messageEnvoi }) {
   return (
     <main className="bilan">
       {/* Fête du bilan : trois gerbes de feu d'artifice qui éclatent l'une après l'autre, et une étoile dorée qui surgit. Décoratif (fete.css). */}
@@ -16,6 +16,8 @@ export default function Bilan({ nbCartes, onRejouer, onAccueil, peutEnvoyer, onE
       </svg>
       <h1>Pack terminé</h1>
       <p>{nbCartes} carte(s) vue(s).</p>
+      {arret && <p className="bilan-palier">Arrêté après le palier {arret.apres}.</p>}
+      {paliersSautes.map(id => <p key={id} className="bilan-palier">Palier {id} passé par l’adulte.</p>)}
       <div className="actions">
         {peutEnvoyer && <button type="button" className="principal" onClick={onEnvoyer}>Envoyer mes résultats</button>}
         <button type="button" className={peutEnvoyer ? '' : 'principal'} onClick={onRejouer}>Rejouer</button>

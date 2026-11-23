@@ -13,6 +13,7 @@ import Landing from './Landing.jsx';
 import { ModeEmploi, Donnees, APropos } from './Pages.jsx';
 import Jeu from './Jeu.jsx';
 import Bilan from './Bilan.jsx';
+import { paliersPourMots } from '../core/paliers.js';
 
 function telecharger(nom, texte, type) {
   const url = URL.createObjectURL(new Blob([texte], { type }));
@@ -84,12 +85,13 @@ function AppEleve({ deps, hash, partie }) {
   const [, rafraichir] = useState(0);
   // Modèles de listes publiés (mots/modeles.json, fabriqué par tools/base/publier.js) : l'écran d'accueil propose une liste plutôt qu'un nom à taper.
   const [packsListe, setPacksListe] = useState([]);
+  const [finPalier, setFinPalier] = useState({ arret: null, paliersSautes: [] }); // trace de fin de jeu d'un pack à paliers (affichée au bilan)
   useEffect(() => {
     if (enLigne) return undefined;
     let actif = true;
     (deps.fetch || fetch)(`${base.replace(/\/+$/, '')}/mots/modeles.json`)
       .then(r => (r.ok ? r.json() : []))
-      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && (p.titre || p.label) && p.visibilite !== 'prive').map(p => ({ id: p.id, label: p.titre || p.label, mots: p.mots }))); })
+      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && (p.titre || p.label) && p.visibilite !== 'prive').map(p => ({ id: p.id, label: p.titre || p.label, mots: p.mots, ...(Array.isArray(p.paliers) ? { paliers: p.paliers } : {}) }))); })
       .catch(() => {});
     return () => { actif = false; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -167,14 +169,16 @@ function AppEleve({ deps, hash, partie }) {
         ? await chargerMots(tache.mots, { base, fetch: deps.fetch })
         : modele ? await chargerMots(modele.mots, { base, fetch: deps.fetch })
         : await chargerPack(tache.pack, { base, fetch: deps.fetch });
-      let utilise = charge;
+      // Pack progressif : limites de palier calculées sur les cartes réellement chargées (jamais sur la liste demandée) ; carte unique : null.
+      let utilise = { ...charge, paliers: carteUnique ? null : paliersPourMots(charge.cartes.map(c => c.id), packsListe) };
       if (carteUnique) {
         const cartes = charge.cartes.filter(c => c.id === adresse.carte);
         if (cartes.length === 0) { setErreur('Cette carte n’existe pas dans ce pack.'); return; }
-        utilise = { ...charge, cartes };
+        utilise = { ...utilise, cartes, paliers: null };
       }
       setAvertissementsPack(av);
       setPack(utilise);
+      setFinPalier({ arret: null, paliersSautes: [] });
       setCleJeu(k => k + 1);
       setVue('jeu');
     } catch (e) {
@@ -196,11 +200,11 @@ function AppEleve({ deps, hash, partie }) {
       {vue === 'jeu' && pack && (
         <Jeu key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
           deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), jouerSerie: deps.jouerSerie || ((urls, o) => jouerSerie(urls, o)), rng: deps.rng, maintenant: deps.maintenant }}
-          onFin={() => setVue('bilan')} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
+          onFin={apres => { setFinPalier({ arret: (apres && apres.arret) || null, paliersSautes: (apres && apres.paliersSautes) || [] }); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}
       {vue === 'bilan' && pack && (
-        <Bilan nbCartes={pack.cartes.length} peutEnvoyer={enLigne && !!config} onEnvoyer={surEnvoiManuel} messageEnvoi={messageEnvoi}
-          onRejouer={() => { setMessageEnvoi(''); setCleJeu(k => k + 1); setVue('jeu'); }} onAccueil={() => setVue('accueil')} />
+        <Bilan nbCartes={pack.cartes.length} arret={finPalier.arret} paliersSautes={finPalier.paliersSautes} peutEnvoyer={enLigne && !!config} onEnvoyer={surEnvoiManuel} messageEnvoi={messageEnvoi}
+          onRejouer={() => { setMessageEnvoi(''); setFinPalier({ arret: null, paliersSautes: [] }); setCleJeu(k => k + 1); setVue('jeu'); }} onAccueil={() => setVue('accueil')} />
       )}
     </div>
   );
