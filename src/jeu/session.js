@@ -125,7 +125,11 @@ export function aider(etat) {
 export function suivant(etat) {
   if (etat.statut === 'en_cours' || etat.statut === 'fini') return etat;
   if (etat.index + 1 >= etat.cartes.length) return { ...etat, statut: 'fini' };
-  const index = etat.index + 1;
+  return allerACarte(etat, etat.index + 1);
+}
+
+// Positionne le jeu sur la carte `index` : pièces, tentatives, aide et plateau remis à zéro.
+export function allerACarte(etat, index) {
   return {
     ...etat, index, poses: [], verrous: 0, tentative: 1, aide: 'aucune', indice: null, statut: 'en_cours',
     plateau: (etat.reglages.construirePlateau || construirePlateau)(etat.cartes[index], { nbIntrus: etat.reglages.nbIntrus, rng: etat.outils.rng, digraphes: etat.reglages.digraphes })
