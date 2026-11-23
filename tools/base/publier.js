@@ -37,7 +37,14 @@ export async function publier({ racine, base = path.join(racine, 'data', 'base')
   await writeFile(path.join(sortie, 'fiches.json'), JSON.stringify(servies) + '\n', 'utf8');
   const catalogue = fiches.map(entreeCatalogue).sort((a, b) => a.mot.localeCompare(b.mot, 'fr'));
   await writeFile(path.join(sortie, 'catalogue.json'), JSON.stringify(catalogue) + '\n', 'utf8');
-  const modeles = packs.map(p => ({ id: p.id, titre: p.manifeste.titre || p.entree.label, mots: p.mots.filter(m => ids.has(m)) })).filter(m => m.mots.length > 0);
+  // Un pack à paliers n'est publié que complet (décision de JF du 2026-11-22) : un mot manquant retire tout le modèle.
+  const modeles = packs.map(p => {
+    const m = { id: p.id, titre: p.manifeste.titre || p.entree.label, mots: p.mots.filter(x => ids.has(x)) };
+    const paliers = p.manifeste.paliers;
+    if (!Array.isArray(paliers)) return m;
+    if (m.mots.length !== p.mots.length) return null;
+    return { ...m, paliers: paliers.map(({ id, difficulte, annonce, mots }) => ({ id, difficulte, annonce: annonce || '', mots })) };
+  }).filter(m => m && m.mots.length > 0);
   await writeFile(path.join(sortie, 'modeles.json'), JSON.stringify(modeles) + '\n', 'utf8');
   let octets = 0;
   for (const f of new Set(fiches.flatMap(fichiersDe))) {

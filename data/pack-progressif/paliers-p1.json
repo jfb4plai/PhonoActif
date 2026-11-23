@@ -14,7 +14,8 @@
     "volé",
     "fumé",
     "lama"
-   ]
+   ],
+   "annonce": "Mots de départ : lettres simples, consonnes longues (f, m, l, s, n, r, v, j, z)."
   },
   {
    "id": "2",
@@ -28,7 +29,8 @@
     "télé",
     "épi",
     "poli"
-   ]
+   ],
+   "annonce": "Arrivée des consonnes courtes (p, t, d, b…)."
   },
   {
    "id": "3",
@@ -42,7 +44,8 @@
     "série",
     "revue",
     "momie"
-   ]
+   ],
+   "annonce": "Mots terminés par un e muet (rue, vie…)."
   },
   {
    "id": "4",
@@ -56,7 +59,8 @@
     "lis",
     "vol",
     "vis"
-   ]
+   ],
+   "annonce": "Mots qui se terminent par une consonne (fil, mur…)."
   },
   {
    "id": "5",
@@ -70,7 +74,8 @@
     "lilas",
     "avis",
     "salut"
-   ]
+   ],
+   "annonce": "Lettres muettes à la fin du mot (lit, nid, riz…)."
   },
   {
    "id": "6a",
@@ -79,7 +84,8 @@
     "fou",
     "mou",
     "filou"
-   ]
+   ],
+   "annonce": "Le son « ou » (fou, mou, filou)."
   },
   {
    "id": "6b",
@@ -88,7 +94,8 @@
     "savon",
     "salon",
     "melon"
-   ]
+   ],
+   "annonce": "Le son « on » (savon, salon, melon)."
   },
   {
    "id": "6c",
@@ -96,7 +103,8 @@
    "mots": [
     "maman",
     "an"
-   ]
+   ],
+   "annonce": "Le son « an » (maman, an)."
   },
   {
    "id": "6d",
@@ -105,7 +113,8 @@
     "fin",
     "vin",
     "marin"
-   ]
+   ],
+   "annonce": "Le son « in » (fin, vin, marin)."
   },
   {
    "id": "6e",
@@ -114,7 +123,8 @@
     "roi",
     "moi",
     "foi"
-   ]
+   ],
+   "annonce": "Le son « oi » (roi, moi, foi)."
   },
   {
    "id": "6f",
@@ -122,7 +132,8 @@
    "mots": [
     "feu",
     "jeu"
-   ]
+   ],
+   "annonce": "Le son « eu » (feu, jeu)."
   },
   {
    "id": "7",
@@ -136,7 +147,8 @@
     "veau",
     "bain",
     "soleil"
-   ]
+   ],
+   "annonce": "Sons écrits avec trois lettres : eau, ain, ein, eil, aim."
   },
   {
    "id": "8",
@@ -145,7 +157,8 @@
     "chou",
     "cochon",
     "chien"
-   ]
+   ],
+   "annonce": "Le son « ch » (chou, cochon, chien)."
   },
   {
    "id": "9",
@@ -156,7 +169,8 @@
     "jouet",
     "robinet",
     "poulet"
-   ]
+   ],
+   "annonce": "Mots terminés par « et » ou « ez » (jet, nez, jouet…)."
   },
   {
    "id": "10",
@@ -166,7 +180,8 @@
     "zéro",
     "moto",
     "ciné"
-   ]
+   ],
+   "annonce": "Lettres qui changent de son : c qui se lit s, o fermé (ciné, zéro, moto)."
   },
   {
    "id": "11",
@@ -176,7 +191,8 @@
     "lièvre",
     "film",
     "clé"
-   ]
+   ],
+   "annonce": "Deux consonnes de suite (livre, film, clé)."
   },
   {
    "id": "12",
@@ -186,7 +202,8 @@
     "salami",
     "lavabo",
     "kimono"
-   ]
+   ],
+   "annonce": "Mots de trois syllabes (mimosa, salami…)."
   },
   {
    "id": "F",
@@ -200,7 +217,8 @@
     "cabane",
     "vase",
     "manège"
-   ]
+   ],
+   "annonce": "Palier final, le plus difficile : e et a dans le même mot (café, salade, tomate…)."
   }
  ]
 }

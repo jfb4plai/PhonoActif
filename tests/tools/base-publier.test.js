@@ -51,7 +51,7 @@ test('publier refuse une base qui contient deux fiches de même identifiant', as
   await assert.rejects(publier({ racine: RACINE, base, sortie }), /identifiant en double : la/);
 });
 
-test('la base (data/base) est cohérente : au moins 156 fiches valides, identifiants ASCII uniques, fichiers présents, 6 modèles', async () => {
+test('la base (data/base) est cohérente : au moins 156 fiches valides, identifiants ASCII uniques, fichiers présents, 7 modèles', async () => {
   const fiches = await lire(path.join(RACINE, 'data', 'base', 'fiches.json'));
   assert.equal(new Set(fiches.map(f => f.id)).size, fiches.length);
   for (const f of fiches) { assert.match(f.id, /^[a-z0-9-]{1,60}$/); assert.ok(['valide', 'brouillon'].includes(f.statut), `${f.id} : statut ${f.statut}`); }
@@ -61,5 +61,25 @@ test('la base (data/base) est cohérente : au moins 156 fiches valides, identifi
   const fichiers = f => [f.image_sans_mot, f.phraseAudio, ...(f.etats || []).map(e => e.fichier), ...(f.syllabes || []).map(s => s.fichier)].filter(Boolean);
   for (const f of valides) for (const x of fichiers(f)) assert.ok(existsSync(path.join(RACINE, 'data', 'base', 'assets', x)), `${f.id} : fichier absent ${x}`);
   const packs = await lire(path.join(RACINE, 'data', 'base', 'packs.json'));
-  assert.deepEqual(packs.map(p => p.id), ['p1-100', 'p1-20-images', 'p1-illustre-2', 'p1-illustre-3', 'p1-illustre-4', 'p1-illustre-5']);
+  assert.deepEqual(packs.map(p => p.id), ['p1-100', 'p1-20-images', 'p1-illustre-2', 'p1-illustre-3', 'p1-illustre-4', 'p1-illustre-5', 'pack-progressif-p1']);
+});
+
+test('publier : un modèle à paliers est publié complet, absent si un mot n\'est pas valide', async () => {
+  const sortie = await mkdtemp(path.join(tmpdir(), 'phono-s-'));
+  const fiche = (id, statut) => ({ id, mot: id, lettres: id.split(''), cubes: id.split('').map(g => ({ g, son: g })), etats: [{ lettres: id, fichier: `audio/${id}.mp3` }], phrase: 'P.', phraseAudio: `audio/phrase-${id}.mp3`, statut, origine: ['p'] });
+  const pack = { id: 'pp', entree: { id: 'pp', label: 'PP' }, manifeste: { nom: 'pp', paliers: [{ id: '1', difficulte: 'x', annonce: 'A', mots: ['ab'] }, { id: '2', difficulte: 'y', annonce: 'B', mots: ['cd'] }] }, mots: ['ab', 'cd'] };
+  const sans = { id: 'q', entree: { id: 'q', label: 'Q' }, manifeste: { nom: 'q' }, mots: ['ab', 'cd'] };
+  for (const [statutCd, attendu] of [['valide', true], ['brouillon', false]]) {
+    const base = await mkdtemp(path.join(tmpdir(), 'phono-b-'));
+    await mkdir(path.join(base, 'assets', 'audio'), { recursive: true });
+    for (const f of ['audio/ab.mp3', 'audio/phrase-ab.mp3', 'audio/cd.mp3', 'audio/phrase-cd.mp3']) await writeFile(path.join(base, 'assets', f), 'x');
+    await writeFile(path.join(base, 'fiches.json'), JSON.stringify([fiche('ab', 'valide'), fiche('cd', statutCd)]));
+    await writeFile(path.join(base, 'packs.json'), JSON.stringify([pack, sans]));
+    await publier({ racine: RACINE, base, sortie });
+    const modeles = await lire(path.join(sortie, 'modeles.json'));
+    const m = modeles.find(x => x.id === 'pp');
+    assert.equal(!!m, attendu);
+    if (attendu) assert.deepEqual(m.paliers.map(p => p.mots), [['ab'], ['cd']]);
+    assert.deepEqual(modeles.find(x => x.id === 'q').mots, attendu ? ['ab', 'cd'] : ['ab']);
+  }
 });
