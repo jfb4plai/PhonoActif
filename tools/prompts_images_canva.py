@@ -95,7 +95,7 @@ MOTS_LOT2 = [
 # RÈGLE DES NOMBRES (décision de JF, 2026-11-15, qui remplace celle du 2026-11-14 : « des pommes identiques ») : tout nombre est une carte avec le CHIFFRE SEUL, sans pommes ni autre objet.
 # Raison : des pommes forcent l'élève à les compter, ce qui n'est pas l'objectif. Le mot écrit n'apparaît pas non plus (c'est lui que l'élève construit). Chiffre d'une seule couleur (orange).
 NOMBRES = {"un": ("one", 1), "deux": ("two", 2), "trois": ("three", 3), "quatre": ("four", 4), "cinq": ("five", 5), "six": ("six", 6),
-           "sept": ("seven", 7), "huit": ("eight", 8), "neuf": ("nine", 9), "dix": ("ten", 10)}
+           "sept": ("seven", 7), "huit": ("eight", 8), "neuf": ("nine", 9), "dix": ("ten", 10), "zéro": ("zero", 0)}
 
 
 def entree_nombre(mot):
@@ -673,8 +673,20 @@ MOTS_LOT18 = [
      " A dark green #2f5d3a bottle with a long neck standing on the left, with a plain blank cream #efe6d0 label (no writing, no drawing on the label) and a dark red #7a1f3d cork-less top, and next to it on the right a short glass of soft cream-white #f4efe4 paper half filled with dark red #7a1f3d wine. Exactly one bottle and one glass, no grapes, no people, no table, no text.",
      "UNE bouteille de vin (verte, étiquette crème VIDE) et un verre à moitié rempli de vin rouge sombre ; ni raisin ni texte ; décision de JF 2026-11-22 : « montrer une bouteille de vin n'est pas inciter à boire »", "Palier 6d ; phrase : « Papa verse du vin dans un verre. »"),
 ]
-LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15, 16: MOTS_LOT16, 17: MOTS_LOT17, 18: MOTS_LOT18}
-TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15 + MOTS_LOT16 + MOTS_LOT17 + MOTS_LOT18  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
+# Lot 19 : pack progressif P1, paliers 7 à 10 (fiche d'intention data/base/lots/pack-progressif-p1-lot19-intention.md ; veau et zéro : images validées par JF le 2026-11-23).
+# Les autres mots du lot sont proposés SANS image (décision de JF en attente) ; ceux-ci seuls sont générés.
+PERSONNES |= {"zéro"}
+_zero = list(entree_nombre("zéro"))
+_zero[1] = "zero"   # nom de fichier sans accent
+_zero[6] += " The zero is a tall narrow oval ring (clearly taller than wide, thick even stroke, empty hole in the middle), like the digit 0 on a keyboard, not a perfect circle, not a donut, not the letter O."
+MOTS_LOT19 = [
+    ("veau", "veau", "a calf standing, small body with long thin legs, two small ears and a pink muzzle", DE_PROFIL, "profil", "light brown #c89b6d, pink #f2b8a8, dark brown #6b4a2f",
+     " A young calf standing on four long thin legs, seen from the side: a small light brown #c89b6d body (soft rounded outline, no spots, no patches), a pink #f2b8a8 muzzle, two small rounded ears, dark brown #6b4a2f hooves and a short thin tail, one eye. Small and slim, clearly a baby animal. No udder, no horns, no mother cow, no grass, no ground, no text.",
+     "UN veau brun clair debout, petit corps, pattes longues et fines, museau rose, un seul œil ; ne doit pas se lire vache (pas de taches, pas de pis, pas de cornes), chien ni agneau", "Palier 7 ; phrase : « Le veau court dans le pré. »"),
+    tuple(_zero),
+]
+LOTS = {2: MOTS_LOT2, 3: MOTS_LOT3, 4: MOTS_LOT4, 5: MOTS_LOT5, 6: MOTS_LOT6, 7: MOTS_LOT7, 8: MOTS_LOT8, 9: MOTS_LOT9 + MOTS_SERIE_CHAT, 10: MOTS_LOT10, 11: MOTS_LOT11, 12: MOTS_LOT12, 13: MOTS_LOT13, 14: MOTS_LOT14, 15: MOTS_LOT15, 16: MOTS_LOT16, 17: MOTS_LOT17, 18: MOTS_LOT18, 19: MOTS_LOT19}
+TOUS = MOTS + MOTS_LOT2 + MOTS_LOT3 + MOTS_LOT4 + MOTS_LOT5 + MOTS_LOT6 + MOTS_LOT7 + MOTS_LOT8 + MOTS_LOT9 + MOTS_SERIE_CHAT + MOTS_LOT10 + MOTS_LOT11 + MOTS_LOT12 + MOTS_LOT13 + MOTS_LOT14 + MOTS_LOT15 + MOTS_LOT16 + MOTS_LOT17 + MOTS_LOT18 + MOTS_LOT19  # le CSV reste celui des 20 mots du pack illustré ; la ligne de commande connaît aussi le lot 2
 
 
 def prompt(m):
