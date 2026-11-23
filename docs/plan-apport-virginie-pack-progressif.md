@@ -71,8 +71,8 @@ Contrôle (constaté par exécution) : 65 mots, 0 paire visuelle proche, 0 jumea
 |---|---|---|---|
 | 8 | digraphe consonne (ch) | chou, cochon*, chien* | 3 mots imageables (décision JF 2026-11-23, remplacent chéri, fichu, léché) ; ch + un digraphe déjà vu (ou, on, en) ; marché écarté (e/a, CCV) |
 | 9 | terminaison /e/ (et, ez) | nez*, jet, jouet, robinet, poulet | |
-| 10 | graphie variable (c=s, o fermé) | vélo*, zéro, ici, ciné† | |
-| 11 | groupe consonantique (CCV, VCC) | livre*, vivre†, film, avril | |
+| 10 | graphie variable (c=s, o fermé) | vélo*, zéro, moto, ciné† | |
+| 11 | groupe consonantique (CCV, VCC) | livre*, lièvre, film, avril | |
 | 12 | trois syllabes | mimosa†, safari†, salami†, révolu† | fréquence P1 nulle sauf mimosa (44) ; mimosa ajouté le 2026-11-22 à la demande de JF (suite portée à 20 mots) : seul autre candidat du script, « résumé » (abstrait, fréquence 2), écarté |
 
 **Palier final F (décision de JF, 2026-11-20 ; mots ajoutés le 2026-11-22) :** mots contenant é/a, e/a ou è/a ensemble, **uniquement à la fin du pack**, étiquette « paire e/a » (la difficulté reste isolable). Le contrôle de proximité (B2) laisse passer cette exception seulement dans ce palier. JF a demandé « 58 mots si possible » : **impossible**. Le script `tools/pack_progressif_candidats.py final` (socle, toutes consonnes admises, paire e/a) trouve **25 candidats au total** (4 dans la liste P1 de JF, 3 en VOB P3 à P6, 18 hors liste) ; avec les seules consonnes longues du socle il n'en trouve que 3 (lavé, salé, animé). Le lexique P1 ne contient pas plus de mots de ce type.

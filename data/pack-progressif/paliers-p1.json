@@ -1,5 +1,5 @@
 {
- "_note": "Source unique des mots du pack progressif P1 (apport de Virginie). Toute modification de mots (demandée ou non) : éditer ce fichier puis lancer python -I -X utf8 tools/mots_par_pack_xlsx.py (met à jour docs/mots-par-pack-v2.xlsx). Règle de JF, 2026-11-23. Mis à jour le 2026-11-23 : lot 19 validé par JF (bain, soleil, chou, cochon, chien, jouet, robinet, poulet ; sein, sain, chéri, fichu, léché, volet, minet, sujet sortis ; conseils de Virginie contrôlés par tools/pack_progressif_controle.py).",
+ "_note": "Source unique des mots du pack progressif P1 (apport de Virginie). Toute modification de mots (demandée ou non) : éditer ce fichier puis lancer python -I -X utf8 tools/mots_par_pack_xlsx.py (met à jour docs/mots-par-pack-v2.xlsx). Règle de JF, 2026-11-23. Mis à jour le 2026-11-23 : lot 19 validé par JF (bain, soleil, chou, cochon, chien, jouet, robinet, poulet ; sein, sain, chéri, fichu, léché, volet, minet, sujet sortis ; conseils de Virginie contrôlés par tools/pack_progressif_controle.py). 2026-11-23 : moto (à la place de ici) et lièvre (à la place de vivre) validés par JF ; avril, safari, révolu, déjà, cela en cours de remplacement (lot 20 v2, à valider).",
  "paliers": [
   {
    "id": "1",
@@ -164,7 +164,7 @@
    "mots": [
     "vélo",
     "zéro",
-    "ici",
+    "moto",
     "ciné"
    ]
   },
@@ -173,7 +173,7 @@
    "difficulte": "groupe consonantique (CCV, VCC)",
    "mots": [
     "livre",
-    "vivre",
+    "lièvre",
     "film",
     "avril"
    ]
