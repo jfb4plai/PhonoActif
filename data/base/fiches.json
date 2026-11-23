@@ -16951,5 +16951,1039 @@
   "origine": [
    "pack-progressif-p1-lot19"
   ]
+ },
+ {
+  "id": "moto",
+  "mot": "moto",
+  "lettres": [
+   "m",
+   "o",
+   "t",
+   "o"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "o",
+    "son": "o_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mo",
+    "fichier": "audio/6d_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mot",
+    "fichier": "audio/6d_254_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "moto",
+    "fichier": "audio/6d_254_74_6f_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mɔ",
+    "fichier": "audio/6d_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "to",
+    "fichier": "audio/74_6f_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/moto.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La moto est rouge.",
+  "phraseAudio": "audio/phrase-moto.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "cine",
+  "mot": "ciné",
+  "lettres": [
+   "c",
+   "i",
+   "n",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "s"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ci",
+    "fichier": "audio/73_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cin",
+    "fichier": "audio/73_69_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ciné",
+    "fichier": "audio/73_69_6e_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "si",
+    "fichier": "audio/73_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ne",
+    "fichier": "audio/6e_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/cine.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je vais au ciné avec papa.",
+  "phraseAudio": "audio/phrase-cine.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "lievre",
+  "mot": "lièvre",
+  "lettres": [
+   "l",
+   "i",
+   "è",
+   "v",
+   "r",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "yod"
+   },
+   {
+    "g": "è",
+    "son": "e_ouvert"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "l",
+    "fichier": "audio/6c_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "li",
+    "fichier": "audio/6c_6a_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "liè",
+    "fichier": "audio/6c_6a_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lièv",
+    "fichier": "audio/6c_6a_25b_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lièvr",
+    "fichier": "audio/6c_6a_25b_76_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lièvre",
+    "fichier": "audio/6c_6a_25b_76_281_259_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ljɛ",
+    "fichier": "audio/6c_6a_25b_-30.mp3",
+    "cubes": 3
+   },
+   {
+    "ipa": "vʁə",
+    "fichier": "audio/76_281_259_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/lievre.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le lièvre court vite.",
+  "phraseAudio": "audio/phrase-lievre.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "film",
+  "mot": "film",
+  "lettres": [
+   "f",
+   "i",
+   "l",
+   "m"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fi",
+    "fichier": "audio/66_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fil",
+    "fichier": "audio/66_69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "film",
+    "fichier": "audio/66_69_6c_6d_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "film",
+    "fichier": "audio/66_69_6c_6d_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/film.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le film est drôle.",
+  "phraseAudio": "audio/phrase-film.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "cle",
+  "mot": "clé",
+  "lettres": [
+   "c",
+   "l",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cl",
+    "fichier": "audio/6b_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "clé",
+    "fichier": "audio/6b_6c_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "kle",
+    "fichier": "audio/6b_6c_65_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/cle.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La clé ouvre la porte.",
+  "phraseAudio": "audio/phrase-cle.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "mimosa",
+  "mot": "mimosa",
+  "lettres": [
+   "m",
+   "i",
+   "m",
+   "o",
+   "s",
+   "a"
+  ],
+  "cubes": [
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "o",
+    "son": "o_ferme"
+   },
+   {
+    "g": "s",
+    "son": "z"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "m",
+    "fichier": "audio/6d_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mim",
+    "fichier": "audio/6d_69_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mimo",
+    "fichier": "audio/6d_69_6d_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mimos",
+    "fichier": "audio/6d_69_6d_6f_7a_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "mimosa",
+    "fichier": "audio/6d_69_6d_6f_7a_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mo",
+    "fichier": "audio/6d_6f_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "za",
+    "fichier": "audio/7a_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/mimosa.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le mimosa est jaune.",
+  "phraseAudio": "audio/phrase-mimosa.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "salami",
+  "mot": "salami",
+  "lettres": [
+   "s",
+   "a",
+   "l",
+   "a",
+   "m",
+   "i"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sal",
+    "fichier": "audio/73_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sala",
+    "fichier": "audio/73_61_6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salam",
+    "fichier": "audio/73_61_6c_61_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salami",
+    "fichier": "audio/73_61_6c_61_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "la",
+    "fichier": "audio/6c_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/salami.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je mange une tranche de salami.",
+  "phraseAudio": "audio/phrase-salami.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "lavabo",
+  "mot": "lavabo",
+  "lettres": [
+   "l",
+   "a",
+   "v",
+   "a",
+   "b",
+   "o"
+  ],
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "o",
+    "son": "o_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "l",
+    "fichier": "audio/6c_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "la",
+    "fichier": "audio/6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lav",
+    "fichier": "audio/6c_61_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lava",
+    "fichier": "audio/6c_61_76_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lavab",
+    "fichier": "audio/6c_61_76_61_62_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "lavabo",
+    "fichier": "audio/6c_61_76_61_62_6f_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "la",
+    "fichier": "audio/6c_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "va",
+    "fichier": "audio/76_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "bo",
+    "fichier": "audio/62_6f_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/lavabo.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je me lave les mains au lavabo.",
+  "phraseAudio": "audio/phrase-lavabo.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "kimono",
+  "mot": "kimono",
+  "lettres": [
+   "k",
+   "i",
+   "m",
+   "o",
+   "n",
+   "o"
+  ],
+  "cubes": [
+   {
+    "g": "k",
+    "son": "k"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "o",
+    "son": "o_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "k",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ki",
+    "fichier": "audio/6b_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "kim",
+    "fichier": "audio/6b_69_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "kimo",
+    "fichier": "audio/6b_69_6d_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "kimon",
+    "fichier": "audio/6b_69_6d_254_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "kimono",
+    "fichier": "audio/6b_69_6d_254_6e_6f_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ki",
+    "fichier": "audio/6b_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "mɔ",
+    "fichier": "audio/6d_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "no",
+    "fichier": "audio/6e_6f_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/kimono.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le kimono est blanc.",
+  "phraseAudio": "audio/phrase-kimono.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "camera",
+  "mot": "caméra",
+  "lettres": [
+   "c",
+   "a",
+   "m",
+   "é",
+   "r",
+   "a"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "k"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ca",
+    "fichier": "audio/6b_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cam",
+    "fichier": "audio/6b_61_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "camé",
+    "fichier": "audio/6b_61_6d_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "camér",
+    "fichier": "audio/6b_61_6d_65_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "caméra",
+    "fichier": "audio/6b_61_6d_65_281_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ka",
+    "fichier": "audio/6b_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "me",
+    "fichier": "audio/6d_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ʁa",
+    "fichier": "audio/281_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/camera.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "La caméra filme le chat.",
+  "phraseAudio": "audio/phrase-camera.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "salade",
+  "mot": "salade",
+  "lettres": [
+   "s",
+   "a",
+   "l",
+   "a",
+   "d",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "s",
+    "son": "s"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "d",
+    "son": "d"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "s",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sal",
+    "fichier": "audio/73_61_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "sala",
+    "fichier": "audio/73_61_6c_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salad",
+    "fichier": "audio/73_61_6c_61_64_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "salade",
+    "fichier": "audio/73_61_6c_61_64_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "sa",
+    "fichier": "audio/73_61_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "lad",
+    "fichier": "audio/6c_61_64_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/salade.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je mange de la salade.",
+  "phraseAudio": "audio/phrase-salade.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
+ },
+ {
+  "id": "cinema",
+  "mot": "cinéma",
+  "lettres": [
+   "c",
+   "i",
+   "n",
+   "é",
+   "m",
+   "a"
+  ],
+  "cubes": [
+   {
+    "g": "c",
+    "son": "s"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/73_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ci",
+    "fichier": "audio/73_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cin",
+    "fichier": "audio/73_69_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ciné",
+    "fichier": "audio/73_69_6e_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ciném",
+    "fichier": "audio/73_69_6e_65_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cinéma",
+    "fichier": "audio/73_69_6e_65_6d_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "si",
+    "fichier": "audio/73_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ne",
+    "fichier": "audio/6e_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ma",
+    "fichier": "audio/6d_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/cinema.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Nous allons au cinéma.",
+  "phraseAudio": "audio/phrase-cinema.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot20"
+  ]
  }
 ]

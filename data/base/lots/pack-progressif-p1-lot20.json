@@ -1,0 +1,91 @@
+{
+ "nom": "pack-progressif-p1-lot20",
+ "titre": "Pack progressif P1 : paliers 10 à 12 et F (lot 20)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "moto",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/moto.png",
+   "phrase": "La moto est rouge.",
+   "commentaire": "Pack progressif P1, palier 10 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "ciné",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/cinema.png",
+   "phrase": "Je vais au ciné avec papa.",
+   "commentaire": "Pack progressif P1, palier 10 ; image Canva (validée par JF 2026-11-23) ; même image que cinéma (option B)"
+  },
+  {
+   "mot": "lièvre",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/lievre.png",
+   "phrase": "Le lièvre court vite.",
+   "commentaire": "Pack progressif P1, palier 11 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "film",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/film.png",
+   "phrase": "Le film est drôle.",
+   "commentaire": "Pack progressif P1, palier 11 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "clé",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/cle.png",
+   "phrase": "La clé ouvre la porte.",
+   "commentaire": "Pack progressif P1, palier 11 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "mimosa",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/mimosa.png",
+   "phrase": "Le mimosa est jaune.",
+   "commentaire": "Pack progressif P1, palier 12 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "salami",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/salami.png",
+   "phrase": "Je mange une tranche de salami.",
+   "commentaire": "Pack progressif P1, palier 12 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "lavabo",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/lavabo.png",
+   "phrase": "Je me lave les mains au lavabo.",
+   "commentaire": "Pack progressif P1, palier 12 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "kimono",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/kimono.png",
+   "phrase": "Le kimono est blanc.",
+   "commentaire": "Pack progressif P1, palier 12 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "caméra",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/camera.png",
+   "phrase": "La caméra filme le chat.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "salade",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/salade.png",
+   "phrase": "Je mange de la salade.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "cinéma",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot20/cinema.png",
+   "phrase": "Nous allons au cinéma.",
+   "commentaire": "Pack progressif P1, palier F ; image Canva (validée par JF 2026-11-23)"
+  }
+ ]
+}

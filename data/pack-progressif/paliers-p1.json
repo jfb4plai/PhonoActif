@@ -1,5 +1,5 @@
 {
- "_note": "Source unique des mots du pack progressif P1 (apport de Virginie). Toute modification de mots (demandée ou non) : éditer ce fichier puis lancer python -I -X utf8 tools/mots_par_pack_xlsx.py (met à jour docs/mots-par-pack-v2.xlsx). Règle de JF, 2026-11-23. Mis à jour le 2026-11-23 : lot 19 validé par JF (bain, soleil, chou, cochon, chien, jouet, robinet, poulet ; sein, sain, chéri, fichu, léché, volet, minet, sujet sortis ; conseils de Virginie contrôlés par tools/pack_progressif_controle.py). 2026-11-23 : moto (à la place de ici) et lièvre (à la place de vivre) validés par JF ; avril, safari, révolu, déjà, cela en cours de remplacement (lot 20 v2, à valider).",
+ "_note": "Source unique des mots du pack progressif P1 (apport de Virginie). Toute modification de mots (demandée ou non) : éditer ce fichier puis lancer python -I -X utf8 tools/mots_par_pack_xlsx.py (met à jour docs/mots-par-pack-v2.xlsx). Règle de JF, 2026-11-23. Mis à jour le 2026-11-23 : lot 19 validé par JF (bain, soleil, chou, cochon, chien, jouet, robinet, poulet ; sein, sain, chéri, fichu, léché, volet, minet, sujet sortis ; conseils de Virginie contrôlés par tools/pack_progressif_controle.py). 2026-11-23 : lot 20 validé par JF (moto, lièvre, clé, lavabo, kimono, caméra, pâté entrent ; ici, vivre, avril, safari, révolu, déjà, cela sortent ; lot 21 à part). 2026-11-23 : pâté remplacé par salade (palier F) à la demande de JF (image pâté non lisible).",
  "paliers": [
   {
    "id": "1",
@@ -175,31 +175,31 @@
     "livre",
     "lièvre",
     "film",
-    "avril"
+    "clé"
    ]
   },
   {
    "id": "12",
    "difficulte": "trois syllabes",
    "mots": [
-    "safari",
+    "mimosa",
     "salami",
-    "révolu",
-    "mimosa"
+    "lavabo",
+    "kimono"
    ]
   },
   {
    "id": "F",
    "difficulte": "paire e/a (palier final, cumul assumé)",
    "mots": [
-    "déjà",
-    "cela",
     "cinéma",
     "café",
     "canapé",
     "pavé",
     "pédalo",
-    "mécano"
+    "mécano",
+    "caméra",
+    "salade"
    ]
   }
  ]

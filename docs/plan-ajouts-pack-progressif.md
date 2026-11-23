@@ -43,7 +43,7 @@ Les lots 1 à 15 existent déjà ; la numérotation continue à 16 (lots 16 à 2
 | 17 | mal*, lis*, vol*, vis*, jus, riz, lilas, avis, salut, fou, mou, filou | 4 à 6a |
 | 18 | savon, salon, melon, an*, fin, vin, marin, roi, foi*, jeu, main, pain | 6b à 7 |
 | 19 | faim, veau, bain + chou, jet, jouet, robinet, poulet, zéro (9 mots à créer ; soleil, cochon, chien déjà au catalogue ; décisions JF 2026-11-23) | 7 à 10 |
-| 20 | ici*, ciné, vivre, film, avril, mimosa, safari, salami, révolu + déjà*, cela*, cinéma (palier final F) | 10 à 12 et F |
+| 20 | moto, ciné, lièvre, film, clé, mimosa, salami, lavabo, kimono + caméra, salade, cinéma (palier final F) : 12 mots, 11 images, aucun sans image (décisions JF 2026-11-23 ; ici, vivre, avril, safari, révolu, déjà, cela sortis) | 10 à 12 et F |
 | 21 | canapé, pavé, pédalo, mécano (palier final F, 4 mots) | F |
 
 `*` = sans image prévue. Décision 2026-11-22 : le pack n'est publié qu'avec les 12 paliers complets, donc après le lot 21 ; aucun pack partiel n'est jouable avant. Pour tester le jeu avant, un pack de test à 2 paliers peut servir (non publié).
