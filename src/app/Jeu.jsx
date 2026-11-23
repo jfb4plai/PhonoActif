@@ -1,6 +1,6 @@
 import { urlFichier } from './urlFichier.js';
 import Icone from './Icones.jsx';
-import { urlConsigne, consignesActives } from './consignes.js';
+import { urlConsigne, consignesActives, choisirVariante } from './consignes.js';
 import React, { useState, useEffect, useRef } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
@@ -99,6 +99,8 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   // Consignes vocales (P1 à P3) : courts fichiers partagés (public/consignes/). Un fichier absent ne signale rien : l'élève n'a pas à le savoir.
   const voix = consignesActives(tache);
   const geste = useRef(0); // compte les gestes de l'élève : une consigne qui se termine après un geste ne relance pas le mot
+  const derniereVariante = useRef({}); // dernière variante jouée par consigne (juste, faux) : on ne répète pas deux fois la même
+  const varianteDe = base => { const id = choisirVariante(base, derniereVariante.current[base], deps.rng); derniereVariante.current[base] = id; return id; };
   const jouerConsigne = id => (voix && deps.jouerFichier
     ? Promise.resolve(deps.jouerFichier(urlConsigne(base, id))).catch(() => {})
     : Promise.resolve());
@@ -138,7 +140,12 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     geste.current++;
     setEtat(apres); setMessage({ type: resultat });
     if (resultat === 'faux') setAEcoute(false);
-    jouerConsigne(resultat);
+    if (resultat === 'juste') jouerConsigne(varianteDe('juste'));
+    else if (resultat === 'faux') {
+      // Après l'erreur : consigne (« Presque ! … »), pause, puis le mot est rejoué pour que l'élève compare. Un geste de l'élève entre-temps annule le rejeu.
+      const g0 = geste.current;
+      jouerConsigne(varianteDe('faux')).then(() => (voix ? new Promise(res => setTimeout(res, 700)) : null)).then(() => { if (voix && geste.current === g0) jouerMot(carte); });
+    } else jouerConsigne(resultat);
   };
   const surAide = () => {
     const { etat: apres, sons } = aider(etat);

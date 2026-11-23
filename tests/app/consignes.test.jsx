@@ -4,7 +4,7 @@ import { render, screen, cleanup, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { stockageMemoire } from '../../src/jeu/essais.js';
 import App from '../../src/app/App.jsx';
-import { consignesActives, urlConsigne } from '../../src/app/consignes.js';
+import { consignesActives, urlConsigne, choisirVariante, variantesConsigne } from '../../src/app/consignes.js';
 
 afterEach(cleanup);
 
@@ -57,12 +57,34 @@ describe('consignes vocales', () => {
     expect(urls(jouerFichier).at(-1)).toBe('/consignes/incomplet.mp3');
     for (const l of ['c', 'a', 'h', 't']) await lettre(user, l);
     await user.click(screen.getByRole('button', { name: 'Vérifier' }));
-    expect(urls(jouerFichier).at(-1)).toBe('/consignes/faux.mp3');
+    expect(urls(jouerFichier).at(-1)).toMatch(/^\/consignes\/faux(_\d)?\.mp3$/);
+    // Après la consigne d'erreur : pause, puis le mot est rejoué (état final de la carte).
+    await waitFor(() => expect(urls(jouerFichier).at(-1)).toBe('/packs/essai-a/audio/chat.mp3'), { timeout: 3000 });
     // Option B (2026-11-23) : le c, juste, reste verrouillé ; les autres pièces retournent au bac.
     expect(screen.getByRole('button', { name: 'Tout effacer' })).toBeDisabled();
     for (const l of ['h', 'a', 't']) await lettre(user, l);
     await user.click(screen.getByRole('button', { name: 'Vérifier' }));
-    expect(urls(jouerFichier).at(-1)).toBe('/consignes/juste.mp3');
+    expect(urls(jouerFichier).at(-1)).toMatch(/^\/consignes\/juste(_\d)?\.mp3$/);
+  });
+
+  it('un geste de l’élève pendant la pause annule le rejeu du mot', async () => {
+    const { user, jouerFichier } = monter('&consignes=voix');
+    await commencer(user);
+    for (const l of ['c', 'a', 'h', 't']) await lettre(user, l);
+    await user.click(screen.getByRole('button', { name: 'Vérifier' }));
+    await waitFor(() => expect(urls(jouerFichier).some(u => /faux/.test(u))).toBe(true));
+    await lettre(user, 'h'); // geste : la pause de 700 ms ne doit plus rejouer le mot
+    await new Promise(r => setTimeout(r, 1000));
+    expect(urls(jouerFichier).filter(u => u === '/packs/essai-a/audio/chat.mp3')).toHaveLength(0);
+  });
+
+  it('variantes : jamais la même deux fois de suite, toutes atteignables', () => {
+    expect(variantesConsigne('juste')).toEqual(['juste', 'juste_2', 'juste_3', 'juste_4', 'juste_5']);
+    expect(variantesConsigne('faux')).toEqual(['faux', 'faux_2', 'faux_3']);
+    let d; const vus = new Set();
+    for (let i = 0; i < 40; i++) { const v = choisirVariante('juste', d, () => (i * 0.137) % 1); expect(v).not.toBe(d); vus.add(v); d = v; }
+    expect(vus.size).toBe(5);
+    expect(choisirVariante('inconnue', undefined, () => 0.5)).toBe('inconnue');
   });
 
   it('fichier de consigne absent : aucun message « Pas de son » devant l\'élève', async () => {

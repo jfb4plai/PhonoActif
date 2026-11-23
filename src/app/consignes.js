@@ -15,3 +15,12 @@ export function consignesActives(tache) {
   const choix = tache && tache.consignes;
   return (VALEURS_CONSIGNES.includes(choix) ? choix : (tache && tache.commandes === 'epure' ? 'voix' : 'non')) === 'voix';
 }
+
+// Variantes d'une consigne (juste, juste_2, juste_3… ; faux, faux_2…) : une est tirée à chaque fois, jamais la même deux fois de suite.
+export const variantesConsigne = base => IDS_CONSIGNES.filter(id => id === base || new RegExp(`^${base}_\\d+$`).test(id));
+export function choisirVariante(base, derniere, rng = Math.random) {
+  const toutes = variantesConsigne(base);
+  const autres = toutes.filter(id => id !== derniere);
+  const liste = autres.length > 0 ? autres : toutes;
+  return liste.length > 0 ? liste[Math.min(liste.length - 1, Math.floor(rng() * liste.length))] : base;
+}

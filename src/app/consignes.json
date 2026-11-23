@@ -1,7 +1,13 @@
 {
   "debut": "Écouter le mot. Puis poser les lettres dans l’ordre.",
   "juste": "Bravo !",
+  "juste_2": "Super !",
+  "juste_3": "Bien joué !",
+  "juste_4": "Exact !",
+  "juste_5": "Magnifique !",
   "faux": "Pas tout à fait. Essayer encore.",
+  "faux_2": "Presque ! Écouter encore.",
+  "faux_3": "Presque ! On regarde ensemble.",
   "incomplet": "Remplir toutes les cases, puis vérifier.",
   "revelation": "Voici le mot.",
   "fin": "C’est fini. Bravo !",
