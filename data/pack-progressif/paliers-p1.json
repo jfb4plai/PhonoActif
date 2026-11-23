@@ -1,23 +1,206 @@
 {
- "_note": "Source unique des mots du pack progressif P1 (apport de Virginie). Toute modification de mots (demandée ou non) : éditer ce fichier puis lancer python -I -X utf8 tools/mots_par_pack_xlsx.py (met à jour docs/mots-par-pack-v2.xlsx). Règle de JF, 2026-11-23. Mis à jour le 2026-11-23 : état validé (lama, pain, mimosa, palier F). Lot 19 : remplaçants proposés non validés, non reportés ici.",
+ "_note": "Source unique des mots du pack progressif P1 (apport de Virginie). Toute modification de mots (demandée ou non) : éditer ce fichier puis lancer python -I -X utf8 tools/mots_par_pack_xlsx.py (met à jour docs/mots-par-pack-v2.xlsx). Règle de JF, 2026-11-23. Mis à jour le 2026-11-23 : lot 19 validé par JF (bain, soleil, chou, cochon, chien, jouet, robinet, poulet ; sein, sain, chéri, fichu, léché, volet, minet, sujet sortis ; conseils de Virginie contrôlés par tools/pack_progressif_controle.py).",
  "paliers": [
-  {"id": "1", "difficulte": "aucune (socle)", "mots": ["ami","joli","mari","sofa","mimi","ravi","volé","fumé","lama"]},
-  {"id": "2", "difficulte": "consonne courte (p t d b…)", "mots": ["papa","bébé","côté","midi","rôti","télé","épi","poli"]},
-  {"id": "3", "difficulte": "e muet final", "mots": ["rue","vie","fée","fumée","vue","série","revue","momie"]},
-  {"id": "4", "difficulte": "syllabe fermée (CVC), consonnes longues (décision 5 : après l'e muet)", "mots": ["fil","mur","sol","sur","mal","lis","vol","vis"]},
-  {"id": "5", "difficulte": "autre lettre muette (t, d, s, z)", "mots": ["lit","rat","nid","jus","riz","lilas","avis","salut"]},
-  {"id": "6a", "difficulte": "digraphe ou", "mots": ["fou","mou","filou"]},
-  {"id": "6b", "difficulte": "digraphe on", "mots": ["savon","salon","melon"]},
-  {"id": "6c", "difficulte": "digraphe an", "mots": ["maman","an"]},
-  {"id": "6d", "difficulte": "digraphe in", "mots": ["fin","vin","marin"]},
-  {"id": "6e", "difficulte": "digraphe oi", "mots": ["roi","moi","foi"]},
-  {"id": "6f", "difficulte": "digraphe eu", "mots": ["feu","jeu"]},
-  {"id": "7", "difficulte": "digraphes de 3 lettres", "mots": ["eau","seau","main","pain","faim","veau","sein","sain"]},
-  {"id": "8", "difficulte": "digraphe consonne (ch)", "mots": ["chéri","fichu","léché"]},
-  {"id": "9", "difficulte": "terminaison /e/ (et, ez)", "mots": ["nez","jet","volet","minet","sujet"]},
-  {"id": "10", "difficulte": "graphie variable (c=s, o fermé)", "mots": ["vélo","zéro","ici","ciné"]},
-  {"id": "11", "difficulte": "groupe consonantique (CCV, VCC)", "mots": ["livre","vivre","film","avril"]},
-  {"id": "12", "difficulte": "trois syllabes", "mots": ["safari","salami","révolu","mimosa"]},
-  {"id": "F", "difficulte": "paire e/a (palier final, cumul assumé)", "mots": ["déjà","cela","cinéma","café","canapé","pavé","pédalo","mécano"]}
+  {
+   "id": "1",
+   "difficulte": "aucune (socle)",
+   "mots": [
+    "ami",
+    "joli",
+    "mari",
+    "sofa",
+    "mimi",
+    "ravi",
+    "volé",
+    "fumé",
+    "lama"
+   ]
+  },
+  {
+   "id": "2",
+   "difficulte": "consonne courte (p t d b…)",
+   "mots": [
+    "papa",
+    "bébé",
+    "côté",
+    "midi",
+    "rôti",
+    "télé",
+    "épi",
+    "poli"
+   ]
+  },
+  {
+   "id": "3",
+   "difficulte": "e muet final",
+   "mots": [
+    "rue",
+    "vie",
+    "fée",
+    "fumée",
+    "vue",
+    "série",
+    "revue",
+    "momie"
+   ]
+  },
+  {
+   "id": "4",
+   "difficulte": "syllabe fermée (CVC), consonnes longues (décision 5 : après l'e muet)",
+   "mots": [
+    "fil",
+    "mur",
+    "sol",
+    "sur",
+    "mal",
+    "lis",
+    "vol",
+    "vis"
+   ]
+  },
+  {
+   "id": "5",
+   "difficulte": "autre lettre muette (t, d, s, z)",
+   "mots": [
+    "lit",
+    "rat",
+    "nid",
+    "jus",
+    "riz",
+    "lilas",
+    "avis",
+    "salut"
+   ]
+  },
+  {
+   "id": "6a",
+   "difficulte": "digraphe ou",
+   "mots": [
+    "fou",
+    "mou",
+    "filou"
+   ]
+  },
+  {
+   "id": "6b",
+   "difficulte": "digraphe on",
+   "mots": [
+    "savon",
+    "salon",
+    "melon"
+   ]
+  },
+  {
+   "id": "6c",
+   "difficulte": "digraphe an",
+   "mots": [
+    "maman",
+    "an"
+   ]
+  },
+  {
+   "id": "6d",
+   "difficulte": "digraphe in",
+   "mots": [
+    "fin",
+    "vin",
+    "marin"
+   ]
+  },
+  {
+   "id": "6e",
+   "difficulte": "digraphe oi",
+   "mots": [
+    "roi",
+    "moi",
+    "foi"
+   ]
+  },
+  {
+   "id": "6f",
+   "difficulte": "digraphe eu",
+   "mots": [
+    "feu",
+    "jeu"
+   ]
+  },
+  {
+   "id": "7",
+   "difficulte": "digraphes de 3 lettres",
+   "mots": [
+    "eau",
+    "seau",
+    "main",
+    "pain",
+    "faim",
+    "veau",
+    "bain",
+    "soleil"
+   ]
+  },
+  {
+   "id": "8",
+   "difficulte": "digraphe consonne (ch)",
+   "mots": [
+    "chou",
+    "cochon",
+    "chien"
+   ]
+  },
+  {
+   "id": "9",
+   "difficulte": "terminaison /e/ (et, ez)",
+   "mots": [
+    "nez",
+    "jet",
+    "jouet",
+    "robinet",
+    "poulet"
+   ]
+  },
+  {
+   "id": "10",
+   "difficulte": "graphie variable (c=s, o fermé)",
+   "mots": [
+    "vélo",
+    "zéro",
+    "ici",
+    "ciné"
+   ]
+  },
+  {
+   "id": "11",
+   "difficulte": "groupe consonantique (CCV, VCC)",
+   "mots": [
+    "livre",
+    "vivre",
+    "film",
+    "avril"
+   ]
+  },
+  {
+   "id": "12",
+   "difficulte": "trois syllabes",
+   "mots": [
+    "safari",
+    "salami",
+    "révolu",
+    "mimosa"
+   ]
+  },
+  {
+   "id": "F",
+   "difficulte": "paire e/a (palier final, cumul assumé)",
+   "mots": [
+    "déjà",
+    "cela",
+    "cinéma",
+    "café",
+    "canapé",
+    "pavé",
+    "pédalo",
+    "mécano"
+   ]
+  }
  ]
 }

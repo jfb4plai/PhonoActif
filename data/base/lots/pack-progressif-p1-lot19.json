@@ -1,0 +1,68 @@
+{
+ "nom": "pack-progressif-p1-lot19",
+ "titre": "Pack progressif P1 : paliers 7 à 10 (lot 19)",
+ "niveau": "P1",
+ "mots": [
+  {
+   "mot": "faim",
+   "niveau": "P1",
+   "phrase": "J'ai faim, je veux manger.",
+   "commentaire": "Pack progressif P1, palier 7 ; sans image (décision de JF 2026-11-23)"
+  },
+  {
+   "mot": "veau",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/veau.png",
+   "phrase": "Le veau court dans le pré.",
+   "commentaire": "Pack progressif P1, palier 7 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "bain",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/bain.png",
+   "phrase": "Je prends un bain chaud.",
+   "commentaire": "Pack progressif P1, palier 7 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "chou",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/chou.png",
+   "phrase": "Le chou est blanc.",
+   "commentaire": "Pack progressif P1, palier 8 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "jet",
+   "niveau": "P1",
+   "phrase": "Le jet d'eau monte très haut.",
+   "commentaire": "Pack progressif P1, palier 9 ; sans image (décision de JF 2026-11-23)"
+  },
+  {
+   "mot": "jouet",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/jouet.png",
+   "phrase": "Je range mon jouet.",
+   "commentaire": "Pack progressif P1, palier 9 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "robinet",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/robinet.png",
+   "phrase": "Le robinet fait couler l'eau.",
+   "commentaire": "Pack progressif P1, palier 9 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "poulet",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/poulet.png",
+   "phrase": "Papa mange du poulet.",
+   "commentaire": "Pack progressif P1, palier 9 ; image Canva (validée par JF 2026-11-23)"
+  },
+  {
+   "mot": "zéro",
+   "niveau": "P1",
+   "image": "docs/images-canva/lot19/zero.png",
+   "phrase": "Il y a zéro bonbon dans le sac.",
+   "commentaire": "Pack progressif P1, palier 10 ; image Canva (validée par JF 2026-11-23)"
+  }
+ ]
+}

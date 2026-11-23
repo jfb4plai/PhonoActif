@@ -61,7 +61,7 @@ Légende : `*` déjà au catalogue avec image, `°` au catalogue sans image, san
 | 6d | digraphe in | fin, vin†, marin† |
 | 6e | digraphe oi | roi, moi°, foi† |
 | 6f | digraphe eu | feu*, jeu |
-| 7 | digraphes de 3 lettres | eau*, seau*, main, pain, faim, veau†, sein†, sain† |
+| 7 | digraphes de 3 lettres | eau*, seau*, main, pain, faim, veau†, bain, soleil* |
 
 Contrôle (constaté par exécution) : 65 mots, 0 paire visuelle proche, 0 jumeau phonétique. Présence : **14 au catalogue** (13 avec image, `moi` sans), **51 à créer**. Dans la liste P1 / VOB : 38 sur 65 ; 27 hors liste (†).
 
@@ -69,8 +69,8 @@ Contrôle (constaté par exécution) : 65 mots, 0 paire visuelle proche, 0 jumea
 
 | Palier | Difficulté | Mots | Limite constatée |
 |---|---|---|---|
-| 8 | digraphe consonne (ch) | chéri†, fichu†, léché† | seulement 3 mots ; tout autre mot en ch cumule une 2e difficulté (chat = ch + t muet) |
-| 9 | terminaison /e/ (et, ez) | nez*, jet, volet†, minet†, sujet† | |
+| 8 | digraphe consonne (ch) | chou, cochon*, chien* | 3 mots imageables (décision JF 2026-11-23, remplacent chéri, fichu, léché) ; ch + un digraphe déjà vu (ou, on, en) ; marché écarté (e/a, CCV) |
+| 9 | terminaison /e/ (et, ez) | nez*, jet, jouet, robinet, poulet | |
 | 10 | graphie variable (c=s, o fermé) | vélo*, zéro, ici, ciné† | |
 | 11 | groupe consonantique (CCV, VCC) | livre*, vivre†, film, avril | |
 | 12 | trois syllabes | mimosa†, safari†, salami†, révolu† | fréquence P1 nulle sauf mimosa (44) ; mimosa ajouté le 2026-11-22 à la demande de JF (suite portée à 20 mots) : seul autre candidat du script, « résumé » (abstrait, fréquence 2), écarté |

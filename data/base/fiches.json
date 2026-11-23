@@ -16340,5 +16340,616 @@
   "origine": [
    "pack-progressif-p1-lot18"
   ]
+ },
+ {
+  "id": "faim",
+  "mot": "faim",
+  "lettres": [
+   "f",
+   "a",
+   "i",
+   "m"
+  ],
+  "cubes": [
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "aim",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "f",
+    "fichier": "audio/66_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fa",
+    "fichier": "audio/66_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "fai",
+    "fichier": "audio/66_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "faim",
+    "fichier": "audio/66_25b_303_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "fɛ̃",
+    "fichier": "audio/66_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "J'ai faim, je veux manger.",
+  "phraseAudio": "audio/phrase-faim.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "veau",
+  "mot": "veau",
+  "lettres": [
+   "v",
+   "e",
+   "a",
+   "u"
+  ],
+  "cubes": [
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "eau",
+    "son": "o_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "v",
+    "fichier": "audio/76_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ve",
+    "fichier": "audio/76_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "vea",
+    "fichier": "audio/76_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "veau",
+    "fichier": "audio/76_6f_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "vo",
+    "fichier": "audio/76_6f_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/veau.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le veau court dans le pré.",
+  "phraseAudio": "audio/phrase-veau.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "bain",
+  "mot": "bain",
+  "lettres": [
+   "b",
+   "a",
+   "i",
+   "n"
+  ],
+  "cubes": [
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "ain",
+    "son": "in"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "b",
+    "fichier": "audio/62_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ba",
+    "fichier": "audio/62_61_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bai",
+    "fichier": "audio/62_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "bain",
+    "fichier": "audio/62_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "bɛ̃",
+    "fichier": "audio/62_25b_303_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/bain.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je prends un bain chaud.",
+  "phraseAudio": "audio/phrase-bain.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "chou",
+  "mot": "chou",
+  "lettres": [
+   "c",
+   "h",
+   "o",
+   "u"
+  ],
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "c",
+    "fichier": "audio/6b_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ch",
+    "fichier": "audio/283_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "cho",
+    "fichier": "audio/283_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "chou",
+    "fichier": "audio/283_75_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʃu",
+    "fichier": "audio/283_75_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/chou.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le chou est blanc.",
+  "phraseAudio": "audio/phrase-chou.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "jet",
+  "mot": "jet",
+  "lettres": [
+   "j",
+   "e",
+   "t"
+  ],
+  "cubes": [
+   {
+    "g": "j",
+    "son": "j"
+   },
+   {
+    "g": "et",
+    "son": "e_ouvert"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "j",
+    "fichier": "audio/292_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "je",
+    "fichier": "audio/292_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jet",
+    "fichier": "audio/292_25b_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʒɛ",
+    "fichier": "audio/292_25b_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "phrase": "Le jet d'eau monte très haut.",
+  "phraseAudio": "audio/phrase-jet.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "jouet",
+  "mot": "jouet",
+  "lettres": [
+   "j",
+   "o",
+   "u",
+   "e",
+   "t"
+  ],
+  "cubes": [
+   {
+    "g": "j",
+    "son": "j"
+   },
+   {
+    "g": "ou",
+    "son": "w"
+   },
+   {
+    "g": "et",
+    "son": "e_ouvert"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "j",
+    "fichier": "audio/292_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jo",
+    "fichier": "audio/292_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jou",
+    "fichier": "audio/292_77_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "joue",
+    "fichier": "audio/292_77_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "jouet",
+    "fichier": "audio/292_77_25b_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʒwɛ",
+    "fichier": "audio/292_77_25b_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/jouet.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je range mon jouet.",
+  "phraseAudio": "audio/phrase-jouet.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "robinet",
+  "mot": "robinet",
+  "lettres": [
+   "r",
+   "o",
+   "b",
+   "i",
+   "n",
+   "e",
+   "t"
+  ],
+  "cubes": [
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "et",
+    "son": "e_ouvert"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "r",
+    "fichier": "audio/281_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ro",
+    "fichier": "audio/281_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "rob",
+    "fichier": "audio/281_254_62_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "robi",
+    "fichier": "audio/281_254_62_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "robin",
+    "fichier": "audio/281_254_62_69_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "robine",
+    "fichier": "audio/281_254_62_69_6e_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "robinet",
+    "fichier": "audio/281_254_62_69_6e_25b_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ʁɔ",
+    "fichier": "audio/281_254_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "bi",
+    "fichier": "audio/62_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "nɛ",
+    "fichier": "audio/6e_25b_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/robinet.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le robinet fait couler l'eau.",
+  "phraseAudio": "audio/phrase-robinet.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "poulet",
+  "mot": "poulet",
+  "lettres": [
+   "p",
+   "o",
+   "u",
+   "l",
+   "e",
+   "t"
+  ],
+  "cubes": [
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "ou",
+    "son": "ou"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "et",
+    "son": "e_ouvert"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "p",
+    "fichier": "audio/70_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "po",
+    "fichier": "audio/70_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "pou",
+    "fichier": "audio/70_75_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poul",
+    "fichier": "audio/70_75_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poule",
+    "fichier": "audio/70_75_6c_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "poulet",
+    "fichier": "audio/70_75_6c_25b_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "pu",
+    "fichier": "audio/70_75_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "lɛ",
+    "fichier": "audio/6c_25b_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/poulet.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Papa mange du poulet.",
+  "phraseAudio": "audio/phrase-poulet.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
+ },
+ {
+  "id": "zero",
+  "mot": "zéro",
+  "lettres": [
+   "z",
+   "é",
+   "r",
+   "o"
+  ],
+  "cubes": [
+   {
+    "g": "z",
+    "son": "z"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "o",
+    "son": "o_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "z",
+    "fichier": "audio/7a_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "zé",
+    "fichier": "audio/7a_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "zér",
+    "fichier": "audio/7a_65_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "zéro",
+    "fichier": "audio/7a_65_281_6f_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ze",
+    "fichier": "audio/7a_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ʁo",
+    "fichier": "audio/281_6f_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "P1",
+  "image_sans_mot": "images/zero.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il y a zéro bonbon dans le sac.",
+  "phraseAudio": "audio/phrase-zero.mp3",
+  "statut": "brouillon",
+  "origine": [
+   "pack-progressif-p1-lot19"
+  ]
  }
 ]
