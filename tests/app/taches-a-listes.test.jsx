@@ -45,7 +45,7 @@ describe('tâche à listes : côté élève', () => {
   it('charge les mots de la tâche par identifiant, dans l’ordre, depuis mots/ (aucun manifeste de pack)', async () => {
     const { user, appelsMots, jouerFichier } = monter({ mots: ['lune', 'chat'], fetchMots: fichesOk });
     await commencer(user);
-    expect(appelsMots).toEqual(['/mots/fiches.json']);
+    expect(appelsMots).toEqual(['/mots/fiches.json', '/mots/modeles.json']); // modeles.json : limites de palier (aucun ici)
     await user.click(screen.getByRole('button', { name: /^Écouter$/ }));
     expect(jouerFichier.mock.calls[0][0]).toMatch(/^\/mots\/audio\/.+\.mp3$/);
     await construire(user, 'lune');       // la première carte est « lune », comme dans la tâche

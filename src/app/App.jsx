@@ -169,6 +169,14 @@ function AppEleve({ deps, hash, partie }) {
   const dejaEnvoyes = envoyes.lire();
   const enAttente = stockage.lire().filter(l => l.jeton && l.cle && !dejaEnvoyes.has(l.id)).length;
 
+  async function lireModeles() {
+    try {
+      const r = await (deps.fetch || fetch)(`${base.replace(/\/+$/, '')}/mots/modeles.json`);
+      const l = r.ok ? await r.json() : [];
+      return Array.isArray(l) ? l.filter(p => p && p.id && Array.isArray(p.mots)) : [];
+    } catch (e) { return []; }
+  }
+
   async function commencer() {
     if (!codeValide(code) || !tache.pack) return;
     if (enLigne && etatTache !== 'ok') return;
@@ -182,7 +190,10 @@ function AppEleve({ deps, hash, partie }) {
         : modele ? await chargerMots(modele.mots, { base, fetch: deps.fetch })
         : await chargerPack(tache.pack, { base, fetch: deps.fetch });
       // Pack progressif : limites de palier calculées sur les cartes réellement chargées (jamais sur la liste demandée) ; carte unique : null.
-      let utilise = { ...charge, paliers: carteUnique ? null : paliersPourMots(charge.cartes.map(c => c.id), packsListe) };
+      // Tâche d'enseignant en ligne : la liste des modèles n'est pas chargée à l'accueil, on la lit ici (une erreur de lecture = jeu sans pause).
+      let modeles = packsListe;
+      if (!carteUnique && enLigne && modeles.length === 0) modeles = await lireModeles();
+      let utilise = { ...charge, paliers: carteUnique ? null : paliersPourMots(charge.cartes.map(c => c.id), modeles) };
       if (carteUnique) {
         const cartes = charge.cartes.filter(c => c.id === adresse.carte);
         if (cartes.length === 0) { setErreur('Cette carte n’existe pas dans ce pack.'); return; }
