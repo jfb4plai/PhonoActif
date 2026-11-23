@@ -9,7 +9,7 @@ import {
 } from './api.js';
 
 const ETAPES = [[1, 'Les mots'], [2, 'Les réglages'], [3, 'Créer']];
-const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou };
+const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou, consignes: 'auto' };
 
 export default function Classe({ client, userId, classe, base, catalogue = [], modeles = [], jouer, onRetour, onSupprimer }) {
   const master = classe.role === 'master';
@@ -300,6 +300,13 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
               </select>
               <label htmlFor="ens-verrou"><input id="ens-verrou" type="checkbox" checked={tache.vitesseVerrou} onChange={e => setTache(t => ({ ...t, vitesseVerrou: e.target.checked }))} /> Verrouiller cette vitesse</label>
               <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres (500 ms, dernière syllabe à 75 %).</p>
+              <label htmlFor="ens-consignes">Consignes vocales</label>
+              <select id="ens-consignes" value={tache.consignes} onChange={e => setTache(t => ({ ...t, consignes: e.target.value }))}>
+                <option value="auto">Automatique : pas de voix dans une tâche enregistrée</option>
+                <option value="voix">Oui : la voix dit quoi faire</option>
+                <option value="non">Non</option>
+              </select>
+              <p className="aide">Pour P1 à P3, élèves qui ne lisent pas encore : la voix dit la consigne au départ, un encouragement tiré au hasard quand le mot est juste (« Bravo ! », « Super ! »…), une phrase d’aide quand il est faux (« Presque ! On regarde ensemble. ») puis rejoue le mot. Sans ce réglage, l’élève n’entend que le mot et ses lettres : les messages écrits ne sont pas lus. « Automatique » revient à « Non » ici, car les commandes épurées ne sont pas encore réglables dans une tâche enregistrée.</p>
             </details>
           </>)}
 

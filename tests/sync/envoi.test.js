@@ -141,3 +141,9 @@ test('chargerTache : serveur sans les champs vitesse ou valeur inconnue : 100 sa
   const hors = await chargerTache(TOKEN, supa(() => ({ status: 200, corps: { ...base, vitesse: 60, vitesse_verrou: 'oui' } })));
   assert.equal(hors.vitesse, 100); assert.equal(hors.vitesseVerrou, false);
 });
+
+test('chargerTache : consignes « voix » ou « non » transmises ; « auto », absent ou inconnu : pas de valeur (règle automatique)', async () => {
+  const base = { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true };
+  for (const v of ['voix', 'non']) assert.equal((await chargerTache(TOKEN, supa(() => ({ status: 200, corps: { ...base, consignes: v } })))).consignes, v);
+  for (const v of ['auto', undefined, 'oui', 7]) assert.ok(!('consignes' in await chargerTache(TOKEN, supa(() => ({ status: 200, corps: { ...base, consignes: v } })))), String(v));
+});

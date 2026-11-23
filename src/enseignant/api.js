@@ -112,7 +112,7 @@ export async function creerTache(client, classId, tache, userId, base) {
     // `pack` est renvoyé aux élèves par phono_lire_tache : libellé neutre pour une tâche à listes ; les noms des listes restent dans listes_noms (RGPD)
     class_id: classId, token: jeton, pack: parListes ? 'Liste' : tache.pack, mode_mot: tache.modeMot, habillage: tache.habillage,
     nb_intrus: tache.nbIntrus, exiger_accents: tache.exigerAccents, syllabes: tache.syllabes || 'toujours',
-    vitesse: tache.vitesse || 100, vitesse_verrou: !!tache.vitesseVerrou, created_by: userId,
+    vitesse: tache.vitesse || 100, vitesse_verrou: !!tache.vitesseVerrou, consignes: ['voix', 'non'].includes(tache.consignes) ? tache.consignes : 'auto', created_by: userId,
     ...(parListes ? { mots, listes_noms: couper(noms, 300) } : {})
   }).select('id').single();
   verifier(r);
@@ -121,11 +121,11 @@ export async function creerTache(client, classId, tache, userId, base) {
 
 export async function listerTaches(client, classId, base) {
   const r = await client.from('phono_tasks')
-    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, vitesse, vitesse_verrou, mots, listes_noms, revoked, created_at').eq('class_id', classId);
+    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, vitesse, vitesse_verrou, consignes, mots, listes_noms, revoked, created_at').eq('class_id', classId);
   verifier(r);
   return [...r.data].sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map(t => ({
     id: t.id, jeton: t.token, pack: t.pack, modeMot: t.mode_mot, habillage: t.habillage, nbIntrus: t.nb_intrus,
-    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
+    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, consignes: t.consignes || 'auto', mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
   }));
 }
 
@@ -135,7 +135,8 @@ export const resumeTache = t => [
   `${t.nbIntrus} cube${t.nbIntrus > 1 ? 's' : ''} en trop`,
   t.exigerAccents ? 'accents exigés' : 'accents non exigés',
   { non: 'sans écoute par syllabes', aide: 'syllabes sur difficulté' }[t.syllabes] || 'syllabes toujours proposées',
-  ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : [])
+  ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : []),
+  ...(t.consignes === 'voix' ? ['consignes vocales'] : t.consignes === 'non' ? ['sans consignes vocales'] : [])
 ].join(' · ');
 
 export async function revoquerTache(client, id) {

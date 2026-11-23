@@ -95,7 +95,7 @@ test('creerTache : jeton, réglages, lien, créateur', async () => {
   const r = await creerTache(c, 'c1', { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide' }, MASTER, 'https://x.test/');
   assert.match(r.jeton, /^[a-f0-9]{24}$/);
   assert.equal(r.lien, `https://x.test/#/jeu?t=${r.jeton}`);
-  assert.deepEqual(c.tables.phono_tasks[0], { id: r.id, class_id: 'c1', token: r.jeton, pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide', vitesse: 100, vitesse_verrou: false, created_by: MASTER });
+  assert.deepEqual(c.tables.phono_tasks[0], { id: r.id, class_id: 'c1', token: r.jeton, pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'aide', vitesse: 100, vitesse_verrou: false, consignes: 'auto', created_by: MASTER });
   await assert.rejects(creerTache(c, 'c1', { pack: '', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: false }, MASTER, 'https://x.test/'), /pack/);
 });
 
@@ -197,4 +197,17 @@ test('nouvelleCleEleve : la clé de cet élève change, pas celle des autres', a
   const [s1, s2] = client.tables.phono_students;
   assert.match(s1.secret, /^[a-f0-9]{20}$/); assert.notEqual(s1.secret, 'a'.repeat(20));
   assert.equal(s2.secret, 'b'.repeat(20));
+});
+
+test('consignes vocales : « voix » et « non » sont enregistrées, toute autre valeur devient « auto » ; le résumé les mentionne', async () => {
+  const c = fauxClient();
+  const base = { pack: 'demo', modeMot: 'avec', habillage: 'sobre', nbIntrus: 2, exigerAccents: true, syllabes: 'aide' };
+  for (const [entree, attendu] of [['voix', 'voix'], ['non', 'non'], ['auto', 'auto'], [undefined, 'auto'], ['bizarre', 'auto']]) {
+    await creerTache(c, 'c1', { ...base, consignes: entree }, MASTER, 'https://x.test/');
+    assert.equal(c.tables.phono_tasks.at(-1).consignes, attendu, String(entree));
+  }
+  const t = { habillage: 'sobre', modeMot: 'avec', nbIntrus: 2, exigerAccents: false, syllabes: 'toujours' };
+  assert.match(resumeTache({ ...t, consignes: 'voix' }), /consignes vocales$/);
+  assert.match(resumeTache({ ...t, consignes: 'non' }), /sans consignes vocales$/);
+  assert.doesNotMatch(resumeTache({ ...t, consignes: 'auto' }), /consignes/);
 });

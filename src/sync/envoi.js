@@ -35,7 +35,8 @@ export async function chargerTache(token, supabase) {
   if (!bon) throw new Error('refusé');
   return { pack: j.pack, modeMot: j.mode_mot, habillage: j.habillage, nbIntrus: j.nb_intrus, exigerAccents: j.exiger_accents, syllabes: ['non', 'toujours', 'aide'].includes(j.syllabes) ? j.syllabes : 'toujours',
     vitesse: [100, 75, 50].includes(j.vitesse) ? j.vitesse : 100, vitesseVerrou: j.vitesse_verrou === true,
-    mots: Array.isArray(j.mots) ? j.mots.filter(m => typeof m === 'string') : [] }; // serveur sans les champs : comportement d'avant
+    mots: Array.isArray(j.mots) ? j.mots.filter(m => typeof m === 'string') : [],
+    ...(['voix', 'non'].includes(j.consignes) ? { consignes: j.consignes } : {}) }; // serveur sans les champs : comportement d'avant ; « auto » = pas de valeur (la règle automatique s'applique)
 }
 
 const versServeur = l => ({ id: l.id, session: l.session, carte: l.carte, mot: l.mot, tentative: l.tentative, juste: l.juste, aide: l.aide, positions: l.positions, date: l.date });

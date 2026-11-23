@@ -137,6 +137,24 @@ describe('espace enseignant', () => {
     expect((await screen.findAllByText(/syllabes sur difficulté/)).length).toBeGreaterThan(0);
   });
 
+  it('réglage « consignes vocales » : « automatique » par défaut, « Oui » enregistré dans la tâche et rappelé dans le résumé', async () => {
+    const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
+    monter(client);
+    await userEvent.click(await screen.findByRole('button', { name: '3P A' }));
+    await userEvent.click(await screen.findByRole('tab', { name: 'Tâches' }));
+    await userEvent.click(await screen.findByRole('button', { name: '+ Nouvelle tâche' }));
+    await cocher('Pack d’essai');
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    const choix = await screen.findByLabelText('Consignes vocales');
+    expect(choix).toHaveValue('auto');
+    expect(screen.getByText(/« Automatique » revient à « Non » ici/)).toBeInTheDocument();
+    await userEvent.selectOptions(choix, 'voix');
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
+    await waitFor(() => expect(client.tables.phono_tasks[0].consignes).toBe('voix'));
+    expect((await screen.findAllByText(/proposées · consignes vocales/)).length).toBeGreaterThan(0); // le résumé de la tâche, pas le texte d’aide
+  });
+
   it('crée un lien de tâche avec QR-code', async () => {
     const client = avecAuth(fauxClient({ tables: classeTables('master') }), { session: { user: USER } });
     monter(client);
