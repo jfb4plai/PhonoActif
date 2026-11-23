@@ -1,4 +1,6 @@
-# Lot 19 (pack progressif P1, paliers 7 à 10) : fiche d'intention v2, À VALIDER par JF (2026-11-23)
+# Lot 19 (pack progressif P1, paliers 7 à 10) : fiche d'intention v3, À VALIDER par JF (2026-11-23)
+
+**v3 (2026-11-23)** : JF demande (a) de privilégier les mots qu'on peut imager, (b) que tout palier respecte les conseils de Virginie. Contrôle exécuté : `python -I -X utf8 tools/pack_progressif_controle.py` (paires visuelles e/a, t/f, d/b/p/q, u/n, on/ou, an/au, en/eu ; paires phonétiques p/b/m, f/v, ch/j, c/g, t/d ; pas de CCV/VCC). Résultat sur les remplaçants de la v2 : **marché (e/a et CCV), laver (e/a), filet (t/f) violent les conseils de Virginie : retirés.** Les remplaçants v3 passent le contrôle. Les tableaux ci-dessous (v2) sont à lire avec les changements de v3 donnés dans la réponse de Claude du 2026-11-23 : marché devient **chou**, laver devient **robinet**, filet devient **poulet** ; bain et jouet restent, avec image.
 
 Statut : proposition, aucune image générée, aucune fiche créée. v2 : JF a demandé de remplacer minet, sujet, fichu, volet et sein (pas du langage quotidien d'un élève de P1). Les remplaçants viennent d'un filtre sur data/lexique.json et sur la liste P1 de JF (data/p1-mots.json), pas d'un choix de l'IA. Les 12 mots sont absents du catalogue (constaté dans public/mots/catalogue.json, 234 mots). Claude ne juge que « se dessine-t-il honnêtement ? ». Phrases proposées, à valider avant l'audio.
 
