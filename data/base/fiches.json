@@ -16392,7 +16392,7 @@
   "niveau": "P1",
   "phrase": "J'ai faim, je veux manger.",
   "phraseAudio": "audio/phrase-faim.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16451,7 +16451,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le veau court dans le pré.",
   "phraseAudio": "audio/phrase-veau.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16510,7 +16510,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Je prends un bain chaud.",
   "phraseAudio": "audio/phrase-bain.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16569,7 +16569,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le chou est blanc.",
   "phraseAudio": "audio/phrase-chou.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16619,7 +16619,7 @@
   "niveau": "P1",
   "phrase": "Le jet d'eau monte très haut.",
   "phraseAudio": "audio/phrase-jet.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16688,7 +16688,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Je range mon jouet.",
   "phraseAudio": "audio/phrase-jouet.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16791,7 +16791,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Le robinet fait couler l'eau.",
   "phraseAudio": "audio/phrase-robinet.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16875,7 +16875,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Papa mange du poulet.",
   "phraseAudio": "audio/phrase-poulet.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
@@ -16947,7 +16947,7 @@
   "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
   "phrase": "Il y a zéro bonbon dans le sac.",
   "phraseAudio": "audio/phrase-zero.mp3",
-  "statut": "brouillon",
+  "statut": "valide",
   "origine": [
    "pack-progressif-p1-lot19"
   ]
