@@ -59,3 +59,33 @@
 .ens-grille .st-fragile { background: #fff0c2; color: #6b4a00; font-weight: bold; }
 .ens-grille .st-acquis { background: #dff3e6; color: #17602c; font-weight: bold; }
 .ens-grille .st-aucun { color: #666; }
+
+/* Onglet Tâches : liste, assistant en 3 étapes, liens d'une seule tâche (2026-11-23) */
+.ens-vide { background: #f6fbf9; border: 1px dashed #0f6e56; border-radius: 6px; padding: 0.8rem 1rem; margin: 0.8rem 0; }
+.ens-taches { list-style: none; padding: 0; }
+.ens-taches li { border: 1px solid #c8c8c8; border-radius: 6px; padding: 0.7rem 0.9rem; margin: 0.6rem 0; }
+.ens-taches li.revoquee { color: #666; background: #f6f6f6; }
+.ens-progression { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; list-style: none; padding: 0; margin: 0.6rem 0; }
+.ens-progression li { color: #555; }
+.ens-progression li.actuelle { color: #0f6e56; font-weight: bold; }
+.ens-rond { display: inline-block; min-width: 1.6rem; height: 1.6rem; line-height: 1.6rem; text-align: center; border-radius: 50%; border: 2px solid #999; font-size: 0.9rem; }
+.ens-progression li.actuelle .ens-rond { background: #0f6e56; border-color: #0f6e56; color: #fff; }
+.ens-progression li.faite .ens-rond { border-color: #0f6e56; color: #0f6e56; }
+.ens-etape-titre { font-size: 0.9rem; color: #444; margin: 0; }
+.ens-badge { font-size: 0.8rem; font-weight: normal; background: #fff0c2; color: #6b4a00; border-radius: 4px; padding: 0.1rem 0.5rem; margin-left: 0.4rem; }
+.ens-badge.facultatif { background: #dff3e6; color: #17602c; }
+.ens-rassure { background: #f6fbf9; border-left: 4px solid #0f6e56; padding: 0.5rem 0.8rem; margin: 0.5rem 0; }
+.ens-recap { background: #f6f6f6; border-radius: 6px; padding: 0.6rem 1rem; }
+.ens-recap dt { font-weight: bold; margin-top: 0.4rem; }
+.ens-recap dd { margin: 0; }
+.ens-navigation { margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.ens-etapes-liens { margin: 0.4rem 0; padding-left: 1.4rem; }
+@media print { .ens-carte > *:not(.liens-perso):not(.ens-panneau-liens) { display: none; } .ens-panneau-liens > *:not(.liens-perso) { display: none; } }
+
+.ens .principal:not(:disabled) { background: #0f6e56; color: #fff; border: 2px solid #0f6e56; border-radius: 6px; }
+.ens .principal:disabled { background: #eee; color: #666; border: 2px solid #ccc; cursor: not-allowed; }
+.ens-navigation { position: sticky; bottom: 0; background: #fff; border-top: 2px solid #0f6e56; padding: 0.5rem 0; align-items: center; z-index: 1; }
+.ens-etat { flex: 1 1 100%; font-weight: bold; color: #333; }
+.ens-assistant details { margin-top: 1rem; }
+@media print { .ens-navigation { display: none; } }
+.ens select { font: inherit; padding: 0.45rem; margin-top: 0.25rem; max-width: 100%; }

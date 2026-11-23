@@ -19,15 +19,17 @@ function monter({ catalogue = CATALOGUE, modeles = MODELES.slice(1), listes = []
   render(<App deps={{ hash: '#/enseignant', enseignant: { client, base: 'https://x.test/', packs: [], catalogue, modeles, jouer } }} />);
   return { client, jouer };
 }
-const ouvrirClasse = async () => { await userEvent.click(await screen.findByRole('button', { name: '3P A' })); await userEvent.click(await screen.findByRole('tab', { name: 'Tâches et liens' })); };
+const ouvrirClasse = async () => { await userEvent.click(await screen.findByRole('button', { name: '3P A' })); await userEvent.click(await screen.findByRole('tab', { name: 'Tâches' })); await userEvent.click(await screen.findByRole('button', { name: '+ Nouvelle tâche' })); };
 
 describe('choix des listes dans la tâche', () => {
   it('partir d’un modèle : on coche un modèle, le total s’affiche, la tâche reçoit ses mots', async () => {
     const { client } = monter();
     await ouvrirClasse();
-    expect(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Suivant →' })).toBeDisabled();
     await userEvent.click(await screen.findByLabelText(/20 mots/));
     expect(screen.getByText('2 mots dans la tâche (maximum 200)')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks[0].mots).toEqual(['chat', 'lune']));
     expect(client.tables.phono_tasks[0].listes_noms).toBe('20 mots');
@@ -39,6 +41,8 @@ describe('choix des listes dans la tâche', () => {
     await userEvent.click(await screen.findByLabelText(/Semaine 3/));
     await userEvent.click(screen.getByLabelText(/Semaine 2/));
     expect(screen.getByText('3 mots dans la tâche (maximum 200)')).toBeInTheDocument();
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
     await waitFor(() => expect(client.tables.phono_tasks[0].mots).toEqual(['lune', 'terre', 'chat']));
     expect(client.tables.phono_tasks[0].listes_noms).toBe('Semaine 3 + Semaine 2');
@@ -51,7 +55,7 @@ describe('choix des listes dans la tâche', () => {
     for (const k of [0, 1, 2, 3, 4]) await userEvent.click(await screen.findByLabelText(new RegExp(`Liste ${k}`)));
     expect(screen.getByText(/250 mots dans la tâche/)).toBeInTheDocument();
     expect(screen.getByText(/Une tâche contient au plus 200 mots/)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Suivant →' })).toBeDisabled();
   });
 });
 
@@ -143,10 +147,12 @@ describe('relecture : nom des tâches, suppression, modèle, catalogue en panne'
     monter();
     await ouvrirClasse();
     await userEvent.click(await screen.findByLabelText(/20 mots/));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
     await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
-    const titre = await screen.findByRole('heading', { name: 'Tâches de la classe' });
-    await waitFor(() => expect(titre.nextElementSibling.textContent).toMatch(/20 mots : album/));
-    expect(titre.nextElementSibling.textContent).not.toMatch(/Liste : album/);
+    await userEvent.click(await screen.findByRole('button', { name: '← Retour aux tâches' }));
+    await waitFor(() => expect(document.querySelector('.ens-taches').textContent).toMatch(/20 mots/));
+    expect(document.querySelector('.ens-taches').textContent).not.toMatch(/Liste ·/);
   });
 
   it('supprimer une liste demande confirmation : refus = rien ne change, accord = supprimée', async () => {

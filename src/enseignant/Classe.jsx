@@ -8,6 +8,7 @@ import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
 } from './api.js';
 
+const ETAPES = [[1, 'Les mots'], [2, 'Les réglages'], [3, 'Créer']];
 const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou };
 
 export default function Classe({ client, userId, classe, base, catalogue = [], modeles = [], jouer, onRetour, onSupprimer }) {
@@ -23,9 +24,11 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   const [editeur, setEditeur] = useState(null); // null | { liste } : éditeur de liste ouvert
   const catalogueIds = new Set(catalogue.map(e => e.id));
   const zonePerso = useRef(null);
+  const zoneOnglets = useRef(null);
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [onglet, setOnglet] = useState(null); // null = choix automatique : Résultats s'il y a des essais, sinon Élèves et codes
+  const [etape, setEtape] = useState(0); // 0 = liste des tâches ; 1 à 3 = assistant « Nouvelle tâche »
   const [perso, setPerso] = useState(null); // liens personnels d'une tâche : { tache, items: [{ id, code, lien, qr }] }
 
   const recharger = useCallback(async () => {
@@ -77,13 +80,17 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   const creer = () => agir(async () => {
     const t = await creerTache(client, classe.id, { ...tache, mots: motsTache, listesNoms: nomsTache }, userId, base);
     await rechargerTaches();
-    await ouvrirPerso({ ...t, pack: nomsTache, resume: resumeTache(tache) });   // les liens des élèves s'affichent tout de suite
+    await ouvrirPerso({ ...t, pack: nomsTache, resume: resumeTache(tache) });   // les liens des élèves s'affichent tout de suite, seuls
+    setEtape(0);
   });
+  const ouvrirAssistant = () => { setMessage(''); setChoix([]); setTache({ ...PAS_DE_TACHE }); setEditeur(null); setEtape(1); };
+  const quitterAssistant = () => { setEditeur(null); setEtape(0); };
   const apresEnregistrement = async l => { setEditeur(null); await rechargerListes(); setChoix(c => (c.includes(`l:${l.id}`) ? c : [...c, `l:${l.id}`])); setMessage(`Liste « ${l.nom} » enregistrée.`); };
   const retirerListe = l => agir(async () => { if (!window.confirm(`Supprimer la liste « ${l.nom} » ? Les tâches déjà données gardent leurs mots.`)) return; await supprimerListe(client, l.id); setChoix(c => c.filter(x => x !== `l:${l.id}`)); await rechargerListes(); });
   const copierListe = l => agir(async () => { await dupliquerListe(client, userId, l, { catalogueIds }); await rechargerListes(); });
   const ouvrirDepuisListe = t => agir(() => ouvrirPerso({ ...t, resume: resumeTache(t) }));
-  useEffect(() => { if (perso && zonePerso.current && zonePerso.current.scrollIntoView) zonePerso.current.scrollIntoView({ block: 'start' }); }, [perso && perso.tache && perso.tache.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  // à chaque changement d'étape ou d'écran, remonter en haut de l'onglet : l'enseignant voit toujours « Étape n sur 3 » et le bouton retour
+  useEffect(() => { if (zoneOnglets.current && zoneOnglets.current.scrollIntoView && (etape || perso)) zoneOnglets.current.scrollIntoView({ block: 'start' }); }, [etape, !!perso]); // eslint-disable-line react-hooks/exhaustive-deps
   const changerCle = (t, id) => agir(async () => { await nouvelleCleEleve(client, id); await ouvrirPerso(t); setMessage('Nouvelle clé créée : l’ancien lien de cet élève ne fonctionne plus.'); });
   const revoquer = id => agir(async () => { await revoquerTache(client, id); setMessage('Lien révoqué.'); await rechargerTaches(); });
   const inviterCollegue = () => agir(async () => { await inviter(client, classe.id, email); setEmail(''); setMessage('Enseignant invité.'); });
@@ -95,7 +102,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   });
   const synthese = syntheseClasse(lignes);
   const ongletActif = onglet || (lignes.some(l => l.essais > 0) ? 'resultats' : 'eleves');
-  const ONGLETS = [['eleves', 'Élèves et codes'], ['taches', 'Tâches et liens'], ['resultats', 'Résultats'], ...(master ? [['classe', 'Gérer la classe']] : [])];
+  const ONGLETS = [['eleves', 'Élèves et codes'], ['taches', 'Tâches'], ['resultats', 'Résultats'], ...(master ? [['classe', 'Gérer la classe']] : [])];
   const panneau = id => ({ role: 'tabpanel', id: `ens-panneau-${id}`, 'aria-labelledby': `ens-onglet-${id}`, hidden: ongletActif !== id });
 
   return (
@@ -103,7 +110,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
       <button type="button" onClick={onRetour}>Retour aux classes</button>
       <h1>{classe.name}</h1>
       {message && <p role="status" className="ens-message">{message}</p>}
-      <div role="tablist" aria-label="Sections de la classe" className="ens-onglets">
+      <div role="tablist" aria-label="Sections de la classe" className="ens-onglets" ref={zoneOnglets}>
         {ONGLETS.map(([id, nom]) => (
           <button key={id} type="button" role="tab" id={`ens-onglet-${id}`} aria-selected={ongletActif === id} aria-controls={`ens-panneau-${id}`} className={ongletActif === id ? 'ens-onglet actif' : 'ens-onglet'} onClick={() => setOnglet(id)}>{nom}</button>
         ))}
@@ -134,77 +141,29 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
 
       </div>
 
-      <div {...panneau('taches')}>
-      <h2>Tâche pour les élèves</h2>
-      <fieldset className="ens-listes">
-        <legend>Mots de la tâche</legend>
-        <p className="aide">Cochez une liste : les élèves jouent ses mots. Cochez-en plusieurs pour une révision : les mots en double sont retirés.</p>
-        {listes.length > 0 && <h3>Mes listes</h3>}
-        {listes.map(l => (
-          <div key={l.id} className="ens-choix">
-            <label htmlFor={`ens-l-${l.id}`}><input id={`ens-l-${l.id}`} type="checkbox" checked={choix.includes(`l:${l.id}`)} onChange={() => basculerChoix(`l:${l.id}`)} /> {l.nom} ({l.mots.length} mots)</label>
-            <button type="button" onClick={() => setEditeur({ liste: l })}>Modifier</button>
-            <button type="button" onClick={() => copierListe(l)}>Copier</button>
-            <button type="button" className="danger" onClick={() => retirerListe(l)}>Supprimer</button>
-          </div>
-        ))}
-        {modeles.length > 0 && <h3>Modèles prêts</h3>}
-        {modeles.map(m => (
-          <div key={m.id} className="ens-choix">
-            <label htmlFor={`ens-m-${m.id}`}><input id={`ens-m-${m.id}`} type="checkbox" checked={choix.includes(`m:${m.id}`)} onChange={() => basculerChoix(`m:${m.id}`)} /> {m.titre} ({m.mots.length} mots)</label>
-          </div>
-        ))}
-        <button type="button" onClick={() => setEditeur({ liste: null })}>Composer une liste</button>
-        <p className="aide">Une liste contient de 1 à 50 mots, choisis par vous dans le catalogue. Un modèle sert de point de départ : on le coche tel quel, ou on le copie dans une liste pour le modifier.</p>
-        <p role="status">{motsTache.length} mot{motsTache.length > 1 ? 's' : ''} dans la tâche (maximum {TACHE_MAX})</p>
-        {erreurTache && <p role="alert" className="ens-message">{erreurTache}</p>}
-      </fieldset>
-      {editeur && <ListeEditeur key={editeur.liste ? editeur.liste.id : 'nouvelle'} client={client} userId={userId} catalogue={catalogue} modeles={modeles} liste={editeur.liste} jouer={jouer} base={base} onFini={apresEnregistrement} onAnnuler={() => setEditeur(null)} />}
-      <label htmlFor="ens-mode">Cartes avec ou sans le mot écrit</label>
-      <select id="ens-mode" value={tache.modeMot} onChange={e => setTache(t => ({ ...t, modeMot: e.target.value }))}>
-        <option value="sans">sans le mot : l’élève trouve le mot à l’oreille</option>
-        <option value="avec">avec le mot : l’élève recopie le modèle</option>
-      </select>
-      <p className="aide">Change la face de la carte montrée : l’écriture se travaille de deux façons différentes.</p>
-      <label htmlFor="ens-habillage">Habillage</label>
-      <select id="ens-habillage" value={tache.habillage} onChange={e => setTache(t => ({ ...t, habillage: e.target.value }))}>
-        <option value="album">album (P1 à P3)</option>
-        <option value="sobre">sobre (P4 et au-delà)</option>
-      </select>
-      <p className="aide">Change les couleurs et les formes. Les mots restent toujours en Arial.</p>
-      <label htmlFor="ens-intrus">Nombre de cubes en trop</label>
-      <select id="ens-intrus" value={tache.nbIntrus} onChange={e => setTache(t => ({ ...t, nbIntrus: Number(e.target.value) }))}>
-        {[0, 1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
-      </select>
-      <p className="aide">Des cubes qui ne servent pas, pour que l’élève doive choisir. 0 rend la tâche plus facile.</p>
-      <label htmlFor="ens-accents"><input id="ens-accents" type="checkbox" checked={tache.exigerAccents} onChange={e => setTache(t => ({ ...t, exigerAccents: e.target.checked }))} /> Exiger les accents</label>
-      <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
-      <label htmlFor="ens-syllabes">Écoute par syllabes</label>
-      <select id="ens-syllabes" value={tache.syllabes} onChange={e => setTache(t => ({ ...t, syllabes: e.target.value }))}>
-        <option value="toujours">Proposée pour tous les mots de deux syllabes ou plus</option>
-        <option value="aide">Proposée seulement quand l’élève a du mal</option>
-        <option value="non">Jamais</option>
-      </select>
-      <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni pour un mot dont les syllabes ne sont pas encore préparées.</p>
-      <label htmlFor="ens-vitesse">Vitesse de la voix</label>
-      <select id="ens-vitesse" value={tache.vitesse} onChange={e => setTache(t => ({ ...t, vitesse: Number(e.target.value) }))}>
-        <option value={100}>Normale (100 %)</option>
-        <option value={75}>Lente (75 %)</option>
-        <option value={50}>Très lente (50 %)</option>
-      </select>
-      <label htmlFor="ens-verrou"><input id="ens-verrou" type="checkbox" checked={tache.vitesseVerrou} onChange={e => setTache(t => ({ ...t, vitesseVerrou: e.target.checked }))} /> Verrouiller cette vitesse</label>
-      <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres (500 ms, dernière syllabe à 75 %).</p>
-      <p className="aide">Un mot qui n’est pas dans le catalogue ? Pour fabriquer des cartes avec vos propres mots et images : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de cartes (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images. Les mots n’entrent dans le catalogue qu’après sa validation.</p>
-      <button type="button" className="principal" onClick={creer} disabled={motsTache.length === 0 || !!erreurTache}>Créer la tâche et les liens des élèves</button>
-      <p className="aide">La tâche est créée, puis le lien et le QR-code de chaque élève s’affichent juste en dessous : ce sont eux qu’il faut remettre aux élèves.</p>
-
-      {perso && (
+      <div {...panneau('taches')} className={perso ? 'ens-panneau-liens' : undefined}>
+      {perso ? (
         <div className="liens-perso" role="region" aria-label="Liens personnels des élèves" ref={zonePerso}>
-          <h3>Liens et QR-codes des élèves : {perso.tache.pack}</h3>
+          <button type="button" className="hors-impression" onClick={() => setPerso(null)}>← Retour aux tâches</button>
+          <h2>Liens et QR-codes des élèves</h2>
+          <p><strong>{perso.tache.pack || perso.tache.listesNoms}</strong></p>
           {perso.tache.resume && <p className="aide">Réglages : {perso.tache.resume}</p>}
-          <p className="aide">Chaque lien ou QR-code contient le code et la clé d’un seul élève. Seuls les résultats envoyés avec la bonne clé sont enregistrés : un élève ne peut plus écrire sous le code d’un camarade. Remettre à chaque élève uniquement le sien (imprimer puis découper) et ne pas les publier. Un lien perdu ou transmis à quelqu’un d’autre : « Nouvelle clé ».</p>
+          {perso.items.length === 0 && (
+            <div className="ens-rassure hors-impression" role="status">
+              <p>La tâche est créée, mais la classe n’a pas encore de code d’élève : il n’y a donc aucun QR-code à imprimer pour l’instant.</p>
+              <button type="button" className="principal" onClick={() => { setPerso(null); setOnglet('eleves'); }}>Créer les codes des élèves</button>
+              <p className="aide">Ensuite, revenez dans « Tâches » et cliquez sur « Liens et QR-codes personnels » : la tâche vous attend.</p>
+            </div>
+          )}
+          {perso.items.length > 0 && (<>
+          <ol className="ens-etapes-liens hors-impression">
+            <li>Imprimer cette page (bouton ci-dessous).</li>
+            <li>Découper : un QR-code par élève.</li>
+            <li>Remettre à chaque élève uniquement le sien.</li>
+          </ol>
           <button type="button" className="principal" onClick={() => window.print()}>Imprimer les QR-codes</button>
-          <button type="button" onClick={() => setPerso(null)}>Fermer</button>
+          <p className="aide">Chaque lien ou QR-code contient le code et la clé d’un seul élève. Seuls les résultats envoyés avec la bonne clé sont enregistrés : un élève ne peut plus écrire sous le code d’un camarade. Ne pas les publier. Un lien perdu ou transmis à quelqu’un d’autre : « Nouvelle clé ».</p>
+          </>)}
           <ul className="liens-perso-liste">
             {perso.items.map(i => (
               <li key={i.id}>
@@ -222,23 +181,134 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
             <p className="aide">Ce lien ouvre le jeu mais n’est pas personnel : l’élève qui l’utilise joue, sans que ses résultats soient enregistrés chez vous.</p>
           </details>
         </div>
-      )}
-      {taches.length > 0 && (
-        <>
-          <h3>Tâches de la classe</h3>
-          <ul>
-            {taches.map(t => (
-              <li key={t.id}>
-                {t.listesNoms || t.pack} : {resumeTache(t)}{t.creee ? ` (${t.creee.slice(0, 10)})` : ''}{t.revoked ? ' (révoquée)' : ''}
-                <br />
-                {!t.revoked && <button type="button" className="principal" onClick={() => ouvrirDepuisListe(t)}>Liens et QR-codes personnels</button>}
-                {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
+      ) : etape ? (
+        <div className="ens-assistant">
+          <button type="button" onClick={quitterAssistant}>← Annuler et revenir aux tâches</button>
+          <h2>Nouvelle tâche</h2>
+          <ol className="ens-progression" aria-label="Étapes">
+            {ETAPES.map(([n, nomEtape]) => (
+              <li key={n} className={n === etape ? 'actuelle' : n < etape ? 'faite' : ''} aria-current={n === etape ? 'step' : undefined}>
+                <span className="ens-rond" aria-hidden="true">{n < etape ? '✓' : n}</span> {nomEtape}
               </li>
             ))}
-          </ul>
+          </ol>
+          <p role="status" className="ens-etape-titre">Étape {etape} sur 3</p>
+
+          {etape === 1 && (<>
+            <h3>Quels mots les élèves vont-ils jouer ? <span className="ens-badge">obligatoire</span></h3>
+            {lignes.length === 0 && !editeur && <p className="ens-rassure">Cette classe n’a pas encore de codes d’élèves. Vous pouvez préparer la tâche maintenant, mais les liens personnels n’existeront qu’après la création des codes (onglet « Élèves et codes »).</p>}
+            {!editeur && (
+              <fieldset className="ens-listes">
+                <legend>Mots de la tâche</legend>
+                <p className="aide">Cochez une liste : les élèves jouent ses mots. Cochez-en plusieurs pour une révision : les mots en double sont retirés.</p>
+                {listes.length === 0 && modeles.length === 0 && <p>Vous n’avez pas encore de liste. Composez-en une ci-dessous.</p>}
+                {listes.length > 0 && <h4>Mes listes</h4>}
+                {listes.map(l => (
+                  <div key={l.id} className="ens-choix">
+                    <label htmlFor={`ens-l-${l.id}`}><input id={`ens-l-${l.id}`} type="checkbox" checked={choix.includes(`l:${l.id}`)} onChange={() => basculerChoix(`l:${l.id}`)} /> {l.nom} ({l.mots.length} mots)</label>
+                    <button type="button" onClick={() => setEditeur({ liste: l })}>Modifier</button>
+                    <button type="button" onClick={() => copierListe(l)}>Copier</button>
+                    <button type="button" className="danger" onClick={() => retirerListe(l)}>Supprimer</button>
+                  </div>
+                ))}
+                {modeles.length > 0 && <h4>Modèles prêts</h4>}
+                {modeles.map(m => (
+                  <div key={m.id} className="ens-choix">
+                    <label htmlFor={`ens-m-${m.id}`}><input id={`ens-m-${m.id}`} type="checkbox" checked={choix.includes(`m:${m.id}`)} onChange={() => basculerChoix(`m:${m.id}`)} /> {m.titre} ({m.mots.length} mots)</label>
+                  </div>
+                ))}
+                <button type="button" onClick={() => setEditeur({ liste: null })}>Composer une liste</button>
+                <p className="aide">Une liste contient de 1 à 50 mots, choisis par vous dans le catalogue. Un modèle sert de point de départ : on le coche tel quel, ou on le copie dans une liste pour le modifier.</p>
+                <p role="status">{motsTache.length} mot{motsTache.length > 1 ? 's' : ''} dans la tâche (maximum {TACHE_MAX})</p>
+                {erreurTache && <p role="alert" className="ens-message">{erreurTache}</p>}
+              </fieldset>
+            )}
+            {editeur && <ListeEditeur key={editeur.liste ? editeur.liste.id : 'nouvelle'} client={client} userId={userId} catalogue={catalogue} modeles={modeles} liste={editeur.liste} jouer={jouer} base={base} onFini={apresEnregistrement} onAnnuler={() => setEditeur(null)} />}
+            {!editeur && <p className="aide">Un mot qui n’est pas dans le catalogue ? Pour fabriquer des cartes avec vos propres mots et images : <a href={`${String(base).replace(/\/+$/, '')}/modeles/modele-pack-plai.xlsx`} download>télécharger le modèle de cartes (Excel)</a>, le remplir, puis l’envoyer à JF avec vos images. Les mots n’entrent dans le catalogue qu’après sa validation.</p>}
+            {!editeur && motsTache.length === 0 && <p className="aide">Pour continuer : cochez au moins une liste.</p>}
+          </>)}
+
+          {etape === 2 && (<>
+            <h3>Comment les élèves vont-ils jouer ? <span className="ens-badge facultatif">facultatif</span></h3>
+            <p className="ens-rassure">Les réglages sont déjà bien choisis pour la plupart des classes. Vous pouvez passer directement à l’étape suivante.</p>
+            <label htmlFor="ens-mode">Cartes avec ou sans le mot écrit</label>
+            <select id="ens-mode" value={tache.modeMot} onChange={e => setTache(t => ({ ...t, modeMot: e.target.value }))}>
+              <option value="sans">sans le mot : l’élève trouve le mot à l’oreille</option>
+              <option value="avec">avec le mot : l’élève recopie le modèle</option>
+            </select>
+            <p className="aide">Change la face de la carte montrée : l’écriture se travaille de deux façons différentes.</p>
+            <label htmlFor="ens-habillage">Habillage</label>
+            <select id="ens-habillage" value={tache.habillage} onChange={e => setTache(t => ({ ...t, habillage: e.target.value }))}>
+              <option value="album">album (P1 à P3)</option>
+              <option value="sobre">sobre (P4 et au-delà)</option>
+            </select>
+            <p className="aide">Change les couleurs et les formes. Les mots restent toujours en Arial.</p>
+            <label htmlFor="ens-intrus">Nombre de cubes en trop</label>
+            <select id="ens-intrus" value={tache.nbIntrus} onChange={e => setTache(t => ({ ...t, nbIntrus: Number(e.target.value) }))}>
+              {[0, 1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
+            </select>
+            <p className="aide">Des cubes qui ne servent pas, pour que l’élève doive choisir. 0 rend la tâche plus facile.</p>
+            <details>
+              <summary>Plus de réglages (accents, syllabes, voix)</summary>
+              <label htmlFor="ens-accents"><input id="ens-accents" type="checkbox" checked={tache.exigerAccents} onChange={e => setTache(t => ({ ...t, exigerAccents: e.target.checked }))} /> Exiger les accents</label>
+              <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
+              <label htmlFor="ens-syllabes">Écoute par syllabes</label>
+              <select id="ens-syllabes" value={tache.syllabes} onChange={e => setTache(t => ({ ...t, syllabes: e.target.value }))}>
+                <option value="toujours">Proposée pour tous les mots de deux syllabes ou plus</option>
+                <option value="aide">Proposée seulement quand l’élève a du mal</option>
+                <option value="non">Jamais</option>
+              </select>
+              <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni pour un mot dont les syllabes ne sont pas encore préparées.</p>
+              <label htmlFor="ens-vitesse">Vitesse de la voix</label>
+              <select id="ens-vitesse" value={tache.vitesse} onChange={e => setTache(t => ({ ...t, vitesse: Number(e.target.value) }))}>
+                <option value={100}>Normale (100 %)</option>
+                <option value={75}>Lente (75 %)</option>
+                <option value={50}>Très lente (50 %)</option>
+              </select>
+              <label htmlFor="ens-verrou"><input id="ens-verrou" type="checkbox" checked={tache.vitesseVerrou} onChange={e => setTache(t => ({ ...t, vitesseVerrou: e.target.checked }))} /> Verrouiller cette vitesse</label>
+              <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres (500 ms, dernière syllabe à 75 %).</p>
+            </details>
+          </>)}
+
+          {etape === 3 && (<>
+            <h3>Vérifier et créer</h3>
+            <dl className="ens-recap">
+              <dt>Mots</dt><dd>{nomsTache} : {motsTache.length} mot{motsTache.length > 1 ? 's' : ''}</dd>
+              <dt>Réglages</dt><dd>{resumeTache(tache)}</dd>
+            </dl>
+            <p className="aide">Un lien et un QR-code personnels seront créés pour chaque élève de la classe. Ils s’afficheront juste après, prêts à imprimer.</p>
+            {lignes.length === 0 && <p role="alert" className="ens-message">La classe n’a pas encore de code d’élève : aucun lien personnel ne sera créé. Créez d’abord les codes dans l’onglet « Élèves et codes ».</p>}
+          </>)}
+
+          <div className="ens-navigation">
+            {etape === 1 && !editeur && <span className="ens-etat" role="status">{motsTache.length === 0 ? 'Cochez au moins une liste pour continuer.' : `${motsTache.length} mot${motsTache.length > 1 ? 's' : ''} choisi${motsTache.length > 1 ? 's' : ''}.`}</span>}
+            {etape > 1 && !editeur && <button type="button" onClick={() => setEtape(etape - 1)}>← Retour</button>}
+            {etape < 3 && !editeur && <button type="button" className="principal" disabled={motsTache.length === 0 || !!erreurTache} onClick={() => setEtape(etape + 1)}>Suivant →</button>}
+            {etape === 3 && <button type="button" className="principal" onClick={creer} disabled={motsTache.length === 0 || !!erreurTache}>Créer la tâche et les liens des élèves</button>}
+          </div>
+        </div>
+      ) : (
+        <>
+          <h2>Tâches pour les élèves</h2>
+          <button type="button" className="principal" onClick={ouvrirAssistant}>+ Nouvelle tâche</button>
+          {taches.length === 0 ? (
+            <p className="ens-vide">Aucune tâche pour l’instant. Une tâche = une liste de mots que vos élèves vont jouer. Créez la première en 3 étapes : choisir les mots, régler (facultatif), imprimer les QR-codes.</p>
+          ) : (
+            <ul className="ens-taches">
+              {taches.map(t => (
+                <li key={t.id} className={t.revoked ? 'revoquee' : undefined}>
+                  <strong>{t.listesNoms || t.pack}</strong>{t.creee ? ` · ${t.creee.slice(0, 10)}` : ''}{t.revoked ? ' · révoquée' : ''}
+                  <br /><span className="aide">{resumeTache(t)}</span>
+                  <br />
+                  {!t.revoked && <button type="button" className="principal" onClick={() => ouvrirDepuisListe(t)}>Liens et QR-codes personnels</button>}
+                  {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
+                  {!t.revoked && <span className="aide"> Révoquer : les liens de cette tâche cessent de fonctionner.</span>}
+                </li>
+              ))}
+            </ul>
+          )}
         </>
       )}
-
       </div>
 
       <div {...panneau('resultats')}>
