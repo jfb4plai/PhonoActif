@@ -56,6 +56,7 @@ describe('pack à paliers : démarrage et bilan', () => {
     await user.click(screen.getByRole('button', { name: 'Arrêter ici' }));
     await screen.findByText(/Pack terminé/);
     expect(screen.getByText('Arrêté après le palier P1.')).toBeTruthy();
+    expect(screen.getByText('2 carte(s) vue(s).')).toBeTruthy();
   });
 
   it('« Passer » : le bilan note le palier passé ; « Rejouer » repart au palier 1 sans cette mention', async () => {
@@ -66,6 +67,7 @@ describe('pack à paliers : démarrage et bilan', () => {
     await construire(user, 'ami');
     await screen.findByText(/Pack terminé/);
     expect(screen.getByText('Palier P2 passé par l’adulte.')).toBeTruthy();
+    expect(screen.getByText('3 carte(s) vue(s).')).toBeTruthy();
     expect(screen.queryByText(/Arrêté après/)).toBeNull();
     await user.click(screen.getByRole('button', { name: 'Rejouer' }));
     await screen.findByRole('group', { name: 'Mot à construire' });

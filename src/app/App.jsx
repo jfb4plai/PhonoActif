@@ -35,6 +35,18 @@ const TEXTES_ENVOI = {
 // deps : injection pour les tests (fetch, stockage, stockageEnvoyes, supabase, jouerSons, rng, maintenant, hash, base)
 const Enseignant = React.lazy(() => import('../enseignant/Enseignant.jsx'));
 
+// Trace de fin de jeu d'un pack à paliers : arrêt, paliers passés, et nombre de cartes réellement jouées (null = toutes).
+function finDePalier(apres, pack) {
+  const sautes = (apres && apres.paliersSautes) || [];
+  const arret = (apres && apres.arret) || null;
+  let vues = null;
+  if (apres && pack.paliers && (arret || sautes.length)) {
+    const taille = id => { const q = pack.paliers.find(x => x.id === id); return q && q.fin < apres.index ? q.fin - q.debut + 1 : 0; };
+    vues = apres.index + 1 - sautes.reduce((n, id) => n + taille(id), 0);
+  }
+  return { arret, paliersSautes: sautes, vues };
+}
+
 export default function App({ deps = {} }) {
   const [hash, setHash] = useState(() => deps.hash ?? window.location.hash);
   useEffect(() => {
@@ -85,7 +97,7 @@ function AppEleve({ deps, hash, partie }) {
   const [, rafraichir] = useState(0);
   // Modèles de listes publiés (mots/modeles.json, fabriqué par tools/base/publier.js) : l'écran d'accueil propose une liste plutôt qu'un nom à taper.
   const [packsListe, setPacksListe] = useState([]);
-  const [finPalier, setFinPalier] = useState({ arret: null, paliersSautes: [] }); // trace de fin de jeu d'un pack à paliers (affichée au bilan)
+  const [finPalier, setFinPalier] = useState({ arret: null, paliersSautes: [], vues: null }); // trace de fin de jeu d'un pack à paliers (affichée au bilan)
   useEffect(() => {
     if (enLigne) return undefined;
     let actif = true;
@@ -178,7 +190,7 @@ function AppEleve({ deps, hash, partie }) {
       }
       setAvertissementsPack(av);
       setPack(utilise);
-      setFinPalier({ arret: null, paliersSautes: [] });
+      setFinPalier({ arret: null, paliersSautes: [], vues: null });
       setCleJeu(k => k + 1);
       setVue('jeu');
     } catch (e) {
@@ -200,11 +212,11 @@ function AppEleve({ deps, hash, partie }) {
       {vue === 'jeu' && pack && (
         <Jeu key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
           deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), jouerSerie: deps.jouerSerie || ((urls, o) => jouerSerie(urls, o)), rng: deps.rng, maintenant: deps.maintenant }}
-          onFin={apres => { setFinPalier({ arret: (apres && apres.arret) || null, paliersSautes: (apres && apres.paliersSautes) || [] }); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
+          onFin={apres => { setFinPalier(finDePalier(apres, pack)); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}
       {vue === 'bilan' && pack && (
-        <Bilan nbCartes={pack.cartes.length} arret={finPalier.arret} paliersSautes={finPalier.paliersSautes} peutEnvoyer={enLigne && !!config} onEnvoyer={surEnvoiManuel} messageEnvoi={messageEnvoi}
-          onRejouer={() => { setMessageEnvoi(''); setFinPalier({ arret: null, paliersSautes: [] }); setCleJeu(k => k + 1); setVue('jeu'); }} onAccueil={() => setVue('accueil')} />
+        <Bilan nbCartes={finPalier.vues ?? pack.cartes.length} arret={finPalier.arret} paliersSautes={finPalier.paliersSautes} peutEnvoyer={enLigne && !!config} onEnvoyer={surEnvoiManuel} messageEnvoi={messageEnvoi}
+          onRejouer={() => { setMessageEnvoi(''); setFinPalier({ arret: null, paliersSautes: [], vues: null }); setCleJeu(k => k + 1); setVue('jeu'); }} onAccueil={() => setVue('accueil')} />
       )}
     </div>
   );
