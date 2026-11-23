@@ -1,0 +1,6 @@
+/* Pause de fin de palier du pack progressif : message neutre pour l'élève, panneau pour l'adulte. */
+.pause-eleve { font-size: 1.5rem; text-align: center; margin: 3rem 1rem; }
+.pause-adulte { margin: 0.75rem 0; padding: 0.75rem 1rem; border: 2px solid var(--teal, #0f6e56); border-radius: 8px; background: #fff; }
+.pause-adulte p { font-size: 1rem; margin: 0.25rem 0 0.5rem; }
+.pause-boutons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pause-boutons button { min-height: 44px; min-width: 44px; font-size: 1rem; padding: 0.5rem 1rem; }

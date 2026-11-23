@@ -5,6 +5,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { classeCube } from '../core/index.js';
 import { demarrerJeu, poser, retirer, vider, verifier, aider, suivant, sonsDuMot } from '../jeu/session.js';
 import { REGLAGES_PAR_DEFAUT, VALEURS_VITESSE } from './route.js';
+import PausePalier, { MessageEleve } from './PausePalier.jsx';
+import { estFinDePalier, numeroDePalier } from '../core/paliers.js';
+import { continuerPalier, passerPalier, arreterApresPalier } from '../jeu/paliers.js';
 
 const NOMS_VITESSE = { 100: 'Normale', 75: 'Lente', 50: 'Très lente' };
 import { estPackLettres, packDeSession, construirePlateauLettres, etatPourChaine, etatFinal, positionsGraphemes, syllabesDeCarte, phraseDeCarte, reperesLettres, lettresMuettes, pieceMuette, boutonSyllabesVisible, REGLAGES_SYLLABES, REGLE_COUPURE } from '../jeu/modeA.js';
@@ -155,10 +158,19 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
     geste.current++;
     if (apres.aide === 'ecoute') jouerMot(carte); else if (apres.aide === 'revelation') jouerConsigne('revelation'); else jouer(sons);
   };
+  const paliers = pack.paliers || null; // pack progressif : limites de palier calculées au démarrage (null = jeu ordinaire)
+  const [pause, setPause] = useState(false); // fin de palier : l'élève attend, l'adulte choisit
   const surSuivant = () => {
+    if (paliers && estFinDePalier(paliers, etat.index)) { geste.current++; setMessage(null); setPause(true); setVitesseOuverte(true); return; }
     const apres = suivant(etat);
     setEtat(apres); setMessage(null);
     geste.current++;
+    if (apres.statut === 'fini') { jouerConsigne('fin'); onFin(apres); }
+  };
+  const choixPalier = transition => () => {
+    const apres = transition(etat, paliers);
+    geste.current++;
+    setPause(false); setVitesseOuverte(false); setEtat(apres); setMessage(null);
     if (apres.statut === 'fini') { jouerConsigne('fin'); onFin(apres); }
   };
 
@@ -194,6 +206,34 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const btnImage = lettres && imageDisponible && <Commande parle={parle} icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => { if (!imageVue) setImageOuverte(true); setImageVue(v => !v); }} />;
   const btnPhrase = lettres && phraseDeCarte(carte) && <Commande parle={parle} icone="bulle" texte="Écouter une phrase" label="Écouter le mot dans une phrase" epure={epure} onClick={() => jouerPhrase(carte)} />;
   const btnSyllabes = aideSyllabes && <Commande parle={parle} icone="syllabes" texte="Écouter par syllabes" label="Écouter le mot par syllabes" epure={epure} onClick={() => jouerSyllabes(carte)} />;
+
+  if (pause) {
+    // Pause de fin de palier : l'élève ne voit aucune commande ; la zone de l'adulte est visible même en commandes épurées ou voix verrouillée.
+    const n = numeroDePalier(paliers, etat.index);
+    return (
+      <main className={`jeu${epure ? ' jeu-epure' : ''}`}>
+        <MessageEleve />
+        <div className="reglage-adulte">
+          {!tache.vitesseVerrou && (
+            <>
+              <button type="button" className="discret" aria-expanded={vitesseOuverte} aria-controls="panneau-vitesse" onClick={() => setVitesseOuverte(o => !o)}>
+                Vitesse de la voix : {NOMS_VITESSE[vitesse] || 'Normale'}
+              </button>
+              {vitesseOuverte && (
+                <div id="panneau-vitesse" className="vitesse" role="group" aria-label="Vitesse de la voix">
+                  {[[100, 'Normale'], [75, 'Lente'], [50, 'Très lente']].map(([v, nom]) => (
+                    <button key={v} type="button" aria-pressed={vitesse === v} className={vitesse === v ? 'principal' : ''} onClick={() => setVitesse(v)}>{nom}</button>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+          <PausePalier palierTermine={paliers[n]} palierSuivant={paliers[n + 1]} existeApres={!!paliers[n + 2]}
+            onContinuer={choixPalier(continuerPalier)} onPasser={choixPalier(passerPalier)} onArreter={choixPalier(arreterApresPalier)} />
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className={`jeu${epure ? ' jeu-epure' : ''}${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
