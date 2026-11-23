@@ -116,29 +116,62 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
         ))}
       </div>
       <div {...panneau('eleves')}>
+      <h2>Les élèves de la classe</h2>
+      {lignes.length === 0 ? (
+        <>
+          <p className="ens-rassure">Commencez ici : chaque élève jouera avec son propre code (E01, E02…), jamais avec son nom. Il suffit d’indiquer combien d’élèves a la classe.</p>
+          <div className="ens-bloc">
+        <label htmlFor="ens-nb">Combien d’élèves dans la classe ?</label>
+        <input id="ens-nb" type="number" min="1" value={nb} onChange={e => setNb(e.target.value)} />
+        <p className="aide">Un code sera créé par élève. Si la classe a déjà des codes, on ajoute à la suite.</p>
+        <label htmlFor="ens-prefixe">Début des codes</label>
+        <input id="ens-prefixe" value={prefixe} onChange={e => setPrefixe(e.target.value)} placeholder="E" />
+        <p className="aide">Un code, pas un nom : E01, E02, E03… Garder la correspondance avec les élèves sur papier.</p>
+        <button type="button" className="principal" onClick={automatique}>Créer les codes automatiquement</button>
+        <details>
+          <summary>Saisir les codes un par un</summary>
+          <label htmlFor="ens-codes">Codes des élèves</label>
+          <textarea id="ens-codes" placeholder="E01, E02, E03" value={saisie} onChange={e => setSaisie(e.target.value)} />
+          <p className="aide">Séparer les codes par une virgule, un espace ou un retour à la ligne. Utile pour garder des codes déjà utilisés ailleurs (autres outils PLAI).</p>
+          <button type="button" onClick={ajouter}>Ajouter les codes</button>
+        </details>
+          </div>
+        </>
+      ) : (
+        <>
+          <p role="status"><strong>{lignes.length} code{lignes.length > 1 ? 's' : ''} d’élève</strong> dans cette classe.</p>
+          <ul className="ens-puces">{lignes.map(l => <li key={l.id}>{l.code}</li>)}</ul>
+          <p className="ens-rassure">Étape suivante : créer une tâche pour vos élèves.</p>
+          <button type="button" className="principal" onClick={() => setOnglet('taches')}>Aller aux tâches →</button>
+          <details className="ens-ajout">
+            <summary>Ajouter d’autres codes (nouvel élève)</summary>
+          <label htmlFor="ens-nb">Combien d’élèves dans la classe ?</label>
+          <input id="ens-nb" type="number" min="1" value={nb} onChange={e => setNb(e.target.value)} />
+          <p className="aide">Un code sera créé par élève. Si la classe a déjà des codes, on ajoute à la suite.</p>
+          <label htmlFor="ens-prefixe">Début des codes</label>
+          <input id="ens-prefixe" value={prefixe} onChange={e => setPrefixe(e.target.value)} placeholder="E" />
+          <p className="aide">Un code, pas un nom : E01, E02, E03… Garder la correspondance avec les élèves sur papier.</p>
+          <button type="button" className="principal" onClick={automatique}>Créer les codes automatiquement</button>
+          <details>
+            <summary>Saisir les codes un par un</summary>
+            <label htmlFor="ens-codes">Codes des élèves</label>
+            <textarea id="ens-codes" placeholder="E01, E02, E03" value={saisie} onChange={e => setSaisie(e.target.value)} />
+            <p className="aide">Séparer les codes par une virgule, un espace ou un retour à la ligne. Utile pour garder des codes déjà utilisés ailleurs (autres outils PLAI).</p>
+            <button type="button" onClick={ajouter}>Ajouter les codes</button>
+          </details>
+          </details>
+        </>
+      )}
+      {refuses.length > 0 && (
+        <ul aria-label="Codes refusés">{refuses.map((r, i) => <li key={i}>{r.code} : {r.raison}</li>)}</ul>
+      )}
+
       <aside role="note" aria-label="Données des élèves" className="ens-note">
         <strong>Données des élèves.</strong> Chaque élève est repéré par un code, jamais un nom : ne jamais mettre un nom, un prénom ou une date de naissance dans un code.
         Pour chaque essai sont enregistrés : le mot, ce que l’élève a posé, juste ou faux, l’aide, la date.
         Seuls les enseignants de la classe les lisent. Hébergement : Supabase, projet partagé du Pôle, région Europe.
         Durée de conservation : une purge annuelle est prévue, pas encore en service. Une version à valider par le DPO figure dans le registre de traitement.
       </aside>
-      <label htmlFor="ens-nb">Nombre d’élèves</label>
-      <input id="ens-nb" type="number" min="1" value={nb} onChange={e => setNb(e.target.value)} />
-      <label htmlFor="ens-prefixe">Début des codes</label>
-      <input id="ens-prefixe" value={prefixe} onChange={e => setPrefixe(e.target.value)} placeholder="E" />
-      <p className="aide">Un code, pas un nom : E01, E02, E03… Si la classe a déjà des codes, la suite est numérotée à partir du dernier. Garder la correspondance avec les élèves sur papier.</p>
-      <button type="button" onClick={automatique}>Créer les codes automatiquement</button>
-      <details>
-        <summary>Saisir les codes un par un</summary>
-        <label htmlFor="ens-codes">Codes des élèves</label>
-        <textarea id="ens-codes" placeholder="E01, E02, E03" value={saisie} onChange={e => setSaisie(e.target.value)} />
-        <p className="aide">Séparer les codes par une virgule, un espace ou un retour à la ligne. Utile pour garder des codes déjà utilisés ailleurs (autres outils PLAI).</p>
-        <button type="button" onClick={ajouter}>Ajouter les codes</button>
-      </details>
-      {refuses.length > 0 && (
-        <ul aria-label="Codes refusés">{refuses.map((r, i) => <li key={i}>{r.code} : {r.raison}</li>)}</ul>
-      )}
-
       </div>
 
       <div {...panneau('taches')} className={perso ? 'ens-panneau-liens' : undefined}>

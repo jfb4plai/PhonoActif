@@ -91,12 +91,13 @@ describe('espace enseignant', () => {
     expect(auto.compareDocumentPosition(manuel) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
     expect(manuel.closest('details').open).toBe(false);
     expect(screen.queryByRole('button', { name: 'Générer' })).toBeNull();
-    const nb = screen.getByLabelText('Nombre d’élèves');
+    const nb = screen.getByLabelText('Combien d’élèves dans la classe ?');
     await userEvent.clear(nb); await userEvent.type(nb, '3');
     await userEvent.click(auto);
     await waitFor(() => expect(client.tables.phono_students.map(s => s.code)).toEqual(['E01', 'E02', 'E03']));
     expect(await screen.findByText('3 code(s) ajouté(s).')).toBeTruthy();
-    await userEvent.click(auto);
+    expect(await screen.findByText('3 codes d’élève', { exact: false })).toBeTruthy(); // la liste des codes remplace le formulaire
+    await userEvent.click(await screen.findByRole('button', { name: 'Créer les codes automatiquement' })); // ajout replié sous « Ajouter d’autres codes »
     await waitFor(() => expect(client.tables.phono_students.length).toBe(6));
     expect(client.tables.phono_students.map(s => s.code)).toContain('E06');
   });
@@ -252,7 +253,7 @@ describe('espace enseignant', () => {
     const client = avecAuth(fauxClient({ role: 'invite', tables: { ...classeTables('invite'), phono_students: [{ id: 's1', class_id: 'c1', code: 'E01' }] } }), { session: { user: USER } });
     monter(client);
     await userEvent.click(await screen.findByRole('button', { name: /3P A/ }));
-    expect(await screen.findByText('E01')).toBeTruthy();
+    expect((await screen.findAllByText('E01')).length).toBeGreaterThan(0);
     expect(screen.queryByLabelText('E-mail de l’enseignant')).toBeNull();
     expect(screen.queryByRole('button', { name: 'Supprimer la classe' })).toBeNull();
     expect(screen.queryByRole('button', { name: 'Retirer E01' })).toBeNull();

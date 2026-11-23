@@ -89,3 +89,7 @@
 .ens-assistant details { margin-top: 1rem; }
 @media print { .ens-navigation { display: none; } }
 .ens select { font: inherit; padding: 0.45rem; margin-top: 0.25rem; max-width: 100%; }
+
+.ens-bloc { border: 1px solid #c8c8c8; border-radius: 6px; padding: 0.4rem 1rem 0.9rem; margin: 0.6rem 0; }
+.ens-puces { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.ens-puces li { background: #f6fbf9; border: 1px solid #0f6e56; border-radius: 14px; padding: 0.15rem 0.7rem; }
