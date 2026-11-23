@@ -39,7 +39,7 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 
 .app .actions { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
 /* Les trois boutons que l'élève utilise le plus (Écouter, Vérifier, Suivant) forment un groupe isolé, grand, à place fixe ; les aides sont à part, plus discrètes. */
-.app .actions-principales { justify-content: center; gap: 20px; margin: 20px 0 8px; }
+.app .actions-principales { justify-content: center; gap: 32px; margin: 28px 0 12px; } /* écart élargi : le bouton actif grossit de 35 % sans toucher ses voisins */
 .app .jeu .actions-principales button { min-height: 60px; min-width: 140px; font-size: 22px; }
 .app .actions-aides { justify-content: center; margin: 8px 0 20px; padding-top: 12px; border-top: 1px solid currentColor; }
 .app .jeu .actions-aides button { font-size: 16px; min-height: 44px; }
@@ -106,7 +106,7 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 }
 
 /* Guidage par étapes (2026-11-23) : un seul bouton à la fois est agrandi et en couleur pleine. transform = les voisins ne bougent pas ; pas d'animation. */
-.app .jeu button.guide { transform: scale(1.22); background: var(--btn); color: var(--btn-texte); font-weight: bold; opacity: 1; }
+.app .jeu button.guide { transform: scale(1.35); background: var(--btn); color: var(--btn-texte); font-weight: bold; opacity: 1; }
 .app .jeu .actions-aides button.guide { transform: scale(1.1); } /* l'écart entre aides est de 12 px : au-delà, le bouton déborde sur son voisin */
 
 /* Pièce juste gardée après une erreur : cadenas + cadre plein (jamais la couleur seule), sans ombre portée. */
@@ -114,3 +114,4 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .zone .cube .cadenas { position: absolute; top: -12px; right: -12px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: var(--ecran); color: var(--texte); border: 2px solid var(--texte); border-radius: 50%; }
 .zone-juste .cube.verrou { box-shadow: var(--ombre-cube); } /* la fête de réussite efface les cadenas */
 .zone-juste .cube .cadenas { display: none; }
+.app .jeu .actions-epure .guide { transform-origin: right center; } /* commandes épurées : le bouton actif grossit vers l'intérieur, pas hors de l'écran */
