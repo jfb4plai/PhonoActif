@@ -51,8 +51,9 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const [syllabeActive, setSyllabeActive] = useState(null); // index de la syllabe lue pendant « Écouter par syllabes » (césures visibles seulement alors)
   const [cesures, setCesures] = useState(false); // césures laissées à l'écran après l'écoute, jusqu'au bouton « Masquer les césures »
   const [aEcoute, setAEcoute] = useState(false); // guidage par étapes : « Écouter » reste agrandi tant que l'élève n'a pas écouté le mot (remis à faux après une erreur)
+  const [imageOuverte, setImageOuverte] = useState(false); // mesure d'usage : l'élève a ouvert l'image au moins une fois sur cette carte (reste vrai s'il la recache)
   const [imageVue, setImageVue] = useState(false); // mode A : l'image existe mais reste cachée tant que l'élève n'appuie pas sur « Voir l'image » (décision de JF 2026-11-14)
-  useEffect(() => { setSyllabeActive(null); setCesures(false); setImageVue(false); setAEcoute(false); }, [carte.id]);
+  useEffect(() => { setSyllabeActive(null); setCesures(false); setImageVue(false); setImageOuverte(false); setAEcoute(false); }, [carte.id]);
   const signalerSons = r => {
     const manquants = r && r.manquants ? r.manquants : [];
     manquants.forEach(id => onSignalement('son', id));
@@ -120,7 +121,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const lettresPosees = e => [...e.poses.map(id => e.plateau.find(p => p.id === id).g).join('')];
   // Mode A : le suivi reste en graphèmes-sons (liaisons), calculé à partir des lettres posées.
   const enregistrer = (avant, apres) => apres.essais.slice(avant.essais.length).forEach(l => stockage.ajouter(
-    lettres ? { ...l, positions: positionsGraphemes(avant.cartes[avant.index], lettresPosees(avant), avant.reglages.exigerAccents) } : l));
+    lettres ? { ...l, positions: positionsGraphemes(avant.cartes[avant.index], lettresPosees(avant), avant.reglages.exigerAccents), image: etatImage } : l));
 
   const surPiece = piece => {
     const apres = poser(etat, piece.id);
@@ -167,6 +168,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const imageDisponible = !sansImage && !imagesAbsentes[carte.id];
   const imageCachee = lettres && imageDisponible && !imageVue && !(epure && etat.statut === 'juste'); // commandes épurées : l'image apparaît en récompense quand le mot est juste ; image non montrée : le fichier n'est pas chargé tant que le bouton n'est pas pressé
   const imageAbsente = !imageDisponible || imageCachee;
+  const etatImage = !(lettres && imageDisponible) ? 'sans' : imageOuverte ? 'vue' : 'non_vue'; // enregistré dans chaque essai (mesure d'usage de « Voir l'image »)
   const muets = lettres ? lettresMuettes(carte) : null; // mode lettres : quelle lettre est muette (t de chat)
   const reperes = reperesLettres(carte); // null si le manifeste n'a pas le nombre de cubes par syllabe : pas de surlignage
   const posees = etat.poses.map(id => etat.plateau.find(p => p.id === id));
@@ -189,12 +191,12 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
   const classeZone = etat.statut === 'juste' ? ` zone-juste fete-${feteDeCarte}` : (message && message.type === 'faux' ? ' zone-faux' : '');
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
   const aideSyllabes = lettres && boutonSyllabesVisible(carte, tache.syllabes || 'toujours', etat);
-  const btnImage = lettres && imageDisponible && <Commande parle={parle} icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => setImageVue(v => !v)} />;
+  const btnImage = lettres && imageDisponible && <Commande parle={parle} icone="oeil" texte={imageVue ? 'Cacher l’image' : 'Voir l’image'} epure={epure} aria-pressed={imageVue} onClick={() => { if (!imageVue) setImageOuverte(true); setImageVue(v => !v); }} />;
   const btnPhrase = lettres && phraseDeCarte(carte) && <Commande parle={parle} icone="bulle" texte="Écouter une phrase" label="Écouter le mot dans une phrase" epure={epure} onClick={() => jouerPhrase(carte)} />;
   const btnSyllabes = aideSyllabes && <Commande parle={parle} icone="syllabes" texte="Écouter par syllabes" label="Écouter le mot par syllabes" epure={epure} onClick={() => jouerSyllabes(carte)} />;
 
   return (
-    <main className={`jeu${epure ? ' jeu-epure' : ''}`}>
+    <main className={`jeu${epure ? ' jeu-epure' : ''}${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
       {epure
         ? (
           <div className="barre-haut">

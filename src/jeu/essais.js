@@ -48,10 +48,11 @@ export const exporterJson = lignes => JSON.stringify(lignes.map(({ cle, ...reste
 const champ = v => (/[;"\r\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
 
 export function exporterCsv(lignes) {
-  const entete = 'date;code;pack;carte;mot;mode;tentative;juste;aide;positions';
+  const entete = 'date;code;pack;carte;mot;mode;tentative;juste;aide;positions;image';
   const corps = lignes.map(l => [
     l.date, l.code, l.pack, l.carte, l.mot, l.modeMot, l.tentative, l.juste ? 'oui' : 'non', l.aide,
-    l.positions.map(p => `${p.liaison}:${p.pose === null ? '' : p.pose}:${p.juste ? 'ok' : 'ko'}`).join('|')
+    l.positions.map(p => `${p.liaison}:${p.pose === null ? '' : p.pose}:${p.juste ? 'ok' : 'ko'}`).join('|'),
+    l.image || ''
   ].map(champ).join(';'));
   return '\uFEFF' + [entete, ...corps].join('\r\n');
 }
@@ -72,4 +73,26 @@ export function resumerParLiaison(lignes) {
     }
   }
   return [...parLiaison.values()].sort((a, b) => (a.liaison < b.liaison ? -1 : a.liaison > b.liaison ? 1 : 0));
+}
+
+/* Usage du bouton « Voir l'image » (mesure du 2026-11-23, avant tout réglage d'affichage). Chaque essai du mode lettres porte `image` :
+   'sans' (pas de bouton image sur la carte), 'non_vue' (image proposée, pas ouverte), 'vue' (ouverte au moins une fois sur cette carte, au moment de l'essai).
+   Résultat par carte jouée (session + carte) où l'image était proposée : ouverte avant le premier essai, ouverte après une erreur, jamais ouverte.
+   Les essais sans champ `image` (anciens) sont ignorés. */
+export function usageImage(lignes) {
+  const parCarte = new Map();
+  for (const l of lignes) {
+    if (l.image !== 'non_vue' && l.image !== 'vue') continue;
+    const cle = `${l.session}|${l.carte}`;
+    if (!parCarte.has(cle)) parCarte.set(cle, []);
+    parCarte.get(cle).push(l);
+  }
+  const r = { cartes: parCarte.size, avantPremierEssai: 0, apresErreur: 0, jamais: 0 };
+  for (const essais of parCarte.values()) {
+    essais.sort((a, b) => a.tentative - b.tentative);
+    if (essais[0].image === 'vue') r.avantPremierEssai++;
+    else if (essais.some(e => e.image === 'vue')) r.apresErreur++;
+    else r.jamais++;
+  }
+  return r;
 }

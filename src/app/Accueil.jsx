@@ -9,7 +9,7 @@ const MESSAGES_TACHE = {
 };
 
 export default function Accueil({
-  base = '/', partie = 'eleve', tache, code, onCode, onTache, onCommencer, erreur, avertissements, persistant, lien, nbEssais, onExportJson, onExportCsv,
+  base = '/', partie = 'eleve', tache, code, onCode, onTache, onCommencer, erreur, avertissements, persistant, lien, nbEssais, usageImage, onExportJson, onExportCsv,
   packsListe = [], enLigne = false, lienPersonnel = false, etatTache = 'non', peutEnvoyer = false, enAttente = 0, onEnvoyerAttente, messageEnvoi = ''
 }) {
   // QR-code du lien de tâche : calculé ici, sans réseau (bibliothèque chargée seulement quand il y a un lien)
@@ -51,6 +51,9 @@ export default function Accueil({
       )}
       {!persistant && <p className="plai-banner">Les essais ne sont pas conservés sur cet appareil : le navigateur refuse la sauvegarde. Exporter les essais après chaque séance.</p>}
       <p className="aide">{nbEssais} essai(s) enregistré(s) sur cet appareil.</p>
+      {usageImage && usageImage.cartes > 0 && (
+        <p className="aide" data-testid="usage-image">Image proposée sur {usageImage.cartes} carte(s) : ouverte avant le premier essai sur {usageImage.avantPremierEssai}, après une erreur sur {usageImage.apresErreur}, jamais sur {usageImage.jamais}.</p>
+      )}
       {peutEnvoyer && (
         <div className="actions">
           <button type="button" className="plai-btn-ghost" onClick={onEnvoyerAttente} disabled={enAttente === 0}>Envoyer les essais en attente ({enAttente})</button>
@@ -111,6 +114,14 @@ export default function Accueil({
                 ))}
                 <p className="aide">Case cochée : les lettres qui forment ce son (par exemple « ch » dans chat) sont une seule pièce à poser, ce qui aide à mémoriser l’association. Case vide : l’élève pose chaque lettre, donc il doit savoir lui-même qu’il faut « c » puis « h ». Par défaut tout est coché (P1). Pour les plus jeunes ou les élèves en difficulté, laisser coché ; pour les plus grands, décocher. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </fieldset>
+              <div className="plai-field">
+                <label className="plai-label" htmlFor="casse">Lettres affichées</label>
+                <select id="casse" className="plai-input" value={tache.casse || 'minuscules'} onChange={e => onTache({ casse: e.target.value })}>
+                  <option value="minuscules">En minuscules (chat)</option>
+                  <option value="majuscules">En majuscules (CHAT)</option>
+                </select>
+                <p className="aide">Change seulement l’affichage des pièces, du mot montré et de l’indice : les sons lus ne changent pas. Majuscules : pour les plus jeunes (maternelle), qui apprennent d’abord les lettres capitales. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
+              </div>
               <div className="plai-field">
                 <label className="plai-label" htmlFor="muet">Lettre muette grisée</label>
                 <select id="muet" className="plai-input" value={tache.muet || 'origine'} onChange={e => onTache({ muet: e.target.value })}>

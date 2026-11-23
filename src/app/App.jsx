@@ -4,7 +4,7 @@ import { codeValide } from './code.js';
 import { chargerPack } from './chargerPack.js';
 import { chargerMots } from './chargerMots.js';
 import { jouerSons, jouerFichier, jouerSerie } from './audio.js';
-import { stockageLocal, exporterJson, exporterCsv } from '../jeu/essais.js';
+import { stockageLocal, exporterJson, exporterCsv, usageImage } from '../jeu/essais.js';
 import { chargerTache, envoyerEssais, stockageEnvoyes } from '../sync/envoi.js';
 import { configurationSupabase } from '../lib/supabase.js';
 import Accueil from './Accueil.jsx';
@@ -188,7 +188,7 @@ function AppEleve({ deps, hash, partie }) {
     <div className="app" data-habillage={tache.habillage}>
       {vue === 'accueil' && (
         <Accueil base={base} partie={partie} tache={tache} code={code} onCode={setCode} onTache={surTache} onCommencer={commencer} erreur={erreur}
-          avertissements={avertissements} persistant={stockage.persistant} lien={lien} nbEssais={stockage.lire().length}
+          avertissements={avertissements} persistant={stockage.persistant} lien={lien} nbEssais={stockage.lire().length} usageImage={usageImage(stockage.lire())}
           packsListe={packsListe} enLigne={enLigne} lienPersonnel={!!tache.cle} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
           onExportJson={() => telecharger('essais.json', exporterJson(stockage.lire()), 'application/json')}
           onExportCsv={() => telecharger('essais.csv', exporterCsv(stockage.lire()), 'text/csv;charset=utf-8')} />

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { stockageMemoire, stockageLocal, exporterJson, exporterCsv, resumerParLiaison } from '../../src/jeu/essais.js';
+import { stockageMemoire, stockageLocal, exporterJson, exporterCsv, resumerParLiaison, usageImage } from '../../src/jeu/essais.js';
 
 const ligne = (plus = {}) => ({
   session: 's-1', code: 'E07', pack: 'essai', carte: 'chat', mot: 'chat', modeMot: 'sans', tentative: 1, juste: true, aide: 'aucune',
@@ -73,13 +73,13 @@ test('exporterCsv : BOM, en-tête exact, une ligne par essai', () => {
   assert.ok(csv.startsWith('﻿'));
   const l = csv.slice(1).split('\r\n');
   assert.equal(l.length, 3);
-  assert.equal(l[0], 'date;code;pack;carte;mot;mode;tentative;juste;aide;positions');
-  assert.equal(l[1], '2026-11-11T10:00:00.000Z;E07;essai;chat;chat;sans;1;oui;aucune;ch=ch:ch:ok|a=a:a:ok|t=:t:ok');
-  assert.equal(l[2], '2026-11-11T10:00:00.000Z;E07;essai;chat;chat;sans;2;non;aucune;ch=ch:ch:ok|a=a:o:ko|t=::ko');
+  assert.equal(l[0], 'date;code;pack;carte;mot;mode;tentative;juste;aide;positions;image');
+  assert.equal(l[1], '2026-11-11T10:00:00.000Z;E07;essai;chat;chat;sans;1;oui;aucune;ch=ch:ch:ok|a=a:a:ok|t=:t:ok;');
+  assert.equal(l[2], '2026-11-11T10:00:00.000Z;E07;essai;chat;chat;sans;2;non;aucune;ch=ch:ch:ok|a=a:o:ko|t=::ko;');
 });
 
 test('exporterCsv : liste vide, juste l\'en-tête', () => {
-  assert.equal(exporterCsv([]), '﻿date;code;pack;carte;mot;mode;tentative;juste;aide;positions');
+  assert.equal(exporterCsv([]), '﻿date;code;pack;carte;mot;mode;tentative;juste;aide;positions;image');
 });
 
 test('résumé par liaison : premier coup, reprises et confusions', () => {
@@ -110,4 +110,23 @@ test('exporterJson : la clé personnelle de l’élève n’est jamais exportée
   const sortie = exporterJson([l]);
   assert.ok(!sortie.includes('0123456789abcdef0123'));
   assert.equal(JSON.parse(sortie)[0].code, 'E07');
+});
+
+test('exporterCsv : la colonne image reprend le champ de l’essai', () => {
+  const l = exporterCsv([ligne({ image: 'vue' }), ligne({ image: 'non_vue' })]).slice(1).split('\r\n');
+  assert.ok(l[1].endsWith(';vue')); assert.ok(l[2].endsWith(';non_vue'));
+});
+
+test('usageImage : par carte jouée, ouverte avant le premier essai, après une erreur, jamais ; « sans » et anciens essais ignorés', () => {
+  const e = (carte, tentative, image, session = 's1') => ligne({ session, carte, tentative, image });
+  const r = usageImage([
+    e('a', 1, 'vue'),                                   // ouverte avant le premier essai
+    e('b', 1, 'non_vue'), e('b', 2, 'vue'),             // ouverte après une erreur
+    e('c', 1, 'non_vue'),                               // jamais
+    e('d', 1, 'sans'),                                  // pas de bouton : ignorée
+    ligne({ session: 's1', carte: 'e', tentative: 1 }), // ancien essai sans champ : ignoré
+    e('a', 1, 'non_vue', 's2')                          // même carte, autre séance : comptée à part
+  ]);
+  assert.deepEqual(r, { cartes: 4, avantPremierEssai: 1, apresErreur: 1, jamais: 2 });
+  assert.deepEqual(usageImage([]), { cartes: 0, avantPremierEssai: 0, apresErreur: 0, jamais: 0 });
 });

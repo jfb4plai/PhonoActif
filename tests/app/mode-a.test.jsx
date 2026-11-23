@@ -385,3 +385,57 @@ describe('Guidage par étapes et pièces verrouillées (2026-11-23)', () => {
     expect(guides()).toEqual(['Suivant']);
   });
 });
+
+describe('Mesure d’usage de « Voir l’image » (2026-11-23)', () => {
+  const avecImage = { ...MANIFEST, cartes: [{ ...MANIFEST.cartes[0], image_sans_mot: 'images/chat.png' }] };
+  const verifierMot = async (user, mot) => { for (const l of mot) await lettre(user, l); await user.click(screen.getByRole('button', { name: 'Vérifier' })); };
+
+  it('image proposée mais jamais ouverte : « non_vue »', async () => {
+    const { user, stockage } = monter(avecImage);
+    await commencer(user);
+    await verifierMot(user, ['c', 'h', 'a', 't']);
+    expect(stockage.lire().map(l => l.image)).toEqual(['non_vue']);
+  });
+
+  it('image ouverte puis recachée avant l’essai : « vue » (l’ouverture est gardée pour la carte)', async () => {
+    const { user, stockage } = monter(avecImage);
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: 'Voir l’image' }));
+    await user.click(screen.getByRole('button', { name: 'Cacher l’image' }));
+    await verifierMot(user, ['c', 'h', 'a', 't']);
+    expect(stockage.lire().map(l => l.image)).toEqual(['vue']);
+  });
+
+  it('ouverte après une première erreur : « non_vue » puis « vue » sur les essais suivants', async () => {
+    const { user, stockage } = monter(avecImage);
+    await commencer(user);
+    await verifierMot(user, ['c', 'a', 'h', 't']); // faux : c reste verrouillé
+    await user.click(screen.getByRole('button', { name: 'Voir l’image' }));
+    await verifierMot(user, ['h', 'a', 't']);
+    expect(stockage.lire().map(l => [l.tentative, l.juste, l.image])).toEqual([[1, false, 'non_vue'], [2, true, 'vue']]);
+  });
+
+  it('pack sans image : « sans »', async () => {
+    const { user, stockage } = monter();
+    await commencer(user);
+    await verifierMot(user, ['c', 'h', 'a', 't']);
+    expect(stockage.lire().map(l => l.image)).toEqual(['sans']);
+  });
+
+  it('l’accueil résume l’usage sur l’appareil, rien si aucune carte n’avait d’image', async () => {
+    const ligne = (carte, tentative, image) => ({ session: 's1', carte, tentative, image, juste: true, positions: [] });
+    const stockage = stockageMemoire();
+    [ligne('a', 1, 'vue'), ligne('b', 1, 'non_vue'), ligne('b', 2, 'vue'), ligne('c', 1, 'non_vue'), ligne('d', 1, 'sans')].forEach(l => stockage.ajouter(l));
+    const deps = { fetch: reponse(MANIFEST), stockage, jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier: vi.fn(async () => ({ manquants: [] })), jouerSerie: vi.fn(async () => ({ manquants: [] })),
+      rng: () => 0.5, maintenant: () => '2026-11-13T10:00:00.000Z', hash: '#/jeu?pack=essai-a&mode=sans&intrus=0&digraphes=0', base: '/' };
+    render(<App deps={deps} />);
+    expect(await screen.findByTestId('usage-image')).toHaveTextContent('Image proposée sur 3 carte(s) : ouverte avant le premier essai sur 1, après une erreur sur 1, jamais sur 1.');
+    cleanup();
+    const vide = stockageMemoire();
+    vide.ajouter(ligne('d', 1, 'sans'));
+    render(<App deps={{ ...deps, stockage: vide }} />);
+    await screen.findByText(/essai\(s\) enregistré\(s\)/);
+    expect(screen.queryByTestId('usage-image')).toBeNull();
+  });
+});
+
