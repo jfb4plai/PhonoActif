@@ -47,6 +47,15 @@ describe('Maternelle : exercice « première lettre »', () => {
     expect(jouerFichier.mock.calls[0][0]).toBe(`/mots/${c.etats.at(-1).fichier}`);
   });
 
+  it('consignes=non : pas de « Bravo » vocal, la lettre puis le mot seulement', async () => {
+    const { user, jouerFichier } = monter(`${LIEN}&consignes=non`);
+    await commencer(user);
+    const c = carteCourante(); const cible = lettreInitiale(c);
+    jouerFichier.mockClear();
+    await user.click(screen.getByRole('button', { name: `Lettre ${cible}` }));
+    await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([`/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`]));
+  });
+
   it('bonne lettre : « Bravo », le son de la lettre puis le mot, un essai juste enregistré', async () => {
     const { user, jouerFichier, stockage } = monter(LIEN);
     await commencer(user);
@@ -54,7 +63,7 @@ describe('Maternelle : exercice « première lettre »', () => {
     jouerFichier.mockClear();
     await user.click(screen.getByRole('button', { name: `Lettre ${cible}` }));
     expect(screen.getByText(/Bravo/)).toBeInTheDocument();
-    await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([`/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`]));
+    await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([expect.stringMatching(/^\/consignes\/juste(_\d)?\.mp3$/), `/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`]));
     const essais = stockage.lire();
     expect(essais).toHaveLength(1);
     expect(essais[0]).toMatchObject({ carte: c.id, juste: true, tentative: 1, exercice: 'initiale', code: 'CLASSE', positions: [{ pose: cible, juste: true }] }); // mode classe (défaut de la maternelle) : code « CLASSE »

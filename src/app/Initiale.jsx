@@ -5,6 +5,7 @@ import { lettreInitiale, voyellesProposees, VOYELLES_INITIALE } from '../core/vo
 import { serieInitiale } from '../core/serieInitiale.js';
 import { etatFinal } from '../jeu/modeA.js';
 import { VALEURS_VITESSE } from './route.js';
+import { urlConsigne, consignesActives, choisirVariante } from './consignes.js';
 
 /* Maternelle (M1 à M3), exercice « première lettre » : l'élève voit l'image d'un mot qui commence par une voyelle et choisit cette voyelle parmi trois.
    Une fois la bonne lettre posée, il entend le son de la lettre, puis le mot entier. Pas de lecture demandée : image et voix seulement.
@@ -62,10 +63,20 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   };
   const lireMot = () => lire((etatFinal(carte) || {}).fichier);
   const lireLettre = v => lire(VOYELLES_INITIALE[v].fichier);
-  // Lettre, courte pause, puis le mot : un geste de l'élève entre-temps coupe la suite.
+  // « Bravo » vocal (variantes de public/consignes/juste*.mp3, jamais la même deux fois de suite) : actif par défaut en maternelle (commandes épurées), coupé si consignes=non.
+  // Un fichier absent ne signale rien : l'élève n'a pas à le savoir.
+  const voix = consignesActives({ ...tache, commandes: tache.commandes || 'epure' });
+  const derniereVariante = useRef(null);
+  const direBravo = () => {
+    if (!voix || !deps.jouerFichier) return Promise.resolve();
+    const id = choisirVariante('juste', derniereVariante.current, rng);
+    derniereVariante.current = id;
+    return Promise.resolve(deps.jouerFichier(urlConsigne(base, id))).catch(() => {});
+  };
+  // Bravo (en même temps que l'animation), puis le son de la lettre, une courte pause, puis le mot : un geste de l'élève entre-temps coupe la suite.
   const lireLettrePuisMot = v => {
     const n = ++sequence.current;
-    return lireLettre(v).then(() => new Promise(res => setTimeout(res, PAUSE_MS))).then(() => { if (sequence.current === n) return lireMot(); return null; });
+    return direBravo().then(() => (sequence.current === n ? lireLettre(v) : null)).then(() => new Promise(res => setTimeout(res, PAUSE_MS))).then(() => { if (sequence.current === n) return lireMot(); return null; });
   };
 
   // À l'arrivée d'une carte : la voix dit le mot (le navigateur peut bloquer le son : le bouton « Écouter » reste là).
@@ -118,7 +129,8 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
         {/* Fête de réussite en grand (maternelle) : gros confettis, grande étoile, lettre qui saute. Décoratif, une seule fois (fete.css). */}
         {statut === 'juste' && (
           <span className={`confettis confettis-grands fete-${fete}`} aria-hidden="true">
-            {Array.from({ length: 28 }, (_, k) => <i key={k} style={{ '--x': `${(k - 13.5) * 3.4}%`, '--d': `${(k % 7) * 0.05}s`, '--h': `${110 + (k * 37) % 110}px`, '--r': `${(k % 2 ? 1 : -1) * (120 + k * 25)}deg` }} className={`conf conf${k % 4}`} />)}
+            {/* Deux vagues : 48 confettis, la seconde 0,5 s après la première. */}
+            {Array.from({ length: 48 }, (_, k) => <i key={k} style={{ '--x': `${(k % 24 - 11.5) * 4}%`, '--d': `${(k % 7) * 0.05 + (k >= 24 ? 0.5 : 0)}s`, '--h': `${130 + (k * 37) % 150}px`, '--r': `${(k % 2 ? 1 : -1) * (120 + k * 25)}deg` }} className={`conf conf${k % 4}`} />)}
           </span>
         )}
         <img src={urlFichier(base, pack, String(carte.image_sans_mot))} alt="Image du mot à trouver" onError={() => onSignalement('image', carte.id)} />
@@ -128,8 +140,9 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
       <div className="retour" aria-live="polite">
         {statut === 'juste' && (
           <p className="bravo bravo-grand">
-            <svg className="etoile-grande" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
+            <svg className="etoile-grande etoile-g" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
             <span>Bravo !</span>
+            <svg className="etoile-grande etoile-d" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
           </p>
         )}
         {enCours && ecartees.length > 0 && <p><span aria-hidden="true">✗ </span>Pas celle-là. Essayer encore.</p>}
