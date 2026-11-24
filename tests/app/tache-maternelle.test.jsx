@@ -78,4 +78,32 @@ describe('tâche enregistrée de maternelle (côté élève)', () => {
     expect(items).toHaveLength(2); // ami et île : seuls mots de la tâche utilisables
     expect(screen.getByText(/Retour à l’espace enseignant/)).toBeInTheDocument();
   });
+
+  it('lien « tableau » : en fin de liste, pas de bouton « Envoyer mes résultats » (rien n’est envoyé)', async () => {
+    const { user } = monter(serveur({ niveau: 'maternelle' }), `#/jeu?t=${TOKEN}&classe=1&graine=7&nb=2`);
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
+    await user.click(screen.getByRole('button', { name: 'Commencer' }));
+    await screen.findByRole('group', { name: 'Choisir la première lettre du mot' });
+    for (let k = 0; k < 2; k++) {
+      const id = document.querySelector('.carte-jeu img').getAttribute('src').match(/images\/(.+)\.png$/)[1];
+      await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(fiches.find(f => f.id === id))}` }));
+      await user.click(screen.getByRole('button', { name: 'Suivant' }));
+    }
+    await screen.findByText(/carte\(s\) vue\(s\)/);
+    expect(screen.queryByRole('button', { name: 'Envoyer mes résultats' })).toBeNull();
+    expect(screen.getByRole('button', { name: 'Rejouer' })).toBeInTheDocument();
+  });
+
+  it('lien personnel d’un élève (tablette) : le bouton « Envoyer mes résultats » reste', async () => {
+    const { user } = monter(serveur({ niveau: 'maternelle' }));
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
+    await user.click(screen.getByRole('button', { name: 'Commencer' }));
+    await screen.findByRole('group', { name: 'Choisir la première lettre du mot' });
+    for (let k = 0; k < 2; k++) {
+      const id = document.querySelector('.carte-jeu img').getAttribute('src').match(/images\/(.+)\.png$/)[1];
+      await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(fiches.find(f => f.id === id))}` }));
+      await user.click(screen.getByRole('button', { name: 'Suivant' }));
+    }
+    expect(await screen.findByRole('button', { name: 'Envoyer mes résultats' })).toBeInTheDocument();
+  });
 });
