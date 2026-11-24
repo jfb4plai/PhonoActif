@@ -152,7 +152,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
             <svg className="etoile-grande etoile-d" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
           </p>
         )}
-        {enCours && ecartees.length > 0 && <p><span aria-hidden="true">✗ </span>Pas celle-là. Essaie encore.</p>}
+        {enCours && ecartees.length > 0 && <p><span aria-hidden="true">✗ </span>Pas celle-là. Essayer encore.</p>}
       </div>
 
       <div className="plateau choix-initiale" role="group" aria-label="Choisir la première lettre du mot">

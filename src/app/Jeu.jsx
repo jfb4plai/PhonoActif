@@ -249,7 +249,7 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
         : <p className="compteur">Carte {etat.index + 1} sur {etat.cartes.length}</p>}
       <div className="carte-jeu">
         {imageAbsente
-          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? (epure ? '' : 'Écoute le mot, puis construis-le.') : 'Image absente'}</p>)
+          ? (modeAvec ? <p className="image-absente mot-affiche">{carte.mot}</p> : <p className="image-absente">{sansImage || imageCachee ? (epure ? '' : 'Écouter le mot, puis le construire.') : 'Image absente'}</p>)
           : <img src={urlImage} alt={modeAvec ? carte.mot : 'Image du mot à écrire'}
               onError={() => { setImagesAbsentes(m => ({ ...m, [carte.id]: true })); onSignalement('image', carte.id); }} />}
         {epure && <Commande parle={parle} icone="hautparleur" texte="Écouter" epure className={`principal ecouter-image${g('ecouter')}`} onClick={ecouter} />}
@@ -295,9 +295,9 @@ export default function Jeu({ pack, tache, code, stockage, deps, base = '/', onF
 
       {/* Retour d'état juste sous les cases : visible sans défiler (audit 2026-11-21). */}
       <div className="retour" aria-live="polite">
-        {message && message.type === 'incomplet' && <p>Pose tous les cubes avant de vérifier.</p>}
+        {message && message.type === 'incomplet' && <p>Poser tous les cubes avant de vérifier.</p>}
         {message && message.type === 'juste' && <p className="bravo"><span aria-hidden="true">✓ </span>Bravo !</p>}
-        {message && message.type === 'faux' && <p><span aria-hidden="true">✗ </span>Pas tout à fait. Essaie encore.</p>}
+        {message && message.type === 'faux' && <p><span aria-hidden="true">✗ </span>Pas tout à fait. Essayer encore.</p>}
         {etat.statut === 'revelation' && <p>Voici le mot : <strong>{carte.mot}</strong></p>}
         {etat.indice && enCours && <p>Commencer par : <strong>{etat.indice.g}</strong></p>}
       </div>
