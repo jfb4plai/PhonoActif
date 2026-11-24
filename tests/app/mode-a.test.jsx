@@ -439,3 +439,16 @@ describe('Mesure d’usage de « Voir l’image » (2026-11-23)', () => {
   });
 });
 
+
+describe('Mode A : réglage « casse » (majuscules en maternelle)', () => {
+  it('casse=majuscules : la classe jeu-maj est posée ; sans le réglage, elle est absente', async () => {
+    const a = monter(MANIFEST, '&casse=majuscules');
+    await commencer(a.user);
+    expect(document.querySelector('main.jeu').className).toContain('jeu-maj');
+  });
+  it('sans casse : pas de classe jeu-maj', async () => {
+    const a = monter();
+    await commencer(a.user);
+    expect(document.querySelector('main.jeu').className).not.toContain('jeu-maj');
+  });
+});

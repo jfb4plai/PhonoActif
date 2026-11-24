@@ -28,6 +28,7 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .plateau { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; min-height: 72px; }
 
 .cube { min-width: 72px; height: 72px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: bold; border: var(--bord-cube); border-radius: var(--rayon-cube); box-shadow: var(--ombre-cube); color: var(--texte-cube); cursor: pointer; }
+.jeu-maj .cube, .jeu-maj .mot-affiche, .jeu-maj strong { text-transform: uppercase; } /* réglage « casse=majuscules » : affichage seulement */
 .cube.v { background: var(--v); }
 .cube.c { background: var(--c); }
 .cube.m { background: var(--m); }

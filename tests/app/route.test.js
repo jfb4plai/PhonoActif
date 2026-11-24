@@ -143,3 +143,11 @@ test('consignes : « voix » et « non » lus et écrits, absent = automatique, 
   assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', consignes: 'voix' }).includes('consignes=voix'));
   assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p' }).includes('consignes'));
 });
+
+test('casse : « majuscules » lue et écrite, « minuscules » = défaut absent de l\'adresse, valeur inconnue ignorée', () => {
+  assert.equal(lireAdresse('#/jeu?pack=p&casse=majuscules').tache.casse, 'majuscules');
+  assert.equal(lireAdresse('#/jeu?pack=p&casse=minuscules').tache.casse, 'minuscules');
+  assert.equal(lireAdresse('#/jeu?pack=p&casse=zzz').tache.casse, undefined);
+  assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', casse: 'majuscules' }).includes('casse=majuscules'));
+  assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', casse: 'minuscules' }).includes('casse='));
+});
