@@ -26,6 +26,21 @@ export default function ChoixNiveau({ niveau, onChoisir, nom = 'niveau', idPrefi
   return <ChoixTuiles options={NIVEAUX} valeur={niveau} onChoisir={onChoisir} nom={nom} idPrefixe={idPrefixe} libelle="Niveau" />;
 }
 
+// Plusieurs choix possibles (vraies cases à cocher) : options = [[valeur, titre, texte]], valeurs = { valeur: booléen }.
+export function CasesTuiles({ options, valeurs, onBasculer, idPrefixe, libelle }) {
+  return (
+    <div className="choix-niveau" role="group" aria-label={libelle}>
+      {options.map(([id, titre, texte]) => (
+        <label key={id} htmlFor={`${idPrefixe}-${id}`} className={`tuile-niveau${valeurs[id] ? ' choisie' : ''}`}>
+          <input id={`${idPrefixe}-${id}`} type="checkbox" checked={!!valeurs[id]} onChange={() => onBasculer(id)} />
+          <span className="tuile-case" aria-hidden="true">{valeurs[id] ? '✓' : ''}</span>
+          <span className="tuile-texte"><strong>{titre}</strong><span>{texte}</span></span>
+        </label>
+      ))}
+    </div>
+  );
+}
+
 // Maternelle : toute la classe devant un seul écran (TBI, sans code) ou chaque élève sur son appareil, avec son code.
 const QUI = [
   ['classe', 'Toute la classe, au tableau (TBI)', 'Un seul écran, pas de code : un élève vient choisir la lettre, les autres répondent sur leur feuille.'],

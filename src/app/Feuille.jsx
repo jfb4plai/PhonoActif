@@ -5,6 +5,8 @@ import { cartesInitiale } from './Initiale.jsx';
 import { serieInitiale } from '../core/serieInitiale.js';
 import { urlFichier } from './urlFichier.js';
 import { ecrireAdresse } from './route.js';
+import { chargerTache } from '../sync/envoi.js';
+import { configurationSupabase } from '../lib/supabase.js';
 
 /* Feuille à imprimer de l'exercice « première lettre » (maternelle) : pour chaque mot, l'image et trois lettres à entourer.
    Même série que l'écran du TBI quand le lien porte la même graine : les élèves répondent sur papier pendant qu'un élève répond au tableau (JF 2026-11-24).
@@ -20,12 +22,23 @@ export default function Feuille({ base = '/', deps = {}, tache = {} }) {
     const chercher = deps.fetch || globalThis.fetch;
     (async () => {
       try {
-        if (!tache.pack) throw new Error('Aucune liste choisie : revenir au lien rapide et choisir « Maternelle : la première lettre ».');
-        const r = await chercher(`${String(base).replace(/\/+$/, '')}/mots/modeles.json`);
-        const modeles = r && r.ok ? await r.json() : [];
-        const modele = Array.isArray(modeles) ? modeles.find(m => m.id === tache.pack && Array.isArray(m.mots)) : null;
-        if (!modele) throw new Error('Cette liste de mots n’existe pas.');
-        const { pack } = await chargerMots(modele.mots, { base, fetch: chercher });
+        let mots;
+        if (tache.jeton) {
+          // Tâche enregistrée par l'enseignant : les mots sont lus dans la tâche (même appel que le jeu élève).
+          const config = deps.supabase !== undefined ? deps.supabase : configurationSupabase(import.meta.env);
+          if (!config) throw new Error('Le service n’est pas disponible pour le moment : réessayer plus tard.');
+          const t = await chargerTache(tache.jeton, config).catch(e => { throw new Error(e.message === 'tâche inconnue' ? 'Cette tâche n’existe pas ou a été révoquée.' : 'Impossible de lire la tâche pour le moment : réessayer plus tard.'); });
+          mots = t.mots;
+          if (!mots || mots.length === 0) throw new Error('Cette tâche ne contient aucun mot.');
+        } else {
+          if (!tache.pack) throw new Error('Aucune liste choisie : revenir au lien rapide et choisir « Maternelle : la première lettre ».');
+          const r = await chercher(`${String(base).replace(/\/+$/, '')}/mots/modeles.json`);
+          const modeles = r && r.ok ? await r.json() : [];
+          const modele = Array.isArray(modeles) ? modeles.find(m => m.id === tache.pack && Array.isArray(m.mots)) : null;
+          if (!modele) throw new Error('Cette liste de mots n’existe pas.');
+          mots = modele.mots;
+        }
+        const { pack } = await chargerMots(mots, { base, fetch: chercher });
         const serie = serieInitiale(cartesInitiale(pack), graine, nb);
         if (serie.length === 0) throw new Error('Aucun mot de cette liste ne commence par une voyelle avec une image.');
         if (actif) setEtat({ statut: 'pret', pack, serie });
@@ -36,13 +49,14 @@ export default function Feuille({ base = '/', deps = {}, tache = {} }) {
 
   // Liens de retour et de bascule vers le corrigé : mêmes réglages, autre page.
   const query = ecrireAdresse('', 'jeu', { ...tache, jeton: undefined }).split('#/jeu?')[1] || '';
-  const versLien = `#/lien?${query}`;
-  const versFeuille = c => `#/feuille?${query}${c ? '&corrige=1' : ''}`;
+  // Tâche enregistrée : retour aux tâches de la classe (espace enseignant) ; sinon retour au lien rapide.
+  const versLien = tache.jeton ? '#/enseignant' : `#/lien?${query}`;
+  const versFeuille = c => (tache.jeton ? ecrireAdresse('', 'feuille', { ...tache, corrige: !!c }).slice(1) : `#/feuille?${query}${c ? '&corrige=1' : ''}`);
 
   return (
     <main className={`feuille${corrige ? ' feuille-corrige' : ''}`}>
       <div className="feuille-ecran">
-        <a href={versLien}>← Retour au lien rapide</a>
+        <a href={versLien}>{tache.jeton ? '← Retour à l’espace enseignant' : '← Retour au lien rapide'}</a>
         <button type="button" className="plai-btn" onClick={() => window.print()} disabled={etat.statut !== 'pret'}>Imprimer cette page</button>
         <a href={versFeuille(!corrige)}>{corrige ? 'Voir la feuille des élèves' : 'Voir le corrigé (enseignant)'}</a>
         <p className="aide">{corrige ? 'Corrigé : à garder, ne pas distribuer.' : 'Feuille des élèves : imprimer en noir et blanc suffit. Pour la même série au tableau, ouvrir le lien du TBI avec la même graine (c’est le cas depuis le lien rapide).'}</p>

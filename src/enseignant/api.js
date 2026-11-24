@@ -114,11 +114,33 @@ export async function creerTache(client, classId, tache, userId, base) {
     nb_intrus: tache.nbIntrus, exiger_accents: tache.exigerAccents, syllabes: tache.syllabes || 'toujours',
     vitesse: tache.vitesse || 100, vitesse_verrou: !!tache.vitesseVerrou, consignes: ['voix', 'non'].includes(tache.consignes) ? tache.consignes : 'auto', created_by: userId,
     ...(tache.niveau === 'maternelle' ? { niveau: 'maternelle' } : {}), // primaire = valeur par défaut du serveur : rien n'est envoyé, donc rien ne casse avant la migration du niveau
+    ...(tache.niveau === 'maternelle' && Number.isInteger(tache.graine) ? { serie_graine: tache.graine, serie_nb: Number.isInteger(tache.nb) ? tache.nb : 8 } : {}), // série du TBI et de la feuille (migration 20261124010000)
     ...(parListes ? { mots, listes_noms: couper(noms, 300) } : {})
   }).select('id').single();
-  if (r.error && /niveau/.test(String(r.error.message || ''))) throw new Error('Le niveau maternelle n’est pas encore activé sur le serveur : prévenir l’administrateur.');
+  if (r.error && /niveau|serie_/.test(String(r.error.message || ''))) throw new Error('Le niveau maternelle n’est pas encore activé sur le serveur : prévenir l’administrateur.');
   verifier(r);
-  return { id: r.data.id, jeton, lien: lienDeTache(base, jeton) };
+  return { id: r.data.id, jeton, lien: lienDeTache(base, jeton), serieGraine: tache.graine, serieNb: tache.nb };
+}
+
+// Série de mots d'une tâche de maternelle : graine (même série partout) et nombre de mots. Tirage au hasard, jamais choisi par l'IA.
+export const nouvelleGraine = () => Math.floor(Math.random() * 90000000) + 1;
+export const NB_SERIE_DEFAUT = 8;
+
+// Liens d'une tâche de maternelle enregistrée : tableau (TBI), feuille des élèves, corrigé. Mêmes mots, même ordre, mêmes lettres (même graine).
+export function liensSerie(base, t) {
+  if (t.niveau !== 'maternelle' || !Number.isInteger(t.serieGraine)) return null;
+  const nb = Number.isInteger(t.serieNb) ? t.serieNb : NB_SERIE_DEFAUT;
+  const c = { jeton: t.jeton, graine: t.serieGraine, nb };
+  return {
+    tbi: ecrireAdresse(base, 'jeu', { ...c, classe: true }),
+    feuille: ecrireAdresse(base, 'feuille', c),
+    corrige: ecrireAdresse(base, 'feuille', { ...c, corrige: true })
+  };
+}
+
+// Nouvelle série (autres mots, autre ordre) pour une tâche enregistrée : les anciens liens du tableau et de la feuille montrent alors l'ancienne série.
+export async function changerSerie(client, id, graine) {
+  verifier(await client.from('phono_tasks').update({ serie_graine: graine }).eq('id', id));
 }
 
 export async function listerTaches(client, classId, base) {
@@ -127,12 +149,12 @@ export async function listerTaches(client, classId, base) {
   verifier(r);
   return [...r.data].sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map(t => ({
     id: t.id, jeton: t.token, pack: t.pack, modeMot: t.mode_mot, habillage: t.habillage, nbIntrus: t.nb_intrus,
-    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, consignes: t.consignes || 'auto', niveau: t.niveau === 'maternelle' ? 'maternelle' : 'primaire', mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
+    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, consignes: t.consignes || 'auto', niveau: t.niveau === 'maternelle' ? 'maternelle' : 'primaire', serieGraine: Number.isInteger(t.serie_graine) ? t.serie_graine : null, serieNb: Number.isInteger(t.serie_nb) ? t.serie_nb : null, mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
   }));
 }
 
 export const resumeTache = t => (t.niveau === 'maternelle'
-  ? ['maternelle : première lettre', 'majuscules', ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : [])]
+  ? ['maternelle : première lettre', 'majuscules', ...(Number.isInteger(t.serieNb) ? [`série de ${t.serieNb} mots`] : []), ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : [])]
   : [
     t.habillage,
     t.modeMot === 'avec' ? 'avec le mot' : 'sans le mot',

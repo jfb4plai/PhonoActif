@@ -13,8 +13,8 @@ export const REGLAGES_DU_NIVEAU = {
 const MASQUEES_MATERNELLE = new Set(['mode', 'habillage', 'intrus', 'accents', 'blocs', 'muet', 'syllabes', 'commandes', 'consignes']);
 
 export const niveauDe = tache => (tache && tache.niveau === 'maternelle' ? 'maternelle' : 'primaire');
-// Mode classe : seulement en maternelle, et jamais pour une tâche enregistrée (elle a des élèves et des codes).
-export const modeClasse = tache => niveauDe(tache) === 'maternelle' && tache.classe === true && !tache.jeton;
+// Mode classe : seulement en maternelle, et jamais avec un lien personnel d'élève (code + clé). Une tâche enregistrée peut avoir un lien « tableau » (jeton + classe=1) : mêmes mots, sans code, rien n'est envoyé.
+export const modeClasse = tache => niveauDe(tache) === 'maternelle' && tache.classe === true && !tache.cle && !tache.codeEleve;
 export const CODE_CLASSE = 'CLASSE';
 export const optionVisible = (tache, option) => !(niveauDe(tache) === 'maternelle' && MASQUEES_MATERNELLE.has(option));
 

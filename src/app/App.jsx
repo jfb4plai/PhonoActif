@@ -121,7 +121,7 @@ function AppEleve({ deps, hash, partie }) {
         if (!actif) return;
         // Tâche de maternelle : les valeurs de départ du niveau (majuscules, commandes épurées) s'appliquent après celles du serveur.
         setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou, mots: t.mots, consignes: t.consignes,
-          ...(t.niveau === 'maternelle' ? { ...REGLAGES_DU_NIVEAU.maternelle, classe: false, niveau: 'maternelle' } : {}) })); // tâche enregistrée : des élèves et des codes, jamais le mode classe
+          ...(t.niveau === 'maternelle' ? { ...REGLAGES_DU_NIVEAU.maternelle, classe: !!(adresse.tache && adresse.tache.classe === true && !adresse.tache.cle && !adresse.tache.codeEleve), niveau: 'maternelle' } : {}) })); // tâche enregistrée : codes d'élèves, sauf lien « tableau » (classe=1 explicite, sans code personnel)
         setEtatTache('ok');
       })
       .catch(e => { if (actif) setEtatTache(e.message === 'tâche inconnue' ? 'inconnue' : e.message === 'réseau' ? 'reseau' : 'hors_service'); });

@@ -15,7 +15,7 @@ const PERSO = `#/jeu?t=${TOKEN}&e=E07&k=${'0123456789abcdef0123'}`;
 const reponse = (status, corps) => ({ ok: status < 400, status, json: async () => corps });
 const graine = (g = 1) => () => (g = (g * 16807) % 2147483647) / 2147483647;
 
-function monter(tacheServeur) {
+function monter(tacheServeur, hash = PERSO) {
   const envois = [];
   const supabase = { url: 'https://x.supabase.co', anonKey: 'cle', fetch: vi.fn(async (url, opts) => {
     if (url.endsWith('/phono_lire_tache')) return reponse(200, tacheServeur);
@@ -24,7 +24,7 @@ function monter(tacheServeur) {
   const stockage = stockageMemoire();
   const jouerFichier = vi.fn(async () => ({ manquants: [] }));
   const deps = { fetch: async url => (url.endsWith('/mots/fiches.json') ? reponse(200, fiches) : reponse(404, null)), stockage, supabase, stockageEnvoyes: stockageEnvoyes({ storage: undefined }),
-    jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier, rng: graine(3), maintenant: () => '2026-11-24T10:00:00.000Z', hash: PERSO, base: '/' };
+    jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier, rng: graine(3), maintenant: () => '2026-11-24T10:00:00.000Z', hash, base: '/' };
   return { user: userEvent.setup(), stockage, envois, jouerFichier, ...render(<App deps={deps} />) };
 }
 const serveur = plus => ({ pack: 'Liste', mode_mot: 'sans', habillage: 'sobre', nb_intrus: 3, exiger_accents: true, syllabes: 'toujours', vitesse: 100, vitesse_verrou: false, mots: ['ami', 'ile', 'chat', 'ours'], ...plus });
@@ -50,5 +50,32 @@ describe('tâche enregistrée de maternelle (côté élève)', () => {
     await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
     await userEvent.click(screen.getByRole('button', { name: 'Commencer' }));
     expect(await screen.findByRole('group', { name: 'Mot à construire' })).toBeInTheDocument();
+  });
+
+  it('lien « tableau » d’une tâche enregistrée (classe=1 + série) : pas de code, mots de la tâche, rien n’est envoyé au serveur', async () => {
+    const { user, stockage, envois } = monter(serveur({ niveau: 'maternelle' }), `#/jeu?t=${TOKEN}&classe=1&graine=7&nb=2`);
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled()); // sans code
+    expect(screen.queryByLabelText(/Code/)).toBeNull();
+    await user.click(screen.getByRole('button', { name: 'Commencer' }));
+    await screen.findByRole('group', { name: 'Choisir la première lettre du mot' });
+    expect(document.querySelector('main.jeu').className).toContain('jeu-classe');
+    const id = document.querySelector('.carte-jeu img').getAttribute('src').match(/images\/(.+)\.png$/)[1];
+    await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(fiches.find(f => f.id === id))}` }));
+    const [essai] = stockage.lire();
+    expect(essai).toMatchObject({ code: 'CLASSE', jeton: null, juste: true });
+    expect(essai.cle).toBeUndefined();
+    expect(envois).toHaveLength(0);
+  });
+
+  it('lien sans classe=1 (lien général d’une tâche) : le code reste demandé', async () => {
+    monter(serveur({ niveau: 'maternelle' }), `#/jeu?t=${TOKEN}`);
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeDisabled());
+  });
+
+  it('feuille d’une tâche enregistrée : les mots sont lus dans la tâche, même série que le tableau', async () => {
+    monter(serveur({ niveau: 'maternelle' }), `#/feuille?t=${TOKEN}&graine=7&nb=2`);
+    const items = await screen.findAllByRole('listitem');
+    expect(items).toHaveLength(2); // ami et île : seuls mots de la tâche utilisables
+    expect(screen.getByText(/Retour à l’espace enseignant/)).toBeInTheDocument();
   });
 });

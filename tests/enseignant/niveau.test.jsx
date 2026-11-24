@@ -58,10 +58,51 @@ describe('niveau dans les tâches (espace enseignant)', () => {
     expect(screen.getByLabelText('Vitesse de la voix')).toBeInTheDocument();
     await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
     expect(screen.getAllByText(/maternelle : première lettre/).length).toBeGreaterThan(0);
-    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche' })); // tableau + feuille par défaut : pas de liens d'élèves
     await waitFor(() => expect(client.tables.phono_tasks).toHaveLength(1));
     expect(client.tables.phono_tasks[0].niveau).toBe('maternelle');
     expect(client.tables.phono_tasks[0].mots).toEqual(['ami', 'ile']);
+  });
+
+  it('maternelle : façon de répondre (tableau + feuille par défaut), série enregistrée, liens du tableau et de la feuille dans la liste, nouvelle série', async () => {
+    const client = await ouvrirAssistant();
+    await userEvent.click(await screen.findByRole('radio', { name: /Maternelle/ }));
+    await userEvent.click(await screen.findByLabelText(/Pack maternelle d’essai/));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    expect(screen.getByRole('checkbox', { name: /Au tableau \(TBI\)/ })).toBeChecked();
+    expect(screen.getByRole('checkbox', { name: /feuille à imprimer/ })).toBeChecked();
+    expect(screen.getByRole('checkbox', { name: /Sur tablette/ })).not.toBeChecked();
+    await userEvent.selectOptions(screen.getByLabelText('Nombre de mots de la série'), '6');
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche' }));
+    await waitFor(() => expect(client.tables.phono_tasks).toHaveLength(1));
+    const ligne = client.tables.phono_tasks[0];
+    expect(Number.isInteger(ligne.serie_graine)).toBe(true);
+    expect(ligne.serie_nb).toBe(6);
+    const tbi = await screen.findByRole('link', { name: 'Ouvrir au tableau (TBI)' });
+    expect(tbi.getAttribute('href')).toBe(`https://x.test/#/jeu?t=${ligne.token}&classe=1&graine=${ligne.serie_graine}&nb=6`);
+    expect(screen.getByRole('link', { name: 'Imprimer la feuille' }).getAttribute('href')).toBe(`https://x.test/#/feuille?t=${ligne.token}&graine=${ligne.serie_graine}&nb=6`);
+    expect(screen.getByRole('link', { name: 'Voir le corrigé' }).getAttribute('href')).toMatch(/corrige=1$/);
+    const avant = ligne.serie_graine;
+    vi.spyOn(window, 'confirm').mockReturnValue(true);
+    await userEvent.click(screen.getByRole('button', { name: 'Nouvelle série' }));
+    await waitFor(() => expect(client.tables.phono_tasks[0].serie_graine).not.toBe(avant));
+  });
+
+  it('maternelle : au moins une façon de répondre ; avec tablette, les liens des élèves sont créés comme avant', async () => {
+    const client = await ouvrirAssistant();
+    await userEvent.click(await screen.findByRole('radio', { name: /Maternelle/ }));
+    await userEvent.click(await screen.findByLabelText(/Pack maternelle d’essai/));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('checkbox', { name: /Au tableau \(TBI\)/ }));
+    await userEvent.click(screen.getByRole('checkbox', { name: /feuille à imprimer/ }));
+    expect(screen.getByRole('alert')).toHaveTextContent(/Cocher au moins une façon de répondre/);
+    expect(screen.getByRole('button', { name: 'Suivant →' })).toBeDisabled();
+    await userEvent.click(screen.getByRole('checkbox', { name: /Sur tablette/ }));
+    await userEvent.click(screen.getByRole('button', { name: 'Suivant →' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Créer la tâche et les liens des élèves' }));
+    await waitFor(() => expect(client.tables.phono_tasks).toHaveLength(1));
+    expect(await screen.findByRole('heading', { name: /Liens et QR-codes des élèves/ })).toBeInTheDocument();
   });
 
   it('primaire : le niveau n’est pas envoyé au serveur (la migration du niveau n’est pas nécessaire)', async () => {

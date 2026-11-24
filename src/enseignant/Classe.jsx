@@ -5,13 +5,21 @@ import { lettreInitiale } from '../core/voyellesInitiale.js';
 import { fusionnerListes, validerTache, TACHE_MAX } from '../core/liste.js';
 import { listerListes, supprimerListe, dupliquerListe } from './listes.js';
 import ListeEditeur from './ListeEditeur.jsx';
-import ChoixNiveau from '../app/ChoixNiveau.jsx';
+import ChoixNiveau, { CasesTuiles } from '../app/ChoixNiveau.jsx';
 import { libelleLiaison, syntheseClasse, SYMBOLES, NOMS_ETATS } from './liaison.js';
 import {
-  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
+  decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve,
+  nouvelleGraine, NB_SERIE_DEFAUT, liensSerie, changerSerie
 } from './api.js';
 
 const ETAPES = [[1, 'Les mots'], [2, 'Les réglages'], [3, 'Créer']];
+// Maternelle : comment les enfants répondent. Départ : tableau + feuille (la plupart des classes de maternelle n'ont pas de tablettes individuelles, JF 2026-11-24).
+const MODES_DEPART = { tbi: true, feuille: true, tablette: false };
+const MODES = [
+  ['tbi', 'Au tableau (TBI)', 'Un lien commun, sans code : un enfant vient choisir la lettre, les autres répondent sur leur feuille.'],
+  ['feuille', 'Sur une feuille à imprimer', 'Image et trois lettres à entourer, avec un corrigé pour vous. Même série de mots que le tableau.'],
+  ['tablette', 'Sur tablette, un lien par élève', 'Chaque enfant a son code et son QR-code ; ses résultats arrivent dans le tableau « Résultats ».']
+];
 const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou, consignes: 'auto', niveau: 'primaire' };
 
 export default function Classe({ client, userId, classe, base, catalogue = [], modeles = [], jouer, onRetour, onSupprimer }) {
@@ -85,13 +93,30 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   const nbRetires = motsDemandes.length - motsTache.length;
   const nomsTache = sources.map(x => x.nom).join(' + ');
   const erreurTache = motsTache.length > 0 ? validerTache(motsTache).erreurs[0] : (niveau === 'maternelle' && motsDemandes.length > 0 ? 'Aucun de ces mots ne commence par une voyelle (a, é, i, o, u) avec une image : choisir une liste de maternelle.' : '');
-  const changerNiveau = n => { setTache({ ...PAS_DE_TACHE, ...REGLAGES_DU_NIVEAU[n], niveau: n }); setChoix([]); };
+  const changerNiveau = n => { setTache({ ...PAS_DE_TACHE, ...REGLAGES_DU_NIVEAU[n], niveau: n, ...(n === 'maternelle' ? { modes: { ...MODES_DEPART } } : {}) }); setChoix([]); };
+  const modes = tache.modes || MODES_DEPART;
+  const basculerMode = id => setTache(t => ({ ...t, modes: { ...(t.modes || MODES_DEPART), [id]: !(t.modes || MODES_DEPART)[id] } }));
+  const aucunMode = niveau === 'maternelle' && !modes.tbi && !modes.feuille && !modes.tablette;
   const basculerChoix = cle => setChoix(c => (c.includes(cle) ? c.filter(x => x !== cle) : [...c, cle]));
   const creer = () => agir(async () => {
-    const t = await creerTache(client, classe.id, { ...tache, mots: motsTache, listesNoms: nomsTache }, userId, base);
+    const maternelle = niveau === 'maternelle';
+    const serie = maternelle ? { graine: nouvelleGraine(), nb: Number.isInteger(tache.nb) ? tache.nb : NB_SERIE_DEFAUT } : {};
+    const t = await creerTache(client, classe.id, { ...tache, ...serie, mots: motsTache, listesNoms: nomsTache }, userId, base);
     await rechargerTaches();
-    await ouvrirPerso({ ...t, pack: nomsTache, resume: resumeTache(tache) });   // les liens des élèves s'affichent tout de suite, seuls
+    if (maternelle && !modes.tablette) {
+      // Tableau et/ou feuille seulement : pas de liens d'élèves ; les liens de la série sont dans la liste des tâches.
+      setEtape(0);
+      setMessage('Tâche créée. Les liens du tableau et de la feuille à imprimer sont dans la liste ci-dessous.');
+      return;
+    }
+    await ouvrirPerso({ ...t, pack: nomsTache, resume: resumeTache({ ...tache, serieNb: serie.nb }) });   // les liens des élèves s'affichent tout de suite, seuls
     setEtape(0);
+  });
+  const renouvelerSerie = t => agir(async () => {
+    if (!window.confirm('Nouvelle série : autres mots, autre ordre. Les anciens liens du tableau et de la feuille montreront l’ancienne série : imprimer de nouveau la feuille. Continuer ?')) return;
+    await changerSerie(client, t.id, nouvelleGraine());
+    await rechargerTaches();
+    setMessage('Nouvelle série enregistrée. Utiliser les liens affichés maintenant.');
   });
   const ouvrirAssistant = () => { setMessage(''); setChoix([]); setTache({ ...PAS_DE_TACHE }); setEditeur(null); setEtape(1); };
   const quitterAssistant = () => { setEditeur(null); setEtape(0); };
@@ -282,7 +307,20 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
             <h3>Comment les élèves vont-ils jouer ? <span className="ens-badge facultatif">facultatif</span></h3>
             <p className="ens-rassure">Les réglages sont déjà bien choisis pour la plupart des classes. Vous pouvez passer directement à l’étape suivante.</p>
             {niveau === 'maternelle' ? (<>
-            <p className="ens-rassure">Niveau maternelle : l’application règle seule les lettres en majuscules, les commandes épurées et les trois voyelles proposées. Il ne reste que la voix.</p>
+            <p className="ens-rassure">Niveau maternelle : l’application règle seule les lettres en majuscules, les commandes épurées et les trois voyelles proposées. Il reste la façon de répondre, le nombre de mots et la voix.</p>
+              <fieldset className="ens-niveau">
+                <legend>Comment les enfants répondent-ils ? <span className="ens-badge">au moins un choix</span></legend>
+                <CasesTuiles options={MODES} valeurs={modes} onBasculer={basculerMode} idPrefixe="ens-mode-rep" libelle="Façon de répondre" />
+                <p className="aide">On peut en cocher plusieurs. Tableau et feuille partagent la même série de mots (mêmes mots, même ordre, mêmes lettres) : les enfants entourent sur leur feuille pendant qu’un enfant répond au tableau, puis on corrige ensemble. Sans tablette, rien d’autre n’est à préparer : ni code, ni QR-code.</p>
+                {aucunMode && <p role="alert" className="ens-message">Cocher au moins une façon de répondre.</p>}
+              </fieldset>
+              {(modes.tbi || modes.feuille) && (<>
+                <label htmlFor="ens-nbmots">Nombre de mots de la série</label>
+                <select id="ens-nbmots" value={Number.isInteger(tache.nb) ? tache.nb : NB_SERIE_DEFAUT} onChange={e => setTache(t => ({ ...t, nb: Number(e.target.value) }))}>
+                  {[4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20].map(n => <option key={n} value={n}>{n}</option>)}
+                </select>
+                <p className="aide">Une feuille A4 reçoit 8 mots (mise en page calculée, à vérifier à l’impression) ; au-delà, elle passe sur plusieurs pages. Si la liste a moins de mots utilisables, la série est plus courte.</p>
+              </>)}
               <label htmlFor="ens-vitesse">Vitesse de la voix</label>
               <select id="ens-vitesse" value={tache.vitesse} onChange={e => setTache(t => ({ ...t, vitesse: Number(e.target.value) }))}>
                 <option value={100}>Normale (100 %)</option>
@@ -344,16 +382,18 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
             <dl className="ens-recap">
               <dt>Mots</dt><dd>{nomsTache} : {motsTache.length} mot{motsTache.length > 1 ? 's' : ''}</dd>
               <dt>Réglages</dt><dd>{resumeTache(tache)}</dd>
+            {niveau === 'maternelle' && <><dt>Réponses</dt><dd>{MODES.filter(([id]) => modes[id]).map(([, titre]) => titre).join(' · ')}{(modes.tbi || modes.feuille) ? ` · série de ${Number.isInteger(tache.nb) ? tache.nb : NB_SERIE_DEFAUT} mots` : ''}</dd></>}
             </dl>
-            <p className="aide">Un lien et un QR-code personnels seront créés pour chaque élève de la classe. Ils s’afficheront juste après, prêts à imprimer.</p>
-            {lignes.length === 0 && <p role="alert" className="ens-message">La classe n’a pas encore de code d’élève : aucun lien personnel ne sera créé. Créez d’abord les codes dans l’onglet « Élèves et codes ».</p>}
+            {(niveau !== 'maternelle' || modes.tablette) && <p className="aide">Un lien et un QR-code personnels seront créés pour chaque élève de la classe. Ils s’afficheront juste après, prêts à imprimer.</p>}
+            {niveau === 'maternelle' && !modes.tablette && <p className="aide">Aucun code d’élève n’est nécessaire. Les liens du tableau et de la feuille s’afficheront dans la liste des tâches ; la série y est retrouvable et renouvelable.</p>}
+            {(niveau !== 'maternelle' || modes.tablette) && lignes.length === 0 && <p role="alert" className="ens-message">La classe n’a pas encore de code d’élève : aucun lien personnel ne sera créé. Créez d’abord les codes dans l’onglet « Élèves et codes ».</p>}
           </>)}
 
           <div className="ens-navigation">
             {etape === 1 && !editeur && <span className="ens-etat" role="status">{motsTache.length === 0 ? 'Cochez au moins une liste pour continuer.' : `${motsTache.length} mot${motsTache.length > 1 ? 's' : ''} choisi${motsTache.length > 1 ? 's' : ''}.`}</span>}
             {etape > 1 && !editeur && <button type="button" onClick={() => setEtape(etape - 1)}>← Retour</button>}
-            {etape < 3 && !editeur && <button type="button" className="principal" disabled={motsTache.length === 0 || !!erreurTache} onClick={() => setEtape(etape + 1)}>Suivant →</button>}
-            {etape === 3 && <button type="button" className="principal" onClick={creer} disabled={motsTache.length === 0 || !!erreurTache}>Créer la tâche et les liens des élèves</button>}
+            {etape < 3 && !editeur && <button type="button" className="principal" disabled={motsTache.length === 0 || !!erreurTache || (etape === 2 && aucunMode)} onClick={() => setEtape(etape + 1)}>Suivant →</button>}
+            {etape === 3 && <button type="button" className="principal" onClick={creer} disabled={motsTache.length === 0 || !!erreurTache || aucunMode}>{niveau === 'maternelle' && !modes.tablette ? 'Créer la tâche' : 'Créer la tâche et les liens des élèves'}</button>}
           </div>
         </div>
       ) : (
@@ -369,7 +409,17 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
                   <strong>{t.listesNoms || t.pack}</strong>{t.creee ? ` · ${t.creee.slice(0, 10)}` : ''}{t.revoked ? ' · révoquée' : ''}
                   <br /><span className="aide">{resumeTache(t)}</span>
                   <br />
-                  {!t.revoked && <button type="button" className="principal" onClick={() => ouvrirDepuisListe(t)}>Liens et QR-codes personnels</button>}
+                  {!t.revoked && liensSerie(base, t) && (
+                    <span className="ens-serie">
+                      <a className="plai-btn" href={liensSerie(base, t).tbi}>Ouvrir au tableau (TBI)</a>
+                      <a className="plai-btn" href={liensSerie(base, t).feuille}>Imprimer la feuille</a>
+                      <a href={liensSerie(base, t).corrige}>Voir le corrigé</a>
+                      <button type="button" onClick={() => renouvelerSerie(t)}>Nouvelle série</button>
+                      <span className="aide"> Série de {t.serieNb || NB_SERIE_DEFAUT} mots : le tableau et la feuille montrent les mêmes mots, dans le même ordre.</span>
+                      <br />
+                    </span>
+                  )}
+                  {!t.revoked && <button type="button" className={liensSerie(base, t) ? undefined : 'principal'} onClick={() => ouvrirDepuisListe(t)}>{liensSerie(base, t) ? 'Liens des élèves sur tablette' : 'Liens et QR-codes personnels'}</button>}
                   {!t.revoked && <button type="button" onClick={() => revoquer(t.id)}>Révoquer ce lien</button>}
                   {!t.revoked && <span className="aide"> Révoquer : les liens de cette tâche cessent de fonctionner.</span>}
                 </li>

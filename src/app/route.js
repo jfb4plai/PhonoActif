@@ -110,7 +110,11 @@ export function ecrireAdresse(base, ecran, tache, carte) {
   if (tache.casse === 'majuscules' || (tache.niveau === 'maternelle' && tache.casse === 'minuscules')) reglages.push(`casse=${tache.casse}`); // « minuscules » = défaut, absent de l'adresse sauf en maternelle (où le départ est « majuscules »)
   if (VALEURS_CONSIGNES.includes(tache.consignes)) reglages.push(`consignes=${tache.consignes}`); // absent = automatique
   if (tache.commandes === 'epure') reglages.push('commandes=epure'); // « complet » = défaut, absent de l'adresse
+  // Lien « tableau » d'une tâche de maternelle enregistrée : jeton + série, sans code d'élève (les mots viennent de la tâche).
+  if (ecran === 'jeu' && tache.jeton && tache.classe === true && !tache.codeEleve && Number.isInteger(tache.graine)) return `${racine}#/jeu?t=${e(tache.jeton)}&classe=1&graine=${tache.graine}&nb=${Number.isInteger(tache.nb) && tache.nb >= 1 ? tache.nb : 8}`;
   if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;
+  // Feuille à imprimer d'une tâche enregistrée : même série, mots lus dans la tâche.
+  if (ecran === 'feuille' && tache.jeton) return `${racine}#/feuille?t=${e(tache.jeton)}&graine=${Number.isInteger(tache.graine) ? tache.graine : 1}&nb=${Number.isInteger(tache.nb) && tache.nb >= 1 ? tache.nb : 8}${tache.corrige ? '&corrige=1' : ''}`;
   if (ecran === 'carte') return `${racine}#/carte/${e(tache.pack)}/${e(carte)}?${reglages.join('&')}`;
   return `${racine}#/jeu?${[`pack=${e(tache.pack)}`, ...reglages].join('&')}`;
 }

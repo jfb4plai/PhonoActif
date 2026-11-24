@@ -6,6 +6,7 @@ import { serieInitiale } from '../core/serieInitiale.js';
 import { etatFinal } from '../jeu/modeA.js';
 import { VALEURS_VITESSE } from './route.js';
 import { urlConsigne, consignesActives, choisirVariante } from './consignes.js';
+import { modeClasse } from './niveau.js';
 
 /* Maternelle (M1 à M3), exercice « première lettre » : l'élève voit l'image d'un mot qui commence par une voyelle et choisit cette voyelle parmi trois.
    Une fois la bonne lettre posée, il entend le son de la lettre, puis le mot entier. Pas de lecture demandée : image et voix seulement.
@@ -85,7 +86,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   const enregistrer = (pose, juste, tentative, aide) => {
     const c0 = carte.cubes[0];
     stockage.ajouter({
-      id: (deps.nouvelId || (() => globalThis.crypto.randomUUID()))(), jeton: tache.jeton || null, ...(tache.cle ? { cle: tache.cle } : {}),
+      id: (deps.nouvelId || (() => globalThis.crypto.randomUUID()))(), jeton: (!modeClasse(tache) && tache.jeton) || null, ...(tache.cle ? { cle: tache.cle } : {}),
       session, code, pack: pack.nom, carte: carte.id, mot: carte.mot, modeMot: 'sans', exercice: 'initiale',
       tentative, juste, aide: aide || 'aucune', positions: [{ liaison: `${c0.g}=${c0.son}`, pose, juste }], image: 'sans', date: maintenant()
     });
@@ -117,7 +118,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   const fete = [...String(carte.id)].reduce((n, c) => n + c.charCodeAt(0), 0) % 4; // 4 fêtes, la même pour un même mot
 
   return (
-    <main className={`jeu jeu-epure jeu-initiale${tache.classe === true && !tache.jeton ? ' jeu-classe' : ''}${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
+    <main className={`jeu jeu-epure jeu-initiale${modeClasse(tache) ? ' jeu-classe' : ''}${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
       <div className="barre-haut">
         <Bouton icone="maison" texte="Retour à l’accueil" className="discret" onClick={quitter} />
         <div className="points" role="img" aria-label={`Carte ${index + 1} sur ${cartes.length}`}>
