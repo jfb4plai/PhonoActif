@@ -101,6 +101,19 @@ describe('pages du site', () => {
   });
 });
 
+describe('mode d’emploi : maternelle', () => {
+  it('section maternelle : niveau en premier, mode classe, feuille, série commune, Bravo vocal', () => {
+    monter('#/mode-d-emploi');
+    const s = document.getElementById('maternelle');
+    expect(s.textContent).toMatch(/niveau se choisit en premier/);
+    expect(s.textContent).toMatch(/Mode classe/);
+    expect(s.textContent).toMatch(/Imprimer la feuille/);
+    expect(s.textContent).toMatch(/Même série au tableau et sur la feuille/);
+    expect(s.textContent).toMatch(/consignes=non/);
+    expect(s.textContent).not.toMatch(/\bpacks?\b/i);
+  });
+});
+
 describe('mode d’emploi : délai d’affichage des résultats', () => {
   it('l’étape « Lire les résultats » dit quand les essais arrivent dans le tableau', () => {
     monter('#/mode-d-emploi');

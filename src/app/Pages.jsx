@@ -16,6 +16,7 @@ export function ModeEmploi({ base = '/' }) {
       <main className="plai-container page">
         <h1 className="page-titre">Mode d’emploi pour l’enseignant</h1>
         <p className="page-chapo">De la création de la classe à la lecture des résultats, en sept étapes.</p>
+        <p>En maternelle (M1 à M3) : <Aller vers="maternelle">première lettre au tableau et feuille à imprimer</Aller>.</p>
         <nav aria-label="Sommaire" className="plai-card sommaire">
           <ol>
             <li><Aller vers="etape1">Se connecter</Aller></li>
@@ -89,6 +90,20 @@ export function ModeEmploi({ base = '/' }) {
           <p>Dans la classe, le tableau « Résultats » donne, par code : le nombre d’essais, la date de la dernière séance et les trois liaisons son-lettre à retravailler (celles qui échouent le plus au premier coup).</p>
           <p>Les essais d’un élève arrivent dans ce tableau après son « Envoyer mes résultats » au bilan de fin de liste, ou quand il rouvre son lien : juste après une carte jouée, le tableau peut encore afficher 0 essai. Rouvrir la classe pour actualiser.</p>
           <p>Ce tableau ne décide rien : c’est une aide à votre observation, pas un diagnostic.</p>
+        </section>
+
+        <section className="plai-section" id="maternelle">
+          <h2>Maternelle (M1 à M3) : première lettre, au tableau et sur feuille</h2>
+          <p>Le <strong>niveau se choisit en premier</strong> (grandes cases « Maternelle » et « Primaire »), à l’accueil, dans le lien rapide et à la création d’une tâche : l’application ne propose ensuite que les listes et les options qui conviennent. En maternelle, il n’y a pas de mot à construire. L’exercice est « première lettre ».</p>
+          <ul>
+            <li><strong>Ce que voit l’enfant</strong> : l’image d’un mot qui commence par une voyelle et trois grandes majuscules. Il entend le mot dès l’arrivée de l’image. Il touche la première lettre. Une mauvaise lettre se grise et dit son propre son. Après deux erreurs, il ne reste que la bonne lettre : la réponse n’est jamais donnée, l’enfant la choisit lui-même. Le mot n’est jamais écrit.</li>
+            <li><strong>Quand c’est juste</strong> : « Bravo » dit à voix haute (cinq variantes, jamais la même deux fois de suite), puis le son de la lettre, puis le mot. À l’écran : grand « Bravo ! », étoiles, confettis. Pour couper la voix du Bravo, ajouter <code>&amp;consignes=non</code> à la fin du lien.</li>
+            <li><strong>Mode classe (tableau interactif)</strong> : choisi par défaut en maternelle, parce que la plupart des classes n’ont pas de tablettes individuelles. Aucun code d’élève : l’enseignant ouvre le lien, un enfant vient répondre au tableau, rien n’est envoyé sur Internet.</li>
+            <li><strong>Feuille à imprimer</strong> : pour que tous les enfants soient actifs, pas seulement celui qui est au tableau. Dans le <a href="#/lien">lien rapide</a>, en maternelle, choisir la liste, le nombre de mots (de 4 à 20, 8 par défaut), puis « Imprimer la feuille ». Chaque mot : l’image et trois lettres à entourer, avec les lignes Prénom et Date à remplir à la main. « Voir le corrigé » montre la bonne lettre cerclée et le mot écrit.</li>
+            <li><strong>Même série au tableau et sur la feuille</strong> : le lien contient une série (mêmes mots, même ordre, mêmes trois lettres). Les enfants entourent sur leur feuille pendant que l’un répond au tableau, puis on corrige ensemble. « Nouvelle série » change les mots et leur ordre : relire alors les deux liens.</li>
+          </ul>
+          <p className="important">La feuille est prévue pour 8 mots par page A4 (calcul de mise en page, pas encore mesuré à l’impression) : avec plus de mots, elle passe sur plusieurs pages. Regarder l’aperçu avant d’imprimer.</p>
+          <p>Cet exercice n’a pas encore été essayé avec des enfants. Les mots viennent d’une liste prête ; pour une liste adaptée à votre classe, voir l’étape 4.</p>
         </section>
 
         <section className="plai-section" id="sans-compte">
