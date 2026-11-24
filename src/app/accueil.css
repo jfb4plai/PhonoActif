@@ -98,3 +98,10 @@
 .accueil-page .plai-footer a { font-weight: 700; }
 @media (prefers-reduced-motion: reduce) { .accueil-page .porte:hover, .accueil-page .porte:active { transform: none; } }
 @media print { .accueil-page .plai-nav, .accueil-page .plai-footer { display: none; } }
+
+/* Blocs repliables du mode d'emploi : la flèche noire est le marqueur natif de <summary>. */
+.accueil-page .bloc > summary { cursor: pointer; padding: 4px 0; min-height: 44px; display: list-item; }
+.accueil-page .bloc > summary h2 { display: inline; margin: 0; }
+.accueil-page .bloc > summary::marker { color: var(--encre); font-size: 1.2em; }
+.accueil-page .bloc[open] > summary { margin-bottom: 10px; }
+.accueil-page .bloc-outils { margin: 10px 0; }
