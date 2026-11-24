@@ -100,6 +100,24 @@ export default function Accueil({
           <section className="plai-section" aria-label="Réglages du lien">
             <h2>Réglages</h2>
             {bandeauPack}
+            {niveau === 'maternelle' && (
+              <fieldset className="plai-field serie-maternelle">
+                <legend className="plai-label">Série de mots et feuille à imprimer</legend>
+                <label className="plai-label" htmlFor="nb">Nombre de mots</label>
+                <select id="nb" className="plai-input" value={tache.nb || 8} onChange={e => onTache({ nb: Number(e.target.value) })}>
+                  {[4, 6, 8, 10, 12, 16, 20].map(n => <option key={n} value={n}>{n} mots</option>)}
+                </select>
+                <p className="aide">Combien de mots dans la séance. Le tableau et la feuille à imprimer montrent les mêmes mots, dans le même ordre, avec les mêmes trois lettres : les élèves entourent sur la feuille pendant qu’un élève répond au tableau.</p>
+                <div className="actions">
+                  <button type="button" className="plai-btn-ghost" onClick={() => onTache({ graine: Math.floor(Math.random() * 1e6) })}>Nouvelle série</button>
+                  {lien
+                    ? <a className="plai-btn" href={lien.replace('#/jeu?', '#/feuille?')} target="_blank" rel="noopener noreferrer">Imprimer la feuille</a>
+                    : <span className="aide">Choisir une liste pour pouvoir imprimer la feuille.</span>}
+                  {lien && <a className="plai-btn-ghost" href={`${lien.replace('#/jeu?', '#/feuille?')}&corrige=1`} target="_blank" rel="noopener noreferrer">Voir le corrigé</a>}
+                </div>
+                <p className="aide">« Nouvelle série » change l’ordre et les lettres : la feuille imprimée et le lien du tableau doivent venir de la même série (ils la partagent tant qu’on garde le lien).</p>
+              </fieldset>
+            )}
               {optionVisible(tache, 'mode') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="mode">Cartes</label>

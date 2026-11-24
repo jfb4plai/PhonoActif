@@ -47,6 +47,12 @@ function tacheDepuisRequete(requete) {
   const classe = p.get('classe');
   if (classe === '1') tache.classe = true;
   if (classe === '0') tache.classe = false;
+  // Série fixée (maternelle) : une graine (entier) donne les mêmes mots, le même ordre et les mêmes lettres au TBI et sur la feuille à imprimer ; nb = nombre de mots.
+  if (p.get('corrige') === '1') tache.corrige = true; // feuille : version enseignant
+  const graine = p.get('graine');
+  if (graine !== null && /^\d{1,9}$/.test(graine)) tache.graine = Number(graine);
+  const nb = p.get('nb');
+  if (nb !== null && /^\d{1,2}$/.test(nb) && Number(nb) >= 1) tache.nb = Number(nb);
   const casse = p.get('casse');
   if (VALEURS_CASSE.includes(casse)) tache.casse = casse;
   const commandes = p.get('commandes');
@@ -77,7 +83,7 @@ export function lireAdresse(hash) {
   const [chemin, ...reste] = h.slice(2).split('?');
   const requete = reste.join('?');
   const morceaux = chemin.split('/');
-  const PAGES = { eleve: 'eleve', lien: 'lien', 'mode-d-emploi': 'mode_emploi', donnees: 'donnees', apropos: 'apropos' };
+  const PAGES = { eleve: 'eleve', lien: 'lien', feuille: 'feuille', 'mode-d-emploi': 'mode_emploi', donnees: 'donnees', apropos: 'apropos' };
   if (morceaux.length === 1 && Object.hasOwn(PAGES, morceaux[0])) return { ecran: PAGES[morceaux[0]], tache: tacheDepuisRequete(requete) };
   try {
     if (morceaux[0] === 'jeu' && morceaux.length === 1) return { ecran: 'jeu', tache: tacheDepuisRequete(requete) };
@@ -99,6 +105,8 @@ export function ecrireAdresse(base, ecran, tache, carte) {
   if (Array.isArray(tache.digraphes) && tache.digraphes.join('-') !== REGLAGES_PAR_DEFAUT.digraphes.join('-')) reglages.push(`digraphes=${tache.digraphes.length > 0 ? tache.digraphes.join('-') : '0'}`); // « 0 » = aucun bloc
   if (tache.muet === 'depot') reglages.push('muet=depot'); // « origine » = défaut, absent de l'adresse
   if (tache.niveau === 'maternelle') reglages.push('niveau=maternelle', `classe=${tache.classe === false ? 0 : 1}`); // « primaire » = défaut, absent de l'adresse ; en maternelle le mode classe vaut 1 par défaut, toujours écrit pour que le lien ne dépende pas d'un défaut
+  if (tache.niveau === 'maternelle' && Number.isInteger(tache.graine)) reglages.push(`graine=${tache.graine}`);
+  if (tache.niveau === 'maternelle' && Number.isInteger(tache.nb) && tache.nb >= 1) reglages.push(`nb=${tache.nb}`);
   if (tache.casse === 'majuscules' || (tache.niveau === 'maternelle' && tache.casse === 'minuscules')) reglages.push(`casse=${tache.casse}`); // « minuscules » = défaut, absent de l'adresse sauf en maternelle (où le départ est « majuscules »)
   if (VALEURS_CONSIGNES.includes(tache.consignes)) reglages.push(`consignes=${tache.consignes}`); // absent = automatique
   if (tache.commandes === 'epure') reglages.push('commandes=epure'); // « complet » = défaut, absent de l'adresse

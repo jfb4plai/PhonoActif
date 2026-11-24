@@ -170,3 +170,16 @@ test("classe : mode classe lu (1 / 0), écrit en maternelle seulement (défaut 1
   assert.ok(ecrireAdresse("", "jeu", { ...mat, classe: false }).includes("classe=0"));
   assert.ok(!ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", classe: true }).includes("classe="));
 });
+
+test("graine, nb et corrige : lus, graine et nb écrits en maternelle seulement, valeurs invalides ignorées", () => {
+  const t = lireAdresse("#/feuille?pack=p&niveau=maternelle&graine=7&nb=6&corrige=1").tache;
+  assert.equal(t.graine, 7); assert.equal(t.nb, 6); assert.equal(t.corrige, true);
+  assert.equal(lireAdresse("#/jeu?pack=p&graine=abc&nb=0").tache.graine, undefined);
+  assert.equal(lireAdresse("#/jeu?pack=p&graine=abc&nb=0").tache.nb, undefined);
+  assert.equal(lireAdresse("#/jeu?pack=p&graine=12345678901").tache.graine, undefined);
+  assert.equal(lireAdresse("#/feuille?pack=p").ecran, "feuille");
+  const mat = { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "maternelle", graine: 7, nb: 6 };
+  const a = ecrireAdresse("", "jeu", mat);
+  assert.ok(a.includes("graine=7") && a.includes("nb=6"));
+  assert.ok(!ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", graine: 7, nb: 6 }).includes("graine="));
+});

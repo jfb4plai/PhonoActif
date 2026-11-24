@@ -13,6 +13,7 @@ import Landing from './Landing.jsx';
 import { ModeEmploi, Donnees, APropos } from './Pages.jsx';
 import Jeu from './Jeu.jsx';
 import Initiale, { cartesInitiale } from './Initiale.jsx';
+import Feuille from './Feuille.jsx';
 import { REGLAGES_DU_NIVEAU, niveauDe, modeClasse, CODE_CLASSE } from './niveau.js';
 import Bilan from './Bilan.jsx';
 import { paliersPourMots } from '../core/paliers.js';
@@ -72,6 +73,7 @@ export default function App({ deps = {} }) {
       </Cadre>
     );
   }
+  if (ecran === 'feuille') return <Feuille key={hash} base={base} deps={deps} tache={lireAdresse(hash).tache} />;
   return <AppEleve key={hash} deps={deps} hash={hash} partie={ecran === 'lien' ? 'lien' : 'eleve'} />;
 }
 
@@ -222,7 +224,8 @@ function AppEleve({ deps, hash, partie }) {
 
   const surTache = patch => setTache(t => ({ ...t, ...patch }));
   // Changer de niveau remplace les valeurs de départ et efface la liste choisie (une liste est propre à un niveau).
-  const surNiveau = niveau => setTache(t => ({ ...t, ...REGLAGES_DU_NIVEAU[niveau], niveau, pack: '', mots: undefined }));
+  // Maternelle : une série (graine) est tirée dès le choix du niveau, pour que le lien du TBI et la feuille à imprimer montrent la même chose.
+  const surNiveau = niveau => setTache(t => ({ ...t, ...REGLAGES_DU_NIVEAU[niveau], niveau, pack: '', mots: undefined, graine: niveau === 'maternelle' ? Math.floor((deps.rng || Math.random)() * 1e6) : undefined }));
 
   return (
     <div className="app" data-habillage={tache.habillage}>
@@ -236,7 +239,7 @@ function AppEleve({ deps, hash, partie }) {
       {vue === 'jeu' && pack && niveauDe(tache) === 'maternelle' && (
         <Initiale key={cleJeu} pack={pack} tache={tache} code={classe ? CODE_CLASSE : code} stockage={stockage} base={base}
           deps={{ jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), rng: deps.rng, maintenant: deps.maintenant, nouvelId: deps.nouvelId }}
-          onFin={apres => { setFinPalier(finDePalier(apres, pack)); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
+          onFin={apres => { setFinPalier({ ...finDePalier(apres, pack), vues: apres.nbCartes ?? null }); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}
       {vue === 'jeu' && pack && niveauDe(tache) !== 'maternelle' && (
         <Jeu key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}

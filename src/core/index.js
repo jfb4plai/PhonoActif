@@ -21,3 +21,4 @@ export * from './transparence.js';
 export * from './packAtelier.js';
 export * from './liste.js';
 export * from './voyellesInitiale.js';
+export * from './serieInitiale.js';

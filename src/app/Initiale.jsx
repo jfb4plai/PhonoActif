@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { urlFichier } from './urlFichier.js';
 import Icone from './Icones.jsx';
 import { lettreInitiale, voyellesProposees, VOYELLES_INITIALE } from '../core/voyellesInitiale.js';
+import { serieInitiale } from '../core/serieInitiale.js';
 import { etatFinal } from '../jeu/modeA.js';
 import { VALEURS_VITESSE } from './route.js';
 
@@ -35,7 +36,9 @@ function Bouton({ icone, texte, className = '', ...reste }) {
 export default function Initiale({ pack, tache, code, stockage, deps, base = '/', onFin, onAccueil, onSignalement }) {
   const rng = deps.rng || Math.random;
   const maintenant = deps.maintenant || (() => new Date().toISOString());
-  const cartes = useMemo(() => melanger(cartesInitiale(pack), rng), []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Avec une graine (lien &graine=…), la série est fixée : mêmes mots, même ordre, mêmes lettres que la feuille à imprimer. Sans graine : tirage au sort à chaque départ.
+  const serie = useMemo(() => (Number.isInteger(tache.graine) ? serieInitiale(cartesInitiale(pack), tache.graine, tache.nb) : null), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const cartes = useMemo(() => (serie ? serie.map(x => x.carte) : melanger(cartesInitiale(pack), rng)), []); // eslint-disable-line react-hooks/exhaustive-deps
   const session = useRef(`s-${maintenant().replace(/\D/g, '').slice(0, 14)}-${Math.floor(rng() * 36 ** 4).toString(36).padStart(4, '0')}`).current;
   const [index, setIndex] = useState(0);
   const [ecartees, setEcartees] = useState([]); // lettres déjà essayées et fausses sur cette carte
@@ -46,7 +49,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
 
   const carte = cartes[index];
   const cible = lettreInitiale(carte);
-  const choix = useMemo(() => voyellesProposees(cible, rng) || [cible], [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  const choix = useMemo(() => (serie ? serie[index].lettres : (voyellesProposees(cible, rng) || [cible])), [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
   const enCours = statut === 'en_cours';
   const optsVitesse = vitesse === 100 ? [] : [{ vitesse: vitesse / 100 }];
 
@@ -94,7 +97,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
 
   const surSuivant = () => {
     sequence.current++;
-    if (index + 1 >= cartes.length) { onFin({ index }); return; }
+    if (index + 1 >= cartes.length) { onFin({ index, nbCartes: cartes.length }); return; }
     setIndex(index + 1);
   };
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };

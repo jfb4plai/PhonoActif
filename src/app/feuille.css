@@ -1,0 +1,27 @@
+/* Feuille à imprimer (maternelle, première lettre). Police Arial, grandes lettres, noir et blanc suffisant. */
+.feuille { max-width: 900px; margin: 0 auto; padding: 16px; font-family: Arial, Helvetica, sans-serif; color: #111; background: #fff; }
+.feuille-ecran { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #ccc; }
+.feuille-ecran .aide { flex-basis: 100%; margin: 0; }
+.feuille-entete h1 { margin: 0 0 6px; font-size: 28px; }
+.feuille-nom { margin: 8px 0; font-size: 18px; }
+.feuille-consigne { margin: 4px 0 16px; font-size: 20px; font-weight: bold; }
+.feuille-grille { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
+.feuille-carte { position: relative; break-inside: avoid; page-break-inside: avoid; border: 2px solid #111; border-radius: 12px; padding: 10px 10px 12px; text-align: center; }
+.feuille-num { position: absolute; top: 6px; left: 10px; font-size: 16px; font-weight: bold; }
+.feuille-carte img { display: block; margin: 0 auto 8px; width: 120px; height: 120px; object-fit: contain; }
+.feuille-lettres { display: flex; justify-content: center; gap: 14px; }
+.feuille-lettre { display: inline-flex; align-items: center; justify-content: center; width: 78px; height: 78px; border: 2px solid #111; border-radius: 10px; font-size: 52px; font-weight: bold; text-transform: uppercase; }
+.feuille-lettre.juste { border-width: 6px; border-radius: 50%; }
+.feuille-mot { margin: 8px 0 0; font-size: 18px; }
+@media print {
+  @page { size: A4 portrait; margin: 12mm; }
+  .feuille { max-width: none; padding: 0; }
+  .feuille-ecran { display: none; }
+  /* Dimensions en mm pour que 8 mots (4 rangées de 2) tiennent sur une page A4 avec l'en-tête : 4 x 52 mm + 3 x 8 mm + ~35 mm = 267 mm sur 273 mm utiles. */
+  .feuille-entete h1 { font-size: 20pt; }
+  .feuille-grille { gap: 8mm 8mm; }
+  .feuille-carte { padding: 4mm; }
+  .feuille-carte img { width: 24mm; height: 24mm; margin-bottom: 2mm; }
+  .feuille-lettres { gap: 3mm; }
+  .feuille-lettre { width: 17mm; height: 17mm; font-size: 12mm; }
+}

@@ -5,8 +5,8 @@
 // Valeurs imposées au changement de niveau (elles remplacent les réglages en cours).
 export const REGLAGES_DU_NIVEAU = {
   // classe : mode classe (TBI, sans code d'élève). Défaut de la maternelle (JF 2026-11-24 : la plupart des classes de maternelle n'ont pas de tablettes individuelles).
-  maternelle: { casse: 'majuscules', commandes: 'epure', modeMot: 'sans', habillage: 'album', nbIntrus: 0, digraphes: [], consignes: undefined, classe: true },
-  primaire: { casse: 'minuscules', commandes: 'complet', modeMot: 'sans', habillage: 'album', nbIntrus: 3, digraphes: [2, 3, 4], consignes: undefined, classe: false }
+  maternelle: { casse: 'majuscules', commandes: 'epure', modeMot: 'sans', habillage: 'album', nbIntrus: 0, digraphes: [], consignes: undefined, classe: true, nb: 8 },
+  primaire: { casse: 'minuscules', commandes: 'complet', modeMot: 'sans', habillage: 'album', nbIntrus: 3, digraphes: [2, 3, 4], consignes: undefined, classe: false, nb: undefined }
 };
 
 // Options qui n'ont pas de sens en maternelle : pas de mot à construire, donc ni cubes en trop, ni accents, ni blocs, ni lettre muette, ni syllabes.
