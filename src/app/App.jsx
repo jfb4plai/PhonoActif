@@ -247,7 +247,7 @@ function AppEleve({ deps, hash, partie }) {
           onFin={apres => { setFinPalier(finDePalier(apres, pack)); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}
       {vue === 'bilan' && pack && (
-        <Bilan nbCartes={finPalier.vues ?? pack.cartes.length} arret={finPalier.arret} paliersSautes={finPalier.paliersSautes} peutEnvoyer={enLigne && !!config && !classe} onEnvoyer={surEnvoiManuel} messageEnvoi={messageEnvoi}
+        <Bilan titre={niveauDe(tache) === 'maternelle' ? 'Bravo, c’est fini !' : undefined} nbCartes={finPalier.vues ?? pack.cartes.length} arret={finPalier.arret} paliersSautes={finPalier.paliersSautes} peutEnvoyer={enLigne && !!config && !classe} onEnvoyer={surEnvoiManuel} messageEnvoi={messageEnvoi}
           onRejouer={() => { setMessageEnvoi(''); setFinPalier({ arret: null, paliersSautes: [], vues: null }); setCleJeu(k => k + 1); setVue('jeu'); }} onAccueil={() => setVue('accueil')} />
       )}
     </div>

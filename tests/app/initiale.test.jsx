@@ -133,7 +133,7 @@ describe('Maternelle : exercice « première lettre »', () => {
       await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(carteCourante())}` }));
       await user.click(screen.getByRole('button', { name: 'Suivant' }));
     }
-    await screen.findByText(/Pack terminé/);
+    await screen.findByText(/Bravo, c’est fini/);
   });
 });
 
