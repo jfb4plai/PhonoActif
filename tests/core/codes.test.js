@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sonDepuisCodes, composants, SONS_LILEMO, SONS_COMPOSES } from '../../src/core/index.js';
+import { sonDepuisCodes, composants, SONS_VISES, SONS_COMPOSES } from '../../src/core/index.js';
 
 test('la casse des codes compte : S (ʃ) n\'est pas s', () => {
   assert.equal(sonDepuisCodes('S'), 'ch');
@@ -49,13 +49,13 @@ test('composants des sons composés', () => {
   assert.deepEqual(composants('ch'), ['ch']);
 });
 
-test('tout son produit par la table existe dans SONS_LILEMO ou SONS_COMPOSES', () => {
+test('tout son produit par la table existe dans SONS_VISES ou SONS_COMPOSES', () => {
   const codes = ['p', 'b', 't', 'd', 'k', 'g', 'f', 'v', 's', 'z', 'm', 'n', 'l', 'w', 'S', 'Z', 'N', 'R', 'j', 'i', 'e', 'E',
     'a', 'y', 'u', 'o', 'O', '2', '9', '@', '§', '5', '1', '%', 'wa', '8i', 'ks', 'ij'];
   for (const c of codes) {
     const son = sonDepuisCodes(c);
     assert.ok(typeof son === 'string', c);
-    if (son !== '') assert.ok(SONS_LILEMO.includes(son) || son in SONS_COMPOSES, `${c} -> ${son}`);
+    if (son !== '') assert.ok(SONS_VISES.includes(son) || son in SONS_COMPOSES, `${c} -> ${son}`);
   }
-  assert.equal(SONS_LILEMO.length, 37);
+  assert.equal(SONS_VISES.length, 37);
 });

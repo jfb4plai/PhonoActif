@@ -1,4 +1,4 @@
-// Codes phonétiques de ManuLemme (sensibles à la casse : S = /ʃ/, s = /s/) vers les ids de sons de Lilémo.
+// Codes phonétiques de ManuLemme (sensibles à la casse : S = /ʃ/, s = /s/) vers les ids de sons de PhonoActif.
 // Table confirmée avec « correspondance code phonétique ManuLemme - caractères IPA.xlsx ».
 const CODES = new Map([
   ...['p', 'b', 't', 'd', 'k', 'g', 'f', 'v', 's', 'z', 'm', 'n', 'l', 'w'].map(c => [c, c]),

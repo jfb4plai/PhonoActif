@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { sonValide, composants, sonDepuisCodes, SONS_LILEMO } from '../../src/core/index.js';
+import { sonValide, composants, sonDepuisCodes, SONS_VISES } from '../../src/core/index.js';
 
 test('sonValide : muet, id, composé et séquences valides', () => {
   for (const s of ['', 'schwa', 'ij', 'e_ouvert+yod', 'w+a+yod']) assert.equal(sonValide(s), true, s);
@@ -25,7 +25,7 @@ test('composants d\'une séquence', () => {
 
 test('le schwa a son propre id, e_muet disparaît', () => {
   assert.equal(sonDepuisCodes('%'), 'schwa');
-  assert.ok(SONS_LILEMO.includes('schwa'));
-  assert.ok(!SONS_LILEMO.includes('e_muet'));
-  assert.equal(SONS_LILEMO.length, 37);
+  assert.ok(SONS_VISES.includes('schwa'));
+  assert.ok(!SONS_VISES.includes('e_muet'));
+  assert.equal(SONS_VISES.length, 37);
 });

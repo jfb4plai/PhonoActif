@@ -57,7 +57,7 @@ test('signalements : lettre finale muette par règle et e instable portent ambig
   assert.ok(!lireRegles('lupa').some(c => c.ambigu));
 });
 
-test('tous les sons rendus sont des sons Lilémo valides, y compris sur des chaînes quelconques', () => {
+test('tous les sons rendus sont des sons valides, y compris sur des chaînes quelconques', () => {
   for (const mot of ['bonjour', 'ça', 'œuf', 'zzz', 'xyzw', 'aeiou', 'qu', 'gue', 'oyoy', 'ill', 'ail', 'œil', 'hôpital', 'été', 'a', 'é']) {
     for (const c of lireRegles(mot)) assert.ok(sonValide(c.son), `${mot} : son invalide « ${c.son} » pour ${c.g}`);
   }

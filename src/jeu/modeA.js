@@ -5,7 +5,7 @@ import { reponseJuste } from '../core/index.js';
    graphème-son) et les états (une lecture pré-générée par chaîne de lettres posées). Fonctions pures. */
 
 const VOYELLES = 'aàâäeéèêëiîïoôöuùûüyœ';
-// Lettres proposées en plus (jamais une lettre du mot ni son miroir). « ch » et « ou » existent comme pavés du Lilémo physique.
+// Lettres proposées en plus (jamais une lettre du mot ni son miroir). « ch » et « ou » existent comme pavés (lettres groupées).
 const POOL_INTRUS = ['s', 'm', 'l', 'r', 't', 'f', 'v', 'z', 'j', 'a', 'i', 'o', 'e', 'ch', 'ou'];
 const MIROIR = { b: 'd', d: 'b', p: 'q', q: 'p', m: 'n', n: 'm', u: 'n' };
 

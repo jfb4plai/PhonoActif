@@ -1,9 +1,9 @@
-import { validerPackJouable, SONS_LILEMO } from '../core/index.js';
+import { validerPackJouable, SONS_VISES } from '../core/index.js';
 
 /* Charge et valide un pack servi par l'app (<base>packs/<nom>/manifest.json).
    Lève une erreur en français : pack « x » introuvable / invalide : <première erreur>. */
 export async function chargerPack(nom, options = {}) {
-  const { base = '/', fetch: chercher = globalThis.fetch, sonsDisponibles = new Set(SONS_LILEMO) } = options;
+  const { base = '/', fetch: chercher = globalThis.fetch, sonsDisponibles = new Set(SONS_VISES) } = options;
   const url = `${base}packs/${encodeURIComponent(nom)}/manifest.json`;
   let reponse;
   try { reponse = await chercher(url); } catch (e) { throw new Error(`pack « ${nom} » introuvable`); }

@@ -2,7 +2,7 @@
 // Écrit data/syllabes.json (non commité, comme le lexique) et docs/syllabes-a-generer.csv.
 // Usage : node tools/liste_syllabes.js [data/p1-mots.json]   (le second jeu sert à mesurer la couverture d'une liste)
 import fs from 'node:fs';
-import { creerLexique, cubesDepuisEntree, composants, syllabesDeSons, SON_VERS_IPA, SONS_LILEMO, normaliserChaine } from '../src/core/index.js';
+import { creerLexique, cubesDepuisEntree, composants, syllabesDeSons, SON_VERS_IPA, SONS_VISES, normaliserChaine } from '../src/core/index.js';
 
 const racine = new URL('..', import.meta.url);
 const lex = creerLexique(JSON.parse(fs.readFileSync(new URL('data/lexique.json', racine), 'utf8')));
@@ -66,7 +66,7 @@ const liste = tri.map(([s, n], i) => {
   return { ipa: s, occurrences: n, rang: i + 1, couvertureCumulee: +(100 * cum / nOcc).toFixed(2), palier, exemples: exemples.get(s), exemplesLettres: exemplesLettres.get(s), vitesse: nbSons.get(s) > 1 ? -30 : 0 };
 });
 // sons isolés (palier 0) : déjà validés avec Charline, à régénérer au même format que le reste
-const isoles = SONS_LILEMO.filter(s => SON_VERS_IPA[s]).map(s => ({ ipa: SON_VERS_IPA[s], occurrences: 0, rang: 0, couvertureCumulee: 0, palier: 0, exemples: [s], exemplesLettres: [exemplePour(EXEMPLES_SONS[s])], vitesse: 0 }));
+const isoles = SONS_VISES.filter(s => SON_VERS_IPA[s]).map(s => ({ ipa: SON_VERS_IPA[s], occurrences: 0, rang: 0, couvertureCumulee: 0, palier: 0, exemples: [s], exemplesLettres: [exemplePour(EXEMPLES_SONS[s])], vitesse: 0 }));
 const toutes = [...isoles, ...liste.filter(l => !isoles.some(i => i.ipa === l.ipa))];
 fs.writeFileSync(new URL('data/syllabes.json', racine), JSON.stringify(toutes, null, 1), 'utf8');
 fs.writeFileSync(new URL('docs/syllabes-a-generer.csv', racine), '\uFEFF' + 'ipa;palier;rang;occurrences;couverture cumulée %;vitesse;exemples\n' +

@@ -1,7 +1,7 @@
 /* Un cube = un GRAPHÈME (ch, ou, on, eau...), jamais une lettre isolée quand plusieurs
    lettres notent un seul son. Chaque cube porte un SON (nom de fichier sons/<son>),
    enregistré comme monophonème (/b/, pas « bé »). Son vide '' = lettre muette.
-   Repris tel quel du cœur de Lilémo (version phonémique.html). */
+   Cœur des sons de PhonoActif. */
 
 export const VOYELLES_SONS = new Set(['a', 'e_ferme', 'e_ouvert', 'schwa', 'i', 'o_ferme', 'o_ouvert', 'u', 'ou',
   'eu_ferme', 'eu_ouvert', 'an', 'on', 'in', 'un', 'oi', 'ui']);
@@ -18,9 +18,9 @@ export const SON_PAR_DEFAUT = {
 };
 export const GRAPHEMES_TRIES = Object.keys(SON_PAR_DEFAUT).sort((a, b) => b.length - a.length);
 
-// Les 36 sons visés par Lilémo, plus le yod /j/ (id « j » = /ʒ/ dans le cœur d'origine).
+// Les 36 sons visés, plus le yod /j/ (id « j » = /ʒ/ dans le cœur d'origine).
 // « schwa » = le e prononcé de « le », « se », « de » (ManuLemme : code %). La lettre muette n'a pas de son ('').
-export const SONS_LILEMO = ['a', 'an', 'b', 'ch', 'd', 'e_ferme', 'e_ouvert', 'schwa', 'eu_ferme', 'eu_ouvert', 'f', 'g', 'gn',
+export const SONS_VISES = ['a', 'an', 'b', 'ch', 'd', 'e_ferme', 'e_ouvert', 'schwa', 'eu_ferme', 'eu_ouvert', 'f', 'g', 'gn',
   'i', 'in', 'j', 'k', 'ks', 'l', 'm', 'n', 'o_ferme', 'o_ouvert', 'oi', 'on', 'ou', 'p', 'r', 's', 't', 'u', 'ui', 'un',
   'v', 'w', 'z', 'yod'];
 
@@ -35,7 +35,7 @@ export const composants = son => son === '' || son == null ? []
 export const sonValide = son => {
   if (typeof son !== 'string') return false;
   if (son === '') return true;
-  return son.split('+').every(s => s !== '' && (SONS_LILEMO.includes(s) || Object.hasOwn(SONS_COMPOSES, s)));
+  return son.split('+').every(s => s !== '' && (SONS_VISES.includes(s) || Object.hasOwn(SONS_COMPOSES, s)));
 };
 
 export const classeCube = son => son === null ? 'inconnu' : son === '' ? 'muet' : (VOYELLES_SONS.has(son) ? 'voyelle' : 'consonne');

@@ -194,7 +194,8 @@ export function APropos({ base = '/' }) {
         <h1 className="page-titre">À propos, licences et crédits</h1>
         <section className="plai-section">
           <h2>Qui</h2>
-          <p>PhonoActif est un outil du Pôle Liégeois d’Accompagnement vers une École Inclusive (PLAI), conçu par Jean-François Beguin. Il s’inspire du jeu physique Lilémo.</p>
+          <p>PhonoActif est un outil du Pôle Liégeois d’Accompagnement vers une École Inclusive (PLAI), conçu par Jean-François Beguin.</p>
+          <p>Pour une version physique, le jeu Lilémo est recommandé, quoique légèrement différent de PhonoActif.</p>
         </section>
         <section className="plai-section">
           <h2>Voix</h2>
@@ -206,7 +207,7 @@ export function APropos({ base = '/' }) {
         </section>
         <section className="plai-section">
           <h2>Lexique</h2>
-          <p>La lecture des mots s’appuie sur le lexique ManuLemme 2.4, converti en sons du Lilémo. La coupure en syllabes est recoupée avec Lexique 4.1.</p>
+          <p>La lecture des mots s’appuie sur le lexique ManuLemme 2.4, converti en sons. La coupure en syllabes est recoupée avec Lexique 4.1.</p>
           <p className="aide">Aucune référence scientifique n’est citée dans cette version.</p>
         </section>
         <section className="plai-section">
