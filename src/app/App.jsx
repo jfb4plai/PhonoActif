@@ -13,7 +13,7 @@ import Landing from './Landing.jsx';
 import { ModeEmploi, Donnees, APropos } from './Pages.jsx';
 import Jeu from './Jeu.jsx';
 import Initiale, { cartesInitiale } from './Initiale.jsx';
-import { REGLAGES_DU_NIVEAU, niveauDe } from './niveau.js';
+import { REGLAGES_DU_NIVEAU, niveauDe, modeClasse, CODE_CLASSE } from './niveau.js';
 import Bilan from './Bilan.jsx';
 import { paliersPourMots } from '../core/paliers.js';
 
@@ -119,7 +119,7 @@ function AppEleve({ deps, hash, partie }) {
         if (!actif) return;
         // Tâche de maternelle : les valeurs de départ du niveau (majuscules, commandes épurées) s'appliquent après celles du serveur.
         setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou, mots: t.mots, consignes: t.consignes,
-          ...(t.niveau === 'maternelle' ? { ...REGLAGES_DU_NIVEAU.maternelle, niveau: 'maternelle' } : {}) }));
+          ...(t.niveau === 'maternelle' ? { ...REGLAGES_DU_NIVEAU.maternelle, classe: false, niveau: 'maternelle' } : {}) })); // tâche enregistrée : des élèves et des codes, jamais le mode classe
         setEtatTache('ok');
       })
       .catch(e => { if (actif) setEtatTache(e.message === 'tâche inconnue' ? 'inconnue' : e.message === 'réseau' ? 'reseau' : 'hors_service'); });
@@ -168,6 +168,7 @@ function AppEleve({ deps, hash, partie }) {
   }));
   const avertissements = [...new Set([...avertissementsPack, ...Object.values(signalements)])];
 
+  const classe = modeClasse(tache); // maternelle au TBI : pas de code d'élève, essais gardés sur l'appareil sous le code « CLASSE »
   const carteUnique = adresse.ecran === 'carte' && adresse.tache && adresse.tache.pack === tache.pack;
   const origine = typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}` : base;
   const lien = tache.pack ? ecrireAdresse(origine, carteUnique ? 'carte' : 'jeu', { ...tache, jeton: undefined }, adresse.carte) : '';
@@ -183,7 +184,7 @@ function AppEleve({ deps, hash, partie }) {
   }
 
   async function commencer() {
-    if (!codeValide(code) || !tache.pack) return;
+    if ((!classe && !codeValide(code)) || !tache.pack) return;
     if (enLigne && etatTache !== 'ok') return;
     setErreur('');
     try {
@@ -233,7 +234,7 @@ function AppEleve({ deps, hash, partie }) {
           onExportCsv={() => telecharger('essais.csv', exporterCsv(stockage.lire()), 'text/csv;charset=utf-8')} />
       )}
       {vue === 'jeu' && pack && niveauDe(tache) === 'maternelle' && (
-        <Initiale key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
+        <Initiale key={cleJeu} pack={pack} tache={tache} code={classe ? CODE_CLASSE : code} stockage={stockage} base={base}
           deps={{ jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), rng: deps.rng, maintenant: deps.maintenant, nouvelId: deps.nouvelId }}
           onFin={apres => { setFinPalier(finDePalier(apres, pack)); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
       )}

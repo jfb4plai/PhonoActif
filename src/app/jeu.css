@@ -119,6 +119,19 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 
 /* Maternelle, exercice « première lettre » : trois grosses lettres au choix, une lettre fausse se grise, la bonne est cerclée. */
 .jeu-initiale .retour { min-height: 120px; display: flex; align-items: center; justify-content: center; } /* place réservée au grand « Bravo » : les lettres ne bougent pas */
+/* Mode classe (TBI) : tout est agrandi pour être lu de loin. */
+.jeu-classe { max-width: 1400px; }
+.jeu-classe .carte-jeu { min-height: 300px; }
+.jeu-classe .carte-jeu img { max-height: 270px; }
+.jeu-classe .choix-initiale { gap: 56px; margin: 8px 0 16px; }
+.jeu-classe .choix-initiale .cube { min-width: 170px; height: 170px; font-size: 100px; }
+.jeu-classe .bravo-grand { font-size: 80px; }
+.jeu-classe .retour { min-height: 96px; }
+.jeu-classe { position: relative; padding-top: 8px; padding-bottom: 8px; }
+.jeu-classe .carte-jeu { margin-bottom: 0; min-height: 270px; }
+.jeu-classe .carte-jeu img { max-height: 240px; }
+.jeu-classe .actions-aides { position: absolute; top: 10px; right: 16px; margin: 0; } /* la voix lente passe en haut à droite : tout tient sur un écran de 768 px */
+.jeu-classe .choix-initiale { margin-top: 20px; }
 .choix-initiale { justify-content: center; gap: 24px; margin: 8px 0 16px; }
 .choix-initiale .cube { min-width: 112px; height: 112px; font-size: 60px; }
 .choix-initiale .cube.ecartee { opacity: 0.3; }

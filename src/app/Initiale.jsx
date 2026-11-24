@@ -103,7 +103,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   const fete = [...String(carte.id)].reduce((n, c) => n + c.charCodeAt(0), 0) % 4; // 4 fêtes, la même pour un même mot
 
   return (
-    <main className={`jeu jeu-epure jeu-initiale${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
+    <main className={`jeu jeu-epure jeu-initiale${tache.classe === true && !tache.jeton ? ' jeu-classe' : ''}${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
       <div className="barre-haut">
         <Bouton icone="maison" texte="Retour à l’accueil" className="discret" onClick={quitter} />
         <div className="points" role="img" aria-label={`Carte ${index + 1} sur ${cartes.length}`}>

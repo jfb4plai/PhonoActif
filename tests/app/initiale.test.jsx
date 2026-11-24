@@ -57,7 +57,7 @@ describe('Maternelle : exercice « première lettre »', () => {
     await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([`/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`]));
     const essais = stockage.lire();
     expect(essais).toHaveLength(1);
-    expect(essais[0]).toMatchObject({ carte: c.id, juste: true, tentative: 1, exercice: 'initiale', code: 'E07', positions: [{ pose: cible, juste: true }] });
+    expect(essais[0]).toMatchObject({ carte: c.id, juste: true, tentative: 1, exercice: 'initiale', code: 'CLASSE', positions: [{ pose: cible, juste: true }] }); // mode classe (défaut de la maternelle) : code « CLASSE »
     expect(screen.getByRole('button', { name: 'Suivant' })).toBeEnabled();
   });
 
@@ -113,6 +113,42 @@ describe('Maternelle : exercice « première lettre »', () => {
       await user.click(screen.getByRole('button', { name: 'Suivant' }));
     }
     await screen.findByText(/Pack terminé/);
+  });
+});
+
+describe('Maternelle : mode classe (TBI) et mode élèves', () => {
+  it('mode classe (défaut) : aucun code demandé, Commencer actif dès que la liste est choisie, affichage agrandi', async () => {
+    const { user } = monter('#/jeu?pack=maternelle-initiale&niveau=maternelle');
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Commencer' })).toBeEnabled());
+    expect(screen.queryByLabelText(/Code de l’élève/)).toBeNull();
+    expect(screen.getByRole('radio', { name: /Toute la classe, au tableau/ })).toBeChecked();
+    await user.click(screen.getByRole('button', { name: 'Commencer' }));
+    await screen.findByRole('group', { name: 'Choisir la première lettre du mot' });
+    expect(document.querySelector('main.jeu').className).toContain('jeu-classe');
+  });
+
+  it('mode élèves (classe=0) : le code est demandé et Commencer reste fermé sans code', async () => {
+    const { user, stockage } = monter('#/jeu?pack=maternelle-initiale&niveau=maternelle&classe=0');
+    await waitFor(() => expect(screen.getByLabelText(/Code de l’élève/)).toBeInTheDocument());
+    expect(screen.getByRole('button', { name: 'Commencer' })).toBeDisabled();
+    await user.type(screen.getByLabelText(/Code de l’élève/), 'E07');
+    await user.click(screen.getByRole('button', { name: 'Commencer' }));
+    await screen.findByRole('group', { name: 'Choisir la première lettre du mot' });
+    expect(document.querySelector('main.jeu').className).not.toContain('jeu-classe');
+    const c = carteCourante();
+    await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(c)}` }));
+    expect(stockage.lire()[0].code).toBe('E07');
+  });
+
+  it('on bascule entre « toute la classe » et « chaque élève » ; le lien rapide dit lequel', async () => {
+    const { user } = monter('#/lien');
+    await waitFor(() => expect(screen.getByRole('radio', { name: /Maternelle/ })).toBeInTheDocument());
+    expect(screen.queryByRole('radio', { name: /Toute la classe/ })).toBeNull(); // primaire : pas de choix « qui joue »
+    await user.click(screen.getByRole('radio', { name: /Maternelle/ }));
+    await user.selectOptions(screen.getByLabelText('Liste de mots'), 'maternelle-initiale');
+    expect(screen.getByLabelText('Lien de la tâche').value).toMatch(/classe=1/);
+    await user.click(screen.getByRole('radio', { name: /Chaque élève/ }));
+    expect(screen.getByLabelText('Lien de la tâche').value).toMatch(/classe=0/);
   });
 });
 

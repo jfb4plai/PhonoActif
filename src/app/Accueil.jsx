@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { codeValide } from './code.js';
 import Cadre from './Cadre.jsx';
-import ChoixNiveau from './ChoixNiveau.jsx';
-import { niveauDe, optionVisible, listesDuNiveau } from './niveau.js';
+import ChoixNiveau, { ChoixQui } from './ChoixNiveau.jsx';
+import { niveauDe, optionVisible, listesDuNiveau, modeClasse } from './niveau.js';
 
 const MESSAGES_TACHE = {
   inconnue: 'Cette tâche n’existe plus. Demander un nouveau lien à l’enseignant.',
@@ -32,11 +32,21 @@ export default function Accueil({
       <p className="aide">À choisir en premier : il change la liste de mots proposée et les options affichées. Maternelle : lettres en majuscules, commandes épurées, trois voyelles au choix ; l’application règle seule ce qui n’a pas de sens à cet âge.</p>
     </fieldset>
   );
+  // Maternelle : qui joue ? Toute la classe au TBI (sans code, défaut) ou chaque élève avec son code (décision de JF 2026-11-24).
+  const blocQui = !enLigne && niveau === 'maternelle' && (
+    <fieldset className="plai-field qui-joue">
+      <legend className="plai-label">Qui joue ?</legend>
+      <ChoixQui classe={tache.classe === true} onChoisir={c => onTache({ classe: c })} />
+      <p className="aide">Au tableau : un seul grand écran, aucun code à saisir, aucun résultat par élève ; les autres enfants répondent sur une feuille ou à l’ardoise. Chaque élève : un code par élève, ses essais restent sur son appareil.</p>
+    </fieldset>
+  );
+  const classe = modeClasse(tache);
   const messageTache = enLigne ? MESSAGES_TACHE[etatTache] : null;
   const alerte = erreur || messageTache;
   const bandeauPack = !enLigne && (
     <>
               {blocNiveau}
+              {blocQui}
               <div className="plai-field">
                 <label className="plai-label" htmlFor="pack">Liste de mots</label>
                 {listesNiveau.length > 0
@@ -214,11 +224,13 @@ export default function Accueil({
       <main className="plai-container accueil page">
         <section className="plai-section">
           <h1>Bonjour</h1>
-          <div className="plai-field">
-            <label className="plai-label" htmlFor="code">Code de l’élève</label>
-            <input id="code" className="plai-input" type="text" placeholder="E07" value={code} onChange={e => onCode(e.target.value)} readOnly={lienPersonnel} autoComplete="off" maxLength={40} />
-            <p className="aide">Un code, pas un nom. Lettres, chiffres et tiret, 12 au plus.{enLigne ? '' : ' Il reste sur cet appareil.'}</p>
-          </div>
+          {!classe && (
+            <div className="plai-field">
+              <label className="plai-label" htmlFor="code">Code de l’élève</label>
+              <input id="code" className="plai-input" type="text" placeholder="E07" value={code} onChange={e => onCode(e.target.value)} readOnly={lienPersonnel} autoComplete="off" maxLength={40} />
+              <p className="aide">Un code, pas un nom. Lettres, chiffres et tiret, 12 au plus.{enLigne ? '' : ' Il reste sur cet appareil.'}</p>
+            </div>
+          )}
           {bandeauPack}
           {enLigne && (
             <aside role="note" aria-label="Tes données" className="plai-card">
@@ -229,8 +241,8 @@ export default function Accueil({
           )}
           {alerte && <p role="alert" className="plai-error">{alerte}</p>}
           {enLigne && etatTache === 'chargement' && <p role="status" className="aide">Chargement de la tâche…</p>}
-          <button type="button" className="plai-btn" disabled={!codeValide(code) || !tache.pack || (enLigne && etatTache !== 'ok')} onClick={onCommencer}>Commencer</button>
-          {!enLigne && codeValide(code) && !tache.pack && <p className="aide">Choisir une liste de cartes.</p>}
+          <button type="button" className="plai-btn" disabled={(!classe && !codeValide(code)) || !tache.pack || (enLigne && etatTache !== 'ok')} onClick={onCommencer}>Commencer</button>
+          {!enLigne && (classe || codeValide(code)) && !tache.pack && <p className="aide">Choisir une liste de cartes.</p>}
         </section>
         {blocEssais}
         <p className="aide retour-accueil"><a href="#/">Retour à l’accueil</a> · <a href="#/enseignant">Je suis enseignant</a></p>

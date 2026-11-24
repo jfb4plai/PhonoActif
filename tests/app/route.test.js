@@ -159,3 +159,14 @@ test("niveau : maternelle lue et écrite, primaire = défaut absent, valeur inco
   assert.ok(!ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "primaire" }).includes("niveau="));
   assert.ok(ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "maternelle", casse: "minuscules" }).includes("casse=minuscules"));
 });
+
+test("classe : mode classe lu (1 / 0), écrit en maternelle seulement (défaut 1), jamais en primaire", () => {
+  assert.equal(lireAdresse("#/jeu?pack=p&classe=1").tache.classe, true);
+  assert.equal(lireAdresse("#/jeu?pack=p&classe=0").tache.classe, false);
+  assert.equal(lireAdresse("#/jeu?pack=p&classe=zzz").tache.classe, undefined);
+  const mat = { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "maternelle" };
+  assert.ok(ecrireAdresse("", "jeu", mat).includes("classe=1"));
+  assert.ok(ecrireAdresse("", "jeu", { ...mat, classe: true }).includes("classe=1"));
+  assert.ok(ecrireAdresse("", "jeu", { ...mat, classe: false }).includes("classe=0"));
+  assert.ok(!ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", classe: true }).includes("classe="));
+});
