@@ -17,7 +17,7 @@ Décision de JF : anneaux olympiques maintenus (emblème du CIO, usage scolaire 
 | omelette | omelette pliée dans une poêle | jaune #f6d55c, poêle grise | Papa fait une omelette. |
 | opéra | scène, rideau rouge, colonnes dorées | rouge #a62b3a, or #f2c94c | On chante à l'opéra. |
 | olympique | cinq anneaux entrelacés | bleu, jaune, noir, vert, rouge | Voici le symbole olympique. |
-| ogre | géant gentil, massue, pas vert | gris-brun #a89b7f | L'ogre est grand. |
+| ogre | géant de conte français, tunique et bottes, SANS massue ni pagne ; v1 refusée par JF (cliché de « l'Africain ») | peau claire #f6d5b8, tunique #d9a441 | L'ogre est grand. |
 | os | os en forme d'os de chien | crème #f3ead2 | Le chien ronge un os. |
 
 Phrases proposées par Claude : à valider par JF avant l'audio. Prompts : `MOTS_LOT21` dans `tools/prompts_images_canva.py`.

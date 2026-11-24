@@ -18328,5 +18328,1090 @@
   "origine": [
    "pack-progressif-p1-lot22"
   ]
+ },
+ {
+  "id": "imiter",
+  "mot": "imiter",
+  "lettres": [
+   "i",
+   "m",
+   "i",
+   "t",
+   "e",
+   "r"
+  ],
+  "cubes": [
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "er",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "i",
+    "fichier": "audio/69_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "im",
+    "fichier": "audio/69_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "imi",
+    "fichier": "audio/69_6d_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "imit",
+    "fichier": "audio/69_6d_69_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "imite",
+    "fichier": "audio/69_6d_69_74_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "imiter",
+    "fichier": "audio/69_6d_69_74_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "i",
+    "fichier": "audio/69_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "mi",
+    "fichier": "audio/6d_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "te",
+    "fichier": "audio/74_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/imiter.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il veut imiter son ami.",
+  "phraseAudio": "audio/phrase-imiter.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "identite",
+  "mot": "identité",
+  "lettres": [
+   "i",
+   "d",
+   "e",
+   "n",
+   "t",
+   "i",
+   "t",
+   "é"
+  ],
+  "cubes": [
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "d",
+    "son": "d"
+   },
+   {
+    "g": "en",
+    "son": "an"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "i",
+    "fichier": "audio/69_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "id",
+    "fichier": "audio/69_64_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ide",
+    "fichier": "audio/69_64_259_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "iden",
+    "fichier": "audio/69_64_251_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ident",
+    "fichier": "audio/69_64_251_303_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "identi",
+    "fichier": "audio/69_64_251_303_74_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "identit",
+    "fichier": "audio/69_64_251_303_74_69_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "identité",
+    "fichier": "audio/69_64_251_303_74_69_74_65_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "i",
+    "fichier": "audio/69_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "dɑ̃",
+    "fichier": "audio/64_251_303_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ti",
+    "fichier": "audio/74_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "te",
+    "fichier": "audio/74_65_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/identite.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Voici ma carte d'identité.",
+  "phraseAudio": "audio/phrase-identite.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "igloo",
+  "mot": "igloo",
+  "lettres": [
+   "i",
+   "g",
+   "l",
+   "o",
+   "o"
+  ],
+  "cubes": [
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "g",
+    "son": "g"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "oo",
+    "son": "ou"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "i",
+    "fichier": "audio/69_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ig",
+    "fichier": "audio/69_261_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "igl",
+    "fichier": "audio/69_261_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "iglo",
+    "fichier": "audio/69_261_6c_6f_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "igloo",
+    "fichier": "audio/69_261_6c_75_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "i",
+    "fichier": "audio/69_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "ɡlu",
+    "fichier": "audio/261_6c_75_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/igloo.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'igloo est blanc.",
+  "phraseAudio": "audio/phrase-igloo.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "univers",
+  "mot": "univers",
+  "lettres": [
+   "u",
+   "n",
+   "i",
+   "v",
+   "e",
+   "r",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "e",
+    "son": "e_ouvert"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "s",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "u",
+    "fichier": "audio/79_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "un",
+    "fichier": "audio/79_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "uni",
+    "fichier": "audio/79_6e_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "univ",
+    "fichier": "audio/79_6e_69_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "unive",
+    "fichier": "audio/79_6e_69_76_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "univer",
+    "fichier": "audio/79_6e_69_76_25b_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "univers",
+    "fichier": "audio/79_6e_69_76_25b_281_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "y",
+    "fichier": "audio/79_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "ni",
+    "fichier": "audio/6e_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "vɛʁ",
+    "fichier": "audio/76_25b_281_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/univers.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il y a des étoiles dans l'univers.",
+  "phraseAudio": "audio/phrase-univers.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "uniforme",
+  "mot": "uniforme",
+  "lettres": [
+   "u",
+   "n",
+   "i",
+   "f",
+   "o",
+   "r",
+   "m",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "u",
+    "son": "u"
+   },
+   {
+    "g": "n",
+    "son": "n"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "f",
+    "son": "f"
+   },
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "u",
+    "fichier": "audio/79_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "un",
+    "fichier": "audio/79_6e_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "uni",
+    "fichier": "audio/79_6e_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "unif",
+    "fichier": "audio/79_6e_69_66_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "unifo",
+    "fichier": "audio/79_6e_69_66_254_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "unifor",
+    "fichier": "audio/79_6e_69_66_254_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "uniform",
+    "fichier": "audio/79_6e_69_66_254_281_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "uniforme",
+    "fichier": "audio/79_6e_69_66_254_281_6d_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "y",
+    "fichier": "audio/79_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "ni",
+    "fichier": "audio/6e_69_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "fɔʁm",
+    "fichier": "audio/66_254_281_6d_-30.mp3",
+    "cubes": 5
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/uniforme.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il porte un uniforme.",
+  "phraseAudio": "audio/phrase-uniforme.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "ile",
+  "mot": "île",
+  "lettres": [
+   "î",
+   "l",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "î",
+    "son": "i"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "î",
+    "fichier": "audio/69_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "îl",
+    "fichier": "audio/69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "île",
+    "fichier": "audio/69_6c_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "il",
+    "fichier": "audio/69_6c_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/ile.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Il y a une île.",
+  "phraseAudio": "audio/phrase-ile.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "olive",
+  "mot": "olive",
+  "lettres": [
+   "o",
+   "l",
+   "i",
+   "v",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/254_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ol",
+    "fichier": "audio/254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "oli",
+    "fichier": "audio/254_6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "oliv",
+    "fichier": "audio/254_6c_69_76_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olive",
+    "fichier": "audio/254_6c_69_76_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔ",
+    "fichier": "audio/254_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "liv",
+    "fichier": "audio/6c_69_76_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/olive.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Je mange une olive.",
+  "phraseAudio": "audio/phrase-olive.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "omelette",
+  "mot": "omelette",
+  "lettres": [
+   "o",
+   "m",
+   "e",
+   "l",
+   "e",
+   "t",
+   "t",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "m",
+    "son": "m"
+   },
+   {
+    "g": "e",
+    "son": ""
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "e",
+    "son": "e_ouvert"
+   },
+   {
+    "g": "tt",
+    "son": "t"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/254_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "om",
+    "fichier": "audio/254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ome",
+    "fichier": "audio/254_6d_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "omel",
+    "fichier": "audio/254_6d_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "omele",
+    "fichier": "audio/254_6d_6c_25b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "omelet",
+    "fichier": "audio/254_6d_6c_25b_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "omelett",
+    "fichier": "audio/254_6d_6c_25b_74_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "omelette",
+    "fichier": "audio/254_6d_6c_25b_74_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔm",
+    "fichier": "audio/254_6d_-30.mp3",
+    "cubes": 3
+   },
+   {
+    "ipa": "lɛt",
+    "fichier": "audio/6c_25b_74_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/omelette.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Papa fait une omelette.",
+  "phraseAudio": "audio/phrase-omelette.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "opera",
+  "mot": "opéra",
+  "lettres": [
+   "o",
+   "p",
+   "é",
+   "r",
+   "a"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "é",
+    "son": "e_ferme"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/254_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "op",
+    "fichier": "audio/254_70_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "opé",
+    "fichier": "audio/254_70_65_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "opér",
+    "fichier": "audio/254_70_65_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "opéra",
+    "fichier": "audio/254_70_65_281_61_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔ",
+    "fichier": "audio/254_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "pe",
+    "fichier": "audio/70_65_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "ʁa",
+    "fichier": "audio/281_61_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/opera.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "On chante à l'opéra.",
+  "phraseAudio": "audio/phrase-opera.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "olympique",
+  "mot": "olympique",
+  "lettres": [
+   "o",
+   "l",
+   "y",
+   "m",
+   "p",
+   "i",
+   "q",
+   "u",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "ym",
+    "son": "in"
+   },
+   {
+    "g": "p",
+    "son": "p"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "qu",
+    "son": "k"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/254_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ol",
+    "fichier": "audio/254_6c_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "oly",
+    "fichier": "audio/254_6c_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olym",
+    "fichier": "audio/254_6c_25b_303_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olymp",
+    "fichier": "audio/254_6c_25b_303_70_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olympi",
+    "fichier": "audio/254_6c_25b_303_70_69_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olympiq",
+    "fichier": "audio/254_6c_25b_303_70_69_6b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olympiqu",
+    "fichier": "audio/254_6c_25b_303_70_69_6b_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "olympique",
+    "fichier": "audio/254_6c_25b_303_70_69_6b_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔ",
+    "fichier": "audio/254_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "lɛ̃",
+    "fichier": "audio/6c_25b_303_-30.mp3",
+    "cubes": 2
+   },
+   {
+    "ipa": "pik",
+    "fichier": "audio/70_69_6b_-30.mp3",
+    "cubes": 4
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/olympique.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Voici le symbole olympique.",
+  "phraseAudio": "audio/phrase-olympique.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "ogre",
+  "mot": "ogre",
+  "lettres": [
+   "o",
+   "g",
+   "r",
+   "e"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "g",
+    "son": "g"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": "schwa"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/254_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "og",
+    "fichier": "audio/254_261_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ogr",
+    "fichier": "audio/254_261_281_-30.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "ogre",
+    "fichier": "audio/254_261_281_259_-30.mp3",
+    "ecartAvecRegles": false
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔ",
+    "fichier": "audio/254_0.mp3",
+    "cubes": 1
+   },
+   {
+    "ipa": "ɡʁə",
+    "fichier": "audio/261_281_259_-30.mp3",
+    "cubes": 3
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/ogre.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "L'ogre est grand.",
+  "phraseAudio": "audio/phrase-ogre.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
+ },
+ {
+  "id": "os",
+  "mot": "os",
+  "lettres": [
+   "o",
+   "s"
+  ],
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "s",
+    "son": "s"
+   }
+  ],
+  "etats": [
+   {
+    "lettres": "o",
+    "fichier": "audio/254_0.mp3",
+    "ecartAvecRegles": false
+   },
+   {
+    "lettres": "os",
+    "fichier": "audio/254_73_-30.mp3",
+    "ecartAvecRegles": true
+   }
+  ],
+  "syllabes": [
+   {
+    "ipa": "ɔs",
+    "fichier": "audio/254_73_-30.mp3",
+    "cubes": 2
+   }
+  ],
+  "niveau": "M3",
+  "image_sans_mot": "images/os.png",
+  "source": "Canva (génération d'images par IA, compte éducation), style papier découpé, fond bleu ciel",
+  "licence": "Image générée par IA (Canva, compte éducation), usage scolaire non commercial",
+  "phrase": "Le chien ronge un os.",
+  "phraseAudio": "audio/phrase-os.mp3",
+  "statut": "valide",
+  "origine": [
+   "maternelle-initiale-lot21"
+  ]
  }
 ]

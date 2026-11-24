@@ -1,0 +1,19 @@
+{
+ "nom": "maternelle-initiale-lot21",
+ "titre": "Maternelle, exercice initiale : mots en i, o, u avec images (papier découpé)",
+ "niveau": "M3",
+ "mots": [
+  { "mot": "imiter", "niveau": "M3", "image": "docs/images-canva/lot21/imiter.png", "phrase": "Il veut imiter son ami.", "commentaire": "mot de JF 2026-11-23 ; image v2 ; phrase proposée par Claude, à valider par JF" },
+  { "mot": "identité", "niveau": "M3", "image": "docs/images-canva/lot21/identite.png", "phrase": "Voici ma carte d'identité.", "commentaire": "mot de JF ; phrase à valider" },
+  { "mot": "igloo", "niveau": "M3", "image": "docs/images-canva/lot21/igloo.png", "phrase": "L'igloo est blanc.", "commentaire": "mot proposé par Claude pour le i, accepté par JF ; phrase à valider" },
+  { "mot": "univers", "niveau": "M3", "image": "docs/images-canva/lot21/univers.png", "phrase": "Il y a des étoiles dans l'univers.", "commentaire": "mot de JF ; phrase à valider" },
+  { "mot": "uniforme", "niveau": "M3", "image": "docs/images-canva/lot21/uniforme.png", "phrase": "Il porte un uniforme.", "commentaire": "mot de JF ; phrase à valider" },
+  { "mot": "île", "niveau": "M3", "image": "docs/images-canva/lot21/ile.png", "phrase": "Il y a une île.", "commentaire": "remplace « objet » (décision de JF) ; phrase à valider" },
+  { "mot": "olive", "niveau": "M3", "image": "docs/images-canva/lot21/olive.png", "phrase": "Je mange une olive.", "commentaire": "mot de JF ; image v2 ; phrase à valider" },
+  { "mot": "omelette", "niveau": "M3", "image": "docs/images-canva/lot21/omelette.png", "phrase": "Papa fait une omelette.", "commentaire": "mot de JF ; phrase à valider" },
+  { "mot": "opéra", "niveau": "M3", "image": "docs/images-canva/lot21/opera.png", "phrase": "On chante à l'opéra.", "commentaire": "mot de JF ; image v2 ; phrase à valider" },
+  { "mot": "olympique", "niveau": "M3", "image": "docs/images-canva/lot21/olympique.png", "phrase": "Voici le symbole olympique.", "commentaire": "mot de JF, anneaux olympiques maintenus par JF ; phrase à valider" },
+  { "mot": "ogre", "niveau": "M3", "image": "docs/images-canva/lot21/ogre.png", "phrase": "L'ogre est grand.", "commentaire": "mot de JF ; image v2 acceptée par JF (v1 refusée : cliché) ; phrase à valider" },
+  { "mot": "os", "niveau": "M3", "image": "docs/images-canva/lot21/os.png", "phrase": "Le chien ronge un os.", "commentaire": "mot de JF, image acceptée par JF ; phrase à valider" }
+ ]
+}
