@@ -113,31 +113,35 @@ export async function creerTache(client, classId, tache, userId, base) {
     class_id: classId, token: jeton, pack: parListes ? 'Liste' : tache.pack, mode_mot: tache.modeMot, habillage: tache.habillage,
     nb_intrus: tache.nbIntrus, exiger_accents: tache.exigerAccents, syllabes: tache.syllabes || 'toujours',
     vitesse: tache.vitesse || 100, vitesse_verrou: !!tache.vitesseVerrou, consignes: ['voix', 'non'].includes(tache.consignes) ? tache.consignes : 'auto', created_by: userId,
+    ...(tache.niveau === 'maternelle' ? { niveau: 'maternelle' } : {}), // primaire = valeur par défaut du serveur : rien n'est envoyé, donc rien ne casse avant la migration du niveau
     ...(parListes ? { mots, listes_noms: couper(noms, 300) } : {})
   }).select('id').single();
+  if (r.error && /niveau/.test(String(r.error.message || ''))) throw new Error('Le niveau maternelle n’est pas encore activé sur le serveur : prévenir l’administrateur.');
   verifier(r);
   return { id: r.data.id, jeton, lien: lienDeTache(base, jeton) };
 }
 
 export async function listerTaches(client, classId, base) {
   const r = await client.from('phono_tasks')
-    .select('id, token, pack, mode_mot, habillage, nb_intrus, exiger_accents, syllabes, vitesse, vitesse_verrou, consignes, mots, listes_noms, revoked, created_at').eq('class_id', classId);
+    .select('*').eq('class_id', classId); // toutes les colonnes : la colonne niveau peut ne pas exister encore (absente = primaire)
   verifier(r);
   return [...r.data].sort((a, b) => (a.created_at < b.created_at ? 1 : -1)).map(t => ({
     id: t.id, jeton: t.token, pack: t.pack, modeMot: t.mode_mot, habillage: t.habillage, nbIntrus: t.nb_intrus,
-    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, consignes: t.consignes || 'auto', mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
+    exigerAccents: t.exiger_accents, syllabes: t.syllabes || 'toujours', vitesse: t.vitesse || 100, vitesseVerrou: !!t.vitesse_verrou, consignes: t.consignes || 'auto', niveau: t.niveau === 'maternelle' ? 'maternelle' : 'primaire', mots: t.mots || [], listesNoms: t.listes_noms || '', revoked: t.revoked, creee: t.created_at, lien: lienDeTache(base, t.token)
   }));
 }
 
-export const resumeTache = t => [
-  t.habillage,
-  t.modeMot === 'avec' ? 'avec le mot' : 'sans le mot',
-  `${t.nbIntrus} cube${t.nbIntrus > 1 ? 's' : ''} en trop`,
-  t.exigerAccents ? 'accents exigés' : 'accents non exigés',
-  { non: 'sans écoute par syllabes', aide: 'syllabes sur difficulté' }[t.syllabes] || 'syllabes toujours proposées',
-  ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : []),
-  ...(t.consignes === 'voix' ? ['consignes vocales'] : t.consignes === 'non' ? ['sans consignes vocales'] : [])
-].join(' · ');
+export const resumeTache = t => (t.niveau === 'maternelle'
+  ? ['maternelle : première lettre', 'majuscules', ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : [])]
+  : [
+    t.habillage,
+    t.modeMot === 'avec' ? 'avec le mot' : 'sans le mot',
+    `${t.nbIntrus} cube${t.nbIntrus > 1 ? 's' : ''} en trop`,
+    t.exigerAccents ? 'accents exigés' : 'accents non exigés',
+    { non: 'sans écoute par syllabes', aide: 'syllabes sur difficulté' }[t.syllabes] || 'syllabes toujours proposées',
+    ...(t.vitesse && t.vitesse !== 100 ? [`voix à ${t.vitesse} %${t.vitesseVerrou ? ' (verrouillée)' : ''}`] : []),
+    ...(t.consignes === 'voix' ? ['consignes vocales'] : t.consignes === 'non' ? ['sans consignes vocales'] : [])
+  ]).join(' · ');
 
 export async function revoquerTache(client, id) {
   verifier(await client.from('phono_tasks').update({ revoked: true }).eq('id', id));

@@ -36,6 +36,7 @@ export async function chargerTache(token, supabase) {
   return { pack: j.pack, modeMot: j.mode_mot, habillage: j.habillage, nbIntrus: j.nb_intrus, exigerAccents: j.exiger_accents, syllabes: ['non', 'toujours', 'aide'].includes(j.syllabes) ? j.syllabes : 'toujours',
     vitesse: [100, 75, 50].includes(j.vitesse) ? j.vitesse : 100, vitesseVerrou: j.vitesse_verrou === true,
     mots: Array.isArray(j.mots) ? j.mots.filter(m => typeof m === 'string') : [],
+    ...(j.niveau === 'maternelle' ? { niveau: 'maternelle' } : {}), // absent ou inconnu = primaire (serveur sans la colonne niveau)
     ...(['voix', 'non'].includes(j.consignes) ? { consignes: j.consignes } : {}) }; // serveur sans les champs : comportement d'avant ; « auto » = pas de valeur (la règle automatique s'applique)
 }
 

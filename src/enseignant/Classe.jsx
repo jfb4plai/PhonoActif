@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { REGLAGES_PAR_DEFAUT } from '../app/route.js';
+import { REGLAGES_DU_NIVEAU, niveauDe, listesDuNiveau } from '../app/niveau.js';
+import { lettreInitiale } from '../core/voyellesInitiale.js';
 import { fusionnerListes, validerTache, TACHE_MAX } from '../core/liste.js';
 import { listerListes, supprimerListe, dupliquerListe } from './listes.js';
 import ListeEditeur from './ListeEditeur.jsx';
@@ -9,7 +11,7 @@ import {
 } from './api.js';
 
 const ETAPES = [[1, 'Les mots'], [2, 'Les réglages'], [3, 'Créer']];
-const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou, consignes: 'auto' };
+const PAS_DE_TACHE = { modeMot: REGLAGES_PAR_DEFAUT.modeMot, habillage: REGLAGES_PAR_DEFAUT.habillage, nbIntrus: REGLAGES_PAR_DEFAUT.nbIntrus, exigerAccents: REGLAGES_PAR_DEFAUT.exigerAccents, syllabes: REGLAGES_PAR_DEFAUT.syllabes, vitesse: REGLAGES_PAR_DEFAUT.vitesse, vitesseVerrou: REGLAGES_PAR_DEFAUT.vitesseVerrou, consignes: 'auto', niveau: 'primaire' };
 
 export default function Classe({ client, userId, classe, base, catalogue = [], modeles = [], jouer, onRetour, onSupprimer }) {
   const master = classe.role === 'master';
@@ -73,9 +75,15 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
     const m = modeles.find(x => x.id === id);
     return m ? { nom: m.titre, mots: m.mots } : null;
   }).filter(Boolean);
-  const motsTache = fusionnerListes(sources.map(x => x.mots));
+  const niveau = niveauDe(tache);
+  // Maternelle : seuls les mots dont la première lettre est une voyelle seule et qui ont une image servent à l'exercice ; les autres sont retirés de la tâche.
+  const utilisableMaternelle = id => { const e = catalogue.find(x => x.id === id); return !!(e && e.image && lettreInitiale({ cubes: (e.cubes || []).map(g => ({ g })) })); };
+  const motsDemandes = fusionnerListes(sources.map(x => x.mots));
+  const motsTache = niveau === 'maternelle' ? motsDemandes.filter(utilisableMaternelle) : motsDemandes;
+  const nbRetires = motsDemandes.length - motsTache.length;
   const nomsTache = sources.map(x => x.nom).join(' + ');
-  const erreurTache = motsTache.length > 0 ? validerTache(motsTache).erreurs[0] : '';
+  const erreurTache = motsTache.length > 0 ? validerTache(motsTache).erreurs[0] : (niveau === 'maternelle' && motsDemandes.length > 0 ? 'Aucun de ces mots ne commence par une voyelle (a, é, i, o, u) avec une image : choisir une liste de maternelle.' : '');
+  const changerNiveau = n => { setTache({ ...PAS_DE_TACHE, ...REGLAGES_DU_NIVEAU[n], niveau: n }); setChoix([]); };
   const basculerChoix = cle => setChoix(c => (c.includes(cle) ? c.filter(x => x !== cle) : [...c, cle]));
   const creer = () => agir(async () => {
     const t = await creerTache(client, classe.id, { ...tache, mots: motsTache, listesNoms: nomsTache }, userId, base);
@@ -228,6 +236,12 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
           <p role="status" className="ens-etape-titre">Étape {etape} sur 3</p>
 
           {etape === 1 && (<>
+            <fieldset className="ens-niveau">
+              <legend>Quel niveau ? <span className="ens-badge">obligatoire</span></legend>
+              <label htmlFor="ens-niveau-mat"><input id="ens-niveau-mat" type="radio" name="ens-niveau" checked={niveau === 'maternelle'} onChange={() => changerNiveau('maternelle')} /> Maternelle (M1 à M3) : trouver la première lettre d’un mot</label>
+              <label htmlFor="ens-niveau-pri"><input id="ens-niveau-pri" type="radio" name="ens-niveau" checked={niveau === 'primaire'} onChange={() => changerNiveau('primaire')} /> Primaire (P1 et plus) : construire le mot lettre par lettre</label>
+              <p className="aide">À choisir en premier : il change les modèles proposés et les réglages de l’étape suivante. Maternelle : lettres en majuscules, commandes épurées, trois voyelles au choix ; seuls les mots qui commencent par une voyelle seule et ont une image servent à l’exercice.</p>
+            </fieldset>
             <h3>Quels mots les élèves vont-ils jouer ? <span className="ens-badge">obligatoire</span></h3>
             {lignes.length === 0 && !editeur && <p className="ens-rassure">Cette classe n’a pas encore de codes d’élèves. Vous pouvez préparer la tâche maintenant, mais les liens personnels n’existeront qu’après la création des codes (onglet « Élèves et codes »).</p>}
             {!editeur && (
@@ -244,8 +258,8 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
                     <button type="button" className="danger" onClick={() => retirerListe(l)}>Supprimer</button>
                   </div>
                 ))}
-                {modeles.length > 0 && <h4>Modèles prêts</h4>}
-                {modeles.map(m => (
+                {listesDuNiveau(modeles, tache).length > 0 && <h4>Modèles prêts</h4>}
+                {listesDuNiveau(modeles, tache).map(m => (
                   <div key={m.id} className="ens-choix">
                     <label htmlFor={`ens-m-${m.id}`}><input id={`ens-m-${m.id}`} type="checkbox" checked={choix.includes(`m:${m.id}`)} onChange={() => basculerChoix(`m:${m.id}`)} /> {m.titre} ({m.mots.length} mots)</label>
                   </div>
@@ -253,6 +267,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
                 <button type="button" onClick={() => setEditeur({ liste: null })}>Composer une liste</button>
                 <p className="aide">Une liste contient de 1 à 50 mots, choisis par vous dans le catalogue. Un modèle sert de point de départ : on le coche tel quel, ou on le copie dans une liste pour le modifier.</p>
                 <p role="status">{motsTache.length} mot{motsTache.length > 1 ? 's' : ''} dans la tâche (maximum {TACHE_MAX})</p>
+                {niveau === 'maternelle' && nbRetires > 0 && <p className="aide">{nbRetires} mot{nbRetires > 1 ? 's' : ''} retiré{nbRetires > 1 ? 's' : ''} : la première lettre n’est pas une voyelle seule, ou il n’y a pas d’image.</p>}
                 {erreurTache && <p role="alert" className="ens-message">{erreurTache}</p>}
               </fieldset>
             )}
@@ -264,6 +279,17 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
           {etape === 2 && (<>
             <h3>Comment les élèves vont-ils jouer ? <span className="ens-badge facultatif">facultatif</span></h3>
             <p className="ens-rassure">Les réglages sont déjà bien choisis pour la plupart des classes. Vous pouvez passer directement à l’étape suivante.</p>
+            {niveau === 'maternelle' ? (<>
+            <p className="ens-rassure">Niveau maternelle : l’application règle seule les lettres en majuscules, les commandes épurées et les trois voyelles proposées. Il ne reste que la voix.</p>
+              <label htmlFor="ens-vitesse">Vitesse de la voix</label>
+              <select id="ens-vitesse" value={tache.vitesse} onChange={e => setTache(t => ({ ...t, vitesse: Number(e.target.value) }))}>
+                <option value={100}>Normale (100 %)</option>
+                <option value={75}>Lente (75 %)</option>
+                <option value={50}>Très lente (50 %)</option>
+              </select>
+              <label htmlFor="ens-verrou"><input id="ens-verrou" type="checkbox" checked={tache.vitesseVerrou} onChange={e => setTache(t => ({ ...t, vitesseVerrou: e.target.checked }))} /> Verrouiller cette vitesse</label>
+              <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres (500 ms, dernière syllabe à 75 %).</p>
+                          </>) : (<>
             <label htmlFor="ens-mode">Cartes avec ou sans le mot écrit</label>
             <select id="ens-mode" value={tache.modeMot} onChange={e => setTache(t => ({ ...t, modeMot: e.target.value }))}>
               <option value="sans">sans le mot : l’élève trouve le mot à l’oreille</option>
@@ -308,6 +334,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
               </select>
               <p className="aide">Pour P1 à P3, élèves qui ne lisent pas encore : la voix dit la consigne au départ, un encouragement tiré au hasard quand le mot est juste (« Bravo ! », « Super ! »…), une phrase d’aide quand il est faux (« Presque ! On regarde ensemble. ») puis rejoue le mot. Sans ce réglage, l’élève n’entend que le mot et ses lettres : les messages écrits ne sont pas lus. « Automatique » revient à « Non » ici, car les commandes épurées ne sont pas encore réglables dans une tâche enregistrée.</p>
             </details>
+            </>)}
           </>)}
 
           {etape === 3 && (<>

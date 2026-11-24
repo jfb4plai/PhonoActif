@@ -32,7 +32,7 @@ const nb = async db => (await db.query('select count(*)::int as n from phono_att
 
 test('phono_lire_tache : les réglages, sans nom de classe ni identifiant', async () => {
   const { db } = await monde();
-  assert.deepEqual(await lire(db, T1), { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'toujours', vitesse: 100, vitesse_verrou: false, mots: [], consignes: 'auto' });
+  assert.deepEqual(await lire(db, T1), { pack: 'demo', mode_mot: 'avec', habillage: 'sobre', nb_intrus: 2, exiger_accents: true, syllabes: 'toujours', vitesse: 100, vitesse_verrou: false, mots: [], consignes: 'auto', niveau: 'primaire' });
 });
 
 test('phono_lire_tache : jeton inconnu, révoqué ou mal formé', async () => {
@@ -267,4 +267,15 @@ test('consignes : auto par défaut, voix et non acceptés, autre refusé, la lec
     assert.equal((await lire(db, T1)).consignes, v);
   }
   await assert.rejects(db.query("update phono_tasks set consignes = 'peut-etre' where token = $1", [T1]), /consignes_valeurs|check/);
+});
+
+// ---- Réglage de tâche « niveau » (migration 20261124000000) ----
+test('niveau : primaire par défaut, maternelle accepté, autre refusé, la lecture de la tâche le rend', async () => {
+  const { db } = await monde();
+  assert.equal((await lire(db, T1)).niveau, 'primaire');
+  for (const v of ['maternelle', 'primaire']) {
+    await db.query('update phono_tasks set niveau = $1 where token = $2', [v, T1]);
+    assert.equal((await lire(db, T1)).niveau, v);
+  }
+  await assert.rejects(db.query("update phono_tasks set niveau = 'secondaire' where token = $1", [T1]), /niveau_valeurs|check/);
 });

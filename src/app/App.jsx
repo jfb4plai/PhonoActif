@@ -117,7 +117,9 @@ function AppEleve({ deps, hash, partie }) {
     chargerTache(jeton, config)
       .then(t => {
         if (!actif) return;
-        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou, mots: t.mots, consignes: t.consignes }));
+        // Tâche de maternelle : les valeurs de départ du niveau (majuscules, commandes épurées) s'appliquent après celles du serveur.
+        setTache(x => ({ ...x, pack: t.pack, modeMot: t.modeMot, habillage: t.habillage, nbIntrus: t.nbIntrus, exigerAccents: t.exigerAccents, syllabes: t.syllabes, vitesse: t.vitesse, vitesseVerrou: t.vitesseVerrou, mots: t.mots, consignes: t.consignes,
+          ...(t.niveau === 'maternelle' ? { ...REGLAGES_DU_NIVEAU.maternelle, niveau: 'maternelle' } : {}) }));
         setEtatTache('ok');
       })
       .catch(e => { if (actif) setEtatTache(e.message === 'tâche inconnue' ? 'inconnue' : e.message === 'réseau' ? 'reseau' : 'hors_service'); });
