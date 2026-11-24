@@ -32,7 +32,7 @@ describe('feuille à imprimer (maternelle)', () => {
       expect(li.querySelector('.feuille-mot')).toBeNull(); // le mot n'est pas écrit sur la feuille des élèves
     });
     expect(screen.getByText(/Prénom/)).toBeInTheDocument();
-    expect(screen.getByText(/Entourer la première lettre du mot/)).toBeInTheDocument();
+    expect(screen.getByText(/Entoure la première lettre du mot/)).toBeInTheDocument();
     expect(document.querySelectorAll('.feuille-lettre.juste')).toHaveLength(0);
   });
 

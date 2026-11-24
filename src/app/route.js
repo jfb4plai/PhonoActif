@@ -11,7 +11,7 @@ export const VALEURS_CASSE = ['minuscules', 'majuscules'];
 export const VALEURS_NIVEAU = ['primaire', 'maternelle'];
 // Commandes de l'écran élève : « complet » (texte + icône, tout visible, comportement historique) ou « epure » (icônes seules, essentiel visible, lecture automatique du mot ; pour les non-lecteurs P1). Audit 2026-11-21.
 export const VALEURS_COMMANDES = ['complet', 'epure'];
-// Consignes vocales (voix qui dit quoi faire, « Bravo », « Essayer encore ») : absent = automatique (oui avec les commandes épurées). Audit 2026-11-21.
+// Consignes vocales (voix qui dit quoi faire, « Bravo », « Essaie encore ») : absent = automatique (oui avec les commandes épurées). Audit 2026-11-21.
 export const VALEURS_CONSIGNES = ['voix', 'non'];
 // Vitesse de la voix en % (mots entiers et sons isolés, pas l'écoute par syllabes). Échelle retenue par JF le 2026-11-14 après écoute.
 export const VALEURS_VITESSE = [100, 75, 50];

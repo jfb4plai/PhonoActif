@@ -76,7 +76,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
     return Promise.resolve(deps.jouerFichier(urlConsigne(base, id), ...optsVitesse)).catch(() => {});
   };
   const direBravo = () => dire('juste');
-  // Mauvaise lettre : son de la lettre touchée, puis « Presque ! Écouter encore. » (faux, faux_2, faux_3), puis le mot rejoué. Un geste de l'élève coupe la suite.
+  // Mauvaise lettre : son de la lettre touchée, puis « Presque ! Écoute encore. » (faux, faux_2, faux_3), puis le mot rejoué. Un geste de l'élève coupe la suite.
   const lireErreur = v => {
     const n = ++sequence.current;
     return lireLettre(v).then(() => (sequence.current === n ? dire('faux') : null)).then(() => (voix ? new Promise(res => setTimeout(res, 700)) : null)).then(() => { if (voix && sequence.current === n) return lireMot(); return null; });
@@ -152,7 +152,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
             <svg className="etoile-grande etoile-d" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
           </p>
         )}
-        {enCours && ecartees.length > 0 && <p><span aria-hidden="true">✗ </span>Pas celle-là. Essayer encore.</p>}
+        {enCours && ecartees.length > 0 && <p><span aria-hidden="true">✗ </span>Pas celle-là. Essaie encore.</p>}
       </div>
 
       <div className="plateau choix-initiale" role="group" aria-label="Choisir la première lettre du mot">

@@ -112,7 +112,7 @@ describe('Jeu', () => {
     await commencer(user);
     await taper(user, 'ch');
     await user.click(screen.getByRole('button', { name: 'Vérifier' }));
-    expect(screen.getByText(/Poser tous les cubes/)).toBeInTheDocument();
+    expect(screen.getByText(/Pose tous les cubes/)).toBeInTheDocument();
     expect(stockage.lire()).toHaveLength(0);
   });
 
@@ -121,7 +121,7 @@ describe('Jeu', () => {
     await commencer(user);
     await taper(user, 'a', 'ch', 't');
     await user.click(screen.getByRole('button', { name: 'Vérifier' }));
-    expect(screen.getByText(/Essayer encore/)).toBeInTheDocument();
+    expect(screen.getByText(/Essaie encore/)).toBeInTheDocument();
     expect(within(screen.getByRole('group', { name: 'Mot à construire' })).queryAllByRole('button')).toHaveLength(0);
     expect(stockage.lire()[0].juste).toBe(false);
     expect(document.body.textContent).not.toMatch(/score|point|%/i);

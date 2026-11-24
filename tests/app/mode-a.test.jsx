@@ -69,7 +69,7 @@ describe('Mode A : lecture de ce qui est posé', () => {
   it('pack sans image : consigne écrite, aucun signalement d\'image', async () => {
     const { user } = monter();
     await commencer(user);
-    expect(screen.getByText('Écouter le mot, puis le construire.')).toBeInTheDocument();
+    expect(screen.getByText('Écoute le mot, puis construis-le.')).toBeInTheDocument();
     expect(screen.queryByText(/Image introuvable/)).toBeNull();
   });
 
@@ -104,7 +104,7 @@ describe('Mode A : lecture de ce qui est posé', () => {
     const { user } = monter(avecImage);
     await commencer(user);
     expect(screen.queryByAltText('Image du mot à écrire')).toBeNull();
-    expect(screen.getByText('Écouter le mot, puis le construire.')).toBeInTheDocument();
+    expect(screen.getByText('Écoute le mot, puis construis-le.')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Voir l’image' }));
     const img = screen.getByAltText('Image du mot à écrire');
     expect(img.getAttribute('src')).toBe('/packs/essai-a/images/chat.png');

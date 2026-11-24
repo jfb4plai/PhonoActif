@@ -89,7 +89,7 @@ describe('Maternelle : exercice « première lettre »', () => {
     const fausses = screen.getAllByRole('button', { name: /^Lettre / }).filter(b => b.getAttribute('aria-label') !== `Lettre ${cible}`);
     await user.click(fausses[0]);
     expect(fausses[0]).toBeDisabled();
-    expect(screen.getByText(/Essayer encore/)).toBeInTheDocument();
+    expect(screen.getByText(/Essaie encore/)).toBeInTheDocument();
     await user.click(fausses[1]);
     expect(screen.queryByText(/C’est cette lettre/)).toBeNull();
     expect(screen.getByRole('button', { name: 'Suivant' })).toBeDisabled();

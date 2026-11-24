@@ -69,7 +69,7 @@ export default function Feuille({ base = '/', deps = {}, tache = {} }) {
           <header className="feuille-entete">
             <h1>{corrige ? 'Corrigé : la première lettre' : 'La première lettre'}</h1>
             {!corrige && <p className="feuille-nom">Prénom : ______________________ &nbsp; Date : ____________</p>}
-            <p className="feuille-consigne">Regarder l’image. Entourer la première lettre du mot.</p>
+            <p className="feuille-consigne">Regarde l’image. Entoure la première lettre du mot.</p>
           </header>
           <ol className="feuille-grille" aria-label="Mots de la feuille">
             {etat.serie.map(({ carte, cible, lettres }, k) => (
