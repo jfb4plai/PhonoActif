@@ -5,6 +5,7 @@ import { lettreInitiale } from '../core/voyellesInitiale.js';
 import { fusionnerListes, validerTache, TACHE_MAX } from '../core/liste.js';
 import { listerListes, supprimerListe, dupliquerListe } from './listes.js';
 import ListeEditeur from './ListeEditeur.jsx';
+import ChoixNiveau from '../app/ChoixNiveau.jsx';
 import { libelleLiaison, syntheseClasse, SYMBOLES, NOMS_ETATS } from './liaison.js';
 import {
   decouperCodes, creerCodesAuto, ajouterEleves, creerTache, listerTaches, resumeTache, revoquerTache, qrDeLien, resultats, inviter, supprimerEleve, liensEleves, nouvelleCleEleve
@@ -78,6 +79,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
   const niveau = niveauDe(tache);
   // Maternelle : seuls les mots dont la première lettre est une voyelle seule et qui ont une image servent à l'exercice ; les autres sont retirés de la tâche.
   const utilisableMaternelle = id => { const e = catalogue.find(x => x.id === id); return !!(e && e.image && lettreInitiale({ cubes: (e.cubes || []).map(g => ({ g })) })); };
+  const listesVisibles = niveau === 'maternelle' ? listes.filter(l => l.mots.some(utilisableMaternelle)) : listes; // en maternelle, une liste sans aucun mot utilisable n'est pas proposée
   const motsDemandes = fusionnerListes(sources.map(x => x.mots));
   const motsTache = niveau === 'maternelle' ? motsDemandes.filter(utilisableMaternelle) : motsDemandes;
   const nbRetires = motsDemandes.length - motsTache.length;
@@ -238,8 +240,7 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
           {etape === 1 && (<>
             <fieldset className="ens-niveau">
               <legend>Quel niveau ? <span className="ens-badge">obligatoire</span></legend>
-              <label htmlFor="ens-niveau-mat"><input id="ens-niveau-mat" type="radio" name="ens-niveau" checked={niveau === 'maternelle'} onChange={() => changerNiveau('maternelle')} /> Maternelle (M1 à M3) : trouver la première lettre d’un mot</label>
-              <label htmlFor="ens-niveau-pri"><input id="ens-niveau-pri" type="radio" name="ens-niveau" checked={niveau === 'primaire'} onChange={() => changerNiveau('primaire')} /> Primaire (P1 et plus) : construire le mot lettre par lettre</label>
+              <ChoixNiveau niveau={niveau} onChoisir={changerNiveau} nom="ens-niveau" idPrefixe="ens-niveau" />
               <p className="aide">À choisir en premier : il change les modèles proposés et les réglages de l’étape suivante. Maternelle : lettres en majuscules, commandes épurées, trois voyelles au choix ; seuls les mots qui commencent par une voyelle seule et ont une image servent à l’exercice.</p>
             </fieldset>
             <h3>Quels mots les élèves vont-ils jouer ? <span className="ens-badge">obligatoire</span></h3>
@@ -249,10 +250,11 @@ export default function Classe({ client, userId, classe, base, catalogue = [], m
                 <legend>Mots de la tâche</legend>
                 <p className="aide">Cochez une liste : les élèves jouent ses mots. Cochez-en plusieurs pour une révision : les mots en double sont retirés.</p>
                 {listes.length === 0 && modeles.length === 0 && <p>Vous n’avez pas encore de liste. Composez-en une ci-dessous.</p>}
-                {listes.length > 0 && <h4>Mes listes</h4>}
-                {listes.map(l => (
+                {listesVisibles.length > 0 && <h4>Mes listes</h4>}
+                {niveau === 'maternelle' && listes.length > listesVisibles.length && <p className="aide">{listes.length - listesVisibles.length} de vos listes ne sont pas montrées : aucun de leurs mots ne commence par une voyelle seule avec une image.</p>}
+                {listesVisibles.map(l => (
                   <div key={l.id} className="ens-choix">
-                    <label htmlFor={`ens-l-${l.id}`}><input id={`ens-l-${l.id}`} type="checkbox" checked={choix.includes(`l:${l.id}`)} onChange={() => basculerChoix(`l:${l.id}`)} /> {l.nom} ({l.mots.length} mots)</label>
+                    <label htmlFor={`ens-l-${l.id}`}><input id={`ens-l-${l.id}`} type="checkbox" checked={choix.includes(`l:${l.id}`)} onChange={() => basculerChoix(`l:${l.id}`)} /> {l.nom} ({niveau === 'maternelle' ? `${l.mots.filter(utilisableMaternelle).length} mot${l.mots.filter(utilisableMaternelle).length > 1 ? 's' : ''} utilisable${l.mots.filter(utilisableMaternelle).length > 1 ? 's' : ''} sur ${l.mots.length}` : `${l.mots.length} mots`})</label>
                     <button type="button" onClick={() => setEditeur({ liste: l })}>Modifier</button>
                     <button type="button" onClick={() => copierListe(l)}>Copier</button>
                     <button type="button" className="danger" onClick={() => retirerListe(l)}>Supprimer</button>

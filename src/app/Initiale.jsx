@@ -7,10 +7,9 @@ import { VALEURS_VITESSE } from './route.js';
 
 /* Maternelle (M1 à M3), exercice « première lettre » : l'élève voit l'image d'un mot qui commence par une voyelle et choisit cette voyelle parmi trois.
    Une fois la bonne lettre posée, il entend le son de la lettre, puis le mot entier. Pas de lecture demandée : image et voix seulement.
-   Une mauvaise lettre se grise et joue son propre son (l'élève entend la différence) ; après deux erreurs, la bonne lettre est montrée.
+   Une mauvaise lettre se grise et joue son propre son (l'élève entend la différence) ; on ne révèle jamais la réponse : après deux erreurs il ne reste que la bonne lettre, l'élève la choisit lui-même (JF 2026-11-24).
    Les essais sont enregistrés dans le même format que le jeu de construction (une position : la première lettre). Décisions de JF 2026-11-20 et 2026-11-24. */
 
-const ESSAIS_MAX = 2;
 const PAUSE_MS = 500;
 
 function melanger(liste, rng) {
@@ -40,7 +39,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   const session = useRef(`s-${maintenant().replace(/\D/g, '').slice(0, 14)}-${Math.floor(rng() * 36 ** 4).toString(36).padStart(4, '0')}`).current;
   const [index, setIndex] = useState(0);
   const [ecartees, setEcartees] = useState([]); // lettres déjà essayées et fausses sur cette carte
-  const [statut, setStatut] = useState('en_cours'); // en_cours | juste | revelation
+  const [statut, setStatut] = useState('en_cours'); // en_cours | juste
   const [sonAbsent, setSonAbsent] = useState(false);
   const [vitesse, setVitesse] = useState(VALEURS_VITESSE.includes(tache.vitesse) ? tache.vitesse : 100);
   const sequence = useRef(0); // un nouveau geste coupe la suite d'une lecture en cours (lettre puis mot)
@@ -88,9 +87,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
       return;
     }
     enregistrer(v, false, tentative);
-    const reste = [...ecartees, v];
-    setEcartees(reste);
-    if (reste.length >= ESSAIS_MAX) { setStatut('revelation'); lireLettre(v).then(() => lireLettrePuisMot(cible)); return; } // la bonne lettre est montrée
+    setEcartees([...ecartees, v]);
     sequence.current++;
     lireLettre(v);
   };
@@ -103,7 +100,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
 
   const classeZone = statut === 'juste' ? ' zone-juste' : (ecartees.length > 0 && enCours ? ' zone-faux' : '');
-  const lettreMontree = v => statut === 'revelation' && v === cible;
+  const fete = [...String(carte.id)].reduce((n, c) => n + c.charCodeAt(0), 0) % 4; // 4 fêtes, la même pour un même mot
 
   return (
     <main className={`jeu jeu-epure jeu-initiale${tache.casse === 'majuscules' ? ' jeu-maj' : ''}`}>
@@ -115,21 +112,31 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
       </div>
 
       <div className={`carte-jeu${classeZone}`}>
+        {/* Fête de réussite en grand (maternelle) : gros confettis, grande étoile, lettre qui saute. Décoratif, une seule fois (fete.css). */}
+        {statut === 'juste' && (
+          <span className={`confettis confettis-grands fete-${fete}`} aria-hidden="true">
+            {Array.from({ length: 28 }, (_, k) => <i key={k} style={{ '--x': `${(k - 13.5) * 3.4}%`, '--d': `${(k % 7) * 0.05}s`, '--h': `${110 + (k * 37) % 110}px`, '--r': `${(k % 2 ? 1 : -1) * (120 + k * 25)}deg` }} className={`conf conf${k % 4}`} />)}
+          </span>
+        )}
         <img src={urlFichier(base, pack, String(carte.image_sans_mot))} alt="Image du mot à trouver" onError={() => onSignalement('image', carte.id)} />
         <Bouton icone="hautparleur" texte="Écouter" className="principal ecouter-image" onClick={() => { sequence.current++; lireMot(); }} />
       </div>
 
       <div className="retour" aria-live="polite">
-        {statut === 'juste' && <p className="bravo"><span aria-hidden="true">✓ </span>Bravo !</p>}
+        {statut === 'juste' && (
+          <p className="bravo bravo-grand">
+            <svg className="etoile-grande" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
+            <span>Bravo !</span>
+          </p>
+        )}
         {enCours && ecartees.length > 0 && <p><span aria-hidden="true">✗ </span>Pas celle-là. Essayer encore.</p>}
-        {statut === 'revelation' && <p>C’est cette lettre.</p>}
       </div>
 
       <div className="plateau choix-initiale" role="group" aria-label="Choisir la première lettre du mot">
         {choix.map(v => (
           <button key={v} type="button" lang="fr"
-            className={`cube v${ecartees.includes(v) ? ' ecartee' : ''}${statut === 'juste' && v === cible ? ' choisie' : ''}${lettreMontree(v) ? ' choisie' : ''}`}
-            aria-label={`Lettre ${v}`} disabled={!enCours || ecartees.includes(v)} aria-pressed={statut !== 'en_cours' && v === cible} onClick={() => surChoix(v)}>
+            className={`cube v${ecartees.includes(v) ? ' ecartee' : ''}${statut === 'juste' && v === cible ? ' choisie' : ''}`}
+            aria-label={`Lettre ${v}`} disabled={!enCours || ecartees.includes(v)} aria-pressed={statut === 'juste' && v === cible} onClick={() => surChoix(v)}>
             {v}
           </button>
         ))}

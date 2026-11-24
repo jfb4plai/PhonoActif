@@ -38,3 +38,16 @@
 @keyframes surgit { 0% { opacity: 0; transform: scale(0) rotate(-200deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
 .bilan h1 { animation: pop 0.9s ease-in-out 0.9s both; }
 @media (prefers-reduced-motion: reduce) { .zone-juste .cube, .bilan h1, .etoile-bilan { animation: none; } .confettis, .feu { display: none; } }
+
+/* Maternelle, exercice « première lettre » : fête de réussite en GRAND (demande de JF 2026-11-24) : grande étoile qui surgit, « Bravo » qui pulse,
+   gros confettis, lettre choisie qui saute. Une seule fois, sans clignotement. */
+.jeu-initiale .confettis-grands { top: 40%; }
+.jeu-initiale .confettis-grands .conf { width: 20px; height: 28px; }
+.jeu-initiale .confettis-grands.fete-1 .conf, .jeu-initiale .confettis-grands.fete-2 .conf { width: 28px; height: 28px; }
+.bravo-grand { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 4px 0; font-size: 64px; line-height: 1.1; color: var(--teal); }
+.bravo-grand span { animation: bravo-pulse 1.1s ease-in-out 0.2s 2 both; }
+.etoile-grande { animation: surgit 1.1s cubic-bezier(0.3, 1.5, 0.5, 1) 0.05s both; }
+.jeu-initiale .choix-initiale .cube.choisie { animation: lettre-saute 1s ease-in-out 0.1s 2; }
+@keyframes bravo-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+@keyframes lettre-saute { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-26px) scale(1.25); } 70% { transform: translateY(0) scale(0.95); } }
+@media (prefers-reduced-motion: reduce) { .bravo-grand span, .etoile-grande, .jeu-initiale .choix-initiale .cube.choisie { animation: none; } .confettis-grands { display: none; } }

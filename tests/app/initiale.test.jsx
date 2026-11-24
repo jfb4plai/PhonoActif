@@ -61,7 +61,7 @@ describe('Maternelle : exercice « première lettre »', () => {
     expect(screen.getByRole('button', { name: 'Suivant' })).toBeEnabled();
   });
 
-  it('deux mauvaises lettres : elles se grisent, puis la bonne est montrée ; deux essais faux enregistrés', async () => {
+  it('deux mauvaises lettres : elles se grisent, la bonne n’est pas révélée, l’élève la choisit lui-même (essai 3)', async () => {
     const { user, stockage } = monter(LIEN);
     await commencer(user);
     const cible = lettreInitiale(carteCourante());
@@ -70,10 +70,36 @@ describe('Maternelle : exercice « première lettre »', () => {
     expect(fausses[0]).toBeDisabled();
     expect(screen.getByText(/Essayer encore/)).toBeInTheDocument();
     await user.click(fausses[1]);
-    expect(screen.getByText(/C’est cette lettre/)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: `Lettre ${cible}` })).toHaveAttribute('aria-pressed', 'true');
-    expect(stockage.lire().map(l => l.juste)).toEqual([false, false]);
+    expect(screen.queryByText(/C’est cette lettre/)).toBeNull();
+    expect(screen.getByRole('button', { name: 'Suivant' })).toBeDisabled();
+    const bonne = screen.getByRole('button', { name: `Lettre ${cible}` });
+    expect(bonne).toBeEnabled();
+    expect(bonne).toHaveAttribute('aria-pressed', 'false');
+    await user.click(bonne);
+    expect(screen.getByText(/Bravo/)).toBeInTheDocument();
+    expect(stockage.lire().map(l => [l.tentative, l.juste])).toEqual([[1, false], [2, false], [3, true]]);
     expect(screen.getByRole('button', { name: 'Suivant' })).toBeEnabled();
+  });
+
+  it('réussite : fête en grand (grande étoile, gros confettis)', async () => {
+    const { user } = monter(LIEN);
+    await commencer(user);
+    await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(carteCourante())}` }));
+    expect(document.querySelector('.bravo-grand .etoile-grande')).not.toBeNull();
+    expect(document.querySelectorAll('.confettis-grands .conf').length).toBeGreaterThanOrEqual(24);
+  });
+
+  it('l’ordre des mots change d’un départ à l’autre (tirage au sort, pas toujours le même)', async () => {
+    const premiers = new Set();
+    for (let k = 1; k <= 12; k++) {
+      const deps = { fetch: servir, stockage: stockageMemoire(), jouerSons: vi.fn(async () => ({ manquants: [] })), jouerFichier: vi.fn(async () => ({ manquants: [] })), maintenant: () => '2026-11-24T10:00:00.000Z', hash: LIEN, base: '/' };
+      const user = userEvent.setup();
+      render(<App deps={deps} />);
+      await commencer(user);
+      premiers.add(carteCourante().id);
+      cleanup();
+    }
+    expect(premiers.size).toBeGreaterThan(2);
   });
 
   it('jamais a avec é parmi les trois lettres, sur toutes les cartes de la liste', async () => {

@@ -118,6 +118,7 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .app .jeu .actions-epure .guide { transform-origin: right center; } /* commandes épurées : le bouton actif grossit vers l'intérieur, pas hors de l'écran */
 
 /* Maternelle, exercice « première lettre » : trois grosses lettres au choix, une lettre fausse se grise, la bonne est cerclée. */
+.jeu-initiale .retour { min-height: 120px; display: flex; align-items: center; justify-content: center; } /* place réservée au grand « Bravo » : les lettres ne bougent pas */
 .choix-initiale { justify-content: center; gap: 24px; margin: 8px 0 16px; }
 .choix-initiale .cube { min-width: 112px; height: 112px; font-size: 60px; }
 .choix-initiale .cube.ecartee { opacity: 0.3; }

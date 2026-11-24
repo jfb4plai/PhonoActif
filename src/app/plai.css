@@ -158,3 +158,14 @@ textarea.plai-input { resize: vertical; }
   color: var(--teal); border-radius: var(--radius-sm);
   padding: 0.6rem 0.9rem; font-size: 13px; margin-bottom: 0.75rem;
 }
+
+/* Choix du niveau : grandes cases à cocher (toute la tuile se clique). */
+.choix-niveau { display: grid; gap: 12px; margin: 8px 0 12px; }
+.tuile-niveau { position: relative; display: flex; align-items: center; gap: 16px; min-height: 76px; padding: 12px 16px; border: 3px solid #b9b3a6; border-radius: 14px; background: #fff; cursor: pointer; }
+.tuile-niveau input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.tuile-case { flex: none; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 3px solid #555; border-radius: 8px; background: #fff; color: #fff; font-size: 30px; font-weight: bold; line-height: 1; }
+.tuile-niveau.choisie { border-color: var(--teal); background: var(--teal-bg); }
+.tuile-niveau.choisie .tuile-case { background: var(--teal); border-color: var(--teal); }
+.tuile-niveau:focus-within { outline: 4px solid var(--teal-border); outline-offset: 2px; }
+.tuile-texte strong { display: block; font-size: 20px; }
+.tuile-texte span { font-size: 16px; }

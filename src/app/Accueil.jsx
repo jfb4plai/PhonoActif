@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { codeValide } from './code.js';
 import Cadre from './Cadre.jsx';
+import ChoixNiveau from './ChoixNiveau.jsx';
 import { niveauDe, optionVisible, listesDuNiveau } from './niveau.js';
 
 const MESSAGES_TACHE = {
@@ -27,12 +28,7 @@ export default function Accueil({
   const blocNiveau = !enLigne && (
     <fieldset className="plai-field niveau">
       <legend className="plai-label">Niveau</legend>
-      <label htmlFor="niveau-maternelle" style={{ display: 'block' }}>
-        <input id="niveau-maternelle" type="radio" name="niveau" checked={niveau === 'maternelle'} onChange={() => onNiveau && onNiveau('maternelle')} /> Maternelle (M1 à M3) : trouver la première lettre d’un mot
-      </label>
-      <label htmlFor="niveau-primaire" style={{ display: 'block' }}>
-        <input id="niveau-primaire" type="radio" name="niveau" checked={niveau === 'primaire'} onChange={() => onNiveau && onNiveau('primaire')} /> Primaire (P1 et plus) : construire le mot lettre par lettre
-      </label>
+      <ChoixNiveau niveau={niveau} onChoisir={n => onNiveau && onNiveau(n)} />
       <p className="aide">À choisir en premier : il change la liste de mots proposée et les options affichées. Maternelle : lettres en majuscules, commandes épurées, trois voyelles au choix ; l’application règle seule ce qui n’a pas de sens à cet âge.</p>
     </fieldset>
   );
