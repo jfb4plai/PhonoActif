@@ -19,7 +19,7 @@ export default function Landing({ base = '/' }) {
       <main className="plai-container page">
         <h1 className="page-titre">PhonoActif</h1>
         <p className="page-chapo">Relier les sons et les lettres, un cube après l’autre, avec une voix belge qui lit ce que l’élève pose.</p>
-        <p>Pour les élèves qui apprennent à lire et à écrire (P1 à P3), et pour ceux qui ont besoin de reprendre le lien entre les sons et les lettres. Les mots sont choisis par l’enseignant, jamais par une IA.</p>
+        <p>Pour les élèves qui apprennent à lire et à écrire (P1 à P3), pour ceux qui ont besoin de reprendre le lien entre les sons et les lettres, et, en maternelle (M1 à M3), pour trouver la première lettre d’un mot. Le niveau se choisit en premier. Les mots sont choisis par l’enseignant, jamais par une IA.</p>
 
         <div className="portes">
           <a className="porte porte-eleve" href="#/eleve">

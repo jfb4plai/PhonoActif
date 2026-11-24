@@ -39,7 +39,7 @@ export async function publier({ racine, base = path.join(racine, 'data', 'base')
   await writeFile(path.join(sortie, 'catalogue.json'), JSON.stringify(catalogue) + '\n', 'utf8');
   // Un pack à paliers n'est publié que complet (décision de JF du 2026-11-22) : un mot manquant retire tout le modèle.
   const modeles = packs.map(p => {
-    const m = { id: p.id, titre: p.manifeste.titre || p.entree.label, mots: p.mots.filter(x => ids.has(x)) };
+    const m = { id: p.id, titre: p.manifeste.titre || p.entree.label, mots: p.mots.filter(x => ids.has(x)), ...(p.manifeste.niveau ? { niveau: p.manifeste.niveau } : {}) }; // niveau : « maternelle » pour l'exercice initiale
     const paliers = p.manifeste.paliers;
     if (!Array.isArray(paliers)) return m;
     if (m.mots.length !== p.mots.length) return null;

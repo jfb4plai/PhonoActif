@@ -7,6 +7,8 @@ export const VALEURS_SYLLABES = ['non', 'toujours', 'aide'];
 export const VALEURS_MUET = ['origine', 'depot'];
 // Casse des lettres affichées (pièces, mot révélé, indice) : « minuscules » = défaut (absent de l'adresse) ; « majuscules » = affichage seulement, les audios ne changent pas. Demande de Virginie, maternelle (2026-11-20).
 export const VALEURS_CASSE = ['minuscules', 'majuscules'];
+// Niveau : « primaire » (P1 et plus, construction du mot, défaut absent de l'adresse) ou « maternelle » (M1 à M3, exercice « première lettre »). Décision de JF 2026-11-24 : le niveau se fixe en premier, il règle les options proposées.
+export const VALEURS_NIVEAU = ['primaire', 'maternelle'];
 // Commandes de l'écran élève : « complet » (texte + icône, tout visible, comportement historique) ou « epure » (icônes seules, essentiel visible, lecture automatique du mot ; pour les non-lecteurs P1). Audit 2026-11-21.
 export const VALEURS_COMMANDES = ['complet', 'epure'];
 // Consignes vocales (voix qui dit quoi faire, « Bravo », « Essayer encore ») : absent = automatique (oui avec les commandes épurées). Audit 2026-11-21.
@@ -39,6 +41,8 @@ function tacheDepuisRequete(requete) {
   if (dig !== null) tache.digraphes = [...new Set(dig.split('-').map(Number))].filter(n => n >= 2 && n <= 4).sort();
   const muet = p.get('muet');
   if (VALEURS_MUET.includes(muet)) tache.muet = muet;
+  const niveau = p.get('niveau');
+  if (VALEURS_NIVEAU.includes(niveau)) tache.niveau = niveau;
   const casse = p.get('casse');
   if (VALEURS_CASSE.includes(casse)) tache.casse = casse;
   const commandes = p.get('commandes');
@@ -90,7 +94,8 @@ export function ecrireAdresse(base, ecran, tache, carte) {
     `vitesse=${e(tache.vitesse || REGLAGES_PAR_DEFAUT.vitesse)}`, `verrou=${tache.vitesseVerrou ? 1 : 0}`];
   if (Array.isArray(tache.digraphes) && tache.digraphes.join('-') !== REGLAGES_PAR_DEFAUT.digraphes.join('-')) reglages.push(`digraphes=${tache.digraphes.length > 0 ? tache.digraphes.join('-') : '0'}`); // « 0 » = aucun bloc
   if (tache.muet === 'depot') reglages.push('muet=depot'); // « origine » = défaut, absent de l'adresse
-  if (tache.casse === 'majuscules') reglages.push('casse=majuscules'); // « minuscules » = défaut, absent de l'adresse
+  if (tache.niveau === 'maternelle') reglages.push('niveau=maternelle'); // « primaire » = défaut, absent de l'adresse
+  if (tache.casse === 'majuscules' || (tache.niveau === 'maternelle' && tache.casse === 'minuscules')) reglages.push(`casse=${tache.casse}`); // « minuscules » = défaut, absent de l'adresse sauf en maternelle (où le départ est « majuscules »)
   if (VALEURS_CONSIGNES.includes(tache.consignes)) reglages.push(`consignes=${tache.consignes}`); // absent = automatique
   if (tache.commandes === 'epure') reglages.push('commandes=epure'); // « complet » = défaut, absent de l'adresse
   if (ecran === 'jeu' && tache.jeton) return `${racine}#/jeu?t=${e(tache.jeton)}${tache.codeEleve && tache.cle ? `&e=${e(tache.codeEleve)}&k=${e(tache.cle)}` : ''}`;

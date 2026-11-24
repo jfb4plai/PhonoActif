@@ -51,7 +51,7 @@ test('publier refuse une base qui contient deux fiches de même identifiant', as
   await assert.rejects(publier({ racine: RACINE, base, sortie }), /identifiant en double : la/);
 });
 
-test('la base (data/base) est cohérente : au moins 156 fiches valides, identifiants ASCII uniques, fichiers présents, 7 modèles', async () => {
+test('la base (data/base) est cohérente : au moins 156 fiches valides, identifiants ASCII uniques, fichiers présents, 8 modèles', async () => {
   const fiches = await lire(path.join(RACINE, 'data', 'base', 'fiches.json'));
   assert.equal(new Set(fiches.map(f => f.id)).size, fiches.length);
   for (const f of fiches) { assert.match(f.id, /^[a-z0-9-]{1,60}$/); assert.ok(['valide', 'brouillon'].includes(f.statut), `${f.id} : statut ${f.statut}`); }
@@ -61,7 +61,13 @@ test('la base (data/base) est cohérente : au moins 156 fiches valides, identifi
   const fichiers = f => [f.image_sans_mot, f.phraseAudio, ...(f.etats || []).map(e => e.fichier), ...(f.syllabes || []).map(s => s.fichier)].filter(Boolean);
   for (const f of valides) for (const x of fichiers(f)) assert.ok(existsSync(path.join(RACINE, 'data', 'base', 'assets', x)), `${f.id} : fichier absent ${x}`);
   const packs = await lire(path.join(RACINE, 'data', 'base', 'packs.json'));
-  assert.deepEqual(packs.map(p => p.id), ['p1-100', 'p1-20-images', 'p1-illustre-2', 'p1-illustre-3', 'p1-illustre-4', 'p1-illustre-5', 'pack-progressif-p1']);
+  assert.deepEqual(packs.map(p => p.id), ['p1-100', 'p1-20-images', 'p1-illustre-2', 'p1-illustre-3', 'p1-illustre-4', 'p1-illustre-5', 'pack-progressif-p1', 'maternelle-initiale']);
+});
+
+test('publier : le niveau d un modèle est publié (maternelle), absent sinon', async () => {
+  const modeles = JSON.parse(await readFile(path.join(RACINE, 'public', 'mots', 'modeles.json'), 'utf8'));
+  assert.equal(modeles.find(m => m.id === 'maternelle-initiale').niveau, 'maternelle');
+  assert.equal(modeles.find(m => m.id === 'p1-100').niveau, undefined);
 });
 
 test('publier : un modèle à paliers est publié complet, absent si un mot n\'est pas valide', async () => {

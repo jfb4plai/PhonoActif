@@ -603,5 +603,44 @@
    "vase",
    "manege"
   ]
+ },
+ {
+  "id": "maternelle-initiale",
+  "entree": {
+   "id": "maternelle-initiale",
+   "label": "Maternelle : la première lettre (a, é, i, o, u)"
+  },
+  "manifeste": {
+   "nom": "maternelle-initiale",
+   "mode": "lettres",
+   "niveau": "maternelle",
+   "titre": "Maternelle : la première lettre (a, é, i, o, u)",
+   "source": "mots dont la première lettre est une voyelle seule (a, é, i, o, u) et qui ont une image ; filtre déterministe sur le catalogue, sans IA (2026-11-24)"
+  },
+  "mots": [
+   "avec",
+   "ecole",
+   "ami",
+   "arbre",
+   "avion",
+   "ane",
+   "etoile",
+   "echelle",
+   "armoire",
+   "orange",
+   "epi",
+   "imiter",
+   "identite",
+   "igloo",
+   "univers",
+   "uniforme",
+   "ile",
+   "olive",
+   "omelette",
+   "opera",
+   "olympique",
+   "ogre",
+   "os"
+  ]
  }
 ]

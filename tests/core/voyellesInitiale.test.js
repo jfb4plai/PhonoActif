@@ -18,6 +18,8 @@ test('lettreInitiale : voyelle seule retenue, digraphe et h muet écartés (cata
   assert.deepEqual(['ami', 'âne', 'arbre', 'armoire', 'avec', 'avion'].map(m => lettreInitiale(mot(m))), ['a', 'a', 'a', 'a', 'a', 'a']);
   assert.deepEqual(['école', 'étoile', 'échelle'].map(m => lettreInitiale(mot(m))), ['é', 'é', 'é']);
   assert.equal(lettreInitiale(mot('orange')), 'o');
+  assert.deepEqual(['univers', 'uniforme'].map(m => lettreInitiale(mot(m))), ['u', 'u']);
+  assert.deepEqual(['imiter', 'identité', 'igloo', 'île'].map(m => lettreInitiale(mot(m))), ['i', 'i', 'i', 'i']);
   for (const m of ['eau', 'ours', 'oiseau', 'œuf', 'hibou', 'homme']) assert.equal(lettreInitiale(mot(m)), null, m);
 });
 
@@ -29,7 +31,7 @@ test('voyellesProposees : 3 lettres distinctes, la bonne dedans, jamais a avec �
       assert.ok(!(t.includes('a') && t.includes('é')), t.join());
     }
   }
-  assert.equal(voyellesProposees('u'), null);
+  assert.equal(voyellesProposees('y'), null);
 });
 
 test('voyellesProposees : déterministe avec un rng fixe', () => {

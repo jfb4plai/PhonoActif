@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { codeValide } from './code.js';
 import Cadre from './Cadre.jsx';
+import { niveauDe, optionVisible, listesDuNiveau } from './niveau.js';
 
 const MESSAGES_TACHE = {
   inconnue: 'Cette tâche n’existe plus. Demander un nouveau lien à l’enseignant.',
@@ -9,7 +10,7 @@ const MESSAGES_TACHE = {
 };
 
 export default function Accueil({
-  base = '/', partie = 'eleve', tache, code, onCode, onTache, onCommencer, erreur, avertissements, persistant, lien, nbEssais, usageImage, onExportJson, onExportCsv,
+  base = '/', partie = 'eleve', tache, code, onCode, onTache, onNiveau, onCommencer, erreur, avertissements, persistant, lien, nbEssais, usageImage, onExportJson, onExportCsv,
   packsListe = [], enLigne = false, lienPersonnel = false, etatTache = 'non', peutEnvoyer = false, enAttente = 0, onEnvoyerAttente, messageEnvoi = ''
 }) {
   // QR-code du lien de tâche : calculé ici, sans réseau (bibliothèque chargée seulement quand il y a un lien)
@@ -20,19 +21,35 @@ export default function Accueil({
     import('qrcode').then(m => (m.default || m).toDataURL(lien, { margin: 1, width: 256 })).then(u => { if (actif) setQr(u); }).catch(() => { if (actif) setQr(null); });
     return () => { actif = false; };
   }, [lien]);
+  const niveau = niveauDe(tache);
+  const listesNiveau = listesDuNiveau(packsListe, tache);
+  // Le niveau se choisit en premier : il règle les valeurs de départ et décide des options proposées (décision de JF 2026-11-24).
+  const blocNiveau = !enLigne && (
+    <fieldset className="plai-field niveau">
+      <legend className="plai-label">Niveau</legend>
+      <label htmlFor="niveau-maternelle" style={{ display: 'block' }}>
+        <input id="niveau-maternelle" type="radio" name="niveau" checked={niveau === 'maternelle'} onChange={() => onNiveau && onNiveau('maternelle')} /> Maternelle (M1 à M3) : trouver la première lettre d’un mot
+      </label>
+      <label htmlFor="niveau-primaire" style={{ display: 'block' }}>
+        <input id="niveau-primaire" type="radio" name="niveau" checked={niveau === 'primaire'} onChange={() => onNiveau && onNiveau('primaire')} /> Primaire (P1 et plus) : construire le mot lettre par lettre
+      </label>
+      <p className="aide">À choisir en premier : il change la liste de mots proposée et les options affichées. Maternelle : lettres en majuscules, commandes épurées, trois voyelles au choix ; l’application règle seule ce qui n’a pas de sens à cet âge.</p>
+    </fieldset>
+  );
   const messageTache = enLigne ? MESSAGES_TACHE[etatTache] : null;
   const alerte = erreur || messageTache;
   const bandeauPack = !enLigne && (
     <>
+              {blocNiveau}
               <div className="plai-field">
                 <label className="plai-label" htmlFor="pack">Liste de mots</label>
-                {packsListe.length > 0
+                {listesNiveau.length > 0
                   ? (
                     <select id="pack" className="plai-input" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value })}>
                       <option value="">Choisir une liste</option>
-                      {packsListe.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
+                      {listesNiveau.map(p => <option key={p.id} value={p.id}>{p.label}</option>)}
                       {/* pack venu d'un lien mais absent de la liste publique (pack en validation) : sans cette ligne, la liste afficherait « Choisir une liste » alors que le pack est retenu */}
-                      {tache.pack && !packsListe.some(p => p.id === tache.pack) && <option value={tache.pack}>{tache.pack} (liste ouverte par lien)</option>}
+                      {tache.pack && !listesNiveau.some(p => p.id === tache.pack) && <option value={tache.pack}>{tache.pack} (liste ouverte par lien)</option>}
                     </select>
                   )
                   : <input id="pack" className="plai-input" type="text" placeholder="demo" value={tache.pack || ''} onChange={e => onTache({ pack: e.target.value.trim() })} />}
@@ -77,6 +94,7 @@ export default function Accueil({
           <section className="plai-section" aria-label="Réglages du lien">
             <h2>Réglages</h2>
             {bandeauPack}
+              {optionVisible(tache, 'mode') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="mode">Cartes</label>
                 <select id="mode" className="plai-input" value={tache.modeMot} onChange={e => onTache({ modeMot: e.target.value })}>
@@ -85,6 +103,8 @@ export default function Accueil({
                 </select>
                 <p className="aide">Change la face de la carte montrée : l’écriture se travaille de deux façons différentes.</p>
               </div>
+              )}
+              {optionVisible(tache, 'habillage') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="habillage">Habillage</label>
                 <select id="habillage" className="plai-input" value={tache.habillage} onChange={e => onTache({ habillage: e.target.value })}>
@@ -93,6 +113,8 @@ export default function Accueil({
                 </select>
                 <p className="aide">Change les couleurs et les formes. Les mots restent toujours en Arial.</p>
               </div>
+              )}
+              {optionVisible(tache, 'intrus') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="intrus">Nombre de cubes en trop</label>
                 <select id="intrus" className="plai-input" value={tache.nbIntrus} onChange={e => onTache({ nbIntrus: Number(e.target.value) })}>
@@ -100,10 +122,14 @@ export default function Accueil({
                 </select>
                 <p className="aide">Des cubes qui ne servent pas, pour que l’élève doive choisir. 0 rend la tâche plus facile.</p>
               </div>
+              )}
+              {optionVisible(tache, 'accents') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="accents"><input id="accents" type="checkbox" checked={tache.exigerAccents} onChange={e => onTache({ exigerAccents: e.target.checked })} /> Exiger les accents</label>
                 <p className="aide">Si la case est vide, « e » est accepté à la place de « é ».</p>
               </div>
+              )}
+              {optionVisible(tache, 'blocs') && (
               <fieldset className="plai-field">
                 <legend className="plai-label">Pièces de plusieurs lettres (blocs)</legend>
                 {[[2, 'ch, ou, on, an, oi…'], [3, 'eau, ain, ein, oin…'], [4, 'ouil, euil']].map(([n, ex]) => (
@@ -114,6 +140,7 @@ export default function Accueil({
                 ))}
                 <p className="aide">Case cochée : les lettres qui forment ce son (par exemple « ch » dans chat) sont une seule pièce à poser, ce qui aide à mémoriser l’association. Case vide : l’élève pose chaque lettre, donc il doit savoir lui-même qu’il faut « c » puis « h ». Par défaut tout est coché (P1). Pour les plus jeunes ou les élèves en difficulté, laisser coché ; pour les plus grands, décocher. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </fieldset>
+              )}
               <div className="plai-field">
                 <label className="plai-label" htmlFor="casse">Lettres affichées</label>
                 <select id="casse" className="plai-input" value={tache.casse || 'minuscules'} onChange={e => onTache({ casse: e.target.value })}>
@@ -122,6 +149,7 @@ export default function Accueil({
                 </select>
                 <p className="aide">Change seulement l’affichage des pièces, du mot montré et de l’indice : les sons lus ne changent pas. Majuscules : pour les plus jeunes (maternelle), qui apprennent d’abord les lettres capitales. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </div>
+              {optionVisible(tache, 'muet') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="muet">Lettre muette grisée</label>
                 <select id="muet" className="plai-input" value={tache.muet || 'origine'} onChange={e => onTache({ muet: e.target.value })}>
@@ -130,6 +158,8 @@ export default function Accueil({
                 </select>
                 <p className="aide">Dès le plateau : la pièce muette (le t de « chat ») est déjà grise, c’est une aide. Une fois posée : elle a d’abord la couleur d’une consonne ou d’une voyelle et ne devient grise qu’au dépôt, donc l’élève n’a pas d’indice avant de la poser. Dans les deux cas elle reste grise après le dépôt. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </div>
+              )}
+              {optionVisible(tache, 'syllabes') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="syllabes">Écoute par syllabes</label>
                 <select id="syllabes" className="plai-input" value={tache.syllabes || 'toujours'} onChange={e => onTache({ syllabes: e.target.value })}>
@@ -139,6 +169,7 @@ export default function Accueil({
                 </select>
                 <p className="aide">Ce réglage ne lit rien tout seul : il rend le bouton « Écouter par syllabes » disponible. « Quand l’élève a du mal » : le bouton apparaît sur une carte après une erreur ou après un clic sur « Besoin d’aide ? ». Pas de bouton pour un mot d’une seule syllabe, ni pour un mot dont les syllabes ne sont pas encore préparées.</p>
               </div>
+              )}
               <div className="plai-field">
                 <label className="plai-label" htmlFor="vitesse">Vitesse de la voix</label>
                 <select id="vitesse" className="plai-input" value={tache.vitesse || 100} onChange={e => onTache({ vitesse: Number(e.target.value) })}>
@@ -149,6 +180,7 @@ export default function Accueil({
                 <label className="plai-label" htmlFor="verrou"><input id="verrou" type="checkbox" checked={!!tache.vitesseVerrou} onChange={e => onTache({ vitesseVerrou: e.target.checked })} /> Verrouiller cette vitesse</label>
                 <p className="aide">Vitesse de départ pour les mots et les sons lus. Case vide : l’élève voit trois boutons (normale, lente, très lente) et peut en changer. Case cochée : pas de boutons, tous les élèves entendent cette vitesse. L’écoute par syllabes garde ses réglages propres.</p>
               </div>
+              {optionVisible(tache, 'commandes') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="commandes">Commandes de l’élève</label>
                 <select id="commandes" className="plai-input" value={tache.commandes || 'complet'} onChange={e => onTache({ commandes: e.target.value })}>
@@ -157,6 +189,8 @@ export default function Accueil({
                 </select>
                 <p className="aide">Épurées : la voix lit le mot dès que la carte apparaît, l’écran ne garde que écouter, retirer, aide, image et vérifier ; un seul bouton à droite sert à vérifier puis à passer à la carte suivante ; la vitesse de la voix se règle par une seule icône (tortue). Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </div>
+              )}
+              {optionVisible(tache, 'consignes') && (
               <div className="plai-field">
                 <label className="plai-label" htmlFor="consignes">Consignes vocales</label>
                 <select id="consignes" className="plai-input" value={tache.consignes || 'auto'} onChange={e => onTache({ consignes: e.target.value === 'auto' ? undefined : e.target.value })}>
@@ -166,6 +200,7 @@ export default function Accueil({
                 </select>
                 <p className="aide">Pour P1 à P3 : la voix dit la consigne au départ (« Écouter le mot. Puis poser les lettres dans l’ordre. »), puis, quand le mot est juste, un encouragement tiré au hasard (« Bravo ! », « Super ! », « Bien joué ! »…) ; quand il est faux, une phrase d’aide (« Presque ! On regarde ensemble. »…) puis le mot est rejoué ; enfin « Remplir toutes les cases, puis vérifier. » et « C’est fini. » au bon moment. L’élève qui ne lit pas encore n’a ainsi pas besoin des messages écrits. Les fichiers sont à générer une fois avec la voix (python essai-tts-ipa/generer-bibliotheque.py consignes) ; sans eux, la consigne reste silencieuse et le jeu continue. Ce réglage est dans le lien rapide ; il n’est pas encore dans les tâches enregistrées de l’espace enseignant.</p>
               </div>
+              )}
               <div className="plai-field">
                 <label className="plai-label" htmlFor="lien">Lien de la tâche</label>
                 <input id="lien" className="plai-input" type="text" readOnly value={lien} placeholder="Choisir une liste pour obtenir le lien" onFocus={e => e.target.select()} />

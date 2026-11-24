@@ -116,3 +116,10 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .zone-juste .cube.verrou { box-shadow: var(--ombre-cube); } /* la fête de réussite efface les cadenas */
 .zone-juste .cube .cadenas { display: none; }
 .app .jeu .actions-epure .guide { transform-origin: right center; } /* commandes épurées : le bouton actif grossit vers l'intérieur, pas hors de l'écran */
+
+/* Maternelle, exercice « première lettre » : trois grosses lettres au choix, une lettre fausse se grise, la bonne est cerclée. */
+.choix-initiale { justify-content: center; gap: 24px; margin: 8px 0 16px; }
+.choix-initiale .cube { min-width: 112px; height: 112px; font-size: 60px; }
+.choix-initiale .cube.ecartee { opacity: 0.3; }
+.choix-initiale .cube.choisie { outline: 5px solid var(--acc); outline-offset: 3px; opacity: 1; }
+.choix-initiale .cube:disabled.choisie { opacity: 1; }

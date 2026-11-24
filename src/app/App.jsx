@@ -12,6 +12,8 @@ import Cadre from './Cadre.jsx';
 import Landing from './Landing.jsx';
 import { ModeEmploi, Donnees, APropos } from './Pages.jsx';
 import Jeu from './Jeu.jsx';
+import Initiale, { cartesInitiale } from './Initiale.jsx';
+import { REGLAGES_DU_NIVEAU, niveauDe } from './niveau.js';
 import Bilan from './Bilan.jsx';
 import { paliersPourMots } from '../core/paliers.js';
 
@@ -84,7 +86,8 @@ function AppEleve({ deps, hash, partie }) {
   const jeton = adresse.tache && adresse.tache.jeton;
   const enLigne = !!jeton;
 
-  const [tache, setTache] = useState({ ...REGLAGES_PAR_DEFAUT, pack: '', ...adresse.tache });
+  // Lien de maternelle : les valeurs de départ du niveau s'appliquent d'abord, ce que le lien précise les remplace.
+  const [tache, setTache] = useState({ ...REGLAGES_PAR_DEFAUT, pack: '', ...(adresse.tache && adresse.tache.niveau === 'maternelle' ? REGLAGES_DU_NIVEAU.maternelle : {}), ...adresse.tache });
   const [etatTache, setEtatTache] = useState(enLigne ? (config ? 'chargement' : 'hors_service') : 'non');
   const [code, setCode] = useState((adresse.tache && (adresse.tache.codeEleve || adresse.tache.codePropose)) || ''); // lien personnel ou parcours test : code déjà rempli
   const [vue, setVue] = useState('accueil');
@@ -103,7 +106,7 @@ function AppEleve({ deps, hash, partie }) {
     let actif = true;
     (deps.fetch || fetch)(`${base.replace(/\/+$/, '')}/mots/modeles.json`)
       .then(r => (r.ok ? r.json() : []))
-      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && (p.titre || p.label) && p.visibilite !== 'prive').map(p => ({ id: p.id, label: p.titre || p.label, mots: p.mots, ...(Array.isArray(p.paliers) ? { paliers: p.paliers } : {}) }))); })
+      .then(l => { if (actif && Array.isArray(l)) setPacksListe(l.filter(p => p && p.id && (p.titre || p.label) && p.visibilite !== 'prive').map(p => ({ id: p.id, label: p.titre || p.label, mots: p.mots, ...(p.niveau ? { niveau: p.niveau } : {}), ...(Array.isArray(p.paliers) ? { paliers: p.paliers } : {}) }))); })
       .catch(() => {});
     return () => { actif = false; };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -199,6 +202,11 @@ function AppEleve({ deps, hash, partie }) {
         if (cartes.length === 0) { setErreur('Cette carte n’existe pas dans ce pack.'); return; }
         utilise = { ...utilise, cartes, paliers: null };
       }
+      // Maternelle : seuls les mots dont la première lettre est une voyelle seule et qui ont une image servent à l'exercice.
+      if (niveauDe(tache) === 'maternelle') {
+        utilise = { ...utilise, cartes: cartesInitiale(utilise), paliers: null };
+        if (utilise.cartes.length === 0) { setErreur('Aucun mot de cette liste ne commence par une voyelle avec une image : choisir une liste de maternelle.'); return; }
+      }
       setAvertissementsPack(av);
       setPack(utilise);
       setFinPalier({ arret: null, paliersSautes: [], vues: null });
@@ -210,17 +218,24 @@ function AppEleve({ deps, hash, partie }) {
   }
 
   const surTache = patch => setTache(t => ({ ...t, ...patch }));
+  // Changer de niveau remplace les valeurs de départ et efface la liste choisie (une liste est propre à un niveau).
+  const surNiveau = niveau => setTache(t => ({ ...t, ...REGLAGES_DU_NIVEAU[niveau], niveau, pack: '', mots: undefined }));
 
   return (
     <div className="app" data-habillage={tache.habillage}>
       {vue === 'accueil' && (
-        <Accueil base={base} partie={partie} tache={tache} code={code} onCode={setCode} onTache={surTache} onCommencer={commencer} erreur={erreur}
+        <Accueil base={base} partie={partie} tache={tache} code={code} onCode={setCode} onTache={surTache} onNiveau={surNiveau} onCommencer={commencer} erreur={erreur}
           avertissements={avertissements} persistant={stockage.persistant} lien={lien} nbEssais={stockage.lire().length} usageImage={usageImage(stockage.lire())}
           packsListe={packsListe} enLigne={enLigne} lienPersonnel={!!tache.cle} etatTache={etatTache} peutEnvoyer={!!config} enAttente={enAttente} onEnvoyerAttente={surEnvoiManuel} messageEnvoi={messageEnvoi}
           onExportJson={() => telecharger('essais.json', exporterJson(stockage.lire()), 'application/json')}
           onExportCsv={() => telecharger('essais.csv', exporterCsv(stockage.lire()), 'text/csv;charset=utf-8')} />
       )}
-      {vue === 'jeu' && pack && (
+      {vue === 'jeu' && pack && niveauDe(tache) === 'maternelle' && (
+        <Initiale key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
+          deps={{ jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), rng: deps.rng, maintenant: deps.maintenant, nouvelId: deps.nouvelId }}
+          onFin={apres => { setFinPalier(finDePalier(apres, pack)); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />
+      )}
+      {vue === 'jeu' && pack && niveauDe(tache) !== 'maternelle' && (
         <Jeu key={cleJeu} pack={pack} tache={tache} code={code} stockage={stockage} base={base}
           deps={{ jouerSons: jouer, jouerFichier: deps.jouerFichier || ((u, o) => jouerFichier(u, o)), jouerSerie: deps.jouerSerie || ((urls, o) => jouerSerie(urls, o)), rng: deps.rng, maintenant: deps.maintenant }}
           onFin={apres => { setFinPalier(finDePalier(apres, pack)); setVue('bilan'); }} onAccueil={() => setVue('accueil')} onSignalement={signaler} />

@@ -151,3 +151,11 @@ test('casse : « majuscules » lue et écrite, « minuscules » = défaut absent
   assert.ok(ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', casse: 'majuscules' }).includes('casse=majuscules'));
   assert.ok(!ecrireAdresse('', 'jeu', { ...REGLAGES_PAR_DEFAUT, pack: 'p', casse: 'minuscules' }).includes('casse='));
 });
+
+test("niveau : maternelle lue et écrite, primaire = défaut absent, valeur inconnue ignorée ; en maternelle casse=minuscules est écrite", () => {
+  assert.equal(lireAdresse("#/jeu?pack=p&niveau=maternelle").tache.niveau, "maternelle");
+  assert.equal(lireAdresse("#/jeu?pack=p&niveau=zzz").tache.niveau, undefined);
+  assert.ok(ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "maternelle", casse: "majuscules" }).includes("niveau=maternelle"));
+  assert.ok(!ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "primaire" }).includes("niveau="));
+  assert.ok(ecrireAdresse("", "jeu", { ...REGLAGES_PAR_DEFAUT, pack: "p", niveau: "maternelle", casse: "minuscules" }).includes("casse=minuscules"));
+});
