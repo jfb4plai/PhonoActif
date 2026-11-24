@@ -130,6 +130,10 @@ body { font-family: Arial, Helvetica, sans-serif; font-size: 18px; }
 .jeu-classe { position: relative; padding-top: 8px; padding-bottom: 8px; }
 .jeu-classe .carte-jeu { margin-bottom: 0; min-height: 270px; }
 .jeu-classe .carte-jeu img { max-height: 240px; }
+/* Boutons du haut de l'écran (maison, voix lente en mode classe) : leur étiquette s'affiche EN DESSOUS, sinon elle sort de l'écran (constat de JF 2026-11-24). */
+.app .jeu .barre-haut button.icone-seule .info, .app .jeu.jeu-classe .actions-aides button.icone-seule .info { bottom: auto; top: calc(100% + 8px); }
+.app .jeu.jeu-classe .actions-aides button.icone-seule .info { left: auto; right: 0; transform: none; }
+.app .jeu .barre-haut button.icone-seule .info { left: 0; transform: none; }
 .jeu-classe .actions-aides { position: absolute; top: 10px; right: 16px; margin: 0; } /* la voix lente passe en haut à droite : tout tient sur un écran de 768 px */
 .jeu-classe .choix-initiale { margin-top: 20px; }
 .choix-initiale { justify-content: center; gap: 24px; margin: 8px 0 16px; }

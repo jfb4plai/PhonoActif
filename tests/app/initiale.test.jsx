@@ -70,6 +70,18 @@ describe('Maternelle : exercice « première lettre »', () => {
     expect(screen.getByRole('button', { name: 'Suivant' })).toBeEnabled();
   });
 
+  it('mauvaise lettre : son de la lettre, message vocal « faux », puis le mot rejoué, à la vitesse choisie', async () => {
+    const { user, jouerFichier } = monter(`${LIEN}&vitesse=75`);
+    await commencer(user);
+    const c = carteCourante(); const cible = lettreInitiale(c);
+    const fausse = screen.getAllByRole('button', { name: /^Lettre / }).find(b => b.getAttribute('aria-label') !== `Lettre ${cible}`);
+    const v = fausse.getAttribute('aria-label').replace('Lettre ', '');
+    jouerFichier.mockClear();
+    await user.click(fausse);
+    await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([`/mots/${VOYELLES_INITIALE[v].fichier}`, expect.stringMatching(/^\/consignes\/faux(_\d)?\.mp3$/), `/mots/${c.etats.at(-1).fichier}`]), { timeout: 3000 });
+    expect(jouerFichier.mock.calls[1][1]).toEqual({ vitesse: 0.75 }); // le message est dit à la vitesse de la voix choisie
+  });
+
   it('deux mauvaises lettres : elles se grisent, la bonne n’est pas révélée, l’élève la choisit lui-même (essai 3)', async () => {
     const { user, stockage } = monter(LIEN);
     await commencer(user);

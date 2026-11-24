@@ -67,12 +67,19 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   // « Bravo » vocal (variantes de public/consignes/juste*.mp3, jamais la même deux fois de suite) : actif par défaut en maternelle (commandes épurées), coupé si consignes=non.
   // Un fichier absent ne signale rien : l'élève n'a pas à le savoir.
   const voix = consignesActives({ ...tache, commandes: tache.commandes || 'epure' });
-  const derniereVariante = useRef(null);
-  const direBravo = () => {
+  const derniereVariante = useRef({});
+  // Consigne vocale d'une famille (juste, faux) à la vitesse choisie pour la voix (la même que le mot et les sons).
+  const dire = famille => {
     if (!voix || !deps.jouerFichier) return Promise.resolve();
-    const id = choisirVariante('juste', derniereVariante.current, rng);
-    derniereVariante.current = id;
-    return Promise.resolve(deps.jouerFichier(urlConsigne(base, id))).catch(() => {});
+    const id = choisirVariante(famille, derniereVariante.current[famille], rng);
+    derniereVariante.current[famille] = id;
+    return Promise.resolve(deps.jouerFichier(urlConsigne(base, id), ...optsVitesse)).catch(() => {});
+  };
+  const direBravo = () => dire('juste');
+  // Mauvaise lettre : son de la lettre touchée, puis « Presque ! Écouter encore. » (faux, faux_2, faux_3), puis le mot rejoué. Un geste de l'élève coupe la suite.
+  const lireErreur = v => {
+    const n = ++sequence.current;
+    return lireLettre(v).then(() => (sequence.current === n ? dire('faux') : null)).then(() => (voix ? new Promise(res => setTimeout(res, 700)) : null)).then(() => { if (voix && sequence.current === n) return lireMot(); return null; });
   };
   // Bravo (en même temps que l'animation), puis le son de la lettre, une courte pause, puis le mot : un geste de l'élève entre-temps coupe la suite.
   const lireLettrePuisMot = v => {
@@ -103,8 +110,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
     }
     enregistrer(v, false, tentative);
     setEcartees([...ecartees, v]);
-    sequence.current++;
-    lireLettre(v);
+    lireErreur(v);
   };
 
   const surSuivant = () => {
