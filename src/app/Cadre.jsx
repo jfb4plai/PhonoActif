@@ -7,7 +7,8 @@ const LIENS = [
   { id: 'eleve', href: '#/eleve', texte: 'Élève' },
   { id: 'enseignant', href: '#/enseignant', texte: 'Enseignant' },
   { id: 'mode_emploi', href: '#/mode-d-emploi', texte: 'Mode d’emploi' },
-  { id: 'donnees', href: '#/donnees', texte: 'Données' }
+  { id: 'donnees', href: '#/donnees', texte: 'Données' },
+  { id: 'apropos', href: '#/apropos', texte: 'À propos', titre: 'À propos, licences et crédits' }
 ];
 
 export default function Cadre({ base = '/', actif = '', children }) {
@@ -19,7 +20,7 @@ export default function Cadre({ base = '/', actif = '', children }) {
         </a>
         <div className="plai-nav-actions">
           {LIENS.map(l => (
-            <a key={l.id} href={l.href} className={`plai-nav-link${actif === l.id ? ' actif' : ''}`} aria-current={actif === l.id ? 'page' : undefined}>{l.texte}</a>
+            <a key={l.id} href={l.href} className={`plai-nav-link${actif === l.id ? ' actif' : ''}`} aria-current={actif === l.id ? 'page' : undefined} title={l.titre}>{l.texte}</a>
           ))}
         </div>
       </nav>

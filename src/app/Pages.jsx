@@ -193,7 +193,7 @@ export function Donnees({ base = '/' }) {
 
 export function APropos({ base = '/' }) {
   return (
-    <Cadre base={base}>
+    <Cadre base={base} actif="apropos">
       <main className="plai-container page">
         <h1 className="page-titre">À propos, licences et crédits</h1>
         <section className="plai-section">
