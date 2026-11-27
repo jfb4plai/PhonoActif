@@ -16,7 +16,7 @@ export default function Cadre({ base = '/', actif = '', children }) {
     <div className="accueil-page">
       <nav className="plai-nav" aria-label="Navigation principale">
         <a href="#/" className="plai-nav-logo" aria-label="PhonoActif, retour à l’accueil">
-          <img className="logo-nav" src={`${base}plai-logo.jpg`} alt="" /> PhonoActif
+          <img className="logo-nav" src={`${base}favicon.svg`} alt="" /> PhonoActif
         </a>
         <div className="plai-nav-actions">
           {LIENS.map(l => (
