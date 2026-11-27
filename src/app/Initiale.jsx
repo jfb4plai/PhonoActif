@@ -45,6 +45,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   const [index, setIndex] = useState(0);
   const [ecartees, setEcartees] = useState([]); // lettres déjà essayées et fausses sur cette carte
   const [statut, setStatut] = useState('en_cours'); // en_cours | juste
+  const [celebre, setCelebre] = useState(false); // la fête (Bravo, étoiles, confettis) ne vient qu'APRÈS la lettre et le mot dits : l'oreille d'abord (remarque de Virginie, décision de JF 2026-11-27)
   const [sonAbsent, setSonAbsent] = useState(false);
   const [vitesse, setVitesse] = useState(VALEURS_VITESSE.includes(tache.vitesse) ? tache.vitesse : 100);
   const sequence = useRef(0); // un nouveau geste coupe la suite d'une lecture en cours (lettre puis mot)
@@ -81,14 +82,17 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
     const n = ++sequence.current;
     return lireLettre(v).then(() => (sequence.current === n ? dire('faux') : null)).then(() => (voix ? new Promise(res => setTimeout(res, 700)) : null)).then(() => { if (voix && sequence.current === n) return lireMot(); return null; });
   };
-  // Bravo (en même temps que l'animation), puis le son de la lettre, une courte pause, puis le mot : un geste de l'élève entre-temps coupe la suite.
+  // Bonne lettre : le son de la lettre, une courte pause, le mot, une courte pause, puis la fête et « Bravo » (voix). Avant : Bravo d'abord ; Virginie a signalé que l'enfant
+  // n'avait pas le temps de mobiliser son écoute. Un geste de l'élève entre-temps coupe la suite (la fête s'affiche alors au geste « Écouter », voir plus bas).
   const lireLettrePuisMot = v => {
     const n = ++sequence.current;
-    return direBravo().then(() => (sequence.current === n ? lireLettre(v) : null)).then(() => new Promise(res => setTimeout(res, PAUSE_MS))).then(() => { if (sequence.current === n) return lireMot(); return null; });
+    const pause = () => new Promise(res => setTimeout(res, PAUSE_MS));
+    return lireLettre(v).then(pause).then(() => (sequence.current === n ? lireMot() : null)).then(() => (sequence.current === n ? pause() : null))
+      .then(() => { if (sequence.current === n) { setCelebre(true); return direBravo(); } return null; });
   };
 
   // À l'arrivée d'une carte : la voix dit le mot (le navigateur peut bloquer le son : le bouton « Écouter » reste là).
-  useEffect(() => { sequence.current++; setEcartees([]); setStatut('en_cours'); lireMot(); }, [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => { sequence.current++; setEcartees([]); setStatut('en_cours'); setCelebre(false); lireMot(); }, [carte.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const enregistrer = (pose, juste, tentative, aide) => {
     const c0 = carte.cubes[0];
@@ -120,7 +124,7 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
   };
   const quitter = () => { let ok = true; try { ok = window.confirm('Quitter la liste de mots ?'); } catch (e) { ok = true; } if (ok) onAccueil(); };
 
-  const classeZone = statut === 'juste' ? ' zone-juste' : (ecartees.length > 0 && enCours ? ' zone-faux' : '');
+  const classeZone = statut === 'juste' && celebre ? ' zone-juste' : (ecartees.length > 0 && enCours ? ' zone-faux' : '');
   const fete = [...String(carte.id)].reduce((n, c) => n + c.charCodeAt(0), 0) % 4; // 4 fêtes, la même pour un même mot
 
   return (
@@ -134,18 +138,18 @@ export default function Initiale({ pack, tache, code, stockage, deps, base = '/'
 
       <div className={`carte-jeu${classeZone}`}>
         {/* Fête de réussite en grand (maternelle) : gros confettis, grande étoile, lettre qui saute. Décoratif, une seule fois (fete.css). */}
-        {statut === 'juste' && (
+        {statut === 'juste' && celebre && (
           <span className={`confettis confettis-grands fete-${fete}`} aria-hidden="true">
             {/* Deux vagues : 48 confettis, la seconde 0,5 s après la première. */}
             {Array.from({ length: 48 }, (_, k) => <i key={k} style={{ '--x': `${(k % 24 - 11.5) * 4}%`, '--d': `${(k % 7) * 0.05 + (k >= 24 ? 0.5 : 0)}s`, '--h': `${130 + (k * 37) % 150}px`, '--r': `${(k % 2 ? 1 : -1) * (120 + k * 25)}deg` }} className={`conf conf${k % 4}`} />)}
           </span>
         )}
         <img src={urlFichier(base, pack, String(carte.image_sans_mot))} alt="Image du mot à trouver" onError={() => onSignalement('image', carte.id)} />
-        <Bouton icone="hautparleur" texte="Écouter" className="principal ecouter-image" onClick={() => { sequence.current++; lireMot(); }} />
+        <Bouton icone="hautparleur" texte="Écouter" className="principal ecouter-image" onClick={() => { sequence.current++; if (statut === 'juste') setCelebre(true); lireMot(); }} />
       </div>
 
       <div className="retour" aria-live="polite">
-        {statut === 'juste' && (
+        {statut === 'juste' && celebre && (
           <p className="bravo bravo-grand">
             <svg className="etoile-grande etoile-g" viewBox="0 0 100 100" width="96" height="96" aria-hidden="true"><polygon points="50,6 62,38 96,38 68,58 79,92 50,72 21,92 32,58 4,38 38,38" fill="#f5b700" stroke="#b07d00" strokeWidth="4" strokeLinejoin="round" /></svg>
             <span>Bravo !</span>

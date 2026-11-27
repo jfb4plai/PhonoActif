@@ -40,7 +40,7 @@ describe('tâche enregistrée de maternelle (côté élève)', () => {
     const id = document.querySelector('.carte-jeu img').getAttribute('src').match(/images\/(.+)\.png$/)[1];
     const cible = lettreInitiale(fiches.find(f => f.id === id));
     await user.click(screen.getByRole('button', { name: `Lettre ${cible}` }));
-    expect(screen.getByText(/Bravo/)).toBeInTheDocument();
+    expect(await screen.findByText(/Bravo/, {}, { timeout: 4000 })).toBeInTheDocument(); // la félicitation vient après la lettre et le mot dits
     const [essai] = stockage.lire();
     expect(essai).toMatchObject({ juste: true, jeton: TOKEN, cle: '0123456789abcdef0123', positions: [{ pose: cible, juste: true }] });
   });

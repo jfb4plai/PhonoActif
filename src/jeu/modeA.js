@@ -48,7 +48,7 @@ export function pieceMuette(piece, muets) {
 }
 
 // Blocs de lettres proposés par Virginie (2026-11-21) : longueur 2, 3 ou 4 lettres. « ouil » compte 4 lettres (décision de JF 2026-11-20).
-export const DIGRAPHES = { 2: ['ch', 'ph', 'ou', 'an', 'oi', 'eu', 'on', 'in', 'en', 'ai', 'au', 'ei', 'un'], 3: ['ein', 'eur', 'eau', 'ail', 'ain', 'eil', 'oin'], 4: ['ouil', 'euil'] };
+export const DIGRAPHES = { 2: ['ch', 'ph', 'ou', 'an', 'oi', 'eu', 'on', 'in', 'en', 'ai', 'au', 'ei', 'un'], 3: ['ein', 'eur', 'eau', 'ail', 'ain', 'eil', 'oin', 'ien'], 4: ['ouil', 'euil'] };
 
 // Règle de coupure énoncée à l'élève et dans les modes d'emploi (décision JF 2026-11-14 : tak-si, comme Lexique 4.1).
 export const REGLE_COUPURE = "Règle de coupure : on coupe sur les sons, pas sur les lettres. Une seule consonne entre deux voyelles passe avec la syllabe suivante (vé-lo). Deux consonnes se séparent (tak-si, tor-tue), sauf consonne + r ou l (ta-ble, li-vre). La lettre muette reste avec la syllabe qui la précède.";

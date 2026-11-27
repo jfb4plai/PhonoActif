@@ -46,3 +46,15 @@ test('code inconnu (A) : cube inconnu à vérifier', () => {
 test('classeCube d\'un son inconnu', () => {
   assert.equal(classeCube(null), 'inconnu');
 });
+
+test('chien (correction de JF, 2026-11-27, remarque de Virginie) : « ien » est un seul graphème /jɛ̃/, les états chi et chie se lisent /ʃi/', async () => {
+  const { creerCorrections, etatsDuMot, composants, SON_VERS_IPA, creerLexique } = await import('../../src/core/index.js');
+  const corr = JSON.parse(fs.readFileSync(new URL('../../data/corrections.json', import.meta.url), 'utf8'));
+  const { corrections, rejets } = creerCorrections(corr);
+  assert.deepEqual(rejets, []);
+  const lexique = creerLexique(entrees);
+  const ipa = e => e.cubes.flatMap(c => composants(c.son)).map(s => SON_VERS_IPA[s]).join('');
+  const etats = etatsDuMot('chien', lexique, { corrections });
+  assert.deepEqual(etats.at(-1).cubes.map(c => `${c.g}=${c.son}`), ['ch=ch', 'ien=yod+in']);
+  assert.deepEqual(etats.map(ipa), ['k', 'ʃ', 'ʃi', 'ʃi', 'ʃjɛ̃']);
+});

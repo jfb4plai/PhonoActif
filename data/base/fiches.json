@@ -2480,12 +2480,8 @@
     "son": "ch"
    },
    {
-    "g": "i",
-    "son": "yod"
-   },
-   {
-    "g": "en",
-    "son": "in"
+    "g": "ien",
+    "son": "yod+in"
    }
   ],
   "etats": [
@@ -2501,12 +2497,12 @@
    },
    {
     "lettres": "chi",
-    "fichier": "audio/283_6a_-30.mp3",
+    "fichier": "audio/283_69_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "chie",
-    "fichier": "audio/283_6a_259_-30.mp3",
+    "fichier": "audio/283_69_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -3822,7 +3818,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -3848,8 +3844,8 @@
    },
    {
     "lettres": "livre",
-    "fichier": "audio/6c_69_76_281_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/6c_69_76_281_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -3859,8 +3855,8 @@
     "cubes": 2
    },
    {
-    "ipa": "vʁə",
-    "fichier": "audio/76_281_259_-30.mp3",
+    "ipa": "vʁ",
+    "fichier": "audio/76_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -5486,7 +5482,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -5512,8 +5508,8 @@
    },
    {
     "lettres": "table",
-    "fichier": "audio/74_61_62_6c_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/74_61_62_6c_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -5523,8 +5519,8 @@
     "cubes": 2
    },
    {
-    "ipa": "blə",
-    "fichier": "audio/62_6c_259_-30.mp3",
+    "ipa": "bl",
+    "fichier": "audio/62_6c_-30.mp3",
     "cubes": 3
    }
   ],
@@ -6430,7 +6426,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -6456,8 +6452,8 @@
    },
    {
     "lettres": "arbre",
-    "fichier": "audio/61_281_62_281_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/61_281_62_281_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -6467,8 +6463,8 @@
     "cubes": 2
    },
    {
-    "ipa": "bʁə",
-    "fichier": "audio/62_281_259_-30.mp3",
+    "ipa": "bʁ",
+    "fichier": "audio/62_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -9193,7 +9189,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -9219,8 +9215,8 @@
    },
    {
     "lettres": "zèbre",
-    "fichier": "audio/7a_25b_62_281_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/7a_25b_62_281_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -9230,8 +9226,8 @@
     "cubes": 2
    },
    {
-    "ipa": "bʁə",
-    "fichier": "audio/62_281_259_-30.mp3",
+    "ipa": "bʁ",
+    "fichier": "audio/62_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -9367,7 +9363,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -9393,8 +9389,8 @@
    },
    {
     "lettres": "tigre",
-    "fichier": "audio/74_69_261_281_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/74_69_261_281_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -9404,8 +9400,8 @@
     "cubes": 2
    },
    {
-    "ipa": "ɡʁə",
-    "fichier": "audio/261_281_259_-30.mp3",
+    "ipa": "ɡʁ",
+    "fichier": "audio/261_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -12990,7 +12986,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -13026,8 +13022,8 @@
    },
    {
     "lettres": "chambre",
-    "fichier": "audio/283_251_303_62_281_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/283_251_303_62_281_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -13037,8 +13033,8 @@
     "cubes": 2
    },
    {
-    "ipa": "bʁə",
-    "fichier": "audio/62_281_259_-30.mp3",
+    "ipa": "bʁ",
+    "fichier": "audio/62_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -19319,7 +19315,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -19340,8 +19336,8 @@
    },
    {
     "lettres": "ogre",
-    "fichier": "audio/254_261_281_259_-30.mp3",
-    "ecartAvecRegles": false
+    "fichier": "audio/254_261_281_-30.mp3",
+    "ecartAvecRegles": true
    }
   ],
   "syllabes": [
@@ -19351,8 +19347,8 @@
     "cubes": 1
    },
    {
-    "ipa": "ɡʁə",
-    "fichier": "audio/261_281_259_-30.mp3",
+    "ipa": "ɡʁ",
+    "fichier": "audio/261_281_-30.mp3",
     "cubes": 3
    }
   ],

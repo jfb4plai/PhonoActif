@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhonoActif : retours de Virginie du 2026-11-27, corrections, coût, logigramme</title>
+<style>
+  :root { --teal:#0f6e56; --orange:#f97316; --bg:#faf9f7; --text:#1f2937; --text2:#4b5563; --border:#d6d3cd; }
+  * { box-sizing: border-box; }
+  body { font-family: "DM Sans", Arial, sans-serif; font-size: 16px; line-height: 1.5; color: var(--text); background: var(--bg); margin: 0; padding: 24px; }
+  h1 { font-family: "DM Serif Display", Georgia, serif; color: var(--teal); font-size: 1.9rem; margin: 0 0 4px; }
+  h2 { font-family: "DM Serif Display", Georgia, serif; color: var(--teal); font-size: 1.35rem; margin: 32px 0 8px; }
+  .sous { color: var(--text2); margin: 0 0 16px; }
+  .legende { display:flex; flex-wrap:wrap; gap:8px 20px; margin: 8px 0 16px; font-size: .95rem; }
+  .pastille { display:inline-block; padding: 1px 8px; border-radius: 10px; font-size: .85rem; font-weight: 700; white-space: nowrap; }
+  .c { background:#d9f0e8; color:#0b4f3e; }   /* constaté */
+  .d { background:#fde9c8; color:#7a3d00; }   /* déduit */
+  .n { background:#f6d5d5; color:#7a1a1a; }   /* non vérifié */
+  .tableau-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; background:#fff; }
+  table { border-collapse: collapse; width: 100%; min-width: 1280px; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px; border-bottom: 1px solid var(--border); font-size: .95rem; }
+  th { background: var(--teal); color:#fff; position: sticky; top: 0; font-weight: 700; }
+  tr:last-child td { border-bottom: none; }
+  td.num { font-weight: 700; color: var(--teal); width: 34px; }
+  td.cout { white-space: nowrap; }
+  .tag { display:inline-block; background:#eef2f1; border:1px solid var(--border); border-radius:4px; padding: 0 6px; font-size:.85rem; margin: 1px 2px 1px 0; }
+  .opt { margin: 0 0 6px; }
+  .opt b { color: var(--teal); }
+  code { background:#eef2f1; padding: 0 4px; border-radius: 3px; font-size: .88rem; }
+  .bloc { background:#fff; border:1px solid var(--border); border-radius:8px; padding: 12px 16px; margin: 8px 0; }
+  .bloc ul { margin: 4px 0 0 20px; padding: 0; }
+  .alerte { border-left: 4px solid var(--orange); background:#fff7ed; padding: 10px 14px; border-radius: 4px; margin: 12px 0; }
+  ol.ordre li { margin: 4px 0; }
+  .note { color: var(--text2); font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<h1>Retours de Virginie : corrections, coût, impact sur le logigramme</h1>
+<p class="sous">8 vocaux transcrits, lus en entier. Rien n'est modifié dans l'application. Aucun audio n'a été écouté par Claude.</p>
+
+<div class="legende">
+  <span><span class="pastille c">Constaté</span> lu dans le code ou les données, avec la source</span>
+  <span><span class="pastille d">Déduit</span> raisonnement, non testé</span>
+  <span><span class="pastille n">Non vérifié</span> à écouter ou à examiner</span>
+</div>
+<p class="note">Coûts : estimations de Claude, non mesurées (« audio » = génération Azure lancée par JF avec sa clé). Les décisions « JF » attendent ta réponse avant tout code.</p>
+
+<h2>1. Vue d'ensemble</h2>
+<div class="tableau-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Ce que dit Virginie</th>
+      <th>Ce que je constate</th>
+      <th>Correction possible</th>
+      <th>Coût</th>
+      <th>Décision de JF</th>
+      <th>Impact logigramme</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td class="num">1</td>
+      <td><strong>Maternelle : enchaînement Bravo / son de la lettre.</strong> Pas assez de temps entre la félicitation et le correctif ; l'enfant n'a pas mobilisé son attention auditive. Elle propose : correctif d'abord puis félicitation, ou allonger l'intervalle.</td>
+      <td><span class="pastille c">Constaté</span> <code>Initiale.jsx:87</code> : Bravo, puis le son de la lettre sans aucune pause. Les 500 ms (<code>PAUSE_MS</code>, ligne 16) ne séparent que la lettre et le mot.</td>
+      <td>
+        <p class="opt"><b>A1</b> Pause entre Bravo et lettre (valeur à choisir à l'oreille).</p>
+        <p class="opt"><b>A2</b> Inverser : lettre, pause, mot, puis Bravo.</p>
+      </td>
+      <td class="cout">A1 : environ 15 min, code seul.<br>A2 : environ 1 h, code + tests ; Bravo « en même temps que l'animation » à revoir.</td>
+      <td>A1 ou A2 ? (question en cours)</td>
+      <td>Case « maternelle » à créer (voir §3). Journal : 1 ligne.</td>
+    </tr>
+
+    <tr>
+      <td class="num">2</td>
+      <td><strong>« arbre » : le e muet est prononcé.</strong> À l'oral il est muet ; en recherche du phonème initial, cela embrouille.</td>
+      <td><span class="pastille c">Constaté</span> <code>data/base/fiches.json</code> : état final de « arbre » = <code>/aʁbʁə/</code> (avec schwa). « tortue » = <code>/tɔʁty/</code> (e muet) : la règle n'est pas la même.<br><span class="pastille n">Non vérifié</span> quels autres mots finissent par consonne + r/l + e.</td>
+      <td>Corriger la lecture de « arbre » dans <code>data/corrections.json</code> (sans schwa), régénérer l'audio du mot. Script pour repérer les mots du même type.</td>
+      <td>Environ 1 h (correction + script). Audio : quelques fichiers par mot concerné.</td>
+      <td>Schwa final : jamais lu, ou à décider mot par mot ?</td>
+      <td>N4 (revue des mots) et N5 (audio) : mention dans le journal, pas de nouvelle case.</td>
+    </tr>
+
+    <tr>
+      <td class="num">3</td>
+      <td><strong>« chien » : « ien » est un trigraphe.</strong> C'est un seul son <code>/jɛ̃/</code> ; sinon l'enfant s'attend à entendre « chi-en ».</td>
+      <td><span class="pastille c">Constaté</span> données : ch + <code>i</code> (yod) + <code>en</code> (in). États entendus : <code>ch</code>, <code>chi</code> /ʃj/, <code>chie</code> /ʃjə/, <code>chien</code>. L'état « chie » (avec schwa) n'existe pas dans le mot.<br><span class="pastille c">Constaté</span> la base (271 fiches) contient 3 mots avec « ien » : bien, chien, rien (recherche sur le texte du mot).<br><span class="pastille n">Non vérifié</span> comment l'enfant pose les lettres dans le jeu réel.</td>
+      <td>Ajouter « ien » comme graphème unique <code>/jɛ̃/</code> : états ch, puis chien (disparition de chi et chie). Bloc de 3 lettres : le réglage « blocs 2-3-4 » existe déjà.</td>
+      <td>Environ 0,5 à 1 j : règles de segmentation, tests, 3 mots à régénérer (états, syllabes). Audio.</td>
+      <td>Oui ou non, et pour quels niveaux (décision du 2026-11-20 : digraphes en blocs en P1) ?</td>
+      <td>N3 (segmentation), N13 et N14 (pièces, blocs, chaîne entendue). Le texte du tableau « blocs de 2, 3, 4 lettres » reste vrai.</td>
+    </tr>
+
+    <tr>
+      <td class="num">4</td>
+      <td><strong>« vélo » : « vé » dit « vé », puis « vél » devient « vèl », puis « vélo » redevient « vé ».</strong> Au moment où la lettre l est posée.</td>
+      <td><span class="pastille c">Constaté</span> données : <code>vé</code> = /ve/, <code>vél</code> = /vel/, <code>vélo</code> = /velo/ ; le é est fermé partout. Les fichiers sont des lectures IPA par la voix Charline.<br><span class="pastille d">Déduit</span> le défaut vient du rendu de la voix sur « vel » seul, pas des données.<br><span class="pastille n">Non vérifié</span> je n'ai rien écouté.</td>
+      <td>Essai de 3 variantes de chaîne pour l'état « vél » (écriture IPA, SSML), page d'écoute, JF choisit, régénération.</td>
+      <td>Essai : environ 1 h de code. Audio : environ 10 appels Azure. Écoute JF : environ 10 min.</td>
+      <td>Écoute et choix des variantes.</td>
+      <td>N5 (audio) : journal. Valeur « voix non écoutée » de N5 à mettre à jour.</td>
+    </tr>
+
+    <tr>
+      <td class="num">5</td>
+      <td><strong>« tortue » (primaire) : « to » est dit « te ».</strong> Mauvaise voyelle au milieu du mot ; à l'image de vélo. Le mot entier est lu correctement.</td>
+      <td><span class="pastille c">Constaté</span> données : <code>to</code> = /tɔ/ (o ouvert) ; <code>tor</code> = /tɔʁ/. Correct dans les données.<br><span class="pastille d">Déduit</span> même cause que vélo (voyelle seule, courte, sans contexte). <span class="pastille n">Non vérifié</span> à l'écoute.<br><span class="pastille n">Non vérifié</span> la transcription de ce passage est confuse sur ce que dit l'application pour le mot entier.</td>
+      <td>Même essai que le point 4, groupé.</td>
+      <td>Inclus dans le point 4.</td>
+      <td>Idem point 4.</td>
+      <td>Idem point 4.</td>
+    </tr>
+
+    <tr>
+      <td class="num">6</td>
+      <td><strong>« souris » en prononciation par syllabes : l'application dit « sourieux ».</strong></td>
+      <td><span class="pastille c">Constaté</span> états lettre par lettre : <code>sou</code> /su/, <code>sour</code> /suʁ/, <code>souri</code> /suʁi/ : corrects.<br><span class="pastille n">Non vérifié</span> elle parle du bouton « Écouter par syllabes » (N20) : fichiers de syllabes de « souris » non examinés, rien écouté.</td>
+      <td>D'abord examiner les syllabes de « souris » (chaîne IPA, fichier). Puis même essai que le point 4 si la chaîne est juste.</td>
+      <td>Examen : environ 15 min. Correction éventuelle : audio.</td>
+      <td>Aucune pour l'examen.</td>
+      <td>N20 (syllabes) : journal. Pas de nouvelle case.</td>
+    </tr>
+
+    <tr>
+      <td class="num">7</td>
+      <td><strong>Bouton « Vérifier » inutile.</strong> Si l'application ne dit pas la lettre, c'est qu'elle est fausse. « Purement tactique » selon elle.</td>
+      <td><span class="pastille c">Constaté</span> <code>modeA.js:111</code> : une chaîne qui n'est pas un début du mot ne trouve aucun fichier, donc silence (son absent). Exact.<br><span class="pastille c">Constaté</span> « Vérifier » (<code>Jeu.jsx:141-153</code>) enregistre les essais pour l'enseignant, joue Bravo ou « Presque ! », compte jusqu'à 3 essais. Le supprimer retire ce suivi.<br><span class="pastille d">Déduit</span> le silence peut aussi se lire comme une panne chez un élève fragile ; le même silence signale un fichier absent.</td>
+      <td>
+        <p class="opt"><b>V0</b> Ne rien changer (ma recommandation, pas un fait).</p>
+        <p class="opt"><b>V1</b> Validation automatique à la dernière case remplie, bouton supprimé.</p>
+      </td>
+      <td>V0 : aucun.<br>V1 : environ 1 à 2 h + tests ; recontrôle du suivi enseignant et des 3 essais.</td>
+      <td>V0 ou V1 ?</td>
+      <td>V0 : aucun.<br>V1 : N16 supprimé ou fusionné, D3 et D4 modifiés, N18 à revoir.</td>
+    </tr>
+
+    <tr>
+      <td class="num">8</td>
+      <td><strong>Jeu de cartes de consignes.</strong> Elle a « vendu le concept », a des amateurs, envoie les consignes, souhaite quelque chose pour janvier.</td>
+      <td><span class="pastille n">Non vérifié</span> je ne sais pas ce que c'est : rien dans mes notes sur la session de réflexion citée. Je ne suppose rien.</td>
+      <td>Attendre ses consignes. Ensuite, définir le produit avec toi : carte physique, lien avec Lilémø physique ?</td>
+      <td>Non estimable.</td>
+      <td>Quel est le concept ? Réserver un créneau pour janvier ?</td>
+      <td>Aucun tant que le produit n'est pas défini.</td>
+    </tr>
+
+    <tr>
+      <td class="num">9</td>
+      <td><strong>Prévention.</strong> Elle écrit que ces erreurs vont se reproduire (« pour que tu aies une idée des erreurs que l'IA peut produire »).</td>
+      <td><span class="pastille c">Constaté</span> les états de 4 des 5 mots cités sont des chaînes IPA courtes, lues hors contexte par la voix. Le pack contient 271 fiches ; rien n'indique qu'elles aient toutes été écoutées (journal : « non écouté » sur plusieurs lots).</td>
+      <td>Script qui liste les états à risque (chaîne courte finissant par voyelle moyenne é, o, ɔ, è) + page d'écoute dédiée pour JF ou Virginie.</td>
+      <td>Environ 0,5 j de code. Écoute : durée selon la liste.</td>
+      <td>Qui écoute : JF seul ou Virginie ?</td>
+      <td>N5 : journal. Pas de nouvelle case.</td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+<h2>2. Ordre proposé</h2>
+<div class="bloc">
+<ol class="ordre">
+  <li><strong>Point 1</strong> (maternelle) : code seul, petit, sans audio. Dès ta réponse A1 ou A2.</li>
+  <li><strong>Points 4, 5, 6, 9</strong> en un seul lot « voix des états » : un seul essai Azure, une seule écoute.</li>
+  <li><strong>Point 2</strong> (« arbre ») : après le lot voix, car l'audio se génère en même temps.</li>
+  <li><strong>Point 3</strong> (« ien ») : après ta décision ; chantier de modèle, à part.</li>
+  <li><strong>Point 7</strong> (« Vérifier ») : V0 par défaut tant que tu ne dis pas V1.</li>
+  <li><strong>Point 8</strong> (cartes de consignes) : en attente de ses consignes.</li>
+</ol>
+</div>
+
+<h2>3. Impact sur le logigramme</h2>
+<div class="bloc">
+  <p><strong>Constaté</strong> : <code>tools/logigramme_interactif.py</code> contient 19 occurrences de « maternelle », 0 dans une case (<code>d("…")</code>) ; toutes sont dans le journal (lignes 396 à 418). L'exercice « première lettre » du mode maternelle n'a donc pas de case.</p>
+  <ul>
+    <li><strong>Case à créer</strong> : « Maternelle : exercice première lettre » (niveau, image, 3 voyelles, son de la lettre, mot, Bravo). Elle porte les points 1 et, si besoin, le point 2. À rattacher après N11 (l'élève ouvre le lien).</li>
+    <li><strong>Cases modifiées</strong> selon les décisions : N3, N13, N14 (point 3) ; N5 (points 2, 4, 5, 9) ; N20 (point 6) ; N16, D3, D4, N18 (point 7 si V1).</li>
+    <li><strong>Obligatoire après chaque action</strong> (règle de JF 2026-11-13) : une ligne de journal par lot livré, puis régénération par <code>python -I tools/logigramme_interactif.py</code>.</li>
+    <li><strong>Coût</strong> de la mise à jour : environ 30 min pour la case maternelle, 5 min par ligne de journal.</li>
+  </ul>
+</div>
+
+<h2>4. Ce qui reste non vérifié</h2>
+<div class="alerte">
+  <ul style="margin:0 0 0 20px;padding:0">
+    <li>Aucun des défauts de voix (points 4, 5, 6) n'a été écouté.</li>
+    <li>Les coûts sont des estimations, non mesurées.</li>
+    <li>Le parcours réel d'un élève (pose des lettres de « chien », exercice maternelle de bout en bout) n'a pas été rejoué.</li>
+    <li>Le comptage « 3 mots avec ien » vient d'une recherche sur le texte du mot dans <code>fiches.json</code>, pas de la liste complète des paliers.</li>
+  </ul>
+</div>
+
+</body>
+</html>

@@ -56,14 +56,17 @@ describe('Maternelle : exercice « première lettre »', () => {
     await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([`/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`]));
   });
 
-  it('bonne lettre : « Bravo », le son de la lettre puis le mot, un essai juste enregistré', async () => {
+  it('bonne lettre : le son de la lettre, le mot, puis « Bravo » (la fête ne vient qu’après), un essai juste enregistré', async () => {
     const { user, jouerFichier, stockage } = monter(LIEN);
     await commencer(user);
     const c = carteCourante(); const cible = lettreInitiale(c);
     jouerFichier.mockClear();
     await user.click(screen.getByRole('button', { name: `Lettre ${cible}` }));
-    expect(screen.getByText(/Bravo/)).toBeInTheDocument();
-    await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([expect.stringMatching(/^\/consignes\/juste(_\d)?\.mp3$/), `/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`]));
+    expect(screen.queryByText(/Bravo/)).toBeNull(); // pas de félicitation pendant que la lettre et le mot sont dits
+    expect(document.querySelector('.confettis-grands')).toBeNull();
+    expect(screen.getByRole('button', { name: `Lettre ${cible}` })).toHaveAttribute('aria-pressed', 'true'); // la lettre juste reste marquée : l'enfant voit qu'elle est choisie
+    await waitFor(() => expect(jouerFichier.mock.calls.map(x => x[0])).toEqual([`/mots/${VOYELLES_INITIALE[cible].fichier}`, `/mots/${c.etats.at(-1).fichier}`, expect.stringMatching(/^\/consignes\/juste(_\d)?\.mp3$/)]), { timeout: 4000 });
+    expect(await screen.findByText(/Bravo/, {}, { timeout: 4000 })).toBeInTheDocument();
     const essais = stockage.lire();
     expect(essais).toHaveLength(1);
     expect(essais[0]).toMatchObject({ carte: c.id, juste: true, tentative: 1, exercice: 'initiale', code: 'CLASSE', positions: [{ pose: cible, juste: true }] }); // mode classe (défaut de la maternelle) : code « CLASSE »
@@ -97,7 +100,7 @@ describe('Maternelle : exercice « première lettre »', () => {
     expect(bonne).toBeEnabled();
     expect(bonne).toHaveAttribute('aria-pressed', 'false');
     await user.click(bonne);
-    expect(screen.getByText(/Bravo/)).toBeInTheDocument();
+    expect(await screen.findByText(/Bravo/, {}, { timeout: 4000 })).toBeInTheDocument();
     expect(stockage.lire().map(l => [l.tentative, l.juste])).toEqual([[1, false], [2, false], [3, true]]);
     expect(screen.getByRole('button', { name: 'Suivant' })).toBeEnabled();
   });
@@ -106,6 +109,7 @@ describe('Maternelle : exercice « première lettre »', () => {
     const { user } = monter(LIEN);
     await commencer(user);
     await user.click(screen.getByRole('button', { name: `Lettre ${lettreInitiale(carteCourante())}` }));
+    await screen.findByText(/Bravo/, {}, { timeout: 4000 });
     expect(document.querySelector('.bravo-grand .etoile-grande')).not.toBeNull();
     expect(document.querySelectorAll('.confettis-grands .conf').length).toBeGreaterThanOrEqual(24);
   });

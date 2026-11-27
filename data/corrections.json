@@ -128,5 +128,221 @@
   "auteur": "JF (décision du 2026-11-22 : « option 1 », verbe vivre, /vi/ ; le lexique ne connaît que les noms lys /lis/ et vis /vis/)",
   "date": "2026-11-22",
   "raison": "phrases du lot 17 avec le verbe, s muet"
+ },
+ {
+  "mot": "chien",
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "ien",
+    "son": "yod+in"
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (décision du 2026-11-27, remarque de Virginie : « ien » est un trigraphe, un seul son /jɛ̃/)",
+  "date": "2026-11-27",
+  "raison": "ien = un seul graphème, pas i + en"
+ },
+ {
+  "mot": "arbre",
+  "cubes": [
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : arbre sans schwa final jugé « bon » pour le mot et la syllabe, avec schwa jugé « faux » ; remarque de Virginie : e muet)",
+  "date": "2026-11-27",
+  "raison": "e final de arbre muet, pas de schwa"
+ },
+ {
+  "mot": "livre",
+  "cubes": [
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "v",
+    "son": "v"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : sans schwa final = bon, avec = faux ; validé le même jour, deux syllabes conservées)",
+  "date": "2026-11-27",
+  "raison": "e final muet après consonne + r ou l"
+ },
+ {
+  "mot": "table",
+  "cubes": [
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "a",
+    "son": "a"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "l",
+    "son": "l"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : sans schwa final = bon, avec = faux ; validé le même jour, deux syllabes conservées)",
+  "date": "2026-11-27",
+  "raison": "e final muet après consonne + r ou l"
+ },
+ {
+  "mot": "tigre",
+  "cubes": [
+   {
+    "g": "t",
+    "son": "t"
+   },
+   {
+    "g": "i",
+    "son": "i"
+   },
+   {
+    "g": "g",
+    "son": "g"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : sans schwa final = bon, avec = faux ; validé le même jour, deux syllabes conservées)",
+  "date": "2026-11-27",
+  "raison": "e final muet après consonne + r ou l"
+ },
+ {
+  "mot": "ogre",
+  "cubes": [
+   {
+    "g": "o",
+    "son": "o_ouvert"
+   },
+   {
+    "g": "g",
+    "son": "g"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : sans schwa final = bon, avec = faux ; validé le même jour, deux syllabes conservées)",
+  "date": "2026-11-27",
+  "raison": "e final muet après consonne + r ou l"
+ },
+ {
+  "mot": "zèbre",
+  "cubes": [
+   {
+    "g": "z",
+    "son": "z"
+   },
+   {
+    "g": "è",
+    "son": "e_ouvert"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : sans schwa final = bon, avec = faux ; validé le même jour, deux syllabes conservées)",
+  "date": "2026-11-27",
+  "raison": "e final muet après consonne + r ou l"
+ },
+ {
+  "mot": "chambre",
+  "cubes": [
+   {
+    "g": "ch",
+    "son": "ch"
+   },
+   {
+    "g": "am",
+    "son": "an"
+   },
+   {
+    "g": "b",
+    "son": "b"
+   },
+   {
+    "g": "r",
+    "son": "r"
+   },
+   {
+    "g": "e",
+    "son": ""
+   }
+  ],
+  "statut": "valide",
+  "auteur": "JF (écoute du 2026-11-27 : sans schwa final = bon, avec = faux ; validé le même jour, deux syllabes conservées)",
+  "date": "2026-11-27",
+  "raison": "e final muet après consonne + r ou l"
  }
 ]

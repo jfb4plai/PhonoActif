@@ -33,3 +33,10 @@ test('session : un bloc compte pour ses lettres, le mot se vérifie juste avec c
   const r = verifier(e);
   assert.equal(r.resultat, 'juste');
 });
+
+test('blocs : chien (« ien » = un seul son, correction 2026-11-27) = pièces ch, ien avec digraphes 2-3 ; ch, i, e, n si seule la longueur 2 est cochée', () => {
+  const carte = packDeSession({ cartes: [{ id: 'chien', mot: 'chien', lettres: ['c', 'h', 'i', 'e', 'n'], cubes: [{ g: 'ch', son: 'ch' }, { g: 'ien', son: 'yod+in' }] }] }).cartes[0];
+  assert.deepEqual(construirePlateauLettres(carte, { nbIntrus: 0, digraphes: [2, 3] }).map(p => p.g).sort(), ['ch', 'ien']);
+  assert.deepEqual(construirePlateauLettres(carte, { nbIntrus: 0, digraphes: [2] }).map(p => p.g).sort(), ['ch', 'e', 'i', 'n']);
+  assert.deepEqual(construirePlateauLettres(carte, { nbIntrus: 0, digraphes: [] }).map(p => p.g).sort(), ['c', 'e', 'h', 'i', 'n']);
+});

@@ -4,6 +4,7 @@
 // Usage :
 //   node tools/base/etats_a_refaire.js                      # LISTE seulement : n'écrit rien dans la base ; écrit data/packs-atelier/etats-voix/ (liste Azure + changements)
 //   node tools/base/etats_a_refaire.js appliquer <dossier>  # APRÈS génération Azure par JF : copie les audios, met à jour les états des fiches (data/base/fiches.json)
+//   ... appliquer <dossier> --mot chien [--mot x] [--garder-syllabes]            # seulement ces mots ; met aussi à jour les cubes (graphèmes) et les syllabes de la fiche si une correction les a changés ; --garder-syllabes : même nombre de syllabes qu'avant (seul un schwa final est retiré de la dernière), décision de JF du 2026-11-27 pour e final muet
 //
 // Suite après la liste (clé Azure, par JF) :
 //   python -I essai-tts-ipa/generer-bibliotheque.py pack etats-voix     -> public/packs/etats-voix/audio
@@ -15,7 +16,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { chargerLexique } from '../../src/node/chargerLexique.js';
 import { chargerCorrections } from '../../src/node/corrections.js';
-import { etatsDuMot, composants, SON_VERS_IPA, nomFichierAudio } from '../../src/core/index.js';
+import { etatsDuMot, composants, SON_VERS_IPA, nomFichierAudio, syllabesPourCubes } from '../../src/core/index.js';
 
 const racine = fileURLToPath(new URL('../..', import.meta.url));
 const base = path.join(racine, 'data', 'base');
@@ -46,7 +47,9 @@ async function calculer() {
       return { lettres: e.lettres, ipa, vitesse, fichier, ancien: f.etats[i].fichier || null, ecartAvecRegles: e.ecartAvecRegles };
     });
     const diff = etats.filter(e => e.fichier !== e.ancien);
-    if (diff.length) changements.push({ id: f.id, mot: f.mot, statut: f.statut, etats, diff: diff.map(e => ({ lettres: e.lettres, avant: (decoder(e.ancien) || {}).ipa || null, apres: e.ipa })) });
+    const cubes = neufs[neufs.length - 1].cubes.map(c => ({ g: c.g, son: c.son }));
+    const cubesChangent = JSON.stringify(cubes) !== JSON.stringify((f.cubes || []).map(c => ({ g: c.g, son: c.son })));
+    if (diff.length || cubesChangent) changements.push({ id: f.id, mot: f.mot, statut: f.statut, etats, cubes, cubesChangent, diff: diff.map(e => ({ lettres: e.lettres, avant: (decoder(e.ancien) || {}).ipa || null, apres: e.ipa })) });
   }
   return { fiches, changements, ignorees };
 }
@@ -70,9 +73,12 @@ async function lister() {
   console.log(`Suite (clé Azure, par JF) :\n  python -I essai-tts-ipa/generer-bibliotheque.py pack ${NOM}\n  node tools/base/etats_a_refaire.js appliquer public/packs/${NOM}/audio`);
 }
 
-async function appliquer(dossierAudio) {
+async function appliquer(dossierAudio, mots, garder = false) {
   if (!dossierAudio) throw new Error('Donner le dossier des audios générés.');
-  const { fiches, changements } = await calculer();
+  const calcul = await calculer();
+  const { fiches } = calcul;
+  const changements = mots.length ? calcul.changements.filter(c => mots.includes(c.mot)) : calcul.changements;
+  if (mots.length) { const absents = mots.filter(m => !changements.some(c => c.mot === m)); if (absents.length) console.log(`Rien à changer pour : ${absents.join(', ')}`); }
   const parId = new Map(fiches.map(f => [f.id, f]));
   let copies = 0, mises = 0;
   const incomplets = [];
@@ -90,6 +96,17 @@ async function appliquer(dossierAudio) {
     if (manquants.length) { incomplets.push(`${c.mot} : ${manquants.length} audio(s) absent(s)`); continue; } // la fiche garde ses anciens états
     const f = parId.get(c.id);
     f.etats = f.etats.map((old, i) => ({ ...old, fichier: c.etats[i].fichier, ecartAvecRegles: c.etats[i].ecartAvecRegles }));
+    if (mots.length && c.cubesChangent) {
+      f.cubes = c.cubes; // cubes : seulement en mode --mot (correction voulue), jamais en masse
+      if (Array.isArray(f.syllabes) && f.syllabes.length) { // syllabes recalculées sur les nouveaux cubes ; fichier absent = on garde les anciennes
+        let neuves = syllabesPourCubes(c.cubes).map(({ ipa, fichier, cubes }) => ({ ipa, fichier: `audio/${fichier}.mp3`, ...(cubes !== undefined ? { cubes } : {}) }));
+        if (garder && neuves.length < f.syllabes.length) { // mêmes syllabes qu'avant, sans le schwa final de la dernière ; le nombre de cubes ne change pas
+          const sansSchwa = x => { const ipa = x.ipa.replace(/ə$/u, ''); const vitesse = [...ipa.normalize('NFD').replace(/[\u0303\u0361]/g, '')].length > 1 ? -30 : 0; return { ...x, ipa, fichier: `audio/${nomFichierAudio(ipa, vitesse)}.mp3` }; };
+          neuves = f.syllabes.map((x, i, t) => (i < t.length - 1 ? x : sansSchwa(x)));
+        }
+        if (neuves.every(x => existsSync(path.join(base, 'assets', x.fichier)))) f.syllabes = neuves; else incomplets.push(`${c.mot} : syllabes gardées (audio absent)`);
+      }
+    }
     mises++;
   }
   await ecrire(path.join(base, 'fiches.json'), fiches);
@@ -98,5 +115,7 @@ async function appliquer(dossierAudio) {
   console.log('Suite : node tools/base/publier.js, npx vite build, écouter petit, elle, avec, papa, puis commit et push.');
 }
 
-const [commande, arg] = process.argv.slice(2);
-(commande === 'appliquer' ? appliquer(arg) : lister()).catch(e => { console.error(e.message); process.exit(1); });
+const args = process.argv.slice(2);
+const mots = args.flatMap((a, i) => (a === '--mot' && args[i + 1] ? [args[i + 1]] : []));
+const [commande, arg] = args;
+(commande === 'appliquer' ? appliquer(arg, mots, args.includes('--garder-syllabes')) : lister()).catch(e => { console.error(e.message); process.exit(1); });
