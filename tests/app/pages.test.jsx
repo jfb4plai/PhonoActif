@@ -120,3 +120,13 @@ describe('mode d’emploi : délai d’affichage des résultats', () => {
     expect(screen.getByText(/juste après une carte jouée, le tableau peut encore afficher 0 essai/)).toBeInTheDocument();
   });
 });
+
+describe('page À propos', () => {
+  it('remerciements à Virginie et à Benoît (demande de JF, 2026-11-27)', () => {
+    monter('#/apropos');
+    expect(screen.getByRole('heading', { name: 'Remerciements' })).toBeInTheDocument();
+    expect(screen.getByText(/n’existerait tout simplement pas/)).toBeInTheDocument();
+    expect(screen.getByText('Virginie')).toBeInTheDocument();
+    expect(screen.getByText('Benoît')).toBeInTheDocument();
+  });
+});

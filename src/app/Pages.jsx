@@ -202,6 +202,10 @@ export function APropos({ base = '/' }) {
           <p>Pour une version physique, le jeu Lilémo est recommandé, quoique légèrement différent de PhonoActif.</p>
         </section>
         <section className="plai-section">
+          <h2>Remerciements</h2>
+          <p>Un chaleureux merci à <strong>Virginie</strong> et à <strong>Benoît</strong>, sans lesquels PhonoActif n’existerait tout simplement pas. Le temps qu’ils y ont consacré et leurs remarques pertinentes ont largement contribué à la création de cet outil.</p>
+        </section>
+        <section className="plai-section">
           <h2>Voix</h2>
           <p>La voix est une <strong>voix de synthèse</strong> (Microsoft Azure, voix Charline, français de Belgique). Les fichiers audio sont préparés à l’avance à partir d’une transcription phonétique.</p>
         </section>
