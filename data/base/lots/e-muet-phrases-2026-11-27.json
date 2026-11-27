@@ -1,0 +1,57 @@
+{
+ "nom": "e-muet-phrases-2026-11-27",
+ "titre": "Phrases d aide relues avec le e final muet (décision de JF 2026-11-27) : même texte, nouvelle chaîne IPA du mot",
+ "niveau": "P1",
+ "mots": [],
+ "images_existantes": [],
+ "phrases_existantes": [
+  {
+   "mot": "arbre",
+   "phrase": "L'arbre est grand."
+  },
+  {
+   "mot": "livre",
+   "phrase": "Je lis un livre."
+  },
+  {
+   "mot": "table",
+   "phrase": "La table est grande."
+  },
+  {
+   "mot": "tigre",
+   "phrase": "Le tigre court dans la forêt."
+  },
+  {
+   "mot": "ogre",
+   "phrase": "L'ogre est grand."
+  },
+  {
+   "mot": "zèbre",
+   "phrase": "Le zèbre a des rayures noires et blanches."
+  },
+  {
+   "mot": "chambre",
+   "phrase": "Il y a un lit dans la chambre."
+  },
+  {
+   "mot": "être",
+   "phrase": "Je veux être pompier."
+  },
+  {
+   "mot": "fenêtre",
+   "phrase": "Ouvre la fenêtre."
+  },
+  {
+   "mot": "montre",
+   "phrase": "Papa regarde sa montre."
+  },
+  {
+   "mot": "sucre",
+   "phrase": "Il y a beaucoup de sucre dans le bol."
+  },
+  {
+   "mot": "lièvre",
+   "phrase": "Le lièvre court vite."
+  }
+ ]
+}

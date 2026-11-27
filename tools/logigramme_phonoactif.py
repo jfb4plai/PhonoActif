@@ -50,6 +50,7 @@ NOEUDS = [
     ("N18", 3, 17, "box", "C", "18", "Zone vidée, essai suivant (3 au plus) ; au 3e échec le mot est révélé"),
     ("N19", 4, 9, "box", "A", "19", "Mode libre : entendre une combinaison de lettres, sans mot cible"),
     ("N20", 4, 10, "box", "P", "20", "Écouter par syllabes : espace 500 ms, dernière syllabe 75 %"),
+    ("N12m", 4, 14, "box", "C", "M", "Maternelle : trouver la première lettre (3 voyelles) ; voix : lettre, mot, puis Bravo"),
     ("N21", 4, 11, "box", "C", "21", "Aide graduée : écoute, indice, révélation"),
     ("N22", 4, 18, "box", "C", "22", "Essais gardés sur l'appareil, envoyés avec jeton et code"),
     ("N23", 0, 19, "box", "P", "23", "Lire les résultats par classe et par élève (liste brute)"),
@@ -73,7 +74,7 @@ ARETES = [
     ("N16", "D4", "", ""), ("D4", "N17", "oui", ""), ("D4", "N18", "non", ""), ("N18", "N13", "essai suivant", "retourG2"),
     ("N17", "N22", "", ""), ("N22", "N23", "envoi, base, lecture", ""), ("N23", "N24", "", ""), ("N24", "N25", "", ""),
     ("N25", "N2", "boucle", "retourM"),
-    ("N11", "N19", "", "p"), ("N12", "N20", "", "p"), ("N13", "N21", "", "p"),
+    ("N11", "N19", "", "p"), ("N12", "N20", "", "p"), ("N13", "N21", "", "p"), ("N11", "N12m", "niveau maternelle", "p"),
 ]
 
 

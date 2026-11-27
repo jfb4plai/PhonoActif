@@ -9,7 +9,7 @@ test('mots réguliers et contexte (sons ManuLemme confirmés)', () => {
   assert.equal(lire('chat'), 'ch a _');
   assert.equal(lire('maison'), 'm e_ouvert z on');
   assert.equal(lire('rose'), 'r o_ferme z _');
-  assert.equal(lire('table'), 't a b l schwa');   // e final après consonne + l : prononcé dans ManuLemme
+  assert.equal(lire('table'), 't a b l _');   // e final après consonne + l : muet (écoute de JF, 2026-11-27 ; avant : schwa, comme ManuLemme)
   assert.equal(lire('vite'), 'v i t _');
   assert.equal(lire('le'), 'l schwa');
   assert.equal(lire('quel'), 'k e_ouvert l');
@@ -72,7 +72,7 @@ test('m après voyelle : nasale seulement devant b ou p, sinon le m se prononce'
   assert.equal(sonsPlats('pom'), 'p o_ouvert m');
   assert.equal(sonsPlats('pompe'), 'p on p');
   assert.equal(sonsPlats('lampe'), 'l an p');
-  assert.equal(sonsPlats('ombre'), 'on b r schwa');
+  assert.equal(sonsPlats('ombre'), 'on b r'); // e final muet après consonne + r (2026-11-27)
   assert.equal(sonsPlats('lam'), 'l a m');
   assert.equal(sonsPlats('tim'), 't i m');
 });
@@ -81,4 +81,16 @@ test('sh (anglicisme) se lit comme ch ; ch devant r, l, n se lit k', () => {
   assert.equal(sonsPlats('short'), 'ch o_ouvert r');
   assert.equal(sonsPlats('chat'), 'ch a');
   assert.ok(sonsPlats('chrome').startsWith('k r'));  // le o de chrome reste mal lu (o ouvert/fermé : limite connue)
+});
+
+test('règles de JF du 2026-11-27 : « ien » final = un graphème /jɛ̃/ ; e final muet après consonne + r ou l ; le, de, que gardent leur schwa', () => {
+  assert.equal(lire('bien'), 'b yod+in');
+  assert.equal(lireRegles('musicien').at(-1).g, 'ien');
+  assert.equal(lire('riens'), 'r yod+in _');
+  assert.ok(!lireRegles('science').some(c => c.g === 'ien'));
+  assert.ok(!lireRegles('vient').some(c => c.g === 'ien'));
+  assert.equal(lire('livre').endsWith('_'), true);
+  assert.equal(lire('arbre').endsWith('_'), true);
+  assert.equal(lire('le'), 'l schwa');
+  assert.equal(lire('que'), 'k schwa');
 });

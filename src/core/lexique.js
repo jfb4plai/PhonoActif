@@ -1,5 +1,6 @@
 import { sonDepuisCodes } from './codes.js';
 import { segmenterAuto, segmenterExplicite } from './segmentation.js';
+import { appliquerReglesLexicales } from './regleLexicale.js';
 
 export function normaliserMot(s) {
   if (typeof s !== 'string') return '';
@@ -79,7 +80,7 @@ export function segmenterMot(mot, lexique, options = {}) {
   if (entree) {
     const recompose = normaliserMot(entree.graphemes.join(''));
     if (recompose === m) {
-      const cubes = cubesDepuisEntree(entree);
+      const cubes = appliquerReglesLexicales(m, cubesDepuisEntree(entree)); // « ien » en un graphème, e final muet après consonne + r/l (décisions de JF 2026-11-27)
       const inconnus = cubes.filter(c => c.aVerifier).map(c => c.g);
       if (inconnus.length) raisons.push(`son inconnu pour : ${inconnus.join(', ')}`);
       return { cubes, source: 'lexique', aVerifier: inconnus.length > 0, raisons };

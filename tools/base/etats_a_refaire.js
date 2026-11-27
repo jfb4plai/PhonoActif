@@ -104,6 +104,12 @@ async function appliquer(dossierAudio, mots, garder = false) {
           const sansSchwa = x => { const ipa = x.ipa.replace(/ə$/u, ''); const vitesse = [...ipa.normalize('NFD').replace(/[\u0303\u0361]/g, '')].length > 1 ? -30 : 0; return { ...x, ipa, fichier: `audio/${nomFichierAudio(ipa, vitesse)}.mp3` }; };
           neuves = f.syllabes.map((x, i, t) => (i < t.length - 1 ? x : sansSchwa(x)));
         }
+        for (const x of neuves) { // fichier de syllabe absent de la base : pris dans le dossier d'audio donné ou dans la bibliothèque normalisée
+          const dest = path.join(base, 'assets', x.fichier);
+          if (existsSync(dest)) continue;
+          const src = [path.join(path.resolve(dossierAudio), path.basename(x.fichier)), path.join(racine, 'essai-tts-ipa', 'sortie', 'bibliotheque', 'norm', path.basename(x.fichier))].find(y => existsSync(y));
+          if (src) { await mkdir(path.dirname(dest), { recursive: true }); await copyFile(src, dest); copies++; }
+        }
         if (neuves.every(x => existsSync(path.join(base, 'assets', x.fichier)))) f.syllabes = neuves; else incomplets.push(`${c.mot} : syllabes gardées (audio absent)`);
       }
     }

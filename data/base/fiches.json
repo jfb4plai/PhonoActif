@@ -657,12 +657,8 @@
     "son": "b"
    },
    {
-    "g": "i",
-    "son": "yod"
-   },
-   {
-    "g": "en",
-    "son": "in"
+    "g": "ien",
+    "son": "yod+in"
    }
   ],
   "etats": [
@@ -673,12 +669,12 @@
    },
    {
     "lettres": "bi",
-    "fichier": "audio/62_6a_-30.mp3",
+    "fichier": "audio/62_69_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "bie",
-    "fichier": "audio/62_6a_259_-30.mp3",
+    "fichier": "audio/62_69_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -3374,12 +3370,8 @@
     "son": "r"
    },
    {
-    "g": "i",
-    "son": "yod"
-   },
-   {
-    "g": "en",
-    "son": "in"
+    "g": "ien",
+    "son": "yod+in"
    }
   ],
   "etats": [
@@ -3390,12 +3382,12 @@
    },
    {
     "lettres": "ri",
-    "fichier": "audio/281_6a_-30.mp3",
+    "fichier": "audio/281_69_-30.mp3",
     "ecartAvecRegles": false
    },
    {
     "lettres": "rie",
-    "fichier": "audio/281_6a_259_-30.mp3",
+    "fichier": "audio/281_69_-30.mp3",
     "ecartAvecRegles": false
    },
    {
@@ -5974,7 +5966,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -5995,7 +5987,7 @@
    },
    {
     "lettres": "être",
-    "fichier": "audio/25b_74_281_259_-30.mp3",
+    "fichier": "audio/25b_74_281_-30.mp3",
     "ecartAvecRegles": false
    }
   ],
@@ -6006,8 +5998,8 @@
     "cubes": 1
    },
    {
-    "ipa": "tʁə",
-    "fichier": "audio/74_281_259_-30.mp3",
+    "ipa": "tʁ",
+    "fichier": "audio/74_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -6596,7 +6588,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -6632,7 +6624,7 @@
    },
    {
     "lettres": "fenêtre",
-    "fichier": "audio/66_259_6e_25b_74_281_259_-30.mp3",
+    "fichier": "audio/66_259_6e_25b_74_281_-30.mp3",
     "ecartAvecRegles": false
    }
   ],
@@ -6648,8 +6640,8 @@
     "cubes": 2
    },
    {
-    "ipa": "tʁə",
-    "fichier": "audio/74_281_259_-30.mp3",
+    "ipa": "tʁ",
+    "fichier": "audio/74_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -10717,7 +10709,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -10748,7 +10740,7 @@
    },
    {
     "lettres": "montre",
-    "fichier": "audio/6d_254_303_74_281_259_-30.mp3",
+    "fichier": "audio/6d_254_303_74_281_-30.mp3",
     "ecartAvecRegles": false
    }
   ],
@@ -10759,8 +10751,8 @@
     "cubes": 2
    },
    {
-    "ipa": "tʁə",
-    "fichier": "audio/74_281_259_-30.mp3",
+    "ipa": "tʁ",
+    "fichier": "audio/74_281_-30.mp3",
     "cubes": 3
    }
   ],
@@ -11438,7 +11430,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -11464,7 +11456,7 @@
    },
    {
     "lettres": "sucre",
-    "fichier": "audio/73_79_6b_281_259_-30.mp3",
+    "fichier": "audio/73_79_6b_281_-30.mp3",
     "ecartAvecRegles": false
    }
   ],
@@ -17126,7 +17118,7 @@
    },
    {
     "g": "e",
-    "son": "schwa"
+    "son": ""
    }
   ],
   "etats": [
@@ -17157,7 +17149,7 @@
    },
    {
     "lettres": "lièvre",
-    "fichier": "audio/6c_6a_25b_76_281_259_-30.mp3",
+    "fichier": "audio/6c_6a_25b_76_281_-30.mp3",
     "ecartAvecRegles": false
    }
   ],
@@ -17168,8 +17160,8 @@
     "cubes": 3
    },
    {
-    "ipa": "vʁə",
-    "fichier": "audio/76_281_259_-30.mp3",
+    "ipa": "vʁ",
+    "fichier": "audio/76_281_-30.mp3",
     "cubes": 3
    }
   ],

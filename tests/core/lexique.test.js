@@ -20,7 +20,7 @@ test('segmenterMot : mot du lexique', () => {
   const r = segmenterMot('bien', lex);
   assert.equal(r.source, 'lexique');
   assert.equal(r.aVerifier, false);
-  assert.equal(lire(r), 'b=b i=yod en=in');
+  assert.equal(lire(r), 'b=b ien=yod+in'); // « ien » final = un graphème /jɛ̃/ (règle de JF, 2026-11-27 ; avant : i + en)
 });
 
 test('segmenterMot : majuscule et espace donnent le même résultat', () => {
@@ -83,4 +83,14 @@ test('lexique : même mot en plusieurs lignes, la plus fréquente gagne', () => 
   assert.equal(l.taille, 2);
   assert.equal(l.chercher('inconnu'), null);
   assert.deepEqual(l.chercherTous('inconnu'), []);
+});
+
+test('règles lexicales de JF (2026-11-27) sur le lexique réel : tous les mots en -ien(s) donnent « ien », e final muet après consonne + r/l', async () => {
+  const fs = await import('node:fs');
+  const lexReel = creerLexique(JSON.parse(fs.readFileSync(new URL('../../data/lexique.json', import.meta.url), 'utf8')));
+  const finIen = lexReel.entrees.map(e => e.ortho).filter(m => /ien(s)?$/.test(m));
+  assert.ok(finIen.length >= 80);
+  for (const m of finIen) assert.ok(segmenterMot(m, lexReel).cubes.some(c => c.g === 'ien' && c.son === 'yod+in'), m);
+  for (const m of ['arbre', 'livre', 'table', 'tigre', 'ogre', 'zèbre', 'chambre']) { const c = segmenterMot(m, lexReel).cubes; assert.equal(c.at(-1).son, '', m); }
+  assert.equal(segmenterMot('que', lexReel).cubes.at(-1).son, 'schwa');
 });

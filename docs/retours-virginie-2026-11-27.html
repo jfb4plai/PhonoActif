@@ -37,7 +37,7 @@
 <body>
 
 <h1>Retours de Virginie : corrections, coût, impact sur le logigramme</h1>
-<p class="sous">8 vocaux transcrits, lus en entier. Rien n'est modifié dans l'application. Aucun audio n'a été écouté par Claude.</p>
+<p class="sous">8 vocaux transcrits, lus en entier. Aucun audio n'a été écouté par Claude. Mis à jour le 2026-11-27 : voir §0.</p>
 
 <div class="legende">
   <span><span class="pastille c">Constaté</span> lu dans le code ou les données, avec la source</span>
@@ -45,6 +45,25 @@
   <span><span class="pastille n">Non vérifié</span> à écouter ou à examiner</span>
 </div>
 <p class="note">Coûts : estimations de Claude, non mesurées (« audio » = génération Azure lancée par JF avec sa clé). Les décisions « JF » attendent ta réponse avant tout code.</p>
+
+<h2>0. État au 2026-11-27 (fin de journée)</h2>
+<p class="note">Le tableau du §1 est l'analyse de départ, conservée telle quelle. Cette section dit où en est chaque point.</p>
+<div class="tableau-wrap">
+<table style="min-width:900px">
+  <thead><tr><th>#</th><th>Point</th><th>État</th><th>Reste à faire</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1</td><td>Maternelle : ordre Bravo / lettre</td><td><span class="pastille c">Poussé</span> lettre, mot, puis fête et Bravo. Parcours local constaté.</td><td>Écoute réelle ; pause de 500 ms non testée avec des enfants. Page de félicitation autonome : idée notée, non construite.</td></tr>
+    <tr><td class="num">2</td><td>« arbre » : e muet</td><td><span class="pastille c">Règle dans le code</span> e final muet après consonne + r ou l (deux voyelles au moins) : arbre, livre, table, tigre, ogre, zèbre, chambre, fenêtre, montre, être, lièvre, sucre. Deux syllabes gardées.</td><td>Phrases audio de ces 12 mots à régénérer (clé Azure, lot prêt) ; syllabe « kʁ » de sucre à générer. Chambre et sucre ne sont dans aucune liste de mots d'élève.</td></tr>
+    <tr><td class="num">3</td><td>« chien » : trigraphe « ien »</td><td><span class="pastille c">Règle dans le code</span> « ien » final = un graphème /jɛ̃/ (84 mots du lexique, tous vérifiés), donc chien, bien, rien et les suivants.</td><td>Rien d'autre.</td></tr>
+    <tr><td class="num">4</td><td>« vél » dit « vèl »</td><td><span class="pastille d">Solution trouvée</span> deux balises /ve/ puis /l/ (jugée bonne).</td><td>Application en attente du lot 3 (tel, ser, ver) pour la généraliser.</td></tr>
+    <tr><td class="num">5</td><td>« tortue » : « to »</td><td><span class="pastille d">Piste</span> /to/ donne l'o ouvert voulu ; /tɔ/ perd le o.</td><td>Lot 3 (états consonne + o, o fermé) avant toute règle ou fiche modifiée.</td></tr>
+    <tr><td class="num">6</td><td>« souris » : « sourieux »</td><td><span class="pastille c">Rien à corriger</span> syllabe /ʁi/ et mot jugés bons à l'écoute.</td><td>Aucun.</td></tr>
+    <tr><td class="num">7</td><td>Bouton « Vérifier »</td><td><span class="pastille d">V0</span> aucun changement, accepté « à ce stade ».</td><td>À rouvrir si besoin.</td></tr>
+    <tr><td class="num">8</td><td>Cartes de consignes</td><td>Autre projet.</td><td>À reprendre bientôt (JF).</td></tr>
+    <tr><td class="num">9</td><td>Prévention (états à risque)</td><td><span class="pastille d">Liste</span> 128 chaînes IPA dans docs/etats-a-risque-voix.csv.</td><td>Écoute après le lot 3 ; 6 fiches (sofa, rôti, épi, midi, joli, volé) non touchées.</td></tr>
+  </tbody>
+</table>
+</div>
 
 <h2>1. Vue d'ensemble</h2>
 <div class="tableau-wrap">

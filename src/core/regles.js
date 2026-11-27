@@ -31,6 +31,7 @@ function decouper(s) {
     else if ((m = reste.match(/^(a|e|eu|ou)ils?$/))) { g = m[1]; out.push({ g, i, avantIl: true }); i += g.length; continue; } // ail, eil, euil, ouil finaux
     else if (/^ue(ill|ils?$)/.test(reste) && /[cg]$/.test(s.slice(0, i))) { g = 'ue'; if (/^ueils?$/.test(reste)) { out.push({ g, i, avantIl: true }); i += g.length; continue; } } // cueillir, accueil, cercueil
     else if (/^[aoue]y[aeiouéèêàâ]/.test(reste)) g = reste.slice(0, 2); // ay, oy, uy, ey devant voyelle : voyelle + yod
+    else if (/^iens?$/.test(reste)) g = 'ien'; // « ien » final (bien, chien) ou « iens » : un seul graphème /jɛ̃/ (décision de JF 2026-11-27)
     else {
       g = GRAPHEMES.find(t => reste.startsWith(t)) || reste[0];
       const suiv = s[i + g.length];
@@ -65,7 +66,7 @@ function sonDeE(ctx) {
   if (suivants.length && (suivants[0].g === 'il' || suivants[0].g === 'ill')) return { son: 'e_ouvert' }; // soleil, oreille
   if (suivants.length === 0) { // e final
     if (mot === 'e' || /^[^aeiouyàâäéèêëîïôöûùüœ]+e$/.test(mot.replace(/(q|g)u(?=e$)/, '$1'))) return { son: 'schwa' }; // e seul, le, de, que
-    return { son: grappe ? 'schwa' : '' };
+    return { son: '' }; // e final muet, même après consonne + r ou l (arbre, livre, table) : écoute de JF 2026-11-27 ; avant : schwa après un groupe consonantique
   }
   if (g === 'e' && /[g]$/.test(avant) && /^[aouàâ]/.test(reste)) return { son: '' }; // geo, gea : e muet
   const t1 = suivants[0].g, t2 = suivants[1] ? suivants[1].g : undefined;
@@ -102,6 +103,7 @@ function sonDe(ctx) {
     case 'ay': case 'ey': return { son: 'e_ouvert+yod' };
     case 'uy': return { son: 'ui+yod' };
     case 'oin': return { son: 'w+in' };
+    case 'ien': return { son: 'yod+in' };
     case 'oeu': case 'œu': return { son: /^(d|x|ds)?$/.test(reste) ? 'eu_ferme' : 'eu_ouvert' };
     case 'eu': {
       const ferme = reste === '' || /^(x|s|z|t|e|es)$/.test(reste) || /^s[aeiouyéèê]/.test(reste);
